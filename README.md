@@ -1,8 +1,10 @@
 # Harvard Open Data Project
 
+Building Harvard University's first open data portal.
+
 ## Technology
 * Dataverse (Harvard in-house app; uses DCAT standard)
-* CKAN (lightweight catalog management)
+* CKAN (lightweight catalog management; used by most open data groups)
 
 ## Interesting possible data sets
 
