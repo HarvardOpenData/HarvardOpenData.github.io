@@ -1,7 +1,5 @@
 # Harvard Open Data Project
 
-Neel Mehta, Sohum Pawar, Nick Sinai, Jim Waldo, et al.
-
 ## Technology
 * Dataverse
 * CKAN
@@ -25,3 +23,7 @@ Neel Mehta, Sohum Pawar, Nick Sinai, Jim Waldo, et al.
 * [CS50 Maps API](https://manual.cs50.net/api/maps/)
 * Authentication
 * Campus services (HUDS)
+
+## Resources
+* [Find all data on harvard.edu](http://lmgtdfy.usopendata.org/)
+* 
