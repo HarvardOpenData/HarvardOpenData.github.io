@@ -33,6 +33,7 @@ Building Harvard University's first open data portal.
 * [CS50 Maps API](https://manual.cs50.net/api/maps/)
 * Authentication
 * Campus services (HUDS)
+* [DASH research repository](http://dash.harvard.edu/)
 
 ## Resources
 * [Find all data sets on harvard.edu](http://lmgtdfy.usopendata.org/)
