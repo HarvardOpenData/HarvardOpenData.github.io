@@ -1,4 +1,4 @@
-# Harvard Open Data Project
+# Harvard DROID: "Digital Repository of Open Interesting Data"
 
 Building Harvard University's first open data portal.
 
