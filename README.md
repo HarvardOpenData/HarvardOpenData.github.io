@@ -13,7 +13,7 @@
 * Registrar FAS (demographics)
 * Endowment
 * Course planner
-* Library cloud/Hollis
+* Library cloud/Hollis (Presto)
 * Harvard art museums
 * LabStat
 * Harvard 990 (nonprofit arms)
@@ -25,5 +25,4 @@
 * Campus services (HUDS)
 
 ## Resources
-* [Find all data on harvard.edu](http://lmgtdfy.usopendata.org/)
-* 
+* [Find all data sets on harvard.edu](http://lmgtdfy.usopendata.org/)
