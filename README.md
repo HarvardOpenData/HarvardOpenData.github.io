@@ -23,3 +23,5 @@ Neel Mehta, Sohum Pawar, Nick Sinai, Jim Waldo, et al.
 * [CS50 Courses API](https://manual.cs50.net/api/courses/)
 * [CS50 Food API](https://manual.cs50.net/api/food/)
 * [CS50 Maps API](https://manual.cs50.net/api/maps/)
+* Authentication
+* Campus services (HUDS)
