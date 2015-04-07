@@ -14,6 +14,12 @@ Building Harvard University's first open data portal.
 * Licensing (proprietary Harvard license)
 * URL (data.harvard.edu?)
 
+## Teams
+* Data set finders
+* Documentation writers
+* Tech researchers
+* Coders
+
 ## Interesting possible data sets
 
 * Energy witness
