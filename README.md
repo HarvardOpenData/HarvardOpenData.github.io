@@ -12,3 +12,9 @@
 * Shuttle tracker
 * Registrar FAS (demographics)
 * Endowment
+* Course planner
+* Library cloud/Hollis
+* Harvard art museums
+* LabStat
+* Harvard 990 (nonprofit arms)
+* 
