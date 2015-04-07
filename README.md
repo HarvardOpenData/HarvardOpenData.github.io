@@ -42,4 +42,4 @@ Building Harvard University's first open data portal.
 * [DASH research repository](http://dash.harvard.edu/)
 
 ## Resources
-* [Find all data sets on harvard.edu](http://lmgtdfy.usopendata.org/)
+* [Find all data sets on harvard.edu](http://lmgtdfy.usopendata.org/harvard.edu/)
