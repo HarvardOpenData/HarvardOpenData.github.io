@@ -3,8 +3,9 @@
 Building Harvard University's first open data portal.
 
 ## Technology
-* Dataverse (Harvard in-house app; uses DCAT standard)
-* CKAN (lightweight catalog management; used by most open data groups)
+* [Dataverse](http://dataverse.org/) (Harvard in-house app; uses DCAT standard)
+* [CKAN](http://ckan.org/) (lightweight catalog management; used by most open data groups)
+* Socrata
 
 ## Interesting possible data sets
 
