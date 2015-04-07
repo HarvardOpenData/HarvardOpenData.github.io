@@ -1,8 +1,8 @@
 # Harvard Open Data Project
 
 ## Technology
-* Dataverse
-* CKAN
+* Dataverse (Harvard in-house app; uses DCAT standard)
+* CKAN (lightweight catalog management)
 
 ## Interesting possible data sets
 
