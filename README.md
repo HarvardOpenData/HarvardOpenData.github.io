@@ -7,6 +7,13 @@ Building Harvard University's first open data portal.
 * [CKAN](http://ckan.org/) (lightweight catalog management; used by most open data groups)
 * Socrata
 
+## Conversations
+
+* Technology
+* Data sets (below)
+* Licensing (proprietary Harvard license)
+* URL (data.harvard.edu?)
+
 ## Interesting possible data sets
 
 * Energy witness
@@ -16,8 +23,8 @@ Building Harvard University's first open data portal.
 * Registrar FAS (demographics)
 * Endowment
 * Course planner
-* Library cloud/Hollis (Presto)
-* Harvard art museums
+* **Library cloud/Hollis (Presto)**
+* **Harvard art museums**
 * LabStat
 * Harvard 990 (nonprofit arms)
 * Allston expansiont
