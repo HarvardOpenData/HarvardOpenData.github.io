@@ -1,5 +1,7 @@
 # Harvard DROID: "Digital Repository of Open Interesting Data"
 
+![Droid logo](droid-logo.png)
+
 Building Harvard University's first open data portal.
 
 ## About
