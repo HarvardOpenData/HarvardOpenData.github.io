@@ -1,6 +1,14 @@
 # Harvard DROID: "Digital Repository of Open Interesting Data"
 
-Building Harvard University's first open data portal.
+Work with Harvard's CTO and the former Deputy CTO of the United States to create an open platform where Harvard students and researchers can discover and access data about the University!
+
+This portal will be featured on the main Harvard website , and could feature everything from dining menus, to shuttle schedules, to the course catalog.  Hackers and data lovers welcome! 
+
+## Getting Started
+
+Feel free to browse the discussion threads under the Issues tab or explore some of the links posted below.
+
+Intro meeting coming soon -- [sign up for the team](https://docs.google.com/a/college.harvard.edu/forms/d/1Jiq3Dsnn-XQ5zMZJsMyRMejzd34OiaAEnqXFVxf3d5A/viewform) to stay posted.
 
 ## Technology Options
 * [Dataverse](http://dataverse.org/) (Open source data archiving system, developed by Harvard's [IQSS](http://www.iq.harvard.edu))
