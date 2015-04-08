@@ -10,7 +10,7 @@ This portal will be featured on the main Harvard website , and could feature eve
 
 ## Getting Started
 
-Feel free to browse the discussion threads under the [Issues](https://github.com/Harvard-Open-Data-Project/droid/issues) tab or find more information under the [Wiki](https://github.com/Harvard-Open-Data-Project/droid/wiki) tab.
+**Feel free to browse the discussion threads under [Issues](https://github.com/Harvard-Open-Data-Project/droid/issues) or find more information under [Wiki](https://github.com/Harvard-Open-Data-Project/droid/wiki).**
 
 Harvard students: interested in working with us? Intro meeting coming soon -- [sign up for the team](https://docs.google.com/a/college.harvard.edu/forms/d/1Jiq3Dsnn-XQ5zMZJsMyRMejzd34OiaAEnqXFVxf3d5A/viewform) to stay posted.
 
