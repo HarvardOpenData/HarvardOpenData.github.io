@@ -2,16 +2,16 @@
 
 Building Harvard University's first open data portal.
 
-## Technology
-* [Dataverse](http://dataverse.org/) (Harvard in-house app; uses DCAT standard)
-* [CKAN](http://ckan.org/) (lightweight catalog management; used by most open data groups)
-* Socrata
+## Technology Options
+* [Dataverse](http://dataverse.org/) (Open source data archiving system, developed by Harvard's [IQSS](http://www.iq.harvard.edu))
+* [CKAN](http://ckan.org/) (Open source data management system, used by national and local governments, including USA's Data.gov)
+* [Socrata](http://www.socrata.com) (Leading vendor of open data catalog software)
 
 ## Conversations
 
 * Technology
 * Data sets (below)
-* Licensing (proprietary Harvard license)
+* Licensing
 * URL (data.harvard.edu?)
 
 ## Teams
