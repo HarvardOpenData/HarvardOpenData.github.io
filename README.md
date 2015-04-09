@@ -1,4 +1,4 @@
-# Harvard DROID: "Digital Repository of Open Interesting Data"
+# Harvard Droid: "Digital Repository of Open Interesting Data"
 
 ![Droid logo](droid-logo.png)
 
