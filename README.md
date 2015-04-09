@@ -6,9 +6,11 @@ Building Harvard University's first open data portal.
 
 ## About
 
-Work with Harvard's CTO and the former Deputy CTO of the United States to create an open platform where Harvard students and researchers can discover and access data about the University!
+We (Harvard's CTO, the former Deputy CTO of the United States, and Harvard College students, among others) are creating an open platform where Harvard students and researchers can discover data about the University such as course catalogs, energy consumption, and library holdings.
 
-This portal will be featured on the main Harvard website , and could feature everything from dining menus, to shuttle schedules, to the course catalog.  Hackers and data lovers welcome! 
+We're going to find, store, and publish exciting data sets about Harvard and build a technical platform that'll help visitors find and use this data at a click. Data lovers and hackers welcome!
+
+Interested? Look below to get started!
 
 ## Getting Started
 
@@ -16,7 +18,8 @@ This portal will be featured on the main Harvard website , and could feature eve
 
 Harvard students: interested in working with us? Intro meeting coming soon -- [sign up for the team](https://docs.google.com/a/college.harvard.edu/forms/d/1Jiq3Dsnn-XQ5zMZJsMyRMejzd34OiaAEnqXFVxf3d5A/viewform) to stay posted.
 
-There's nothing in this repository yet, but if you're interested, you can grab a copy with:
+Grab a copy of the repository with:
+
 ```
 $ git clone https://github.com/Harvard-Open-Data-Project/droid.git
 ```
