@@ -23,3 +23,24 @@ Grab a copy of the repository with:
 ```
 $ git clone https://github.com/Harvard-Open-Data-Project/droid.git
 ```
+
+## Projects
+
+* Finding interesting, accessible data sets around harvard.edu
+* Determining the technology to use to store the data
+* Working out licensing for the data
+* Building a frontend and backend for the data portal
+
+## Possible Data Sets
+
+* Q scores
+* Course catalog
+* Shuttle tracker
+* Dining hall menus
+* Demographics from the FAS Registrar
+* Endowment
+* Library search
+* Harvard art museum collections
+* Building plans for Allston
+* Authentication
+* [DASH research repository](http://dash.harvard.edu/)
