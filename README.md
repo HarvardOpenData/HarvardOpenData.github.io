@@ -16,7 +16,9 @@ Interested? Read on!
 
 **To get involved, join the discussion at [Issues](https://github.com/Harvard-Open-Data-Project/droid/issues) or learn more at the [Wiki](https://github.com/Harvard-Open-Data-Project/droid/wiki).**
 
-Harvard students: interested in working with us? Intro meeting coming soon -- **[sign up for the team](https://docs.google.com/a/college.harvard.edu/forms/d/1Jiq3Dsnn-XQ5zMZJsMyRMejzd34OiaAEnqXFVxf3d5A/viewform)** to stay posted.
+Harvard students: interested in working with us? **[Sign up for the team!](https://docs.google.com/a/college.harvard.edu/forms/d/1Jiq3Dsnn-XQ5zMZJsMyRMejzd34OiaAEnqXFVxf3d5A/viewform)**
+
+**Introductory meeting Friday 4/17 4:30-5:30pm in Pierce 301. Come meet everyone involved in the project, join a team, and enjoy free pizza!**
 
 Grab a copy of the repository with:
 
