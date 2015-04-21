@@ -18,8 +18,6 @@ Interested? Read on!
 
 Harvard students: interested in working with us? **[Sign up for the team!](https://docs.google.com/a/college.harvard.edu/forms/d/1Jiq3Dsnn-XQ5zMZJsMyRMejzd34OiaAEnqXFVxf3d5A/viewform)**
 
-**Introductory meeting Friday 4/17 4:30-5:30pm in Pierce 301. Come meet everyone involved in the project, join a team, and enjoy free pizza!**
-
 Grab a copy of the repository with:
 
 ```
