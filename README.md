@@ -42,13 +42,23 @@ $ git clone https://github.com/Harvard-Open-Data-Project/droid.git
 ## Possible Data Sets
 
 * Q scores
-* Course catalog
-* Shuttle tracker
+* Course Data
+ * catalog
+ * teacher/professor
+ * location (room/building)
 * Dining hall menus
 * Demographics from the FAS Registrar
 * Endowment
-* Library search
-* Harvard art museum collections
-* Building plans for Allston
+ * Endowment investments
+* Catalog information
+ * Library search
+ * Harvard art museum collections
+ * [DASH research repository](http://dash.harvard.edu/)
+* Location data
+ * Building plans for Allston
+ * Shuttle tracker
+ * List of all buildings, and rooms + LAT/LONGs on campus
 * Authentication
-* [DASH research repository](http://dash.harvard.edu/)
+* Faculty list
+* All scholarships and funding available across faculties and university
+
