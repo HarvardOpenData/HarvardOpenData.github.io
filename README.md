@@ -1,14 +1,14 @@
-# Harvard Droid: "Digital Repository of Open Interesting Data"
+# Harvard Open Data Portal
 
-![Droid logo](droid-logo.png)
+## About the Harvard Open Data Portal
 
-**Building Harvard University's first open data portal.**
+Students from across the University are spearheading a project to build Harvard’s first open data portal, which will empower Harvard students and researchers to discover and hack with University data like course catalogs, library holdings, and more.
 
-## About Droid
+We've teamed up with Harvard’s Chief Technology Officer and Chief Digital Officer along with the former deputy CTO of the US. We're now looking for students with expertise in fields ranging from technology to policy to build a cross-functional team for the project.
 
-We (Harvard's CTO, Harvard's Chief Digital Officer, the former Deputy CTO of the United States, the Berkman Center, and Harvard College students, among others) are creating an open platform where Harvard students and researchers can discover data about the University such as course catalogs, energy consumption, and library holdings.
+Join us to make more university data accessible, build a web frontend for the data portal, and create interesting visualizations and apps using our data. It's a great opportunity to expand your skill set while building an enduring platform for the Harvard community.
 
-We're going to find, store, and publish exciting data sets about Harvard and build a technical platform that'll help visitors find and use this data at a click. We're looking for data lovers and hackers from around the University -- especially undergraduates -- to make this a reality.
+Open meetings in Sever 109 on Fridays 12:00-1:30pm; free lunch provided. Contact neelmehta@college.harvard.edu with questions.
 
 ## Past Work
 
