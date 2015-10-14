@@ -1,6 +1,6 @@
 # Harvard Open Data Portal
 
-## About the Harvard Open Data Portal
+## About
 
 Students from across the University are spearheading a project to build Harvard’s first open data portal, which will empower Harvard students and researchers to discover and hack with University data like course catalogs, library holdings, and more.
 
