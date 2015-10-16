@@ -29,7 +29,7 @@ Harvard students: interested in working with us? **[Sign up for the team!](https
 Grab a copy of the repository with:
 
 ```
-$ git clone https://github.com/Harvard-Open-Data-Project/droid.git
+$ git clone https://github.com/Harvard-Open-Data-Project/hodp.git
 ```
 
 ## Next Steps
