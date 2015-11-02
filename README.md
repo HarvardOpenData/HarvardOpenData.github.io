@@ -6,7 +6,7 @@ We've teamed up with Harvard's Chief Technology Officer and Chief Digital Office
 
 Join us to make more university data accessible, build a web frontend for the data portal, and create interesting visualizations and apps using our data. It's a great opportunity to expand your skill set while building an enduring platform for the Harvard community.
 
-Open meetings in Sever 109 on Fridays 12:00-1:30pm; free lunch provided. Contact neelmehta@college.harvard.edu with questions.
+Open meetings in **Sever 111 on Fridays 12:00-1:30pm; free lunch provided**. Contact neelmehta@college.harvard.edu with questions.
 
 ## Past Work
 There has been a large movement toward open data in government (e.g. [Data.gov](http://data.gov)) and in other universities (e.g. [Yale's Open Data Access Project](http://yoda.yale.edu/)). The Harvard administration has been working on an open data portal of our own for nearly two years, and by finally bringing together all the necessary people (faculty leaders and undergraduate builders and researchers) we are finally making this a reality.
