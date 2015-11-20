@@ -34,7 +34,6 @@ $ git clone https://github.com/Harvard-Open-Data-Project/hodp.git
 - Building a frontend and backend for the data portal
 
 ## Possible Data Sets
-<<<<<<< HEAD
 - Q scores
 - Course catalog
 - Shuttle tracker
@@ -56,27 +55,3 @@ $ git clone https://github.com/Harvard-Open-Data-Project/hodp.git
 - Faculty and staff demographics
 - Annual fire safety report
 - Endowment stats
-=======
-
-* Q scores
-* Course Data
- * catalog
- * teacher/professor
- * location (room/building)
-* Dining hall menus
-* Demographics from the FAS Registrar
-* Endowment
- * Endowment investments
-* Catalog information
- * Library search
- * Harvard art museum collections
- * [DASH research repository](http://dash.harvard.edu/)
-* Location data
- * Building plans for Allston
- * Shuttle tracker
- * List of all buildings, and rooms + LAT/LONGs on campus
-* Authentication
-* Faculty list
-* All scholarships and funding available across faculties and university
-
->>>>>>> e1220b9e67ce2f41a23d6ff42fc2271b7546b74f
