@@ -4,6 +4,6 @@ Schemas to look into as inspiration:
 - [https://project-open-data.cio.gov/v1.1/schema/](https://project-open-data.cio.gov/v1.1/schema/)
 - [https://github.com/Harvard-Open-Data-Project/hodp/issues/6](https://github.com/Harvard-Open-Data-Project/hodp/issues/6)
 
-Column name | Data type | Description
------------ | --------- | -----------
-test        | test      | test
+Field | Label | Definition | Required
+----- | ----- | ---------- | --------
+test  | test  | test       | no
