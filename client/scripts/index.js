@@ -7,7 +7,7 @@ var Header = React.createClass({
 	render: function() {
 		return (
 			<div className="page-header">
-				<h1>HODP</h1>
+				<h1>Harvard Open Data Project</h1>
 			</div>
 		);
 	}
