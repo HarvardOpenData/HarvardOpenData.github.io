@@ -18,7 +18,7 @@ var Header = React.createClass({
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavItem eventKey={2} href="https://github.com/Harvard-Open-Data-Project/hodp">GitHub</NavItem>
+            <NavItem eventKey={1} href="https://github.com/Harvard-Open-Data-Project/hodp">GitHub</NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -30,7 +30,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <Header/>
+        <Header />
         <div className="container">
           <Router.RouteHandler/>
         </div>
