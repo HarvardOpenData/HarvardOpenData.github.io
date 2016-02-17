@@ -1,6 +1,8 @@
 var React = require('react'),
 	Router = require('react-router');
 
+import ReactDOM from 'react-dom';
+
 var Header = React.createClass({
 	render: function() {
 		return (
@@ -49,5 +51,5 @@ var routes = (
 );
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
-	React.render(<Handler/>, document.body);
+	ReactDOM.render(<Handler/>, document.body);
 });
