@@ -17,9 +17,12 @@ There has been a large movement toward open data in government (e.g. [Data.gov](
 - Perry Hewitt, Chief Digital Officer, Harvard University
 
 ## Getting Started
-**To get involved, join the discussion at [Issues](https://github.com/Harvard-Open-Data-Project/droid/issues) or learn more at the [Wiki](https://github.com/Harvard-Open-Data-Project/droid/wiki).**
+To get involved, join the discussion at [Issues](https://github.com/Harvard-Open-Data-Project/droid/issues) or learn more at the [Wiki](https://github.com/Harvard-Open-Data-Project/droid/wiki).
 
-Harvard students: interested in working with us? **[Sign up for the team!](https://groups.google.com/forum/#!forum/harvardopendata)**
+Harvard students: interested in working with us? **[Sign up for the team mailing list!](https://groups.google.com/forum/#!forum/harvardopendata)**
+
+## Current Status
+We've found some really interesting data sets around Harvard and have compiled metadata about each. We're in the process of uploading them to a backend which uses Harvard's Dataverse, and we're working on a frontend app that'll let users interface with this data.
 
 ## Next Steps
 - Finding interesting, accessible data sets around harvard.edu
