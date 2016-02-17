@@ -1,6 +1,6 @@
 # Harvard Open Data Portal
 ## About
-Students from across the University are spearheading a project to build Harvard's first open data portal, which will empower Harvard students and researchers to discover and hack with University data like course catalogs, library holdings, and more.
+Students from across the University are spearheading a project to build Harvard's first open data portal, which will empower Harvard students and researchers to discover and hack with University data like financial data, enrollment stats, course catalogs, and more.
 
 We've teamed up with Harvard's Chief Technology Officer and Chief Digital Officer along with the former deputy CTO of the US. We're now looking for students with expertise in fields ranging from technology to policy to build a cross-functional team for the project.
 
@@ -11,10 +11,10 @@ Interested in getting involved? Join the discussion on the Issues tab or email n
 ## Past Work
 There has been a large movement toward open data in government (e.g. [Data.gov](http://data.gov)) and in other universities (e.g. [Yale's Open Data Access Project](http://yoda.yale.edu/)). The Harvard administration has been working on an open data portal of our own for nearly two years, and by finally bringing together all the necessary people (faculty leaders and undergraduate builders and researchers) we are finally making this a reality.
 
-## Leadership
+## Faculty Leadership
+- Nick Sinai, former United States Deputy CTO
 - Jim Waldo, CTO, Harvard University
 - Perry Hewitt, Chief Digital Officer, Harvard University
-- Nick Sinai, former United States Deputy CTO
 
 ## Getting Started
 **To get involved, join the discussion at [Issues](https://github.com/Harvard-Open-Data-Project/droid/issues) or learn more at the [Wiki](https://github.com/Harvard-Open-Data-Project/droid/wiki).**

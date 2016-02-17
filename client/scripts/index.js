@@ -53,5 +53,5 @@ let routes = (
 );
 
 Router.run(routes, Router.HistoryLocation, function(Handler) {
-  ReactDOM.render(< Handler />, document.body);
+  ReactDOM.render(<Handler />, document.body);
 });
