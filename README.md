@@ -21,12 +21,6 @@ There has been a large movement toward open data in government (e.g. [Data.gov](
 
 Harvard students: interested in working with us? **[Sign up for the team!](https://groups.google.com/forum/#!forum/harvardopendata)**
 
-Grab a copy of the repository with:
-
-```
-$ git clone https://github.com/Harvard-Open-Data-Project/hodp.git
-```
-
 ## Next Steps
 - Finding interesting, accessible data sets around harvard.edu
 - Working out open licensing for the data
@@ -55,3 +49,17 @@ $ git clone https://github.com/Harvard-Open-Data-Project/hodp.git
 - Faculty and staff demographics
 - Annual fire safety report
 - Endowment stats
+
+## Running the app
+To set up the app, run the following in your terminal:
+
+```
+git clone https://github.com/Harvard-Open-Data-Project/hodp.git
+npm install
+```
+
+And to run the app:
+
+```
+npm start
+```
