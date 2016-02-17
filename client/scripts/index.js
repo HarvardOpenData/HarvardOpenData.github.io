@@ -1,55 +1,57 @@
-var React = require('react'),
-	Router = require('react-router');
-
+import React from 'react';
 import ReactDOM from 'react-dom';
+import Router from 'react-router';
+
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
 var Header = React.createClass({
-	render: function() {
-		return (
-			<div className="page-header">
-				<h1>Harvard Open Data Project</h1>
-			</div>
-		);
-	}
-});
-
-var PageNav = React.createClass({
-	render: function() {
-		return (
-			<div className="nav">
-				<Router.Link to="home">Home</Router.Link>
-				&nbsp; | &nbsp;
-				<Router.Link to="about">About</Router.Link>
-			</div>
-		);
-	}
+  render: function() {
+    return (
+      <Navbar>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <a href="/">
+              HODP
+            </a>
+          </Navbar.Brand>
+          <Navbar.Toggle/>
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav pullRight>
+            <NavItem eventKey={2} href="https://github.com/Harvard-Open-Data-Project/hodp">GitHub</NavItem>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  }
 });
 
 var App = React.createClass({
-	render: function() {
-		return (
-			<div className="container">
-				<Header />
-				<PageNav />
-				<Router.RouteHandler/>
-			</div>
-		);
-	}
+  render: function() {
+    return (
+      <div>
+        <Header/>
+        <div className="container">
+          <Router.RouteHandler/>
+        </div>
+      </div>
+    );
+  }
 });
 
-var routes = {
-	Home: require('../routes/Home'),
-	About: require('../routes/About')
+let pages = {
+  Home: require('../routes/Home'),
+  About: require('../routes/About')
 };
 
-var routes = (
-	<Router.Route name="app" path="/" handler={App}>
-		<Router.Route name="home" path="/" handler={routes.Home}/>
-		<Router.Route name="about" path="/about" handler={routes.About}/>
-		<Router.DefaultRoute handler={routes.Home}/>
-	</Router.Route>
+let routes = (
+  <Router.Route name="app" path="/" handler={App}>
+    <Router.Route name="home" path="/" handler={pages.Home}/>
+    <Router.Route name="about" path="/about" handler={pages.About}/>
+    <Router.DefaultRoute handler={pages.Home}/>
+  </Router.Route>
 );
 
-Router.run(routes, Router.HistoryLocation, function (Handler) {
-	ReactDOM.render(<Handler/>, document.body);
+Router.run(routes, Router.HistoryLocation, function(Handler) {
+  ReactDOM.render(< Handler />, document.body);
 });
