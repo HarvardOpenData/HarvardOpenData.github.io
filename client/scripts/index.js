@@ -11,7 +11,7 @@ var Header = React.createClass({
         <Navbar.Header>
           <Navbar.Brand>
             <a href="/">
-              HODP
+              The Harvard Open Data Project
             </a>
           </Navbar.Brand>
           <Navbar.Toggle/>
