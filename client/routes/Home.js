@@ -10,11 +10,9 @@ var Home = React.createClass({
           project to build Harvard's first open data portal.</p>
           
           <h3>Mission Statement</h3>
-          <Well>
             The goal of the Harvard Open Data Project (HODP) is to leverage open data to foster community, efficiency, and student innovation. Making data public and easily accessible allows us all to unlock its potential. Data-driven progress unites people, organizations, and departments as we all try to make daily life better. Aggregating, maintaining, and publicizing open data has and will continue to be a global trend and we want Harvard to be at its forefront. Our goal is to give that progress a home with centralization of available data, integration with existing systems, and showcases of data-inspired products.
-          </Well>
           
-          
+          <h3>Learn more</h3>
           <p>Students from across the University are spearheading a project to build Harvard's 
           first open data portal, which will empower Harvard students and researchers to discover and hack with University
           data like financial data, enrollment stats, course catalogs, and more.</p>
