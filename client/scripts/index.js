@@ -63,7 +63,7 @@ var App = React.createClass({
 
 let pages = {
   Home: require('../routes/Home'),
-  About: require('../routes/About')
+  About: require('../routes/About'),
   GetInvolved: require('../routes/GetInvolved')
 };
 
@@ -71,7 +71,7 @@ let routes = (
   <Router.Route name="app" path="/" handler={App}>
     <Router.Route name="home" path="/" handler={pages.Home}/>
     <Router.Route name="about" path="/about" handler={pages.About}/>
-    <Router.Route name="GetInvolved" path="/get-involved" handler={pages.GetInvolved}/>
+    <Router.Route name="getinvolved" path="/get-involved" handler={pages.GetInvolved}/>
     <Router.DefaultRoute handler={pages.Home}/>
   </Router.Route>
 );
