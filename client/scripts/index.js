@@ -7,7 +7,7 @@ import {Navbar, Nav, NavItem} from 'react-bootstrap';
 var Header = React.createClass({
   render: function() {
     return (
-      <Navbar>
+      <Navbar inverse>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="/">
@@ -19,6 +19,9 @@ var Header = React.createClass({
         <Navbar.Collapse>
           <Nav pullRight>
             <NavItem eventKey={1} href="https://github.com/Harvard-Open-Data-Project/hodp">GitHub</NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavItem eventKey={1} href="/about">About</NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
