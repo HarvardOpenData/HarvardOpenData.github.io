@@ -7,9 +7,11 @@ let VisualizationPanel = React.createClass({
 	    let title = <h3>{data.title}</h3>;
 		return (
 			<Panel header={title}>
-				<img src={data.img} className="img img-responsive text-center" />
+				<a href={data.img} target="_blank"><img src={data.img} className="img img-responsive text-center" /></a>
 				<p>{data.text}</p>
-				<Button bsStyle="primary" target="_blank" href={data.source}> View Source </Button>
+				<Button className="pull-right" bsSize="small" bsStyle="primary" target="_blank" href={data.source}>
+				    Data source
+				</Button>
 			</Panel>
 		);
 	}

@@ -31,24 +31,22 @@ let Home = React.createClass({
               Interested in getting involved? <a href="https://github.com/Harvard-Open-Data-Project/hodp/issues">Join the discussion</a> or email neelmehta@college.harvard.edu.</p>
             </Col>
           </Row>
+        
+          <VisualizationContainer data={VisualizationData} />
           
-          <h3>Getting started</h3>
+          
+          <Button bsStyle="link" target="_blank" href="https://dataverse.harvard.edu/dataverse/harvardopendata">
+            See all datasets
+          </Button>
+          
+          
+          
+          {/* Move into separate page  */}
+            <h3>Getting started</h3>
           <p>
             Check out our <a href="https://github.com/Harvard-Open-Data-Project/hodp">GitHub repo</a>.
           </p>
           
-          
-          <Panel header={title}>
-            <Button bsStyle="primary" href="http://static.fas.harvard.edu/registrar/reports/statistics/Course_Enrollment_Statistics.xlsx">
-              Course Enrollment
-            </Button>
-            
-            <Button bsStyle="link" target="_blank" href="https://dataverse.harvard.edu/dataverse/harvardopendata">
-              See all datasets
-            </Button>
-          </Panel>
-          
-          <VisualizationContainer data={VisualizationData} />
           
       </div>
     );
