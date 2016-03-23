@@ -8,11 +8,15 @@ let VisualizationData = [
     {
       title: "Harvard College Tuition, Fees, Room, and Board 1985-2016",
       img: "/img/tuition.png",
-      source: "",
-      text: "Making data public and easily accessible allows us all to unlock its potential. Data-driven progress unites people, organizations, and departments as we all try to make daily life better. Aggregating, maintaining, and publicizing open data has and will continue to be a global trend and we want Harvard to be at its forefront. Our goal is to give that progress a home with centralization of available data, integration with existing systems, and showcases of data-inspired products."
+      source: "http://oir.harvard.edu/fact-book/undergraduate_package",
+      text: "This graph depicts the fees Harvard college students pay on an annual basis. Tuition has been steadily increasing in a linear fashion and has now become $40,000. Health services fees have stayed relatively constant and comprise a minute amount of the total fees for Harvard college. Student Services Fee have been steadily increasing annually $40 to $90. Additionally, Room and Board fees have slowly increased as well over the past two decades.",
     },
-    
+    {
+      title: "Harvard College Demographics",
+      img: "/img/ethnic-breakdown-college.png",
+      source: "http://oir.harvard.edu/fact-book/degrees-awarded-demographics",
+      text: "The number of Latino and multiracial students has increased dramatically in recent years, but that might be due to changes in self-reporting as people stop writing \"Non specified\" and use a more accurate label instead. The number of Asian students has stayed relatively consistent for the past few years between 15 - 20 %. African American student numbers have stayed nearly the same as well."
+    },
 ];
 
 export default VisualizationData;
-    
