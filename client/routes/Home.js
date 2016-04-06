@@ -4,9 +4,11 @@ import VisualizationContainer from '../components/VisualizationContainer.js';
 import VisualizationData from '../data/Visualizations.js';
 
 let Home = React.createClass({
+  createMarkup: function() { 
+    return {__html: '<script src="https://dataverse.harvard.edu/resources/js/widgets.js?alias=harvardopendata&amp;dvUrl=https://dataverse.harvard.edu&amp;widget=iframe&amp;heightPx=500"></script>'}; 
+  },
   render: function() {
     let title = <h3>Featured datasets</h3>;
-    
     return (
       <div>
         <Jumbotron>
@@ -40,11 +42,17 @@ let Home = React.createClass({
           </Button>
           
           
+          <div dangerouslySetInnerHTML={this.createMarkup()} />
           
           {/* Move into separate page  */}
             <h3>Getting started</h3>
           <p>
-            Check out our <a href="https://github.com/Harvard-Open-Data-Project/hodp">GitHub repo</a>.
+            Check out our <a target="_blank" href="https://github.com/Harvard-Open-Data-Project/hodp">GitHub repo</a>.
+          </p>
+          
+          <h3>Comments?</h3>
+          <p>
+            We'd love to have your feedback/comments on our <a target="_blank" href="https://github.com/Harvard-Open-Data-Project/hodp/issues">GitHub Issues page</a>.
           </p>
           
           
