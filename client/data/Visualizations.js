@@ -21,7 +21,7 @@ let VisualizationData = [
       title: "Financial Aid / Tuition",
       img: "/img/finaid-tuition.png",
       source: "",
-      text: "This graph shows the ratio of financial aid to tuition for each school at Harvard based on 2013 data. We see that the Medical School provides the least financial aid per dollar of tuition paid (40%) while the Divinity School actually gives out more financial aid than it takes in as tuition (130%)."
+      text: "This graph shows the ratio of financial aid to tuition for each school at Harvard based on 2013 data. We see that the Medical School provides the least financial aid per dollar of tuition paid (40%) while the Divinity School actually gives out more financial aid than it takes in as tuition (130%), perhaps due to student stipends. Harvard College offers less financial aid than most other schools."
     } 
 ];
 

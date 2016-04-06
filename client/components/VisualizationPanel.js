@@ -1,5 +1,5 @@
 import React from 'react';
-import {Panel, Button} from 'react-bootstrap';
+import {Panel, Button, Row, Col} from 'react-bootstrap';
 
 let VisualizationPanel = React.createClass({
 	render: function() {
@@ -11,9 +11,15 @@ let VisualizationPanel = React.createClass({
 	    	
 		return (
 			<Panel header={title}>
-				<a href={data.img} target="_blank"><img src={data.img} className="img img-responsive text-center" /></a>
-				<p>{data.text}</p>
-				{dsource}
+				<Row>
+					<Col sm={6}>
+						<a href={data.img} target="_blank"><img src={data.img} className="img img-responsive text-center" /></a>
+					</Col>
+					<Col sm={6}>
+						<p className="lead">{data.text}</p>
+						{dsource}
+					</Col>
+				</Row>
 			</Panel>
 		);
 	}

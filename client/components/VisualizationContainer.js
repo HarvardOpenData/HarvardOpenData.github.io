@@ -6,7 +6,7 @@ let VisualizationContainer = React.createClass({
     render: function() {
         let vizData = this.props.data;
         let visualizationPanels = vizData.map(data => 
-            <Col sm={6}>
+            <Col sm={12}>
                 <VisualizationPanel data={data} />
             </Col>
         );
