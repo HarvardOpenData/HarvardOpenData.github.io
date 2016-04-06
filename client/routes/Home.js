@@ -4,9 +4,7 @@ import VisualizationContainer from '../components/VisualizationContainer.js';
 import VisualizationData from '../data/Visualizations.js';
 
 let Home = React.createClass({
-  createMarkup: function() { 
-    return {__html: '<script src="https://dataverse.harvard.edu/resources/js/widgets.js?alias=harvardopendata&amp;dvUrl=https://dataverse.harvard.edu&amp;widget=iframe&amp;heightPx=500"></script>'}; 
-  },
+  
   render: function() {
     let title = <h3>Featured datasets</h3>;
     return (
@@ -40,10 +38,7 @@ let Home = React.createClass({
           <Button bsStyle="link" target="_blank" href="https://dataverse.harvard.edu/dataverse/harvardopendata">
             See all datasets
           </Button>
-          
-          
-          <div dangerouslySetInnerHTML={this.createMarkup()} />
-          
+
           {/* Move into separate page  */}
             <h3>Getting started</h3>
           <p>

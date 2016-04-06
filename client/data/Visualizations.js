@@ -17,6 +17,12 @@ let VisualizationData = [
       source: "http://oir.harvard.edu/fact-book/degrees-awarded-demographics",
       text: "The number of Latino and multiracial students has increased dramatically in recent years, but that might be due to changes in self-reporting as people stop writing \"Non specified\" and use a more accurate label instead. The number of Asian students has stayed relatively consistent for the past few years between 15 - 20 %. African American student numbers have stayed nearly the same as well."
     },
+    { 
+      title: "Financial Aid / Tuition",
+      img: "/img/finaid-tuition.png",
+      source: "",
+      text: "This graph shows the ratio of financial aid to tuition for each school at Harvard based on 2013 data. We see that the Medical School provides the least financial aid per dollar of tuition paid (40%) while the Divinity School actually gives out more financial aid than it takes in as tuition (130%)."
+    } 
 ];
 
 export default VisualizationData;
