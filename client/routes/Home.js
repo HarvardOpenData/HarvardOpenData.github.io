@@ -33,12 +33,14 @@ let Home = React.createClass({
             </Col>
           </Row>
           
-          { /* <DataverseWidget /> */ }
+          { /* <DataverseWidget /> */}
                     
-          <Button block bsSize="large" bsStyle="primary" target="_blank" href="https://dataverse.harvard.edu/dataverse/harvardopendata">
+          <Button block bsSize="large" bsStyle="info" target="_blank" href="https://dataverse.harvard.edu/dataverse/harvardopendata">
             See all datasets
           </Button>
-
+          
+          <br />
+          
           <VisualizationContainer data={VisualizationData} />
           
           {/* Move into separate page  */}
