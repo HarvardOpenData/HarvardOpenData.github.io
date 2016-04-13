@@ -21,6 +21,9 @@ var Header = React.createClass({
             <NavItem eventKey={1} href="https://github.com/Harvard-Open-Data-Project/hodp">GitHub</NavItem>
           </Nav>
           <Nav pullRight>
+            <NavItem eventKey={1} href="https://dataverse.harvard.edu/dataverse/harvardopendata">Our Datasets</NavItem>
+          </Nav>
+          <Nav pullRight>
             <NavItem eventKey={1} href="/get-involved">Get Involved</NavItem>
           </Nav>
           <Nav pullRight>

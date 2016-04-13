@@ -1,13 +1,11 @@
 var React = require('react');
-import {Jumbotron, Row, Col} from 'react-bootstrap';
+import {Jumbotron, Row, Col, PageHeader} from 'react-bootstrap';
 
 var GetInvolved = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<Jumbotron>
-		            <h2>Get Involved</h2>
-	          	</Jumbotron>
+				<PageHeader>Get Involved</PageHeader>
 	          	<Row>
 		            <Col xs={12} sm={6}>
 		              <h3>Contribute</h3>
@@ -25,7 +23,7 @@ var GetInvolved = React.createClass({
 		            <Col xs={12} sm={6}>
 		              <h3>Build</h3>
 		              <p> We're always seeking to improve the Harvard Open Data Portal. If you're interested in helping us build the web frontend for the data portal, email Neel Mehta at neelmehta@college.harvard.edu. </p>
-		              <p> If you're at Harvard, let us know. We meet every Wednesday in Lamont Larsen Room or B-33. Everyone is welcome, and we'd love to hear your input. </p>
+		              <p> If you're at Harvard, let us know. We meet every Wednesday in Lamont B-30. Everyone is welcome, and we'd love to hear your input. </p>
 		            </Col>
           		</Row>
 			</div>

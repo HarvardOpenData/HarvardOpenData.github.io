@@ -1,13 +1,11 @@
 var React = require('react');
-import {Jumbotron, Row, Col} from 'react-bootstrap';
+import {Jumbotron, Row, Col, PageHeader} from 'react-bootstrap';
 
 var About = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<Jumbotron>
-		            <h2>About Us</h2>
-	          	</Jumbotron>
+				<PageHeader>About Us</PageHeader>
 	          	<Row>
 		            <Col xs={12} sm={6}>
 		           	<h3>Who We Are</h3>

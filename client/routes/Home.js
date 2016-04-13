@@ -2,6 +2,7 @@ import React from 'react';
 import {Panel, Button, Well, Jumbotron, Row, Col} from 'react-bootstrap';
 import VisualizationContainer from '../components/VisualizationContainer.js';
 import VisualizationData from '../data/Visualizations.js';
+import DataverseWidget from'../components/DataverseWidget.js';
 
 let Home = React.createClass({
   
@@ -31,14 +32,15 @@ let Home = React.createClass({
               Interested in getting involved? <a href="https://github.com/Harvard-Open-Data-Project/hodp/issues">Join the discussion</a> or email neelmehta@college.harvard.edu.</p>
             </Col>
           </Row>
-        
-          <VisualizationContainer data={VisualizationData} />
           
-          
-          <Button bsStyle="link" target="_blank" href="https://dataverse.harvard.edu/dataverse/harvardopendata">
+          { /* <DataverseWidget /> */ }
+                    
+          <Button block bsSize="large" bsStyle="primary" target="_blank" href="https://dataverse.harvard.edu/dataverse/harvardopendata">
             See all datasets
           </Button>
 
+          <VisualizationContainer data={VisualizationData} />
+          
           {/* Move into separate page  */}
             <h3>Getting started</h3>
           <p>
