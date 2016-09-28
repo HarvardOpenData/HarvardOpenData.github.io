@@ -1,0 +1,54 @@
+favorites:
+    -   type: Shoes
+        value: Vans
+    -   type: Greeting
+        value: "Yo!"
+    -   type: Programming language
+        value: JavaScript (ES6)
+    -   type: Animal
+        value: Elephant (duh)
+    -   type: Sport
+        value: Baseball
+    -   type: Sports team
+        value: Philadelphia Phillies
+    -   type: Music
+        value: Alternative rock
+    -   type: Band
+        value: Young the Giant
+    -   type: City
+        value: Philadelphia
+resume: https://www.dropbox.com/s/dyxlo289lw9et4g/Neel%20Mehta%20Resume.pdf?dl=0
+faq:
+    -   question: Why "hathix"?
+        answer: |
+            It comes from the Hindi हाथी *hathi* for elephant, plus *x* for the box.
+            Elephants are my favorite animal, but I still have no idea where the box came from.
+    -   question: How'd you start hathix?
+        answer: |
+            I started learning computer science (JavaScript was my first language!)
+            in the summer before my freshman year of high school (summer 2010).
+            I made a bunch of software I wanted to [share with the world](games.html),
+            so I published it on this site.
+    -   question: How'd you make this website?
+        answer: |
+            I discovered a fantastic tool for website building called
+            [Jekyll](http://jekyllrb.com). That and the usual HTML, CSS, and JavaScript,
+            with libraries like jQuery, Angular, and Bootstrap.
+            Check out the [GitHub repository](https://github.com/hathix/hathix).
+    -   question: Any easter eggs on this site?
+        answer: |
+            Yeah! Click the "think inside the box" slogan.
+    -   question: How's Harvard?
+        answer: |
+            Better than Yale. But seriously, it's fantastic.
+    -   question: Pat's or Geno's?
+        answer: |
+            This is the one time I regret being vegetarian.
+            [Shoo-fly pie](https://en.wikipedia.org/wiki/Shoofly_pie) is good, though.
+    -   question: What kind of skateboard do you ride?
+        answer: |
+            Goldcoast 26" cruiser. Nothing fancy.
+    -   question: Favorite sports teams?
+        answer: |
+            Easily the Philadelphia Phillies. I root for the Red Sox when I go to Fenway.
+            Oh, and I support whoever beats the Cowboys.

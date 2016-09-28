@@ -1,0 +1,40 @@
+---
+layout: default
+title: Media
+permalink: media.html
+---
+
+<p class="lead">
+    Some videos, blog posts, and other media I've been featuerd in.
+</p>
+
+{% for medium in site.data.media %}
+    <div>
+        <div>
+            <h2>{{medium.name}}</h2>
+        </div>
+
+        {% if medium.image %}
+            <img src="images/media/{{medium.image}}" class="portfolio-image pull-left">
+        {% endif %}
+
+        <!-- <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="..."></iframe>
+        </div> -->
+
+        <ul class="list-unstyled lead">
+            {% for link in medium.links %}
+                <li>
+                    <a href="{{link.url}}">
+                        <span class="fa fa-fw fa-{{link.icon}}"></span>
+                        {{link.name}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <p class="lead clearfix">
+            {{medium.blurb}}
+        </p>
+    </div>
+{% endfor %}

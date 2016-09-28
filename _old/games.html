@@ -1,0 +1,33 @@
+---
+layout: default
+title: Web Games
+permalink: games.html
+---
+
+<p class="lead">
+    These JavaScript-based web games are oldies but goodies:
+    test your wits, skills, or reflexes with these free games!
+</p>
+
+<p>
+    <em>
+        I made these games way back around 2011 when I was just learning
+        computer programming. Man, it's been a while! These games are really old but they should still work.
+    </em>
+</p>
+
+{% for game in site.data.games %}
+    <div class="media">
+        <a class="media-left" href="{{game.url}}">
+            <img src="images/games/{{game.name | slugify | downcase}}.png">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="{{game.url}}">
+                    {{game.name}}
+                </a>
+            </h4>
+            {{game.description}}
+        </div>
+    </div>
+{% endfor %}

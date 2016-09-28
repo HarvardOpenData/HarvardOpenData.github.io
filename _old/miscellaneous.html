@@ -1,0 +1,25 @@
+---
+layout: default
+title: Miscellaneous Projects
+permalink: miscellaneous.html
+---
+
+<p class="lead">
+    These are a bunch of very old projects I've kept around. Check them out if you're interested!
+</p>
+
+{% for project in site.data.etc %}
+    <div class="media">
+        <a class="media-left" href="{{project.url}}">
+            <img src="images/etc/{{project.name | slugify | downcase}}.png">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="{{project.url}}">
+                    {{project.name}}
+                </a>
+            </h4>
+            {{project.description}}
+        </div>
+    </div>
+{% endfor %}

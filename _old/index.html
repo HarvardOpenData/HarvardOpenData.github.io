@@ -1,0 +1,52 @@
+---
+layout: default
+title: Neel Mehta
+---
+
+<div class="row">
+	<div class="col-lg-9 col-md-9 col-xs-12 col-sm-12">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<img src="images/about/neel-mehta.jpg" class="img-responsive img-thumbnail img-circle">
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+				<p class="lead">
+					Hey! I'm Neel Mehta, a student at Harvard University. I like <a href="portfolio.html">making stuff</a>.
+					And <a href="http://blog.hathix.com">blogging</a>.
+					And computer science.
+					And baseball. And skateboarding. And comedy. And anything else.
+				</p>
+			</div>
+		</div>
+
+		<br>
+
+		<a href="portfolio.html" class="btn btn-primary btn-block">
+			Check out my portfolio.
+		</a>
+	</div>
+	<div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+		<div class="well" ng-controller="AboutCtrl">
+			<p class="lead text-center">Get in touch!</p>
+
+			<div class="row">
+				{% for media in site.data.socialmedia %}
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<a href="{{media.url}}" class="text-{{media.css_class}}">
+						<span class="fa fa-{{media.icon}} fa-3x"></span>
+					</a>
+				</div>
+				{% endfor %}
+
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<a href class="text-info" ng-click="showContact()">
+						<span class="fa fa-envelope fa-3x"></span>
+					</a>
+				</div>
+			</div>
+			<div class="alert alert-info clearfix ng-hide" ng-show="contactShown">
+				[[{ getContact() }]]
+			</div>
+		</div>
+	</div>
+</div>
