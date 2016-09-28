@@ -1,0 +1,215 @@
+-   name: Transparent
+    description: Visualizing government PDFs (Grand Prize, Tufts IDHack 2015)
+    blurb: |
+        Converts dirty scanned PDFs published by the Tanzanian government
+        to open, machine-readable CSV format, then visualizes it. Developed with the World Bank
+        for the International Development hackathon at Tufts in February 2015.
+    links:
+        -   name: Web app
+            icon: mobile
+            url: http://transparent.heroku.com
+        -   name: GitHub
+            icon: github
+            url: https://github.com/team-transparent/idhacks
+        -   name: ChallengePost
+            icon: trophy
+            url: http://challengepost.com/software/transparent-9b7d5
+    technologies:
+        -   HTML5
+        -   CSS3
+        -   JavaScript
+        -   jQuery
+        -   Bootstrap
+        -   Node.js
+        -   AngularJS
+        -   Heroku
+    image: transparent-logo.png
+-   name: Pathagram
+    description: Teach yourself JavaScript by making your own Instagram filters
+    blurb: |
+        A project I've developed with Harvard's Digital Literacy Project, a group
+        that teaches computer science to middle schoolers in Boston, Pathagram
+        makes learning computer science fun and engaging.
+    links:
+        -   name: Web app
+            icon: mobile
+            url: https://pathagram.herokuapp.com
+        -   name: GitHub
+            icon: github
+            url: https://github.com/DigitalLiteracyProject/pathagram
+        -   name: Digital Literacy Project website
+            icon: globe
+            url: http://dlp.io
+    technologies:
+        -   HTML5
+        -   CSS3
+        -   CoffeeScript
+        -   jQuery
+        -   Bootstrap
+        -   Node.js
+        -   AngularJS
+        -   Heroku
+    image: dlp-logo.png
+-   name: SEISP Móvil
+    description: Tuberculosis patient tracking app for Peru
+    blurb: |
+        I led Tech in the World 2016, a winter fellowship sponsored by Developers For Development, a technology and international development group at Harvard. My team worked with Socios en Salud, the largest health NGO in Peru, to build an Android app to digitize tuberculosis patient management, thereby increasing treatment adherence rates and reducing incidence of more dangerous forms of TB.
+    links:
+        -   name: Harvard SEAS article
+            icon: book
+            url: http://www.seas.harvard.edu/news/2016/02/taking-on-tuberculosis
+        -   name: GitHub
+            icon: github
+            url: https://github.com/hathix/6P
+        -   name: Blog
+            icon: pencil
+            url: http://blog.techintheworld.org/
+        -   name: Tech in the World website
+            icon: globe
+            url: http://techintheworld.org
+        -   name: Developers For Development
+            icon: globe
+            url: http://www.harvardd4d.com/
+    technologies:
+        -   Android
+    image: socios-en-salud.jpg
+-   name: Cabra Flashcards
+    description: A free, open-source studying app
+    blurb: |
+        With over 250,000 users in 190 countries around the world,
+        Cabra helps students, teachers, social workers, parents, and anyone else
+        improve their learning experiences.
+    links:
+        -   name: Project site
+            icon: globe
+            url: http://cabra.hathix.com
+        -   name: Android app
+            icon: android
+            url: https://play.google.com/store/apps/details?id=com.hathix.android.chevre
+        -   name: Web app
+            icon: mobile
+            url: http://chevre.hathix.com
+        -   name: Cabra 2.0 beta
+            icon: github
+            url: https://github.com/hathix/cabra
+        -   name: Cabra 1.0 mobile
+            icon: github
+            url: https://github.com/hathix/cabra-mobile
+        -   name: Cabra 1.0 desktop
+            icon: github
+            url: https://github.com/hathix/cabra-desktop
+    technologies:
+        -   HTML5
+        -   CSS3
+        -   JavaScript
+        -   CoffeeScript
+        -   jQuery
+        -   Bootstrap
+        -   AngularJS
+        -   MongoDB
+        -   PhoneGap
+        -   Java
+    image: cabra-logo.png
+-   name: CHES Surveys
+    description: An SMS-based survey system
+    blurb: |
+        Created with Harvard's Developers 4 Development, a computer science
+        and international development group, this project aims to help a nonprofit
+        named CHES communicate with Haitian entrepreneurs using SMS.
+    links:
+        -   name: Web app
+            icon: mobile
+            url: http://d4d-ches.meteor.com/
+        -   name: GitHub
+            icon: github
+            url: https://github.com/hathix/d4d-ches
+        -   name: Developers 4 Development website
+            icon: globe
+            url: http://www.harvardd4d.com
+    technologies:
+        -   HTML5
+        -   CSS3
+        -   JavaScript
+        -   jQuery
+        -   Bootstrap
+        -   Handlebars
+        -   Meteor
+        -   MongoDB
+-   name: Connected
+    description: Helping you build professional relationships
+    blurb: |
+        Built at Greylock Partners' annual college hackathon in Burlingame, CA,
+        this web/mobile app helps you collect information on professional contacts
+        you meet and provides actionable tips you can use to grow your relationships
+        with them.
+    links:
+        -   name: GitHub
+            icon: github
+            url: https://github.com/josephwandile/greylocknewco
+    technologies:
+        -   HTML5
+        -   CSS3
+        -   JavaScript
+        -   jQuery
+        -   AngularJS
+        -   Ionic
+-   name: ePhotoBlossom
+    description: Enterprise inventory-management system for florists
+    blurb: |
+        Built at regional florist Plaza Flowers, ePhotoBlossom integrates with
+        software used by 16,000 florists nationwide. Snap photos using your device's webcam,
+        track photos by barcode, and share with a click.
+    links:
+        -   name: Web app
+            icon: mobile
+            url: http://www.ephotoblossom.com/
+        -   name: Plaza Flowers website
+            icon: globe
+            url: http://www.pflorist.com
+    technologies:
+        -   HTML5
+        -   CSS3
+        -   JavaScript
+        -   jQuery
+        -   PHP
+        -   MySQL
+        -   Bootstrap
+    image: ephotoblossom.png
+-   name: Summarize
+    description: A simple article summarizer (HackMIT 2014)
+    blurb: |
+        Extracts and defines key terms from a PDF/text article to ease reading
+        or create a quick-to-read outline. Developed for HackMIT 2014.
+    links:
+        -   name: Web app
+            icon: mobile
+            url: http://hathix.com/hacks/summarize
+        -   name: GitHub
+            icon: github
+            url: https://github.com/felixzhuologist/Summarize
+    technologies:
+        -   HTML5
+        -   CSS3
+        -   JavaScript
+        -   jQuery
+        -   PHP
+        -   MySQL
+        -   Bootstrap
+        -   Handlebars
+-   name: Python Security
+    description: Random number and prime number modules for web security
+    blurb: |
+        A pair of Python modules -- a true random number generator and a prime
+        number generator -- to improve security and cryptography. Developed for
+        the Pennsylvania Junior Academy of Science's statewide science fairs
+        in 2012 and '13.
+    links:
+        -   name: Truly random number generators
+            icon: github
+            url: https://github.com/hathix/true-random
+        -   name: Prime number generators
+            icon: github
+            url: https://github.com/hathix/prime-algorithms
+    technologies:
+        -   Python
+    image: security-lock.png
