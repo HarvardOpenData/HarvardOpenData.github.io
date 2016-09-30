@@ -18,3 +18,19 @@ layout: default
     <li><strong>{{ person.name }}</strong>, {{ person.role }}</li>
     {% endfor %}
 </ul>
+
+
+<h2>Example visualizations</h2>
+
+{% for entry in site.data.visualizations %}
+    <div class="row">
+        <div class="col-xs-6">
+            <img src="img/{{ entry.img }}" class="img img-responsive" />
+        </div>
+        <div class="col-xs-6">
+            <h3>{{ entry.title }}</h3>
+            <p>{{ entry.description }}</p>
+            <a href="{{ entry.source}}">Source</a>
+        </div>
+    </div>
+{% endfor %}

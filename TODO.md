@@ -1,3 +1,2 @@
-- add main people
-- add visualizations (look at old branch)
 - move this list to trello
+- copy over images
