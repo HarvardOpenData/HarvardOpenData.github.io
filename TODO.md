@@ -6,3 +6,5 @@
 - move stuff in `content.txt` to our front page and other pages
 - Update `_config.yml`
 - load list of datasets into `datasets.yml`
+- load datasets from `datasets.yml` onto homepage
+- add link to all datasets
