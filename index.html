@@ -13,6 +13,8 @@ layout: default
 
 <h2>People</h2>
 
-{% for person in site.data.people %}
-<strong>{{ person.name }}</strong>
-{% endfor %}
+<ul>
+    {% for person in site.data.people %}
+    <li><strong>{{ person.name }}</strong>, {{ person.role }}</li>
+    {% endfor %}
+</ul>
