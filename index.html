@@ -36,3 +36,17 @@ layout: default
 
     <hr>
 {% endfor %}
+
+
+<h2>Datasets</h2>
+
+<ul>
+    {% for dataset in site.data.datasets %}
+    <li>
+        <a href="{{ dataset.url }}"><strong>{{ dataset.name}}</strong></a>:
+        {{ dataset.description }}
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary">View all datasets</a>
