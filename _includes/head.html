@@ -3,13 +3,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        {{ page.title }} | {{site.tagline}}
+        {{ page.title }} | {{site.title}}
     </title>
     <meta name="description" content="{{ site.description }}">
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
-
-    <!-- Angular.JS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/{{ site.angular_version }}/angular.min.js"></script>
+    <!-- <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}"> -->
 
 	<!-- jQuery (just for Bootstrap) -->
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/{{ site.jquery_version }}/jquery.min.js"></script>

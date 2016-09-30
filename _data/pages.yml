@@ -1,21 +1,3 @@
 main:
     -   name: Home
         url: /
-    -   name: Portfolio
-        url: /portfolio.html
-    -   name: Work History
-        url: /work.html
-    -   name: Media
-        url: /media.html
-    -   name: About
-        url: /about.html
-    -   name: Blog
-        url: http://blog.hathix.com
-    -   name: Cabra
-        url: http://cabra.hathix.com
-    -   name: Games
-        url: /games.html
-    -   name: Store
-        url: http://www.cafepress.com/hathix
-    -   name: More
-        url: /miscellaneous.html
