@@ -6,3 +6,13 @@ layout: default
 <div class="well">
     We're a student-faculty team dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.
 </div>
+
+<h2>Get involved</h2>
+
+<p><a href="https://groups.google.com/forum/#!forum/harvard-open-data">Join our mailing list</a>, or email Neel Mehta at neelmehta [at] college [dot] harvard [dot] edu.</p>
+
+<h2>People</h2>
+
+{% for person in people %}
+<strong>{{ person.name }}</strong>
+{% endfor %}
