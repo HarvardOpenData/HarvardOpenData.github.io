@@ -1,2 +1,6 @@
 - move this list to trello
-- copy over images
+- Try out rendering and see if it works
+- Clean up
+- Move stuff to different pages
+- Add more about text
+- Add nice parallax and cover videos and stuff
