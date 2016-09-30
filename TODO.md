@@ -1,6 +1,7 @@
 - move this list to trello
-- Try out rendering and see if it works
-- Clean up
-- Move stuff to different pages
-- Add more about text
 - Add nice parallax and cover videos and stuff
+- add more pages
+- Update `README.md`
+- Make layout prettier
+- move stuff in `content.txt` to our front page and other pages
+- Update `_config.yml`

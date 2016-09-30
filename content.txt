@@ -1,0 +1,72 @@
+<h3>Mission Statement</h3>
+The goal of the Harvard Open Data Project (HODP) is to leverage open data to foster community, efficiency, and student innovation. Making data public and easily accessible allows us all to unlock its potential. Data-driven progress unites people, organizations, and departments as we all try to make daily life better. Aggregating, maintaining, and publicizing open data has and will continue to be a global trend and we want Harvard to be at its forefront. Our goal is to give that progress a home with centralization of available data, integration with existing systems, and showcases of data-inspired products.
+</Col>
+<Col xs={12} sm={6}>
+<h3>Learn more</h3>
+<p>Students from across the University are spearheading a project to build Harvard's
+first open data portal, which will empower Harvard students and researchers to discover and hack with University
+data like financial data, enrollment stats, course catalogs, and more.</p>
+
+<p>Join us to make more university data accessible, build a web frontend for the data portal, and create interesting visualizations and apps using our data.
+It's a great opportunity to expand your skill set while building an enduring platform for the Harvard community.
+
+Interested in getting involved? <a href="https://github.com/Harvard-Open-Data-Project/hodp/issues">Join the discussion</a> or email neelmehta@college.harvard.edu.</p>
+</Col>
+</Row>
+
+{ /* <DataverseWidget /> */}
+
+<Button block bsSize="large" bsStyle="info" target="_blank" href="https://dataverse.harvard.edu/dataverse/harvardopendata">
+See all datasets
+</Button>
+
+<br />
+
+<VisualizationContainer data={VisualizationData} />
+
+{/* Move into separate page  */}
+<h3>Getting started</h3>
+<p>
+Check out our <a target="_blank" href="https://github.com/Harvard-Open-Data-Project/hodp">GitHub repo</a>.
+</p>
+
+<h3>Comments?</h3>
+<p>
+We'd love to have your feedback/comments on our <a target="_blank" href="https://github.com/Harvard-Open-Data-Project/hodp/issues">GitHub Issues page</a>.
+</p>
+
+
+<h3>Who We Are</h3>
+<p>Students from across the University are spearheading a project to build Harvard's
+  first open data portal, which will empower Harvard students and researchers to discover and hack with University
+  data like financial data, enrollment stats, course catalogs, and more.</p>
+<h4>Faculty Leadership</h4>
+    <li>Nick Sinai, former United States Deputy CTO</li>
+    <li>Jim Waldo, CTO, Harvard University</li>
+    <li>Perry Hewitt, Chief Digital Officer, Harvard University</li>
+</Col>
+<Col xs={12} sm={6}>
+<h3>What We Do</h3>
+<p>There has been a large movement toward open data in government (e.g. <a href="https://data.gov">Data.gov</a>) and in other universities (e.g. <a href="http://yoda.yale.edu/">Yale's Open Data Access Project</a>). The Harvard administration has been working on an open data portal of our own for nearly two years, and by finally bringing together all the necessary people (faculty leaders and undergraduate builders and researchers) we are making this a reality.</p>
+<h4>Mission Statement</h4>
+The goal of the Harvard Open Data Project (HODP) is to leverage open data to foster community, efficiency, and student innovation. Making data public and easily accessible allows us all to unlock its potential. Data-driven progress unites people, organizations, and departments as we all try to make daily life better. Aggregating, maintaining, and publicizing open data has and will continue to be a global trend and we want Harvard to be at its forefront. Our goal is to give that progress a home with centralization of available data, integration with existing systems, and showcases of data-inspired products.
+
+
+Get involved
+<h3>Contribute</h3>
+<p>The Harvard Open Data Project started off as a group of students seeking to make university data more accessible. As a result of this and our values of openness and innovation, we love to have input from others. There are several ways to contribute:
+  <h4>Data</h4>
+  The Harvard Open Data Project aggregates data from multiple sources and depends on users to upload their own datasets. Therefore, we're always seeking to add new datasets to our collection. Check out our <a href="https://dataverse.harvard.edu/">Dataverse</a> and add datasets using our Harvard Open Data Portal template.
+  <h4>Visualizations</h4>
+  Visualizations help us better understand data. Create your own visualizations of our datasets or even mash up several datasets to see correlations.
+  <h4>Apps</h4>
+  We seek to make university data more accessible so that others can build tools to improve Harvard. Check out our datasets and build something of your own - we'd love to showcase your work.
+  <h4>Comments</h4>
+  Comments - check our our <a href="https://github.com/Harvard-Open-Data-Project/hodp/issues">GitHub</a> and join the discussion with suggestions of improvement.
+</p>
+</Col>
+<Col xs={12} sm={6}>
+<h3>Build</h3>
+<p> We're always seeking to improve the Harvard Open Data Portal. If you're interested in helping us build the web frontend for the data portal, email Neel Mehta at neelmehta@college.harvard.edu. </p>
+<p> If you're at Harvard, let us know. We meet every Wednesday in Lamont B-30. Everyone is welcome, and we'd love to hear your input. </p>
+</Col>
