@@ -1,17 +1,23 @@
 # Harvard Open Data Project
 
-We're a student-faculty team dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.
+> We're a student-faculty team dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.
+
+​We're a student-faculty team that's teamed up with the former deputy CTO of the US, Harvard's CTO, and Harvard's Chief Digital Officer to build Harvard's first open data catalog​. We're empowering Harvard students to hack with Harvard data including admissions data, course catalogs, dhall menus, and university finances.​
+
+As we expand, we're looking for people with a passion for anything from data science to public policy. Join our team to ​build our web frontend and data analysis tools, create visualizations and apps with Harvard data, work closely with our mentors in the civic tech space, and craft university-wide open data policies.
 
 ## People
 
 ### Undergrads
+
+Leadership:
 
 - Neel Mehta
 - Athena Kan
 - Brian Sapozhnikov
 - Eric Timmerman
 
-and many others!
+And many others!
 
 ### Faculty leadership
 
