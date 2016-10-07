@@ -1,3 +1,5 @@
 main:
     -   name: Home
         url: /
+    -   name: Datasets
+        url: https://dataverse.harvard.edu/dataverse/harvardopendata

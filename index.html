@@ -11,22 +11,26 @@ layout: default
 
 <p>As we expand, we're looking for people with a passion for anything from data science to public policy. Join our team to ​build our web frontend and data analysis tools, create visualizations and apps with Harvard data, work closely with our mentors in the civic tech space, and craft university-wide open data policies.</p>
 
+<a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">See our datasets</a>
+
 <h2>Get involved</h2>
 
 <p><a href="https://groups.google.com/forum/#!forum/harvard-open-data">Join our mailing list</a>, or email Neel Mehta at neelmehta [at] college [dot] harvard [dot] edu.</p>
 
 <h2>People</h2>
 
-<ul>
+<div class="row">
     {% for person in site.data.people %}
-    <li>
-        <strong>{{ person.name }}</strong>, {{ person.role }}
+    <div class="col-xs-3 text-centered">
         {% if person.image %}
-            <img src="img/people/{{ person.image }}" />
+            <img src="img/people/{{ person.image }}" class="img-responsive img-circle" />
+        {% else %}
+            <img src="img/people/generic.jpg" class="img-responsive img-circle" />
         {% endif %}
-    </li>
+        <strong>{{ person.name }}</strong>, {{ person.role }}
+    </div>
     {% endfor %}
-</ul>
+</div>
 
 
 <h2>Example visualizations</h2>
@@ -58,4 +62,4 @@ layout: default
     {% endfor %}
 </ul>
 
-<a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary">View all datasets</a>
+<a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">View all datasets</a>
