@@ -1,3 +1,9 @@
 -   name: Harvard College Tuition, Fees, Room, and Board 1985-2016
     description: A survey of the costs that Harvard undergrads have to pay for the last 30 years.
     url: http://oir.harvard.edu/fact-book/undergraduate_package
+-   name: Course Enrollment Stats
+    description: Harvard undergraduate course enrollments for every semester since Fall 1999.
+    url: http://registrar.fas.harvard.edu/faculty-staff/courses/enrollment/archived-course-enrollment-reports
+-   name: Harvard Shuttle API
+    description: Provides routes, stops, and arrival estimates for Harvard shuttles.
+    url: https://market.mashape.com/transloc/openapi-1-2
