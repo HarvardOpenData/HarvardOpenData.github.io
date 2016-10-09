@@ -1,0 +1,16 @@
+-   title: Cambridge Campus Criminal Statistics 2012-2014
+    img: crimelogs.png
+    source: http://www.hupd.harvard.edu/files/hupd/files/hupd_15_asr_101515.pdf?m=1448894275
+    description: This graph depicts a few of the most serious felonies committed in Cambridge. On a very positive note, robbery and aggravated assault have seen a steady decline in frequency over a three year span. Unfortunately, dating violence and stalking have increased continually. Rape and burglary reached an all time high at the end of 2014 after reaching an all time low in 2013.
+-   title: Harvard College Tuition, Fees, Room, and Board 1985-2016
+    img: tuition.png
+    source: http://oir.harvard.edu/fact-book/undergraduate_package
+    description: This graph depicts the fees Harvard college students pay on an annual basis. Tuition has been steadily increasing in a linear fashion and has now become $40,000. Health services fees have stayed relatively constant and comprise a minute amount of the total fees for Harvard college. Student Services Fee have been steadily increasing annually $40 to $90. Additionally, Room and Board fees have slowly increased as well over the past two decades.
+-   title: Harvard College Demographics
+    img: ethnic-breakdown-college.png
+    source: http://oir.harvard.edu/fact-book/degrees-awarded-demographics
+    description: The number of Latino and multiracial students has increased dramatically in recent years, but that might be due to changes in self-reporting as people stop writing "Non specified" and use a more accurate label instead. The number of Asian students has stayed relatively consistent for the past few years between 15-20%. African American student numbers have stayed nearly the same as well.
+-   title: Financial Aid / Tuition
+    img: finaid-tuition.png
+    source: \#
+    description: This graph shows the ratio of financial aid to tuition for each school at Harvard based on 2013 data. We see that the Medical School provides the least financial aid per dollar of tuition paid (40%) while the Divinity School actually gives out more financial aid than it takes in as tuition (130%), perhaps due to student stipends. Harvard College offers less financial aid than most other schools.
