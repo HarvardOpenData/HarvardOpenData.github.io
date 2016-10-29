@@ -34,7 +34,8 @@ To set up the app, run the following in your terminal:
 
 ```
 git clone https://github.com/Harvard-Open-Data-Project/hodp.git
-gem install bundler
+cd hodp
+sudo gem install bundler
 bundle install
 ```
 
