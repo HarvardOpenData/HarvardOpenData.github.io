@@ -20,3 +20,5 @@ public/styles/*.css
 _site
 .sass-cache
 .jekyll-metadata
+
+.DS_Store
