@@ -6,23 +6,19 @@ layout: default
     <h3>We're a student-faculty team dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.</h3>
 </div>
 
-<p>We've teamed up with the former deputy CTO of the US, Harvard's CTO, and Harvard's Chief Digital Officer to build Harvard's first open data catalog​. We're empowering Harvard students to hack with Harvard data including admissions data, course catalogs, dhall menus, and university finances.​</p>
 
-<p>Our main work includes:</p>
+<h2>Featured Datasets</h2>
 
 <ul>
-    <li>Gathering open data from around the Harvard community</li>
-    <li>Analyzing and visualizing the data, or building applications around it</li>
-    <li>Using these results to drive policy changes around Harvard</li>
-    <li>Empowering Harvard students to also hack with this data to improve student life or the University</li>
+    {% for dataset in site.data.datasets %}
+    <li>
+        <a href="{{ dataset.url }}"><strong>{{ dataset.name}}</strong></a>:
+        {{ dataset.description }}
+    </li>
+    {% endfor %}
 </ul>
 
-<p>As we expand, we're looking for people with a passion for anything from data science to public policy. Join our team to ​build our web frontend and data analysis tools, create visualizations and apps with Harvard data, work closely with our mentors in the civic tech space, and craft university-wide open data policies.</p>
-
-<a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">See our datasets</a>
-
-
-
+<a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">View all datasets</a>
 
 <h2>Example visualizations</h2>
 
@@ -41,19 +37,6 @@ layout: default
     <hr>
 {% endfor %}
 
-
-<h2>Featured Datasets</h2>
-
-<ul>
-    {% for dataset in site.data.datasets %}
-    <li>
-        <a href="{{ dataset.url }}"><strong>{{ dataset.name}}</strong></a>:
-        {{ dataset.description }}
-    </li>
-    {% endfor %}
-</ul>
-
-<a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">View all datasets</a>
 
 <h2>Get involved</h2>
 
