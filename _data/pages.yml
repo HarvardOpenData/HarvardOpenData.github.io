@@ -1,9 +1,12 @@
 main:
     -   name: Home
         url: /
+    -   name: About
+        url: /about
     -   name: Datasets
         url: https://dataverse.harvard.edu/dataverse/harvardopendata
     -   name: GitHub
         url: https://github.com/Harvard-Open-Data-Project/hodp
     -   name: Medium
         url: https://medium.com/harvard-open-data-project
+
