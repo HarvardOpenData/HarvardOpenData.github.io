@@ -1,8 +1,9 @@
 main:
-    -   name: Home
-        url: /
+
     -   name: About
         url: /about
+    -   name: Get Involved
+        url: /contribute
     -   name: Datasets
         url: https://dataverse.harvard.edu/dataverse/harvardopendata
     -   name: GitHub
