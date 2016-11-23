@@ -9,10 +9,20 @@
     role: Undergrad
 -   name: Eric Timmerman
     role: Undergrad
+-   name: Jack Zhang
+    role: Undergrad
 -   name: Nick Sinai
     role: Faculty Mentor
 -   name: Erie Meyer
     role: Faculty Mentor
+
 -   name: Emma Ling
     role: Undergrad
     image: emma-ling.jpg    
+-   name: Alex Giglio
+    role: Undergrad
+-   name: Shira Li
+    role: Undergrad
+-   name: Estefania Lahera
+    role: Undergrad
+    image: estefania-lahera.jpg

@@ -17,6 +17,13 @@ node_modules
 # Generated css
 public/styles/*.css
 
+# Jekyll
 _site
 .sass-cache
 .jekyll-metadata
+
+# Mac stuff
+.DS_Store
+
+# Compiled Gemfile
+Gemfile.lock
