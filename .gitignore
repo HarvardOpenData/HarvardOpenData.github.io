@@ -24,3 +24,6 @@ _site
 
 # Mac stuff
 .DS_Store
+
+# Compiled Gemfile
+Gemfile.lock
