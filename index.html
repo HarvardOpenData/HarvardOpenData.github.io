@@ -22,12 +22,29 @@ layout: default
 
 <a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">View all datasets</a>
 
+<style>
+
+    .visualization rect {
+      fill: steelblue;
+    }
+
+    .visualization text {
+      fill: white;
+      font: 10px sans-serif;
+      text-anchor: end;
+    }
+
+</style>
+
+
 <h2>Example visualizations</h2>
 
 {% for entry in site.data.visualizations %}
     <div class="row">
         <div class="col-xs-6">
             <img src="img/{{ entry.img }}" class="img img-responsive" />
+            <svg id="{{ entry.script }}" class="visualization"></svg>
+            <script type="text/javascript" src="charts/{{ entry.script }}.js"></script>
         </div>
         <div class="col-xs-6">
             <h3>{{ entry.title }}</h3>
@@ -38,7 +55,6 @@ layout: default
 
     <hr>
 {% endfor %}
-
 
 <h2>Get involved</h2>
 

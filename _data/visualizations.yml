@@ -4,6 +4,7 @@
     description: This graph depicts a few of the most serious felonies committed in Cambridge. On a very positive note, robbery and aggravated assault have seen a steady decline in frequency over a three year span. Unfortunately, dating violence and stalking have increased continually. Rape and burglary reached an all time high at the end of 2014 after reaching an all time low in 2013.
 -   title: Harvard College Tuition, Fees, Room, and Board 1985-2016
     img: tuition.png
+    script: tuition
     source: http://oir.harvard.edu/fact-book/undergraduate_package
     description: This graph depicts the fees Harvard college students pay on an annual basis. Tuition has been steadily increasing in a linear fashion and has now become $40,000. Health services fees have stayed relatively constant and comprise a minute amount of the total fees for Harvard college. Student Services Fee have been steadily increasing annually $40 to $90. Additionally, Room and Board fees have slowly increased as well over the past two decades.
 -   title: Harvard College Demographics
