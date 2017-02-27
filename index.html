@@ -3,36 +3,44 @@ layout: default
 ---
 
 <div class="title">
-		<h1>Harvard Open Data Project</h1>
+    <h1>Harvard Open Data Project</h1>
 </div>
 
-<div class="panel panel-info">
-    <div class="panel-heading">
+<div class="row">
+  <div class="col-sm-6">
+
+      <h3>We're dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.</h3>
+
+  </div>
+
+  <div class="col-sm-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
         <h3 class="panel-title">Updates from our introductory meeting on 2/2/17</h3>
-    </div>
-    <div class="panel-body">
+      </div>
+      <div class="panel-body">
         We have an exciting semester ahead of us! <a href="https://sway.com/gLHTy0afsLbrvpkA">Check out our presentation from the intro meeting</a>, and <a href="https://groups.google.com/forum/#!forum/harvard-open-data">join our mailing list</a>!
+      </div>
     </div>
+  </div>
+
 </div>
 
-<div class="well">
-    <h4>The Harvard Open Data Project is dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.</h4>
-</div>
+
 
 <h2>Featured Datasets</h2>
 
 <ul>
     {% for dataset in site.data.datasets %}
     <li>
-        <a href="{{ dataset.url }}"><strong>{{ dataset.name}}</strong></a>:
-        {{ dataset.description }}
+    <a href="{{ dataset.url }}"><strong>{{ dataset.name}}</strong></a>: {{ dataset.description }}
     </li>
     {% endfor %}
 </ul>
 
 <a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">View all datasets</a>
 
-<h2>Example visualizations</h2>
+<!-- <h2>Example visualizations</h2>
 
 {% for entry in site.data.visualizations %}
     <div class="row">
@@ -47,15 +55,15 @@ layout: default
     </div>
 
     <hr>
-{% endfor %}
+{% endfor %} -->
 
 
 <h2>Get involved</h2>
 
 <p><a href="https://groups.google.com/forum/#!forum/harvard-open-data">Join our mailing list</a>, or email Neel Mehta at neelmehta@college.harvard.edu .</p>
 
+<!--
 <h3>Comments?</h3>
 <p>
-We'd love to have your feedback/comments on our <a target="_blank" href="https://github.com/Harvard-Open-Data-Project/hodp/issues">GitHub Issues page</a>.
-</p>
-
+    We'd love to have your feedback/comments on our <a target="_blank" href="https://github.com/Harvard-Open-Data-Project/hodp/issues">GitHub Issues page</a>.
+</p> -->
