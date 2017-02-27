@@ -9,7 +9,7 @@ main:
         url: https://dataverse.harvard.edu/dataverse/harvardopendata
     -   name: GitHub
         url: https://github.com/Harvard-Open-Data-Project/hodp
-    -   name: Medium
+    -   name: Blog
         url: https://medium.com/harvard-open-data-project
     -   name: Mailing List
         url: https://groups.google.com/forum/#!forum/harvard-open-data
