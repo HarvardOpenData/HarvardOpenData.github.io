@@ -4,7 +4,13 @@ layout: default
 permalink: /about/
 ---
 
+<h1 class="page-title centered">About the Harvard Open Data Project</h1>
 
+<div class="well lead">
+    {{ site.description }}
+</div>
+
+<!--
 <p>We've teamed up with the former deputy CTO of the US, Nick Sinai, Harvard's CTO, Jim Waldo, and Harvard's Chief Digital Officer, Perry Hewitt, to build Harvard's first open data catalog​. We're empowering Harvard students to hack with Harvard data including admissions data, course catalogs, dhall menus, and university finances.​</p>
 
 <p>Our main work includes:</p>
@@ -33,10 +39,10 @@ Interested in getting involved? <a href="https://github.com/Harvard-Open-Data-Pr
 
 <p>The goal of the Harvard Open Data Project (HODP) is to leverage open data to foster community, efficiency, and student innovation. Making data public and easily accessible allows us all to unlock its potential. Data-driven progress unites people, organizations, and departments as we all try to make daily life better. Aggregating, maintaining, and publicizing open data has and will continue to be a global trend and we want Harvard to be at its forefront. Our goal is to give that progress a home with centralization of available data, integration with existing systems, and showcases of data-inspired products.</p>
 
-<p>Students from across the University are spearheading a project to build Harvard's first open data portal, which will empower Harvard students and researchers to discover and hack with University data like financial data, enrollment stats, course catalogs, and more.</p>
+<p>Students from across the University are spearheading a project to build Harvard's first open data portal, which will empower Harvard students and researchers to discover and hack with University data like financial data, enrollment stats, course catalogs, and more.</p> -->
 
 
-<h2>People</h2>
+<h2 class="centered">People</h2>
 
 <div class="row">
     {% for person in  site.data.people %}
@@ -50,3 +56,8 @@ Interested in getting involved? <a href="https://github.com/Harvard-Open-Data-Pr
     </div>
     {% endfor %}
 </div>
+
+
+<h2 class="centered">Partners</h2>
+
+We are proud partners with <a href="http://codingitforward.com/">Coding it Forward</a>, a community of people using technology for social good. Like Coding it Forward (another Harvard creation), we're passionate about using the tools of technology to increase government transparency, improve citizens' lives, and unlock innovation using data.
