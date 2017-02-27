@@ -47,11 +47,12 @@ layout: default
       students engage better with the university.
     </p>
 
-    <h4>Featured datasets</h4> {% for dataset in site.data.datasets %}
-    <li>
-      <a href="{{ dataset.url }}">{{ dataset.name }}</a>
-    </li>
-    {% endfor %}
+    <h4>Featured datasets</h4>
+    <ul>
+        {% for dataset in site.data.datasets %}
+        <li><a href="{{ dataset.url }}">{{ dataset.name }}</a></li>
+        {% endfor %}
+    </ul>
 
     <a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">View the whole open data catalog</a>
   </div>
