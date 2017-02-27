@@ -1,24 +1,23 @@
 -   name: Neel Mehta
-    linkedin: https://www.linkedin.com/in/neelmehta18
+    url: https://www.linkedin.com/in/neelmehta18
     role: Team Lead
     image: neel-mehta.jpg
 -   name: Athena Kan
-    role: Undergrad
+    role: Board Member
     image: athena-kan.jpg
 -   name: Brian Sapozhnikov
-    role: Undergrad
--   name: Eric Timmerman
-    role: Undergrad
--   name: Jack Zhang
-    role: Undergrad
+    role: Board Member
+-   name: Chris Kuang
+    role: Board Member
 -   name: Nick Sinai
     role: Faculty Mentor
+-   name: Jack Zhang
+    role: Undergrad
 -   name: Erie Meyer
     role: Faculty Mentor
-
 -   name: Emma Ling
     role: Undergrad
-    image: emma-ling.jpg    
+    image: emma-ling.jpg
 -   name: Alex Giglio
     role: Undergrad
 -   name: Shira Li

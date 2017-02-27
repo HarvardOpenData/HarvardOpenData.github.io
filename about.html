@@ -45,15 +45,34 @@ Interested in getting involved? <a href="https://github.com/Harvard-Open-Data-Pr
 <h2 class="centered">People</h2>
 
 <div class="row">
+    <!-- empty media element prevents rules for media:first-child from messing up first person -->
+    <div class="media"></div>
+
     {% for person in  site.data.people %}
-    <div class="col-xs-3 text-centered">
+    <div class="media col-md-4">
+      <div class="media-left">
+        <a href="{{ person.url }}">
+          {% if person.image %}
+              <img src="/img/people/{{ person.image }}" class="media-object img-circle" alt="{{ person.name }}" style="width: 64px;" />
+          {% else %}
+              <img src="/img/people/generic.jpg" class="media-object img-circle" alt="{{ person.name }}" style="width: 64px;" />
+          {% endif %}
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">{{ person.name }}</h4>
+        {{ person.role }}
+      </div>
+    </div>
+
+    <!-- <div class="col-xs-3 text-centered">
         {% if person.image %}
             <img src="/img/people/{{ person.image }}" class="img-responsive img-circle" />
         {% else %}
             <img src="/img/people/generic.jpg" class="img-responsive img-circle" />
         {% endif %}
         <strong>{{ person.name }}</strong>, {{ person.role }}
-    </div>
+    </div> -->
     {% endfor %}
 </div>
 
