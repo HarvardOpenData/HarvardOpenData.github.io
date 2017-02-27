@@ -14,31 +14,48 @@ layout: default
   </div>
 
   <div class="col-sm-6">
-    <div class="panel panel-info">
+    <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Updates from our introductory meeting on 2/2/17</h3>
+        <h3 class="panel-title"> Get involved!</h3>
       </div>
       <div class="panel-body">
-        We have an exciting semester ahead of us! <a href="https://sway.com/gLHTy0afsLbrvpkA">Check out our presentation from the intro meeting</a>, and <a href="https://groups.google.com/forum/#!forum/harvard-open-data">join our mailing list</a>!
+        <ul>
+            <li>
+                <a href="https://medium.com/harvard-open-data-project">Follow us on Medium</a>
+            </li>
+            <li>
+                <a href="https://groups.google.com/forum/#!forum/harvard-open-data">Join our mailing list</a>
+            </li>
+        </ul>
+
+        Want to learn more? Email Neel Mehta at neelmehta [at] college [dot] harvard [dot] edu.
       </div>
     </div>
   </div>
 
 </div>
 
+<h2>What we do</h2>
 
+<div class="row">
+  <div class="col-md-4">
+    <h3>Creating Harvard's first open data catalog</h3>
 
-<h2>Featured Datasets</h2>
+    <p>
 
-<ul>
-    {% for dataset in site.data.datasets %}
+      In the vein of <a href="https://data.gov">data.gov</a>, we're <a href="https://dataverse.harvard.edu/dataverse/harvardopendata">gathering and publishing all of Harvard's public datasets in one place</a>. With this, we promote transparency and help
+      students engage better with the university.
+    </p>
+
+    <h4>Featured datasets</h4> {% for dataset in site.data.datasets %}
     <li>
-    <a href="{{ dataset.url }}"><strong>{{ dataset.name}}</strong></a>: {{ dataset.description }}
+      <a href="{{ dataset.url }}">{{ dataset.name }}</a>
     </li>
     {% endfor %}
-</ul>
 
-<a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">View all datasets</a>
+    <a href="https://dataverse.harvard.edu/dataverse/harvardopendata" class="btn btn-primary btn-block">View the whole open data catalog</a>
+  </div>
+</div>
 
 <!-- <h2>Example visualizations</h2>
 
@@ -56,11 +73,6 @@ layout: default
 
     <hr>
 {% endfor %} -->
-
-
-<h2>Get involved</h2>
-
-<p><a href="https://groups.google.com/forum/#!forum/harvard-open-data">Join our mailing list</a>, or email Neel Mehta at neelmehta@college.harvard.edu .</p>
 
 <!--
 <h3>Comments?</h3>
