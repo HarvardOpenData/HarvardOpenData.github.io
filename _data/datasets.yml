@@ -7,3 +7,6 @@
 -   name: Harvard Shuttle API
     description: Provides routes, stops, and arrival estimates for Harvard shuttles.
     url: https://market.mashape.com/transloc/openapi-1-2
+-   name: Harvard Faculty and Staff Diversity
+    description: Breaks down Harvard faculty and staff by race, gender, and other factory.
+    url: http://oir.harvard.edu/fact-book/faculty_and_staff
