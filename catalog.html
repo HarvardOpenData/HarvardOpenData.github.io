@@ -10,6 +10,7 @@ scripts:
     - https://d3js.org/d3-dsv.v1.min.js
     - https://d3js.org/d3-request.v1.min.js
     - https://d3js.org/d3-selection.v1.min.js
+    - https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js
     - /js/catalog.js
 ---
 
@@ -20,16 +21,12 @@ scripts:
 </p>
 
 <!-- Search box -->
-<form id="catalog-search-form">
-    <div class="input-group">
-      <input type="text" id="catalog-search-text" class="form-control" placeholder="Search datasets">
-      <span class="input-group-btn">
-        <button class="btn btn-info" type="submit">
-            <i class="fa fa-search"></i> Search
-        </button>
-      </span>
-    </div><!-- /input-group -->
-</form>
+<div class="input-group">
+    <span class="input-group-addon">
+        <i class="fa fa-search"></i>
+    </span>
+  <input type="text" id="catalog-search-text" class="form-control" placeholder="Type to search datasets">
+</div>
 
 <br />
 

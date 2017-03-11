@@ -16,7 +16,22 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
 });
 
 // catch submitting the search form
-$('#catalog-search-form').on('submit', function(){
+// $('#catalog-search-form').on('submit', function(){
+//     var searchQueryText = $('#catalog-search-text').val();
+//
+//     var query = {
+//         text: searchQueryText
+//     };
+//
+//     // execute search
+//     searchCatalog(query, catalogData);
+//
+//     return false;
+// });
+
+// auto-search when someone types
+// FIXME: doesn't work on IE8 and below :(
+var searchFunction = function(){
     var searchQueryText = $('#catalog-search-text').val();
 
     var query = {
@@ -25,9 +40,10 @@ $('#catalog-search-form').on('submit', function(){
 
     // execute search
     searchCatalog(query, catalogData);
-
-    return false;
-});
+};
+// throttle searching b/c people type faster than we can respond
+var throttledSearch = _.throttle(searchFunction, 100);
+$('#catalog-search-text').on('input propertychange', throttledSearch);
 
 /**
  * Searches the data catalog based on specified fields.
