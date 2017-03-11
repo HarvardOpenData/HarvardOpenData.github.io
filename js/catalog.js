@@ -9,7 +9,13 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
         return a.title > b.title;
     });
 
+    // update global var storing this info
     catalogData = data;
+
+    // update counter
+    // UPDATE: nah, this makes the page update weirdly as soon as the CSV is loaded.
+    //  hurts UX, so don't bother for now
+    // $('#catalog-count').html(data.length);
 
     // update display
     updateCatalog(catalogData);
