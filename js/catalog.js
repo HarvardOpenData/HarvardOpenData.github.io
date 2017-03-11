@@ -1,18 +1,85 @@
 // script for the catalog
 // $(document).ready(function(){
 
-d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
-    console.log(data);
+var catalogData;
 
+d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
     // sort data by title
     data.sort(function(a, b) {
         return a.title > b.title;
     });
 
+    catalogData = data;
+
+    // update display
+    updateCatalog(catalogData);
+});
+
+// catch submitting the search form
+$('#catalog-search-form').on('submit', function(){
+    var searchQueryText = $('#catalog-search-text').val();
+
+    var query = {
+        text: searchQueryText
+    };
+
+    // execute search
+    searchCatalog(query, catalogData);
+
+    return false;
+});
+
+/**
+ * Searches the data catalog based on specified fields.
+ * @param  {Object} query   contains criteria that are AND'ed together:
+ *                              `text`: whether the title/description contain a string
+ *                              `type`: whether the type matches the given string
+ * @param {Object[]} allData    an array of all datasets you want to search over
+ * @return {Object[]}       an array of datasets to show
+ */
+function searchCatalog(query, allData) {
+    // if no query, just return everything
+    if (!query) {
+        return allData;
+    }
+
+    var displayData = allData.filter(function(d) {
+        // basically, exclude a dataset if it fails any of our criteria
+        // anything that doesn't fail gets passed
+        // this way, we can AND together all our criteria
+
+        // search on text (contains)
+        if (query.text) {
+            query.text = query.text.toLowerCase();
+            if (d.title.toLowerCase().indexOf(query.text) < 0
+                && d.description.toLowerCase().indexOf(query.text) < 0) {
+                    return false;
+            }
+        }
+
+        // search on type (exact match())
+        if (query.type && d.type !== query.type) {
+            return false;
+        }
+
+        return true;
+    });
+
+    updateCatalog(displayData);
+}
+
+
+/**
+ * Updates the data catalog results to show the given datasets.
+ */
+function updateCatalog(displayData) {
     // load entries into catalog
     var catalog = d3.select("#catalog-results")
         .selectAll("div.result")
-        .data(data);
+        .data(displayData, function key(d) {
+            return d.title;
+        });
+
 
     catalog.exit().remove();
 
@@ -37,13 +104,8 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
     // text description
     catalogBody.append("p")
         .text(function(d){
-            return d.description + "  ";
+            return d.description;
         })
-        .append("span")
-            .attr("class", "label label-info")
-            .text(function(d) {
-                return d.type;
-            })
 
     // download button
     catalogBody.append("a")
@@ -52,7 +114,15 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
         })
         .attr("class", "btn btn-primary")
         .text(function(d){
-            return "Download"
+            var downloadString = "Download";
+            return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
         });
 
-});
+    // label with type
+    // catalogBody.append("span")
+    //     .attr("class", "text text-muted ")
+    //     .text(function(d) {
+    //         return "  " + d.type;
+    //     });
+
+}
