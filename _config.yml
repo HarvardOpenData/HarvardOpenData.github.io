@@ -22,11 +22,12 @@ url: "http://harvard-open-data-project.github.io" # the base hostname & protocol
 # twitter_username: jekyllrb
 # github_username:  jekyll
 
-# libraries
-bootstrap_version: 3.3.7
-jquery_version: 1.11.3
-fontawesome_version: 4.6.3
-
 # Build settings
 markdown: kramdown
 theme: minima
+
+
+# libraries
+# bootstrap_version: 3.3.7
+# jquery_version: 3.1.1
+# fontawesome_version: 4.6.3

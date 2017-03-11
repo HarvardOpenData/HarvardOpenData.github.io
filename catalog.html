@@ -1,0 +1,35 @@
+---
+title: Catalog
+layout: default
+permalink: /catalog/
+
+# we need d3 scripts to load and visualize the catalog
+scripts:
+    - https://d3js.org/d3-collection.v1.min.js
+    - https://d3js.org/d3-dispatch.v1.min.js
+    - https://d3js.org/d3-dsv.v1.min.js
+    - https://d3js.org/d3-request.v1.min.js
+    - https://d3js.org/d3-selection.v1.min.js
+    - https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js
+    - /js/catalog.js
+---
+
+<h1 class="page-title centered">Open Data Catalog</h1>
+
+<p class="lead">
+    This is Harvard's first open data catalog, featuring <span id="catalog-count">dozens of</span> publicly-available datasets from around Harvard University – with many more to come!
+</p>
+
+<!-- Search box -->
+<div class="input-group">
+    <span class="input-group-addon">
+        <i class="fa fa-search"></i>
+    </span>
+  <input type="text" id="catalog-search-text" class="form-control" placeholder="Type to search datasets">
+</div>
+
+<br />
+
+<div id="catalog-results">
+
+</div>
