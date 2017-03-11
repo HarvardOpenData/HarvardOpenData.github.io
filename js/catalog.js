@@ -37,8 +37,13 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
     // text description
     catalogBody.append("p")
         .text(function(d){
-            return d.description;
-        });
+            return d.description + "  ";
+        })
+        .append("span")
+            .attr("class", "label label-info")
+            .text(function(d) {
+                return d.type;
+            })
 
     // download button
     catalogBody.append("a")
