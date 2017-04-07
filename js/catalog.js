@@ -19,6 +19,18 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
 
     // update display
     updateCatalog(catalogData);
+
+    // if there's a search query, go for it
+    var searchQuery = getURLParameter("q");
+    if (searchQuery) {
+        // run search
+        searchCatalog({
+            text: searchQuery
+        }, catalogData);
+
+        // put into search bar
+        $('#catalog-search-text').val(searchQuery);
+    }
 });
 
 // catch submitting the search form
@@ -147,4 +159,11 @@ function updateCatalog(displayData) {
     //         return "  " + d.type;
     //     });
 
+}
+
+
+// Get query-string parameters
+// http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 }
