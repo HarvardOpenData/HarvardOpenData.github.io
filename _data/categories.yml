@@ -1,0 +1,16 @@
+-   name: Academics
+    icon: graduation-cap
+-   name: Admissions
+    icon: pencil-square-o
+-   name: Campus
+    icon: university
+-   name: Faculty + Staff
+    icon: people
+-   name: Finances
+    icon: usd
+-   name: Library
+    icon: book
+-   name: Safety
+    icon: lock
+-   name: Student Life
+    icon: id-card

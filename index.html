@@ -19,3 +19,7 @@ layout: default
     </div>
   </form>
 </div>
+
+{% for category in site.data.categories %}
+    {{ category.name }}
+{% endfor %}
