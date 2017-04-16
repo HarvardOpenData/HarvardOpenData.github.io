@@ -18,13 +18,15 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
     // if there's something in the URL string that indicates searching, go for it
     var searchTerm = getURLParameter("q");
     var searchCategory = getURLParameter("category");
+    var searchType = getURLParameter("type");
 
-    if (searchTerm || searchCategory) {
+    if (searchTerm || searchCategory || searchType) {
         // run search
 
         searcher.setParameters({
             term: searchTerm,
-            category: searchCategory
+            category: searchCategory,
+            type: searchType
         });
 
         // put into search bar
@@ -138,11 +140,11 @@ Searcher.prototype.setParameters = function(parameters) {
     if (parameters.term !== undefined && parameters.term !== null) {
         this.term = parameters.term.toLowerCase();
     }
-    if (parameters.category !== undefined && parameters.type !== null) {
+    if (parameters.category !== undefined && parameters.category !== null) {
         this.category = parameters.category;
     }
     if (parameters.type !== undefined && parameters.type !== null) {
-        this.type = type;
+        this.type = parameters.type;
     }
 
     // now run a search
