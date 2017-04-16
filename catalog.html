@@ -39,7 +39,15 @@ scripts:
 
     {% for category in site.data.categories %}
       <a href="/catalog/index.html?category={{ category.slug }}" class="list-group-item">
-        {{ category.name }} <i class="fa fa-{{ category.icon }}"></i>
+        <i class="fa fa-fw fa-{{ category.icon }}"></i> &nbsp; {{ category.name }}
+      </a>
+    {% endfor %}
+    </div>
+    <h3 class="page-header">File Types</h3>
+    <div class="list-group">
+    {% for filetype in site.data.filetypes %}
+      <a href="#" class="list-group-item">
+        <i class="fa fa-fw fa-{{ filetype.icon }}"></i> &nbsp; {{ filetype.name }}
       </a>
     {% endfor %}
     </div>
