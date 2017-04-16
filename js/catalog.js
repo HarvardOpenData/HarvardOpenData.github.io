@@ -222,7 +222,7 @@ Searcher.prototype.updateCatalog = function(displayData) {
 
     // text description
     catalogBody.append("div")
-        .attr("class", "col-sm-6")
+        .attr("class", "col-sm-8")
         .text(function(d){
             return d.description;
         })
