@@ -39,6 +39,11 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
             $('#filter-category-' + searchCategory).addClass("active")
         }
 
+        // if there's a category, highlight the relevant list item
+        if (searchType) {
+            $('#filter-type-' + searchType).addClass("active")
+        }
+
     }
 });
 
