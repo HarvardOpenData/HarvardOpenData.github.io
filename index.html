@@ -47,14 +47,20 @@ styles:
   </div>
 </div>
 
-<div class="row"><h1 class="text-centered">Featured Datasets</h1>
+<!-- TODO get this working -->
+<!-- <div class="row"><h1 class="text-centered">Featured Datasets</h1>
     {% for dataset in site.data.featured %}
-<!--     <div class="col-md-4 featured" style="background-image: url({{dataset.imgsrc}})"> -->
-    <div class="col-md-4 thumbnail">
-        <a href={{ dataset.url }}>
-           <h2 class="text-center lead">{{ dataset.name }}</h2>
-            <img src={{ dataset.imgsrc }} class="img-thumbnail" alt="{{ dataset.name }}" style="width: 64px;" />
-        </a>
-    </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src={{ dataset.imgsrc }} class="img-thumbnail" alt="{{ dataset.name }}" />
+                <div class="caption">
+                    <p>
+                        <a href={{ dataset.url }}>
+                           <h2 class="text-center lead">{{ dataset.name }}</h2>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
     {% endfor %}
-</div>
+</div> -->
