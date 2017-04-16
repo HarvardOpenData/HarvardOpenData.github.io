@@ -51,6 +51,12 @@ scripts:
         {% endfor %}
     </div>
   </div>
-  <div class="col-sm-9" id="catalog-results">
+  <div class="col-sm-9">
+      <div class="alert alert-danger hidden" id="catalog-error">
+        No datasets found! Please try another search.
+      </div>
+       <div id="catalog-results">
+            <!-- search results here -->
+       </div>
   </div>
 </div>

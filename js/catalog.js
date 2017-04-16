@@ -190,6 +190,13 @@ Searcher.prototype.runSearch = function() {
         return true;
     });
 
+    // if no results, show an error message
+    if (displayData.length === 0) {
+        $('#catalog-error').removeClass("hidden");
+    } else {
+        $('#catalog-error').addClass("hidden");
+    }
+
     self.updateCatalog(displayData);
 }
 
