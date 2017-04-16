@@ -44,15 +44,11 @@ styles:
 
 <div class="row"><h1 class="text-centered">Featured Datasets</h1>
     {% for dataset in site.data.featured %}
-    <div class="col-md-3">
-        <a href="#">
-          <div class="panel panel-default">
-            <h2 class="text-center lead">{{ dataset.name }}</h2>
-            <img src={{ dataset.imgsrc }} class="media-object img" alt="{{ dataset.name }}" style="width: 64px;" />
-<!--             <div class="panel-body">
-              <p class="text-center text-primary"><i class="fa fa-4x fa-{{ category.icon}}"></i></p>
-            </div>
- -->          </div>
+<!--     <div class="col-md-4 featured" style="background-image: url({{dataset.imgsrc}})"> -->
+    <div class="col-md-4 thumbnail">
+        <a href={{ dataset.url }}>
+           <h2 class="text-center lead">{{ dataset.name }}</h2>
+            <img src={{ dataset.imgsrc }} class="img-thumbnail" alt="{{ dataset.name }}" style="width: 64px;" />
         </a>
     </div>
     {% endfor %}
