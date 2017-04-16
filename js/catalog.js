@@ -223,21 +223,33 @@ Searcher.prototype.updateCatalog = function(displayData) {
         .attr("class", "panel-body");
 
     // text description
-    catalogBody.append("p")
+    catalogBody.append("div")
+        .attr("class", "col-sm-6")
         .text(function(d){
             return d.description;
         })
 
     // download button
-    catalogBody.append("a")
-        .attr("href", function(d) {
-            return d.url;
-        })
-        .attr("class", "btn btn-primary")
-        .text(function(d){
-            var downloadString = "Download";
-            return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
+    catalogBody.append("div")
+        .attr("class", "push-sm-2")
+        .append("a")
+            .attr("href", function(d) {
+                return d.url;
+            })
+            .attr("class", "btn btn-primary pull-right")
+            .text(function(d){
+                var downloadString = "Download";
+                return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
         });
+
+    // categories
+    catalogBody.append("div")
+        .attr("class", "col-sm-12 pull")
+        .append("p")
+            .attr("class", "label label-info")
+            .text(function(d){
+                return d.category;
+            });
 
     // label with type
     // catalogBody.append("span")
