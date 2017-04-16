@@ -10,7 +10,7 @@ styles:
 
 
     <div class="title">
-      <h1 class="text-white">Harvard's First Open Data Catalog</h1>
+      <h1 class="text-white text-shadow">Harvard's First Open Data Catalog</h1>
     </div>
 
     <form action="/catalog/index.html" method="GET">
@@ -27,17 +27,24 @@ styles:
   </div>
 </div>
 
-<div class="row">
-    {% for category in site.data.categories %}
-    <div class="col-md-3">
-        <a href="#">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <p class="text-center text-primary"><i class="fa fa-4x fa-{{ category.icon}}"></i></p>
-              <h2 class="text-center lead">{{ category.name }}</h2>
+<br/>
+
+
+
+<div class="container">
+  <h2 class="page-header">Categories</h2>
+  <div class="row">
+      {% for category in site.data.categories %}
+      <div class="col-xs-6 col-sm-3">
+          <a href="/catalog/index.html?category={{ category.slug }}">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p class="text-center text-primary"><i class="fa fa-4x fa-{{ category.icon }}"></i></p>
+                <h2 class="text-center lead">{{ category.name }}</h2>
+              </div>
             </div>
-          </div>
-        </a>
-    </div>
-    {% endfor %}
+          </a>
+      </div>
+      {% endfor %}
+  </div>
 </div>
