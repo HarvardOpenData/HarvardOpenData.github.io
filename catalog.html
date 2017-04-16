@@ -15,6 +15,8 @@ scripts:
 ---
 
 <div class="container">
+
+
   <h1 class="page-title centered">Open Data Catalog</h1>
 
   <p class="lead">
@@ -31,7 +33,25 @@ scripts:
 
   <br />
 
-  <div id="catalog-results">
+  <div class="col-sm-3">
+    <h3 class="page-header">Categories</h3>
+    <div class="list-group">
 
+    {% for category in site.data.categories %}
+      <a href="/catalog/index.html?category={{ category.slug }}" class="list-group-item">
+        <i class="fa fa-fw fa-{{ category.icon }}"></i> &nbsp; {{ category.name }}
+      </a>
+    {% endfor %}
+    </div>
+    <h3 class="page-header">File Types</h3>
+    <div class="list-group">
+    {% for filetype in site.data.filetypes %}
+      <a href="#" class="list-group-item">
+        <i class="fa fa-fw fa-{{ filetype.icon }}"></i> &nbsp; {{ filetype.name }}
+      </a>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="col-sm-9" id="catalog-results">
   </div>
 </div>

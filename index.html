@@ -27,23 +27,24 @@ styles:
   </div>
 </div>
 
-<br />
+<br/>
+
+
 
 <div class="container">
-    <div class="row">
-        {% for category in site.data.categories %}
-        <div class="col-xs-6 col-sm-3">
-            <a href="/catalog/index.html?category={{ category.slug }}">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <p class="text-center text-primary"><i class="fa fa-4x fa-{{ category.icon }}"></i></p>
-                  <h2 class="text-center lead">{{ category.name }}</h2>
-                </div>
+  <h2 class="page-header">Categories</h2>
+  <div class="row">
+      {% for category in site.data.categories %}
+      <div class="col-xs-6 col-sm-3">
+          <a href="/catalog/index.html?category={{ category.slug }}">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p class="text-center text-primary"><i class="fa fa-4x fa-{{ category.icon }}"></i></p>
+                <h2 class="text-center lead">{{ category.name }}</h2>
               </div>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
+            </div>
+          </a>
+      </div>
+      {% endfor %}
+  </div>
 </div>
-
-<hr />
