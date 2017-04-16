@@ -1,0 +1,9 @@
+- name: Harvard Concentration Data
+  imgsrc: https://cdn-images-1.medium.com/max/1200/1*S--le7-sBvAxEBK_bEaTPw.jpeg
+  url: https://medium.com/harvard-open-data-project/from-ec-to-tech-how-harvard-students-are-changing-concentrations-b748b55ed35b
+- name: Midterm Election Data
+  imgsrc: https://cdn-images-1.medium.com/max/800/1*ohtEi4_gqUJ6WR38JS5XDQ.jpeg
+  url: https://medium.com/harvard-open-data-project/literally-nobody-voted-in-the-quincy-midterm-elections-409bf19a59cf
+- name: Harvard's Housing Lottery
+  imgsrc: https://cdn-images-1.medium.com/max/800/1*TtEjD363pDt4NRWVOYMowQ.png
+  url: https://medium.com/harvard-open-data-project/why-the-harvard-housing-lottery-might-not-be-random-cd10c4e163b2
