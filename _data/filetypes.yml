@@ -1,0 +1,14 @@
+- name: API
+  icon: tachometer
+- name: Database
+  icon: database
+- name: CSV
+  icon: table
+- name: Excel
+  icon: file-excel-o
+- name: Graph
+  icon: line-chart
+- name: HTML
+  icon: code
+- name: PDF
+  icon: file-pdf-o

@@ -15,6 +15,8 @@ scripts:
 ---
 
 <div class="container">
+
+
   <h1 class="page-title centered">Open Data Catalog</h1>
 
   <p class="lead">
@@ -31,7 +33,30 @@ scripts:
 
   <br />
 
-  <div id="catalog-results">
-
+  <div class="col-sm-3">
+    <h3 class="page-header">Categories</h3>
+    <div class="list-group" id="filter-category">
+    {% for category in site.data.categories %}
+      <a href="/catalog/index.html?category={{ category.slug }}" class="list-group-item" id="filter-category-{{ category.slug }}">
+        <i class="fa fa-fw fa-{{ category.icon }}"></i> &nbsp; {{ category.name }}
+      </a>
+    {% endfor %}
+    </div>
+    <h3 class="page-header">File Types</h3>
+    <div class="list-group" id="filter-type">
+        {% for filetype in site.data.filetypes %}
+          <a href="/catalog/index.html?type={{ filetype.name }}" class="list-group-item" id="filter-type-{{ filetype.name }}">
+            <i class="fa fa-fw fa-{{ filetype.icon }}"></i> &nbsp; {{ filetype.name }}
+          </a>
+        {% endfor %}
+    </div>
+  </div>
+  <div class="col-sm-9">
+      <div class="alert alert-danger hidden" id="catalog-error">
+        No datasets found! Please try another search.
+      </div>
+       <div id="catalog-results">
+            <!-- search results here -->
+       </div>
   </div>
 </div>
