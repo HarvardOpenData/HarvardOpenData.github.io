@@ -46,6 +46,10 @@
     text-align: center;
 }
 
+.text-white {
+    color: white !important;
+}
+
 /* old styles */
 
 #main-image {
@@ -128,4 +132,15 @@ body {
 
 .centered {
     text-align: center;
+}
+
+#backdrop {
+    background: url('/img/pforzheimer-house.jpg');
+    min-height: 400px;
+}
+
+.featured {
+
+  max-width: 100%;
+  max-height: 100%;
 }

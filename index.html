@@ -1,150 +1,66 @@
 ---
 layout: default
+
+styles:
+    - /css/homepage.css
 ---
 
-<div class="title">
-    <h1>The Harvard Open Data Project</h1>
-</div>
-
-<div class="row">
-  <div class="col-sm-6 well lead">
-      We're dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.
-  </div>
-
-  <div class="col-sm-6">
-    <h4>Join the Harvard Open Data Project!</h4>
-        <ul>
-            <li>
-                Attend our weekly open hack nights on Thursdays from 8:30-10pm. <a href="https://groups.google.com/forum/#!forum/harvard-open-data">Join our mailing list</a> for details!
-            </li>
-            <li>
-                <a href="https://medium.com/harvard-open-data-project">Read our blog</a> and submit articles.
-            </li>
-        </ul>
-
-        Want to learn more? Email Neel Mehta at neelmehta [at] college [dot] harvard [dot] edu.
-
-  </div>
-</div>
-
-<br /><br />
-
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">Want to get published?</h3>
-  </div>
-  <div class="panel-body">
-    Want to get your data analysis published to thousands of viewers? <a href="https://docs.google.com/a/college.harvard.edu/document/d/1WzvMBYR6Ycdl43P5iKqVVe4Jt7Xfgrgs8KbVBdryCdk/edit?usp=sharing">Submit an article to the Harvard Open Data Project blog by 3/10/17!</a>
-  </div>
-</div>
+<div id="backdrop">
+  <div class="container">
 
 
-<h2 class="page-header centered">What we do</h2>
-
-<div class="row">
-  <div class="col-md-4">
-    <h3>Creating Harvard's first open data catalog</h3>
-
-    <p>
-
-      In the vein of <a href="https://data.gov">data.gov</a>, we're <a href="/catalog">gathering and publishing all of Harvard's public datasets in one place</a>. With this, we promote transparency and help
-      students engage better with the university.
-    </p>
-
-    <!-- <h4>Featured datasets</h4>
-    <ul>
-        {% for dataset in site.data.datasets %}
-        <li><a href="{{ dataset.url }}">{{ dataset.name }}</a></li>
-        {% endfor %}
-    </ul> -->
-
-    <a href="/catalog" class="btn btn-primary btn-block">View the whole open data catalog</a>
-  </div>
-
-  <div class="col-md-4">
-    <h3>Creating data-driven policy with Harvard staff</h3>
-
-    <p>
-      We're working with <a href="https://medium.com/harvard-open-data-project/crime-and-risk-using-open-data-to-make-a-safer-community-49410a57e232">Harvard's police department</a> and <a href="https://medium.com/harvard-open-data-project/fooducation-food-waste-project-kick-off-d6b04fa4d070">dining services</a> to open and analyze their datasets. Our analyses will lead to real policy changes and greater student-staff interaction than we've ever seen.
-    </p>
-
-    <a href="https://medium.com/harvard-open-data-project" class="btn btn-primary btn-block">Read about our policy projects</a>
-  </div>
-
-  <div class="col-md-4">
-    <h3>Data science to understand our university</h3>
-    <p>
-      You might have heard of us when we <a href="https://medium.com/harvard-open-data-project/sixteenthirtysix-our-analysis-4c395d933198#.h5cuo2mlt">correctly predicted the outcome of the Harvard student government presidential election</a> using surveys
-      and social media analysis. Now we're turning toward understanding Harvard academics, social life, and finances by analyzing public Harvard data. Stay tuned!
-    </p>
-
-    <a href="https://medium.com/harvard-open-data-project" class="btn btn-primary btn-block">Read our analyses</a>
-  </div>
-</div>
-
-
-<h2 class="page-header centered">Get involved</h2>
-
-<div class="row">
-  <div class="col-sm-6">
-    We have weekly <strong>open hack nights on Thursdays from 8:30-10pm</strong>. Come to help us hack on our open data catalog, policy projects, or analyses; learn about data science and quantitative social science; and meet the rest of the community!
-  </div>
-  <div class="col-sm-6">
-    We often attend <strong>hackathons around the Boston area</strong> to knock out award-winning projects in a weekend. <a href="https://groups.google.com/forum/#!forum/harvard-open-data">Join our mailing list</a> to learn more!
-  </div>
-</div>
-
-
-<p>
-  <a href="https://groups.google.com/forum/#!forum/harvard-open-data" class="btn btn-lg btn-primary btn-block">Join our mailing list to get invited to these events!</a>
-</p>
-
-
-<h2 class="centered page-title">Current projects</h2>
-
-We're working on some really exciting data analysis projects this semester, including:
-
-<ul>
-    <li>
-        Analyzing low turnout in Harvard's student government elections
-    </li>
-    <li>
-        Finding trends in the popularity of the various majors over time
-    </li>
-    <li>
-        Determining the true amount of diversity among Harvard faculty, staff, and students
-    </li>
-    <li>
-        Determing the most popular general education courses
-    </li>
-</ul>
-
-<p>
-    <a href="https://docs.google.com/a/college.harvard.edu/document/d/1H0uhD15fgpPnE-AdnFZNhwVGC-DzF654ur0YMqE4zIQ/edit?usp=sharing">Check out the full list of projects here (Harvard students only.)</a>
-</p>
-<p>
-    <strong>Interested in getting your data analysis work published?</strong> Submit an article about a project like these to our blog on Medium. <a href="https://docs.google.com/a/college.harvard.edu/document/d/1WzvMBYR6Ycdl43P5iKqVVe4Jt7Xfgrgs8KbVBdryCdk/edit?usp=sharing">Here's how you can get published (Harvard students only.)</a> <strong>Submissions due 3/10/17!</strong>
-</p>
-
-<!-- <h2>Example visualizations</h2>
-
-{% for entry in site.data.visualizations %}
-    <div class="row">
-        <div class="col-xs-6">
-            <img src="img/{{ entry.img }}" class="img img-responsive" />
-        </div>
-        <div class="col-xs-6">
-            <h3>{{ entry.title }}</h3>
-            <p>{{ entry.description }}</p>
-            <a href="{{ entry.source}}">Source</a>
-        </div>
+    <div class="title">
+      <h1 class="text-white text-shadow">Harvard's First Open Data Catalog</h1>
     </div>
 
-    <hr>
-{% endfor %} -->
+    <form action="/catalog/index.html" method="GET">
+      <div class="input-group input-group-lg">
+        <input type="text" id="catalog-search-text" class="form-control" name="q" placeholder="Search for Harvard open datasets">
+        <span class="input-group-btn">
+          <button class="btn btn-primary">
+              <i class="fa fa-search"></i>
+              Search
+          </button>
+      </span>
+      </div>
+    </form>
+  </div>
+</div>
 
-<!--
-<h3>Comments?</h3>
-<p>
-    We'd love to have your feedback/comments on our <a target="_blank" href="https://github.com/Harvard-Open-Data-Project/hodp/issues">GitHub Issues page</a>.
-</p> -->
+<br/>
+
+<div class="container">
+  <h2 class="page-header">Categories</h2>
+  <div class="row">
+      {% for category in site.data.categories %}
+      <div class="col-xs-6 col-sm-3">
+          <a href="/catalog/index.html?category={{ category.slug }}">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p class="text-center text-primary"><i class="fa fa-4x fa-{{ category.icon }}"></i></p>
+                <h2 class="text-center lead">{{ category.name }}</h2>
+              </div>
+            </div>
+          </a>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+
+<!-- TODO get this working -->
+<!-- <div class="row"><h1 class="text-centered">Featured Datasets</h1>
+    {% for dataset in site.data.featured %}
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src={{ dataset.imgsrc }} class="img-thumbnail" alt="{{ dataset.name }}" />
+                <div class="caption">
+                    <p>
+                        <a href={{ dataset.url }}>
+                           <h2 class="text-center lead">{{ dataset.name }}</h2>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div> -->

@@ -1,7 +1,7 @@
 // script for the catalog
 // $(document).ready(function(){
 
-var catalogData;
+var searcher;
 
 d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
     // sort data by title
@@ -9,16 +9,42 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
         return a.title > b.title;
     });
 
-    // update global var storing this info
-    catalogData = data;
+    // create a new Searcher object to store all this
+    searcher = new Searcher(data);
 
-    // update counter
-    // UPDATE: nah, this makes the page update weirdly as soon as the CSV is loaded.
-    //  hurts UX, so don't bother for now
-    // $('#catalog-count').html(data.length);
+    // load it
+    searcher.runSearch();
 
-    // update display
-    updateCatalog(catalogData);
+    // if there's something in the URL string that indicates searching, go for it
+    var searchTerm = getURLParameter("q");
+    var searchCategory = getURLParameter("category");
+    var searchType = getURLParameter("type");
+
+    if (searchTerm || searchCategory || searchType) {
+        // run search
+
+        searcher.setParameters({
+            term: searchTerm,
+            category: searchCategory,
+            type: searchType
+        });
+
+        // put into search bar
+        if (searchTerm) {
+            $('#catalog-search-text').val(searchTerm);
+        }
+
+        // if there's a category, highlight the relevant list item
+        if (searchCategory) {
+            $('#filter-category-' + searchCategory).addClass("active")
+        }
+
+        // if there's a category, highlight the relevant list item
+        if (searchType) {
+            $('#filter-type-' + searchType).addClass("active")
+        }
+
+    }
 });
 
 // catch submitting the search form
@@ -38,14 +64,11 @@ d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
 // auto-search when someone types
 // FIXME: doesn't work on IE8 and below :(
 var searchFunction = function(){
-    var searchQueryText = $('#catalog-search-text').val();
+    var searchQueryTerm = $('#catalog-search-text').val();
 
-    var query = {
-        text: searchQueryText
-    };
-
-    // execute search
-    searchCatalog(query, catalogData);
+    searcher.setParameters({
+        term: searchQueryTerm
+    });
 };
 // throttle searching b/c people type faster than we can respond
 var throttledSearch = _.throttle(searchFunction, 100);
@@ -79,8 +102,13 @@ function searchCatalog(query, allData) {
             }
         }
 
-        // search on type (exact match())
+        // search on type (exact match
         if (query.type && d.type !== query.type) {
+            return false;
+        }
+
+        // search on category (exact match!!)
+        if (query.category && d.category !== query.category) {
             return false;
         }
 
@@ -91,10 +119,99 @@ function searchCatalog(query, allData) {
 }
 
 
+
+
+
+// Get query-string parameters
+// http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+}
+
+
+
 /**
- * Updates the data catalog results to show the given datasets.
+ * An object that will run searches against the catalog and store state.
+ * @param  {Object[]} data   the original data to search over.
+ * @param  {String} term     text to look for in the titles and descriptions of data.
+ * @param  {String} category one in the enumeration of categories to filter by (academics, etc)
+ * @param  {String} type     one in the enumeration of filetypes (pdf, csv, etc)
  */
-function updateCatalog(displayData) {
+var Searcher = function(data, term, category, type) {
+    this.data = data;
+    this.term = term;
+    this.category = category;
+    this.type = type;
+}
+
+Searcher.prototype.setParameters = function(parameters) {
+    console.log("Setting search parameters", parameters);
+
+    // if they provided any of the parameters, update what we have
+    if (parameters.term !== undefined && parameters.term !== null) {
+        this.term = parameters.term.toLowerCase();
+    }
+    if (parameters.category !== undefined && parameters.category !== null) {
+        this.category = parameters.category;
+    }
+    if (parameters.type !== undefined && parameters.type !== null) {
+        this.type = parameters.type;
+    }
+
+    // now run a search
+    this.runSearch();
+}
+
+/**
+ * The public-facing method to run a search against the contents.
+ * Runs a search and updates the catalog based on the current parameters.
+ */
+Searcher.prototype.runSearch = function() {
+    var self = this;
+
+    var displayData = self.data.filter(function(d) {
+        // basically, exclude a dataset if it fails any of our criteria
+        // anything that doesn't fail gets passed
+        // this way, we can AND together all our criteria
+
+        // search on term (contains)
+        if (self.term) {
+            if (d.title.toLowerCase().indexOf(self.term) < 0
+                && d.description.toLowerCase().indexOf(self.term) < 0) {
+                    return false;
+            }
+        }
+
+        // search on type (exact match
+        if (self.type && d.type !== self.type) {
+            return false;
+        }
+
+        // search on category (exact match!!)
+        if (self.category && d.category !== self.category) {
+            return false;
+        }
+
+        return true;
+    });
+
+    // if no results, show an error message
+    if (displayData.length === 0) {
+        $('#catalog-error').removeClass("hidden");
+    } else {
+        $('#catalog-error').addClass("hidden");
+    }
+
+    self.updateCatalog(displayData);
+}
+
+/**
+* Updates the data catalog results to show the given datasets.
+* ONLY FOR INTERNAL USE. Outsiders, call runSearch() instead.
+* @param  {Object[]} displayData     a subset of this.data to show.
+*/
+Searcher.prototype.updateCatalog = function(displayData) {
+    // TODO abstract out the #catalog-results so that this is generalizable
     // load entries into catalog
     var catalog = d3.select("#catalog-results")
         .selectAll("div.result")
@@ -124,21 +241,33 @@ function updateCatalog(displayData) {
         .attr("class", "panel-body");
 
     // text description
-    catalogBody.append("p")
+    catalogBody.append("div")
+        .attr("class", "col-sm-8")
         .text(function(d){
             return d.description;
         })
 
     // download button
-    catalogBody.append("a")
-        .attr("href", function(d) {
-            return d.url;
-        })
-        .attr("class", "btn btn-primary")
-        .text(function(d){
-            var downloadString = "Download";
-            return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
+    catalogBody.append("div")
+        .attr("class", "push-sm-2")
+        .append("a")
+            .attr("href", function(d) {
+                return d.url;
+            })
+            .attr("class", "btn btn-primary pull-right")
+            .text(function(d){
+                var downloadString = "Download";
+                return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
         });
+
+    // categories
+    catalogBody.append("div")
+        .attr("class", "col-sm-12 pull")
+        .append("p")
+            .attr("class", "label label-info")
+            .text(function(d){
+                return d.category;
+            });
 
     // label with type
     // catalogBody.append("span")

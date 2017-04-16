@@ -1,0 +1,24 @@
+-   name: Academics
+    slug: academics
+    icon: graduation-cap
+-   name: Admissions
+    slug: admissions
+    icon: pencil-square-o
+-   name: Campus
+    slug: campus
+    icon: university
+-   name: Faculty + Staff
+    slug: faculty-staff
+    icon: users
+-   name: Finances
+    slug: finances
+    icon: usd
+-   name: Library
+    slug: library
+    icon: book
+-   name: Safety
+    slug: safety
+    icon: lock
+-   name: Student Life
+    slug: student-life
+    icon: id-card

@@ -43,3 +43,11 @@ To run:
 ```
 bundle exec jekyll serve
 ```
+
+Or, as a shortcut, just do `chmod +x run.sh` once, then run
+
+```
+./run.sh
+```
+
+Anytime you want to start the app.
