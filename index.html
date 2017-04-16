@@ -21,5 +21,7 @@ layout: default
 </div>
 
 {% for category in site.data.categories %}
-    <!-- {{ category.name }} -->
+    <p>{{ category.name }}
+        <i class="fa fa-{{ category.icon}}"></i>
+    </p>
 {% endfor %}

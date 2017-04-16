@@ -5,7 +5,7 @@
 -   name: Campus
     icon: university
 -   name: Faculty + Staff
-    icon: people
+    icon: users
 -   name: Finances
     icon: usd
 -   name: Library
