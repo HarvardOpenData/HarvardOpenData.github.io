@@ -49,11 +49,17 @@ styles:
 
 <div class="row"><h1 class="text-centered">Featured Datasets</h1>
     {% for dataset in site.data.featured %}
-    <div class="col-md-4">
-        <a href={{ dataset.url }}>
-           <h2 class="text-center lead">{{ dataset.name }}</h2>
-            <img src={{ dataset.imgsrc }} alt="{{ dataset.name }}" style="width: 70%; margin: 0 auto; display: block" />
-        </a>
-    </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src={{ dataset.imgsrc }} class="img-thumbnail" alt="{{ dataset.name }}" />
+                <div class="caption">
+                    <p>
+                        <a href={{ dataset.url }}>
+                           <h2 class="text-center lead">{{ dataset.name }}</h2>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 </div>
