@@ -10,7 +10,8 @@ styles:
 
 
     <div class="title">
-      <h1 class="text-white text-shadow">Harvard's First Open Data Catalog</h1>
+        <!-- <h2 class="text-white lead"><em>The Harvard Open Data Project presents</em></h2> -->
+      <h1 class="text-white">Harvard's First Open Data Catalog</h1>
     </div>
 
     <form action="/catalog/index.html" method="GET">
@@ -30,7 +31,7 @@ styles:
 <br/>
 
 <div class="container">
-  <h2 class="page-header">Categories</h2>
+  <h2 class="page-header text-centered">Categories</h2>
   <div class="row">
       {% for category in site.data.categories %}
       <div class="col-xs-6 col-sm-3">
@@ -45,22 +46,24 @@ styles:
       </div>
       {% endfor %}
   </div>
-</div>
 
-<!-- TODO get this working -->
-<!-- <div class="row"><h1 class="text-centered">Featured Datasets</h1>
-    {% for dataset in site.data.featured %}
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src={{ dataset.imgsrc }} class="img-thumbnail" alt="{{ dataset.name }}" />
-                <div class="caption">
-                    <p>
-                        <a href={{ dataset.url }}>
-                           <h2 class="text-center lead">{{ dataset.name }}</h2>
-                        </a>
-                    </p>
+
+    <div class="row">
+        <h2 class="page-header text-centered">Featured Datasets</h2>
+        {% for dataset in site.data.featured %}
+            <div class="col-md-4">
+                <a href="{{ dataset.url }}">
+                <div class="thumbnail">
+                    <img src="{{ dataset.imgsrc }}" class="img-thumbnail img-responsive" alt="{{ dataset.name }}" />
+                    <div class="caption">
+                        <p>
+                            <h2 class="text-center lead">{{ dataset.name }}</h2>
+                        </p>
+                    </div>
                 </div>
+                </a>
             </div>
-        </div>
-    {% endfor %}
-</div> -->
+        {% endfor %}
+    </div>
+
+</div>
