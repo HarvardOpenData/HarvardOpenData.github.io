@@ -30,7 +30,7 @@ styles:
 <br/>
 
 <div class="container">
-  <h2 class="page-header">Categories</h2>
+  <h2 class="page-header text-centered">Categories</h2>
   <div class="row">
       {% for category in site.data.categories %}
       <div class="col-xs-6 col-sm-3">
@@ -47,17 +47,16 @@ styles:
   </div>
 
 
-    <div class="row"><h1 class="text-centered">Featured Datasets</h1>
+    <div class="row">
+        <h2 class="page-header text-centered">Featured Datasets</h2>
         {% for dataset in site.data.featured %}
             <div class="col-md-4">
-                <a href={{ dataset.url }}>
+                <a href="{{ dataset.url }}">
                 <div class="thumbnail">
-                    <img src={{ dataset.imgsrc }} class="img-thumbnail" alt="{{ dataset.name }}" />
+                    <img src="{{ dataset.imgsrc }}" class="img-thumbnail img-responsive" alt="{{ dataset.name }}" />
                     <div class="caption">
                         <p>
-                            <a href={{ dataset.url }}>
-                               <h2 class="text-center lead">{{ dataset.name }}</h2>
-                           </a>
+                            <h2 class="text-center lead">{{ dataset.name }}</h2>
                         </p>
                     </div>
                 </div>
