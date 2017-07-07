@@ -7,13 +7,11 @@
     image: athena-kan.jpg
 -   name: Brian Sapozhnikov
     role: Board Member
--   name: Chris Kuang
-    role: Board Member
 -   name: Nick Sinai
     role: Faculty Mentor
--   name: Jack Zhang
-    role: Undergrad
 -   name: Erie Meyer
+    role: Faculty Mentor
+-   name: Latanya Sweeney
     role: Faculty Mentor
 -   name: Emma Ling
     role: Undergrad
@@ -21,6 +19,8 @@
 -   name: Alex Giglio
     role: Undergrad
 -   name: Shira Li
+    role: Undergrad
+-   name: Jeffrey He
     role: Undergrad
 -   name: Estefania Lahera
     role: Undergrad
