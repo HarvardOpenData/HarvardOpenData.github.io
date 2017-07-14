@@ -25,7 +25,6 @@
     role: Undergrad
     image: emma-ling.jpg
     bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
-    year: 2020
 -   name: Alex Giglio
     role: Undergrad
     bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
@@ -35,7 +34,7 @@
 -   name: Jeffrey He
     role: Undergrad
     image: jeffrey-he.jpg
-    bio: Hi! I’m a sophomore currently in Mather studying computer science and economics. Outside of HODP, I'm a huge basketball fan, a chess player, and a violinist.
+    bio: Hi! I’m a currently a sophomore in Mather studying computer science. Outside of HODP, I'm a huge basketball fan, a chess player, and a violinist.
     house: Mather
     year: 2020
 -   name: Estefania Lahera
