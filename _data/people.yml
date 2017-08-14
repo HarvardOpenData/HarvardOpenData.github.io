@@ -8,29 +8,29 @@
 -   name: Athena Kan
     role: Board Member
     image: athena-kan.jpg
-    bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
+    bio:
 -   name: Brian Sapozhnikov
     role: Board Member
-    bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
+    bio:
 -   name: Nick Sinai
     role: Faculty Mentor
-    bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
+    bio:
 -   name: Erie Meyer
     role: Faculty Mentor
-    bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
+    bio:
 -   name: Latanya Sweeney
     role: Faculty Mentor
-    bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
+    bio:
 -   name: Emma Ling
     role: Undergrad
     image: emma-ling.jpg
-    bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
+    bio:
 -   name: Alex Giglio
     role: Undergrad
-    bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
+    bio:
 -   name: Shira Li
     role: Undergrad
-    bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
+    bio:
 -   name: Jeffrey He
     role: Undergrad
     image: jeffrey-he.jpg
@@ -40,7 +40,7 @@
 -   name: Estefania Lahera
     role: Undergrad
     image: estefania-lahera.jpg
-    bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus mattis justo sed suscipit. Sed a rutrum diam, ac ultricies libero. Nam commodo nisl in lacus fringilla venenatis.
+    bio:
 -   name: Flora DiCara
     role: Undergrad
     bio: I'm a sophomore in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
