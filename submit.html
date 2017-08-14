@@ -18,40 +18,40 @@ permalink: /submit/
         <form method="post" class="form-horizontal" action="https://formspree.io/harvardopendataproject@outlook.com">
           <div class="form-group row">
             <div class="col-sm-6">
-              <label for="name">Name:</label>
-              <input type="text" class="form-control" id="name">
-            </div>
+              <label for="name">Your Name:</label>
+              <input type="text" class="form-control" id="name" name="name">
+        </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-6">
               <label for="email">Email Address:</label>
-              <input type="email" class="form-control" id="email">
+              <input type="email" class="form-control" id="email" name="email">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-6">
               <label for="dataset-title">Dataset Title:</label>
-              <input type="text" class="form-control" id="dataset-title">
+              <input type="text" class="form-control" id="dataset-title" name="dataset-title">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-6">
-              <label for="dataset-link">Dataset Link:</label>
-              <input type="text" class="form-control" id="dataset-link">
+              <label for="dataset-link">Dataset Link (URL):</label>
+              <input type="text" class="form-control" id="dataset-link" name="dataset-link">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-6">
               <label for="dataset-cat">Dataset Category:</label>
-              <select class="form-control" id="dataset-cat">
-                <option>Academics</option>
-                <option>Admissions</option>
-                <option>Campus</option>
-                <option>Faculty + Staff</option>
-                <option>Finances</option>
-                <option>Library</option>
-                <option>Safety</option>
-                <option>Student Life</option>
+              <select class="form-control" id="dataset-category" name="dataset-category">
+                  {% for category in site.data.categories %}
+                    <option>
+                        {{ category.name }}
+                    </option>
+                  {% endfor %}
+                  <option>
+                      Other
+                  </option>]
               </select>
             </div>
           </div>
