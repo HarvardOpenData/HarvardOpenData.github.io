@@ -3,6 +3,8 @@ main:
         url: /
     -   name: About
         url: /about/
+    -   name: Submit
+        url: /submit/
     -   name: Data Catalog
         url: /catalog/
     -   name: GitHub
