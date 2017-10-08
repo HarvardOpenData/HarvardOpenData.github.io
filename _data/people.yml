@@ -5,42 +5,43 @@
     house: Pforzheimer
     year: 2018
     bio: I'm a senior in Pfoho studying computer science. Outside HODP, I serve as the Finance Committee Chair on the Undergraduate Council, write about civic tech, and skateboard around campus.
--   name: Athena Kan
-    role: Board Member
-    image: athena-kan.jpg
-    bio:
--   name: Brian Sapozhnikov
-    role: Board Member
-    bio:
 -   name: Nick Sinai
     role: Faculty Mentor
-    bio:
--   name: Erie Meyer
-    role: Faculty Mentor
-    bio:
+    bio: 
 -   name: Latanya Sweeney
     role: Faculty Mentor
-    bio:
--   name: Emma Ling
-    role: Developer
-    image: emma-ling.jpg
-    bio:
--   name: Alex Giglio
-    role: Developer
-    bio:
--   name: Shira Li
-    role: Developer
-    bio:
+    bio: 
 -   name: Jeffrey He
-    role: Developer
+    role: Board Member
     image: jeffrey-he.jpg
     bio: Hi! I’m a currently a sophomore in Mather studying computer science. Outside of HODP, I'm a huge basketball fan, a chess player, and a violinist.
     house: Mather
     year: 2020
--   name: Estefania Lahera
-    role: Developer
-    image: estefania-lahera.jpg
+-   name: Emma Ling
+    role: Board Member
+    image: emma-ling.jpg
+    bio:
+-   name: Stephen Moon
+    role: Board Member
+    image: 
+    bio:
+-   name: Jacob Ajit
+    role: Board Member
+    image: 
     bio:
 -   name: Flora DiCara
     role: Developer
     bio: I'm a sophomore in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
+-   name: Alex Giglio
+    role: Developer
+    bio: 
+-   name: Emilia Cabrera
+    role: Developer
+    bio: 
+-   name: Erik Johnsson
+    role: Developer
+    bio: 
+-   name: Ivraj Seerha
+    role: Developer
+    bio: 
+
