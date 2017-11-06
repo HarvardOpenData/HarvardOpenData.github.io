@@ -1,9 +1,9 @@
 - name: Harvard Concentration Data
   imgsrc: harvard-concentration-data.jpeg
   url: https://medium.com/harvard-open-data-project/from-ec-to-tech-how-harvard-students-are-changing-concentrations-b748b55ed35b
-- name: Midterm Election Data
-  imgsrc: midterm-election-data.jpeg
-  url: https://medium.com/harvard-open-data-project/literally-nobody-voted-in-the-quincy-midterm-elections-409bf19a59cf
-- name: Harvard's Housing Lottery
-  imgsrc: harvards-housing-lottery.png
-  url: https://medium.com/harvard-open-data-project/why-the-harvard-housing-lottery-might-not-be-random-cd10c4e163b2
+- name: Gender Disparity in Harvard Faculty
+  imgsrc: gender-disparity.jpg
+  url: https://medium.com/harvard-open-data-project/gender-disparity-in-harvard-faculty-b253ae949a56
+- name: Harvard's Most and Least Desired Houses
+  imgsrc: most-least-desired-houses.jpeg
+  url: https://medium.com/harvard-open-data-project/housingday-4b0bd5e33b3e
