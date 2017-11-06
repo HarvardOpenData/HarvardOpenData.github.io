@@ -20,28 +20,56 @@
 -   name: Emma Ling
     role: Board Member
     image: emma-ling.jpg
-    bio:
+    house: Lowell
+    year: 2020
+    bio: I'm a sophomore in Lowell studying computer science and sociology. When I'm not hacking on Harvard datasets, I love going on adventures in the great outdoors.
 -   name: Stephen Moon
     role: Board Member
-    image: 
-    bio:
+    image: stephen-moon.jpg
+    house: Pforzheimer
+    year: 2020
+    bio: I'm a sophomore in Pforzheimer House studying statistics and economics. I loves data, french fries, and card games, and am left handed.
 -   name: Jacob Ajit
     role: Board Member
-    image: 
-    bio:
+    image: jacob-ajit.jpg
+    house:
+    year: 2021
+    bio: I'm a freshman in Greenough excited about democratizing knowledge using data science.
 -   name: Flora DiCara
     role: Developer
+    image: flora-dicara.jpg
+    house: Adams
+    year: 2020
     bio: I'm a sophomore in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
 -   name: Alex Giglio
     role: Developer
-    bio: 
+    house: Eliot
+    year: 2020
+    bio: I'm a Mechanical Engineering concentrator with a love for obscure facts and a passion for complaining about Harvard's class scheduling.
 -   name: Emilia Cabrera
     role: Developer
+    year: 2021
     bio: 
 -   name: Erik Johnsson
+    image: erik-johnsson.png
     role: Developer
-    bio: 
+    house: Pforzheimer
+    year: 2020
+    bio: I'm a sophomore in Pforzheimer studying statistics, with particular interests in public health and sports analytics. I'm an avid spikeball player, food-challenge conquerer, and am also a member of the Harvard Men's Volleyball team.
 -   name: Ivraj Seerha
     role: Developer
+    house: Lowell
+    year: 2019
     bio: 
-
+-   name: Caleb Shelburne
+    role: Developer
+    house: Kirkland
+    year: 2018
+    image: caleb-shelburne.jpg
+    bio: I'm a senior in Kirkland concentrating in History and Literature. Officially, I study nineteenth-century Ottoman history. In my spare time, I enjoy analyzing data. 
+-   name: Jessica Huang
+    role: Developer
+    house: Mather
+    year: 2020
+    bio: I'm a sophomore in Mather. I'm from the suburbs of Long Island, New York and I'm from a family of nerds. I'm interested fields such as computer science, statistics, and psychology (but really I'm interested in almost everything).
+    image: jessica-huang.png
