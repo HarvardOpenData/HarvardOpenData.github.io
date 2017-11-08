@@ -97,6 +97,9 @@ permalink: /about/
         <div class="media"></div>
         <div class="clearfix">
         {% for person in site.data.people %}
+
+          {% assign loopindex2 = forloop.index0 | modulo: 2 %}
+
           <div class="media col-sm-6" style="padding: 5px; margin-top: 0px">
             <div class="panel panel-default" style="padding: 10px">
               <div class="media-left">
@@ -124,6 +127,11 @@ permalink: /about/
               </div>
             </div>
           </div>
+
+          {% if loopindex2 == 1 %}
+             <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+          {% endif %}
+
         {% endfor %}
         </div>
       </div>

@@ -8,11 +8,11 @@
 -   name: Nick Sinai
     image: nick-sinai.jpg
     role: Faculty Mentor
-    bio: 
+    bio: Nick Sinai teaches at the Harvard Kennedy School and was the former deputy CTO of the US, where he helped start Data.gov.
 -   name: Latanya Sweeney
     image: latanya-sweeney.png
     role: Faculty Mentor
-    bio: 
+    bio: Latanya Sweeney is a Professor of Government and Technology at Harvard.
 -   name: Jeffrey He
     role: Board Member
     image: jeffrey-he.jpg
@@ -51,7 +51,7 @@
 -   name: Emilia Cabrera
     role: Developer
     year: 2021
-    bio: 
+    bio:
 -   name: Erik Johnsson
     image: erik-johnsson.png
     role: Developer
@@ -62,13 +62,13 @@
     role: Developer
     house: Lowell
     year: 2019
-    bio: 
+    bio:
 -   name: Caleb Shelburne
     role: Developer
     house: Kirkland
     year: 2018
     image: caleb-shelburne.jpg
-    bio: I'm a senior in Kirkland concentrating in History and Literature. Officially, I study nineteenth-century Ottoman history. In my spare time, I enjoy analyzing data. 
+    bio: I'm a senior in Kirkland concentrating in History and Literature. Officially, I study nineteenth-century Ottoman history. In my spare time, I enjoy analyzing data.
 -   name: Jessica Huang
     role: Developer
     house: Mather
