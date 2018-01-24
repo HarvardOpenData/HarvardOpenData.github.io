@@ -3,6 +3,8 @@ main:
         url: /
     -   name: About
         url: /about/
+    -   name: Calendar
+        url: /calendar/
     -   name: Submit
         url: /submit/
     -   name: Data Catalog
