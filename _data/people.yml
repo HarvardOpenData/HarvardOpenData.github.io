@@ -44,37 +44,16 @@
     year: 2020
     bio: I'm a sophomore in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
 -   name: Alex Giglio
-    role: Developer
+    role: Bootcamper
     house: Eliot
     year: 2020
     bio: I'm a Mechanical Engineering concentrator with a love for obscure facts and a passion for complaining about Harvard's class scheduling.
--   name: Emilia Cabrera
-    role: Developer
-    year: 2021
-    bio:
--   name: Erik Johnsson
-    image: erik-johnsson.png
-    role: Developer
-    house: Pforzheimer
-    year: 2020
-    bio: I'm a sophomore in Pforzheimer studying statistics, with particular interests in public health and sports analytics. I'm an avid spikeball player, food-challenge conquerer, and am also a member of the Harvard Men's Volleyball team.
--   name: Ivraj Seerha
-    role: Developer
-    house: Lowell
-    year: 2019
-    bio:
 -   name: Caleb Shelburne
-    role: Developer
+    role: Bootcamper
     house: Kirkland
     year: 2018
     image: caleb-shelburne.jpg
     bio: I'm a senior in Kirkland concentrating in History and Literature. Officially, I study nineteenth-century Ottoman history. In my spare time, I enjoy analyzing data.
--   name: Jessica Huang
-    role: Developer
-    house: Mather
-    year: 2020
-    bio: I'm a sophomore in Mather. I'm from the suburbs of Long Island, New York and I'm from a family of nerds. I'm interested fields such as computer science, statistics, and psychology (but really I'm interested in almost everything).
-    image: jessica-huang.png
 -   name: Alex Chin
     role: Bootcamper
     house: Wigglesworth
