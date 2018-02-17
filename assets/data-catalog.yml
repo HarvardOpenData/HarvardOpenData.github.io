@@ -1,0 +1,96 @@
+- name: 2015-2016 UC Spending
+  description: |
+    Grants from Harvard's Undergraduate Council to student groups for the
+    2015-2016 school year.
+  article: https://medium.com/harvard-open-data-project/gaming-the-harvard-uc-grant-system-70f14316e764
+  url: https://github.com/HarvardOpenData/harvard-data/tree/master/2015-2016%20UC%20Spending
+  type: csv
+  category: student-life
+  tags:
+    - undergraduate-council
+    - spending
+    - grants
+  updated: 04/01/2017
+- name: UC Presidential Election Prediction, 2017
+  description: |
+    Results from our poll on the 2017 Undergraduate Council Presidential Campaign.
+    Analysis also included. We correctly predicted the outcome of the election
+    for the second year in a row!
+  url: https://github.com/HarvardOpenData/harvard-data/tree/master/UCPres2017
+  article: https://medium.com/harvard-open-data-project/the-data-is-in-heres-who-will-win-the-uc-presidential-election-14b19859cc3
+  updated:  11/14/2017
+  category: student-life
+  type: excel
+  tags:
+    - undergraduate-council
+    - election
+    - poll
+- name: Club Lists
+  description: |
+    List of all OSL-recognized student organizations at Harvard, including club sports.
+  url: https://github.com/HarvardOpenData/harvard-data/tree/master/club-lists
+  type: txt
+  category: student-life
+  tags:
+    - clubs
+    - osl
+  updated: 10/05/2017
+- name: Concentrations and Class Enrollment
+  description: |
+    How Harvard concentrations have waxed and waned in popularity in recent years.
+    We hope to better understand the Harvard educational experience and what direction it'll be heading in
+    the future.
+  url: https://github.com/HarvardOpenData/harvard-data/tree/master/concentrations-and-class-enrollment
+  article: https://medium.com/harvard-open-data-project/from-ec-to-tech-how-harvard-students-are-changing-concentrations-b748b55ed35b
+  type: csv
+  category: academics
+  updated: 04/13/2017
+  tags:
+    - economics
+    - computer-science
+- name: Gender Disparity in Harvard Faculty
+  description: |
+    Gender breakdowns for each of Harvard's concentrations, as well as by
+    faculty type (associate professor, assistant professor, etc.)
+  url: https://github.com/HarvardOpenData/harvard-data/tree/master/gender-disparity
+  article: https://medium.com/harvard-open-data-project/gender-disparity-in-harvard-faculty-b253ae949a56
+  type: excel
+  category: faculty-staff
+  updated: 11/08/2017
+  tags:
+    - inclusion
+    - women
+    - female
+- name: Harvard Logos
+  description: |
+    Logos of Harvard houses and clubs. Under construction.
+  url: https://github.com/HarvardOpenData/harvard-data/tree/master/harvard-logos
+  type: image
+  category: student-life
+  updated: 09/27/2017
+  tags:
+    - images
+- name: Housing Assignments 2017
+  description: |
+    We ran a survey to figure out if the Harvard housing lottery is truly random.
+    Includes survey data on blocking group size, athlete status, legacy status,
+    etc.
+  url: https://github.com/HarvardOpenData/harvard-data/tree/master/house-assignments-2017
+  article: https://github.com/HarvardOpenData/harvard-data/tree/master/house-assignments-2017
+  type: csv
+  category: student-life
+  updated: 1/26/2018
+  tags:
+    - housing-day
+- name: UC General Election Results
+  description: |
+    Full results of general Undergraduate Council elections, where 50 students
+    are elected to represent their peers on the Council. Includes data
+    from Spring 2016 - Spring 2018. Also includes some analysis.
+  url: https://github.com/HarvardOpenData/harvard-data/tree/master/uc-elections
+  category: student-life
+  type: excel
+  updated: 02/17/2018
+  tags:
+    - undergraduate-council
+    - voting
