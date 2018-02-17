@@ -94,3 +94,127 @@
   tags:
     - undergraduate-council
     - voting
+- name: Harvard Shuttle Tracker API
+  description: |
+    A free API to track Harvard shuttles, including arrival estimates and
+    route data.
+  url: https://market.mashape.com/transloc/openapi-1-2
+  category: campus
+  type: api
+  updated: 02/17/2018
+  tags:
+    - transit
+    - travel
+    - transloc
+    - bus
+- name: Course Enrollment (This Semester)
+  description: |
+    A regularly-updated list of this semester's Faculty of Arts and Sciences
+    courses and the current student enrollment.
+  url: https://registrar.fas.harvard.edu/faculty-staff/courses/enrollment
+  category: academics
+  type: excel
+  updated: 02/16/2018
+  tags:
+    - classes
+    - fas
+- name: Course Enrollment (Past Semesters)
+  description: |
+    Student enrollment in all Faculty of Arts and Sciences courses for
+    every semester since Fall 1999.
+  url: https://registrar.fas.harvard.edu/faculty-staff/courses/enrollment/archived-course-enrollment-reports
+  category: academics
+  type: excel
+  updated: 12/31/2017
+  tags:
+    - classes
+    - fas
+- name: Historical Harvard Factbooks
+  description: |
+    Key stats on Harvard enrollment, admissions, finances, staff, tuition, endowment, and much more
+    from 2002 to 2012.
+  url: https://oir.harvard.edu/historical-fact-books
+  category: academics
+  type: excel
+  updated: 01/01/2013
+  tags:
+    - organization
+    - administration
+    - degree
+    - student
+    - financial-aid
+    - library
+    - endowment
+    - sustainability
+- name: Harvard Factbook
+  description: |
+    Key stats on Harvard enrollment, admissions, finances, staff, tuition, endowment, and much more
+    from the current academic year.
+  url: https://oir.harvard.edu/fact-book
+  category: academics
+  type: html
+  updated: 02/17/2018
+  tags:
+    - organization
+    - administration
+    - degree
+    - student
+    - financial-aid
+    - library
+    - endowment
+    - sustainability
+- name: Enrollment by Harvard school
+  description: |
+    Enrollment (full-time equivalents) for Harvard College and the graduate schools
+    since 2005.
+  category: academics
+  type: html
+  updated: 02/17/2018
+  tags:
+    - fte
+    - enrollment
+    - headcount
+    - hbs
+    - hms
+    - hls
+    - hks
+    - gsas
+- name: Harvard College Admissions
+  description: |
+    The number of students who applied and were accepted for each class since
+    2003. Also includes yield and admit rate.
+  category: admissions
+  type: graph
+  updated: 11/15/2016
+  tags:
+    - admission
+    - enrollment
+    - enrolled
+- name: Harvard College Tuition, Fees, Room, and Board
+  description: |
+    Historic data from 1985-2016.
+  category: finances
+  type: html
+  updated: 6/29/2016
+  tags:
+    - health-services
+    - fee
+
+### STILL LEFT TO CATALOG
+# https://oir.harvard.edu/fact-book/degrees-awarded-summary
+# https://oir.harvard.edu/fact-book/degrees-awarded-demographics
+# https://oir.harvard.edu/fact-book/degrees-awarded-college
+# https://oir.harvard.edu/fact-book/tuition_graduate
+# https://oir.harvard.edu/fact-book/centers
+# https://oir.harvard.edu/fact-book/faculty-and-staff-headcounts
+# https://oir.harvard.edu/fact-book/faculty-and-staff-ftes
+# https://oir.harvard.edu/fact-book/org_chart_central
+# https://oir.harvard.edu/fact-book/org_chart_schools
+# https://oir.harvard.edu/fact-book/infrastructure
+# https://oir.harvard.edu/fact-book/endowment
+# https://oir.harvard.edu/fact-book/sponsored_research
+# https://oir.harvard.edu/fact-book/ghg
+# http://www.foodpro.huds.harvard.edu/foodpro/menu_items.asp (HUDS menus)
+# https://www.groupexpro.com/schedule/488/ (Group fitness classes)
+#
+# And everything else in row 20 of the old .csv and on
