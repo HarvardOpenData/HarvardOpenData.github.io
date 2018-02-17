@@ -59,12 +59,12 @@
     house: Wigglesworth
     year: 2021
     bio: Born and raised in San Francisco, California! I love food, swimming, math, and philosophy.
-    image: alex-chin.png
+    image: alex-chin.jpg
 -   name: Kevin Bi
     role: Bootcamper
     house: Canaday
     year: 2021
-    bio: I'm a freshman in Canaday. I'm interested in studying Economics or Computer Science. In my spare time, I like reading and writing computer programs. 
+    bio: I'm a freshman in Canaday. I'm interested in studying Economics or Computer Science. In my spare time, I like reading and writing computer programs.
 -   name: Jung Hur
     role: Camper
     house: Quincy
@@ -85,7 +85,7 @@
     house: Pennypacker
     year: 2021
     bio: I'm a freshman in Pennypacker. I'm from Houston, Texas, and I'm interested in a lot of things (I have no idea what I'm studying yet).
-    image: ajay-singh.png
+    # image: ajay-singh.png
 -   name: Lucy Li
     role: Bootcamper
     house: Canaday
