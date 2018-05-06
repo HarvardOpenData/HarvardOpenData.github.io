@@ -46,11 +46,7 @@ DEPENDENCIES
   minima
 
 RUBY VERSION
-<<<<<<< HEAD
-   ruby 2.3.1p112
-=======
    ruby 2.5.1p57
->>>>>>> e88d42545241aa0e01aded505e730c96986e4a75
 
 BUNDLED WITH
    1.16.1
