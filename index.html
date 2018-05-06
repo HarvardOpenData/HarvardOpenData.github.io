@@ -53,22 +53,27 @@ styles:
   </div>
 
 
-    <div class="row">
-        <h2 class="page-header text-centered">Featured Datasets</h2>
-        {% for dataset in site.data.featured %}
-            <div class="col-md-4">
-                <a href="{{ dataset.url }}">
-                <div class="thumbnail">
-                    <img src="/img/featured/{{ dataset.imgsrc }}" class="img-thumbnail img-responsive" alt="{{ dataset.name }}" />
-                    <div class="caption">
-                        <p>
-                            <h2 class="text-center lead">{{ dataset.name }}</h2>
-                        </p>
-                    </div>
+<div class="row">
+    <h2 class="page-header text-centered">Featured Datasets</h2>
+    {% for dataset in site.data.featured %}
+        <div class="col-md-4">
+            <a href="{{ dataset.url }}">
+            <div class="thumbnail">
+                <img src="/img/featured/{{ dataset.imgsrc }}" class="img-thumbnail img-responsive" alt="{{ dataset.name }}" />
+                <div class="caption">
+                    <p>
+                        <h2 class="text-center lead">{{ dataset.name }}</h2>
+                    </p>
                 </div>
-                </a>
             </div>
-        {% endfor %}
-    </div>
+            </a>
+        </div>
+
+        {% assign loopindex3 = forloop.index0 | modulo: 3 %}
+        {% if loopindex3 == 2 %}
+           <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+        {% endif %}
+    {% endfor %}
+</div>
 
 </div>
