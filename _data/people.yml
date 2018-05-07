@@ -1,8 +1,8 @@
 groups: 
-    -   id: mentor
-        header: Mentors
     -   id: board
         header: Board
+    -   id: mentor
+        header: Mentors
     -   id: contributor
         header: Contributors
     -   id: bootcamper
@@ -111,7 +111,7 @@ people:
       year: 2021
       bio: I am a freshman from Canterbury, England, potentially studying Statistics with an interest in data journalism. I spend time volunteering and knitting like a grandma.
   -   name: Darrin Gilkerson
-      role: bootcamper
+      role: contributor
       house: Cabot
       year: 2020
       bio: I'm a sophomore in Cabot from Ohio interested in big data, statistics, and Joe Blitzstein
