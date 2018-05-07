@@ -29,11 +29,13 @@ Want to follow what we're up to or join our growing team of 40+ students?
 
 ## Running the website
 
-To set up our website, run the following in your terminal. You'll need to have Ruby installed (it's pre-installed on macOS and most Linux distributions.)
+To set up our website, you'll need to have Ruby installed - it comes preinstalled on Linux and macOS. On macOS, the preinstalled version of Ruby is usually too old, so you should install the newer version with Homebrew: `brew install ruby`.
+
+Once your Ruby is set up, run the following in your terminal:
 
 ```
-git clone https://github.com/Harvard-Open-Data-Project/harvard-open-data-project.github.io.git
-cd harvard-open-data-project.github.io
+git clone https://github.com/HarvardOpenData/HarvardOpenData.github.io.git
+cd HarvardOpenData.github.io
 sudo gem install bundler
 bundle install
 ```
