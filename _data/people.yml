@@ -1,10 +1,10 @@
 roles:
-  - alumni
-  - mentor
-  - president
-  - vp
-  - board_member
-  - contributor
+  - alumni: Alumni
+  - mentor: Mentors
+  - pres:  President
+  - vp: Vice President
+  - board: Board
+  - contributor: Contributors
 
 people:
   -   name: Neel Mehta
@@ -70,9 +70,10 @@ people:
       bio: Born and raised in San Francisco, California! I love food, swimming, math, and philosophy.
       image: alex-chin.jpg
   -   name: Kevin Bi
-      role: Bootcamper
+      role: Board Member
       house: Canaday
       year: 2021
+      image: kevin-bi.jpg
       bio: I'm a freshman in Canaday. I'm interested in studying Economics or Computer Science. In my spare time, I like reading and writing computer programs.
   -   name: Jung Hur
       role: Camper
