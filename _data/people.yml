@@ -112,7 +112,7 @@ people:
       year: 2019
       bio: I'm a Junior in Quincy concentrating in Bio-Mechanical Engineering.
   -   name: Olivia Bryant
-      role: bootcamper
+      role: contributor
       house: Hollis
       year: 2021
       bio: I am a freshman from Canterbury, England, potentially studying Statistics with an interest in data journalism. I spend time volunteering and knitting like a grandma.
@@ -128,7 +128,7 @@ people:
       bio: I'm a freshman in Pennypacker. I'm from Houston, Texas, and I'm interested in a lot of things (I have no idea what I'm studying yet).
       # image: ajay-singh.png
   -   name: Lucy Li
-      role: bootcamper
+      role: board
       house: Canaday
       year: 2021
       bio: I'm a freshman in Canaday interested in data, tech, and politics. Outside of HODP, I play violin in HRO and volunteer through PBHA.
