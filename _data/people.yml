@@ -82,18 +82,18 @@ people:
       house: Adams
       year: 2020
       bio: I'm a sophomore in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
-  -   name: Alex Giglio
-      role: contributor
-      house: Eliot
-      year: 2020
-      image: alex-giglio.jpg
-      bio: I'm a Mechanical Engineering concentrator with a love for obscure facts and a passion for complaining about Harvard's class scheduling.
   -   name: Olivia Bryant
       role: contributor
       house: Hollis
       year: 2021
       image: olivia-bryant.jpg
       bio: I am a freshman from Canterbury, England, potentially studying Statistics with an interest in data journalism. I spend time volunteering and knitting like a grandma.
+  -   name: Alex Giglio
+      role: contributor
+      house: Eliot
+      year: 2020
+      image: alex-giglio.jpg
+      bio: I'm a Mechanical Engineering concentrator with a love for obscure facts and a passion for complaining about Harvard's class scheduling.
   -   name: Darrin Gilkerson
       role: contributor
       house: Cabot
