@@ -1,10 +1,3 @@
--   name: Neel Mehta
-    url: https://www.linkedin.com/in/neelmehta18
-    role: Founder & Team Lead
-    image: neel-mehta.jpg
-    house: Pforzheimer
-    year: 2018
-    bio: I'm a senior in Pfoho studying computer science. Outside HODP, I serve as the Finance Committee Chair on the Undergraduate Council, write about civic tech, and skateboard around campus.
 -   name: Nick Sinai
     image: nick-sinai.jpg
     role: Faculty Mentor
@@ -31,12 +24,6 @@
     house: Pforzheimer
     year: 2020
     bio: I'm a sophomore in Pforzheimer House studying statistics and economics. I loves data, french fries, and card games, and am left handed.
--   name: Jacob Ajit
-    role: Board Member
-    image: jacob-ajit.jpg
-    house:
-    year: 2021
-    bio: I'm a freshman in Greenough excited about democratizing knowledge using data science.
 -   name: Flora DiCara
     role: Developer
     image: flora-dicara.jpg
@@ -48,28 +35,11 @@
     house: Eliot
     year: 2020
     bio: I'm a Mechanical Engineering concentrator with a love for obscure facts and a passion for complaining about Harvard's class scheduling.
--   name: Caleb Shelburne
-    role: Bootcamper
-    house: Kirkland
-    year: 2018
-    image: caleb-shelburne.jpg
-    bio: I'm a senior in Kirkland concentrating in History and Literature. Officially, I study nineteenth-century Ottoman history. In my spare time, I enjoy analyzing data.
--   name: Alex Chin
-    role: Bootcamper
-    house: Wigglesworth
-    year: 2021
-    bio: Born and raised in San Francisco, California! I love food, swimming, math, and philosophy.
-    image: alex-chin.jpg
 -   name: Kevin Bi
     role: Bootcamper
     house: Canaday
     year: 2021
     bio: I'm a freshman in Canaday. I'm interested in studying Economics or Computer Science. In my spare time, I like reading and writing computer programs.
--   name: Jung Hur
-    role: Camper
-    house: Quincy
-    year: 2019
-    bio: I'm a Junior in Quincy concentrating in Bio-Mechanical Engineering.
 -   name: Olivia Bryant
     role: Bootcamper
     house: Hollis
@@ -80,12 +50,6 @@
     house: Cabot
     year: 2020
     bio: I'm a sophomore in Cabot from Ohio interested in big data, statistics, and Joe Blitzstein
--   name: Ajay Singh
-    role: Bootcamper
-    house: Pennypacker
-    year: 2021
-    bio: I'm a freshman in Pennypacker. I'm from Houston, Texas, and I'm interested in a lot of things (I have no idea what I'm studying yet).
-    # image: ajay-singh.png
 -   name: Lucy Li
     role: Bootcamper
     house: Canaday
@@ -97,3 +61,16 @@
     year: 2020
     bio: I'm a sophomore in Kirkland studying computer science and obsessed with bio-inspired design. Dance is my absolute favorite hobby, but I also enjoy teaching CS to non-programmers, learning new languages, and exploring cool food places (multiple in a row).
     image: alaisha-sharma.jpeg
+-   name: Neel Mehta
+    url: https://www.linkedin.com/in/neelmehta18
+    role: Founder & Team Lead
+    image: neel-mehta.jpg
+    house: Pforzheimer
+    year: 2018
+    bio: I'm a senior in Pfoho studying computer science. Outside HODP, I serve as the Finance Committee Chair on the Undergraduate Council, write about civic tech, and skateboard around campus.
+-   name: Caleb Shelburne
+    role: Bootcamper
+    house: Kirkland
+    year: 2018
+    image: caleb-shelburne.jpg
+    bio: I'm a senior in Kirkland concentrating in History and Literature. Officially, I study nineteenth-century Ottoman history. In my spare time, I enjoy analyzing data.

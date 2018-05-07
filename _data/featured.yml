@@ -1,3 +1,6 @@
+- name: Predicting the 2017 UC Presidential Election
+  imgsrc: pres-debates.jpg
+  url: https://medium.com/harvard-open-data-project/the-data-is-in-heres-who-will-win-the-uc-presidential-election-14b19859cc3
 - name: Harvard Concentration Data
   imgsrc: harvard-concentration-data.jpeg
   url: https://medium.com/harvard-open-data-project/from-ec-to-tech-how-harvard-students-are-changing-concentrations-b748b55ed35b
@@ -7,6 +10,3 @@
 - name: Harvard's Most Desired Houses
   imgsrc: most-least-desired-houses.jpeg
   url: https://medium.com/harvard-open-data-project/housingday-4b0bd5e33b3e
-- name: Predicting the 2017 UC Presidential Election
-  imgsrc: pres-debates.jpg
-  url: https://medium.com/harvard-open-data-project/the-data-is-in-heres-who-will-win-the-uc-presidential-election-14b19859cc3
