@@ -96,7 +96,7 @@ permalink: /about/
         <!-- empty media element prevents rules for media:first-child from messing up first person -->
         <div class="media"></div>
         <div class="clearfix">
-        {% for person in site.data.people %}
+        {% for person in site.data.people.people %}
 
           {% assign loopindex2 = forloop.index0 | modulo: 2 %}
 
