@@ -88,27 +88,34 @@ permalink: /about/
       </ul>
           <a href="https://trello.com/b/Xht5RNue/17f-hodp-projects">Check out the full list of projects here!</a>
     </div>
-
     <h2 class="centered page-header">People</h2>
-
+    {% for group in site.data.people.groups %}
     <div class="row">
+      <h3 class="centered group-header">{{group.header }}</h3>
       <div class="panel-group">
         <!-- empty media element prevents rules for media:first-child from messing up first person -->
         <div class="media"></div>
         <div class="clearfix">
-        {% for person in site.data.people.people %}
+        {% assign loopindex2 = 1 %}
+        {% for role in site.data.people.roles %}
+          {% if role.g_id == group.id %} 
+            {% for person in site.data.people.people %}
+              {% if person.role == role.id %}
+                {% assign loopindex2 = loopindex2 | plus: 1 %}
+                {% assign loopindex2 = loopindex2 | modulo: 2 %}
+                {% include person-card.html %}
 
-          {% assign loopindex2 = forloop.index0 | modulo: 2 %}
+                {% if loopindex2  == 1 %}
+                  <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+                {% endif %}
+              {% endif %}
 
-          {% include person-card.html %}
-
-          {% if loopindex2 == 1 %}
-             <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+            {% endfor %}
           {% endif %}
-
         {% endfor %}
         </div>
       </div>
     </div>
+    {% endfor %}
 
 </div>
