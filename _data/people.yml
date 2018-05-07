@@ -1,7 +1,7 @@
 roles:
   - alumni: Alumni
   - mentor: Mentors
-  - pres:  President
+  - pres: President
   - vp: Vice President
   - board: Board
   - contributor: Contributors
