@@ -1,6 +1,4 @@
 groups: 
-    -   id: alumni
-        header: Alumni
     -   id: mentor
         header: Mentors
     -   id: board
@@ -9,6 +7,8 @@ groups:
         header: Contributors
     -   id: bootcamper
         header: Bootcampers
+    -   id: alumni
+        header: Alumni
 roles:
     -   g_id: alumni
         id: alumni
@@ -71,12 +71,6 @@ people:
       house: Pforzheimer
       year: 2020
       bio: I'm a sophomore in Pforzheimer House studying statistics and economics. I loves data, french fries, and card games, and am left handed.
-  -   name: Jacob Ajit
-      role: board
-      image: jacob-ajit.jpg
-      house:
-      year: 2021
-      bio: I'm a freshman in Greenough excited about democratizing knowledge using data science.
   -   name: Flora DiCara
       role: developer
       image: flora-dicara.jpg
@@ -84,7 +78,7 @@ people:
       year: 2020
       bio: I'm a sophomore in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
   -   name: Alex Giglio
-      role: bootcamper
+      role: alumni
       house: Eliot
       year: 2020
       bio: I'm a Mechanical Engineering concentrator with a love for obscure facts and a passion for complaining about Harvard's class scheduling.
@@ -122,7 +116,7 @@ people:
       year: 2020
       bio: I'm a sophomore in Cabot from Ohio interested in big data, statistics, and Joe Blitzstein
   -   name: Ajay Singh
-      role: bootcamper
+      role: contributor
       house: Pennypacker
       year: 2021
       bio: I'm a freshman in Pennypacker. I'm from Houston, Texas, and I'm interested in a lot of things (I have no idea what I'm studying yet).
@@ -133,7 +127,7 @@ people:
       year: 2021
       bio: I'm a freshman in Canaday interested in data, tech, and politics. Outside of HODP, I play violin in HRO and volunteer through PBHA.
   -   name: Alaisha Sharma
-      role: bootcamper
+      role: contributor
       house: Kirkland
       year: 2020
       bio: I'm a sophomore in Kirkland studying computer science and obsessed with bio-inspired design. Dance is my absolute favorite hobby, but I also enjoy teaching CS to non-programmers, learning new languages, and exploring cool food places (multiple in a row).
