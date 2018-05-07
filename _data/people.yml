@@ -92,6 +92,7 @@ people:
       role: contributor
       house: Hollis
       year: 2021
+      image: olivia-bryant.jpg
       bio: I am a freshman from Canterbury, England, potentially studying Statistics with an interest in data journalism. I spend time volunteering and knitting like a grandma.
   -   name: Darrin Gilkerson
       role: contributor
@@ -104,6 +105,12 @@ people:
       year: 2020
       bio: I'm a sophomore in Kirkland studying computer science and obsessed with bio-inspired design. Dance is my absolute favorite hobby, but I also enjoy teaching CS to non-programmers, learning new languages, and exploring cool food places (multiple in a row).
       image: alaisha-sharma.jpeg
+  -   name: Ariana Soto
+      role: contributor
+      house: Currier
+      year: 2020
+      bio: I am a sophomore from Los Angeles concentrating in Government with a secondary in Computer Science. I’m a huge fan of open data, having worked last summer with the Los Angeles open data portal and getting to work this summer with the New York open data portal. I love singing and going to the beach!
+      image: ariana-soto.jpg
   -   name: Neel Mehta
       url: https://www.linkedin.com/in/neelmehta18
       role: founder
