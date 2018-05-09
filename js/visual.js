@@ -1,6 +1,15 @@
 var xKey;
 var yKeys = [];
 
+const lineColors = [
+    "#EC7063",
+    "#85C1E9",
+    "#58D68D",
+    "#F8C471",
+    "#BB8FCE",
+    "#F7DC6F"
+]
+
 function getOfKey (data, key){
     var result = [];
     data.forEach(function (elt){
@@ -24,19 +33,19 @@ function loadData (file) {
 function populateChart(data){
     var context = document.getElementById("chartViz").getContext("2d");
     var datasets = [];
-    yKeys.forEach(function(key){
-        
+    yKeys.forEach(function(key, index){
         datasets.push(
             {
                 label : key,
                 data : getOfKey(data, key).map(function(elt){
                     return parseFloat(elt)
                 }),
+                backgroundColor: lineColors[index % lineColors.length],
+                borderColor : lineColors[index % lineColors.length],
                 fill : false
             }
         )
     });
-    console.log(datasets);
     var labels = getOfKey(data, xKey);
     labels.reverse();
     var config = {
@@ -49,7 +58,6 @@ function populateChart(data){
             responsive : false
         }
     }
-    console.log(config);
 
     var chart = new Chart(context, config);
 }
