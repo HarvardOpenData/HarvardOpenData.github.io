@@ -249,8 +249,13 @@ Searcher.prototype.updateCatalog = function(displayData) {
             })
             .attr("class", "btn btn-primary pull-right")
             .text(function(d){
-                var downloadString = "Download";
-                return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
+                if (d.type == "Visual"){
+                    return "View";
+                }
+                else{ 
+                    var downloadString = "Download";
+                    return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
+                }
         });
 
     // categories
