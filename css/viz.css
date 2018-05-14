@@ -1,0 +1,11 @@
+#chartViz{
+    margin: auto;
+    width: 80%;
+    height: 60%;
+}
+
+.header {
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
