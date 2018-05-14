@@ -249,7 +249,7 @@ Searcher.prototype.updateCatalog = function(displayData) {
             })
             .attr("class", "btn btn-primary pull-right")
             .text(function(d){
-                if (d.type == "Visual"){
+                if (d.type == "Visualization"){
                     return "View";
                 }
                 else{ 
