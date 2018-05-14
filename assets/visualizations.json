@@ -5,6 +5,7 @@
     "file" : "faculty_race.csv",
     "type" : "line",
     "yaxis" : "Percent of total faculty",
-    "xaxis" : "Academic Year"
+    "xaxis" : "Academic Year",
+    "source" : "https://oir.harvard.edu/fact-book/faculty_and_staff"
   }
 }

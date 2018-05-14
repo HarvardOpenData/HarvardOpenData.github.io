@@ -83,12 +83,14 @@ window.onload = function(){
     var id = getURLParameter("id");
     var title = document.getElementById("title");
     var desc = document.getElementById("desc");
+    var source = document.getElementById("source");
     if (id){
         d3.json("/assets/visualizations.json", function (data){
             console.log(data);
             console.log(data[id].file);
             title.innerHTML = data[id].title;
-            desc.innerHTML = data[id].description;
+            desc.innerHTML = data[id].description ? data[id].description : "";
+            source.innerHTML = data[id].source ? "Source: " + data[id].source : "";
             chartType = data[id].type;
             xLabel = data[id].xaxis;
             yLabel = data[id].yaxis;
