@@ -12,3 +12,5 @@
   icon: code
 - name: PDF
   icon: file-pdf-o
+- name: Visualization
+  icon: file-image-o

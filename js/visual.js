@@ -1,5 +1,8 @@
 var xKey;
 var yKeys = [];
+var xLabel;
+var yLabel;
+var chartType;
 
 const lineColors = [
     "#EC7063",
@@ -49,13 +52,27 @@ function populateChart(data){
     var labels = getOfKey(data, xKey);
     labels.reverse();
     var config = {
-        type : "line",
+        type : chartType,
         data : {
             labels : labels, 
             datasets : datasets,
         },
         options : {
-            responsive : false
+            responsive : false,
+            scales: {
+                yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: yLabel
+                  }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: xLabel
+                    }
+                  }]
+              } 
         }
     }
 
@@ -63,5 +80,22 @@ function populateChart(data){
 }
 
 window.onload = function(){
-    loadData("/assets/dataviz/faculty_race.csv");
+    var id = getURLParameter("id");
+    var title = document.getElementById("title");
+    var desc = document.getElementById("desc");
+    if (id){
+        d3.json("/assets/visualizations.json", function (data){
+            console.log(data);
+            console.log(data[id].file);
+            title.innerHTML = data[id].title;
+            desc.innerHTML = data[id].description;
+            chartType = data[id].type;
+            xLabel = data[id].xaxis;
+            yLabel = data[id].yaxis;
+            loadData("/assets/dataviz/" + data[id].file);
+        });
+    }
+    else{ 
+        title.innerHTML = "Invalid URL";
+    }
 }
