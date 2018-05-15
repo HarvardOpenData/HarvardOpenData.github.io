@@ -1,0 +1,12 @@
+tiers :
+  - Bronze
+  - Silver
+  - Gold
+  - Platinum
+  - Diamond
+
+sponsors :
+  - name : Demo
+    tier : Gold
+    description : This is a demo sponsor.
+    icon : None
