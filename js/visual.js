@@ -4,6 +4,7 @@ var xLabel;
 var yLabel;
 var chartType;
 
+// Colors for the graph lines. Need to add more when possible
 const lineColors = [
     "#EC7063",
     "#85C1E9",
@@ -13,6 +14,11 @@ const lineColors = [
     "#F7DC6F"
 ]
 
+/** 
+ * Returns values of given key in object array
+ * @param {Object[]} data   Array of objects to search
+ * @param {string} key      Key to get the values of
+*/
 function getOfKey (data, key){
     var result = [];
     data.forEach(function (elt){
@@ -20,8 +26,12 @@ function getOfKey (data, key){
             result.push(elt[key]);
         }
     });
+
+    data.grep
     return result;
 }
+
+// Loads the data from the csv file and calls populate chart
 function loadData (file) {
     d3.csv(file, function(data){
         var keys = Object.keys(data[0]);
@@ -33,6 +43,7 @@ function loadData (file) {
     });
 }
 
+// Populates the chart with data
 function populateChart(data){
     var context = document.getElementById("chartViz").getContext("2d");
     var datasets = [];
