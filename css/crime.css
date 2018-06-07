@@ -1,0 +1,25 @@
+#map{
+    height: 100%;
+    width: 100%;
+  }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#main-container{
+    height: 100%;
+    width: 100%;
+    position:relative;
+}
+
+.footer{
+    position:relative;
+}
+.UserOptions{
+    display: none;
+}
+
+#mapHeader{
+    padding-left: 20px;
+}
