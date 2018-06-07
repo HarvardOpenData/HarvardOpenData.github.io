@@ -20,6 +20,11 @@ html, body {
     display: none;
 }
 
+input[type="radio"]{
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
 #mapHeader{
     padding-left: 20px;
 }
