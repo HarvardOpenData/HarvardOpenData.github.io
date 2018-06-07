@@ -64,16 +64,17 @@ const CLIENT_ID = "523732880171-1fbi3ode503vnmnnbuuf8fno7hsn4qnn.apps.googleuser
         // Go through and associate crime data with markers
         for (var i = 0; i < incidents.length && incidents[i][0].length > 0; i++){
             var incident = incidents[i];
-            var date = new Date(incident[0]);
+            var dateStrs = incident[0].split("-");
+            var date = new Date(parseInt(dateStrs[2]), parseInt(dateStrs[0]) - 1, parseInt(dateStrs[1]));
             if(date <= endDate){
                 break;
             }
-            var time = new Date(incident[2]);
+            var time = incident[2];
             var marker = new google.maps.Marker({
                 position: {lat: parseFloat(incident[8]), lng: parseFloat(incident[9])}
             });
             addInfoWindow(marker, date.toLocaleDateString("en-US") + "<br/>" + 
-            time.toLocaleTimeString("en-US") + "<br/>" + incident[3]);
+            time + "<br/>" + incident[3]);
             markers.push(marker);
         }
         
@@ -84,7 +85,8 @@ const CLIENT_ID = "523732880171-1fbi3ode503vnmnnbuuf8fno7hsn4qnn.apps.googleuser
     // Function to pass into success handler for google scripts run
     function onLoaded(response){
         incidents = response.result.values;
-        lastDate = new Date(incidents[0][0]);
+        var lastDateStrs = incidents[0][0].split("-");
+        lastDate = new Date(parseInt(lastDateStrs[2]), parseInt(lastDateStrs[0]) - 1, parseInt(lastDateStrs[1]));
         // Make hidden elements visible
         document.getElementById("lblLastReport").innerHTML = "Last Report: " + lastDate.toLocaleDateString("en-US");
         document.querySelectorAll(".UserOptions").forEach(function(elt){
