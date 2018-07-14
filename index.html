@@ -29,8 +29,11 @@ styles:
 </div>
 
 <br/>
-<div class="container"><div class="well"><p class="lead">Interested in data science? Want to learn how FiveThirtyEight predicts elections? The Harvard College Open Data Project (HODP) has a 5-week bootcamp on data visualization, data science, and data journalism. Build projects using public Harvard data including final club finances, faculty diversity, and crime logs. Beginner and advanced tracks available. <b>Intro meeting on Wednesday 1/31, 7pm in Lamont 240.</b> Fill out the interest form at <a href="http://bit.ly/opendata18">bit.ly/opendata18</a> and see the <a href="/calendar/">calendar</a> for more info.</p>
-</div></div>
+
+<!-- <div class="container">
+    <div class="well"><p class="lead">Interested in data science? Want to learn how FiveThirtyEight predicts elections? The Harvard College Open Data Project (HODP) has a 5-week bootcamp on data visualization, data science, and data journalism. Build projects using public Harvard data including final club finances, faculty diversity, and crime logs. Beginner and advanced tracks available. <b>Intro meeting on Wednesday 1/31, 7pm in Lamont 240.</b> Fill out the interest form at <a href="http://bit.ly/opendata18">bit.ly/opendata18</a> and see the <a href="/calendar/">calendar</a> for more info.</p>
+    </div>
+</div> -->
 
 <div class="container">
   <h2 class="page-header text-centered">Categories</h2>
@@ -50,22 +53,27 @@ styles:
   </div>
 
 
-    <div class="row">
-        <h2 class="page-header text-centered">Featured Datasets</h2>
-        {% for dataset in site.data.featured %}
-            <div class="col-md-4">
-                <a href="{{ dataset.url }}">
-                <div class="thumbnail">
-                    <img src="/img/featured/{{ dataset.imgsrc }}" class="img-thumbnail img-responsive" alt="{{ dataset.name }}" />
-                    <div class="caption">
-                        <p>
-                            <h2 class="text-center lead">{{ dataset.name }}</h2>
-                        </p>
-                    </div>
+<div class="row">
+    <h2 class="page-header text-centered">Featured Datasets</h2>
+    {% for dataset in site.data.featured %}
+        <div class="col-md-4">
+            <a href="{{ dataset.url }}">
+            <div class="thumbnail">
+                <img src="/img/featured/{{ dataset.imgsrc }}" class="img-thumbnail img-responsive" alt="{{ dataset.name }}" />
+                <div class="caption">
+                    <p>
+                        <h2 class="text-center lead">{{ dataset.name }}</h2>
+                    </p>
                 </div>
-                </a>
             </div>
-        {% endfor %}
-    </div>
+            </a>
+        </div>
+
+        {% assign loopindex3 = forloop.index0 | modulo: 3 %}
+        {% if loopindex3 == 2 %}
+           <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+        {% endif %}
+    {% endfor %}
+</div>
 
 </div>

@@ -122,13 +122,6 @@ function searchCatalog(query, allData) {
 
 
 
-// Get query-string parameters
-// http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
-function getURLParameter(name) {
-  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-}
-
-
 
 /**
  * An object that will run searches against the catalog and store state.
@@ -256,8 +249,13 @@ Searcher.prototype.updateCatalog = function(displayData) {
             })
             .attr("class", "btn btn-primary pull-right")
             .text(function(d){
-                var downloadString = "Download";
-                return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
+                if (d.type == "Visualization"){
+                    return "View";
+                }
+                else{ 
+                    var downloadString = "Download";
+                    return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
+                }
         });
 
     // categories

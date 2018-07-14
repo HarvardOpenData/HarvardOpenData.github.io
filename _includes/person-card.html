@@ -1,0 +1,32 @@
+<!--
+  Person Card template
+  the variable `person` from `site.data.people`
+  and the variable `role` from `site.data.people` should exist
+-->
+<div class="media col-sm-6" style="padding: 5px; margin-top: 0px">
+  <div class="panel panel-default" style="padding: 10px">
+    <div class="media-left">
+      <a href="{{ person.url }}">
+        {% if person.image %}
+            <img src="/img/people/{{ person.image }}" class="media-object img-circle" alt="{{ person.name }}" style="width: 64px;" />
+        {% else %}
+            <img src="/img/people/generic.jpg" class="media-object img-circle" alt="{{ person.name }}" style="width: 64px;" />
+        {% endif %}
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{ person.name }}</h4>
+      <h5>
+        <div class="row">
+          <div class="col-sm-6">
+            {{ role.title }}
+          </div>
+          <div class="col-sm-6">
+            {{ person.house }} {{ person.year }}
+          </div>
+        </div>
+      </h5>
+      {{ person.bio }}
+    </div>
+  </div>
+</div>

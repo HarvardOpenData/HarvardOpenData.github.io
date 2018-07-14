@@ -1,105 +1,138 @@
--   name: Neel Mehta
-    url: https://www.linkedin.com/in/neelmehta18
-    role: Founder & Team Lead
-    image: neel-mehta.jpg
-    house: Pforzheimer
-    year: 2018
-    bio: I'm a senior in Pfoho studying computer science. Outside HODP, I serve as the Finance Committee Chair on the Undergraduate Council, write about civic tech, and skateboard around campus.
--   name: Nick Sinai
-    image: nick-sinai.jpg
-    role: Faculty Mentor
-    bio: Nick Sinai teaches at the Harvard Kennedy School and was the former deputy CTO of the US, where he helped start Data.gov.
--   name: Latanya Sweeney
-    image: latanya-sweeney.png
-    role: Faculty Mentor
-    bio: Latanya Sweeney is a Professor of Government and Technology at Harvard.
--   name: Jeffrey He
-    role: Board Member
-    image: jeffrey-he.jpg
-    bio: Hi! I’m a currently a sophomore in Mather studying computer science. Outside of HODP, I'm a huge basketball fan, a chess player, and a violinist.
-    house: Mather
-    year: 2020
--   name: Emma Ling
-    role: Board Member
-    image: emma-ling.jpg
-    house: Lowell
-    year: 2020
-    bio: I'm a sophomore in Lowell studying computer science and sociology. When I'm not hacking on Harvard datasets, I love going on adventures in the great outdoors.
--   name: Stephen Moon
-    role: Board Member
-    image: stephen-moon.jpg
-    house: Pforzheimer
-    year: 2020
-    bio: I'm a sophomore in Pforzheimer House studying statistics and economics. I loves data, french fries, and card games, and am left handed.
--   name: Jacob Ajit
-    role: Board Member
-    image: jacob-ajit.jpg
-    house:
-    year: 2021
-    bio: I'm a freshman in Greenough excited about democratizing knowledge using data science.
--   name: Flora DiCara
-    role: Developer
-    image: flora-dicara.jpg
-    house: Adams
-    year: 2020
-    bio: I'm a sophomore in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
--   name: Alex Giglio
-    role: Bootcamper
-    house: Eliot
-    year: 2020
-    bio: I'm a Mechanical Engineering concentrator with a love for obscure facts and a passion for complaining about Harvard's class scheduling.
--   name: Caleb Shelburne
-    role: Bootcamper
-    house: Kirkland
-    year: 2018
-    image: caleb-shelburne.jpg
-    bio: I'm a senior in Kirkland concentrating in History and Literature. Officially, I study nineteenth-century Ottoman history. In my spare time, I enjoy analyzing data.
--   name: Alex Chin
-    role: Bootcamper
-    house: Wigglesworth
-    year: 2021
-    bio: Born and raised in San Francisco, California! I love food, swimming, math, and philosophy.
-    image: alex-chin.jpg
--   name: Kevin Bi
-    role: Bootcamper
-    house: Canaday
-    year: 2021
-    bio: I'm a freshman in Canaday. I'm interested in studying Economics or Computer Science. In my spare time, I like reading and writing computer programs.
--   name: Jung Hur
-    role: Camper
-    house: Quincy
-    year: 2019
-    bio: I'm a Junior in Quincy concentrating in Bio-Mechanical Engineering.
--   name: Olivia Bryant
-    role: Bootcamper
-    house: Hollis
-    year: 2021
-    bio: I am a freshman from Canterbury, England, potentially studying Statistics with an interest in data journalism. I spend time volunteering and knitting like a grandma.
--   name: Darrin Gilkerson
-    role: Bootcamper
-    house: Cabot
-    year: 2020
-    bio: I'm a sophomore in Cabot from Ohio interested in big data, statistics, and Joe Blitzstein
--   name: Ajay Singh
-    role: Bootcamper
-    house: Pennypacker
-    year: 2021
-    bio: I'm a freshman in Pennypacker. I'm from Houston, Texas, and I'm interested in a lot of things (I have no idea what I'm studying yet).
-    # image: ajay-singh.png
--   name: Lucy Li
-    role: Bootcamper
-    house: Canaday
-    year: 2021
-    bio: I'm a freshman in Canaday interested in data, tech, and politics. Outside of HODP, I play violin in HRO and volunteer through PBHA.
--   name: Alaisha Sharma
-    role: Bootcamper
-    house: Kirkland
-    year: 2020
-    bio: I'm a sophomore in Kirkland studying computer science and obsessed with bio-inspired design. Dance is my absolute favorite hobby, but I also enjoy teaching CS to non-programmers, learning new languages, and exploring cool food places (multiple in a row).
-    image: alaisha-sharma.jpeg
--   name: Maddy Nakada
-    role: Bootcamper
-    house: Currier
-    year: 2020
-    bio: I am a computer science and statistics concentrator living in Currier. I was drawn to HODP by its goal to make data more accessible to the public both through easily digestible articles as well as by formatting data for others to use. In my free time I enjoy running along the Charles.
-    image: maddy-nakada.jpg
+groups: 
+    -   id: board
+        header: Board
+    -   id: mentor
+        header: Mentors
+    -   id: contributor
+        header: Contributors
+    -   id: bootcamper
+        header: Bootcampers
+    -   id: alumni
+        header: Alumni
+roles:
+    -   g_id: alumni
+        id: alumni
+        title: Alumni
+    -   g_id: alumni
+        id: founder
+        title: Founder, Alumni
+    -   g_id: mentor
+        id: mentor
+        title: Faculty Mentor
+    -   g_id: board
+        id: pres
+        title: President
+    -   g_id: board
+        id: vp
+        title: Vice President
+    -   g_id: board
+        id: board
+        title: Board Member
+    -   g_id: contributor
+        id: contributor
+        title: Contributor
+    -   g_id: contributor
+        id: developer
+        title: Developer
+    -   g_id: bootcamper
+        id: bootcamper
+        title: Bootcamper
+people:
+  -   name: Nick Sinai
+      image: nick-sinai.jpg
+      role: mentor
+      bio: Nick Sinai teaches at the Harvard Kennedy School and was the former deputy CTO of the US, where he helped start Data.gov.
+  -   name: Latanya Sweeney
+      image: latanya-sweeney.png
+      role: mentor
+      bio: Latanya Sweeney is a Professor of Government and Technology at Harvard.
+  -   name: Jeffrey He
+      role: pres
+      image: jeffrey-he.jpg
+      bio: Hi! I’m a currently a sophomore in Mather studying computer science. Outside of HODP, I'm a huge basketball fan, a chess player, and a violinist.
+      house: Mather
+      year: 2020
+  -   name: Emma Ling
+      role: vp
+      image: emma-ling.jpg
+      house: Lowell
+      year: 2020
+      bio: I'm a sophomore in Lowell studying computer science and sociology. When I'm not hacking on Harvard datasets, I love going on adventures in the great outdoors.
+  -   name: Stephen Moon
+      role: vp
+      image: stephen-moon.jpg
+      house: Pforzheimer
+      year: 2020
+      bio: I'm a sophomore in Pforzheimer House studying statistics and economics. I loves data, french fries, and card games, and am left handed.
+  -   name: Kevin Bi
+      role: board
+      house: Canaday
+      year: 2021
+      image: kevin-bi.jpg
+      bio: I'm a freshman in Canaday. I'm interested in studying Economics or Computer Science. In my spare time, I like reading and writing computer programs.
+  -   name: Lucy Li
+      role: board
+      house: Canaday
+      year: 2021
+      bio: I'm a freshman in Canaday interested in data, tech, and politics. Outside of HODP, I play violin in HRO and volunteer through PBHA.
+      image: lucy-li.jpg
+  -   name: Flora DiCara
+      role: contributor
+      image: flora-dicara.jpg
+      house: Adams
+      year: 2020
+      bio: I'm a sophomore in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
+  -   name: Olivia Bryant
+      role: contributor
+      house: Hollis
+      year: 2021
+      image: olivia-bryant.jpg
+      bio: I am a freshman from Canterbury, England, potentially studying Statistics with an interest in data journalism. I spend time volunteering and knitting like a grandma.
+  -   name: Alex Giglio
+      role: contributor
+      house: Eliot
+      year: 2020
+      image: alex-giglio.jpg
+      bio: I'm a Mechanical Engineering concentrator with a love for obscure facts and a passion for complaining about Harvard's class scheduling.
+  -   name: Darrin Gilkerson
+      role: contributor
+      house: Cabot
+      year: 2020
+      bio: I'm a sophomore in Cabot from Ohio interested in big data, statistics, and Joe Blitzstein
+  -   name: Ariana Soto
+      role: contributor
+      house: Currier
+      year: 2020
+      bio: I am a sophomore from Los Angeles concentrating in Government with a secondary in Computer Science. I’m a huge fan of open data, having worked last summer with the Los Angeles open data portal and getting to work this summer with the New York open data portal. I love singing and going to the beach!
+      image: ariana-soto.jpg
+  -   name: Hakeem Angulu
+      role: contributor
+      house: Winthrop
+      year: 2020
+      bio: I'm a sophomore from Kingston, Jamaica, currently living in Winthrop. I am pursuing a joint concentration in Computer Science and Statistics with a Secondary in African American Studies, and I hope to use my studies here, as well as my engagement with HODP, to work on projects that amplify voices, facilitate justice, and push our current limits!
+      image: hakeem-angulu.jpg
+  -   name: Alaisha Sharma
+      role: contributor
+      house: Kirkland
+      year: 2020
+      bio: I'm a sophomore in Kirkland studying computer science and obsessed with bio-inspired design. Dance is my absolute favorite hobby, but I also enjoy teaching CS to non-programmers, learning new languages, and exploring cool food places (multiple in a row).
+      image: alaisha-sharma.jpeg
+  -   name: Neel Mehta
+      url: https://www.linkedin.com/in/neelmehta18
+      role: founder
+      image: neel-mehta.jpg
+      house: Pforzheimer
+      year: 2018
+      bio: I'm a senior in Pfoho studying computer science. Outside HODP, I serve as the Finance Committee Chair on the Undergraduate Council, write about civic tech, and skateboard around campus.
+  -   name: Caleb Shelburne
+      role: alumni
+      house: Kirkland
+      year: 2018
+      image: caleb-shelburne.jpg
+      bio: I'm a senior in Kirkland concentrating in History and Literature. Officially, I study nineteenth-century Ottoman history. In my spare time, I enjoy analyzing data.
+  -   name: Maddy Nakada
+      role: contributor
+      house: Currier
+      year: 2020
+      bio: I am a computer science and statistics concentrator living in Currier. I was drawn to HODP by its goal to make data more accessible to the public both through easily digestible articles as well as by formatting data for others to use. In my free time I enjoy running along the Charles.
+      image: maddy-nakada.jpg

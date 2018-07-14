@@ -7,9 +7,9 @@ permalink: /about/
     <h1 class="page-header centered">About the Harvard Open Data Project</h1>
     <div class="row">
       <div class="col-md-6">
-        <img src="/img/hodp-team-photo.jpg" class="img-responsive" width="100%">
+        <img src="/img/hodp-team-photo-18.jpg" class="img-responsive" width="100%">
         <div class="caption">
-          <p class="text-centered">The 2017 Harvard Open Data Project Team</p>
+          <p class="text-centered">The 2018 Harvard Open Data Project Team</p>
         </div>
       </div>
       <div class="col-md-6">
@@ -27,9 +27,9 @@ permalink: /about/
         </p>
         <h4>Join the Harvard Open Data Project!</h4>
             <ul>
-                <li>
+                <!-- <li>
                   Attend our open hack nights on Sundays from 6-8pm in Cabot Library basement, LL09.
-                </li>
+                </li> -->
                 <li>
                      Submit articles to <a href="https://medium.com/harvard-open-data-project">our blog</a>.
                 </li>
@@ -88,57 +88,34 @@ permalink: /about/
       </ul>
           <a href="https://trello.com/b/Xht5RNue/17f-hodp-projects">Check out the full list of projects here!</a>
     </div>
-
     <h2 class="centered page-header">People</h2>
-
+    {% for group in site.data.people.groups %}
     <div class="row">
+      <h3 class="centered group-header">{{group.header }}</h3>
       <div class="panel-group">
         <!-- empty media element prevents rules for media:first-child from messing up first person -->
         <div class="media"></div>
         <div class="clearfix">
-        {% for person in site.data.people %}
+        {% assign loopindex2 = 1 %}
+        {% for role in site.data.people.roles %}
+          {% if role.g_id == group.id %} 
+            {% for person in site.data.people.people %}
+              {% if person.role == role.id %}
+                {% assign loopindex2 = loopindex2 | plus: 1 %}
+                {% assign loopindex2 = loopindex2 | modulo: 2 %}
+                {% include person-card.html %}
 
-          {% assign loopindex2 = forloop.index0 | modulo: 2 %}
+                {% if loopindex2  == 1 %}
+                  <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+                {% endif %}
+              {% endif %}
 
-          <div class="media col-sm-6" style="padding: 5px; margin-top: 0px">
-            <div class="panel panel-default" style="padding: 10px">
-              <div class="media-left">
-                <a href="{{ person.url }}">
-                  {% if person.image %}
-                      <img src="/img/people/{{ person.image }}" class="media-object img-circle" alt="{{ person.name }}" style="width: 64px;" />
-                  {% else %}
-                      <img src="/img/people/generic.jpg" class="media-object img-circle" alt="{{ person.name }}" style="width: 64px;" />
-                  {% endif %}
-                </a>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">{{ person.name }}</h4>
-                <h5>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      {{ person.role }}
-                    </div>
-                    <div class="col-sm-6">
-                      {{ person.house }} {{ person.year }}
-                    </div>
-                  </div>
-                </h5>
-                {{ person.bio }}
-              </div>
-            </div>
-          </div>
-
-          {% if loopindex2 == 1 %}
-             <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+            {% endfor %}
           {% endif %}
-
         {% endfor %}
         </div>
       </div>
     </div>
-
-    <h2 class="centered page-header">Partners</h2>
-
-    <p>We are proud partners with <a href="http://codingitforward.com/">Coding it Forward</a>, a community of people using technology for social good. Like Coding it Forward (another Harvard creation), we're passionate about using the tools of technology to increase government transparency, improve citizens' lives, and unlock innovation using data.</p>
+    {% endfor %}
 
 </div>

@@ -1,0 +1,27 @@
+---
+title: Visualization
+layout: default
+permalink: /visual/crime
+
+scripts:
+    - https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js
+    - https://maps.googleapis.com/maps/api/js?key=AIzaSyCT2dC3J-0KpV6kMcm96JDf7JAHwKxgEQc
+    - https://apis.google.com/js/api.js
+    - /js/all.js
+    - /js/crime.js
+styles:
+    - /css/crime.css
+---
+
+<div id = "mapHeader">
+    <h1>Harvard Crime Map</h1>
+    <h4><a href = "https://docs.google.com/spreadsheets/d/1AMbEglG18BDz4-mQgTfAl4-jiT2Th_tKyIjwBEMDWF8/edit?usp=sharing" target="_blank">Full Dataset</a></h4>
+    <h4 id = "lblLastReport" class = "UserOptions">Last report: </h4>
+    <div id = "dayButtons" class = "UserOptions">
+    <label>All time (since 4/1/2018)<input type = "radio" name = "time" id = "radioAll" checked = "checked" onclick = "populateMap(-1)"/></label>
+    <label>1 Day <input type = "radio" name = "time" id = "radioOne" onclick = "populateMap(1)"/></label>
+    <label>7 Day <input type = "radio" name = "time" id = "radioOne" onclick = "populateMap(7)"/></label>
+    <label>30 Day <input type = "radio" name = "time" id = "radioOne" onclick = "populateMap(30)"/></label>
+    </div>
+</div>
+<div id = "map" class = "centered">Loading map...</div>

@@ -1,0 +1,45 @@
+---
+title: Sponsors
+layout: default
+permalink: /sponsorsdemo/
+---
+<div class = "container">
+    <div class = "row">
+    </div>
+    <div class = "row">
+        <div class = "col-md-6">
+            <h3 style = "color: #808080;">  
+            The Harvard College Open Data Project thanks our sponsors for supporting our mission to increase transparency and solve problems on campus using public Harvard data.
+            </h3> 
+        </div> 
+        <div class = "col-md-4">
+            <h3> Interested in becoming a sponsor? </h3>
+            <a href="/" class="btn btn-primary btn-block">Fill out this form</a> <br/>
+            We will contact you as soon as possible about details on sponsoring HODP. Thank you!
+        </div>
+    </div>
+    <h2 class="centered page-header">Sponsors</h2>
+    {% for tier in site.data.sponsors.tiers %}
+        <div class = "row">
+        <h3> {{ tier.name }} </h3>
+        {% for sponsor in site.data.sponsors.sponsors %}
+            {% if sponsor.tier == tier.name %}
+            <div class="media col-sm-6" style="padding: 5px; margin-top: 0px">
+                <div class="panel panel-default" style="padding: 10px">
+                    <div class="media-left">
+                        <img src="/img/sponsors/{{ sponsor.logo}}" class="media-object img-square" alt="{{ sponsor.name }}" style="width: 100px;" />
+                    </div>
+                    <div class="media-body">
+                    <h4 class="media-heading">{{ sponsor.name }}</h4>
+                    {{ sponsor.description }}
+                    </div>
+                </div>
+            </div>
+            <div class="media"></div>
+            <div class="clearfix"></div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endfor %}
+
+</div>

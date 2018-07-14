@@ -1,0 +1,47 @@
+tiers :
+  -   name : Platinum
+      color : "#E5E4E2"
+  -   name : Gold
+      color : "#FFD700"
+  -   name : Silver
+      color : "#C0C0C0"
+  -   name : Bronze
+      color : "#CD7F32"
+
+sponsors :
+  -   name : Demo
+      tier : Platinum
+      description : The Harvard Open Data Project is proud to sponsor the Harvard Open Data Project!
+      logo : squarelogo.png
+  -   name : Demo
+      tier : Platinum
+      description : The Harvard Open Data Project is proud to sponsor the Harvard Open Data Project!
+      logo : squarelogo.png
+  -   name : Demo
+      tier : Gold
+      description : The Harvard Open Data Project is proud to sponsor the Harvard Open Data Project!
+      logo : squarelogo.png
+  -   name : Demo
+      tier : Gold
+      description : The Harvard Open Data Project is proud to sponsor the Harvard Open Data Project!
+      logo : squarelogo.png
+  -   name : Demo
+      tier : Gold
+      description : The Harvard Open Data Project is proud to sponsor the Harvard Open Data Project!
+      logo : squarelogo.png
+  -   name : Demo
+      tier : Silver
+      description : The Harvard Open Data Project is proud to sponsor the Harvard Open Data Project!
+      logo : squarelogo.png
+  -   name : Demo
+      tier : Silver
+      description : The Harvard Open Data Project is proud to sponsor the Harvard Open Data Project!
+      logo : squarelogo.png
+  -   name : Demo
+      tier : Bronze
+      description : The Harvard Open Data Project is proud to sponsor the Harvard Open Data Project!
+      logo : squarelogo.png
+  -   name : Demo
+      tier : Bronze
+      description : The Harvard Open Data Project is proud to sponsor the Harvard Open Data Project!
+      logo : squarelogo.png

@@ -1,0 +1,11 @@
+{
+  "faculty_race" : {
+    "title" : "Faculty and Race",
+    "description" : "Racial composition of Harvard faculty over time",
+    "file" : "faculty_race.csv",
+    "type" : "line",
+    "yaxis" : "Percent of total faculty",
+    "xaxis" : "Academic Year",
+    "source" : "https://oir.harvard.edu/fact-book/faculty_and_staff"
+  }
+}
