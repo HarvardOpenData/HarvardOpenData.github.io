@@ -136,3 +136,9 @@ people:
       year: 2020
       bio: I am a computer science and statistics concentrator living in Currier. I was drawn to HODP by its goal to make data more accessible to the public both through easily digestible articles as well as by formatting data for others to use. In my free time I enjoy running along the Charles.
       image: maddy-nakada.jpg
+  -   name: Grace Zhang
+      role: contributor
+      house: Mather
+      year: 2020
+      bio: I’m a junior concentrating in computer science and statistics. I’m originally from New York and am super excited about data and what we can learn from it!
+      image: grace-zhang.png
