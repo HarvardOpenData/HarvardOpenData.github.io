@@ -13,10 +13,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Harvard Open Data Project
+title: Harvard College Open Data Project
 # email: your-email@domain.com
 description: >
-    The Harvard Open Data Project is a student-faculty collaboration dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.
+    The Harvard College Open Data Project is a student-faculty collaboration dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.
 # baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://harvard-open-data-project.github.io" # the base hostname & protocol for your site
 # twitter_username: jekyllrb
