@@ -25,7 +25,7 @@ Want to follow what we're up to or join our growing team of 40+ students?
 
 - [Join our mailing list](https://groups.google.com/forum/#!forum/harvard-open-data)
 - Follow us on [Medium](https://medium.com/harvard-open-data-project)
-- Email Neel Mehta at neelmehta [at] college [dot] harvard [dot] edu
+- Email Jeffrey at jdhe [at] college [dot] harvard [dot] edu
 
 ## Running the website
 
