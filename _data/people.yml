@@ -64,18 +64,18 @@ people:
       house: Pforzheimer
       year: 2020
       bio: I'm a junior in Pforzheimer House studying statistics and economics. I loves data, french fries, and card games, and am left handed.
-  -   name: Kevin Bi
-      role: board
-      house: Canaday
-      year: 2021
-      image: kevin-bi.jpg
-      bio: I'm a sophomore in Currier. I'm interested in studying Economics or Computer Science. In my spare time, I like reading and writing computer programs.
   -   name: Lucy Li
       role: board
       house: Canaday
       year: 2021
       bio: I'm a sophomore in Adams interested in data, tech, and politics. Outside of HODP, I play violin in HRO and volunteer through PBHA.
       image: lucy-li.jpg
+  -   name: Kevin Bi
+      role: board
+      house: Canaday
+      year: 2021
+      image: kevin-bi.jpg
+      bio: I'm a sophomore in Currier. I'm interested in studying Economics or Computer Science. In my spare time, I like reading and writing computer programs.
   -   name: Flora DiCara
       role: contributor
       image: flora-dicara.jpg
@@ -134,7 +134,7 @@ people:
       role: contributor
       house: Currier
       year: 2020
-      bio: I am a computer science and statistics concentrator living in Currier. I was drawn to HODP by its goal to make data more accessible to the public both through easily digestible articles as well as by formatting data for others to use. In my free time I enjoy running along the Charles.
+      bio: I am a CS and statistics concentrator living in Currier. I was drawn to HODP by its goal to make data more accessible to the public both through easily digestible articles as well as by formatting data for others to use. In my free time I enjoy running along the Charles.
       image: maddy-nakada.jpg
   -   name: Grace Zhang
       role: contributor
