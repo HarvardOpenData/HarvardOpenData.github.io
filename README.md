@@ -17,7 +17,7 @@ As we expand, we're looking for people with a passion for anything from data sci
 
 ### Learn more
 
-Check out [our website](http://harvard-open-data-project.github.io/) to explore Harvard datasets. Or read our [Medium publication](https://medium.com/harvard-open-data-project) to learn about our mission, past projects, and ideas for the Harvard community.
+Check out [our website](http://hodp.org/) to explore Harvard datasets. Or read our [Medium publication](https://medium.com/harvard-open-data-project) to learn about our mission, past projects, and ideas for the Harvard community.
 
 ### Get involved
 
