@@ -26,6 +26,7 @@ url: "http://harvard-open-data-project.github.io" # the base hostname & protocol
 markdown: kramdown
 theme: minima
 
+include: ['webapps']
 
 # libraries
 # bootstrap_version: 3.3.7
