@@ -43,6 +43,11 @@ function loadData (file) {
     });
 }
 
+// William and Festus 
+function populateTable(data){
+
+}
+
 // Populates the chart with data
 function populateChart(data){
     var context = document.getElementById("chartViz").getContext("2d");
