@@ -22,3 +22,25 @@ styles:
 <canvas id = "chartViz" class = "chart"></canvas>
 
 <h5 id = "source"></h5>
+
+{% extends "layout.html" %}
+
+{% block main %}
+
+<body>
+    CSV To Table:<br>
+   <div id="CSVTable">
+   
+   </div>
+   
+       <script type="text/javascript">
+   
+       $(function() {
+               $('#CSVTable').CSVToTable('test.csv');
+       });
+       </script>
+   
+</body>
+
+{% endblock %}
+
