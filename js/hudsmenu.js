@@ -32,7 +32,33 @@ function getSheetData(){
 
 // Function to pass into success handler for google scripts run
 function onLoaded(data){
+	createTable(data);
     console.log(data);
+}
+
+function createTable(tableData) {
+  var table = document.createElement('table');
+  var attribute = document.createAttribute('border');
+  attribute.value = '1';
+  table.setAttributeNode(attribute);
+  
+  var tableBody = document.createElement('tbody');
+
+  tableData.forEach(function(rowData) {
+    var row = document.createElement('tr');
+
+    rowData.forEach(function(cellData) {
+      var cell = document.createElement('td');
+      cell.appendChild(document.createTextNode(cellData));
+      row.appendChild(cell);
+    });
+
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  var mainContentContainer = document.getElementById("main-container");
+  mainContentContainer.appendChild(table);
 }
 
 handleClientLoad();
