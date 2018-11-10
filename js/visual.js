@@ -32,14 +32,20 @@ function getOfKey (data, key){
 }
 
 // Loads the data from the csv file and calls populate chart
-function loadData (file) {
+function loadData (visual ,file) {
     d3.csv(file, function(data){
         var keys = Object.keys(data[0]);
         xKey = keys[0];
         for (var i = 1; i < keys.length; i++){
             yKeys.push(keys[i]);
         }
-        populateChart(data);
+        if(visual) {
+            
+            populateChart(data);
+        }
+        else{
+            $("#chartViz").hide();
+        }
         populateTable(data);
     });
 }
@@ -120,11 +126,11 @@ window.onload = function(){
             console.log(data[id].file);
             title.innerHTML = data[id].title;
             desc.innerHTML = data[id].description ? data[id].description : "";
-            source.innerHTML = data[id].source ? "Source: " + data[id].source : "";
+            source.innerHTML = data[id].source ? `<a href = "${data[id].source}">Source</a>` : "";
             chartType = data[id].type;
             xLabel = data[id].xaxis;
             yLabel = data[id].yaxis;
-            loadData("/assets/dataviz/" + data[id].file);
+            loadData(data[id].visual, "/assets/dataviz/" + data[id].file);
         });
     }
     else{ 
