@@ -8,5 +8,12 @@
     "yaxis" : "Percent of total faculty",
     "xaxis" : "Academic Year",
     "source" : "https://oir.harvard.edu/fact-book/faculty_and_staff"
+  }, 
+  "enrollments2018s" : {
+    "title" : "Spring 2018 Enrollments",
+    "description" : "Course enrollment for Harvard Spring 2018 classes",
+    "file" : "enrollments2018s.csv",
+    "visual" : false,
+    "source" : "http://registrar.fas.harvard.edu/faculty-staff/courses/enrollment/archived-course-enrollment-reports"
   }
 }

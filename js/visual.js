@@ -62,7 +62,7 @@ function populateTable(data){
     $(data).each(function (i, rowData){
         var row = $('<tr></tr>');
         $.each(rowData, function (j, cellData) {
-            row.append($('<td>'+cellData+'</td>'));
+            row.append($('<td>'+cellData.replace(/___/g, ",")+'</td>'));
         });
         table.append(row);
     });
@@ -122,8 +122,6 @@ window.onload = function(){
     var source = document.getElementById("source");
     if (id){
         d3.json("/assets/visualizations.json", function (data){
-            console.log(data);
-            console.log(data[id].file);
             title.innerHTML = data[id].title;
             desc.innerHTML = data[id].description ? data[id].description : "";
             source.innerHTML = data[id].source ? `<a href = "${data[id].source}">Source</a>` : "";

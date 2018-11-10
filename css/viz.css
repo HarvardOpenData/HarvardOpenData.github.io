@@ -16,7 +16,7 @@
     text-align: center;
 }
 
-#window {  
+table {  
     display: block;
     text-align: center;
     max-height: 300px;
@@ -26,7 +26,9 @@
     margin: auto;
    width: 80%; 
   }
-
+table {
+    padding: 10px;
+}
 table th {
     text-align: center; 
  }
