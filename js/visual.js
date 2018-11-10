@@ -39,6 +39,9 @@ function loadData (visual ,file) {
         for (var i = 1; i < keys.length; i++){
             yKeys.push(keys[i]);
         }
+        
+        data.sort((a, b) => a[xKey].localeCompare(b[xKey]));
+
         if(visual) {
             
             populateChart(data);
@@ -87,7 +90,6 @@ function populateChart(data){
     });
     console.log(datasets);
     var labels = getOfKey(data, xKey);
-    labels.reverse();
     var config = {
         type : chartType,
         data : {
