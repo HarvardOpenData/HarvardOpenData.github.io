@@ -40,6 +40,20 @@ function loadData (file) {
             yKeys.push(keys[i]);
         }
         populateChart(data);
+        populateTable(data);
+    });
+}
+
+// Populate a table in html with data
+// William and Festus 
+function populateTable(data){
+    var table = $('#CSVTable');
+    $(data).each(function (i, rowData) {
+        var row = $('<tr></tr>');
+        $(rowData).each(function (j, cellData) {
+            row.append($('<td>'+cellData+'</td>'));
+        });
+        table.append(row);
     });
 }
 
