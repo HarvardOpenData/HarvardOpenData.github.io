@@ -48,9 +48,14 @@ function loadData (file) {
 // William and Festus 
 function populateTable(data){
     var table = $('#CSVTable');
-    $(data).each(function (i, rowData) {
+    var hrow = $('<tr></tr>');
+    $("#CSVHeader").append(hrow);
+    $.each(data[0], function (j, cellData) {
+        hrow.append($('<th>'+j+'</th>'));
+    });
+    $(data).each(function (i, rowData){
         var row = $('<tr></tr>');
-        $(rowData).each(function (j, cellData) {
+        $.each(rowData, function (j, cellData) {
             row.append($('<td>'+cellData+'</td>'));
         });
         table.append(row);
