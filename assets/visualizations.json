@@ -3,9 +3,28 @@
     "title" : "Faculty and Race",
     "description" : "Racial composition of Harvard faculty over time",
     "file" : "faculty_race.csv",
+    "visual" : true,
     "type" : "line",
     "yaxis" : "Percent of total faculty",
     "xaxis" : "Academic Year",
     "source" : "https://oir.harvard.edu/fact-book/faculty_and_staff"
+  }, 
+  "enrollments2018s" : {
+    "title" : "Spring 2018 Enrollments",
+    "description" : "Course enrollment for Harvard Spring 2018 classes",
+    "file" : "enrollments2018s.csv",
+    "visual" : false,
+    "source" : "http://registrar.fas.harvard.edu/faculty-staff/courses/enrollment/archived-course-enrollment-reports"
+  },
+  "tuition2018" : {
+    "title" : "Harvard College Tuition, Fees, Room, and Board",
+    "description" : "Cost of attendance at Harvard College from 1985 to 2018",
+    "file" : "tuition2018.csv",
+    "visual" : true,
+    "type" : "line",
+    "yaxis" : "Cost",
+    "xaxis" : "Academic Year",
+    "source" : "https://oir.harvard.edu/fact-book/undergraduate_package"
   }
 }
+

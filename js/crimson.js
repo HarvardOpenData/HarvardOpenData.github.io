@@ -29,10 +29,9 @@ function getSheetData(){
         range: 'Aggregator!A2:G',
     }).then(data => (onLoaded(data.result.values)));
 }
-
 // Function to pass into success handler for google scripts run
 function onLoaded(data){
-    console.log(data)
+    var tooltip={}
     tagCounts = {};
     for(var i=0;i<data.length;i++) {
         var tags = data[i][5].toString().split(",");
@@ -43,7 +42,9 @@ function onLoaded(data){
             tagCounts[tags[j]]++;
         }
     }
-    var keys = Object.keys(tagCounts);
+    var keys = Object.keys(tagCounts).filter(function(elt){
+        return ['featured-articles','front-photo-feature', 'front-middle-feature','front-feature'].indexOf(elt) < 0;
+    });
     var words=[];
     for (var i=0; i<keys.length;i++){
         words.push(
@@ -58,14 +59,33 @@ function onLoaded(data){
     var myConfig = {
         type: 'wordcloud',
         "options": {
-        "words": words
+            "words": words,
+            style: {
+                 tooltip: {
+                    text: '%text: %hits',
+                    visible: true,
+                    
+                    alpha: 2,
+                    backgroundColor: '#000000',
+                    borderColor: '#000000',
+                    borderRadius: 2,
+                    borderWidth: 2,
+                    fontColor: '#FFFFFF',
+                    fontFamily: 'Arial',
+                    fontSize: 12,
+                    fontWeight: 'strong',
+                    lineStyle: 'dashdot',
+                    textAlpha: 1,
+                  }
+            }
         }
     };
     zingchart.render({ 
         id: 'tagChart', 
         data: myConfig, 
         height: 400, 
-        width: '100%' 
+        width: '100%',
+        tooltip: tooltip
     });
 
     authorCounts = {};
@@ -97,16 +117,37 @@ function onLoaded(data){
     var myConfig2 = {
         type: 'wordcloud',
         "options": {
-        "words": words2
+            "words": words2, 
+            style : {
+                 tooltip: {
+                    text: '%text: %hits',
+                    visible: true,
+                    
+                    alpha: 2,
+                    backgroundColor: '#000000',
+                    borderColor: '#000000',
+                    borderRadius: 2,
+                    borderWidth: 2,
+                    fontColor: '#FFFFFF',
+                    fontFamily: 'Arial',
+                    fontSize: 12,
+                    fontWeight: 'strong',
+                    lineStyle: 'dashdot',
+                    textAlpha: 1,
+                  }
+            }
         }
     };
     zingchart.render({ 
         id: 'authorChart', 
         data: myConfig2, 
         height: 400, 
-        width: '100%' 
-    });
+        width: '100%',
+	})
+
 
 }
+
+
 
 handleClientLoad();

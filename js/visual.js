@@ -32,14 +32,21 @@ function getOfKey (data, key){
 }
 
 // Loads the data from the csv file and calls populate chart
-function loadData (file) {
+function loadData (visual ,file) {
+    if(!visual) $("#chartViz").hide();
     d3.csv(file, function(data){
         var keys = Object.keys(data[0]);
         xKey = keys[0];
         for (var i = 1; i < keys.length; i++){
             yKeys.push(keys[i]);
         }
-        populateChart(data);
+        
+        data.sort((a, b) => a[xKey].localeCompare(b[xKey]));
+
+        if(visual) {
+            
+            populateChart(data);
+        }
         populateTable(data);
     });
 }
@@ -48,10 +55,15 @@ function loadData (file) {
 // William and Festus 
 function populateTable(data){
     var table = $('#CSVTable');
-    $(data).each(function (i, rowData) {
+    var hrow = $('<tr></tr>');
+    $("#CSVHeader").append(hrow);
+    $.each(data[0], function (j, cellData) {
+        hrow.append($('<th>'+j+'</th>'));
+    });
+    $(data).each(function (i, rowData){
         var row = $('<tr></tr>');
-        $(rowData).each(function (j, cellData) {
-            row.append($('<td>'+cellData+'</td>'));
+        $.each(rowData, function (j, cellData) {
+            row.append($('<td>'+cellData.replace(/___/g, ",")+'</td>'));
         });
         table.append(row);
     });
@@ -66,7 +78,7 @@ function populateChart(data){
             {
                 label : key,
                 data : getOfKey(data, key).map(function(elt){
-                    return parseFloat(elt)
+                    return parseFloat(elt.replace(/,/g, ""))
                 }),
                 backgroundColor: lineColors[index % lineColors.length],
                 borderColor : lineColors[index % lineColors.length],
@@ -74,8 +86,8 @@ function populateChart(data){
             }
         )
     });
+    console.log(datasets);
     var labels = getOfKey(data, xKey);
-    labels.reverse();
     var config = {
         type : chartType,
         data : {
@@ -111,15 +123,13 @@ window.onload = function(){
     var source = document.getElementById("source");
     if (id){
         d3.json("/assets/visualizations.json", function (data){
-            console.log(data);
-            console.log(data[id].file);
             title.innerHTML = data[id].title;
             desc.innerHTML = data[id].description ? data[id].description : "";
-            source.innerHTML = data[id].source ? "Source: " + data[id].source : "";
+            source.innerHTML = data[id].source ? `<a href = "${data[id].source}">Source</a>` : "";
             chartType = data[id].type;
             xLabel = data[id].xaxis;
             yLabel = data[id].yaxis;
-            loadData("/assets/dataviz/" + data[id].file);
+            loadData(data[id].visual, "/assets/dataviz/" + data[id].file);
         });
     }
     else{ 
