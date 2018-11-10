@@ -2836,10 +2836,3 @@
 205884,ZULU 101BR,Advanced Zulu II,001,African & African Amer Studies,"Mugane,John M",4,2,0,0,0,0,0,6
 205849,ZULU AB,Elementary Zulu,001,African & African Amer Studies,"Mugane,John M",43,0,0,0,0,1,0,44
 Grand Total,,,,,,26149,7232,112,928,159,38,12,34630
-,,,,,,,,,,,,,
-,Class Acad Career Code is equal to / is in FAS,,,,,,,,,,,,
-and,Class Acad Group Code is equal to / is in FAS,,,,,,,,,,,,
-and,Class Term is equal to / is in 2018 Spring,,,,,,,,,,,,
-and,Class Type Description is equal to / is in Enrollment Section,,,,,,,,,,,,
-and,"(""HU Course and Class"".""Class Short Name"" NOT LIKE 'FAS LE%' AND ""HU Course and Class"".""Class Short Name"" NOT LIKE 'FAS TS%' AND ""HU Course and Class"".""Class Short Name"" NOT LIKE 'FAS SE%' AND ""HU Course and Class"".""Class Short Name"" NOT LIKE 'FAS SA%' AND ""HU Course and Class"".""Class Short Name"" NOT LIKE 'FAS ES%' AND ""HU Course and Class"".""Class Short Name"" NOT LIKE 'INDSTUDY%' AND ""HU Course and Class"".""Class Short Name"" NOT LIKE 'TIME-%')",,,,,,,,,,,,
-,,,,,,,,,,,,,

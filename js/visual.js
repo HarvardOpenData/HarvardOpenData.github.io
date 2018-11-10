@@ -33,6 +33,7 @@ function getOfKey (data, key){
 
 // Loads the data from the csv file and calls populate chart
 function loadData (visual ,file) {
+    if(!visual) $("#chartViz").hide();
     d3.csv(file, function(data){
         var keys = Object.keys(data[0]);
         xKey = keys[0];
@@ -45,9 +46,6 @@ function loadData (visual ,file) {
         if(visual) {
             
             populateChart(data);
-        }
-        else{
-            $("#chartViz").hide();
         }
         populateTable(data);
     });
