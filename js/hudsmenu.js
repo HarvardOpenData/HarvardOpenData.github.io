@@ -8,6 +8,8 @@ var markerClusterer = null;
 var map = null;
 var lastDate = null;
 
+var fullData;
+
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);
 }
@@ -32,33 +34,67 @@ function getSheetData(){
 
 // Function to pass into success handler for google scripts run
 function onLoaded(data){
-	createTable(data);
-    console.log(data);
+	fullData = data;
+	fullData.reverse();
+	var date= document.getElementById("date");
+	date.value = today();
+	loadDoc();
 }
 
 function createTable(tableData) {
-  var table = document.createElement('table');
-  var attribute = document.createAttribute('border');
-  attribute.value = '1';
-  table.setAttributeNode(attribute);
-  
-  var tableBody = document.createElement('tbody');
+	var table = document.getElementById('itemsTable');
+	table.innerHTML = "";
+	var tableBody = document.createElement('tbody');
 
-  tableData.forEach(function(rowData) {
-    var row = document.createElement('tr');
-
-    rowData.forEach(function(cellData) {
-      var cell = document.createElement('td');
-      cell.appendChild(document.createTextNode(cellData));
-      row.appendChild(cell);
-    });
-
-    tableBody.appendChild(row);
-  });
-
-  table.appendChild(tableBody);
-  var mainContentContainer = document.getElementById("main-container");
-  mainContentContainer.appendChild(table);
+	tableData.forEach(function(rowData) {
+		var row = document.createElement('tr');
+		rowData.forEach(function(cellData) {
+			var cell = document.createElement('td');
+			cell.appendChild(document.createTextNode(cellData));
+			row.appendChild(cell);
+		});
+		tableBody.appendChild(row);
+	});
+	table.appendChild(tableBody);
 }
+
+function loadDoc() {
+	var date= document.getElementById("date").value;
+	var date = convertMMDDYYYY(date);
+	console.log(date);
+	var dayData = []
+	for (var i = 0; i < fullData.length; i++) {
+		if (fullData[i][0] == date) {
+			dayData.push(fullData[i]);
+		}
+	}
+	console.log(dayData);
+	createTable(dayData);
+}
+
+function convertMMDDYYYY(date) {
+	var year = date.substring(0, 4);
+	var month_day = date.substring(5, 10);
+	return month_day + "-" + year;
+}
+
+function today() {
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+		dd = '0'+dd
+	} 
+
+	if(mm<10) {
+		mm = '0'+mm
+	} 
+
+	today = yyyy + '-' + mm + '-' + dd;
+	return today;
+}
+
 
 handleClientLoad();
