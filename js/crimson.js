@@ -29,7 +29,6 @@ function getSheetData(){
         range: 'Aggregator!A2:G',
     }).then(data => (onLoaded(data.result.values)));
 }
-
 // Function to pass into success handler for google scripts run
 function onLoaded(data){
     var tooltip={}
@@ -43,7 +42,9 @@ function onLoaded(data){
             tagCounts[tags[j]]++;
         }
     }
-    var keys = Object.keys(tagCounts);
+    var keys = Object.keys(tagCounts).filter(function(elt){
+        return ['featured-articles','front-photo-feature', 'front-middle-feature','front-feature'].indexOf(elt) < 0;
+    });
     var words=[];
     for (var i=0; i<keys.length;i++){
         words.push(
@@ -59,14 +60,14 @@ function onLoaded(data){
         type: 'wordcloud',
         "options": {
             "words": words,
-            style : {
+            style: {
                  tooltip: {
                     text: '%text: %hits',
                     visible: true,
                     
                     alpha: 2,
                     backgroundColor: '#000000',
-                    borderColor: '#FFFFFF',
+                    borderColor: '#000000',
                     borderRadius: 2,
                     borderWidth: 2,
                     fontColor: '#FFFFFF',
@@ -124,7 +125,7 @@ function onLoaded(data){
                     
                     alpha: 2,
                     backgroundColor: '#000000',
-                    borderColor: '#FFFFFF',
+                    borderColor: '#000000',
                     borderRadius: 2,
                     borderWidth: 2,
                     fontColor: '#FFFFFF',
