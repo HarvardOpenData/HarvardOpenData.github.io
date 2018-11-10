@@ -32,7 +32,41 @@ function getSheetData(){
 
 // Function to pass into success handler for google scripts run
 function onLoaded(data){
-    console.log(data);
+    tagCounts = {};
+    for(var i=0;i<data.length;i++) {
+        var tags = data[i][5].toString().split(",");
+        for(var j=0; j<tags.length; j++){
+            if (!(tags[j] in tagCounts)){
+                tagCounts[tags[j]]=0;
+            }   
+            tagCounts[tags[j]]++;
+        }
+    }
+    var keys = Object.keys(tagCounts);
+    var words=[];
+    for (var i=0; i<keys.length;i++){
+        words.push(
+
+            {
+                "text":keys[i], 
+                "count":tagCounts[keys[i]],
+            }
+        )
+    }
+    console.log(words)
+    var myConfig = {
+        type: 'wordcloud',
+        "options": {
+        "words": words
+        }
+    };
+    zingchart.render({ 
+        id: 'myChart', 
+        data: myConfig, 
+        height: 400, 
+        width: '100%' 
+    });
+
 }
 
 handleClientLoad();
