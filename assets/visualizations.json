@@ -15,5 +15,16 @@
     "file" : "enrollments2018s.csv",
     "visual" : false,
     "source" : "http://registrar.fas.harvard.edu/faculty-staff/courses/enrollment/archived-course-enrollment-reports"
+  },
+  "tuition2018" : {
+    "title" : "Harvard College Tuition, Fees, Room, and Board",
+    "description" : "Cost of attendance at Harvard College from 1985 to 2018",
+    "file" : "tuition2018.csv",
+    "visual" : true,
+    "type" : "line",
+    "yaxis" : "Cost",
+    "xaxis" : "Academic Year",
+    "source" : "https://oir.harvard.edu/fact-book/undergraduate_package"
   }
 }
+

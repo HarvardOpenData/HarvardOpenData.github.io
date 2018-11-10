@@ -77,7 +77,7 @@ function populateChart(data){
             {
                 label : key,
                 data : getOfKey(data, key).map(function(elt){
-                    return parseFloat(elt)
+                    return parseFloat(elt.replace(/,/g, ""))
                 }),
                 backgroundColor: lineColors[index % lineColors.length],
                 borderColor : lineColors[index % lineColors.length],
@@ -85,6 +85,7 @@ function populateChart(data){
             }
         )
     });
+    console.log(datasets);
     var labels = getOfKey(data, xKey);
     labels.reverse();
     var config = {
