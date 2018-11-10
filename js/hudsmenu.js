@@ -58,14 +58,14 @@ function createTable(tableData) {
 	table.appendChild(tableBody);
 }
 
-function loadDoc() {
+function loadDoc(mealType = "") {
 	var date= document.getElementById("date").value;
 	var date = convertMMDDYYYY(date);
-	console.log(date);
+	console.log(mealType);
 	var dayData = []
 	for (var i = 0; i < fullData.length; i++) {
-		if (fullData[i][0] == date) {
-			dayData.push(fullData[i]);
+		if (fullData[i][0] == date && fullData[i][1] == mealType) {
+			dayData.push(fullData[i].slice(2));
 		}
 	}
 	console.log(dayData);
