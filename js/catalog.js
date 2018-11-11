@@ -247,6 +247,14 @@ Searcher.prototype.updateCatalog = function(displayData) {
             .attr("href", function(d) {
                 return d.url;
             })
+            .attr("target", function(d){
+                if(d.url.indexOf("/visual") < 0){
+                    return "_blank";
+                }
+                else {
+                    return undefined;
+                }
+            })
             .attr("class", "btn btn-primary pull-right")
             .text(function(d){
                 if (d.type == "Visualization"){
