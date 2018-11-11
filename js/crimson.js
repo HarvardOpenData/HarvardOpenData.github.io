@@ -55,7 +55,6 @@ function onLoaded(data){
             }
         )
     }
-    console.log(words)
     var myConfig = {
         type: 'wordcloud',
         "options": {
@@ -91,19 +90,15 @@ function onLoaded(data){
     authorCounts = {};
     for(var i=0;i<data.length;i++) {
         var author=data[i][4].toString().split(",")
-        // console.log('!!', authors)
         for(var j=0; j<author.length; j++){
-            console.log(author[j])
             if (!(author[j] in authorCounts)){
                 authorCounts[author[j]]=0;
             }   
             authorCounts[author[j]]++;
         }
     }
-    console.log('hello', authorCounts)  
     var keys2 = Object.keys(authorCounts);
     var words2=[];
-    console.log(author)
     for (var i=0; i<keys2.length;i++){
         words2.push(
 
@@ -143,9 +138,8 @@ function onLoaded(data){
         data: myConfig2, 
         height: 400, 
         width: '100%',
-	})
-
-
+    })
+    $(".loading").hide();
 }
 
 
