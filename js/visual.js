@@ -48,6 +48,7 @@ function loadData (visual ,file) {
             populateChart(data);
         }
         populateTable(data);
+        $("#loading").hide();
     });
 }
 
@@ -125,7 +126,7 @@ window.onload = function(){
         d3.json("/assets/visualizations.json", function (data){
             title.innerHTML = data[id].title;
             desc.innerHTML = data[id].description ? data[id].description : "";
-            source.innerHTML = data[id].source ? `<a href = "${data[id].source}">Source</a>` : "";
+            source.innerHTML = data[id].source ? `<a href = "${data[id].source}" target = "_blank">Source</a>` : "";
             chartType = data[id].type;
             xLabel = data[id].xaxis;
             yLabel = data[id].yaxis;
