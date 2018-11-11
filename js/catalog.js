@@ -253,7 +253,7 @@ Searcher.prototype.updateCatalog = function(displayData) {
                     return "View";
                 }
                 else{ 
-                    var downloadString = "Download";
+                    var downloadString = "View";
                     return d.type ? (downloadString + " (" + d.type + ")") : downloadString;
                 }
         });
