@@ -38,6 +38,7 @@ function onLoaded(data){
 	fullData.reverse();
 	var date= document.getElementById("date");
 	date.value = today();
+	//date.max = today();
 	loadDoc();
 }
 
@@ -61,14 +62,33 @@ function createTable(tableData) {
 function loadDoc(mealType = "") {
 	var date= document.getElementById("date").value;
 	var date = convertMMDDYYYY(date);
+	//Check if radiogroup has any checked radios
+	var radiogroup = document.getElementsByName("radio");
+	var isClicked = false;
+	var currentRadio = null;
+	for (var i = 0; i < radiogroup.length; i++) {
+		if (radiogroup[i].checked) {
+			isClicked = true;
+			currentRadio = radiogroup[i];
+		}
+	}
+	if (isClicked) {
+		mealType = currentRadio.id;
+	}
+	
+	//Done checking if radio the radio group has any checked radios
+	if (mealType == "") {
+		mealType = "Breakfast";
+	}
+	var radioButton = document.getElementById(mealType);
 	console.log(mealType);
+	radioButton.checked = true;
 	var dayData = []
 	for (var i = 0; i < fullData.length; i++) {
 		if (fullData[i][0] == date && fullData[i][1] == mealType) {
 			dayData.push(fullData[i].slice(2));
 		}
 	}
-	console.log(dayData);
 	createTable(dayData);
 }
 
