@@ -43,6 +43,7 @@ function onLoaded(data){
 }
 
 function createTable(tableData) {
+	//create table by appending each row as necesssary
 	var table = document.getElementById('itemsTable');
 	table.innerHTML = "";
 	var tableBody = document.createElement('tbody');
@@ -57,6 +58,11 @@ function createTable(tableData) {
 		tableBody.appendChild(row);
 	});
 	table.appendChild(tableBody);
+	
+	//handle case when nothing is shown on this date
+	if (tableData.length == 0) {
+		table.innerHTML = "No items to show on this date";
+	}
 }
 
 function loadDoc(mealType = "") {
@@ -73,6 +79,7 @@ function loadDoc(mealType = "") {
 		}
 	}
 	if (isClicked) {
+		//sets mealType to Breakfast, Lunch, or Dinner (string)
 		mealType = currentRadio.id;
 	}
 	
@@ -85,12 +92,23 @@ function loadDoc(mealType = "") {
 	radioButton.checked = true;
 	var dayData = []
 	for (var i = 0; i < fullData.length; i++) {
-		if (fullData[i][0] == date && fullData[i][1] == mealType) {
+		if (standardizeDate(fullData[i][0]) == date && fullData[i][1] == mealType) {
 			dayData.push(fullData[i].slice(2));
 		}
 	}
 	createTable(dayData);
 }
+
+function standardizeDate(dateFromSheet) {
+	var MDY = dateFromSheet.split("-");
+	if (MDY[0].length < 2) {
+		MDY[0] = "0" + MDY[0];
+	}
+	if (MDY[1].length < 2) {
+		MDY[1] = "0" + MDY[1];
+	}
+	return MDY[0] + "-" + MDY[1] + "-" + MDY[2];
+}	
 
 function convertMMDDYYYY(date) {
 	var year = date.substring(0, 4);
