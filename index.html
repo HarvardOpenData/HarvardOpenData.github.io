@@ -1,6 +1,9 @@
 ---
 layout: default
 
+scripts: 
+    - /js/index.js
+
 styles:
     - /css/homepage.css
 ---
@@ -53,16 +56,16 @@ styles:
   </div>
 
 
-<div class="row">
-    <h2 class="page-header text-centered">Featured Analysis</h2>
-    {% for dataset in site.data.featured %}
+<div class="row" id = "articles" style = "visibility: hidden">
+    <h2 class="page-header text-centered">Latest Articles</h2>
+    {% for i in (0..2) %}
         <div class="col-md-4">
-            <a href="{{ dataset.url }}">
+            <a id = "articlelink{{ i }}" href="#">
             <div class="thumbnail">
-                <img src="/img/featured/{{ dataset.imgsrc }}" class="img-thumbnail img-responsive" alt="{{ dataset.name }}" />
+                <img id = "articleimg{{ i }}" src="" class="img-thumbnail img-responsive" alt="Image" />
                 <div class="caption">
                     <p>
-                        <h2 class="text-center lead">{{ dataset.name }}</h2>
+                        <h2 class="text-center lead" id = "articletitle{{ i }}"></h2>
                     </p>
                 </div>
             </div>
