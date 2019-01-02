@@ -34,6 +34,9 @@ roles:
         id: publisher
         title: Publisher
     -   g_id: board
+        id: treasurer
+        title: Treasurer
+    -   g_id: board
         id: board
         title: Board Member
     -   g_id: teamlead
@@ -171,4 +174,10 @@ people:
         year: 2022
         bio: I'm a first year interested in statistics, economics, politics, and using design to explore the intersections between the three. Outside of HODP, I volunteer with HCMUD and run on the Charles.
         image: leo-saenger.jpg
+    -   name: Seth Billiau
+        role: treasurer
+        house: Currier
+        year: 2022
+        bio: I’m a sophomore from Grand Rapids, Michigan, living Currier House and studying statistics and government. If I'm not at a HODP meeting, you can probably find me singing Bass II in the Harvard-Radcliffe Collegium Musicum, CA'ing Math 23, or attending the next Red Sox/Celtics/Bruins game.  
+        image: seth-billiau.jpg
         
