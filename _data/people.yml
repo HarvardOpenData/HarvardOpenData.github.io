@@ -31,6 +31,9 @@ roles:
         id: contentdir
         title: Co-Director of Content
     -   g_id: board
+        id: publisher
+        title: Publisher
+    -   g_id: board
         id: board
         title: Board Member
     -   g_id: teamlead
@@ -163,7 +166,7 @@ people:
         bio: I am a freshman living in Canaday studying either economics or computer science. I enjoy dominating basketball games in my free time, and I am a big Knicks fan. 
         image: george-guarnieri.png
     -   name: Leo Saenger
-        role: board
+        role: publisher
         house: Weld
         year: 2022
         bio: I'm a first year interested in statistics, economics, politics, and using design to explore the intersections between the three. Outside of HODP, I volunteer with HCMUD and run on the Charles.
