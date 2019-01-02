@@ -113,6 +113,12 @@ people:
         house: Cabot
         year: 2020
         bio: I'm a junior in Cabot from Ohio interested in big data, statistics, and Joe Blitzstein
+    -   name: Alaisha Sharma
+        role: contributor
+        house: Kirkland
+        year: 2020
+        bio: I'm a junior in Kirkland studying computer science and obsessed with bio-inspired design. Dance is my absolute favorite hobby, but I also enjoy teaching CS to non-programmers, learning new languages, and exploring cool food places (multiple in a row).
+        image: alaisha-sharma.jpeg
     -   name: Ariana Soto
         role: contributor
         house: Currier
@@ -125,12 +131,6 @@ people:
         year: 2020
         bio: I'm a junior from Kingston, Jamaica, currently living in Winthrop. I am pursuing a joint concentration in Computer Science and Statistics with a Secondary in African American Studies, and I hope to use my studies here, as well as my engagement with HODP, to work on projects that amplify voices, facilitate justice, and push our current limits!
         image: hakeem-angulu.jpg
-    -   name: Alaisha Sharma
-        role: contributor
-        house: Kirkland
-        year: 2020
-        bio: I'm a junior in Kirkland studying computer science and obsessed with bio-inspired design. Dance is my absolute favorite hobby, but I also enjoy teaching CS to non-programmers, learning new languages, and exploring cool food places (multiple in a row).
-        image: alaisha-sharma.jpeg
     -   name: Neel Mehta
         url: https://www.linkedin.com/in/neelmehta18
         role: founder
