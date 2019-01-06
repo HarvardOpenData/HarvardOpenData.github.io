@@ -1,0 +1,140 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: 45px;
+  margin-left: 45px;
+  margin-right: 45px;
+  width: 95%;
+  height: 500px;
+  position: relative;
+}
+#canvas {
+}
+#canvas-svg {
+}
+.land {
+  fill: #222;
+}
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+#tooltip-container {
+  position: absolute;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border: 1px solid;
+  display: none;
+}
+.tooltip_key {
+  font-weight: bold;
+}
+.tooltip_value {
+  margin-left: 20px;
+  float: right;
+}
+#myInput {
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 98%; 
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 12px 12px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+#tblData {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 12px; /* Increase font-size */
+}
+
+#tblData th, #tblData td {
+    text-align: left; /* Left-align text */
+    padding: 6px; /* Add padding */
+}
+
+#tblData tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd; 
+}
+
+#tblData tr.top {
+  background-color: #99ccff;
+}
+
+#tblData tr:not(.top):hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
+}
+
+.btn-group button {
+    background-color: #99ccff; /* Blue background */
+    border: 1px solid #66b3ff; /* Blue border */
+    color: black; /* White text */
+    padding: 10px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side*/
+    font: 14px sans-serif; 
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #66b3ff;
+}
+
+.iframe-container {
+  overflow: hidden;
+  padding-top: 56.25%;
+  position: relative;
+}
+
+.iframe-container iframe {
+   border: 0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
+}
+
+/* 4x3 Aspect Ratio */
+.iframe-container-4x3 {
+  padding-top: 75%;
+}
+
+.header {
+  padding: 10px;
+  background: rgba(255, 255, 255, .85);
+  color: black;
+  z-index: 99999;
+  position: fixed;
+  width: 95%;
+}
+
+/* Page content */
+.content {
+  padding: 10px 24px;
+}
+
+h2::before { 
+  display: block; 
+  content: " "; 
+  margin-top: -170px; 
+  height: 170px; 
+  visibility: hidden; 
+  pointer-events: none;
+}
