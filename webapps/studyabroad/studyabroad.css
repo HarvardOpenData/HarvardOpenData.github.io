@@ -138,3 +138,7 @@ h2::before {
   visibility: hidden; 
   pointer-events: none;
 }
+
+.footer{
+  visibility: hidden;
+}
