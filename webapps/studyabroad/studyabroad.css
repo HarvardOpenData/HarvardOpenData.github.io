@@ -62,7 +62,7 @@ body {
 }
 
 #tblData tr.top {
-  background-color: #99ccff;
+  background-color: #fa7c78;
 }
 
 #tblData tr:not(.top):hover {
@@ -71,8 +71,8 @@ body {
 }
 
 .btn-group button {
-    background-color: #99ccff; /* Blue background */
-    border: 1px solid #66b3ff; /* Blue border */
+    background-color: #fa7c78; /* Blue background */
+    border: 1px solid #ff574b; /* Blue border */
     color: black; /* White text */
     padding: 10px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
@@ -93,7 +93,7 @@ body {
 
 /* Add a background color on hover */
 .btn-group button:hover {
-    background-color: #66b3ff;
+    background-color:  #ff574b;
 }
 
 .iframe-container {
@@ -121,13 +121,22 @@ body {
   background: rgba(255, 255, 255, .85);
   color: black;
   z-index: 99999;
-  position: fixed;
   width: 95%;
 }
 
 /* Page content */
 .content {
   padding: 10px 24px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 91%
+}
+
+.sticky + .content {
+  padding-top: 102px;
 }
 
 h2::before { 
