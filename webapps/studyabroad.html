@@ -12,365 +12,379 @@ scripts:
 styles: 
     - /webapps/studyabroad/studyabroad.css
 ---
+  <div class="header" id="myHeader">
+    <center><h1>Harvard Term-Time Study Abroad 2017-2018</h1></center>
 
-<div class="header" id="myHeader">
-  <center><h1>Harvard Term-Time Study Abroad 2017-2018</h1></center>
-
-  <div class="btn-group" style="width:100%">
-    <a href="#map"><button style="width:33%">Map</button></a>
-    <a href="#graphs"><button style="width:33%">Graphs and Analysis</button></a>
-    <a href="#table"><button style="width:33%">Table</button></a>
+    <div class="btn-group" style="width:100%">
+      <a href="#map"><button style="width:33%">Map</button></a>
+      <a href="#graphs"><button style="width:33%">Graphs and Analysis</button></a>
+      <a href="#table"><button style="width:33%">Table</button></a>
+    </div>
   </div>
-</div>
-<a id="map"></a>
-<center>
+  <a id="map"></a>
+  <script>
+    // When the user scrolls the page, execute myFunction 
+    window.onscroll = function() {myFunction()};
 
-<br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br />
+    // Get the header
+    var header = document.getElementById("myHeader");
 
-<div id="tooltip-container"></div>
+    // Get the offset position of the navbar
+    var sticky = header.offsetTop;
 
-<div id="canvas-svg"></div></center>
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+  </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ 
+  <center>
+  
+  <div id="tooltip-container"></div>
 
-<script>
-d3.csv("studyabroad/Term Time Study Abroad Fall 2018 - Sheet2.csv", function(err, data) {
-  var config = {"data0":"Country","data1":"Count",
-              "label0":"label 0","label1":"label 1","color0":"#99ccff","color1":"#0050A1",
-              "width":960,"height":960}
-  
-  var width = config.width,
-      height = config.height;
-  
-  var COLOR_COUNTS = 9;
-  
-  function Interpolate(start, end, steps, count) {
-      var s = start,
-          e = end,
-          final = s + (((e - s) / steps) * count);
-      return Math.floor(final);
-  }
-  
-  function Color(_r, _g, _b) {
-      var r, g, b;
-      var setColors = function(_r, _g, _b) {
-          r = _r;
-          g = _g;
-          b = _b;
-      };
-  
-      setColors(_r, _g, _b);
-      this.getColors = function() {
-          var colors = {
-              r: r,
-              g: g,
-              b: b
-          };
-          return colors;
-      };
-  }
-  
-  function hexToRgb(hex) {
-      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16)
-      } : null;
-  }
-  
-  function valueFormat(d) {
-      return d + " Students";
-  }
-  
-  var COLOR_FIRST = config.color0, COLOR_LAST = config.color1;
-  
-  var rgb = hexToRgb(COLOR_FIRST);
-  
-  var COLOR_START = new Color(rgb.r, rgb.g, rgb.b);
-  
-  rgb = hexToRgb(COLOR_LAST);
-  var COLOR_END = new Color(rgb.r, rgb.g, rgb.b);
-  
-  var startColors = COLOR_START.getColors(),
-      endColors = COLOR_END.getColors();
-  
-  var colors = [];
-  
-  for (var i = 0; i < COLOR_COUNTS; i++) {
-    var r = Interpolate(startColors.r, endColors.r, COLOR_COUNTS, i);
-    var g = Interpolate(startColors.g, endColors.g, COLOR_COUNTS, i);
-    var b = Interpolate(startColors.b, endColors.b, COLOR_COUNTS, i);
-    colors.push(new Color(r, g, b));
-  }
-  
-  var MAP_KEY = config.data0;
-  var MAP_VALUE = config.data1;
-  
-  var projection = d3.geo.mercator()
-      .scale((width + 1) / 2 / Math.PI)
-      .translate([width / 2, height / 2])
-      .precision(.1);
-  
-  var path = d3.geo.path()
-      .projection(projection);
-  
-  var graticule = d3.geo.graticule();
-  
-  var svg = d3.select("#canvas-svg").append("svg")
-      .attr("width", width)
-      .attr("height", height);
-  
-  svg.append("path")
-      .datum(graticule)
-      .attr("class", "graticule")
-      .attr("d", path);
-  
-  var valueHash = {};
-  
-  function log10(val) {
-    return Math.log(val);
-  }
-  
-  data.forEach(function(d) {
-    valueHash[d[MAP_KEY]] = +d[MAP_VALUE];
-  });
-  
-  var quantize = d3.scale.quantize()
-      .domain([0, 1.0])
-      .range(d3.range(COLOR_COUNTS).map(function(i) { return i }));
-  
-  quantize.domain([d3.min(data, function(d){
-      return (+d[MAP_VALUE]) }),
-    d3.max(data, function(d){
-      return (+d[MAP_VALUE]) })]);
-  
-  d3.json("https://s3-us-west-2.amazonaws.com/vida-public/geo/world-topo-min.json", function(error, world) {
-    var countries = topojson.feature(world, world.objects.countries).features;
-  
-    svg.append("path")
-      .datum(graticule)
-      .attr("class", "choropleth")
-      .attr("d", path);
-  
-    var g = svg.append("g");
-  
-    g.append("path")
-    .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
-    .attr("class", "equator")
-    .attr("d", path);
-  
-    var country = g.selectAll(".country").data(countries);
-  
-    country.enter().insert("path")
-        .attr("class", "country")
-        .attr("d", path)
-        .attr("id", function(d,i) { return d.id; })
-        .attr("title", function(d) { return d.properties.name; })
-        .style("fill", function(d) {
-          if (valueHash[d.properties.name]) {
-            var c = quantize((valueHash[d.properties.name]));
-            var color = colors[c].getColors();
-            return "rgb(" + color.r + "," + color.g +
-                "," + color.b + ")";
-          } else {
-            return "#ccc";
-          }
-        })
-        .on("click", function(d) {
-            var html = "";
-  
-            html += "<div class=\"tooltip_kv\">";
-            html += "<span class=\"tooltip_key\">";
-            html += d.properties.name;
-            html += "</span>";
-            html += "<span class=\"tooltip_value\">";
-            html += (valueHash[d.properties.name] ? valueFormat(valueHash[d.properties.name]) : "");
-            html += "&nbsp;&nbsp;&nbsp;&nbsp;";
-            html += `<a href="#${d.properties.name}">Find Students</a>`
-            html += "&nbsp;&nbsp;&nbsp;&nbsp;";
-            if (d.properties.name=="China") {
-              html += `<a href="https://oie.fas.harvard.edu/links/country/china-and-hong-kong">Find Programs</a>`
-            } 
-            else if (d.properties.name=="South Korea") {
-              html += `<a href="https://oie.fas.harvard.edu/links/country/korea">Find Programs</a>`
-            }
-            else if (d.properties.name=="United Kingdom") {
-              html += `<a href=studyabroad/UK.html>Find Programs</a>`
-            }
-            else if (d.properties.name=="Czech Republic") {
-            html += `<a href="https://oie.fas.harvard.edu/links/country/czech-republich">Find Programs</a>`
-            }
-            else if (d.properties.name=="Costa Rica") {
-            html += `<a href="https://oie.fas.harvard.edu/links/country/costa-rica">Find Programs</a>`
-            }
-            else if (d.properties.name=="Dominican Republic") {
-            html += `<a href="https://oie.fas.harvard.edu/links/country/dominican-republic">Find Programs</a>`
-            }
-            else if (d.properties.name=="Puerto Rico") {
-            html += `<a href="https://oie.fas.harvard.edu/links/country/puerto-rico">Find Programs</a>`
-            }        
-            else if (d.properties.name=="Russian Federation") {
-            html += `<a href="https://oie.fas.harvard.edu/links/country/russia">Find Programs</a>`
-            }         
-            else if (d.properties.name=="South Africa") {
-            html += `<a href="https://oie.fas.harvard.edu/links/country/south-africa">Find Programs</a>`
-            }                       
-            else if (d.properties.name=="New Zealand") {
-              html += `<a href="https://oie.fas.harvard.edu/links/country/new-zealand">Find Programs</a>`
-            }
-            else {
-              html += `<a href="https://oie.fas.harvard.edu/links/country/${d.properties.name}">Find Programs</a>`
-            }
-            html += "</span>";
-            html += "</div>";
-            
-            $("#tooltip-container").html(html);
-            $(this).attr("fill-opacity", "0.8");
-            $("#tooltip-container").show();
-            
-            var coordinates = d3.mouse(this);
-            
-            var map_width = $('.choropleth')[0].getBoundingClientRect().width;
-            
-            if (d3.event.pageX < map_width / 2) {
-              d3.select("#tooltip-container")
-                .style("top", (d3.event.layerY + 15) + "px")
-                .style("left", (d3.event.layerX + 15) + "px");
-            } else {
-              var tooltip_width = $("#tooltip-container").width();
-              d3.select("#tooltip-container")
-                .style("top", (d3.event.layerY + 15) + "px")
-                .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
-            }
-        })
-        /*.on("mouseout", function() {
-                $(this).attr("fill-opacity", "1.0");
-                $("#tooltip-container").hide();
-            });*/
+  <div id="canvas-svg"></div></center>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <script>
+  d3.csv("Term Time Study Abroad Fall 2018 - Sheet2.csv", function(err, data) {
+    var config = {"data0":"Country","data1":"Count",
+                "label0":"label 0","label1":"label 1","color0":"#99ccff","color1":"#0050A1",
+                "width":960,"height":960}
     
-    g.append("path")
-        .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
-        .attr("class", "boundary")
+    var width = config.width,
+        height = config.height;
+    
+    var COLOR_COUNTS = 9;
+    
+    function Interpolate(start, end, steps, count) {
+        var s = start,
+            e = end,
+            final = s + (((e - s) / steps) * count);
+        return Math.floor(final);
+    }
+    
+    function Color(_r, _g, _b) {
+        var r, g, b;
+        var setColors = function(_r, _g, _b) {
+            r = _r;
+            g = _g;
+            b = _b;
+        };
+    
+        setColors(_r, _g, _b);
+        this.getColors = function() {
+            var colors = {
+                r: r,
+                g: g,
+                b: b
+            };
+            return colors;
+        };
+    }
+    
+    function hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[3], 16),
+            g: parseInt(result[1], 16),
+            b: parseInt(result[1], 16)
+        } : null;
+    }
+    
+    function valueFormat(d) {
+        return d + " Students";
+    }
+    
+    var COLOR_FIRST = config.color0, COLOR_LAST = config.color1;
+    
+    var rgb = hexToRgb(COLOR_FIRST);
+    
+    var COLOR_START = new Color(rgb.r, rgb.g, rgb.b);
+    
+    rgb = hexToRgb(COLOR_LAST);
+    var COLOR_END = new Color(rgb.r, rgb.g, rgb.b);
+    
+    var startColors = COLOR_START.getColors(),
+        endColors = COLOR_END.getColors();
+    
+    var colors = [];
+    
+    for (var i = 0; i < COLOR_COUNTS; i++) {
+      var r = Interpolate(startColors.r, endColors.r, COLOR_COUNTS, i);
+      var g = Interpolate(startColors.g, endColors.g, COLOR_COUNTS, i);
+      var b = Interpolate(startColors.b, endColors.b, COLOR_COUNTS, i);
+      colors.push(new Color(r, g, b));
+    }
+    
+    var MAP_KEY = config.data0;
+    var MAP_VALUE = config.data1;
+    
+    var projection = d3.geo.mercator()
+        .scale((width + 1) / 2 / Math.PI)
+        .translate([width / 2, height / 2])
+        .precision(.1);
+    
+    var path = d3.geo.path()
+        .projection(projection);
+    
+    var graticule = d3.geo.graticule();
+    
+    var svg = d3.select("#canvas-svg").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+    
+    svg.append("path")
+        .datum(graticule)
+        .attr("class", "graticule")
         .attr("d", path);
     
-    svg.attr("height", config.height * 2.2 / 3);
-  });
-  
-  d3.select(self.frameElement).style("height", (height * 2.3 / 3) + "px");
-});
-</script>
-  
-<center><a id="graphs"><h2>Graphs and Analysis</h2></a></center>
-
-<p>A first glance at the map might give you the impression that the Harvard exchange students go to every corner of the world; we see countries colored in Europe, South America, Africa, Asia, and Oceana. However, the stacked barplot per house that excludes countries that had less than 5 students in total overall years shows that students tend to go almost exclusively to Western European countries. 
-</p>
-
-<div class="iframe-container">
-  <iframe src="https://plot.ly/~tni/1.embed">
-  </iframe>
-</div>
-
-<p>Also, certain houses do tend towards certain countries; for example,Adams and Winthrop have more people going to England and Leverett and Eliot have more people going to Spain. Perhaps this is due to word-of-mouth about programs. </p>
-<p>We notice students residing in houses in the Quad go on exchange programs half as much as students from other houses. The data is not big enough to infer much from it, but one possible explanation is the long distance between the Quad and the office of career distances in comparisons between the office and other houses.</p>
-
-<div class="iframe-container">
-  <iframe src="https://plot.ly/~bpearson22/9.embed">
-  </iframe>
-</div>
-
-<p>Within each house, the population of students who embark on term-time study abroad is certainly a minority, with the average percentage of students studying abroad in each house being just slightly over 3%. Leverett House not only has the greatest number of students who study abroad, but it has the greatest percentage of these students, at 6.25% of the house’s residents. On the other hand, Kirkland and Dunster Houses have the lowest percentages of study abroad students, with only about 1.8% studying abroad each. </p> 
-
-<div class="iframe-container">
-  <iframe src="https://plot.ly/~bpearson22/3.embed">
-  </iframe>
-</div>
-
-<p>The concentrations that stand out as having the most people who choose to study abroad during the term are History and Literature, Social Studies, Government, and Psychology. Although these concentrations are the mostly heavily represented, there is great variety in terms of the fields that people choose to study, as areas of Mathematics, Languages, Social Sciences, Arts, and Sciences are all represented. Relatedly, Economics, Government, and Psychology are consistently among the most popular concentrations at Harvard, making it interesting that these are some of the most popular fields in which to study abroad. However, one of Harvard’s well-known popular concentrations, Computer Science, comprises a relatively low proportion of study abroad students compared to these other popular concentrations. In fact, there seems to be overall a higher percentage of students who study abroad in more humanities-focused areas, whereas the Math and hard science concentrators do not study abroad as much. Perhaps this is due to the fact that many study abroad programs are language programs, and STEM fields rarely require language-related exercise. </p>
-
-<div class="iframe-container">
-  <iframe src="https://plot.ly/~tni/3.embed">
-  </iframe>
-</div>
-
-<p>The majority of term-time study abroad students chose to go abroad during the spring semester, with a little over 65% of students going abroad in the spring and about 30% of students choosing to go abroad in the fall. Without further information it is hard to know exactly why this is the case. Perhaps it seems easier to transition back to school from summer break by going back to Harvard for a semester before going abroad. Or maybe even there are some events that students hesitate to miss out on in the fall, such as Harvard-Yale. It is also possible that there are different programs available in the fall versus in the spring.</p>
-
-<div class="iframe-container">
-  <iframe src="https://plot.ly/~bpearson22/7.embed">
-  </iframe>
-</div>
-
-<p>The vast majority of students who studied abroad during term-time were in their junior year. Only about 20% of students were in their sophomore year, whereas more than 80% of the students were in their junior year. None of the students were in their freshman or senior year. This trend seems logical, as freshman are just getting used to college and being at Harvard, while seniors want to enjoy their last year of college on campus and with their communities. Perhaps sophomore year is less common because many students are still exploring their interests because they have not declared their concentration yet. It would be difficult to decide where to go abroad and what to study if their concentration was not decided yet.  </p>
-
-<center><a id="table"><h2>Explore</h2></a></center>
-
-<input type="text" id="myInput" onkeyup='searchSname()' placeholder="Search...">
-
-<script>
-function searchSname() {
-    var input, filter, found, table, tr, td, i, j;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("tblData");
-    tr = table.getElementsByTagName("tr");
-    var n = 0;
-    for (i = 1; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td");
-        for (j = 0; j < td.length; j++) {
-            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                found = true;
+    var valueHash = {};
+    
+    function log10(val) {
+      return Math.log(val);
+    }
+    
+    data.forEach(function(d) {
+      valueHash[d[MAP_KEY]] = +d[MAP_VALUE];
+    });
+    
+    var quantize = d3.scale.quantize()
+        .domain([0, 1.0])
+        .range(d3.range(COLOR_COUNTS).map(function(i) { return i }));
+    
+    quantize.domain([d3.min(data, function(d){
+        return (+d[MAP_VALUE]) }),
+      d3.max(data, function(d){
+        return (+d[MAP_VALUE]) })]);
+    
+    d3.json("https://s3-us-west-2.amazonaws.com/vida-public/geo/world-topo-min.json", function(error, world) {
+      var countries = topojson.feature(world, world.objects.countries).features;
+    
+      svg.append("path")
+        .datum(graticule)
+        .attr("class", "choropleth")
+        .attr("d", path);
+    
+      var g = svg.append("g");
+    
+      g.append("path")
+      .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
+      .attr("class", "equator")
+      .attr("d", path);
+    
+      var country = g.selectAll(".country").data(countries);
+    
+      country.enter().insert("path")
+          .attr("class", "country")
+          .attr("d", path)
+          .attr("id", function(d,i) { return d.id; })
+          .attr("title", function(d) { return d.properties.name; })
+          .style("fill", function(d) {
+            if (valueHash[d.properties.name]) {
+              var c = quantize((valueHash[d.properties.name]));
+              var color = colors[c].getColors();
+              return "rgb(" + color.r + "," + color.g +
+                  "," + color.b + ")";
+            } else {
+              return "#ccc";
             }
-        }
-        if (found) {
-            n++;
-            console.log(n);
-            document.getElementById("num").innerHTML = "Number of students: " + n;
-            tr[i].style.display = "";
-            found = false;
-        } else {
-            tr[i].style.display = "none";
-        }
-    }
-}
-</script>
-
-<div id = "tableDiv">
-  <table id = "tblData">
-    <tr class="top"><th>Country</th><th>Name</th><th>Term</th><th>Program</th><th>Concentration</th><th>House</th><th>Email</th></tr>
-  </table>
-</div>
-
-<script type="text/javascript"charset="utf-8">
-  d3.csv("studyabroad/Term Time Study Abroad Fall 2018 - Sheet3-5.csv", function(data){
-    var table = document.getElementById("tblData");
-    for (var i = 0; i < data.length; i++) {
-      var row = table.insertRow(-1);
-      var j = 0;
-      for (var prop in data[i]){
-        row.insertCell(j).innerHTML = data[i][prop];
-        console.log(data[i][prop]);
-        j++;
-      }
-      row.cells[0].innerHTML = 
-      `<a id = "${data[i].Country}">${data[i].Country}</a>`;
-      row.cells[1].innerHTML = "Hidden"
-      row.cells[6].innerHTML = 
-      `<div class="codebox">
-      <input type="button" value="Show" style="width:78px; font-size:10px; margin:0px; padding:0px;" onclick="var spoiler = $(this).parents('.codebox').find('.content').toggle();
-      if ( this.value == 'Hide' ) { this.value = 'Show'; } else { this.value = 'Hide'; };
-      return false;"></dt>
-      <dd><div class="content" name="spoiler" style="display: none;"><!--${data[i].Email}-->Not available for now
-      </div></dd></div>`;
-    }
+          })
+          .on("click", function(d) {
+              var html = "";
+    
+              html += "<div class=\"tooltip_kv\">";
+              html += "<span class=\"tooltip_key\">";
+              html += d.properties.name;
+              html += "</span>";
+              html += "<span class=\"tooltip_value\">";
+              html += (valueHash[d.properties.name] ? valueFormat(valueHash[d.properties.name]) : "");
+              html += "&nbsp;&nbsp;&nbsp;&nbsp;";
+              html += `<a href="#${d.properties.name}">Find Students</a>`
+              html += "&nbsp;&nbsp;&nbsp;&nbsp;";
+              if (d.properties.name=="China") {
+                html += `<a href="https://oie.fas.harvard.edu/links/country/china-and-hong-kong">Find Programs</a>`
+              } 
+              else if (d.properties.name=="South Korea") {
+                html += `<a href="https://oie.fas.harvard.edu/links/country/korea">Find Programs</a>`
+              }
+              else if (d.properties.name=="United Kingdom") {
+                html += `<a href=UK.html>Find Programs</a>`
+              }
+              else if (d.properties.name=="Czech Republic") {
+              html += `<a href="https://oie.fas.harvard.edu/links/country/czech-republich">Find Programs</a>`
+              }
+              else if (d.properties.name=="Costa Rica") {
+              html += `<a href="https://oie.fas.harvard.edu/links/country/costa-rica">Find Programs</a>`
+              }
+              else if (d.properties.name=="Dominican Republic") {
+              html += `<a href="https://oie.fas.harvard.edu/links/country/dominican-republic">Find Programs</a>`
+              }
+              else if (d.properties.name=="Puerto Rico") {
+              html += `<a href="https://oie.fas.harvard.edu/links/country/puerto-rico">Find Programs</a>`
+              }        
+              else if (d.properties.name=="Russian Federation") {
+              html += `<a href="https://oie.fas.harvard.edu/links/country/russia">Find Programs</a>`
+              }         
+              else if (d.properties.name=="South Africa") {
+              html += `<a href="https://oie.fas.harvard.edu/links/country/south-africa">Find Programs</a>`
+              }                       
+              else if (d.properties.name=="New Zealand") {
+                html += `<a href="https://oie.fas.harvard.edu/links/country/new-zealand">Find Programs</a>`
+              }
+              else {
+                html += `<a href="https://oie.fas.harvard.edu/links/country/${d.properties.name}">Find Programs</a>`
+              }
+              html += "</span>";
+              html += "</div>";
+              
+              $("#tooltip-container").html(html);
+              $(this).attr("fill-opacity", "0.8");
+              $("#tooltip-container").show();
+              
+              var coordinates = d3.mouse(this);
+              
+              var map_width = $('.choropleth')[0].getBoundingClientRect().width;
+              
+              if (d3.event.pageX < map_width / 2) {
+                d3.select("#tooltip-container")
+                  .style("top", (d3.event.layerY + 15) + "px")
+                  .style("left", (d3.event.layerX + 15) + "px");
+              } else {
+                var tooltip_width = $("#tooltip-container").width();
+                d3.select("#tooltip-container")
+                  .style("top", (d3.event.layerY + 15) + "px")
+                  .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+              }
+          })
+          /*.on("mouseout", function() {
+                  $(this).attr("fill-opacity", "1.0");
+                  $("#tooltip-container").hide();
+              });*/
+      
+      g.append("path")
+          .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+          .attr("class", "boundary")
+          .attr("d", path);
+      
+      svg.attr("height", config.height * 2.2 / 3);
+    });
+    
+    d3.select(self.frameElement).style("height", (height * 2.3 / 3) + "px");
   });
-</script>
+  </script>
+    
+  <center><a id="graphs"><h2>Graphs and Analysis</h2></a></center>
 
-<p id="num"></p>
+  <p>A first glance at the map might give you the impression that the Harvard exchange students go to every corner of the world; we see countries colored in Europe, South America, Africa, Asia, and Oceana. However, the stacked barplot per house that excludes countries that had less than 5 students in total overall years shows that students tend to go almost exclusively to Western European countries. 
+  </p>
 
-<br></br>
+  <div class="iframe-container">
+    <iframe src="https://plot.ly/~tni/1.embed">
+    </iframe>
+  </div>
+
+  <p>Also, certain houses do tend towards certain countries; for example,Adams and Winthrop have more people going to England and Leverett and Eliot have more people going to Spain. Perhaps this is due to word-of-mouth about programs. </p>
+  <p>We notice students residing in houses in the Quad go on exchange programs half as much as students from other houses. The data is not big enough to infer much from it, but one possible explanation is the long distance between the Quad and the office of career distances in comparisons between the office and other houses.</p>
+  
+  <div class="iframe-container">
+    <iframe src="https://plot.ly/~tni/5.embed">
+    </iframe>
+  </div>
+
+  <p>Within each house, the population of students who embark on term-time study abroad is certainly a minority, with the average percentage of students studying abroad in each house being just slightly over 3%. Leverett House not only has the greatest number of students who study abroad, but it has the greatest percentage of these students, at 6.25% of the house’s residents. On the other hand, Kirkland and Dunster Houses have the lowest percentages of study abroad students, with only about 1.8% studying abroad each. </p> 
+
+  <div class="iframe-container">
+    <iframe src="https://plot.ly/~tni/7.embed">
+    </iframe>
+  </div>
+
+  <p>The concentrations that stand out as having the most people who choose to study abroad during the term are History and Literature, Social Studies, Government, and Psychology. Although these concentrations are the mostly heavily represented, there is great variety in terms of the fields that people choose to study, as areas of Mathematics, Languages, Social Sciences, Arts, and Sciences are all represented. Relatedly, Economics, Government, and Psychology are consistently among the most popular concentrations at Harvard, making it interesting that these are some of the most popular fields in which to study abroad. However, one of Harvard’s well-known popular concentrations, Computer Science, comprises a relatively low proportion of study abroad students compared to these other popular concentrations. In fact, there seems to be overall a higher percentage of students who study abroad in more humanities-focused areas, whereas the Math and hard science concentrators do not study abroad as much. Perhaps this is due to the fact that many study abroad programs are language programs, and STEM fields rarely require language-related exercise. </p>
+
+  <div class="iframe-container">
+    <iframe src="https://plot.ly/~tni/3.embed">
+    </iframe>
+  </div>
+
+  <p>The majority of term-time study abroad students chose to go abroad during the spring semester, with a little over 65% of students going abroad in the spring and about 30% of students choosing to go abroad in the fall. Without further information it is hard to know exactly why this is the case. Perhaps it seems easier to transition back to school from summer break by going back to Harvard for a semester before going abroad. Or maybe even there are some events that students hesitate to miss out on in the fall, such as Harvard-Yale. It is also possible that there are different programs available in the fall versus in the spring.</p>
+
+  <div class="iframe-container">
+    <iframe src="https://plot.ly/~tni/9.embed">
+    </iframe>
+  </div>
+
+  <p>The vast majority of students who studied abroad during term-time were in their junior year. Only about 20% of students were in their sophomore year, whereas more than 80% of the students were in their junior year. None of the students were in their freshman or senior year. This trend seems logical, as freshman are just getting used to college and being at Harvard, while seniors want to enjoy their last year of college on campus and with their communities. Perhaps sophomore year is less common because many students are still exploring their interests because they have not declared their concentration yet. It would be difficult to decide where to go abroad and what to study if their concentration was not decided yet.  </p>
+
+  <center><a id="table"><h2>Explore</h2></a></center>
+
+  <input type="text" id="myInput" onkeyup='searchSname()' placeholder="Search...">
+
+  <script>
+  function searchSname() {
+      var input, filter, found, table, tr, td, i, j;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tblData");
+      tr = table.getElementsByTagName("tr");
+      var n = 0;
+      for (i = 1; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td");
+          for (j = 0; j < td.length; j++) {
+              if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                  found = true;
+              }
+          }
+          if (found) {
+              n++;
+              console.log(n);
+              document.getElementById("num").innerHTML = "Number of students: " + n;
+              tr[i].style.display = "";
+              found = false;
+          } else {
+              tr[i].style.display = "none";
+          }
+      }
+  }
+  </script>
+
+  <div id = "tableDiv">
+    <table id = "tblData">
+      <tr class="top"><th>Country</th><th>Name</th><th>Term</th><th>Program</th><th>Concentration</th><th>House</th><th>Email</th></tr>
+    </table>
+  </div>
+
+  <script type="text/javascript"charset="utf-8">
+    d3.csv("Term Time Study Abroad Fall 2018 - Sheet3-5.csv", function(data){
+      var table = document.getElementById("tblData");
+      for (var i = 0; i < data.length; i++) {
+        var row = table.insertRow(-1);
+        var j = 0;
+        for (var prop in data[i]){
+          row.insertCell(j).innerHTML = data[i][prop];
+          console.log(data[i][prop]);
+          j++;
+        }
+        row.cells[0].innerHTML = 
+        `<a id = "${data[i].Country}">${data[i].Country}</a>`;
+        row.cells[1].innerHTML = "Hidden"
+        row.cells[6].innerHTML = 
+        `<div class="codebox">
+        <input type="button" value="Show" style="width:78px; font-size:10px; margin:0px; padding:0px;" onclick="var spoiler = $(this).parents('.codebox').find('.content').toggle();
+        if ( this.value == 'Hide' ) { this.value = 'Show'; } else { this.value = 'Hide'; };
+        return false;"></dt>
+        <dd><div class="content" name="spoiler" style="display: none;"><!--${data[i].Email}-->Not available for now
+        </div></dd></div>`;
+      }
+    });
+  </script>
+
+  <p id="num"></p>
+
+  <br></br>
