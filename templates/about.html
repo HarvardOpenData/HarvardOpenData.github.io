@@ -1,0 +1,121 @@
+---
+title: About
+layout: default
+permalink: /about/
+---
+<div class="container">
+    <h1 class="page-header centered">About the Harvard College Open Data Project</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <img src="/img/hodp-team-photo-18f.jpg" class="img-responsive" width="100%">
+        <div class="caption">
+          <p class="text-centered">The 2018 Harvard College Open Data Project Team</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4>
+            The Harvard College Open Data Project (HODP) is a student-faculty group that aims to increase transparency and tackle issues on campus using public Harvard data.
+        </h4>
+        <p>The Harvard College Open Data Project (HODP) is a student-faculty group that aims to increase transparency and solve problems on campus using public Harvard data. </p>
+        <p>
+        Our flagship product is Harvard’s <a href="/catalog">first open data catalog,</a> where we’ve gathered dozens of public Harvard datasets in a free repository. We’ve used data science and data visualization techniques to analyze data on campus safety, <a href="https://medium.com/harvard-open-data-project/gender-disparity-in-harvard-faculty-b253ae949a56">faculty gender disparity</a>, <a href="https://medium.com/harvard-open-data-project/you-too-could-have-won-the-dunster-uc-election-131400dce0dc">student government election turnout</a>, and <a href="https://medium.com/harvard-open-data-project/from-ec-to-tech-how-harvard-students-are-changing-concentrations-b748b55ed35b">trends in concentration popularity</a>, to name a few.
+        </p>
+        <p>
+        HODP’s community includes over 100 undergraduates as well as several Harvard faculty: Nick Sinai, the former deputy CTO of the US and current HKS professor; Jim Waldo, the former Harvard CTO; and others.
+        </p>
+        <p> <a href="https://medium.com/harvard-open-data-project">Read our blog</a> for more info!
+        </p>
+        <h4>Join the Harvard College Open Data Project!</h4>
+            <ul>
+                <!-- <li>
+                  Attend our open hack nights on Sundays from 6-8pm in Cabot Library basement, LL09.
+                </li> -->
+                <li>
+                     Submit articles to <a href="https://medium.com/harvard-open-data-project">our blog</a>.
+                </li>
+                <li>
+                  Join us on hackathons around the Boston area!
+                </li>
+                <li>
+                  <a href="https://groups.google.com/forum/#!forum/harvard-open-data">Join our mailing list</a> for details on any of the above!
+                </li>
+            </ul>
+      </div>
+    </div>
+    <h2 class="page-header centered">What we do</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Creating Harvard's first open data catalog</h3>
+        <p>
+          In the vein of <a href="https://data.gov">data.gov</a>, we're <a href="/catalog">gathering and publishing all of Harvard's public datasets in one place</a>. With this, we promote transparency and help
+          students engage better with the university. Check out our datasets!
+        </p>
+        <a href="/catalog" class="btn btn-primary btn-block">View the whole open data catalog</a>
+      </div>
+      <div class="col-md-4">
+        <h3>Creating data-driven policy with Harvard staff</h3>
+        <p>
+          We're working with <a href="https://medium.com/harvard-open-data-project/crime-and-risk-using-open-data-to-make-a-safer-community-49410a57e232">Harvard's police department (HUPD)</a> and <a href="https://medium.com/harvard-open-data-project/fooducation-food-waste-project-kick-off-d6b04fa4d070">dining services (HUDS)</a> to open and analyze their datasets. Our analyses will lead to real policy changes and greater student-staff interaction than we've ever seen.
+        </p>
+        <a href="https://medium.com/harvard-open-data-project" class="btn btn-primary btn-block">Read about our policy projects</a>
+      </div>
+      <div class="col-md-4">
+        <h3>Data science to understand our university</h3>
+        <p>
+          We <a href="https://medium.com/harvard-open-data-project/sixteenthirtysix-our-analysis-4c395d933198#.h5cuo2mlt">correctly predicted the outcome of the Harvard UC presidential election</a> using surveys
+          and social media analysis. Now we're turning toward understanding Harvard academics, social life, and finances by analyzing public Harvard data.
+        </p>
+        <a href="https://medium.com/harvard-open-data-project" class="btn btn-primary btn-block">Read our analyses</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <h2 class="centered page-header">Current projects</h2>
+      We're working on some really exciting data analysis projects this semester, including:
+      <ul>
+          <li>
+              Analyzing low turnout and predicting results of Harvard's student government elections
+          </li>
+          <li>
+              Investigating Harvard faculty diversity
+          </li>
+          <li>
+              Finding trends in the career paths of Harvard College graduates
+          </li>
+          <li>
+              Creating a database of Harvard courses
+          </li>
+      </ul>
+          <a href="https://trello.com/b/Xht5RNue/17f-hodp-projects">Check out the full list of projects here!</a>
+    </div>
+    <h2 class="centered page-header">People</h2>
+    {% for group in site.data.people.groups %}
+    <div class="row">
+      <h3 class="centered group-header">{{group.header }}</h3>
+      <div class="panel-group">
+        <!-- empty media element prevents rules for media:first-child from messing up first person -->
+        <div class="media"></div>
+        <div class="clearfix">
+        {% set loopindex2 = 1 %}
+        {% for role in site.data.people.roles %}
+          {% if role.g_id == group.id %} 
+            {% for person in site.data.people.people %}
+              {% if person.role == role.id %}
+                {% set loopindex2 = loopindex2 + 1 %}
+                {% set loopindex2 = loopindex2 / 2 %}
+                {% include person-card.html %}
+
+                {% if loopindex2  == 1 %}
+                  <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+                {% endif %}
+              {% endif %}
+
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+</div>
