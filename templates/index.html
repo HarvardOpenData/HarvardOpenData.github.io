@@ -34,7 +34,7 @@
     <div class="container">
     <h2 class="page-header text-centered">Categories</h2>
     <div class="row">
-        {% for category in site.data.categories %}
+        {% for category in categories %}
         <div class="col-xs-6 col-sm-3">
             <a href="/catalog/index.html?category={{ category.slug }}">
                 <div class="panel panel-default">
@@ -65,12 +65,9 @@
                 </a>
             </div>
 
-            {% set loopindex3 = forloop.index0 / 3 %}
-            {% if loopindex3 == 2 %}
-            <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
-            {% endif %}
         {% endfor %}
     </div>
 
     </div>
 {% endblock %}
+

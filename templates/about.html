@@ -5,7 +5,7 @@
       <h1 class="page-header centered">About the Harvard College Open Data Project</h1>
       <div class="row">
         <div class="col-md-6">
-          <img src="/img/hodp-team-photo-18f.jpg" class="img-responsive" width="100%">
+          <img src="static/img/hodp-team-photo-18f.jpg" class="img-responsive" width="100%">
           <div class="caption">
             <p class="text-centered">The 2018 Harvard College Open Data Project Team</p>
           </div>
@@ -87,7 +87,7 @@
             <a href="https://trello.com/b/Xht5RNue/17f-hodp-projects">Check out the full list of projects here!</a>
       </div>
       <h2 class="centered page-header">People</h2>
-      {% for group in peopleMap.groups %}
+      {% for group in people.groups %}
       <div class="row">
         <h3 class="centered group-header">{{group.header }}</h3>
         <div class="panel-group">
@@ -95,9 +95,9 @@
           <div class="media"></div>
           <div class="clearfix">
           {% set loopindex2 = 1 %}
-          {% for role in peopleMap.roles %}
+          {% for role in people.roles %}
             {% if role.g_id == group.id %} 
-              {% for person in peopleMap.people %}
+              {% for person in people.people %}
                 {% if person.role == role.id %}
                   {% set loopindex2 = loopindex2 + 1 %}
                   {% set loopindex2 = loopindex2 / 2 %}

@@ -1,4 +1,10 @@
-main: 
+about: 
   - title: About
     layout: default
     permalink: /about/
+index:
+  - layout: default
+    scripts: 
+        - /js/index.js
+    styles:
+        - /css/homepage.css
