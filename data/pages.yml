@@ -1,0 +1,17 @@
+main:
+    -   name: Home
+        url: /
+    -   name: About
+        url: /about/
+    -   name: Calendar
+        url: /calendar/
+    -   name: Submit
+        url: /submit/
+    -   name: Data Catalog
+        url: /catalog/
+    -   name: GitHub
+        url: https://github.com/HarvardOpenData/HarvardOpenData.github.io
+    -   name: Blog
+        url: https://medium.com/harvard-open-data-project
+    -   name: Mailing List
+        url: https://groups.google.com/forum/#!forum/harvard-open-data
