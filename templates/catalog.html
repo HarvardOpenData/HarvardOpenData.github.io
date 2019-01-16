@@ -1,20 +1,6 @@
----
-title: Catalog
-layout: default
-permalink: /catalog/
+{% extends 'default.html' %}
 
-# we need d3 scripts to load and visualize the catalog
-scripts:
-    - /js/all.js
-    - https://d3js.org/d3-collection.v1.min.js
-    - https://d3js.org/d3-dispatch.v1.min.js
-    - https://d3js.org/d3-dsv.v1.min.js
-    - https://d3js.org/d3-request.v1.min.js
-    - https://d3js.org/d3-selection.v1.min.js
-    - https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js
-    - /js/catalog.js
----
-
+{% block content %}
 <div class="container">
 
 
@@ -37,7 +23,7 @@ scripts:
   <div class="col-sm-3">
     <h3 class="page-header">Categories</h3>
     <div class="list-group" id="filter-category">
-    {% for category in site.data.categories %}
+    {% for category in categories %}
       <a href="/catalog/index.html?category={{ category.slug }}" class="list-group-item" id="filter-category-{{ category.slug }}">
         <i class="fa fa-fw fa-{{ category.icon }}"></i> &nbsp; {{ category.name }}
       </a>
@@ -45,7 +31,7 @@ scripts:
     </div>
     <h3 class="page-header">File Types</h3>
     <div class="list-group" id="filter-type">
-        {% for filetype in site.data.filetypes %}
+        {% for filetype in filetypes %}
           <a href="/catalog/index.html?type={{ filetype.name }}" class="list-group-item" id="filter-type-{{ filetype.name }}">
             <i class="fa fa-fw fa-{{ filetype.icon }}"></i> &nbsp; {{ filetype.name }}
           </a>
@@ -61,3 +47,4 @@ scripts:
        </div>
   </div>
 </div>
+{% endblock %}

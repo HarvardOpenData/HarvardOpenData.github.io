@@ -27,3 +27,8 @@ def index():
 def about():
     people = getYml('./data/people.yml')
     return render_template('about.html', site=site, people = people, page=pageData["about"][0])
+
+@app.route('/catalog/')
+def catalog():
+    return render_template('catalog.html', site=site, categories = getYml("./data/categories.yml"),
+                                 filetypes = getYml("./data/filetypes.yml"), page = pageData["catalog"][0])

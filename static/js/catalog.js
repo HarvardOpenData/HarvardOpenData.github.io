@@ -3,7 +3,7 @@
 
 var searcher;
 
-d3.csv("/assets/harvard-open-data-catalog.csv", function callback(data){
+d3.csv("/static/assets/harvard-open-data-catalog.csv", function callback(data){
     // sort data by title
     data.sort(function(a, b) {
         return a.title > b.title;
