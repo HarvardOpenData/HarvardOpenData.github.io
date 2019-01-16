@@ -1,0 +1,71 @@
+/* new styles */
+.text-centered {
+  text-align: center; }
+
+.text-white {
+  color: white !important; }
+
+/* old styles */
+#main-image {
+  max-height: 128px; }
+
+.portfolio-image {
+  max-width: 25%;
+  margin: 1em; }
+
+@media (min-width: 480px) {
+  #jumbotron h2 {
+    font-size: 4em !important; }
+
+  #jumbotron h3 {
+    font-size: 2em !important; } }
+.clickable {
+  cursor: pointer; }
+
+.img-padding {
+  padding: 4px; }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  /* Margin bottom by footer height + some padding */
+  margin-bottom: 80px; }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+  text-align: center; }
+
+.container p {
+  margin: 20px 0; }
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px; }
+
+.navbar-brand {
+  padding: 15px;
+  padding-left: 15px; }
+
+.navbar .navbar-collapse {
+  padding-right: 15px; }
+
+.title {
+  text-align: center;
+  padding: 0px;
+  margin-bottom: 2em; }
+
+.centered {
+  text-align: center; }
+
+#backdrop {
+  background: url("/img/pforzheimer-house.jpg");
+  min-height: 400px; }

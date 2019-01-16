@@ -5,7 +5,7 @@
       <h1 class="page-header centered">About the Harvard College Open Data Project</h1>
       <div class="row">
         <div class="col-md-6">
-          <img src="static/img/hodp-team-photo-18f.jpg" class="img-responsive" width="100%">
+          <img src="/static/img/hodp-team-photo-18f.jpg" class="img-responsive" width="100%">
           <div class="caption">
             <p class="text-centered">The 2018 Harvard College Open Data Project Team</p>
           </div>
@@ -100,10 +100,9 @@
               {% for person in people.people %}
                 {% if person.role == role.id %}
                   {% set loopindex2 = loopindex2 + 1 %}
-                  {% set loopindex2 = loopindex2 / 2 %}
                   {% include './_includes/person-card.html' %}
 
-                  {% if loopindex2  == 1 %}
+                  {% if loopindex2 % 2 == 1 %}
                     <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
                   {% endif %}
                 {% endif %}

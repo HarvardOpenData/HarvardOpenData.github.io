@@ -23,7 +23,7 @@ def index():
     categories = getYml('./data/categories.yml')
     return render_template('index.html', site = site, page=pageData["index"][0], categories=categories)
 
-@app.route('/about')
+@app.route('/about/')
 def about():
     people = getYml('./data/people.yml')
     return render_template('about.html', site=site, people = people, page=pageData["about"][0])
