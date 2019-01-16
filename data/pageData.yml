@@ -20,3 +20,6 @@ catalog:
         - https://d3js.org/d3-selection.v1.min.js
         - https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js
         - /static/js/catalog.js
+
+get_involved:
+  - title: Get Involved
