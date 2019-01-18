@@ -5,9 +5,15 @@ about:
 index:
   - layout: default
     scripts: 
-        - /js/index.js
+        - /static/js/index.js
     styles:
-        - /css/homepage.css
+        - /static/css/homepage.css
+
+calendar:
+  - title: Calendar
+    layout: default
+    permalink: /calendar/
+
 catalog:
   - title: Catalog
     layout: default

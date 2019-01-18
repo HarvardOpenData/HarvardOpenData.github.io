@@ -67,5 +67,5 @@ body {
   text-align: center; }
 
 #backdrop {
-  background: url("/img/pforzheimer-house.jpg");
+  background: url("/static/img/backgrounds/pforzheimer-house.jpg");
   min-height: 400px; }
