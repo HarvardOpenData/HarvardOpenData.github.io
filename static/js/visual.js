@@ -123,14 +123,14 @@ window.onload = function(){
     var desc = document.getElementById("desc");
     var source = document.getElementById("source");
     if (id){
-        d3.json("/assets/visualizations.json", function (data){
+        d3.json("/static/assets/visualizations.json", function (data){
             title.innerHTML = data[id].title;
             desc.innerHTML = data[id].description ? data[id].description : "";
             source.innerHTML = data[id].source ? `<a href = "${data[id].source}" target = "_blank">Source</a>` : "";
             chartType = data[id].type;
             xLabel = data[id].xaxis;
             yLabel = data[id].yaxis;
-            loadData(data[id].visual, "/assets/dataviz/" + data[id].file);
+            loadData(data[id].visual, "/static/assets/dataviz/" + data[id].file);
         });
     }
     else{ 

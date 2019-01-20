@@ -40,3 +40,8 @@ def catalog():
 @app.route('/get_involved/')
 def get_involved():
     return render_template('get_involved.html', site=site, page = pageData["get_involved"][0])
+
+@app.route('/visual/')
+def visual(): 
+    print(pageData["visual"][0])
+    return render_template('visual.html', site = site, page = pageData["visual"][0])

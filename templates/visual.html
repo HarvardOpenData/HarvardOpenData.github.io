@@ -1,21 +1,6 @@
----
-title: Visualization
-layout: default
-permalink: /visual/
+{% extends 'default.html' %}
 
-scripts:
-    - /js/all.js
-    - /js/lib/Chart.js
-    - https://d3js.org/d3-collection.v1.min.js
-    - https://d3js.org/d3-dispatch.v1.min.js
-    - https://d3js.org/d3-dsv.v1.min.js
-    - https://d3js.org/d3-request.v1.min.js
-    - https://d3js.org/d3-selection.v1.min.js
-    - https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js
-    - /js/visual.js
-styles:
-    - /css/viz.css
----
+{% block content %}
 <h3 id = "title" class = "header" ></h3>
 <h4 id = "desc" class = "header" ></h4>
 
@@ -33,5 +18,5 @@ styles:
 </div>
 
 <h5 id = "source"></h5>
-   
+{% endblock %}
 
