@@ -44,3 +44,8 @@ def get_involved():
 @app.route('/submit/')
 def submit():
     return  render_template('submit.html', site=site, page=pageData["submit"][0], categories = getYml('./data/categories.yml'))
+
+@app.route('/visual/')
+def visual(): 
+    print(pageData["visual"][0])
+    return render_template('visual.html', site = site, page = pageData["visual"][0])
