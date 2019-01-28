@@ -1,8 +1,6 @@
----
-title: Submit
-layout: default
-permalink: /submit/
----
+{% extends 'default.html' %}
+
+{% block content %}
 <div class="container">
     <h1 class="page-header centered">Submit a Dataset</h1>
 
@@ -44,7 +42,7 @@ permalink: /submit/
             <div class="col-sm-6">
               <label for="dataset-cat">Dataset Category:</label>
               <select class="form-control" id="dataset-category" name="dataset-category">
-                  {% for category in site.data.categories %}
+                  {% for category in categories %}
                     <option>
                         {{ category.name }}
                     </option>
@@ -62,3 +60,4 @@ permalink: /submit/
     </div>
 
 </div>
+{% endblock %}

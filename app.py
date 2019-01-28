@@ -30,7 +30,7 @@ def about():
 
 @app.route('/calendar/')
 def calendar():
-        return render_template('calendar.html', site=site, page=pageData["calendar"][0])
+    return render_template('calendar.html', site=site, page=pageData["calendar"][0])
 
 @app.route('/catalog/')
 def catalog():
@@ -40,3 +40,7 @@ def catalog():
 @app.route('/get_involved/')
 def get_involved():
     return render_template('get_involved.html', site=site, page = pageData["get_involved"][0])
+
+@app.route('/submit/')
+def submit():
+    return  render_template('submit.html', site=site, page=pageData["submit"][0], categories = getYml('./data/categories.yml'))

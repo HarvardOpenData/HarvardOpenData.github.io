@@ -29,3 +29,8 @@ catalog:
 
 get_involved:
   - title: Get Involved
+
+submit:
+  - title: Submit
+    layout: default
+    permalink: /submit/
