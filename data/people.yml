@@ -180,4 +180,63 @@ people:
         year: 2022
         bio: I’m a sophomore from Grand Rapids, Michigan, living Currier House and studying statistics and government. If I'm not at a HODP meeting, you can probably find me singing Bass II in the Harvard-Radcliffe Collegium Musicum, CA'ing Math 23, or attending the next Red Sox/Celtics/Bruins game.  
         image: seth-billiau.jpg
-        
+    -   name: Andrea Zhang
+        role: contributor
+        house: Wigglesworth
+        year: 2022
+        bio: I'm a first year from New Jersey studying math and computer science. Outside of HODP, I love singing, reading, and playing card games. 
+        image: andrea-zhang.jpg
+    -   name: Terry Ni
+        role: campuslead
+        house: Eliot
+        year: 2021
+        bio: I'm in Eliot House, and I study Applied Math. I love playing with data, art, walking around, cats and turtles, mysteries, and random, one-off campus activities. 
+        image: terry-ni.jpg
+    -   name: Bridger Gordon
+        role: contributor
+        house: Lionel
+        year: 2022
+        bio: I'm a freshman in Lionel studying Economics. I'm interested in statistics and data analysis, which is why I joined HODP. Outside of HODP, I enjoy politics, traveling, and listening to the Beatles.
+        image: bridger-gordon.png
+    -   name: Manasi Maheshwari
+        role: contributor
+        house: Currier
+        year: 2021
+        bio: I’m a sophomore in Currier studying computer science and economics. In addition to HODP, I love biking, exploring the city with friends, and trying new restaurants. 
+        image: manasi-maheshwari.jpg
+    -   name: Lucy Liu
+        role: contributor
+        house: Straus
+        year: 2022
+        bio: I'm a freshman in Straus concentrating in Applied Math. Besides data, I like long naps and modular origami. 
+        image: lucy-liu.jpeg
+    -   name: William Zhang
+        role: contributor
+        house: Canaday
+        year: 2022
+        bio: I'm a freshman studying CS and Statistics. I like playing video games, and I'm from Birmingham, Alabama.
+        image: william-zhang.jpg
+    -   name: Dasha Metropolitansky
+        role: contributor
+        house: Straus
+        year: 2022
+        bio: I’m a freshman planning on concentrating in Statistics. When I’m not at a HODP meeting, you can find me traveling the world for debate competitions, playing poker, or watching a cooking show.
+        image: dasha-metropolitansky.jpg
+    -   name: Brett Pearson
+        role: contributor
+        house: Canaday
+        year: 2022
+        bio: I'm a first-year planning on studying Economics, but I'm also really interested in statistics, computer science, and women's studies. Outside of the classroom, I sing in the Harvard-Radcliffe Veritones and I love playing volleyball and tennis. 
+        image: brett-pearson.png
+    -   name: Festus Ojo
+        role: contributor
+        house: Currier
+        year: 2021
+        bio: I'm a sophomore in Currier interested in data, machine learning, and blockchain. Outside of HODP, I'm a huge fan of basketball, anime, and hip-hop.
+        image: festus_ojo.png
+    -   name: Eric Sun
+        role: contributor
+        house: Greenough
+        year: 2022
+        bio: I am a freshman living in Greenough studying both Computer Science and Economics. In my free time, I enjoy following professional sports, and playing both fantasy football and baseball!
+        image: eric-sun.jpg
