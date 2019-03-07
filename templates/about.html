@@ -94,15 +94,14 @@
           <!-- empty media element prevents rules for media:first-child from messing up first person -->
           <div class="media"></div>
           <div class="clearfix">
-          {% set loopindex2 = 1 %}
+          {% set count = [1] %}
           {% for role in people.roles %}
             {% if role.g_id == group.id %} 
               {% for person in people.people %}
                 {% if person.role == role.id %}
-                  {% set loopindex2 = loopindex2 + 1 %}
+                  {% if count.append(count.pop() + 1) %}{% endif %}
                   {% include './_includes/person-card.html' %}
-
-                  {% if loopindex2 % 2 == 1 %}
+                  {% if count[0] % 2 == 1 %}
                     <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
                   {% endif %}
                 {% endif %}
