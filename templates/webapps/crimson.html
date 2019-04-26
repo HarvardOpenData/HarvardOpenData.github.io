@@ -1,18 +1,6 @@
----
-title: Visualization
-layout: default
-permalink: /visual/crimson
+{% extends 'default.html' %}
 
-scripts:
-    - https://apis.google.com/js/api.js
-    - https://cdnjs.cloudflare.com/ajax/libs/zingchart/2.8.3/zingchart.min.js
-    - https://cdnjs.cloudflare.com/ajax/libs/zingchart/2.8.3/modules/zingchart-wordcloud.min.js
-    - https://cdn.zingchart.com/modules/
-    - /js/all.js
-    - /js/crimson.js
-styles:
-    - /css/viz.css
----
+{% block content %}
 <h1 align="center">Harvard Crimson Word Clouds</h1>
 <h4 align = "center" id = ="source"> <a href = "https://docs.google.com/spreadsheets/d/1gWAZjMHv9WCE-zqvuTcO9akwbGjgPpeRj0XlibspTs0/edit?usp=drive_web&ouid=111762089513616199605" target = "_blank">Full dataset</a></h4>
 <h4 align="center">Frequency of Harvard Crimson Article Tags</h4>
@@ -23,3 +11,5 @@ styles:
 <div id="authorChart" class = "center">
     <h5 class = "loading">Loading...</h2>
 </div>
+
+{% endblock %}

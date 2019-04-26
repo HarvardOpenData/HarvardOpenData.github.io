@@ -1,16 +1,6 @@
----
-title: Visualization
-layout: default
-permalink: /visual/hudsmenu
+{% extends 'default.html' %}
 
-scripts:
-    - https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js
-    - https://maps.googleapis.com/maps/api/js?key=AIzaSyCT2dC3J-0KpV6kMcm96JDf7JAHwKxgEQc
-    - https://apis.google.com/js/api.js
-    - /js/all.js
-    - /js/hudsmenu.js
----
-
+{% block content %}
 <div id = "menu_visualization">
     <h1>Harvard HUDS Menu Record</h1>
     <h4><a href = "https://docs.google.com/spreadsheets/d/1S3vFDul1PeB84Zd8G5ewe1ocZ6ezidQzAp5gn1eiHtQ/edit#gid=0" target="_blank">Full Dataset</a></h4>
@@ -23,5 +13,7 @@ scripts:
 		<label>Lunch<input type = "radio" name = "radio" id = "Lunch" onclick = "loadDoc('Lunch')"/></label>
 		<label>Dinner<input type = "radio" name = "radio" id = "Dinner" onclick = "loadDoc('Dinner')"/></label>
 	</form>
-	<table class="table" id="itemsTable"></table
+	<table class="table" id="itemsTable"></table>
 </div>
+
+{% endblock %}

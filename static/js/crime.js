@@ -106,4 +106,5 @@ function getSheetData(){
         range: 'Logs!A2:J',
     }).then(onLoaded);
 }
+
 handleClientLoad();

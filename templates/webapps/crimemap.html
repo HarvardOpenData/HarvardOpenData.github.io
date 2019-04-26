@@ -1,18 +1,6 @@
----
-title: Visualization
-layout: default
-permalink: /visual/crime
+{% extends 'default.html' %}
 
-scripts:
-    - https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js
-    - https://maps.googleapis.com/maps/api/js?key=AIzaSyCT2dC3J-0KpV6kMcm96JDf7JAHwKxgEQc
-    - https://apis.google.com/js/api.js
-    - /js/all.js
-    - /js/crime.js
-styles:
-    - /css/crime.css
----
-
+{% block content %}
 <div id = "mapHeader">
     <h1>Harvard Crime Map</h1>
     <h4><a href = "https://docs.google.com/spreadsheets/d/1AMbEglG18BDz4-mQgTfAl4-jiT2Th_tKyIjwBEMDWF8/edit?usp=sharing" target="_blank">Full Dataset</a></h4>
@@ -25,3 +13,5 @@ styles:
     </div>
 </div>
 <div id = "map" class = "centered">Loading map...</div>
+
+{% endblock %}

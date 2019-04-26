@@ -119,3 +119,5 @@ $RECYCLE.BIN/
 __pycache__/app.cpython-36.pyc
 .vscode/settings.json
 __pycache__/main.cpython-36.pyc
+/lib
+*.pyc

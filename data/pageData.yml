@@ -48,3 +48,38 @@ visual:
       - /static/js/visual.js
     styles:
       - /static/css/viz.css
+
+crimemap:
+  - title: Crime Map
+    layout: default
+    scripts:
+      - https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js
+      - https://maps.googleapis.com/maps/api/js?key=AIzaSyCT2dC3J-0KpV6kMcm96JDf7JAHwKxgEQc
+      - https://apis.google.com/js/api.js
+      - /static/js/all.js
+      - /static/js/crime.js
+    styles:
+      - /static/css/crime.css
+  
+crimsonwords:
+  - title: Crimson Words
+    layout: default
+    scripts:
+      - https://apis.google.com/js/api.js
+      - https://cdnjs.cloudflare.com/ajax/libs/zingchart/2.8.3/zingchart.min.js
+      - https://cdnjs.cloudflare.com/ajax/libs/zingchart/2.8.3/modules/zingchart-wordcloud.min.js
+      - https://cdn.zingchart.com/modules/
+      - /static/js/all.js
+      - /static/js/crimson.js
+    styles:
+      - /static/css/viz.css
+
+hudsmenu:
+  - title: HUDS Menu
+    layout: default
+    scripts:
+      - https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js
+      - https://maps.googleapis.com/maps/api/js?key=AIzaSyCT2dC3J-0KpV6kMcm96JDf7JAHwKxgEQc
+      - https://apis.google.com/js/api.js
+      - /js/all.js
+      - /js/hudsmenu.js

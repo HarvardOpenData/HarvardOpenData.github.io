@@ -49,3 +49,12 @@ def submit():
 def visual(): 
     print(pageData["visual"][0])
     return render_template('visual.html', site = site, page = pageData["visual"][0])
+
+@app.route('/visual/crime')
+def crime():
+    return render_template('webapps/crimemap.html', site = site, page = pageData["crimemap"][0])
+
+
+@app.route('/visual/crimson')
+def crimson():
+    return render_template('webapps/crimson.html', site = site, page = pageData["crimsonwords"][0])
