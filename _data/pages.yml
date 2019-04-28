@@ -12,7 +12,7 @@ main:
         url: /catalog/
         newtab: 0 
     -   name: Interest Form
-        url: https://forms.gle/TUSZ9jewkLnfaYPV9
+        url: https://forms.gle/pZy9ejcQ3ornNz8D6
         newtab: 1
     -   name: GitHub
         url: https://github.com/HarvardOpenData/HarvardOpenData.github.io
