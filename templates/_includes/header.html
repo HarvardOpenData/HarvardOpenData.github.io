@@ -15,7 +15,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {% for link in site.pages.main %}
                 <li
-                {% if link.url == page.url %}
+                {% if link.url == request.path %}
                 class="active"
                 {% endif %}
                 >
