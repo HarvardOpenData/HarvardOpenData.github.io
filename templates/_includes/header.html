@@ -19,7 +19,11 @@
                 class="active"
                 {% endif %}
                 >
-                <a href="{{link.url}}">
+                <a 
+                {% if link.newtab == 1 %}
+                target = "_blank"
+                {% endif %}
+                href="{{link.url}}">
                     {{link.name}}
                 </a>
             </li>
