@@ -3,7 +3,8 @@ about:
     layout: default
     permalink: /about/
 index:
-  - layout: default
+  - title: Harvard Open Data Project
+    layout: default
     scripts: 
         - /static/js/index.js
     styles:
