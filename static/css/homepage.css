@@ -1,0 +1,7 @@
+nav.navbar {
+  margin-bottom: 0 !important; }
+
+#backdrop {
+  background-image: url("/static/img/backgrounds/widener.jpg");
+  background-position: 50% 40%;
+  min-height: 500px; }

@@ -1,0 +1,63 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="page-header centered">Submit a Dataset</h1>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p>
+          Please submit any Harvard-related datasets that you'd like to add to the website! We will only use your contact information for verfication purposes.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form method="post" class="form-horizontal" action="https://formspree.io/harvardopendataproject@gmail.com">
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <label for="name">Your Name:</label>
+              <input type="text" class="form-control" id="name" name="name">
+        </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <label for="email">Email Address:</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <label for="dataset-title">Dataset Title:</label>
+              <input type="text" class="form-control" id="dataset-title" name="dataset-title">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <label for="dataset-link">Dataset Link (URL):</label>
+              <input type="text" class="form-control" id="dataset-link" name="dataset-link">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <label for="dataset-cat">Dataset Category:</label>
+              <select class="form-control" id="dataset-category" name="dataset-category">
+                  {% for category in categories %}
+                    <option>
+                        {{ category.name }}
+                    </option>
+                  {% endfor %}
+                  <option>
+                      Other
+                  </option>]
+              </select>
+            </div>
+          </div>
+          <br/>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+
+</div>
+{% endblock %}

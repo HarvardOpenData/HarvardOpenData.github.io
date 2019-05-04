@@ -1,0 +1,20 @@
+main:
+  - title: Harvard College Open Data Project
+    # email: your-email@domain.com
+    description: >
+        The Harvard College Open Data Project is a student-faculty collaboration dedicated to opening and analyzing Harvard data to empower our community members to improve campus life.
+    # baseurl: "" # the subpath of your site, e.g. /blog
+    url: "http://harvard-open-data-project.github.io" # the base hostname & protocol for your site
+    # twitter_username: jekyllrb
+    # github_username:  jekyll
+
+    # Build settings
+    markdown: kramdown
+    theme: minima
+
+    include: ['webapps']
+
+    # libraries
+    # bootstrap_version: 3.3.7
+    # jquery_version: 3.1.1
+    # fontawesome_version: 4.6.3

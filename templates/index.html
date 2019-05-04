@@ -1,0 +1,73 @@
+{% extends 'default.html' %}
+
+{% block content %}
+    <div id="backdrop">
+    <div class="container">
+
+
+        <div class="title">
+            <!-- <h2 class="text-white lead"><em>The Harvard Open Data Project presents</em></h2> -->
+        <h1 class="text-white">Harvard's First Open Data Catalog</h1>
+        </div>
+
+        <form action="/catalog" method="GET">
+        <div class="input-group input-group-lg">
+            <input type="text" id="catalog-search-text" class="form-control" name="q" placeholder="Search for Harvard open datasets">
+            <span class="input-group-btn">
+            <button class="btn btn-primary">
+                <i class="fa fa-search"></i>
+                Search
+            </button>
+        </span>
+        </div>
+        </form>
+    </div>
+    </div>
+
+    <br/>
+
+    <!-- <div class="container">
+        <div class="well"><p class="lead">Interested in data science? Want to learn how FiveThirtyEight predicts elections? The Harvard College Open Data Project (HODP) has a 5-week bootcamp on data visualization, data science, and data journalism. Build projects using public Harvard data including final club finances, faculty diversity, and crime logs. Beginner and advanced tracks available. <b>Intro meeting on Wednesday 1/31, 7pm in Lamont 240.</b> Fill out the interest form at <a href="http://bit.ly/opendata18">bit.ly/opendata18</a> and see the <a href="/calendar/">calendar</a> for more info.</p>
+        </div>
+    </div> -->
+
+    <div class="container">
+    <h2 class="page-header text-centered">Categories</h2>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-xs-6 col-sm-3">
+            <a href="/catalog/?category={{ category.slug }}">
+                <div class="panel panel-default">
+                <div class="panel-body">
+                    <p class="text-center text-primary"><i class="fa fa-4x fa-{{ category.icon }}"></i></p>
+                    <h2 class="text-center lead">{{ category.name }}</h2>
+                </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- These articles are populated from the HODP Medium -->
+    <div class="row" id = "articles" style = "visibility: hidden">
+        <h2 class="page-header text-centered">Latest Articles</h2>
+        {% for i in range(2) %}
+            <div class="col-md-4">
+                <a id = "articlelink{{ i }}" href="#">
+                <div class="thumbnail">
+                    <img id = "articleimg{{ i }}" src="" class="img-thumbnail img-responsive" alt="Image" />
+                    <div class="caption">
+                        <p>
+                            <h2 class="text-center lead" id = "articletitle{{ i }}"></h2>
+                        </p>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+        {% endfor %}
+    </div>
+
+    </div>
+{% endblock %}
+
