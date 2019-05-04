@@ -1,4 +1,8 @@
 hodp/
+_hodp/
+lib
+lib/
+.lib/
 # Created by https://www.gitignore.io/api/node,macos,jekyll,windows
 
 ### Jekyll ###
