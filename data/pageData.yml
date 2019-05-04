@@ -3,7 +3,8 @@ about:
     layout: default
     permalink: /about/
 index:
-  - layout: default
+  - title: Harvard Open Data Project
+    layout: default
     scripts: 
         - /static/js/index.js
     styles:
@@ -83,3 +84,15 @@ hudsmenu:
       - https://apis.google.com/js/api.js
       - /js/all.js
       - /js/hudsmenu.js
+
+studyabroad:
+  - title: Study Abroad
+    layout: default
+    permalink: /visual/studyabroad
+    scripts:
+        - https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js
+        - https://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js
+        - https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
+        - /static/js/all.js
+    styles: 
+        - /static/css/studyabroad.css

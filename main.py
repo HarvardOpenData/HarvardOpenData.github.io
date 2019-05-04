@@ -50,11 +50,19 @@ def visual():
     print(pageData["visual"][0])
     return render_template('visual.html', site = site, page = pageData["visual"][0])
 
+
+
+
+
+### WEBAPPS ###
 @app.route('/visual/crime')
 def crime():
     return render_template('webapps/crimemap.html', site = site, page = pageData["crimemap"][0])
 
-
 @app.route('/visual/crimson')
 def crimson():
     return render_template('webapps/crimson.html', site = site, page = pageData["crimsonwords"][0])
+
+@app.route('/visual/studyabroad')
+def studyabroad():
+    return render_template('webapps/studyabroad.html', site = site, page = pageData["studyabroad"][0])
