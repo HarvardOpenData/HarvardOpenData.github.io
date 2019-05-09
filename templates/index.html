@@ -49,16 +49,16 @@
     </div>
 
     <!-- These articles are populated from the HODP Medium -->
-    <div class="row" id = "articles" style = "visibility: hidden">
+    <div class="row" id = "articles">
         <h2 class="page-header text-centered">Latest Articles</h2>
-        {% for i in range(2) %}
+        {% for i, article in featured %}
             <div class="col-md-4">
-                <a id = "articlelink{{ i }}" href="#">
+                <a id = "articlelink{{ i }}" href="{{ article.url }}">
                 <div class="thumbnail">
-                    <img id = "articleimg{{ i }}" src="" class="img-thumbnail img-responsive" alt="Image" />
+                    <img id = "articleimg{{ i }}" src="/static/img/featured/{{ article.imgsrc }}" class="img-thumbnail img-responsive" alt="Image" />
                     <div class="caption">
                         <p>
-                            <h2 class="text-center lead" id = "articletitle{{ i }}"></h2>
+                            <h2 class="text-center lead" id = "articletitle{{ i }}"> {{ article.name }}</h2>
                         </p>
                     </div>
                 </div>
