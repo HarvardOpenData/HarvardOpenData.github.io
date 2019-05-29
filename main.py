@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, send_from_directory
+from flask import render_template
 import yaml
 
 app = Flask(__name__)
