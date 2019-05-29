@@ -126,3 +126,4 @@ __pycache__/main.cpython-36.pyc
 /lib
 *.pyc
 /hodp
+node_modules/

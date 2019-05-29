@@ -1,14 +1,14 @@
-about: 
+about:
   - title: About
     layout: default
     permalink: /about/
 index:
   - title: Harvard Open Data Project
     layout: default
-    scripts: 
-        - /static/js/index.js
+    scripts:
+      - /static/js/index.js
     styles:
-        - /static/css/homepage.css
+      - /static/css/homepage.css
 
 calendar:
   - title: Calendar
@@ -19,14 +19,14 @@ catalog:
   - title: Catalog
     layout: default
     scripts:
-        - /static/js/all.js
-        - https://d3js.org/d3-collection.v1.min.js
-        - https://d3js.org/d3-dispatch.v1.min.js
-        - https://d3js.org/d3-dsv.v1.min.js
-        - https://d3js.org/d3-request.v1.min.js
-        - https://d3js.org/d3-selection.v1.min.js
-        - https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js
-        - /static/js/catalog.js
+      - /static/js/all.js
+      - https://d3js.org/d3-collection.v1.min.js
+      - https://d3js.org/d3-dispatch.v1.min.js
+      - https://d3js.org/d3-dsv.v1.min.js
+      - https://d3js.org/d3-request.v1.min.js
+      - https://d3js.org/d3-selection.v1.min.js
+      - https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js
+      - /static/js/catalog.js
 
 get_involved:
   - title: Get Involved
@@ -61,7 +61,7 @@ crimemap:
       - /static/js/crime.js
     styles:
       - /static/css/crime.css
-  
+
 crimsonwords:
   - title: Crimson Words
     layout: default
@@ -90,9 +90,15 @@ studyabroad:
     layout: default
     permalink: /visual/studyabroad
     scripts:
-        - https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js
-        - https://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js
-        - https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
-        - /static/js/all.js
-    styles: 
-        - /static/css/studyabroad.css
+      - https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js
+      - https://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js
+      - https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
+      - /static/js/all.js
+    styles:
+      - /static/css/studyabroad.css
+
+scoreboard:
+  - title: Scoreboard
+    layout: default
+    scripts:
+      - /static/js/scoreboard.js
