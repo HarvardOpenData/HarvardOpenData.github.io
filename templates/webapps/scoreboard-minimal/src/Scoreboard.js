@@ -1,8 +1,9 @@
 import React from "react";
 import { FirestoreCollection } from "react-firestore";
+import download from "downloadjs";
 
 // UI imports
-import { Tabs, Table, Spin } from "antd";
+import { Tabs, Table, Spin, Button, Icon } from "antd";
 
 // Plotly imports
 import Plotly from "plotly.js-basic-dist";
@@ -16,6 +17,10 @@ const tabBarStyle = {
   color: "white"
 };
 
+const scoreboardStyle = {
+  "margin-bottom": "4vw"
+};
+
 // Plotly setup
 const Plot = createPlotlyComponent(Plotly);
 
@@ -23,7 +28,8 @@ const layout = {
   title: "Performance over time",
   yaxis: {
     title: "Wins"
-  }
+  },
+  autosize: true
 };
 
 // The columns for the table in each tab
@@ -96,6 +102,7 @@ function Navigator() {
       >
         {teams.map((team, i) => (
           <TabPane tab={team} key={i + 1}>
+            <h3>Overview for {team}</h3>
             <FirestoreCollection
               path="sports-scores"
               filter={["team", "==", team]}
@@ -109,6 +116,21 @@ function Navigator() {
             />
           </TabPane>
         ))}
+        <TabPane tab="Download all data" key="downloadTab">
+          <FirestoreCollection
+            path="sports-scores"
+            render={({ isLoading, data }) => {
+              return isLoading ? (
+                <Spin size="large" className="Scoreboard" />
+              ) : (
+                <React.Fragment>
+                  <h3>Download all data</h3>
+                  {Download(data)}
+                </React.Fragment>
+              );
+            }}
+          />
+        </TabPane>
       </Tabs>
     </React.Fragment>
   );
@@ -116,19 +138,43 @@ function Navigator() {
 
 function Scoreboard(data) {
   return (
-    <div className="Scoreboard">
+    <div className="Scoreboard" style={scoreboardStyle}>
       <Table dataSource={data} columns={columns} />
-      <Plot
-        data={[
-          {
-            type: "bar",
-            marker: { color: "rgb(201, 0, 22)" },
-            x: data.map(el => el.season + " Season"),
-            y: data.map(el => parseInt(el.overall.split("-")[0]))
-          }
-        ]}
-        layout={layout}
-      />
+      <div style={{ display: "inline-flex" }}>
+        <Plot
+          data={[
+            {
+              type: "bar",
+              marker: { color: "rgb(201, 0, 22)" },
+              x: data.map(el => el.season + " Season"),
+              y: data.map(el => parseInt(el.overall.split("-")[0]))
+            }
+          ]}
+          layout={layout}
+          style={{ display: "inline-flex", width: "100%", height: "100%" }}
+          useResizeHandler={true}
+        />
+        {Download(data)}
+      </div>
+    </div>
+  );
+}
+
+function Download(data) {
+  return (
+    <div className="Scoreboard">
+      <Button
+        onClick={() =>
+          download(
+            JSON.stringify(data),
+            "sports-score.json",
+            "application/json"
+          )
+        }
+      >
+        <Icon type="download" />
+        Download scores data
+      </Button>
     </div>
   );
 }

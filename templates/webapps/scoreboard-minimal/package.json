@@ -20,12 +20,14 @@
     "react-hot-loader": "^4.8.6",
     "style-loader": "^0.23.1",
     "webpack": "^4.31.0",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
     "antd": "^3.18.1",
     "babel-plugin-import": "^1.11.2",
+    "downloadjs": "^1.4.7",
     "firebase": "^6.0.2",
     "plotly.js-basic-dist": "^1.47.4",
     "react": "^16.8.6",
