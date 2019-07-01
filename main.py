@@ -77,3 +77,8 @@ def crimson():
 @app.route('/visual/studyabroad')
 def studyabroad():
     return render_template('webapps/studyabroad.html', site=site, page=pageData["studyabroad"][0])
+
+
+@app.route('/visual/scoreboard')
+def scoreboard():
+    return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])

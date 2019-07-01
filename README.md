@@ -29,21 +29,76 @@ Want to follow what we're up to or join our growing team of 40+ students?
 
 ## Running the website
 
-To set up our website, you'll need to have Ruby installed - it comes preinstalled on Linux and macOS. On macOS, the preinstalled version of Ruby is usually too old, so you should install the newer version with Homebrew: `brew install ruby`.
+### Getting the Repo
 
-Once your Ruby is set up, run the following in your terminal:
-
+To copy the repo to your computer run
 ```
-git clone https://github.com/HarvardOpenData/HarvardOpenData.github.io.git
-cd HarvardOpenData.github.io
-sudo gem install bundler
-bundle install
+$ git clone https://github.com/HarvardOpenData/HarvardOpenData.github.io.git
 ```
 
-To run:
+
+### Installing App Engine
+If you’ve never worked with App Engine before, follow the steps [here](https://cloud.google.com/sdk/docs/) to install the Cloud SDK. (You can skip step #6).
+
+### Set Up Your Virtual Environment
+We’ll use a virtual environment to install the necessary packages without overriding or conflicting with existing packages on your computer. 
+
+If you don’t already have virtualenv installed, install it using
 
 ```
-bundle exec jekyll serve
+$ pip install virtualenv
 ```
 
-Anytime you want to start the app.
+Create and activate your virtual environment. If your default version of Python is 2.7, run the below lines. If your default is not 2.7, read the answer [here](https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv) for how to modify the second line below.
+
+```
+$ cd HarvardOpenData.github.io/
+$ python -m virtualenv hodp
+$ source hodp/bin/activate
+```
+
+Install the required packages
+```
+$ pip install -t lib -r requirements.txt
+```
+
+### Local Testing
+To test your app locally run the following in your root directory
+
+```
+$ dev_appserver.py app.yaml
+```
+
+### Workflow
+Ready to work? Make sure you’re on the master branch of the github repo and create your own branch. We recommend naming your branch [first-initial][last-initial]-branchname. The name of the branch can be anything you’d like, but try to be descriptive and concise!
+
+```
+$ git checkout -b mn-newbranch
+```
+
+Some helpful tips!
+* Commit often! This way, if you make a change you don’t like you can easily roll-back to your last commit and not risk losing all of your work!
+* Be descriptive with your commit messages. This will help both yourself and others
+* Try to keep your branch up to date with the master branch. This will help prevent merge conflicts when we eventually merge.
+
+To pull from master, **first commit your changes to your branch.** Then run the following.
+
+```
+$ git checkout master
+$ git pull
+$ git checkout [your-branch-name]
+$ git pull origin master
+```
+
+If you have some merge conflicts, resolve them (ideally fixing your code rather than the code on master) and then commit!
+
+### Ready to Merge?
+**Don’t merge your own branch to master!**
+
+When you’re ready to merge, make sure all of your code has been committed and pushed to your branch.  Then go to [https://github.com/HarvardOpenData/HarvardOpenData.github.io](https://github.com/HarvardOpenData/HarvardOpenData.github.io) where you should see an option to compare and pull request.
+
+![Github Screenshot](./readme_img_1.png)
+
+1. **Click the Compare & pull request button.** This should bring you to a new screen where you can add comments about the changes you made.
+2. **Add Maddy, Kevin, and at least 2 other members of the dev team as reviewers on your pull request.** You should see this option to the right of the comments box.
+3. **Once you have approval from all your reviewers**, go ahead and merge!
