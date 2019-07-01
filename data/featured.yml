@@ -1,9 +1,9 @@
-- name: Where do Harvard Students Want to Live?
-  imgsrc: housing-pref-2018.jpeg
-  url: https://medium.com/harvard-open-data-project/where-do-harvard-students-want-to-live-bd19c9be3dc7
-- name: Harvard Concentration Data
-  imgsrc: harvard-concentration-data.jpeg
-  url: https://medium.com/harvard-open-data-project/from-ec-to-tech-how-harvard-students-are-changing-concentrations-b748b55ed35b
-- name: Gender Disparity in Harvard Faculty
-  imgsrc: gender-disparity.jpg
-  url: https://medium.com/harvard-open-data-project/gender-disparity-in-harvard-faculty-b253ae949a56
+- name: An Analysis of Harvard Confessions
+  imgsrc: confessions-2019.png
+  url: https://medium.com/harvard-open-data-project/whats-almost-left-unsaid-an-analysis-of-harvard-confessions-ef2aedd2d0fe
+- name: Harvard’s Most (and Least) Desired Houses 2019
+  imgsrc: housing-prefs-2019.jpeg
+  url: https://medium.com/harvard-open-data-project/harvards-most-and-least-desired-houses-updated-housing-day-2019-521e6db3e854
+- name: Funding Disparities and Accountability Issues in Student Group Financing
+  imgsrc: uc-grants-2019.jpg
+  url: https://medium.com/harvard-open-data-project/demystifying-uc-grants-funding-and-accountability-gaps-in-harvard-student-group-funding-77697dd75247
