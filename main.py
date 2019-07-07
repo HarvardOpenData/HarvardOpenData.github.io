@@ -1,6 +1,10 @@
 from flask import Flask
 from flask import render_template
 import yaml
+import sys
+sys.path.append("/")
+import server.constants as constants
+import server.auth as auth
 
 app = Flask(__name__)
 
@@ -82,3 +86,15 @@ def studyabroad():
 @app.route('/visual/scoreboard')
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
+
+@app.route('/demographics')
+def demographics_get():
+    userEmail = Session["email"]
+    userId = Session["id"]
+    db = None
+    if not auth.is_authenticated(userEmail, userId, db):
+        return get_auth()
+    return None
+
+def get_auth():
+    return render_template('auth.html', CLIENT_ID=GOOGLE_CLIENT_ID)
