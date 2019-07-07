@@ -1,3 +1,8 @@
 Flask==1.0.2
 firebase-admin==2.16.0
+google-api-core==1.9.0
+google-api-python-client==1.7.9
+google-auth==1.6.3
+google-auth-httplib2==0.0.3
+google-cloud-core==0.29.1
 Werkzeug<0.13.0,>=0.12.0

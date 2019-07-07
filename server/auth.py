@@ -1,6 +1,10 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+from google.oauth2 import id_token
+from google.auth.transport import requests
+import server.constants as constants
+
 import hashlib
 import datetime
 
@@ -24,8 +28,25 @@ def is_authenticated(userEmail, userId, db):
     else:
         raise Exception("Email and stored ID do not match")
 
-# creates a user in the database and returns a reference to the user's email doc
-# if user already exists, returns a reference to existing user's email doc
+# if not currently authenticated, try to authenticate with google backend
+# and create the new user if authentication works
+# If just want to authenticate, db should be null and will return None on success
+def authenticate_new(token, db):
+    idinfo = id_token.verify_oauth2_token(token, requests.Request(), constants.GOOGLE_CLIENT_ID)
+    userId = idinfo["sub"]
+    userEmail = idinfo["email"]
+    hd = idinfo["hd"]
+    if hd is None or hd not in ["college.harvard.edu"]:
+        raise Exception("Not a @college.harvard.edu email!")
+    if db is not None:
+        return create_user(userEmail, userId, db)
+    else:
+        return None
+
+# gets a user by their email and corresponding ID
+# if user does not exist, create in DB and return new doc ref
+# assumes email and id already authenticated with google backend
+# throws exceptions if email or ID is None, or if they do not match
 def create_user(userEmail, userId, db):
     emails_ref = db.collection("emails")
     if userEmail is None:
@@ -46,4 +67,3 @@ def create_user(userEmail, userId, db):
             "demographics" : {}
         })
         return emails_ref.document(userEmail)
-
