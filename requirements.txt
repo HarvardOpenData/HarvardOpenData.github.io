@@ -7,3 +7,4 @@ google-api-core
 google-api-python-client
 google-auth
 google-auth-httplib2
+Werkzeug>=0.12.0
