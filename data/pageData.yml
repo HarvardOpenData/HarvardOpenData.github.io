@@ -102,3 +102,8 @@ scoreboard:
     layout: default
     scripts:
       - /static/js/scoreboard.js
+
+auth:
+  - title: Authentication
+    scripts:
+      - /static/js/auth.js

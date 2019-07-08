@@ -1,3 +1,4 @@
+import os
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
@@ -32,7 +33,7 @@ def is_authenticated(userEmail, userId, db):
 # and create the new user if authentication works
 # If just want to authenticate, db should be null and will return None on success
 def authenticate_new(token, db):
-    idinfo = id_token.verify_oauth2_token(token, requests.Request(), constants.GOOGLE_CLIENT_ID)
+    idinfo = id_token.verify_oauth2_token(token, requests.Request(), constants.get_google_client_id())
     userId = idinfo["sub"]
     userEmail = idinfo["email"]
     hd = idinfo["hd"]
@@ -67,3 +68,19 @@ def create_user(userEmail, userId, db):
             "demographics" : {}
         })
         return emails_ref.document(userEmail)
+
+def init_survey_firebase():
+    if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
+        cred = credentials.ApplicationDefault()
+        firebase_admin.initialize_app(cred, {
+            'projectId': "hodp-surveys",
+        })
+    else:
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'survey_creds.json'
+        cred = credentials.ApplicationDefault()
+        firebase_admin.initialize_app(cred, {
+            'projectId' : "hodp-surveys"
+        })
+
+def get_survey_firestore_client():
+    return firestore.client()

@@ -1,8 +1,5 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, session, render_template
 import yaml
-import sys
-sys.path.append("/")
 import server.constants as constants
 import server.auth as auth
 
@@ -25,7 +22,7 @@ def siteConstants():
 
 site = siteConstants()
 pageData = getYml('./data/pageData.yml')
-
+auth.init_survey_firebase()
 
 @app.route('/')
 def index():
@@ -63,7 +60,6 @@ def submit():
 
 @app.route('/visual/')
 def visual():
-    print(pageData["visual"][0])
     return render_template('visual.html', site=site, page=pageData["visual"][0])
 
 
@@ -89,12 +85,16 @@ def scoreboard():
 
 @app.route('/demographics')
 def demographics_get():
-    userEmail = Session["email"]
-    userId = Session["id"]
-    db = None
+    userEmail = None
+    userId = None
+    if "email" in session:
+        userEmail = session["email"]
+    if "id" in session: 
+        userId = session["id"]
+    db = auth.get_survey_firestore_client()
     if not auth.is_authenticated(userEmail, userId, db):
         return get_auth()
     return None
 
 def get_auth():
-    return render_template('auth.html', CLIENT_ID=GOOGLE_CLIENT_ID)
+    return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id())

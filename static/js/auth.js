@@ -1,3 +1,3 @@
-function onSignOn(googleUser) {
-    
+function init() {
+    console.log("Hello");    
 }
