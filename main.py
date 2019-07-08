@@ -1,7 +1,8 @@
-from flask import Flask, session, render_template
+from flask import Flask, session, render_template, request, jsonify
 import yaml
 import server.constants as constants
 import server.auth as auth
+import json
 
 app = Flask(__name__)
 
@@ -83,18 +84,23 @@ def studyabroad():
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
 
-@app.route('/demographics')
-def demographics_get():
-    userEmail = None
-    userId = None
-    if "email" in session:
-        userEmail = session["email"]
-    if "id" in session: 
-        userId = session["id"]
-    db = auth.get_survey_firestore_client()
-    if not auth.is_authenticated(userEmail, userId, db):
-        return get_auth()
-    return None
+@app.route('/demographics', methods=['GET', 'POST'])
+def demographics():
+    if request.method == 'GET':
+        userEmail = None
+        userId = None
+        if "email" in session:
+                userEmail = session["email"]
+        if "id" in session: 
+                userId = session["id"]
+        db = auth.get_survey_firestore_client()
+        if not auth.is_authenticated(userEmail, userId, db):
+                return get_auth('/demographics')
+        return None
+    elif request.method == 'POST':
+        token = request.data
+        print(auth.authenticate_new(token, auth.get_survey_firestore_client()))
+        return "Hello"
 
-def get_auth():
-    return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id())
+def get_auth(request_url):
+    return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)

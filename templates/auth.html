@@ -21,4 +21,17 @@
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
+<script>
+    function onSignIn(googleUser){
+        console.log("sending user info to server");
+        console.log(googleUser.getAuthResponse().id_token)
+        fetch("{{ request_url }}", {
+            method : "POST",
+            body : googleUser.getAuthResponse().id_token
+        }).then(response =>
+            response.text().then(text => console.log(text))
+        )
+    }
+</script>
+
 {% endblock custom_scripts %}

@@ -19,8 +19,8 @@ def is_authenticated(userEmail, userId, db):
     if userEmail is None or userId is None:
         return False
     emails_ref = db.collection("emails")
-    userDoc = emails_ref.document(userEmail)
-    if userDoc is None:
+    userDoc = emails_ref.document(userEmail).get()
+    if userDoc is None or not userDoc.exists:
         return False
     userDict = userDoc.to_dict() 
     
@@ -57,15 +57,12 @@ def create_user(userEmail, userId, db):
     if is_authenticated(userEmail, userId, db):
         return emails_ref.document(userEmail)
     else: 
+        print(userEmail)
         emails_ref.document(userEmail).set({
-            "id" : userId,
-            "has_demographics" : False,
-            "last_contact" : datetime.datetime.now,
-            "monthly_responses" : [],
-            "total_responses" : 0,
-        })
-        db.collection("responses").document(email_hash(userEmail)).set({
-            "demographics" : {}
+            u"id" : userId, 
+            u"has_demographics" : False,
+            u"monthly_responses" : [],
+            u"total_responses" : 0 
         })
         return emails_ref.document(userEmail)
 
