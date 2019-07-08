@@ -1,7 +1,9 @@
 {% extends 'default.html' %}  
 
 {% block custom_meta %} 
-    <meta name="google-signin-client_id" content="{{ CLIENT_ID }}.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="{{ CLIENT_ID }}">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-hosted_domain" content="college.harvard.edu">
 {% endblock %} 
   
 {% block content %}
@@ -10,7 +12,7 @@
     <h1 class="page-header centered">Sign In to Survey Group</h1>
     In order to validate that you are a Harvard College student, we require that you sign in with your @college.harvard.edu address. Google handles all of the login info and we do not see anything except for your email address and some info from google to uniquely identify you. In order to fill out the demographics, please sign in below.
 
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div class="g-signin2"></div>
 </div>
 
 {% endblock %}

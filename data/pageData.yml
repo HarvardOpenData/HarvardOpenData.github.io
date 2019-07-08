@@ -105,5 +105,3 @@ scoreboard:
 
 auth:
   - title: Authentication
-    scripts:
-      - /static/js/auth.js
