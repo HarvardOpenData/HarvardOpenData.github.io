@@ -20,6 +20,8 @@ def siteConstants():
     site["pages"] = getYml('./data/pages.yml')
     return site
 
+def demographicQuestions():
+    return getYml("./data/demographic_questions.yml")
 
 site = siteConstants()
 pageData = getYml('./data/pageData.yml')
@@ -98,7 +100,9 @@ def demographics():
         if not auth.is_authenticated(userEmail, userId, db):
                 return redirect("/auth/demographics")
         responsesDict = auth.get_responses_dict(userEmail, db)
-        return render_template("demographics.html", page=pageData["demographics"][0], site=site, responses = responsesDict)
+        print(responsesDict["demographics"])
+        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"],
+                                questions = demographicQuestions())
     else: 
         raise NotImplementedError()
 

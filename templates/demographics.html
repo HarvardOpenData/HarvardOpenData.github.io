@@ -2,9 +2,103 @@
   
 {% block content %}
 <div class = "container">
-    <h1>Welcome to the HODP Survey Group!</h1>
+    <div class = "row">
+        <h1>Welcome to the HODP Survey Group!</h1>
+    </div>
     <form>
+        <div class = "row">
+            <h3>What is your class year?</h3>
+            <select id = "slctClass" name = "class" required>
+                <option disabled selected value></option>
+                {% for year in questions.years %}
+                    <option 
+                        {% if demographics is defined and demographics["class"] == year %}
+                            selected = "selected"
+                        {% endif %}
+                    >{{ year }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class = "row">
+            <h3>What gender do you identify as?</h3>
+            <select id = "slctGender" name = "gender" required>
+                <option disabled selected value></option>
+                {% for gender in questions.genders %}
+                    <option
+                        {% if demographics is defined and demographics["gender"] == gender %}
+                            selected = "selected"
+                        {% endif %}
+                    >{{ gender }}</option> 
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class = "row">
+            <h3>What ethnicity do you identify as (select all that apply)?</h3>
+            <select id = "slctEthnicity" name = "ethnicity" size = "10" required multiple>
+            {% for ethnicity in questions.ethnicities %}
+            <option
+                {% if demographics is defined and demographics["ethnicity"] == ethnicity %}
+                    selected = "selected"
+                {% endif %}
+            >{{ ethnicity }}</option> 
+                
+            {% endfor %}
+            </select>
+        </div> 
+
+        <div class = "row">
+            <h3>What is/was your freshman dorm?</h3>
+            <select id = "slctDorm" name = "freshman_dorm" required>
+                {% for dorm in questions.freshman_dorms %}
+                <option
+                    {% if demographics is defined and demographics["freshman_dorm"] == dorm %}
+                        selected = "selected"
+                    {% endif %}
+                >{{ dorm }}</option> 
+                    
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class = "row" id = "houseDiv" 
+        {% if demographics.class == questions.years[0] %}
+        hidden
+        {% endif %}
+            >
+            <h3>Which house are you in?</h3>
+            <select id = "slctHouse" name = "house">
+                {% for house in questions.houses %}
+                <option
+                    {% if demographics is defined and demographics["house"] == house %}
+                        selected = "selected"
+                    {% endif %}
+                >{{ house }}</option> 
+                    
+                {% endfor %}
+            </select> 
+        </div>
+
+        <div class = "row">
+            <h3>What is your concentration (select all that apply)?</h3>
+            <select id = "slctConcentration" name = "concentration" size = "10" multiple>
+                    {% for concentration in questions.concentrations %}
+                    <option
+                        {% if demographics is defined and demographics["concentration"] == concentration %}
+                            selected = "selected"
+                        {% endif %}
+                    >{{ concentration }}</option> 
+                        
+                    {% endfor %}
+            </select>
+        </div>
         
+        <br/>
+        <br/>
+        <div class = "row">
+            <input type = "submit" value = "Save" />
+        </div>
     </form>
 </div>
 {% endblock %}
