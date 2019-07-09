@@ -12,6 +12,8 @@ import datetime
 # returns the MD5 hash of the user's email.
 # used for the ID of the responses doc
 def email_hash(email):
+    # THIS IS FOR DEBUGGING ONLY, FIX THIS LATER
+    return email
     return hashlib.md5(email.encode()).hexdigest()
 
 # checks if the current user exists in DB and has the correct userId
@@ -50,21 +52,34 @@ def authenticate_new(token, db):
 # throws exceptions if email or ID is None, or if they do not match
 def create_user(userEmail, userId, db):
     emails_ref = db.collection("emails")
+    responses_ref = db.collection("responses")
     if userEmail is None:
         raise Exception("User email not defined")
     if userId is None:
         raise Exception("User ID not defined")
     if is_authenticated(userEmail, userId, db):
-        return emails_ref.document(userEmail)
+        return emails_ref.document(userEmail).get()
     else: 
-        print(userEmail)
         emails_ref.document(userEmail).set({
             u"id" : userId, 
             u"has_demographics" : False,
             u"monthly_responses" : [],
-            u"total_responses" : 0 
+            u"total_responses" : 0, 
+            u"date_created" : datetime.datetime.now()
         })
-        return emails_ref.document(userEmail)
+
+        responses_ref.document(email_hash(userEmail)).set({
+            u"demographics" : {}
+        })
+        return emails_ref.document(userEmail).get()
+
+def get_emails_dict(userEmail, db):
+    emails_ref = db.collection("emails")
+    return emails_ref.document(userEmail).get().to_dict()
+
+def get_responses_dict(userEmail, db):
+    responses_ref = db.collection("responses")
+    return responses_ref.document(email_hash(userEmail)).get().to_dict()
 
 def init_survey_firebase():
     if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):

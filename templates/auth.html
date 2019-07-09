@@ -25,12 +25,12 @@
     function onSignIn(googleUser){
         console.log("sending user info to server");
         console.log(googleUser.getAuthResponse().id_token)
-        fetch("{{ request_url }}", {
+        fetch("/auth/{{ request_url }}", {
             method : "POST",
-            body : googleUser.getAuthResponse().id_token
-        }).then(response =>
-            response.text().then(text => console.log(text))
-        )
+            body : googleUser.getAuthResponse().id_token, 
+        }).then(response => {
+            window.location.replace("/{{ request_url }}");
+        });
     }
 </script>
 

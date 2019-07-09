@@ -107,3 +107,6 @@ auth:
   - title: Authentication
     styles:
       - /static/css/auth.css
+
+demographics: 
+  - title: Survey Demographics
