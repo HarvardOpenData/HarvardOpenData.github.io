@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for
+from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for, abort
 import yaml
 import server.constants as constants
 import server.auth as auth
 import json
+import server.demographics
 
 app = Flask(__name__)
 
@@ -101,10 +102,16 @@ def demographics():
                 return redirect("/auth/demographics")
         responsesDict = auth.get_responses_dict(userEmail, db)
         print(responsesDict["demographics"])
-        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"],
-                                questions = demographicQuestions())
+        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id())
     else: 
-        raise NotImplementedError()
+        db = auth.get_survey_firestore_client()
+        userEmail = request.cookies["email"]
+        userId = request.cookies["id"]
+        if auth.is_authenticated(userEmail, userId, db):
+            server.demographics.update_demographics(userEmail, request.form, demographicQuestions(), db)
+            return redirect("/demographics")
+        else:
+            abort("User credentials improper. Please sign out and sign back in")
 
 @app.route("/auth/<request_url>", methods=["GET", "POST"])
 def signin(request_url):

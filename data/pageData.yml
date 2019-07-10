@@ -110,3 +110,5 @@ auth:
 
 demographics: 
   - title: Survey Demographics
+    scripts:
+      - /static/js/demographics.js

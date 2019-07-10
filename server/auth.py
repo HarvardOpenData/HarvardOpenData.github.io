@@ -12,8 +12,6 @@ import datetime
 # returns the MD5 hash of the user's email.
 # used for the ID of the responses doc
 def email_hash(email):
-    # THIS IS FOR DEBUGGING ONLY, FIX THIS LATER
-    return email
     return hashlib.md5(email.encode()).hexdigest()
 
 # checks if the current user exists in DB and has the correct userId
