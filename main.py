@@ -87,7 +87,7 @@ def studyabroad():
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
 
-@app.route('/demographics', methods=['GET', 'POST'])
+@app.route('/demographics/', methods=['GET', 'POST'])
 def demographics():
     userEmail = None
     userId = None
@@ -115,7 +115,6 @@ def demographics():
 
 @app.route("/auth/<request_url>", methods=["GET", "POST"])
 def signin(request_url):
-    print(request_url)
     if request.method == "GET":
         return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
     else:

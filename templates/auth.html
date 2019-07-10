@@ -29,7 +29,7 @@
             method : "POST",
             body : googleUser.getAuthResponse().id_token, 
         }).then(response => {
-            window.location.replace("/{{ request_url }}");
+            window.location.replace("/{{ request_url }}/");
         });
     }
 </script>
