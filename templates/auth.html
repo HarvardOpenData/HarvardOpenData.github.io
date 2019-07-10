@@ -29,7 +29,18 @@
             method : "POST",
             body : googleUser.getAuthResponse().id_token, 
         }).then(response => {
-            window.location.replace("/{{ request_url }}/");
+            response.text().then(responseText => {
+                console.log(responseText);
+                if (responseText == "SUCCESS"){
+                    window.location.replace("/{{ request_url }}/");
+                }
+                else {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut().then(() => {
+                        alert("Couldn't authenticate... signing out")
+                    });
+                }
+            })
         });
     }
 </script>

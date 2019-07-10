@@ -118,13 +118,20 @@ def signin(request_url):
     if request.method == "GET":
         return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
     else:
-        db = auth.get_survey_firestore_client()
-        token = request.data
-        email_doc = auth.authenticate_new(token, db)
-        email_dict = email_doc.to_dict()
-        userEmail = email_doc.id
-        userId = email_dict["id"]
-        response = make_response("SUCCESS")
-        response.set_cookie("email", userEmail)
-        response.set_cookie("id", userId)
-        return response
+        try: 
+            db = auth.get_survey_firestore_client()
+            token = request.data
+            email_doc = auth.authenticate_new(token, db)
+            email_dict = email_doc.to_dict()
+            userEmail = email_doc.id
+            userId = email_dict["id"]
+            response = make_response("SUCCESS", 201)
+            response.set_cookie("email", userEmail)
+            response.set_cookie("id", userId)
+            return response
+        except:
+            response = make_response(406)
+            response.set_cookie("email", expires = 0)
+            response.set_cookie("id", expires = 0)
+            print("HELLO FAILURE")
+            return response

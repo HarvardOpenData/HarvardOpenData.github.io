@@ -24,7 +24,9 @@ def is_authenticated(userEmail, userId, db):
         return False
     userDict = userDoc.to_dict() 
     
-    if userDict["id"] == userId:
+    if "id" not in userDict:
+        return False
+    elif userDict["id"] == userId:
         return True
     else:
         raise Exception("Email and stored ID do not match")
@@ -58,17 +60,19 @@ def create_user(userEmail, userId, db):
     if is_authenticated(userEmail, userId, db):
         return emails_ref.document(userEmail).get()
     else: 
-        emails_ref.document(userEmail).set({
+        emails_ref.document(userEmail).update({
             u"id" : userId, 
             u"has_demographics" : False,
             u"monthly_responses" : [],
             u"total_responses" : 0, 
             u"date_created" : datetime.datetime.now()
         })
-
-        responses_ref.document(email_hash(userEmail)).set({
-            u"demographics" : {}
-        })
+        userResponsesRef = responses_ref.document(email_hash)
+        userResponsesDoc = userResponsesRef.get()
+        if not userResponsesDoc.exists:
+            responses_ref.document(email_hash(userEmail)).set({
+                u"demographics" : {}
+            })
         return emails_ref.document(userEmail).get()
 
 def get_emails_dict(userEmail, db):

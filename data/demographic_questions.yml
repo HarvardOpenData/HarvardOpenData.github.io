@@ -24,7 +24,7 @@ genders:
 
 ethnicities:
   - White
-  - Hispanic, Latino, or Spanish
+  - Hispanic or Latino
   - Black or African American
   - Asian
   - American Indian or Alaska Native
@@ -44,6 +44,7 @@ freshman_dorms:
   - Lionel
   - Mass Hall
   - Matthews
+  - Mower
   - Pennypacker
   - Stoughton
   - Straus
