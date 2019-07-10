@@ -31,6 +31,7 @@ ethnicities:
   - Middle Eastern or North African
   - Native Hawaiian or Pacific Islander
   - Other
+  - Prefer not to say
 
 freshman_dorms:
   - Apley
@@ -54,6 +55,7 @@ houses:
   - Adams
   - Cabot
   - Currier
+  - Dudley
   - Dunster
   - Eliot
   - Kirkland
@@ -63,6 +65,7 @@ houses:
   - Pfoho
   - Quincy
   - Winthrop
+  - Off Campus
 
 concentrations:
   - Undeclared
