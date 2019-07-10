@@ -1,0 +1,118 @@
+valid_form_names:
+  - year
+  - gender
+  - ethnicity
+  - freshman_dorm
+  - house
+  - concentration
+
+multiselects:
+  - ethnicity
+  - concentration
+
+years:
+  - "2020"
+  - "2021"
+  - "2022"
+  - "2023"
+
+genders:
+  - Male
+  - Female
+  - Non-binary
+  - Prefer not to say
+
+ethnicities:
+  - White
+  - Hispanic, Latino, or Spanish
+  - Black or African American
+  - Asian
+  - American Indian or Alaska Native
+  - Middle Eastern or North African
+  - Native Hawaiian or Pacific Islander
+  - Other
+
+freshman_dorms:
+  - Apley
+  - Canaday
+  - Grays
+  - Greenough
+  - Hollis
+  - Holworthy
+  - Hurlbut
+  - Lionel
+  - Mass Hall
+  - Matthews
+  - Pennypacker
+  - Stoughton
+  - Straus
+  - Thayer
+  - Weld
+  - Wigglesworth
+
+houses:
+  - Adams
+  - Cabot
+  - Currier
+  - Dunster
+  - Eliot
+  - Kirkland
+  - Leverett
+  - Lowell
+  - Mather
+  - Pfoho
+  - Quincy
+  - Winthrop
+
+concentrations:
+  - Undeclared
+  - African and American Studies
+  - Anthropology
+  - Applied Mathematics
+  - Astrophysics
+  - Biomedical Engineering
+  - Chemical and Physical Biology
+  - Chemistry
+  - Chemistry and Physics
+  - Classics
+  - Comparative Literature
+  - Computer Science
+  - Earth and Planetary Sciences
+  - East Asian Studies
+  - Economics
+  - Electrical Engineering
+  - Engineering Sciences
+  - English
+  - Environmental Science and Engineering
+  - Environmental Science and Public Policy
+  - Folklore and Mythology
+  - Germanic Langauges and Literatures
+  - Government
+  - History
+  - History and Literature
+  - History of Art and Architecture
+  - Human Developmental and Regenerative Biology
+  - Human Evolutionary Biology
+  - Integrative Biology
+  - Linguistics
+  - Mathematics
+  - Mechanical Engineering
+  - Molecular and Cellular Biology
+  - Music
+  - Near Eastern Languages and Civilizations
+  - Neurobiology
+  - Philosophy
+  - Physics
+  - Psychology
+  - Religion, Comparative Study of
+  - Romance Languages and Literatures
+  - Slavic Languages and Literatures
+  - Social Studies
+  - Sociology
+  - South Asian Studies
+  - Special Concentrations
+  - Statistics
+  - Theater, Dance, and Media
+  - Visual and Environmental Studies
+  - Women, Gender, and Sexuality, Studies of
+  - Special Concentration

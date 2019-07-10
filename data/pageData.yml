@@ -102,3 +102,13 @@ scoreboard:
     layout: default
     scripts:
       - /static/js/scoreboard.js
+
+auth:
+  - title: Authentication
+    styles:
+      - /static/css/auth.css
+
+demographics: 
+  - title: Survey Demographics
+    scripts:
+      - /static/js/demographics.js

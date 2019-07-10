@@ -127,3 +127,4 @@ __pycache__/main.cpython-36.pyc
 *.pyc
 /hodp
 node_modules/
+*_creds.json

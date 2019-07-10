@@ -1,0 +1,149 @@
+{% extends 'default.html' %}  
+  
+
+{% block custom_meta %} 
+    <meta name="google-signin-client_id" content="{{ CLIENT_ID }}">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-hosted_domain" content="college.harvard.edu">
+{% endblock %} 
+
+
+{% block content %}
+<div class = "container">
+    <div class = "row">
+        <h1>Welcome to the HODP Survey Group!</h1>
+        This survey group is intended to make it easy for you to opt-in for filling out surveys. By filling out your demographic info here, we will be able to connect your future survey responses to your existing demographic info making surveys simpler and shorter for you to fill out. We also take steps to protect your privacy so that we can link your responses but are unable to identify you personally with your responses. If you are interested, you can read more about our <a href = "https://github.com/HarvardOpenData/HODP-Surveys/blob/master/README.md">survey group policies</a>. 
+    </div>
+    <form method = "POST">
+        <div class = "row">
+            <h3>What is your class year?</h3>
+            <select id = "slctYear" name = "year" onchange = "toggleHouseVisibility()" required>
+                <option disabled selected value></option>
+                {% for year in questions.years %}
+                    <option 
+                        {% if demographics is defined and demographics["year"] == year %}
+                            selected = "selected"
+                        {% endif %}
+                    >{{ year }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class = "row">
+            <h3>What gender do you identify as?</h3>
+            <select id = "slctGender" name = "gender" required>
+                <option disabled selected value></option>
+                {% for gender in questions.genders %}
+                    <option
+                        {% if demographics is defined and demographics["gender"] == gender %}
+                            selected = "selected"
+                        {% endif %}
+                    >{{ gender }}</option> 
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class = "row">
+            <h3>What ethnicity do you identify as (select all that apply)?</h3>
+            <select id = "slctEthnicity" name = "ethnicity" size = "10" required multiple>
+                {% for ethnicity in questions.ethnicities %}
+                <option
+                    {% if demographics is defined and ethnicity in demographics["ethnicity"]%}
+                        selected = "selected"
+                    {% endif %}
+                >{{ ethnicity }}</option> 
+                    
+                {% endfor %}
+            </select>
+        </div> 
+
+        <div class = "row">
+            <h3>What is/was your freshman dorm?</h3>
+            <select id = "slctDorm" name = "freshman_dorm" required>
+                <option disabled selected value></option>
+                {% for dorm in questions.freshman_dorms %}
+                <option
+                    {% if demographics is defined and demographics["freshman_dorm"] == dorm %}
+                        selected = "selected"
+                    {% endif %}
+                >{{ dorm }}</option> 
+                    
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class = "row" id = "divHouse"
+        {% if demographics.class == questions.years[-1] %}
+        hidden
+        {% endif %}
+            >
+            <h3>Which house are you in?</h3>
+            <select id = "slctHouse" name = "house"
+            {% if demographics.class != questions.years[-1] %}
+            required
+            {% endif %}    
+            >
+                <option disabled selected value></option>
+                {% for house in questions.houses %}
+                <option
+                    {% if demographics is defined and demographics["house"] == house %}
+                        selected = "selected"
+                    {% endif %}
+                >{{ house }}</option> 
+                    
+                {% endfor %}
+            </select> 
+        </div>
+
+        <div class = "row">
+            <h3>What is your concentration (select all that apply)?</h3>
+            <select id = "slctConcentration" name = "concentration" size = "10" multiple required>
+                    {% for concentration in questions.concentrations %}
+                    <option
+                        {% if demographics is defined and concentration in demographics["concentration"] %}
+                            selected = "selected"
+                        {% endif %}
+                    >{{ concentration }}</option> 
+                        
+                    {% endfor %}
+            </select>
+        </div>
+        
+        <br/>
+        <br/>
+        <div class = "row">
+            <input type = "submit" value = "Save" />
+        </div>
+    </form>
+    
+    <br/>
+    <br/>
+    <div class = "row">
+        <button type = "button" onclick = "signOut()">Sign out</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_scripts %}
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+            console.log("signed out!")
+            document.cookie = "email=; id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.location.reload();
+        });
+    }
+
+    window.onload = function() {
+      gapi.load('auth2', function() {
+        console.log("loading!");
+        gapi.auth2.init();
+      });
+    }
+</script>
+
+{% endblock custom_scripts %}

@@ -1,6 +1,9 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for, abort
 import yaml
+import server.constants as constants
+import server.auth as auth
+import json
+import server.demographics
 
 app = Flask(__name__)
 
@@ -18,10 +21,12 @@ def siteConstants():
     site["pages"] = getYml('./data/pages.yml')
     return site
 
+def demographicQuestions():
+    return getYml("./data/demographic_questions.yml")
 
 site = siteConstants()
 pageData = getYml('./data/pageData.yml')
-
+auth.init_survey_firebase()
 
 @app.route('/')
 def index():
@@ -59,7 +64,6 @@ def submit():
 
 @app.route('/visual/')
 def visual():
-    print(pageData["visual"][0])
     return render_template('visual.html', site=site, page=pageData["visual"][0])
 
 
@@ -82,3 +86,45 @@ def studyabroad():
 @app.route('/visual/scoreboard')
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
+
+@app.route('/demographics/', methods=['GET', 'POST'])
+def demographics():
+    userEmail = None
+    userId = None
+    response = None
+    db = auth.get_survey_firestore_client()
+    if request.method == 'GET':
+        if "email" in request.cookies:
+                userEmail = request.cookies["email"]
+        if "id" in request.cookies: 
+                userId = request.cookies["id"]
+        if not auth.is_authenticated(userEmail, userId, db):
+                return redirect("/auth/demographics")
+        responsesDict = auth.get_responses_dict(userEmail, db)
+        print(responsesDict["demographics"])
+        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id())
+    else: 
+        db = auth.get_survey_firestore_client()
+        userEmail = request.cookies["email"]
+        userId = request.cookies["id"]
+        if auth.is_authenticated(userEmail, userId, db):
+            server.demographics.update_demographics(userEmail, request.form, demographicQuestions(), db)
+            return redirect("/demographics")
+        else:
+            abort("User credentials improper. Please sign out and sign back in")
+
+@app.route("/auth/<request_url>", methods=["GET", "POST"])
+def signin(request_url):
+    if request.method == "GET":
+        return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
+    else:
+        db = auth.get_survey_firestore_client()
+        token = request.data
+        email_doc = auth.authenticate_new(token, db)
+        email_dict = email_doc.to_dict()
+        userEmail = email_doc.id
+        userId = email_dict["id"]
+        response = make_response("SUCCESS")
+        response.set_cookie("email", userEmail)
+        response.set_cookie("id", userId)
+        return response
