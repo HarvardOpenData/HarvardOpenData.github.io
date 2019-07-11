@@ -53,26 +53,40 @@ def authenticate_new(token, db):
 def create_user(userEmail, userId, db):
     emails_ref = db.collection("emails")
     responses_ref = db.collection("responses")
+    user_response_ref = responses_ref.document(email_hash(userEmail))
+    user_response_doc = user_response_ref.get()
     if userEmail is None:
         raise Exception("User email not defined")
     if userId is None:
         raise Exception("User ID not defined")
     if is_authenticated(userEmail, userId, db):
+        if not user_response_doc.exists:
+            responses_ref.document(email_hash(userEmail)).set({
+            u"debugging" : True, 
+            u"demographics" : {}
+        })
         return emails_ref.document(userEmail).get()
     else: 
-        emails_ref.document(userEmail).update({
-            u"id" : userId, 
-            u"has_demographics" : False,
-            u"monthly_responses" : [],
-            u"total_responses" : 0, 
-            u"date_created" : datetime.datetime.now()
-        })
-        userResponsesRef = responses_ref.document(email_hash)
-        userResponsesDoc = userResponsesRef.get()
-        if not userResponsesDoc.exists:
-            responses_ref.document(email_hash(userEmail)).set({
-                u"demographics" : {}
+        user_email_ref = emails_ref.document(userEmail)
+        user_email_doc = user_email_ref.get()
+        if user_email_doc.exists:
+            user_email_ref.update({
+                u"id" : userId,
             })
+        else:
+            user_email_ref.set({
+                u"id" : userId, 
+                u"has_demographics" : False,
+                u"monthly_responses" : [],
+                u"total_responses" : 0, 
+                u"date_created" : datetime.datetime.now()
+            })
+        if not user_response_doc.exists:
+            responses_ref.document(email_hash(userEmail)).set({
+            u"debugging" : True, 
+            u"demographics" : {}
+        })
+
         return emails_ref.document(userEmail).get()
 
 def get_emails_dict(userEmail, db):

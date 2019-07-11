@@ -101,7 +101,6 @@ def demographics():
         if not auth.is_authenticated(userEmail, userId, db):
                 return redirect("/auth/demographics")
         responsesDict = auth.get_responses_dict(userEmail, db)
-        print(responsesDict["demographics"])
         return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id())
     else: 
         db = auth.get_survey_firestore_client()
@@ -130,8 +129,7 @@ def signin(request_url):
             response.set_cookie("id", userId)
             return response
         except:
-            response = make_response(406)
+            response = make_response("FAILURE", 406)
             response.set_cookie("email", expires = 0)
             response.set_cookie("id", expires = 0)
-            print("HELLO FAILURE")
             return response
