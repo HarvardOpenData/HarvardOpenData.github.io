@@ -62,7 +62,6 @@ def create_user(userEmail, userId, db):
     if is_authenticated(userEmail, userId, db):
         if not user_response_doc.exists:
             responses_ref.document(email_hash(userEmail)).set({
-            u"debugging" : True, 
             u"demographics" : {}
         })
         return emails_ref.document(userEmail).get()
@@ -83,7 +82,6 @@ def create_user(userEmail, userId, db):
             })
         if not user_response_doc.exists:
             responses_ref.document(email_hash(userEmail)).set({
-            u"debugging" : True, 
             u"demographics" : {}
         })
 
