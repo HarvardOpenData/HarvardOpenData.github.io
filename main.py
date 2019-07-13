@@ -101,14 +101,14 @@ def demographics():
         if not auth.is_authenticated(userEmail, userId, db):
                 return redirect("/auth/demographics")
         responsesDict = auth.get_responses_dict(userEmail, db)
-        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id())
+        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = False)
     else: 
-        db = auth.get_survey_firestore_client()
         userEmail = request.cookies["email"]
         userId = request.cookies["id"]
         if auth.is_authenticated(userEmail, userId, db):
             server.demographics.update_demographics(userEmail, request.form, demographicQuestions(), db)
-            return redirect("/demographics")
+            responsesDict = auth.get_responses_dict(userEmail, db)
+            return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = True)
         else:
             abort("User credentials improper. Please sign out and sign back in")
 
