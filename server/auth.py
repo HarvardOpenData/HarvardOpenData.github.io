@@ -76,7 +76,7 @@ def create_user(userEmail, userId, db):
             user_email_ref.set({
                 u"id" : userId, 
                 u"has_demographics" : False,
-                u"monthly_responses" : [],
+                u"monthly_responses" : {},
                 u"total_responses" : 0, 
                 u"date_created" : datetime.datetime.now()
             })
