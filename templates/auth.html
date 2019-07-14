@@ -24,6 +24,7 @@
 <script>
     function onSignIn(googleUser){
         console.log("sending user info to server");
+        // send a post request with the google auth id token
         fetch("/auth/{{ request_url }}", {
             method : "POST",
             body : googleUser.getAuthResponse().id_token, 

@@ -110,6 +110,7 @@ def demographics():
             responsesDict = auth.get_responses_dict(userEmail, db)
             return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = True)
         else:
+            # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")
 
 @app.route("/auth/<request_url>", methods=["GET", "POST"])
@@ -124,11 +125,13 @@ def signin(request_url):
             email_dict = email_doc.to_dict()
             userEmail = email_doc.id
             userId = email_dict["id"]
+            # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
             response.set_cookie("email", userEmail)
             response.set_cookie("id", userId)
             return response
         except:
+            # if there is an error, delete their cookies and indicate failure
             response = make_response("FAILURE", 406)
             response.set_cookie("email", expires = 0)
             response.set_cookie("id", expires = 0)

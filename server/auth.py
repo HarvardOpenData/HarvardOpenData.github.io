@@ -16,6 +16,7 @@ def email_hash(email):
 
 # checks if the current user exists in DB and has the correct userId
 def is_authenticated(userEmail, userId, db):
+    # typically triggered if there are no cookies
     if userEmail is None or userId is None:
         return False
     emails_ref = db.collection("emails")
@@ -24,17 +25,22 @@ def is_authenticated(userEmail, userId, db):
         return False
     userDict = userDoc.to_dict() 
     
+    # this case would happen if we put people into the database through something other than the website
+    # e.g. if they signed up at a freshmen fair or something
     if "id" not in userDict:
         return False
+    # avoid double authentication. Check if this is the same user
     elif userDict["id"] == userId:
         return True
     else:
+        # they're trying to fuck with us somehow
         raise Exception("Email and stored ID do not match")
 
 # if not currently authenticated, try to authenticate with google backend
 # and create the new user if authentication works
 # If just want to authenticate, db should be null and will return None on success
 def authenticate_new(token, db):
+    # this is a google library for verifying stuff
     idinfo = id_token.verify_oauth2_token(token, requests.Request(), constants.get_google_client_id())
     userId = idinfo["sub"]
     userEmail = idinfo["email"]
@@ -59,12 +65,15 @@ def create_user(userEmail, userId, db):
         raise Exception("User email not defined")
     if userId is None:
         raise Exception("User ID not defined")
+    # user already exists
     if is_authenticated(userEmail, userId, db):
         if not user_response_doc.exists:
+            # only create responses doc if it doesn't already exist
             responses_ref.document(email_hash(userEmail)).set({
             u"demographics" : {}
         })
         return emails_ref.document(userEmail).get()
+    # user doesn't exist, have to create everything
     else: 
         user_email_ref = emails_ref.document(userEmail)
         user_email_doc = user_email_ref.get()
@@ -96,11 +105,13 @@ def get_responses_dict(userEmail, db):
     return responses_ref.document(email_hash(userEmail)).get().to_dict()
 
 def init_survey_firebase():
+    # we're on the server, use the project ID
     if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
         cred = credentials.ApplicationDefault()
         firebase_admin.initialize_app(cred, {
             'projectId': "hodp-surveys",
         })
+    # locally testing, we have some credential file
     else:
         os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'survey_creds.json'
         cred = credentials.ApplicationDefault()
