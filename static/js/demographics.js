@@ -1,3 +1,4 @@
+// Toggles whether we can actually view the houses based on whether someone is a freshman
 function toggleHouseVisibility() {
     var slctYear = document.getElementById("slctYear");
     var divHouse = document.getElementById("divHouse");
