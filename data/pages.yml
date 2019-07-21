@@ -8,15 +8,12 @@ main:
     -   name: Calendar
         url: /calendar/
         newtab: 0
-    -   name: Submit
-        url: /submit/
-        newtab: 0
     -   name: Data Catalog
         url: /catalog/
         newtab: 0
-    -   name: GitHub
-        url: https://github.com/HarvardOpenData/HarvardOpenData.github.io
-        newtab: 1
+    -   name: Survey Group
+        url: /demographics/
+        newtab: 0
     -   name: Blog
         url: https://medium.com/harvard-open-data-project
         newtab: 1
