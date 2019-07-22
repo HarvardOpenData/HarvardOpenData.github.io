@@ -94,18 +94,22 @@ def demographics():
     response = None
     db = auth.get_survey_firestore_client()
     emails_ref = db.collection("emails")
+
+    email_cookie_key = get_email_cookie_key("demographics")
+    id_cookie_key = get_id_cookie_key("demographics")
+
     if request.method == 'GET':
-        if "email" in request.cookies:
-                userEmail = request.cookies["email"]
-        if "id" in request.cookies: 
-                userId = request.cookies["id"]
+        if email_cookie_key in request.cookies:
+                userEmail = request.cookies[email_cookie_key]
+        if id_cookie_key in request.cookies: 
+                userId = request.cookies[id_cookie_key]
         if not auth.is_authenticated(userEmail, userId, emails_ref):
                 return redirect("/auth/demographics")
         responsesDict = auth.get_responses_dict(userEmail, db)
         return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = False)
     else: 
-        userEmail = request.cookies["email"]
-        userId = request.cookies["id"]
+        userEmail = request.cookies[email_cookie_key]
+        userId = request.cookies[id_cookie_key]
         if auth.is_authenticated(userEmail, userId, emails_ref):
             server.demographics.update_demographics(userEmail, request.form, demographicQuestions(), db)
             responsesDict = auth.get_responses_dict(userEmail, db)
@@ -116,24 +120,32 @@ def demographics():
 
 @app.route("/auth/<request_url>", methods=["GET", "POST"])
 def signin(request_url):
+    email_cookie_key = get_email_cookie_key(request_url)
+    id_cookie_key = get_id_cookie_key(request_url)
     if request.method == "GET":
         return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
     else:
         try: 
             db = auth.get_survey_firestore_client()
             token = request.data
-            email_doc = auth.authenticate_new(token, db)
+            email_doc = auth.authenticate_new_respondent(token, db)
             email_dict = email_doc.to_dict()
             userEmail = email_doc.id
             userId = email_dict["id"]
             # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
-            response.set_cookie("email", userEmail)
-            response.set_cookie("id", userId)
+            response.set_cookie(email_cookie_key, userEmail)
+            response.set_cookie(id_cookie_key, userId)
             return response
         except:
             # if there is an error, delete their cookies and indicate failure
             response = make_response("FAILURE", 406)
-            response.set_cookie("email", expires = 0)
-            response.set_cookie("id", expires = 0)
+            response.set_cookie(email_cookie_key, expires = 0)
+            response.set_cookie(id_cookie_key, expires = 0)
             return response
+
+def get_email_cookie_key(request_url):
+    return "{}_email".format(request_url)
+
+def get_id_cookie_key(request_url):
+    return "{}_id".format(request_url)

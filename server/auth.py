@@ -38,7 +38,7 @@ def is_authenticated(userEmail, userId, collection_ref):
 # if not currently authenticated, try to authenticate with google backend
 # and create the new user if authentication works
 # If just want to authenticate, db should be null and will return None on success
-def authenticate_new(token, db):
+def authenticate_new_respondent(token, db):
     # this is a google library for verifying stuff
     idinfo = id_token.verify_oauth2_token(token, requests.Request(), constants.get_google_client_id())
     userId = idinfo["sub"]
