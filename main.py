@@ -126,9 +126,11 @@ def signin(request_url):
         return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
     else:
         try: 
-            db = auth.get_survey_firestore_client()
             token = request.data
-            email_doc = auth.authenticate_new_respondent(token, db)
+            email_doc = None
+            if request_url == "demographics": 
+                db = auth.get_survey_firestore_client()
+                email_doc = auth.authenticate_new_respondent(token, db)
             email_dict = email_doc.to_dict()
             userEmail = email_doc.id
             userId = email_dict["id"]
