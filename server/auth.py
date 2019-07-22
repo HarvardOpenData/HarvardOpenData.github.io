@@ -15,12 +15,11 @@ def email_hash(email):
     return hashlib.md5(email.encode()).hexdigest()
 
 # checks if the current user exists in DB and has the correct userId
-def is_authenticated(userEmail, userId, db):
+def is_authenticated(userEmail, userId, collection_ref):
     # typically triggered if there are no cookies
     if userEmail is None or userId is None:
         return False
-    emails_ref = db.collection("emails")
-    userDoc = emails_ref.document(userEmail).get()
+    userDoc = collection_ref.document(userEmail).get()
     if userDoc is None or not userDoc.exists:
         return False
     userDict = userDoc.to_dict() 
@@ -66,7 +65,7 @@ def create_user(userEmail, userId, db):
     if userId is None:
         raise Exception("User ID not defined")
     # user already exists
-    if is_authenticated(userEmail, userId, db):
+    if is_authenticated(userEmail, userId, emails_ref):
         if not user_response_doc.exists:
             # only create responses doc if it doesn't already exist
             responses_ref.document(email_hash(userEmail)).set({

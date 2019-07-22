@@ -93,19 +93,20 @@ def demographics():
     userId = None
     response = None
     db = auth.get_survey_firestore_client()
+    emails_ref = db.collection("emails")
     if request.method == 'GET':
         if "email" in request.cookies:
                 userEmail = request.cookies["email"]
         if "id" in request.cookies: 
                 userId = request.cookies["id"]
-        if not auth.is_authenticated(userEmail, userId, db):
+        if not auth.is_authenticated(userEmail, userId, emails_ref):
                 return redirect("/auth/demographics")
         responsesDict = auth.get_responses_dict(userEmail, db)
         return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = False)
     else: 
         userEmail = request.cookies["email"]
         userId = request.cookies["id"]
-        if auth.is_authenticated(userEmail, userId, db):
+        if auth.is_authenticated(userEmail, userId, emails_ref):
             server.demographics.update_demographics(userEmail, request.form, demographicQuestions(), db)
             responsesDict = auth.get_responses_dict(userEmail, db)
             return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = True)
