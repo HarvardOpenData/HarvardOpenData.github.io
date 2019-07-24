@@ -27,6 +27,7 @@ def demographicQuestions():
 site = siteConstants()
 pageData = getYml('./data/pageData.yml')
 auth.init_survey_firebase()
+auth.init_website_firebase()
 
 @app.route('/')
 def index():
