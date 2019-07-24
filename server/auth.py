@@ -136,3 +136,7 @@ def init_website_firebase():
 def get_survey_firestore_client():
     app = firebase_admin.get_app("surveys")
     return firestore.client(app)
+
+def get_website_firestore_client():
+    app = firebase_admin.get_app("website")
+    return firestore.client(app)
