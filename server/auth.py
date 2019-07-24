@@ -35,10 +35,9 @@ def is_authenticated(userEmail, userId, collection_ref):
         # they're trying to fuck with us somehow
         raise Exception("Email and stored ID do not match")
 
-# if not currently authenticated, try to authenticate with google backend
-# and create the new user if authentication works
-# If just want to authenticate, db should be null and will return None on success
-def authenticate_new_respondent(token, db):
+# see if we can authenticate user account with google backend
+# if yes, return tuple (userEmail, userId)
+def authenticate_google_signin(token):
     # this is a google library for verifying stuff
     idinfo = id_token.verify_oauth2_token(token, requests.Request(), constants.get_google_client_id())
     userId = idinfo["sub"]
@@ -46,16 +45,13 @@ def authenticate_new_respondent(token, db):
     hd = idinfo["hd"]
     if hd is None or hd not in ["college.harvard.edu"]:
         raise Exception("Not a @college.harvard.edu email!")
-    if db is not None:
-        return create_user(userEmail, userId, db)
-    else:
-        return None
+    return (userEmail, userId)
 
 # gets a user by their email and corresponding ID
 # if user does not exist, create in DB and return new doc ref
 # assumes email and id already authenticated with google backend
 # throws exceptions if email or ID is None, or if they do not match
-def create_user(userEmail, userId, db):
+def create_respondent(userEmail, userId, db):
     emails_ref = db.collection("emails")
     responses_ref = db.collection("responses")
     user_response_ref = responses_ref.document(email_hash(userEmail))

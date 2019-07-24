@@ -129,9 +129,10 @@ def signin(request_url):
         try: 
             token = request.data
             email_doc = None
+            userEmail, userId = auth.authenticate_google_signin(token)
             if request_url == "demographics": 
                 db = auth.get_survey_firestore_client()
-                email_doc = auth.authenticate_new_respondent(token, db)
+                email_doc = auth.create_respondent(userEmail, userId, db)
             email_dict = email_doc.to_dict()
             userEmail = email_doc.id
             userId = email_dict["id"]
@@ -140,7 +141,8 @@ def signin(request_url):
             response.set_cookie(email_cookie_key, userEmail)
             response.set_cookie(id_cookie_key, userId)
             return response
-        except:
+        except Exception as e:
+            print(e)
             # if there is an error, delete their cookies and indicate failure
             response = make_response("FAILURE", 406)
             response.set_cookie(email_cookie_key, expires = 0)
