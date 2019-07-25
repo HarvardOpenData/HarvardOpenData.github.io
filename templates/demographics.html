@@ -139,7 +139,7 @@
         auth2.signOut().then(() => {
             console.log("signed out!")
             document.cookie = "email=; id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.location.reload();
+            window.location.replace(window.location.href);
         });
     }
 
