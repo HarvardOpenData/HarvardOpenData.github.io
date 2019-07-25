@@ -100,7 +100,7 @@ def demographics():
         if "id" in request.cookies: 
                 userId = request.cookies["id"]
         if not auth.is_authenticated(userEmail, userId, db):
-                return redirect("/auth/demographics")
+                return redirect("/auth/surveygroup")
         responsesDict = auth.get_responses_dict(userEmail, db)
         return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = False)
     else: 
@@ -116,8 +116,12 @@ def demographics():
 
 @app.route("/auth/<request_url>", methods=["GET", "POST"])
 def signin(request_url):
+    title_dict = {
+        "surveygroup" : "Survey Group",
+        "demographics" : "Demographics"
+    }
     if request.method == "GET":
-        return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
+        return render_template('auth.html', title = title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
     else:
         try: 
             db = auth.get_survey_firestore_client()
