@@ -87,6 +87,7 @@ def studyabroad():
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
 
+@app.route("/surveygroup/", methods=['GET', 'POST'])
 @app.route('/demographics/', methods=['GET', 'POST'])
 def demographics():
     userEmail = None

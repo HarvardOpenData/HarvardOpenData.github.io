@@ -12,7 +12,7 @@ main:
         url: /catalog/
         newtab: 0
     -   name: Survey Group
-        url: /demographics/
+        url: /surveygroup/
         newtab: 0
     -   name: Blog
         url: https://medium.com/harvard-open-data-project
