@@ -16,7 +16,7 @@ def update_demographics(email, form, demo_questions, db):
             if field in demo_questions["multiselects"]:
                 new_demographics[field] = form.getlist(field)
             # makes sure we only get house field if not a freshman
-            elif field != "house" or form.get("year", -1) != demo_questions["years"][-1]:
+            elif field != "house" or form.get("year", -1) != demo_questions["years"][-2]:
                 new_demographics[field] = form[field]
     userResponsesRef.update({
         "demographics" : new_demographics
