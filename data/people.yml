@@ -3,12 +3,8 @@ groups:
         header: Board
     -   id: mentor
         header: Mentors
-    -   id: teamlead
-        header: Team Leads
     -   id: contributor
         header: Contributors
-    -   id: bootcamper
-        header: Bootcampers
     -   id: alumni
         header: Alumni
 roles:
@@ -28,26 +24,26 @@ roles:
         id: vp
         title: Vice President
     -   g_id: board
-        id: contentdir
-        title: Co-Director of Content
+        id: execmember
+        title: Executive Committee Member
     -   g_id: board
         id: publisher
         title: Publisher
     -   g_id: board
-        id: treasurer
-        title: Treasurer
+        id: assoctechdir
+        title: Associate Technology Director
     -   g_id: board
-        id: board
-        title: Board Member
-    -   g_id: teamlead
-        id: orgslead
-        title: Student Organizations Lead
-    -   g_id: teamlead
-        id: campuslead
-        title: Campus Life Lead
-    -   g_id: teamlead
-        id: weblead
-        title: Web Lead
+        id: assoccontentdir
+        title: Associate Content Director
+    -   g_id: board
+        id: internalrelationsdir
+        title: Director of Internal Relations
+    -   g_id: contributor
+        id: presemeritus
+        title: President Emeritus
+    -   g_id: contributor
+        id: vpemeritus
+        title: Vice President Emeritus
     -   g_id: contributor
         id: contributor
         title: Contributor
@@ -67,31 +63,31 @@ people:
         role: mentor
         bio: Latanya Sweeney is a Professor of Government and Technology at Harvard.
     -   name: Jeffrey He
-        role: pres
+        role: presemeritus
         image: jeffrey-he.jpg
-        bio: Hi! I’m a currently a junior in Mather studying computer science. Outside of HODP, I'm a huge basketball fan, am involved in SMHL, and TF for CS182.
+        bio: Hi! I’m a currently a senior in Mather studying computer science. Outside of HODP, I'm a huge basketball fan, am involved in SMHL, and TF for CS182.
         house: Mather
         year: 2020
     -   name: Emma Ling
-        role: vp
+        role: vpemeritus
         image: emma-ling.jpg
         house: Lowell
         year: 2020
-        bio: I'm a junior in Lowell studying computer science and sociology. When I'm not hacking on Harvard datasets, I love going on adventures in the great outdoors.
+        bio: I'm a senior in Lowell studying computer science and sociology. When I'm not hacking on Harvard datasets, I love going on adventures in the great outdoors.
     -   name: Stephen Moon
-        role: vp
+        role: vpemeritus
         image: stephen-moon.jpg
         house: Pforzheimer
         year: 2020
-        bio: I'm a junior in Pforzheimer House studying statistics and economics. I love data, french fries, and card games, and am left handed.
+        bio: I'm a senior in Pforzheimer House studying statistics and economics. I love data, french fries, and card games, and am left handed.
     -   name: Kevin Bi
-        role: contentdir
+        role: pres
         house: Currier
         year: 2021
         image: kevin-bi.jpg
         bio: I'm a sophomore in Currier studying Applied Math with a focus in Economics. In my free time, I like to read, play card games, and watch sports. 
     -   name: Lucy Li
-        role: contentdir
+        role: vp
         house: Adams
         year: 2021
         bio: I'm a sophomore in Adams interested in data, tech, and politics. Outside of HODP, I play violin in HRO and volunteer through PBHA.
@@ -103,11 +99,11 @@ people:
         year: 2020
         bio: I'm a junior in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
     -   name: Olivia Bryant
-        role: orgslead
-        house: Hollis
+        role: internalrelationsdir
+        house: Kirkland
         year: 2021
         image: olivia-bryant.jpg
-        bio: I am a sophomore from Canterbury, England, potentially studying Statistics with an interest in data journalism. I spend time volunteering and knitting like a grandma.
+        bio: I’m a statistics concentrator from Kirkland House, originally hailing from Canterbury, UK. Outside of HODP you will find me behind a sewing machine, knitting, or keeping up with British politics.
     -   name: Alex Giglio
         role: contributor
         house: Eliot
@@ -160,83 +156,154 @@ people:
         role: contributor
         house: Mather
         year: 2020
-        bio: I’m a junior concentrating in computer science and statistics. I’m originally from New York and am super excited about data and what we can learn from it!
+        bio: I’m a senior concentrating in computer science and statistics. I’m originally from New York and am super excited about data and what we can learn from it!
         image: grace-zhang.png
     -   name: George Guarnieri
         role: contributor
-        house: Canaday 
+        house: Cabot
         year: 2022
-        bio: I am a freshman living in Canaday studying either economics or computer science. I enjoy dominating basketball games in my free time, and I am a big Knicks fan. 
+        bio: I am a sophomore living in Cabot studying either economics or computer science. I enjoy dominating basketball games in my free time, and I am a big Knicks fan. 
         image: george-guarnieri.png
     -   name: Leo Saenger
-        role: publisher
-        house: Weld
+        role: execmember
+        house: Kirkland
         year: 2022
-        bio: I'm a first year interested in statistics, economics, politics, and using design to explore the intersections between the three. Outside of HODP, I volunteer with HCMUD and run on the Charles.
+        bio: I'm a sophomore interested in statistics, economics, politics, and using design to explore the intersections between the three. Outside of HODP, I volunteer with HCMUD and run on the Charles.
         image: leo-saenger.jpg
     -   name: Seth Billiau
-        role: treasurer
+        role: vp
         house: Currier
-        year: 2022
-        bio: I’m a sophomore from Grand Rapids, Michigan, living Currier House and studying statistics and government. If I'm not at a HODP meeting, you can probably find me singing Bass II in the Harvard-Radcliffe Collegium Musicum, CA'ing Math 23, or attending the next Red Sox/Celtics/Bruins game.  
+        year: 2021
+        bio: I’m a junior from Grand Rapids, Michigan, living Currier House and studying statistics and government. If I'm not at a HODP meeting, you can probably find me singing Bass II in the Harvard-Radcliffe Collegium Musicum, CA'ing Math 23, or attending the next Red Sox/Celtics/Bruins game.  
         image: seth-billiau.jpg
     -   name: Andrea Zhang
         role: contributor
-        house: Wigglesworth
+        house: Kirkland
         year: 2022
-        bio: I'm a first year from New Jersey studying math and computer science. Outside of HODP, I love singing, reading, and playing card games. 
+        bio: I'm a sophomore from New Jersey studying math and computer science. Outside of HODP, I love singing, reading, and playing card games. 
         image: andrea-zhang.jpg
     -   name: Terry Ni
-        role: campuslead
+        role: contentdir
         house: Eliot
         year: 2021
         bio: I'm in Eliot House, and I study Applied Math. I love playing with data, art, walking around, cats and turtles, mysteries, and random, one-off campus activities. 
         image: terry-ni.jpg
     -   name: Bridger Gordon
         role: contributor
-        house: Lionel
+        house: Lowell
         year: 2022
-        bio: I'm a freshman in Lionel studying Economics. I'm interested in statistics and data analysis, which is why I joined HODP. Outside of HODP, I enjoy politics, traveling, and listening to the Beatles.
+        bio: I'm a sophomore in Lowell studying Economics. I'm interested in statistics and data analysis, which is why I joined HODP. Outside of HODP, I enjoy politics, traveling, and listening to the Beatles.
         image: bridger-gordon.png
     -   name: Manasi Maheshwari
         role: contributor
         house: Currier
         year: 2021
-        bio: I’m a sophomore in Currier studying computer science and economics. In addition to HODP, I love biking, exploring the city with friends, and trying new restaurants. 
+        bio: Hi! I live in Currier House and am studying computer science and economics. Outside of HODP, I'm involved with WHRB and Harvard Computer Society, and love exploring Boston with friends. 
         image: manasi-maheshwari.jpg
     -   name: Lucy Liu
         role: contributor
-        house: Straus
+        house: Leverett
         year: 2022
-        bio: I'm a freshman in Straus concentrating in Applied Math. Besides data, I like long naps and modular origami. 
+        bio: I'm a sophomore in Leverett concentrating in Applied Math. Besides data, I like long naps and modular origami. 
         image: lucy-liu.jpeg
     -   name: William Zhang
         role: contributor
-        house: Canaday
+        house: Quincy
         year: 2022
-        bio: I'm a freshman studying CS and Statistics. I like playing video games, and I'm from Birmingham, Alabama.
+        bio: I'm a sophomore studying CS and Statistics. I like playing video games, and I'm from Birmingham, Alabama.
         image: william-zhang.jpg
     -   name: Dasha Metropolitansky
         role: contributor
-        house: Straus
         year: 2022
-        bio: I’m a freshman planning on concentrating in Statistics. When I’m not at a HODP meeting, you can find me traveling the world for debate competitions, playing poker, or watching a cooking show.
+        bio: I’m a sophomore planning on concentrating in Statistics. When I’m not at a HODP meeting, you can find me traveling the world for debate competitions, playing poker, or watching a cooking show.
         image: dasha-metropolitansky.jpg
     -   name: Brett Pearson
         role: contributor
-        house: Canaday
         year: 2022
-        bio: I'm a first-year planning on studying Economics, but I'm also really interested in statistics, computer science, and women's studies. Outside of the classroom, I sing in the Harvard-Radcliffe Veritones and I love playing volleyball and tennis. 
+        bio: I'm a sophomore planning on studying Economics, but I'm also really interested in statistics, computer science, and women's studies. Outside of the classroom, I sing in the Harvard-Radcliffe Veritones and I love playing volleyball and tennis. 
         image: brett-pearson.png
     -   name: Festus Ojo
         role: contributor
         house: Currier
         year: 2021
-        bio: I'm a sophomore in Currier interested in data, machine learning, and blockchain. Outside of HODP, I'm a huge fan of basketball, anime, and hip-hop.
+        bio: I'm a junior in Currier interested in data, machine learning, and blockchain. Outside of HODP, I'm a huge fan of basketball, anime, and hip-hop.
         image: festus_ojo.png
     -   name: Eric Sun
         role: contributor
         house: Greenough
         year: 2022
-        bio: I am a freshman living in Greenough studying both Computer Science and Economics. In my free time, I enjoy following professional sports, and playing both fantasy football and baseball!
+        bio: I am a sophomore living in Greenough studying both Computer Science and Economics. In my free time, I enjoy following professional sports, and playing both fantasy football and baseball!
         image: eric-sun.jpg
+    -   name: Claire Fridkin
+        role: contributor
+        house: Dunster
+        year: 2021
+        bio: I'm a junior in Dunster studying psychology and economics. Outside of HODP, I'm an associate editor for Satire V, a CA for GOV1005, and the IM Crew captain (row Moose). Ask me about my favorite celebrities!   
+        image: claire-fridkin.png
+    -   name: Daniel Friedman
+        role: contributor
+        house: Adams
+        year: 2020
+        bio: I'm a senior in Adams studying Statistics with a secondary in Economics. I'm interested in using data to answer questions about policy and sports. Outside of classes and HODP I'm either watching basketball or The Office
+        image: daniel-friedman.png
+    -   name: Justin Bassey
+        role: contributor
+        house: Winthrop
+        year: 2020
+        bio: I'm currently a senior in Winthrop studying economics with a secondary in psychology. I play on the varsity basketball team, and love playing music.
+        image: justin-bassey.png
+    -   name: Ethan Kim
+        role: contributor
+        house: Pfoho
+        year: 2021
+        bio: I'm a statistics concentrator in Pfoho. Outside of HODP I enjoy playing soccer and reading. I'm also a huge New England sports fan. 
+        image: ethan-kim.jpg
+    -   name: Ashley Wong
+        role: execmember
+        house: Dunster
+        year: 2022
+        bio: I'm a sophomore from Sydney living in Dunster! Outside of HODP I enjoy tennis, dance, as well as learning (and forgetting) languages.
+        image: ashley-wong.jpg
+    -   name: Richard Kim
+        role: contributor
+        house: Winthrop
+        year: 2022
+        bio: Hi y'all! I'm a sophomore in Winthrop, potentially studying computer science and statistics. Beyond HODP, I'm a huge fan of all sports, and I beatbox for the Harvard LowKeys.
+        image: richard-kim.jpg
+    -   name: Rucha Joshi
+        role: contributor
+        house: Leverett
+        year: 2022
+        bio: Hi! I'm a sophomore from Austin, Texas planning on concentrating in either Statistics or Computer Science! Outside of HODP, I love napping and exploring coffee shops in the Square.
+        image: rucha-joshi.jpg
+    -   name: Jenny Gu
+        role: contributor
+        house: Pforzheimer
+        year: 2022
+        bio: I'm a sophomore in Pfoho studying computer science. Outside of HODP, I enjoy playing tennis (badly) and watching sitcoms.
+        image: jenny-gu.jpg
+    -   name: Sahana Srinivasan
+        role: assoccontentdir
+        house: Adams
+        year: 2022
+        bio: I'm a sophomore in Adams studying computer science. I'm from California and am interested in data, journalism, and and their intersection. Outside of HODP, I like watching Netflix comedy specials and baking! 
+        image: sahana-srinivasan.jpg
+    -   name: Neil Khurana
+        role: contributor
+        house: Adams House
+        year: 2022
+        bio: I'm a sophomore from Manlius, NY most likely studying Statistics with a Data Science focus. Outside of HODP, I enjoy spending time with friends, watching NFL football and discussing politics.   
+        image: neil-khurana.jpg
+    -   name: Yijiang Zhao
+        role: contributor
+        house: Quincy
+        year: 2022
+        bio: I'm a sophomore in Quincy thinking of studying Applied Math with a focus in Economics and CS. Outside of HODP, I love going out to Boston and trying new restaurants.
+        image: yijiang-zhao.jpg
+    -   name: Amy Jin
+        role: contributor
+        house: Eliot
+        year: 2022
+        bio: I'm a sophomore in Eliot concentrating in computer science. I'm originally from San Jose, CA, and I love music, dancing, and hiking!
+        image: amy-jin.jpg
+    
