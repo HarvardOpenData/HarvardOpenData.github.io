@@ -3,12 +3,8 @@ groups:
         header: Board
     -   id: mentor
         header: Mentors
-    -   id: teamlead
-        header: Team Leads
     -   id: contributor
         header: Contributors
-    -   id: bootcamper
-        header: Bootcampers
     -   id: alumni
         header: Alumni
 roles:
@@ -28,9 +24,6 @@ roles:
         id: vp
         title: Vice President
     -   g_id: board
-        id: contentdir
-        title: Director of Content
-    -   g_id: board
         id: execmember
         title: Executive Committee Member
     -   g_id: board
@@ -45,21 +38,12 @@ roles:
     -   g_id: board
         id: internalrelationsdir
         title: Director of Internal Relations
-    -   g_id: board
-        id: treasurer
-        title: Treasurer
-    -   g_id: board
-        id: board
-        title: Board Member
-    -   g_id: teamlead
-        id: orgslead
-        title: Student Organizations Lead
-    -   g_id: teamlead
-        id: campuslead
-        title: Campus Life Lead
-    -   g_id: teamlead
-        id: weblead
-        title: Web Lead
+    -   g_id: contributor
+        id: presemeritus
+        title: President Emeritus
+    -   g_id: contributor
+        id: vpemeritus
+        title: Vice President Emeritus
     -   g_id: contributor
         id: contributor
         title: Contributor
@@ -79,19 +63,19 @@ people:
         role: mentor
         bio: Latanya Sweeney is a Professor of Government and Technology at Harvard.
     -   name: Jeffrey He
-        role: alumni
+        role: presemeritus
         image: jeffrey-he.jpg
         bio: Hi! I’m a currently a senior in Mather studying computer science. Outside of HODP, I'm a huge basketball fan, am involved in SMHL, and TF for CS182.
         house: Mather
         year: 2020
     -   name: Emma Ling
-        role: alumni
+        role: vpemeritus
         image: emma-ling.jpg
         house: Lowell
         year: 2020
         bio: I'm a senior in Lowell studying computer science and sociology. When I'm not hacking on Harvard datasets, I love going on adventures in the great outdoors.
     -   name: Stephen Moon
-        role: alumni
+        role: vpemeritus
         image: stephen-moon.jpg
         house: Pforzheimer
         year: 2020
@@ -250,31 +234,26 @@ people:
         year: 2022
         bio: I am a sophomore living in Greenough studying both Computer Science and Economics. In my free time, I enjoy following professional sports, and playing both fantasy football and baseball!
         image: eric-sun.jpg
-    -   name: Eric Sun
-        role: contributor
-        year: 2022
-        bio: I am a freshman living in Greenough studying both Computer Science and Economics. In my free time, I enjoy following professional sports, and playing both fantasy football and baseball!
-        image: eric-sun.jpg
     -   name: Claire Fridkin
-        role: contributer
+        role: contributor
         house: Dunster
         year: 2021
         bio: I'm a junior in Dunster studying psychology and economics. Outside of HODP, I'm an associate editor for Satire V, a CA for GOV1005, and the IM Crew captain (row Moose). Ask me about my favorite celebrities!   
         image: claire-fridkin.png
     -   name: Daniel Friedman
-        role: contributer
+        role: contributor
         house: Adams
         year: 2020
         bio: I'm a senior in Adams studying Statistics with a secondary in Economics. I'm interested in using data to answer questions about policy and sports. Outside of classes and HODP I'm either watching basketball or The Office
         image: daniel-friedman.png
     -   name: Justin Bassey
-        role: contributer
+        role: contributor
         house: Winthrop
         year: 2020
         bio: I'm currently a senior in Winthrop studying economics with a secondary in psychology. I play on the varsity basketball team, and love playing music.
         image: justin-bassey.png
     -   name: Ethan Kim
-        role: contributer
+        role: contributor
         house: Pfoho
         year: 2021
         bio: I'm a statistics concentrator in Pfoho. Outside of HODP I enjoy playing soccer and reading. I'm also a huge New England sports fan. 
@@ -286,19 +265,19 @@ people:
         bio: I'm a sophomore from Sydney living in Dunster! Outside of HODP I enjoy tennis, dance, as well as learning (and forgetting) languages.
         image: ashley-wong.jpg
     -   name: Richard Kim
-        role: contributer
+        role: contributor
         house: Winthrop
         year: 2022
         bio: Hi y'all! I'm a sophomore in Winthrop, potentially studying computer science and statistics. Beyond HODP, I'm a huge fan of all sports, and I beatbox for the Harvard LowKeys.
         image: richard-kim.jpg
     -   name: Rucha Joshi
-        role: contributer
+        role: contributor
         house: Leverett
         year: 2022
         bio: Hi! I'm a sophomore from Austin, Texas planning on concentrating in either Statistics or Computer Science! Outside of HODP, I love napping and exploring coffee shops in the Square.
         image: rucha-joshi.jpg
     -   name: Jenny Gu
-        role: contributer
+        role: contributor
         house: Pforzheimer
         year: 2022
         bio: I'm a sophomore in Pfoho studying computer science. Outside of HODP, I enjoy playing tennis (badly) and watching sitcoms.
@@ -310,19 +289,19 @@ people:
         bio: I'm a sophomore in Adams studying computer science. I'm from California and am interested in data, journalism, and and their intersection. Outside of HODP, I like watching Netflix comedy specials and baking! 
         image: sahana-srinivasan.jpg
     -   name: Neil Khurana
-        role: contributer
+        role: contributor
         house: Adams House
         year: 2022
         bio: I'm a sophomore from Manlius, NY most likely studying Statistics with a Data Science focus. Outside of HODP, I enjoy spending time with friends, watching NFL football and discussing politics.   
         image: neil-khurana.jpg
     -   name: Yijiang Zhao
-        role: contributer
+        role: contributor
         house: Quincy
         year: 2022
         bio: I'm a sophomore in Quincy thinking of studying Applied Math with a focus in Economics and CS. Outside of HODP, I love going out to Boston and trying new restaurants.
         image: yijiang-zhao.jpg
     -   name: Amy Jin
-        role: contributer
+        role: contributor
         house: Eliot
         year: 2022
         bio: I'm a sophomore in Eliot concentrating in computer science. I'm originally from San Jose, CA, and I love music, dancing, and hiking!
