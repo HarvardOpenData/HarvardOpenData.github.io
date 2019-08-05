@@ -1,9 +1,15 @@
 - name: An Analysis of Harvard Confessions
+  tags: Social Media
+  authors: Jenny Gu, Melissa Kwan, Sahana Srinivasan and Yijiang Zhao
   imgsrc: confessions-2019.png
   url: https://medium.com/harvard-open-data-project/whats-almost-left-unsaid-an-analysis-of-harvard-confessions-ef2aedd2d0fe
 - name: Harvard’s Most (and Least) Desired Houses 2019
+  tags: Residential Life
+  authors: Claire Fridkin and Britteny Okorom-Achuonye
   imgsrc: housing-prefs-2019.jpeg
   url: https://medium.com/harvard-open-data-project/harvards-most-and-least-desired-houses-updated-housing-day-2019-521e6db3e854
 - name: Funding Disparities and Accountability Issues in Student Group Financing
+  tags: Finances
+  authors: Seth Billiau and Eric Sun
   imgsrc: uc-grants-2019.jpg
   url: https://medium.com/harvard-open-data-project/demystifying-uc-grants-funding-and-accountability-gaps-in-harvard-student-group-funding-77697dd75247
