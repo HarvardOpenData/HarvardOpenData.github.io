@@ -15,7 +15,7 @@ def email_hash(email):
     return hashlib.md5(email.encode()).hexdigest()
 
 # checks if the current user exists in DB and has the correct userId
-def is_authenticated(userEmail, userId, db):
+def is_authenticated(userEmail : str, userId : str, db : firestore.firestore.Client):
     # typically triggered if there are no cookies
     if userEmail is None or userId is None:
         return False
@@ -39,7 +39,7 @@ def is_authenticated(userEmail, userId, db):
 # if not currently authenticated, try to authenticate with google backend
 # and create the new user if authentication works
 # If just want to authenticate, db should be null and will return None on success
-def authenticate_new(token, db):
+def authenticate_new(token : str, db : firestore.firestore.Client):
     # this is a google library for verifying stuff
     idinfo = id_token.verify_oauth2_token(token, requests.Request(), constants.get_google_client_id())
     userId = idinfo["sub"]
@@ -56,7 +56,7 @@ def authenticate_new(token, db):
 # if user does not exist, create in DB and return new doc ref
 # assumes email and id already authenticated with google backend
 # throws exceptions if email or ID is None, or if they do not match
-def create_user(userEmail, userId, db):
+def create_user(userEmail : str, userId : str, db : firestore.firestore.Client):
     emails_ref = db.collection("emails")
     responses_ref = db.collection("responses")
     user_response_ref = responses_ref.document(email_hash(userEmail))
@@ -96,11 +96,11 @@ def create_user(userEmail, userId, db):
 
         return emails_ref.document(userEmail).get()
 
-def get_emails_dict(userEmail, db):
+def get_emails_dict(userEmail : str, db : firestore.firestore.Client):
     emails_ref = db.collection("emails")
     return emails_ref.document(userEmail).get().to_dict()
 
-def get_responses_dict(userEmail, db):
+def get_responses_dict(userEmail : str, db : firestore.firestore.Client):
     responses_ref = db.collection("responses")
     return responses_ref.document(email_hash(userEmail)).get().to_dict()
 
@@ -119,5 +119,5 @@ def init_survey_firebase():
             'projectId' : "hodp-surveys"
         })
 
-def get_survey_firestore_client():
+def get_survey_firestore_client() -> firestore.firestore.Client:
     return firestore.client()
