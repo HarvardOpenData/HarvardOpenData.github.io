@@ -15,7 +15,7 @@ def email_hash(email):
     return hashlib.md5(email.encode()).hexdigest()
 
 # checks if the current user exists in DB and has the correct userId
-def is_authenticated(userEmail, userId, collection_ref):
+def is_authenticated(userEmail : str, userId : str, collection_ref : firestore.firestore.CollectionReference):
     # typically triggered if there are no cookies
     if userEmail is None or userId is None:
         return False
@@ -37,7 +37,7 @@ def is_authenticated(userEmail, userId, collection_ref):
 
 # see if we can authenticate user account with google backend
 # if yes, return tuple (userEmail, userId)
-def authenticate_google_signin(token):
+def authenticate_google_signin(token : str):
     # this is a google library for verifying stuff
     idinfo = id_token.verify_oauth2_token(token, requests.Request(), constants.get_google_client_id())
     userId = idinfo["sub"]
@@ -51,7 +51,7 @@ def authenticate_google_signin(token):
 # if user does not exist, create in DB and return new doc ref
 # assumes email and id already authenticated with google backend
 # throws exceptions if email or ID is None, or if they do not match
-def create_respondent(userEmail, userId, db):
+def create_respondent(userEmail : str, userId : str, db : firestore.firestore.Client):
     emails_ref = db.collection("emails")
     responses_ref = db.collection("responses")
     user_response_ref = responses_ref.document(email_hash(userEmail))
@@ -91,11 +91,11 @@ def create_respondent(userEmail, userId, db):
 
         return emails_ref.document(userEmail).get()
 
-def get_emails_dict(userEmail, db):
+def get_emails_dict(userEmail : str, db : firestore.firestore.Client):
     emails_ref = db.collection("emails")
     return emails_ref.document(userEmail).get().to_dict()
 
-def get_responses_dict(userEmail, db):
+def get_responses_dict(userEmail : str, db : firestore.firestore.Client):
     responses_ref = db.collection("responses")
     return responses_ref.document(email_hash(userEmail)).get().to_dict()
 

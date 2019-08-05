@@ -88,6 +88,7 @@ def studyabroad():
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
 
+@app.route("/surveygroup/", methods=['GET', 'POST'])
 @app.route('/demographics/', methods=['GET', 'POST'])
 def demographics():
     userEmail = None
@@ -105,7 +106,7 @@ def demographics():
         if id_cookie_key in request.cookies: 
                 userId = request.cookies[id_cookie_key]
         if not auth.is_authenticated(userEmail, userId, emails_ref):
-                return redirect("/auth/demographics")
+                return redirect("/auth/surveygroup")
         responsesDict = auth.get_responses_dict(userEmail, db)
         return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = False)
     else: 
@@ -123,8 +124,12 @@ def demographics():
 def signin(request_url):
     email_cookie_key = get_email_cookie_key(request_url)
     id_cookie_key = get_id_cookie_key(request_url)
+    title_dict = {
+        "surveygroup" : "Survey Group",
+        "demographics" : "Demographics"
+    }
     if request.method == "GET":
-        return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
+        return render_template('auth.html', title = title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
     else:
         try: 
             token = request.data

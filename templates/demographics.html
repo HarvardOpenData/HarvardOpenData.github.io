@@ -78,13 +78,13 @@
         </div>
 
         <div class = "row" id = "divHouse"
-        {% if demographics.class == questions.years[-2] %}
+        {% if demographics.year == questions.years[-2] %}
         hidden
         {% endif %}
             >
             <h3>Which house are you in?</h3>
             <select id = "slctHouse" name = "house"
-            {% if demographics.class != questions.years[-1] %}
+            {% if demographics.year != questions.years[-2] %}
             required
             {% endif %}    
             >
@@ -139,7 +139,7 @@
         auth2.signOut().then(() => {
             console.log("signed out!")
             document.cookie = "email=; id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.location.reload();
+            window.location.replace(window.location.href);
         });
     }
 
