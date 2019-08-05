@@ -15,6 +15,7 @@ years:
   - "2021"
   - "2022"
   - "2023"
+  - Other
 
 genders:
   - Male
@@ -51,6 +52,7 @@ freshman_dorms:
   - Thayer
   - Weld
   - Wigglesworth
+  - N/A
 
 houses:
   - Adams
@@ -67,6 +69,7 @@ houses:
   - Quincy
   - Winthrop
   - Off Campus
+  - Other
 
 concentrations:
   - Undeclared
@@ -95,6 +98,7 @@ concentrations:
   - History
   - History and Literature
   - History of Art and Architecture
+  - History and Science
   - Human Developmental and Regenerative Biology
   - Human Evolutionary Biology
   - Integrative Biology

@@ -10,6 +10,11 @@
 
 {% block content %}
 <div class = "container">
+    {% if responded %} 
+    <div class = "row">
+        <h3>Thank you for filling out your demographics! Please keep your demographics up to date if anything changes.</h3>
+    </div>
+    {% endif %}
     <div class = "row">
         <h1>Welcome to the HODP Survey Group!</h1>
         This survey group is intended to make it easy for you to opt-in for filling out surveys. By filling out your demographic info here, we will be able to connect your future survey responses to your existing demographic info making surveys simpler and shorter for you to fill out. We also take steps to protect your privacy so that we can link your responses but are unable to identify you personally with your responses. If you are interested, you can read more about our <a href = "https://github.com/HarvardOpenData/HODP-Surveys/blob/master/README.md">survey group policies</a>. 
@@ -73,13 +78,13 @@
         </div>
 
         <div class = "row" id = "divHouse"
-        {% if demographics.class == questions.years[-1] %}
+        {% if demographics.year == questions.years[-2] %}
         hidden
         {% endif %}
             >
             <h3>Which house are you in?</h3>
             <select id = "slctHouse" name = "house"
-            {% if demographics.class != questions.years[-1] %}
+            {% if demographics.year != questions.years[-2] %}
             required
             {% endif %}    
             >
@@ -134,7 +139,7 @@
         auth2.signOut().then(() => {
             console.log("signed out!")
             document.cookie = "email=; id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.location.reload();
+            window.location.replace(window.location.href);
         });
     }
 

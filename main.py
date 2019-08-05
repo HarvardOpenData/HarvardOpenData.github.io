@@ -87,6 +87,7 @@ def studyabroad():
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
 
+@app.route("/surveygroup/", methods=['GET', 'POST'])
 @app.route('/demographics/', methods=['GET', 'POST'])
 def demographics():
     userEmail = None
@@ -99,23 +100,28 @@ def demographics():
         if "id" in request.cookies: 
                 userId = request.cookies["id"]
         if not auth.is_authenticated(userEmail, userId, db):
-                return redirect("/auth/demographics")
+                return redirect("/auth/surveygroup")
         responsesDict = auth.get_responses_dict(userEmail, db)
-        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id())
+        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = False)
     else: 
-        db = auth.get_survey_firestore_client()
         userEmail = request.cookies["email"]
         userId = request.cookies["id"]
         if auth.is_authenticated(userEmail, userId, db):
             server.demographics.update_demographics(userEmail, request.form, demographicQuestions(), db)
-            return redirect("/demographics")
+            responsesDict = auth.get_responses_dict(userEmail, db)
+            return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = True)
         else:
+            # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")
 
 @app.route("/auth/<request_url>", methods=["GET", "POST"])
 def signin(request_url):
+    title_dict = {
+        "surveygroup" : "Survey Group",
+        "demographics" : "Demographics"
+    }
     if request.method == "GET":
-        return render_template('auth.html', page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
+        return render_template('auth.html', title = title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
     else:
         try: 
             db = auth.get_survey_firestore_client()
@@ -124,11 +130,13 @@ def signin(request_url):
             email_dict = email_doc.to_dict()
             userEmail = email_doc.id
             userId = email_dict["id"]
+            # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
             response.set_cookie("email", userEmail)
             response.set_cookie("id", userId)
             return response
         except:
+            # if there is an error, delete their cookies and indicate failure
             response = make_response("FAILURE", 406)
             response.set_cookie("email", expires = 0)
             response.set_cookie("id", expires = 0)
