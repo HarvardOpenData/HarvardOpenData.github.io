@@ -51,7 +51,7 @@ def authenticate_google_signin(token : str):
 # if user does not exist, create in DB and return new doc ref
 # assumes email and id already authenticated with google backend
 # throws exceptions if email or ID is None, or if they do not match
-def create_respondent(userEmail : str, userId : str, db : firestore.firestore.Client):
+def create_respondent(userEmail : str, userId : str, db : firestore.firestore.Client) -> firestore.firestore.DocumentSnapshot:
     emails_ref = db.collection("emails")
     responses_ref = db.collection("responses")
     user_response_ref = responses_ref.document(email_hash(userEmail))
