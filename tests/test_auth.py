@@ -42,7 +42,9 @@ class TestAuth(unittest.TestCase):
     def test_is_authenticated_error(self):
         self.assertRaises(Exception, lambda : auth.is_authenticated("test1", "23456"))
 
-
-    def test_create_respondent_new(self):
+    def test_create_respondent_existing(self):
         db = self.db
         reset_database(db)
+        respondent = auth.create_respondent("test1", "12345", db)
+        self.assertEqual("12345", respondent.to_dict()["id"])
+        self.assertTrue(respondent.to_dict()["has_demographics"])
