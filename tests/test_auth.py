@@ -40,6 +40,8 @@ class TestAuth(unittest.TestCase):
         self.assertTrue(auth.is_authenticated("test1", "12345", emails_ref))
 
     def test_is_authenticated_error(self):
+        db = self.db
+        reset_database(db)
         self.assertRaises(Exception, lambda : auth.is_authenticated("test1", "23456"))
 
     def test_create_respondent_existing(self):
@@ -48,3 +50,10 @@ class TestAuth(unittest.TestCase):
         respondent = auth.create_respondent("test1", "12345", db)
         self.assertEqual("12345", respondent.to_dict()["id"])
         self.assertTrue(respondent.to_dict()["has_demographics"])
+
+        respondent2 = auth.create_respondent("test2", "12345", db)
+        respondent2_ref = db.collection("emails").document("test2")
+        respondent2_snapshot = respondent2_ref.get()
+        self.assertTrue(respondent2_ref.get().exists)
+        self.assertEqual(respondent2.to_dict(), respondent2_snapshot.to_dict()) 
+        
