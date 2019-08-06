@@ -15,12 +15,11 @@ def email_hash(email):
     return hashlib.md5(email.encode()).hexdigest()
 
 # checks if the current user exists in DB and has the correct userId
-def is_authenticated(userEmail : str, userId : str, db : firestore.firestore.Client):
+def is_authenticated(userEmail : str, userId : str, collection_ref : firestore.firestore.CollectionReference):
     # typically triggered if there are no cookies
     if userEmail is None or userId is None:
         return False
-    emails_ref = db.collection("emails")
-    userDoc = emails_ref.document(userEmail).get()
+    userDoc = collection_ref.document(userEmail).get()
     if userDoc is None or not userDoc.exists:
         return False
     userDict = userDoc.to_dict() 
@@ -36,10 +35,9 @@ def is_authenticated(userEmail : str, userId : str, db : firestore.firestore.Cli
         # they're trying to fuck with us somehow
         raise Exception("Email and stored ID do not match")
 
-# if not currently authenticated, try to authenticate with google backend
-# and create the new user if authentication works
-# If just want to authenticate, db should be null and will return None on success
-def authenticate_new(token : str, db : firestore.firestore.Client):
+# see if we can authenticate user account with google backend
+# if yes, return tuple (userEmail, userId)
+def authenticate_google_signin(token : str):
     # this is a google library for verifying stuff
     idinfo = id_token.verify_oauth2_token(token, requests.Request(), constants.get_google_client_id())
     userId = idinfo["sub"]
@@ -47,16 +45,13 @@ def authenticate_new(token : str, db : firestore.firestore.Client):
     hd = idinfo["hd"]
     if hd is None or hd not in ["college.harvard.edu"]:
         raise Exception("Not a @college.harvard.edu email!")
-    if db is not None:
-        return create_user(userEmail, userId, db)
-    else:
-        return None
+    return (userEmail, userId)
 
 # gets a user by their email and corresponding ID
 # if user does not exist, create in DB and return new doc ref
 # assumes email and id already authenticated with google backend
 # throws exceptions if email or ID is None, or if they do not match
-def create_user(userEmail : str, userId : str, db : firestore.firestore.Client):
+def create_respondent(userEmail : str, userId : str, db : firestore.firestore.Client):
     emails_ref = db.collection("emails")
     responses_ref = db.collection("responses")
     user_response_ref = responses_ref.document(email_hash(userEmail))
@@ -66,7 +61,7 @@ def create_user(userEmail : str, userId : str, db : firestore.firestore.Client):
     if userId is None:
         raise Exception("User ID not defined")
     # user already exists
-    if is_authenticated(userEmail, userId, db):
+    if is_authenticated(userEmail, userId, emails_ref):
         if not user_response_doc.exists:
             # only create responses doc if it doesn't already exist
             responses_ref.document(email_hash(userEmail)).set({
@@ -110,14 +105,34 @@ def init_survey_firebase():
         cred = credentials.ApplicationDefault()
         firebase_admin.initialize_app(cred, {
             'projectId': "hodp-surveys",
-        })
+        }, name = "surveys")
     # locally testing, we have some credential file
     else:
         os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'survey_creds.json'
         cred = credentials.ApplicationDefault()
         firebase_admin.initialize_app(cred, {
             'projectId' : "hodp-surveys"
-        })
+        }, name = "surveys")
 
-def get_survey_firestore_client() -> firestore.firestore.Client:
-    return firestore.client()
+def init_website_firebase():
+    # we're on the server, use the project ID
+    if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
+        cred = credentials.ApplicationDefault()
+        firebase_admin.initialize_app(cred, {
+            'projectId': "hodp-website",
+        }, name = "website")
+    # locally testing, we have some credential file
+    else:
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'website_creds.json'
+        cred = credentials.ApplicationDefault()
+        firebase_admin.initialize_app(cred, {
+            'projectId' : "hodp-website"
+        }, name = "website")
+
+def get_survey_firestore_client():
+    app = firebase_admin.get_app("surveys")
+    return firestore.client(app)
+
+def get_website_firestore_client():
+    app = firebase_admin.get_app("website")
+    return firestore.client(app)
