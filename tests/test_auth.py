@@ -9,16 +9,16 @@ from server import auth
 from mockfirestore import *
 
 def reset_database(db : MockFirestore):
-        db.reset()
-        emails_ref = db.collection("emails")
-        emails_ref.document("test1").set({
-            "id" : "12345",
-            "has_demographics" : True
-        })
-        
-        emails_ref.document("test2").set({
-            "has_demographics" : False
-        })
+    db.reset()
+    emails_ref = db.collection("emails")
+    emails_ref.document("test1").set({
+        "id" : "12345",
+        "has_demographics" : True
+    })
+    
+    emails_ref.document("test2").set({
+        "has_demographics" : False
+    })
 
 class TestAuth(unittest.TestCase):
     def setUp(self):
