@@ -39,7 +39,7 @@ visual:
   - title: Visualization
     scripts:
       - /static/js/all.js
-      - /static/js/lib/Chart.js
+      - https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js
       - https://d3js.org/d3-collection.v1.min.js
       - https://d3js.org/d3-dispatch.v1.min.js
       - https://d3js.org/d3-dsv.v1.min.js
