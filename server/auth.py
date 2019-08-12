@@ -1,10 +1,13 @@
 import os
 import firebase_admin
+from firebase_admin import storage
 from firebase_admin import credentials
 from firebase_admin import firestore
+from firebase_admin.firestore.firestore import Client, DocumentReference, DocumentSnapshot
 from google.oauth2 import id_token
 from google.auth.transport import requests
 import server.constants as constants
+from server.members import Member
 
 import hashlib
 import datetime
@@ -47,11 +50,28 @@ def authenticate_google_signin(token : str):
         raise Exception("Not a @college.harvard.edu email!")
     return (userEmail, userId)
 
+def get_member(userEmail : str, userId : str, db : Client) -> Member:
+    members_ref : DocumentReference = db.collection("members").document(userEmail)
+    member_snapshot : DocumentSnapshot = members_ref.get()
+    if not member_snapshot.exists:
+        raise Exception("Email does not belong to HODP member")
+    
+    member_email = member_snapshot.id
+    member_dict = member_snapshot.to_dict()
+    member = Member.from_dict(member_email, member_dict)
+    
+    if member.id is None:
+        member.id = userId
+    elif member.id != userId:
+        raise Exception("id in databasae does not match current id")
+
+    return member
+
 # gets a user by their email and corresponding ID
 # if user does not exist, create in DB and return new doc ref
 # assumes email and id already authenticated with google backend
 # throws exceptions if email or ID is None, or if they do not match
-def create_respondent(userEmail : str, userId : str, db : firestore.firestore.Client) -> firestore.firestore.DocumentSnapshot:
+def create_respondent(userEmail : str, userId : str, db : Client) -> DocumentSnapshot:
     emails_ref = db.collection("emails")
     responses_ref = db.collection("responses")
     user_response_ref = responses_ref.document(email_hash(userEmail))
@@ -136,3 +156,7 @@ def get_survey_firestore_client():
 def get_website_firestore_client():
     app = firebase_admin.get_app("website")
     return firestore.client(app)
+
+def get_website_storage_client() -> storage.storage.Bucket:
+    app = firebase_admin.get_app("website")
+    return storage.bucket("hodp-member-images", app)
