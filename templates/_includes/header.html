@@ -1,49 +1,62 @@
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-static-top">
     <div class="container">
-        <div class="navbar-header">
+        <div class="nav">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/">
-                <img class="navbar-brand" src="/static/img/logo1.png" href="/"/>
+            <a href="/" class="navbar-brand">
+                <img class="d-inline-block align-top" src="/static/img/textlogo.png" height="60" href="/"/>
             </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 {% for link in site.pages.main %}
-                <li
-                {% if link.url == request.path %}
-                class="active"
-                {% endif %}
-                >
-                <a 
-                {% if link.newtab == 1 %}
-                target = "_blank"
-                {% endif %}
-                href="{{link.url}}">
-                    {{link.name}}
-                </a>
-            </li>
-            {% endfor %}
-            {% if site.pages.more %}
-            <li class="dropdown">
-                <a href class="dropdown-toggle" data-toggle="dropdown">
-                    More <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        {% for link in site.pages.more %}
-                        <li>
-                            <a href="{{link.url}}">
-                                {{link.name}}
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
+                    <li
+                        {% if link.url == request.path %}
+                        class="active"
+                        {% endif %}
+                        >
+                        <a 
+                        {% if link.newtab == 1 %}
+                        target = "_blank"
+                        {% endif %}
+                        href="{{link.url}}">
+                            {{link.name}}
+                        </a>
+                    </li>
+                {% endfor %}
+                <form action="/catalog" method="GET">
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="catalog-search-text" class="form-control" name="q" placeholder="Search for Harvard open datasets">
+                        <span class="input-group-btn">
+                        <button class="btn btn-primary">
+                            <i class="fa fa-search"></i>
+                            Search
+                        </button>
+                    </span>
+                    </div>
+                    </form>
+                {% if site.pages.more %}
+                    <li class="dropdown">
+                        <a href class="dropdown-toggle" data-toggle="dropdown">
+                            More <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for link in site.pages.more %}
+                            <li>
+                                <a href="{{link.url}}">
+                                    {{link.name}}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
                 {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
     </div>
+    <hr style="border-top: 2px solid black;"/>
 </nav>

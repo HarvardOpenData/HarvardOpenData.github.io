@@ -1,26 +1,56 @@
 {% extends 'default.html' %}
 
 {% block content %}
-    <div id="backdrop">
-    <div class="container">
-
-
-        <div class="title">
-            <!-- <h2 class="text-white lead"><em>The Harvard Open Data Project presents</em></h2> -->
-        <h1 class="text-white">Harvard's First Open Data Catalog</h1>
+    <!-- These articles are populated from the HODP Medium -->
+    <div class="container-fluid" id = "landing" style="float: none; margin: 0 auto;">
+        <div class="col-md-7">
+            <div class="row" id = "articles">
+                    {% for i, article in featured %}
+                        <div class="col-md-6">
+                            <a id = "articlelink{{ i }}" href="{{ article.url }}">
+                            <div class="thumbnail">
+                                <img id = "articleimg{{ i }}" src="/static/img/featured/{{ article.imgsrc }}" class="img-thumbnail img-responsive" alt="Image" />
+                                <div class="caption">
+                                    <p>
+                                        <h2 class="text-center lead" id = "articletitle{{ i }}"> {{ article.name }}</h2>
+                                    </p>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+            
+                    {% endfor %}
+                </div>
         </div>
-
-        <form action="/catalog" method="GET">
-        <div class="input-group input-group-lg">
-            <input type="text" id="catalog-search-text" class="form-control" name="q" placeholder="Search for Harvard open datasets">
-            <span class="input-group-btn">
-            <button class="btn btn-primary">
-                <i class="fa fa-search"></i>
-                Search
-            </button>
-        </span>
+        <div class="col-md-5">
+            <h2>
+                Harvard Open Data Project
+            </h2>
+            <p>The Harvard College Open Data Project (HODP) is a student-faculty group that aims to increase transparency and solve problems on campus using public Harvard data. </p>
+            <p>
+            Our flagship product is Harvard’s <a href="/catalog">first open data catalog,</a> where we’ve gathered dozens of public Harvard datasets in a free repository. We’ve used data science and data visualization techniques to analyze data on campus safety, <a href="https://medium.com/harvard-open-data-project/gender-disparity-in-harvard-faculty-b253ae949a56">faculty gender disparity</a>, <a href="https://medium.com/harvard-open-data-project/you-too-could-have-won-the-dunster-uc-election-131400dce0dc">student government election turnout</a>, and <a href="https://medium.com/harvard-open-data-project/from-ec-to-tech-how-harvard-students-are-changing-concentrations-b748b55ed35b">trends in concentration popularity</a>, to name a few.
+            </p>
+            <p>
+            HODP’s community includes over 100 undergraduates as well as several Harvard faculty: Nick Sinai, the former deputy CTO of the US and current HKS professor; Jim Waldo, the former Harvard CTO; and others.
+            </p>
+            <p> <a href="https://medium.com/harvard-open-data-project">Read our blog</a> for more info!
+            </p>
+            <h4>Join the Harvard College Open Data Project!</h4>
+            <ul>
+                <!-- <li>
+                    Attend our open hack nights on Sundays from 6-8pm in Cabot Library basement, LL09.
+                </li> -->
+                <li>
+                    Submit articles to <a href="https://medium.com/harvard-open-data-project">our blog</a>.
+                </li>
+                <li>
+                    Join us on hackathons around the Boston area!
+                </li>
+                <li>
+                    <a href="https://groups.google.com/forum/#!forum/harvard-open-data">Join our mailing list</a> for details on any of the above!
+                </li>
+            </ul>
         </div>
-        </form>
     </div>
     </div>
 
@@ -30,43 +60,6 @@
         <div class="well"><p class="lead">Interested in data science? Want to learn how FiveThirtyEight predicts elections? The Harvard College Open Data Project (HODP) has a 5-week bootcamp on data visualization, data science, and data journalism. Build projects using public Harvard data including final club finances, faculty diversity, and crime logs. Beginner and advanced tracks available. <b>Intro meeting on Wednesday 1/31, 7pm in Lamont 240.</b> Fill out the interest form at <a href="http://bit.ly/opendata18">bit.ly/opendata18</a> and see the <a href="/calendar/">calendar</a> for more info.</p>
         </div>
     </div> -->
-
-    <div class="container">
-    <h2 class="page-header text-centered">Categories</h2>
-    <div class="row">
-        {% for category in categories %}
-        <div class="col-xs-6 col-sm-3">
-            <a href="/catalog/?category={{ category.slug }}">
-                <div class="panel panel-default">
-                <div class="panel-body">
-                    <p class="text-center text-primary"><i class="fa fa-4x fa-{{ category.icon }}"></i></p>
-                    <h2 class="text-center lead">{{ category.name }}</h2>
-                </div>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-
-    <!-- These articles are populated from the HODP Medium -->
-    <div class="row" id = "articles">
-        <h2 class="page-header text-centered">Featured  Articles</h2>
-        {% for i, article in featured %}
-            <div class="col-md-4">
-                <a id = "articlelink{{ i }}" href="{{ article.url }}">
-                <div class="thumbnail">
-                    <img id = "articleimg{{ i }}" src="/static/img/featured/{{ article.imgsrc }}" class="img-thumbnail img-responsive" alt="Image" />
-                    <div class="caption">
-                        <p>
-                            <h2 class="text-center lead" id = "articletitle{{ i }}"> {{ article.name }}</h2>
-                        </p>
-                    </div>
-                </div>
-                </a>
-            </div>
-
-        {% endfor %}
-    </div>
 
     </div>
 {% endblock %}
