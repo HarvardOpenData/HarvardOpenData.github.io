@@ -3,26 +3,26 @@
 {% block content %}
     <!-- These articles are populated from the HODP Medium -->
     <div class="container-fluid" id = "landing" style="float: none; margin: 0 auto;">
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="row" id = "articles">
-                    {% for i, article in featured %}
-                        <div class="col-md-6">
-                            <a id = "articlelink{{ i }}" href="{{ article.url }}">
-                            <div class="thumbnail">
-                                <img id = "articleimg{{ i }}" src="/static/img/featured/{{ article.imgsrc }}" class="img-thumbnail img-responsive" alt="Image" />
-                                <div class="caption">
-                                    <p>
-                                        <h2 class="text-center lead" id = "articletitle{{ i }}"> {{ article.name }}</h2>
-                                    </p>
-                                </div>
+                {% for i, article in featured %}
+                    {% if i == 0 %} <div class="col-md-12"> {% endif %}
+                    {% if i > 0 %} <div class="col-md-6"> {% endif %}
+                        <a id = "articlelink{{ i }}" href="{{ article.url }}">
+                        <div class="thumbnail">
+                            <img id = "articleimg{{ i }}" src="/static/img/featured/{{ article.imgsrc }}" class="img-thumbnail img-responsive" alt="Image" />
+                            <div class="caption">
+                                <p>
+                                    <h2 class="text-center lead" id = "articletitle{{ i }}"> {{ article.name }}</h2>
+                                </p>
                             </div>
-                            </a>
                         </div>
-            
-                    {% endfor %}
-                </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <h2>
                 Harvard Open Data Project
             </h2>
