@@ -3,26 +3,27 @@
 {% block content %}
     <!-- These articles are populated from the HODP Medium -->
     <div class="container-fluid" id = "landing" style="float: none; margin: 0 auto;">
-        <div class="col-md-6">
+        <div class="col-md-6" style="padding: 1em;">
             <div class="row" id = "articles">
                 {% for i, article in featured %}
-                    {% if i == 0 %} <div class="col-md-12"> {% endif %}
-                    {% if i > 0 %} <div class="col-md-6"> {% endif %}
+                    {% if i == 0 %} <div class="col-md-12" style="padding: 0.5em;"> {% endif %}
+                    {% if i > 0 %} <div class="col-md-6" style="padding: 0.5em;"> {% endif %}
                         <a id = "articlelink{{ i }}" href="{{ article.url }}">
-                        <div class="thumbnail">
-                            <img id = "articleimg{{ i }}" src="/static/img/featured/{{ article.imgsrc }}" class="img-thumbnail img-responsive" alt="Image" />
-                            <div class="caption">
-                                <p>
-                                    <h2 class="text-center lead" id = "articletitle{{ i }}"> {{ article.name }}</h2>
-                                </p>
+                            <div>
+                                <img id = "articleimg{{ i }}" src="/static/img/featured/{{ article.imgsrc }}" class="img-responsive" alt="Image" style="margin-bottom: 0;"/>
+                                <div class="container-fluid" style="background-color: #E9E9E9; margin-top: 0em; padding: 1.2em; vertical-align: middle">
+                                    <h6 id = "articletags{{ i }}" style="margin-top: 0px; margin-bottom: 5px">{{ article.tags.upper() }}</h6>
+                                    {% if i == 0 %} <h3 id = "articletitle{{ i }}" style="margin-top: 5px; margin-bottom: 5px">{{ article.name }}</h2>{% endif %}
+                                    {% if i > 0 %} <h4 id = "articletitle{{ i }}" style="margin-top: 5px; margin-bottom: 5px">{{ article.name }}</h4>{% endif %}
+                                    <p id = "articleauthor{{ i }}" style="margin-top: 5px; margin-bottom: 0px; color: #717171">{{ article.authors }}</p>
+                                </div>
                             </div>
-                        </div>
                         </a>
                     </div>
                 {% endfor %}
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" style="padding: 1em;">
             <h2>
                 Harvard Open Data Project
             </h2>
