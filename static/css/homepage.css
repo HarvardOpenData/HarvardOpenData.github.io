@@ -3,6 +3,59 @@
   background-position: 50% 40%;
   min-height: 500px; }
 
+#features {
+  padding: 1em;
+}
+
+.article-container {
+  padding: 0.5em;
+  margin: 0em;
+}
+
+.article-container a {
+  text-decoration: none !important;
+}
+
+.article-info {
+  background-color: #E9E9E9;
+  margin-top: 0em;
+  padding: 1.2em;
+  vertical-align: middle;
+}
+
+.article-tags {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.article-headline {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.article-author {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  color: #717171;
+}
+
+.article:hover {
+	box-shadow: 1px 1px 10px grey;
+	animation-name: hoverShadow;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.03s;
+}
+
+@keyframes hoverShadow {
+	0% {
+		box-shadow: 0px 0px 0px;
+	}
+	100% {
+		box-shadow: 1px 1px 10px grey;
+	}
+}
+
 @media (min-width: 1200px) {
   #landing {
     width: 1100px;
