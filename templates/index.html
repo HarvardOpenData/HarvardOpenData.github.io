@@ -2,7 +2,7 @@
 
 {% block content %}
     <!-- These articles are populated from the HODP Medium -->
-    <div class="container-fluid" id = "landing" style="float: none; margin: 0 auto;">
+    <div class="container-fluid landing" style="float: none; margin: 0 auto;">
         <div class="col-md-6" id = "features">
             <div class="row" id = "articles">
                 {% for i, article in featured %}
@@ -23,7 +23,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-md-6" style="padding: 1em;">
+        <div class="col-md-6" style="padding-left: 2em;">
             <h2>
                 Harvard Open Data Project
             </h2>
@@ -56,7 +56,36 @@
             <a href="mailto:harvardopendataproject@gmail.com" class="social-icon fa fa-envelope"></a>
         </div>
     </div>
+    <div class="container-fluid landing" style="float: none; margin: 0 auto;">
+            <h2 class="page-header centered">What we do</h2>
+            <div class="row">
+              <div class="col-md-4">
+                <h3>Curate Harvard's first open data catalog</h3>
+                <p>
+                  In the vein of <a href="https://data.gov">data.gov</a>, we're <a href="/catalog">gathering and publishing all of Harvard's public datasets in one place</a>. With this, we promote transparency and help
+                  students engage better with the university. Check out our datasets!
+                </p>
+                <a href="/catalog" class="btn btn-primary btn-block">View the whole open data catalog</a>
+              </div>
+              <div class="col-md-4">
+                <h3>Initiate data-driven policy with Harvard staff</h3>
+                <p>
+                  We're working with <a href="https://medium.com/harvard-open-data-project/crime-and-risk-using-open-data-to-make-a-safer-community-49410a57e232">Harvard's police department (HUPD)</a> and <a href="https://medium.com/harvard-open-data-project/fooducation-food-waste-project-kick-off-d6b04fa4d070">dining services (HUDS)</a> to open and analyze their datasets. Our analyses will lead to real policy changes and greater student-staff interaction than we've ever seen.
+                </p>
+                <a href="https://medium.com/harvard-open-data-project" class="btn btn-primary btn-block">Read about our policy projects</a>
+              </div>
+              <div class="col-md-4">
+                <h3>Use data science to understand our university</h3>
+                <p>
+                  We <a href="https://medium.com/harvard-open-data-project/sixteenthirtysix-our-analysis-4c395d933198#.h5cuo2mlt">correctly predicted the outcome of the Harvard UC presidential election</a> using surveys
+                  and social media analysis. Now we're turning toward understanding Harvard academics, social life, and finances by analyzing public Harvard data.
+                </p>
+                <a href="https://medium.com/harvard-open-data-project" class="btn btn-primary btn-block">Read our analyses</a>
+              </div>
+            </div>
     </div>
+    </div>
+    
 
     <br/>
 

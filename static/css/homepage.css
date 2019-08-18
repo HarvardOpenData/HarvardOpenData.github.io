@@ -52,11 +52,21 @@
 }
 
 @media (min-width: 1200px) {
-  #landing {
-    width: 1100px;
+  .landing {
+    width: 1200px;
   }
 
-  nav.navbar {
+  .nav .navbar {
+    margin-top: 2em !important;
+    margin-bottom: 2em !important; }
+}
+
+@media (max-width: 1200px) {
+  .landing {
+    padding: 0em 2em;
+  }
+
+  .nav .navbar {
     margin-top: 2em !important;
     margin-bottom: 2em !important; }
 }
