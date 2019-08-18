@@ -39,21 +39,16 @@
   color: #717171;
 }
 
-.article:hover {
-	box-shadow: 1px 1px 10px grey;
-	animation-name: hoverShadow;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 0.03s;
+.article {
+  transition: color 0.5s linear; /* vendorless fallback */
+  -o-transition: color 0.5s linear; /* opera */
+  -ms-transition: color 0.5s linear; /* IE 10 */
+  -moz-transition: color 0.5s linear; /* Firefox */
+  -webkit-transition: color 0.5s linear; /*safari and chrome */
 }
 
-@keyframes hoverShadow {
-	0% {
-		box-shadow: 0px 0px 0px;
-	}
-	100% {
-		box-shadow: 1px 1px 10px grey;
-	}
+.article:hover {
+  box-shadow: 1px 1px 10px grey;
 }
 
 @media (min-width: 1200px) {

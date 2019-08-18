@@ -7,6 +7,21 @@
   color: white !important;
 }
 
+.social-icon {
+  padding: 0.5em;
+  font-size: 1.1em;
+  background: white;
+  border: 1px solid black;
+  color: black;
+  margin: 5px;
+}
+
+.fa:hover {
+  background: black;
+  color: white;
+  text-decoration: none;
+}
+
 /* old styles */
 #main-image {
   max-height: 128px;
