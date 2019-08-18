@@ -7,6 +7,10 @@
   color: white !important;
 }
 
+.text-white {
+  color: white !important;
+}
+
 .social-icon {
   padding: 0.5em;
   font-size: 1.1em;
@@ -47,6 +51,12 @@
 
 .img-padding {
   padding: 4px;
+}
+
+@media (max-width: 780px) {
+  #logo {
+    max-height: 40px;
+  }
 }
 
 /* Sticky footer styles

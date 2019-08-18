@@ -70,3 +70,9 @@
     margin-top: 2em !important;
     margin-bottom: 2em !important; }
 }
+
+@media (max-width: 780px) {
+  #about {
+    padding: 0.5em !important;
+  }
+}
