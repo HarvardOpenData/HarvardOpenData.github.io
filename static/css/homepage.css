@@ -40,15 +40,17 @@
 }
 
 .article {
-  transition: color 0.5s linear; /* vendorless fallback */
-  -o-transition: color 0.5s linear; /* opera */
-  -ms-transition: color 0.5s linear; /* IE 10 */
-  -moz-transition: color 0.5s linear; /* Firefox */
-  -webkit-transition: color 0.5s linear; /*safari and chrome */
+  border: 2px solid transparent;
+  transition: color 0.5s ease-in; /* vendorless fallback */
+  -o-transition: color 0.5s ease-in; /* opera */
+  -ms-transition: color 0.5s ease-in; /* IE 10 */
+  -moz-transition: color 0.5s ease-in; /* Firefox */
+  -webkit-transition: color 0.5s ease-in; /*safari and chrome */
 }
 
 .article:hover {
-  box-shadow: 1px 1px 10px grey;
+  border: 2px solid grey;
+  /* box-shadow: 1px 1px 1px grey; */
 }
 
 @media (min-width: 1200px) {
@@ -74,5 +76,11 @@
 @media (max-width: 780px) {
   #about {
     padding: 0.5em !important;
+  }
+  .article-container {
+    padding: 0em 0em 1em 0em !important;
+  }
+  .landing {
+    padding: 0em 1em;
   }
 }

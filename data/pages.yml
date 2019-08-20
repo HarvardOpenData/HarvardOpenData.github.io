@@ -5,6 +5,9 @@ main:
     -   name: About
         url: /about/
         newtab: 0
+    -   name: People
+        url: /people/
+        newtab: 0
     -   name: Calendar
         url: /calendar/
         newtab: 0

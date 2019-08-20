@@ -40,6 +40,11 @@ def about():
     people = getYml('./data/people.yml')
     return render_template('about.html', site=site, people=people, page=pageData["about"][0])
 
+@app.route('/people/')
+def people():
+    people = getYml('./data/people.yml')
+    return render_template('people.html', site=site, people=people, page=pageData["about"][0])
+
 
 @app.route('/calendar/')
 def calendar():

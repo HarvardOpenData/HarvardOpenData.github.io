@@ -57,6 +57,10 @@
   #logo {
     max-height: 40px;
   }
+  .footer {
+    text-align: center;
+    align-content: center;
+  }
 }
 
 /* Sticky footer styles
