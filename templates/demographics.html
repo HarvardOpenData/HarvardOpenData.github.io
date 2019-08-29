@@ -138,7 +138,7 @@
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(() => {
             console.log("signed out!")
-            document.cookie = "email=; id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "demographics_email=; demographics_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             window.location.replace(window.location.href);
         });
     }

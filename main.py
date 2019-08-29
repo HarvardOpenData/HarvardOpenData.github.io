@@ -114,7 +114,7 @@ def demographics():
         if id_cookie_key in request.cookies:
             userId = request.cookies[id_cookie_key]
         if not auth.is_authenticated(userEmail, userId, emails_ref):
-            return redirect("/auth/surveygroup")
+            return redirect("/auth/surveygroup/")
         responsesDict = auth.get_responses_dict(userEmail, db)
         return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics=responsesDict["demographics"], questions=demographicQuestions(), CLIENT_ID=constants.get_google_client_id(), responded=False)
     else:
@@ -130,10 +130,8 @@ def demographics():
             abort("User credentials improper. Please sign out and sign back in")
 
 
-@app.route("/auth/<request_url>", methods=["GET", "POST"])
+@app.route("/auth/<request_url>/", methods=["GET", "POST"])
 def signin(request_url):
-    email_cookie_key = get_email_cookie_key(request_url)
-    id_cookie_key = get_id_cookie_key(request_url)
     title_dict = {
         "surveygroup": "Survey Group",
         "demographics": "Demographics"
@@ -142,10 +140,14 @@ def signin(request_url):
         return render_template('auth.html', title=title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
     else:
         try:
+            email_cookie_key = None
+            id_cookie_key = None
             token = request.data
             email_doc = None
             userEmail, userId = auth.authenticate_google_signin(token)
-            if request_url == "demographics":
+            if request_url in title_dict.keys():
+                email_cookie_key = get_email_cookie_key("demographics")
+                id_cookie_key = get_id_cookie_key("demographics")
                 db = auth.get_survey_firestore_client()
                 email_doc = auth.create_respondent(userEmail, userId, db)
             email_dict = email_doc.to_dict()
