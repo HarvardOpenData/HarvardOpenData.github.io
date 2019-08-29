@@ -128,11 +128,8 @@ def init_survey_firebase():
         }, name = "surveys")
     # locally testing, we have some credential file
     else:
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'survey_creds.json'
-        cred = credentials.ApplicationDefault()
-        firebase_admin.initialize_app(cred, {
-            'projectId' : "hodp-surveys"
-        }, name = "surveys")
+        cred = credentials.Certificate('survey_creds.json')
+        firebase_admin.initialize_app(cred, name = "surveys")
 
 def init_website_firebase():
     # we're on the server, use the project ID
@@ -143,14 +140,12 @@ def init_website_firebase():
         }, name = "website")
     # locally testing, we have some credential file
     else:
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'website_creds.json'
-        cred = credentials.ApplicationDefault()
-        firebase_admin.initialize_app(cred, {
-            'projectId' : "hodp-website"
-        }, name = "website")
+        cred = credentials.Certificate('website_creds.json')
+        firebase_admin.initialize_app(cred, name = "website")
 
 def get_survey_firestore_client():
     app = firebase_admin.get_app("surveys")
+    print("Survey app: {}".format(app.name))
     return firestore.client(app)
 
 def get_website_firestore_client():
