@@ -57,7 +57,7 @@ def get_member(userEmail : str, userId : str, db : firestore.firestore.Client) -
     
     member_email = member_snapshot.id
     member_dict = member_snapshot.to_dict()
-    print(member_dict)
+
     member = Member(member_email, member_dict)
     
     if member.id is None:
@@ -154,6 +154,6 @@ def get_website_firestore_client() -> firestore.firestore.Client:
     app = firebase_admin.get_app("website")
     return firestore.client(app)
 
-def get_website_storage_client() -> storage.storage.Bucket:
+def get_website_storage_client() -> storage.storage.Client:
     app = firebase_admin.get_app("website")
-    return storage.bucket("hodp-member-images", app)
+    return storage._StorageClient.from_app(app)

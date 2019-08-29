@@ -4,9 +4,13 @@ import server.constants as constants
 import server.auth as auth
 from server.members import Member
 import json
+import os
 import server.demographics
+import tempfile
 
 app = Flask(__name__)
+
+app.config['MAX_CONTENT_LENGTH'] = 0.5 * 1024 * 1024 
 
 
 def getYml(filepath):
@@ -139,14 +143,15 @@ def profile():
     id_cookie_key = get_id_cookie_key("profile")
     
     members_ref = db.collection("members")
+    if email_cookie_key in request.cookies:
+        userEmail = request.cookies[email_cookie_key]
+    if id_cookie_key in request.cookies:
+        userId = request.cookies[id_cookie_key]
+    if not auth.is_authenticated(userEmail, userId, members_ref):
+        return redirect("/auth/profile/")
+
+    member = auth.get_member(userEmail, userId, db)
     if request.method == "GET":
-        if email_cookie_key in request.cookies:
-            userEmail = request.cookies[email_cookie_key]
-        if id_cookie_key in request.cookies:
-            userId = request.cookies[id_cookie_key]
-        if not auth.is_authenticated(userEmail, userId, members_ref):
-            return redirect("/auth/profile/")
-        member = auth.get_member(userEmail, userId, db)
         people : list = getYml('./data/people.yml')["people"]
         
         person_dict = next((person for person in people if "email" in person and person["email"] == member.email), None)
@@ -159,13 +164,26 @@ def profile():
 
         return render_template("profile.html", page=pageData["profile"][0], site=site, member=member, contributionsJson = contributionsJson, CLIENT_ID=constants.get_google_client_id(), responded=True)
     elif request.method == "POST":
-
-
-        response = make_response("SUCCESS", 201)
-        response.set_cookie(email_cookie_key, userEmail)
-        response.set_cookie(id_cookie_key, userId)
-        return response
-
+        try: 
+            if "photo_upload" in request.files:
+                photo = request.files["photo_upload"]
+                if photo.filename:
+                    filetype = photo.filename.split(".")[-1]
+                    storage_client = auth.get_website_storage_client()
+                    bucket = storage_client.bucket("hodp-member-images")
+                    uploaded_filename = "{}.{}".format(member.member_id(), filetype)
+                    blob = bucket.blob(uploaded_filename)
+                    temp = tempfile.NamedTemporaryFile(delete=False)
+                    photo.save(temp.name)
+                    blob.upload_from_file(temp)
+                    os.remove(temp.name)
+                    blob.make_public()
+                    member.img_url = blob._get_download_url()
+            member.update_from_form(request.form)
+            member.save(db)
+            return redirect("/profile/")
+        except Exception as e:
+            return make_response("Failed to update profile: {}".format(e), 400)
 @app.route("/auth/<request_url>/", methods=["GET", "POST"])
 def signin(request_url):
     title_dict = {

@@ -11,7 +11,7 @@
 {% block content %}
 
 <div class = "container">
-    <form>
+    <form method="POST" enctype="multipart/form-data">
         <img src="{{ member.img_url if member.img_url != None and member.img_url != '' else '/static/img/people/generic.jpg'}}" 
         class="media-object img-circle"
         width="128px"
@@ -22,7 +22,7 @@
         <br/>
 
         <label for = "full_name">Full name: </label>
-        <input type = "text" id = "full_name" name = "full_name" value="{{ member.full_name }} "/>
+        <input type = "text" id = "full_name" name = "full_name" value="{{ member.full_name }}"/>
 
         <br/>
 
@@ -36,12 +36,12 @@
 
         <br/>
         <label for = "description">Bio: </label> <br />
-        <textarea name = "description" id = "description" value = "{{ member.description }} " rows = "4" cols = "60"></textarea>
+        <textarea name = "description" id = "description" value = "{{ member.description }}" rows = "4" cols = "60"></textarea>
 
         <br />
 
         <label for = "contributions">Contributions (JSON format): </label> <br/>
-        <textarea name = "contributions" id = "contributions" rows = "8" cols = "80">{{ contributionsJson }} </textarea>
+        <textarea name = "contributions" id = "contributions" rows = "8" cols = "80">{{ contributionsJson }}</textarea>
         <br />
         <br />
         <input type = "submit" value = "Save" />
@@ -50,3 +50,21 @@
 </div>
 
 {% endblock %}
+
+{% block custom_scripts %}
+<script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+            document.cookie = "profiles_email=; profie_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.replace(window.location.href);
+        });
+    }
+
+    window.onload = function() {
+        gapi.load('auth2', function() {
+        gapi.auth2.init();
+        });
+    }
+</script>
+{% endblock custom_scripts %}

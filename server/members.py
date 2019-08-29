@@ -1,4 +1,5 @@
 from typing import List, Dict
+import json
 from firebase_admin import firestore, storage
 from server.auth import *
 
@@ -10,15 +11,14 @@ class Member:
         self.contributions = init_dict.get("contributions", [])
         self.year = init_dict.get("year", None)
         self.img_url = init_dict.get("img_url", None)
-        self.description = init_dict.get("description", "")
+        self.description = init_dict.get("description", None)
         self.id = init_dict.get("id", None)
         self.role = init_dict.get("role", None)
 
     def merge_people_dict(self, people_dict : dict):
-        print("in merge people dict")
         if not self.full_name and "name" in people_dict:
             self.full_name = people_dict["name"]
-        if not self.img_url is None and "image" in people_dict:
+        if not self.img_url and "image" in people_dict:
             self.img_url = "/static/img/people/{}".format(people_dict["image"])
         if not self.role and "role" in people_dict:
             self.role = people_dict["role"]
@@ -39,6 +39,26 @@ class Member:
     def member_id(self):
         return self.email.replace("@college.harvard.edu", "")
 
+    def update_from_form(self, form):
+        self.full_name = form.get("full_name", self.full_name)
+        self.house = form.get("house", self.house)
+        self.contributions = json.loads(form.get("contributions", json.dumps(self.contributions)))
+        self.year = form.get("year", self.year)
+        self.description = form.get("description", self.description)
+
     def save(self, db : firestore.firestore.Client):
         member_ref : firestore.firestore.DocumentReference = db.collection("members").document(self.email)
-        member_ref.update(self.to_dict())
+        update_dict = { 
+            "full_name" : self.full_name,
+            "house" : self.house,
+            "contributions" : self.contributions,
+            "year" : self.year,
+            "description" : self.description,
+            "img_url" : self.img_url
+        }
+        
+        for key, value in update_dict.items():
+            if value is None:
+                update_dict.pop(key)
+
+        member_ref.update(update_dict)
