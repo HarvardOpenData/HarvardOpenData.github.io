@@ -69,6 +69,12 @@ To test your app locally run the following in your root directory
 $ dev_appserver.py app.yaml
 ```
 
+If you do not have credentialed access to the HODP Firestore, use the following to use an in-memory mock firestore:
+
+```
+dev_appserver.py --env_var MOCK_FIRESTORE=TRUE app.yaml
+```
+
 ### Workflow
 Ready to work? Make sure you’re on the master branch of the github repo and create your own branch. We recommend naming your branch [first-initial][last-initial]-branchname. The name of the branch can be anything you’d like, but try to be descriptive and concise!
 

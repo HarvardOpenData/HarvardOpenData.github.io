@@ -7,6 +7,7 @@ from google.oauth2 import id_token
 from google.auth.transport import requests
 import server.constants as constants
 from server.members import Member
+from mockfirestore import *
 
 import hashlib
 import datetime
@@ -15,6 +16,9 @@ import datetime
 # used for the ID of the responses doc
 def email_hash(email):
     return hashlib.md5(email.encode()).hexdigest()
+
+def is_mock():
+    return os.getenv("MOCK_FIRESTORE") == "TRUE"
 
 # checks if the current user exists in DB and has the correct userId
 def is_authenticated(userEmail : str, userId : str, collection_ref : firestore.firestore.CollectionReference):
@@ -126,6 +130,21 @@ def get_responses_dict(userEmail : str, db : firestore.firestore.Client):
     responses_ref = db.collection("responses")
     return responses_ref.document(email_hash(userEmail)).get().to_dict()
 
+mock_survey_client = None
+mock_website_client = None
+
+def init_mock_survey_firestore() -> firestore.firestore.Client:
+    client = MockFirestore()
+    return client
+
+def init_mock_website_firestore() -> firestore.firestore.Client:
+    client = MockFirestore()
+    return client
+
+if is_mock():
+    mock_survey_client = init_mock_survey_firestore()
+    mock_website_client = init_mock_website_firestore()
+
 def init_survey_firebase():
     # we're on the server, use the project ID
     if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
@@ -151,10 +170,14 @@ def init_website_firebase():
         firebase_admin.initialize_app(cred, name = "website")
 
 def get_survey_firestore_client() -> firestore.firestore.Client:
+    if is_mock():
+        return mock_survey_client
     app = firebase_admin.get_app("surveys")
     return firestore.client(app)
 
 def get_website_firestore_client() -> firestore.firestore.Client:
+    if is_mock():
+        return mock_website_client
     app = firebase_admin.get_app("website")
     return firestore.client(app)
 
