@@ -52,7 +52,6 @@ def about():
     for person in people["people"]:
         if "email" in person:
             member = auth.get_member(person["email"], None, db, True)
-            print("Member: ", member.to_dict())
             if member is not None:
                 member.merge_people_dict(person)
                 members.append(member)

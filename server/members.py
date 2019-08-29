@@ -61,9 +61,4 @@ class Member:
             "description" : self.description,
             "img_url" : self.img_url
         }
-        
-        for key, value in update_dict.items():
-            if value is None:
-                update_dict.pop(key)
-
         member_ref.update(update_dict)
