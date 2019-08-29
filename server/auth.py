@@ -49,24 +49,28 @@ def authenticate_google_signin(token : str):
         raise Exception("Not a @college.harvard.edu email!")
     return (userEmail, userId)
 
-def get_member(userEmail : str, userId : str, db : firestore.firestore.Client) -> Member:
+def get_member(userEmail : str, userId : str, db : firestore.firestore.Client, readonly = False) -> Member:
     members_ref : firestore.firestore.DocumentReference = db.collection("members").document(userEmail)
     member_snapshot : firestore.firestore.DocumentSnapshot = members_ref.get()
     if not member_snapshot.exists:
-        raise Exception("Email does not belong to HODP member")
-    
+        if not readonly:
+            raise Exception("Email does not belong to HODP member")
+        else:
+            return None
+
     member_email = member_snapshot.id
     member_dict = member_snapshot.to_dict()
 
     member = Member(member_email, member_dict)
     
-    if member.id is None:
-        member.id = userId
-        members_ref.update({
-            "id" : member.id
-        })
-    elif member.id != userId:
-        raise Exception("id in databasae does not match current id")
+    if not readonly:
+        if member.id is None:
+            member.id = userId
+            members_ref.update({
+                "id" : member.id
+            })
+        elif member.id != userId:
+            raise Exception("id in databasae does not match current id")
 
     return member
 

@@ -47,7 +47,24 @@ def index():
 @app.route('/about/')
 def about():
     people = getYml('./data/people.yml')
-    return render_template('about.html', site=site, people=people, page=pageData["about"][0])
+    members = []
+    db = auth.get_website_firestore_client()
+    for person in people["people"]:
+        if "email" in person:
+            member = auth.get_member(person["email"], None, db, True)
+            print("Member: ", member.to_dict())
+            if member is not None:
+                member.merge_people_dict(person)
+                members.append(member)
+            else:
+                member = Member(None)
+                member.merge_people_dict(person)
+                members.append(member)
+        else:
+            member = Member(None)
+            member.merge_people_dict(person)
+            members.append(member)   
+    return render_template('about.html', site=site, people=people, members = members, page=pageData["about"][0])
 
 
 @app.route('/calendar/')
@@ -171,7 +188,7 @@ def profile():
                     filetype = photo.filename.split(".")[-1]
                     storage_client = auth.get_website_storage_client()
                     bucket = storage_client.bucket("hodp-member-images")
-                    uploaded_filename = "{}.{}".format(member.member_id(), filetype)
+                    uploaded_filename = "{}.{}".format(member.member_id, filetype)
                     blob = bucket.blob(uploaded_filename)
                     temp = tempfile.NamedTemporaryFile(delete=False)
                     photo.save(temp.name)

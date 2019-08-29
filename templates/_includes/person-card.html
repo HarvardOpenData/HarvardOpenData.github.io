@@ -6,27 +6,28 @@
 <div class="media col-sm-6" style="padding: 5px; margin-top: 0px">
   <div class="panel panel-default" style="padding: 10px">
     <div class="media-left">
-      <a href="{{ person.url }}">
-        {% if person.image %}
-            <img src="/static/img/people/{{ person.image }}" class="media-object img-circle" alt="{{ person.name }}" style="width: 64px;" />
-        {% else %}
-            <img src="/static/img/people/generic.jpg" class="media-object img-circle" alt="{{ person.name }}" style="width: 64px;" />
-        {% endif %}
+      <a href=
+        "{% if member.member_id %}
+            /member/{{ member.member_id }}
+          {% endif %}
+        "
+      >
+          <img src="{{ member.img_url if member.img_url != None and member.img_url != '' else '/static/img/people/generic.jpg'}}" class="media-object img-circle" alt="{{ member.full_name }}" style="width: 64px;" />
       </a>
     </div>
     <div class="media-body">
-      <h4 class="media-heading">{{ person.name }}</h4>
+      <h4 class="media-heading">{{ member.full_name }}</h4>
       <h5>
         <div class="row">
           <div class="col-sm-6">
             {{ role.title }}
           </div>
           <div class="col-sm-6">
-            {{ person.house }} {{ person.year }}
+            {{ member.house }} {{ member.year }}
           </div>
         </div>
       </h5>
-      {{ person.bio }}
+      {{ member.description }}
     </div>
   </div>
 </div>

@@ -14,6 +14,10 @@ class Member:
         self.description = init_dict.get("description", None)
         self.id = init_dict.get("id", None)
         self.role = init_dict.get("role", None)
+        if self.email:
+            self.member_id = self.email.replace("@college.harvard.edu", "")
+        else:
+            self.member_id = None
 
     def merge_people_dict(self, people_dict : dict):
         if not self.full_name and "name" in people_dict:
@@ -24,6 +28,10 @@ class Member:
             self.role = people_dict["role"]
         if not self.description and "bio" in people_dict:
             self.description = people_dict["bio"]
+        if not self.year and "year" in people_dict:
+            self.year = people_dict["year"]
+        if not self.house and "house" in people_dict:
+            self.house = people_dict["house"]
 
     def to_dict(self): 
         out_dict = {}
@@ -35,9 +43,6 @@ class Member:
         out_dict["description"] = self.description
         out_dict["id"] = self.id
         return out_dict
-
-    def member_id(self):
-        return self.email.replace("@college.harvard.edu", "")
 
     def update_from_form(self, form):
         self.full_name = form.get("full_name", self.full_name)
