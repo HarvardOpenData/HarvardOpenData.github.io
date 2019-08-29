@@ -112,3 +112,6 @@ demographics:
   - title: Survey Demographics
     scripts:
       - /static/js/demographics.js
+
+profile:
+  - title: My Profile

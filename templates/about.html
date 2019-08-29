@@ -97,8 +97,8 @@
           {% set count = [1] %}
           {% for role in people.roles %}
             {% if role.g_id == group.id %} 
-              {% for person in people.people %}
-                {% if person.role == role.id %}
+              {% for member in members %}
+                {% if member.role == role.id %}
                   {% if count.append(count.pop() + 1) %}{% endif %}
                   {% include './_includes/person-card.html' %}
                   {% if count[0] % 2 == 1 %}
