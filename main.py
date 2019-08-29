@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 def getYml(filepath):
-    with open(filepath) as infile:
+    with open(filepath, encoding='utf-8') as infile:
         fileMap = yaml.safe_load(infile)
         return fileMap
 
@@ -21,12 +21,16 @@ def siteConstants():
     site["pages"] = getYml('./data/pages.yml')
     return site
 
+
 def demographicQuestions():
     return getYml("./data/demographic_questions.yml")
+
 
 site = siteConstants()
 pageData = getYml('./data/pageData.yml')
 auth.init_survey_firebase()
+auth.init_website_firebase()
+
 
 @app.route('/')
 def index():
@@ -92,6 +96,11 @@ def studyabroad():
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
 
+@app.route('/visual/hudsmenu')
+def hudsmenu():
+    return render_template('webapps/hudsmenu.html', site=site, page=pageData['hudsmenu'][0])
+
+
 @app.route("/surveygroup/", methods=['GET', 'POST'])
 @app.route('/demographics/', methods=['GET', 'POST'])
 def demographics():
@@ -99,50 +108,71 @@ def demographics():
     userId = None
     response = None
     db = auth.get_survey_firestore_client()
+    emails_ref = db.collection("emails")
+
+    email_cookie_key = get_email_cookie_key("demographics")
+    id_cookie_key = get_id_cookie_key("demographics")
+
     if request.method == 'GET':
-        if "email" in request.cookies:
-                userEmail = request.cookies["email"]
-        if "id" in request.cookies: 
-                userId = request.cookies["id"]
-        if not auth.is_authenticated(userEmail, userId, db):
-                return redirect("/auth/surveygroup")
+        if email_cookie_key in request.cookies:
+            userEmail = request.cookies[email_cookie_key]
+        if id_cookie_key in request.cookies:
+            userId = request.cookies[id_cookie_key]
+        if not auth.is_authenticated(userEmail, userId, emails_ref):
+            return redirect("/auth/surveygroup")
         responsesDict = auth.get_responses_dict(userEmail, db)
-        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = False)
-    else: 
-        userEmail = request.cookies["email"]
-        userId = request.cookies["id"]
-        if auth.is_authenticated(userEmail, userId, db):
-            server.demographics.update_demographics(userEmail, request.form, demographicQuestions(), db)
+        return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics=responsesDict["demographics"], questions=demographicQuestions(), CLIENT_ID=constants.get_google_client_id(), responded=False)
+    else:
+        userEmail = request.cookies[email_cookie_key]
+        userId = request.cookies[id_cookie_key]
+        if auth.is_authenticated(userEmail, userId, emails_ref):
+            server.demographics.update_demographics(
+                userEmail, request.form, demographicQuestions(), db)
             responsesDict = auth.get_responses_dict(userEmail, db)
-            return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics = responsesDict["demographics"], questions = demographicQuestions(), CLIENT_ID = constants.get_google_client_id(), responded = True)
+            return render_template("demographics.html", page=pageData["demographics"][0], site=site, demographics=responsesDict["demographics"], questions=demographicQuestions(), CLIENT_ID=constants.get_google_client_id(), responded=True)
         else:
             # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")
 
+
 @app.route("/auth/<request_url>", methods=["GET", "POST"])
 def signin(request_url):
+    email_cookie_key = get_email_cookie_key(request_url)
+    id_cookie_key = get_id_cookie_key(request_url)
     title_dict = {
-        "surveygroup" : "Survey Group",
-        "demographics" : "Demographics"
+        "surveygroup": "Survey Group",
+        "demographics": "Demographics"
     }
     if request.method == "GET":
-        return render_template('auth.html', title = title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
+        return render_template('auth.html', title=title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
     else:
-        try: 
-            db = auth.get_survey_firestore_client()
+        try:
             token = request.data
-            email_doc = auth.authenticate_new(token, db)
+            email_doc = None
+            userEmail, userId = auth.authenticate_google_signin(token)
+            if request_url == "demographics":
+                db = auth.get_survey_firestore_client()
+                email_doc = auth.create_respondent(userEmail, userId, db)
             email_dict = email_doc.to_dict()
             userEmail = email_doc.id
             userId = email_dict["id"]
             # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
-            response.set_cookie("email", userEmail)
-            response.set_cookie("id", userId)
+            response.set_cookie(email_cookie_key, userEmail)
+            response.set_cookie(id_cookie_key, userId)
             return response
-        except:
+        except Exception as e:
+            print(e)
             # if there is an error, delete their cookies and indicate failure
             response = make_response("FAILURE", 406)
-            response.set_cookie("email", expires = 0)
-            response.set_cookie("id", expires = 0)
+            response.set_cookie(email_cookie_key, expires=0)
+            response.set_cookie(id_cookie_key, expires=0)
             return response
+
+
+def get_email_cookie_key(request_url):
+    return "{}_email".format(request_url)
+
+
+def get_id_cookie_key(request_url):
+    return "{}_id".format(request_url)
