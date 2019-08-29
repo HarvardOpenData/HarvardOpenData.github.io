@@ -3,7 +3,6 @@ import firebase_admin
 from firebase_admin import storage
 from firebase_admin import credentials
 from firebase_admin import firestore
-from firebase_admin.firestore.firestore import Client, DocumentReference, DocumentSnapshot
 from google.oauth2 import id_token
 from google.auth.transport import requests
 import server.constants as constants
@@ -50,18 +49,22 @@ def authenticate_google_signin(token : str):
         raise Exception("Not a @college.harvard.edu email!")
     return (userEmail, userId)
 
-def get_member(userEmail : str, userId : str, db : Client) -> Member:
-    members_ref : DocumentReference = db.collection("members").document(userEmail)
-    member_snapshot : DocumentSnapshot = members_ref.get()
+def get_member(userEmail : str, userId : str, db : firestore.firestore.Client) -> Member:
+    members_ref : firestore.firestore.DocumentReference = db.collection("members").document(userEmail)
+    member_snapshot : firestore.firestore.DocumentSnapshot = members_ref.get()
     if not member_snapshot.exists:
         raise Exception("Email does not belong to HODP member")
     
     member_email = member_snapshot.id
     member_dict = member_snapshot.to_dict()
-    member = Member.from_dict(member_email, member_dict)
+    print(member_dict)
+    member = Member(member_email, member_dict)
     
     if member.id is None:
         member.id = userId
+        members_ref.update({
+            "id" : member.id
+        })
     elif member.id != userId:
         raise Exception("id in databasae does not match current id")
 
@@ -71,7 +74,7 @@ def get_member(userEmail : str, userId : str, db : Client) -> Member:
 # if user does not exist, create in DB and return new doc ref
 # assumes email and id already authenticated with google backend
 # throws exceptions if email or ID is None, or if they do not match
-def create_respondent(userEmail : str, userId : str, db : Client) -> DocumentSnapshot:
+def create_respondent(userEmail : str, userId : str, db : firestore.firestore.Client) -> firestore.firestore.DocumentSnapshot:
     emails_ref = db.collection("emails")
     responses_ref = db.collection("responses")
     user_response_ref = responses_ref.document(email_hash(userEmail))
@@ -143,12 +146,11 @@ def init_website_firebase():
         cred = credentials.Certificate('website_creds.json')
         firebase_admin.initialize_app(cred, name = "website")
 
-def get_survey_firestore_client():
+def get_survey_firestore_client() -> firestore.firestore.Client:
     app = firebase_admin.get_app("surveys")
-    print("Survey app: {}".format(app.name))
     return firestore.client(app)
 
-def get_website_firestore_client():
+def get_website_firestore_client() -> firestore.firestore.Client:
     app = firebase_admin.get_app("website")
     return firestore.client(app)
 

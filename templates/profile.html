@@ -1,0 +1,52 @@
+{% extends 'default.html' %}  
+  
+
+{% block custom_meta %} 
+    <meta name="google-signin-client_id" content="{{ CLIENT_ID }}">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-hosted_domain" content="college.harvard.edu">
+{% endblock %} 
+
+
+{% block content %}
+
+<div class = "container">
+    <form>
+        <img src="{{ member.img_url if member.img_url != None and member.img_url != '' else '/static/img/people/generic.jpg'}}" 
+        class="media-object img-circle"
+        width="128px"
+        />
+        <label for = "photo_upload">Upload new profile photo</label>
+        <input type = "file" id = "photo_upload" name = "photo_upload" accept = "image/png, image/jpeg, image/jpg"/>
+
+        <br/>
+
+        <label for = "full_name">Full name: </label>
+        <input type = "text" id = "full_name" name = "full_name" value="{{ member.full_name }} "/>
+
+        <br/>
+
+        <label for = "house">House: </label>
+        <input type = "text" id = "house" name = "house" value = "{{ member.house }}"/>
+
+        <br/>
+
+        <label for = "year">Year: </label>
+        <input type = "number" id = "year" name = "year" value = "{{ member.year }}"/>
+
+        <br/>
+        <label for = "description">Bio: </label> <br />
+        <textarea name = "description" id = "description" value = "{{ member.description }} " rows = "4" cols = "60"></textarea>
+
+        <br />
+
+        <label for = "contributions">Contributions (JSON format): </label> <br/>
+        <textarea name = "contributions" id = "contributions" rows = "8" cols = "80">{{ contributionsJson }} </textarea>
+        <br />
+        <br />
+        <input type = "submit" value = "Save" />
+    </form>
+
+</div>
+
+{% endblock %}
