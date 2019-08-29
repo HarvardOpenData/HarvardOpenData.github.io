@@ -2,10 +2,15 @@ from flask import Flask, render_template, request, jsonify, make_response, redir
 import yaml
 import server.constants as constants
 import server.auth as auth
+from server.members import Member
 import json
+import os
 import server.demographics
+import tempfile
 
 app = Flask(__name__)
+
+app.config['MAX_CONTENT_LENGTH'] = 0.5 * 1024 * 1024 
 
 
 def getYml(filepath):
@@ -42,7 +47,23 @@ def index():
 @app.route('/about/')
 def about():
     people = getYml('./data/people.yml')
-    return render_template('about.html', site=site, people=people, page=pageData["about"][0])
+    members = []
+    db = auth.get_website_firestore_client()
+    for person in people["people"]:
+        if "email" in person:
+            member = auth.get_member(person["email"], None, db, True)
+            if member is not None:
+                member.merge_people_dict(person)
+                members.append(member)
+            else:
+                member = Member(None)
+                member.merge_people_dict(person)
+                members.append(member)
+        else:
+            member = Member(None)
+            member.merge_people_dict(person)
+            members.append(member)   
+    return render_template('about.html', site=site, people=people, members = members, page=pageData["about"][0])
 
 @app.route('/people/')
 def people():
@@ -106,7 +127,6 @@ def hudsmenu():
 def demographics():
     userEmail = None
     userId = None
-    response = None
     db = auth.get_survey_firestore_client()
     emails_ref = db.collection("emails")
 
@@ -135,11 +155,62 @@ def demographics():
             abort("User credentials improper. Please sign out and sign back in")
 
 
+@app.route("/profile/", methods=["GET", "POST"])
+def profile():
+    db = auth.get_website_firestore_client()
+    userEmail = None
+    userId = None
+    email_cookie_key = get_email_cookie_key("profile")
+    id_cookie_key = get_id_cookie_key("profile")
+    
+    members_ref = db.collection("members")
+    if email_cookie_key in request.cookies:
+        userEmail = request.cookies[email_cookie_key]
+    if id_cookie_key in request.cookies:
+        userId = request.cookies[id_cookie_key]
+    if not auth.is_authenticated(userEmail, userId, members_ref):
+        return redirect("/auth/profile/")
+
+    member = auth.get_member(userEmail, userId, db)
+    if request.method == "GET":
+        people : list = getYml('./data/people.yml')["people"]
+        
+        person_dict = next((person for person in people if "email" in person and person["email"] == member.email), None)
+        if person_dict is not None:
+            member.merge_people_dict(person_dict) 
+            
+        contributionsJson = "[\n\n]"
+        if member.contributions is not None: 
+            contributionsJson = json.dumps(member.contributions, indent=4)
+
+        return render_template("profile.html", page=pageData["profile"][0], site=site, member=member, contributionsJson = contributionsJson, CLIENT_ID=constants.get_google_client_id(), responded=True)
+    elif request.method == "POST":
+        try: 
+            if "photo_upload" in request.files:
+                photo = request.files["photo_upload"]
+                if photo.filename:
+                    filetype = photo.filename.split(".")[-1]
+                    storage_client = auth.get_website_storage_client()
+                    bucket = storage_client.bucket("hodp-member-images")
+                    uploaded_filename = "{}.{}".format(member.member_id, filetype)
+                    blob = bucket.blob(uploaded_filename)
+                    temp = tempfile.NamedTemporaryFile(delete=False)
+                    photo.save(temp.name)
+                    blob.upload_from_file(temp)
+                    os.remove(temp.name)
+                    blob.make_public()
+                    member.img_url = blob._get_download_url()
+            member.update_from_form(request.form)
+            member.save(db)
+            return redirect("/profile/")
+        except Exception as e:
+            return make_response("Failed to update profile: {}".format(e), 400)
 @app.route("/auth/<request_url>/", methods=["GET", "POST"])
 def signin(request_url):
     title_dict = {
         "surveygroup": "Survey Group",
-        "demographics": "Demographics"
+        "demographics": "Demographics",
+        "profile" : "My Profile"
     }
     if request.method == "GET":
         return render_template('auth.html', title=title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
@@ -148,16 +219,18 @@ def signin(request_url):
             email_cookie_key = None
             id_cookie_key = None
             token = request.data
-            email_doc = None
             userEmail, userId = auth.authenticate_google_signin(token)
-            if request_url in title_dict.keys():
+            email_dict = None
+            if request_url in ["surveygroup", "demographics"]:
                 email_cookie_key = get_email_cookie_key("demographics")
                 id_cookie_key = get_id_cookie_key("demographics")
                 db = auth.get_survey_firestore_client()
-                email_doc = auth.create_respondent(userEmail, userId, db)
-            email_dict = email_doc.to_dict()
-            userEmail = email_doc.id
-            userId = email_dict["id"]
+                auth.create_respondent(userEmail, userId, db)
+            elif request_url in ["profile"]:
+                email_cookie_key = get_email_cookie_key("profile")
+                id_cookie_key = get_id_cookie_key("profile")
+                db = auth.get_website_firestore_client()
+                auth.get_member(userEmail, userId, db)
             # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
             response.set_cookie(email_cookie_key, userEmail)
