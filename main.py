@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, make_response, redir
 import yaml
 import server.constants as constants
 import server.auth as auth
-from server.members import Member
+from server.members import Member, MembersCache
 import json
 import os
 import server.demographics
@@ -36,6 +36,10 @@ pageData = getYml('./data/pageData.yml')
 auth.init_survey_firebase()
 auth.init_website_firebase()
 
+members_cache = MembersCache()
+peopleYml = getYml("./data/people.yml")
+members_cache.populate(auth.get_website_firestore_client(), peopleYml)
+
 
 @app.route('/')
 def index():
@@ -43,26 +47,11 @@ def index():
     featured = enumerate(getYml('./data/featured.yml'))
     return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured)
 
+
 @app.route('/people/')
-def people():
-    people = getYml('./data/people.yml')
-    members = []
-    db = auth.get_website_firestore_client()
-    for person in people["people"]:
-        if "email" in person:
-            member = auth.get_member(person["email"], None, db, True)
-            if member is not None:
-                member.merge_people_dict(person)
-                members.append(member)
-            else:
-                member = Member(None)
-                member.merge_people_dict(person)
-                members.append(member)
-        else:
-            member = Member(None)
-            member.merge_people_dict(person)
-            members.append(member)   
-    return render_template('people.html', site=site, people=people, members = members, page=pageData["about"][0])
+def about():
+    members = members_cache.get()
+    return render_template('people.html', site=site, people=peopleYml, members = members, page=pageData["about"][0])
 
 
 @app.route('/calendar/')
@@ -166,8 +155,9 @@ def profile():
         return redirect("/auth/profile/")
 
     member = auth.get_member(userEmail, userId, db)
+    peopleYml = getYml('./data/people.yml')
     if request.method == "GET":
-        people : list = getYml('./data/people.yml')["people"]
+        people : list = peopleYml["people"]
         
         person_dict = next((person for person in people if "email" in person and person["email"] == member.email), None)
         if person_dict is not None:
@@ -196,6 +186,7 @@ def profile():
                     member.img_url = blob._get_download_url()
             member.update_from_form(request.form)
             member.save(db)
+            members_cache.populate(db, peopleYml)
             return redirect("/profile/")
         except Exception as e:
             return make_response("Failed to update profile: {}".format(e), 400)

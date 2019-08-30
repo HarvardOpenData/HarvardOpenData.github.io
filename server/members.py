@@ -1,7 +1,9 @@
 from typing import List, Dict
 import json
 from firebase_admin import firestore, storage
+import server.auth as auth
 from server.auth import *
+from threading import Lock
 
 class Member:
     def __init__(self, email : str, init_dict : dict = {}):
@@ -62,3 +64,44 @@ class Member:
             "img_url" : self.img_url
         }
         member_ref.update(update_dict)
+
+# used to cache members from firebase so we can make fewer calls and speed things up
+class MembersCache():
+    def __init__(self):
+        self.members = []
+        self.lock : Lock = Lock() 
+        
+    # refreshes the cache from firestore
+    # should be called whenever the database is updated
+    # this is probably less efficient than it could be, but it is called fairly infrequently
+    # furthermore, only HODP members will experience the slowdown
+    def populate(self, db : firestore.firestore.Client, peopleYml : dict) -> List[Member]:
+        members = []
+        for person in peopleYml["people"]:
+            if "email" in person:
+                member = auth.get_member(person["email"], None, db, True)
+                if member is not None:
+                    member.merge_people_dict(person)
+                    members.append(member)
+                else:
+                    member = Member(None)
+                    member.merge_people_dict(person)
+                    members.append(member)
+            else:
+                member = Member(None)
+                member.merge_people_dict(person)
+                members.append(member)
+        self.lock.acquire()
+        self.members = members.copy()
+        self.lock.release()
+        return self.members
+
+    # return the full list of members
+    def get(self) -> List[Member]:
+        members = None
+        self.lock.acquire()
+        members = self.members
+        self.lock.release()
+        return members
+
+    
