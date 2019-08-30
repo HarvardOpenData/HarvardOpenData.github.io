@@ -296,6 +296,18 @@ people:
         year: 2022
         bio: I'm a sophomore in Adams studying computer science. I'm from California and am interested in data, journalism, and and their intersection. Outside of HODP, I like watching Netflix comedy specials and baking! 
         image: sahana-srinivasan.jpg
+    -   name: Melissa Kwan
+        email: mkwan@college.harvard.edu
+        role: publisher
+        year: 2022
+        house: 
+        bio: 
+    -   name: Alex Rankine
+        email: alexrankine@college.harvard.edu
+        role: assoctechdir
+        year: 2022
+        house: Dunster
+        bio: 
     -   name: Neil Khurana
         role: contributor
         house: Adams House
