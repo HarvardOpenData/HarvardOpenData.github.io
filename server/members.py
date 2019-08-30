@@ -65,11 +65,16 @@ class Member:
         }
         member_ref.update(update_dict)
 
+# used to cache members from firebase so we can make fewer calls and speed things up
 class MembersCache():
     def __init__(self):
         self.members = []
         self.lock : Lock = Lock() 
         
+    # refreshes the cache from firestore
+    # should be called whenever the database is updated
+    # this is probably less efficient than it could be, but it is called fairly infrequently
+    # furthermore, only HODP members will experience the slowdown
     def populate(self, db : firestore.firestore.Client, peopleYml : dict) -> List[Member]:
         members = []
         for person in peopleYml["people"]:
@@ -91,13 +96,12 @@ class MembersCache():
         self.lock.release()
         return self.members
 
+    # return the full list of members
     def get(self) -> List[Member]:
         members = None
         self.lock.acquire()
-        print("lock acquired!")
         members = self.members
         self.lock.release()
-        print("lock released!")
         return members
 
     
