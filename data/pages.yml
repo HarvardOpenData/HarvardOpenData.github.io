@@ -2,9 +2,6 @@ main:
     -   name: Home
         url: /
         newtab: 0
-    -   name: About
-        url: /about/
-        newtab: 0
     -   name: People
         url: /people/
         newtab: 0

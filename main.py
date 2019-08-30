@@ -34,12 +34,6 @@ def index():
     featured = enumerate(getYml('./data/featured.yml'))
     return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured)
 
-
-@app.route('/about/')
-def about():
-    people = getYml('./data/people.yml')
-    return render_template('about.html', site=site, people=people, page=pageData["about"][0])
-
 @app.route('/people/')
 def people():
     people = getYml('./data/people.yml')

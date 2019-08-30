@@ -63,6 +63,16 @@
   }
 }
 
+@media (min-width: 1200px) {
+  .landing {
+    width: 1200px;
+  }
+
+  .nav .navbar {
+    margin-top: 2em !important;
+    margin-bottom: 2em !important; }
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
