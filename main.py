@@ -43,28 +43,6 @@ def index():
     featured = enumerate(getYml('./data/featured.yml'))
     return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured)
 
-
-@app.route('/about/')
-def about():
-    people = getYml('./data/people.yml')
-    members = []
-    db = auth.get_website_firestore_client()
-    for person in people["people"]:
-        if "email" in person:
-            member = auth.get_member(person["email"], None, db, True)
-            if member is not None:
-                member.merge_people_dict(person)
-                members.append(member)
-            else:
-                member = Member(None)
-                member.merge_people_dict(person)
-                members.append(member)
-        else:
-            member = Member(None)
-            member.merge_people_dict(person)
-            members.append(member)   
-    return render_template('about.html', site=site, people=people, members = members, page=pageData["about"][0])
-
 @app.route('/people/')
 def people():
     people = getYml('./data/people.yml')
