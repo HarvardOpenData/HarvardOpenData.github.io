@@ -307,6 +307,7 @@ people:
         year: 2022
         house: 
         bio: 
+        image: melissa-kwan.jpg
     -   name: Alex Rankine
         email: alexrankine@college.harvard.edu
         role: assoctechdir
