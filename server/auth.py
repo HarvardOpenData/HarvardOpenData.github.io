@@ -146,6 +146,8 @@ if is_mock():
     mock_website_client = init_mock_website_firestore()
 
 def init_survey_firebase():
+    if is_mock():
+        return
     # we're on the server, use the project ID
     if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
         cred = credentials.ApplicationDefault()
@@ -158,6 +160,8 @@ def init_survey_firebase():
         firebase_admin.initialize_app(cred, name = "surveys")
 
 def init_website_firebase():
+    if is_mock():
+        return
     # we're on the server, use the project ID
     if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
         cred = credentials.ApplicationDefault()

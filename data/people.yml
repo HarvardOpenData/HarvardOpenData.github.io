@@ -104,6 +104,7 @@ people:
         year: 2020
         bio: I'm a junior in Adams studying Social Studies. Outside of HODP I'm active in Harvard's entrepreneurial community and am a student fellow at a venture capital firm.
     -   name: Olivia Bryant
+        email: oliviabryant@college.harvard.edu
         role: internalrelationsdir
         house: Kirkland
         year: 2021
@@ -291,6 +292,7 @@ people:
         bio: I'm a sophomore in Pfoho studying computer science. Outside of HODP, I enjoy playing tennis (badly) and watching sitcoms.
         image: jenny-gu.jpg
     -   name: Sahana Srinivasan
+        email: sahanasrinivasan@college.harvard.edu
         role: assoccontentdir
         house: Adams
         year: 2022
