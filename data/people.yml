@@ -33,6 +33,9 @@ roles:
         id: assoctechdir
         title: Associate Technology Director
     -   g_id: board
+        id: contentdir
+        title: Content Director
+    -   g_id: board
         id: assoccontentdir
         title: Associate Content Director
     -   g_id: board
