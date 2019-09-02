@@ -1,0 +1,54 @@
+{% extends 'default.html' %}
+
+{% block content %}
+  <div class="container">
+      <h1 class="page-header centered">About the Team</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/static/img/hodp-team-photo-18f.jpg" class="img-responsive" width="100%">
+          <div class="caption">
+            <p class="text-centered">The 2018 Harvard College Open Data Project Team</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>
+            Founded in 2016, HODP has grown from a small team of data enthusiasts to a group of 40+ dedicated members investigating data on a variety of issues on campus. We've analyzed blocking group clustering, built a Crimson sports tracking webapp, developed an interactive crime map, and more. We’re committed to giving individuals the freedom to explore and providing them the support to do so.
+          </p>
+          <p>
+            We’re open to people of all backgrounds and experience levels, so if you finish the bootcamp and complete the assignments you’ll become a full member of the organization. We’d love for you to join us.
+          </p>
+          <p>
+            Interested? <a href="http://bit.ly/HODP2019FallComp" target="_blank">Sign up for our Fall 2019 bootcamp!</a>
+          </p>
+        </div>
+      </div>
+      
+      <h2 class="centered page-header">People</h2>
+      {% for group in people.groups %}
+      <div class="row">
+        <h3 class="centered group-header">{{group.header }}</h3>
+        <div class="panel-group">
+          <!-- empty media element prevents rules for media:first-child from messing up first person -->
+          <div class="media"></div>
+          <div class="clearfix">
+          {% set count = [1] %}
+          {% for role in people.roles %}
+            {% if role.g_id == group.id %} 
+              {% for member in members %}
+                {% if member.role == role.id %}
+                  {% if count.append(count.pop() + 1) %}{% endif %}
+                  {% include './_includes/person-card.html' %}
+                  {% if count[0] % 2 == 1 %}
+                    <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+                  {% endif %}
+                {% endif %}
+
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+{% endblock %}

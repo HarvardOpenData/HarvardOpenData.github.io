@@ -3,8 +3,8 @@
   the variable `person` from `site.data.people`
   and the variable `role` from `site.data.people` should exist
 -->
-<div class="media col-sm-6" style="padding: 5px; margin-top: 0px">
-  <div class="panel panel-default" style="padding: 10px">
+<div class="media col-sm-6" style="padding: 0.5em; margin: 0em;">
+  <div style="padding: 1em; background-color: #eeeeee;">
     <div class="media-left">
       <a href=
         "{% if member.member_id %}
@@ -16,17 +16,12 @@
       </a>
     </div>
     <div class="media-body">
-      <h4 class="media-heading">{{ member.full_name }}</h4>
-      <h5>
-        <div class="row">
-          <div class="col-sm-6">
-            {{ role.title }}
-          </div>
-          <div class="col-sm-6">
-            {{ member.house }} {{ member.year }}
-          </div>
-        </div>
-      </h5>
+      {% if member.house %}
+        <h6 style="margin: 0em 0em 0em 0em;">{{ role.title.upper() }}, {{ member.house }} {{ member.year }}</h6>
+      {% else %}
+        <h6 style="margin: 0em 0em 0em 0em;">{{ role.title.upper() }}</h6>
+      {% endif %}
+      <h4 class="media-heading" style="margin-top: 0em;">{{ member.full_name }}</h4>
       {{ member.description }}
     </div>
   </div>

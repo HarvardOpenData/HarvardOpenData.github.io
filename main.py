@@ -48,10 +48,10 @@ def index():
     return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured)
 
 
-@app.route('/about/')
+@app.route('/people/')
 def about():
     members = members_cache.get()
-    return render_template('about.html', site=site, people=peopleYml, members = members, page=pageData["about"][0])
+    return render_template('people.html', site=site, people=peopleYml, members = members, page=pageData["about"][0])
 
 
 @app.route('/calendar/')

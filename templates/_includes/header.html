@@ -1,49 +1,63 @@
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-static-top">
     <div class="container">
-        <div class="navbar-header">
+        <div class="nav" style="padding: 0.5em 0em;">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/">
-                <img class="navbar-brand" src="/static/img/logo1.png" href="/"/>
+            <a href="/" class="navbar-brand" id="logo">
+                <img class="d-inline-block align-top" src="/static/img/textlogo.png" height="40" href="/"/>
             </a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+    </div>
+    <div class="container" style="vertical-align: middle; align-content: center;">
+        <div id="navbar" class="navbar-collapse collapse" style="vertical-align: middle; align-content: center;">
             <ul class="nav navbar-nav navbar-right">
                 {% for link in site.pages.main %}
-                <li
-                {% if link.url == request.path %}
-                class="active"
-                {% endif %}
-                >
-                <a 
-                {% if link.newtab == 1 %}
-                target = "_blank"
-                {% endif %}
-                href="{{link.url}}">
-                    {{link.name}}
-                </a>
-            </li>
-            {% endfor %}
-            {% if site.pages.more %}
-            <li class="dropdown">
-                <a href class="dropdown-toggle" data-toggle="dropdown">
-                    More <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        {% for link in site.pages.more %}
-                        <li>
-                            <a href="{{link.url}}">
-                                {{link.name}}
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
+                    <li
+                        {% if link.url == request.path %}
+                        class="active"
+                        {% endif %}
+                        >
+                        <a 
+                        {% if link.newtab == 1 %}
+                        target = "_blank"
+                        {% endif %}
+                        href="{{link.url}}">
+                            {{link.name}}
+                        </a>
+                    </li>
+                {% endfor %}
+                <div style="vertical-align: middle; margin: 0.8em; align-content: center;">
+                    <form action="/catalog" method="GET">
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="navbar-catalog-search-text" class="form-control" name="q" placeholder="Search datasets">
+                            <span class="input-group-btn" style="margin: 0em !important; padding: 0em !important">
+                            <button class="btn social-icon fa fa-search" style="margin: -0.1em !important; padding: 0em 0.7em !important"></button>
+                        </span>
+                        </div>
+                    </form>
+                </div>
+                {% if site.pages.more %}
+                    <li class="dropdown">
+                        <a href class="dropdown-toggle" data-toggle="dropdown">
+                            More <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for link in site.pages.more %}
+                            <li>
+                                <a href="{{link.url}}">
+                                    {{link.name}}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
                 {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
     </div>
+    <hr style="border-top: 2px solid black; margin: 0px"/>
 </nav>

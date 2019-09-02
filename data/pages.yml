@@ -2,8 +2,8 @@ main:
     -   name: Home
         url: /
         newtab: 0
-    -   name: About
-        url: /about/
+    -   name: People
+        url: /people/
         newtab: 0
     -   name: Calendar
         url: /calendar/

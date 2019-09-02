@@ -33,6 +33,9 @@ roles:
         id: assoctechdir
         title: Associate Technology Director
     -   g_id: board
+        id: contentdir
+        title: Content Director
+    -   g_id: board
         id: assoccontentdir
         title: Associate Content Director
     -   g_id: board
@@ -89,13 +92,13 @@ people:
         house: Currier
         year: 2021
         image: kevin-bi.jpg
-        bio: I'm a sophomore in Currier studying Applied Math with a focus in Economics. In my free time, I like to read, play card games, and watch sports. 
+        bio: I'm a junior in Currier studying Applied Math with a focus in Economics. In my free time, I like to read, play card games, and watch sports. 
     -   name: Lucy Li
         email: lucyli@college.harvard.edu
         role: vp
         house: Adams
         year: 2021
-        bio: I'm a sophomore in Adams interested in data, tech, and politics. Outside of HODP, I play violin in HRO and volunteer through PBHA.
+        bio: I'm a junior in Adams interested in data, tech, and politics. Outside of HODP, I play violin in HRO and volunteer through PBHA.
         image: lucy-li.jpg
     -   name: Flora DiCara
         role: contributor
@@ -304,6 +307,7 @@ people:
         year: 2022
         house: 
         bio: 
+        image: melissa-kwan.jpg
     -   name: Alex Rankine
         email: alexrankine@college.harvard.edu
         role: assoctechdir

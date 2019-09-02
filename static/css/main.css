@@ -7,6 +7,25 @@
   color: white !important;
 }
 
+.text-white {
+  color: white !important;
+}
+
+.social-icon {
+  padding: 0.5em;
+  font-size: 1.1em;
+  background: white;
+  border: 1px solid black;
+  color: black;
+  margin: 5px;
+}
+
+.social-icon:hover {
+  background: black;
+  color: white;
+  text-decoration: none;
+}
+
 /* old styles */
 #main-image {
   max-height: 128px;
@@ -32,6 +51,26 @@
 
 .img-padding {
   padding: 4px;
+}
+
+@media (max-width: 780px) {
+  #logo {
+    max-height: 40px;
+  }
+  .footer {
+    text-align: center;
+    align-content: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .landing {
+    width: 1200px;
+  }
+
+  .nav .navbar {
+    margin-top: 2em !important;
+    margin-bottom: 2em !important; }
 }
 
 /* Sticky footer styles
