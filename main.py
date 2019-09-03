@@ -10,7 +10,7 @@ import tempfile
 
 app = Flask(__name__)
 
-app.config['MAX_CONTENT_LENGTH'] = 0.5 * 1024 * 1024 
+app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024 
 
 
 def getYml(filepath):
