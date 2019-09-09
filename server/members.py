@@ -105,3 +105,16 @@ class MembersCache():
         return members
 
     
+def add_members_to_firestore(db : firestore.firestore.Client, peopleYml : List[dict]):
+    members_ref = db.collection("members")
+    people = peopleYml["people"]
+    for person in people:
+        if "email" in person: 
+            email = person["email"]
+            name = person["name"]
+            member_ref : firestore.firestore.DocumentReference = members_ref.document(email)
+            member_doc : firestore.firestore.DocumentSnapshot = member_ref.get()
+            if not member_doc.exists:
+                member_ref.set({
+                    "full_name" : name
+                })

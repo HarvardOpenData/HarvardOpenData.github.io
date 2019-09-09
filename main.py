@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, make_response, redir
 import yaml
 import server.constants as constants
 import server.auth as auth
-from server.members import Member, MembersCache
+from server.members import Member, MembersCache, add_members_to_firestore
 import json
 import os
 import server.demographics
@@ -38,7 +38,9 @@ auth.init_website_firebase()
 
 members_cache = MembersCache()
 peopleYml = getYml("./data/people.yml")
+add_members_to_firestore(auth.get_website_firestore_client(), peopleYml)
 members_cache.populate(auth.get_website_firestore_client(), peopleYml)
+
 
 
 @app.route('/')
