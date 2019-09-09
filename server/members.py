@@ -77,8 +77,9 @@ class MembersCache():
     # furthermore, only HODP members will experience the slowdown
     def populate(self, db : firestore.firestore.Client, peopleYml : dict) -> List[Member]:
         members = []
+        mock = auth.is_mock()
         for person in peopleYml["people"]:
-            if "email" in person:
+            if "email" in person and not mock:
                 member = auth.get_member(person["email"], None, db, True)
                 if member is not None:
                     member.merge_people_dict(person)
