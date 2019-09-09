@@ -10,7 +10,7 @@
                     {% if i > 0 %} <div class="col-md-6 article-container"> {% endif %}
                         <a id = "articlelink{{ i }}" href="{{ article.url }}" target="_blank">
                             <div class="article">
-                                <img id = "articleimg{{ i }}" src="/static/img/featured/{{ article.imgsrc }}" class="img-responsive" alt="Image" style="margin-bottom: 0;"/>
+                                <img id = "articleimg{{ i }}" src="{{ article.imgsrc }}" class="img-responsive" alt="Image" style="margin-bottom: 0;"/>
                                 <div class="container-fluid article-info">
                                     <h6 id = "articletags{{ i }}" class = "article-tags">{{ article.tags.upper() }}</h6>
                                     {% if i == 0 %} <h3 id = "articleheadline{{ i }}" class = "article-headline">{{ article.name }}</h2>{% endif %}

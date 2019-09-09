@@ -1,15 +1,15 @@
+- name: How do Harvard students feel about the 2020 election?
+  tags: Politics
+  authors: Lucy Li, Jenny Gu, and Kevin Bi
+  imgsrc: https://miro.medium.com/max/2048/0*5x7XqoZNSSWT8PnU.jpg
+  url: https://medium.com/harvard-open-data-project/how-do-harvard-students-feel-about-the-2020-election-adaf0129212b
 - name: An Analysis of Harvard Confessions
   tags: Social Media
   authors: Jenny Gu, Melissa Kwan, Sahana Srinivasan and Yijiang Zhao
-  imgsrc: confessions-2019.png
+  imgsrc: /static/img/featured/confessions-2019.png
   url: https://medium.com/harvard-open-data-project/whats-almost-left-unsaid-an-analysis-of-harvard-confessions-ef2aedd2d0fe
 - name: How Do Students Form Groups?
   tags: Residential Life
   authors: Adiya Abdilkhay, Alistair Gluck, April Chen, Christopher Milne, Dasha Metropolitansky, Ilkin Bayramli, Niel Schrage, and Stephanie Yao
-  imgsrc: housing-prefs-2019.jpeg
+  imgsrc: /static/img/featured/housing-prefs-2019.jpeg
   url: https://medium.com/harvard-open-data-project/harvard-housing-part-2-how-do-students-form-groups-a4c95cdf97a6
-- name: Funding Disparities and Accountability Issues in Student Group Financing
-  tags: Finances
-  authors: Leo Saenger, Andrea Zhang, and Lucy Liu
-  imgsrc: student-club-wealth.png
-  url: https://medium.com/harvard-open-data-project/how-wealthy-are-harvard-student-clubs-67ca7dd4ca75
