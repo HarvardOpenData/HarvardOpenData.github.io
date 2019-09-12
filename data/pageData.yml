@@ -2,6 +2,10 @@ about:
   - title: About
     layout: default
     permalink: /about/
+
+sponsors:
+  - title: Sponsors
+  
 index:
   - title: Harvard Open Data Project
     layout: default

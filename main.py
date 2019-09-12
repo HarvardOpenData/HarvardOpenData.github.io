@@ -7,6 +7,7 @@ import json
 import os
 import server.demographics
 import tempfile
+import random
 
 app = Flask(__name__)
 
@@ -41,19 +42,28 @@ peopleYml = getYml("./data/people.yml")
 add_members_to_firestore(auth.get_website_firestore_client(), peopleYml)
 members_cache.populate(auth.get_website_firestore_client(), peopleYml)
 
-
+sponsorsYml = getYml("./data/sponsors.yml")
+sponsor_weights = [sponsor["weight"] for sponsor in sponsorsYml]
 
 @app.route('/')
 def index():
     categories = getYml('./data/categories.yml')
     featured = enumerate(getYml('./data/featured.yml'))
-    return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured)
+
+    featured_sponsor = random.choices(sponsorsYml, weights = sponsor_weights, k = 1)[0]
+    return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured,
+                            featured_sponsor = featured_sponsor)
 
 
 @app.route('/people/')
 def about():
     members = members_cache.get()
     return render_template('people.html', site=site, people=peopleYml, members = members, page=pageData["about"][0])
+
+@app.route('/sponsors/')
+def sponsors():
+    return render_template('sponsors.html', site=site, sponsors = sponsors, page=pageData["sponsors"][0])
+
 
 
 @app.route('/calendar/')

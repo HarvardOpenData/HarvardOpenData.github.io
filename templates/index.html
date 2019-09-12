@@ -44,6 +44,15 @@
             <a href="https://twitter.com/HarvardODP" target="_blank" class="social-icon fa fa-twitter"></a>
             <a href="https://github.com/HarvardOpenData" target="_blank" class="social-icon fa fa-github"></a>
             <a href="mailto:harvardopendataproject@gmail.com" class="social-icon fa fa-envelope"></a>
+
+            {% if featured_sponsor %}
+            <div id = "featured_sponsor">
+                <h3>Featured Sponsor:</h3> 
+                {% set is_index = True %}
+                {% set sponsor = featured_sponsor %}
+                {% include './_includes/sponsor-card.html' %}
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="container-fluid landing" style="float: none; margin: 0 auto;">

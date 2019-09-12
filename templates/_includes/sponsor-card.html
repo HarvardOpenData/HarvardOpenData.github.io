@@ -1,0 +1,25 @@
+<!--
+  Sponsor Card template
+  the variable `sponsor` should exist
+-->
+<div class="media {% if is_index %}{% else %}col-sm-6{% endif %}" style="padding: 0.5em; margin: 0em;">
+    <div style="padding: 1em; background-color: #eeeeee;">
+      <div class="media-left">
+        <a href="{{ sponsor.external_url }} "
+        >
+            <img src="{{ sponsor.img_url if sponsor.img_url != None and sponsor.img_url != '' else '/static/img/people/generic.jpg'}}" class="media-object img-rounded" alt="{{ sponsor.name }}" style="width: 64px;" />
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading" style="margin-top: 0em;">{{ sponsor.name }}</h4>
+        {% if sponsor.industry %}
+            {% if sponsor.application_url %}
+            <h6 style="margin: 0em 0em 0em 0em;">{{ sponsor.industry.upper() }}, <a href = "{{ sponsor.application_url }}">Application</a></h6>
+            {% else %}
+            <h6 style="margin: 0em 0em 0em 0em;">{{ sponsor.industry.upper() }}</h6>
+            {% endif %}
+        {% endif %}
+        {{ sponsor.description }}
+      </div>
+    </div>
+  </div>
