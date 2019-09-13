@@ -20,3 +20,6 @@ main:
     -   name: Mailing List
         url: https://groups.google.com/forum/#!forum/harvard-open-data
         newtab: 1
+    -   name: Sponsors
+        url: /sponsors/
+        newtab: 0

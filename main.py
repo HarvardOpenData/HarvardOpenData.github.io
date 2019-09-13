@@ -42,7 +42,7 @@ peopleYml = getYml("./data/people.yml")
 add_members_to_firestore(auth.get_website_firestore_client(), peopleYml)
 members_cache.populate(auth.get_website_firestore_client(), peopleYml)
 
-sponsorsYml = getYml("./data/sponsors.yml")
+sponsorsYml = sorted(getYml("./data/sponsors.yml"), key = lambda x: x["weight"], reverse = True)
 sponsor_weights = [sponsor["weight"] for sponsor in sponsorsYml]
 
 @app.route('/')
@@ -55,6 +55,7 @@ def index():
     if filtered_sponsors:
         filtered_sponsor_weights = [sponsor["weight"] for sponsor in filtered_sponsors]
         featured_sponsors.extend(random.choices(filtered_sponsors, filtered_sponsor_weights, k = 1))
+    list.sort(featured_sponsors, key = lambda x : x["weight"], reverse = True)
     return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured,
                             featured_sponsors = featured_sponsors)
 
