@@ -13,8 +13,8 @@
       <div class="media-body">
         <h4 class="media-heading" style="margin-top: 0em;">{{ sponsor.name }}</h4>
         {% if sponsor.industry %}
-            {% if sponsor.application_url %}
-            <h6 style="margin: 0em 0em 0em 0em;">{{ sponsor.industry.upper() }}, <a href = "{{ sponsor.application_url }}">Application</a></h6>
+            {% if sponsor.careers_url %}
+            <h6 style="margin: 0em 0em 0em 0em;">{{ sponsor.industry.upper() }}, <a href = "{{ sponsor.careers_url }}">CAREERS</a></h6>
             {% else %}
             <h6 style="margin: 0em 0em 0em 0em;">{{ sponsor.industry.upper() }}</h6>
             {% endif %}
