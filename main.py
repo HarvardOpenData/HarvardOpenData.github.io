@@ -7,7 +7,7 @@ import json
 import os
 import server.demographics
 import tempfile
-import random, datetime
+import random, datetime, time
 
 app = Flask(__name__)
 
@@ -57,6 +57,7 @@ def index():
         filtered_sponsor_weights = [sponsor["weight"] for sponsor in filtered_sponsors]
         featured_sponsors.extend(random.choices(filtered_sponsors, filtered_sponsor_weights, k = 1))
     list.sort(featured_sponsors, key = lambda x : x["weight"], reverse = True)
+    random.seed(time.time())
     return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured,
                             featured_sponsors = featured_sponsors)
 
