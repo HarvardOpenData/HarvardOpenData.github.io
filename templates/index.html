@@ -45,13 +45,14 @@
             <a href="https://github.com/HarvardOpenData" target="_blank" class="social-icon fa fa-github"></a>
             <a href="mailto:harvardopendataproject@gmail.com" class="social-icon fa fa-envelope"></a>
 
-            {% if featured_sponsor %}
-            <div id = "featured_sponsor">
-                <h3>Featured Sponsor:</h3> 
-                {% set is_index = True %}
-                {% set sponsor = featured_sponsor %}
-                {% include './_includes/sponsor-card.html' %}
-            </div>
+            {% if featured_sponsors %}'
+            <h3>Featured Sponsors:</h3> '
+            {% for sponsor in featured_sponsors%}
+              <div id = "featured_sponsor">
+                  {% set is_index = True %}
+                  {% include './_includes/sponsor-card.html' %}
+              </div>
+            {% endfor %}
             {% endif %}
         </div>
     </div>

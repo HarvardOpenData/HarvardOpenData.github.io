@@ -50,9 +50,13 @@ def index():
     categories = getYml('./data/categories.yml')
     featured = enumerate(getYml('./data/featured.yml'))
 
-    featured_sponsor = random.choices(sponsorsYml, weights = sponsor_weights, k = 1)[0]
+    featured_sponsors = random.choices(sponsorsYml, weights = sponsor_weights, k = 1)
+    filtered_sponsors = [sponsor for sponsor in sponsorsYml if sponsor not in featured_sponsors]
+    if filtered_sponsors:
+        filtered_sponsor_weights = [sponsor["weight"] for sponsor in filtered_sponsors]
+        featured_sponsors.extend(random.choices(filtered_sponsors, filtered_sponsor_weights, k = 1))
     return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured,
-                            featured_sponsor = featured_sponsor)
+                            featured_sponsors = featured_sponsors)
 
 
 @app.route('/people/')
@@ -62,8 +66,7 @@ def about():
 
 @app.route('/sponsors/')
 def sponsors():
-    return render_template('sponsors.html', site=site, sponsors = sponsors, page=pageData["sponsors"][0])
-
+    return render_template('sponsors.html', site=site, sponsors = sponsorsYml, page=pageData["sponsors"][0])
 
 
 @app.route('/calendar/')
