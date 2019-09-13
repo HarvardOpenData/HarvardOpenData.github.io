@@ -7,7 +7,7 @@ import json
 import os
 import server.demographics
 import tempfile
-import random
+import random, datetime
 
 app = Flask(__name__)
 
@@ -49,7 +49,8 @@ sponsor_weights = [sponsor["weight"] for sponsor in sponsorsYml]
 def index():
     categories = getYml('./data/categories.yml')
     featured = enumerate(getYml('./data/featured.yml'))
-
+    date_string = datetime.datetime.now().strftime('%H %d %m %Y')
+    random.seed(date_string, 2)
     featured_sponsors = random.choices(sponsorsYml, weights = sponsor_weights, k = 1)
     filtered_sponsors = [sponsor for sponsor in sponsorsYml if sponsor not in featured_sponsors]
     if filtered_sponsors:
