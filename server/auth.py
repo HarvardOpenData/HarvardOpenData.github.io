@@ -62,7 +62,7 @@ def get_member(userEmail : str, userId : str, db : firestore.firestore.Client, r
         else:
             return None
 
-    member_email = member_snapshot.id
+    member_email = members_ref.id
     member_dict = member_snapshot.to_dict()
 
     member = Member(member_email, member_dict)
