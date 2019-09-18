@@ -1,18 +1,28 @@
--   name: Analysis Group
-    external_url: https://www.analysisgroup.com/
-    img_url: https://odsc.com/wp-content/uploads/2015/12/analysis-group-logo.jpg
-    industry: Economic Consulting
-    careers_url: https://www.analysisgroup.com/careers/
-    description: Analysis Group provides economic, financial and strategy consulting to law firms, corporations & government agencies. 
-    weight: 1
--   name: Harvard Open Data Project 
-    external_url: http://hodp.org/
-    img_url: /static/img/squarelogo.png
-    description: We are a student group at Harvard College focused on increasing data transparency and creating data-driven analyses of Harvard issues. 
-    weight: 1
+tiers:
+  -   Platinum
+  -   Gold
+  -   Silver
+  -   Bronze
 
--   name: Harvard College Open Data Project 
-    external_url: http://hodp.org/
-    img_url: /static/img/squarelogo.png
-    description: We are a student group at Harvard College focused on increasing data transparency and creating data-driven analyses of Harvard issues. 
-    weight: 1
+sponsors: 
+  -   name: Analysis Group
+      external_url: https://www.analysisgroup.com/
+      img_url: https://odsc.com/wp-content/uploads/2015/12/analysis-group-logo.jpg
+      industry: Economic Consulting
+      careers_url: https://www.analysisgroup.com/careers/
+      description: Analysis Group provides economic, financial and strategy consulting to law firms, corporations & government agencies. 
+      weight:
+      tier: Gold
+  -   name: Harvard Open Data Project 
+      external_url: http://hodp.org/
+      img_url: /static/img/squarelogo.png
+      description: We are a student group at Harvard College focused on increasing data transparency and creating data-driven analyses of Harvard issues. 
+      weight:
+      tier: Silver
+
+  -   name: Harvard College Open Data Project 
+      external_url: http://hodp.org/
+      img_url: /static/img/squarelogo.png
+      description: We are a student group at Harvard College focused on increasing data transparency and creating data-driven analyses of Harvard issues. 
+      weight:
+      tier: Bronze

@@ -14,14 +14,19 @@
             Check out our <a href = "/static/downloadables/sponsorship_prospectus.pdf" download>Sponsorship Prospectus</a> and send us an email at <a href = "mailto:sponsors@hodp.org">sponsors@hodp.org</a>.
         </div>
     </div>
-    <h2 class="centered page-header">Sponsors</h2>
-    {% set count = [1] %}
-    {% for sponsor in sponsors %}
-        {% if count.append(count.pop() + 1) %}{% endif %}
-        {% include './_includes/sponsor-card.html' %}
-        {% if count[0] % 2 == 1 %}
-            <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
-        {% endif %}
+    {% for tier in tiers %}
+        <h2 class="centered page-header">{{ tier }} Sponsors</h2>
+        {% set count = [1] %}
+        {% for sponsor in sponsors %}
+            {% if sponsor.tier == tier %}
+                {% if count.append(count.pop() + 1) %}{% endif %}
+                {% include './_includes/sponsor-card.html' %}
+                {% if count[0] % 2 == 1 %}
+                    <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
     {% endfor %}
     </div>
 </div>
