@@ -64,6 +64,10 @@ def catalog():
     return render_template('catalog.html', site=site, categories=getYml("./data/categories.yml"),
                            filetypes=getYml("./data/filetypes.yml"), page=pageData["catalog"][0])
 
+@app.route('/bootcamp/')
+def bootcamp():
+    return render_template('bootcamp.html', site=site, bootcamp=getYml("./data/bootcamp.yml"),
+                           filetypes=getYml("./data/filetypes.yml"), page=pageData["bootcamp"][0])
 
 @app.route('/get_involved/')
 def get_involved():
