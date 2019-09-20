@@ -2,7 +2,6 @@
 
 {% block content %}
   <div class="container">
-      <h1 class="page-header centered">About the Team</h1>
       <div class="row">
         <div class="col-md-6">
           <img src="/static/img/hodp-team-photo-18f.jpg" class="img-responsive" width="100%">
@@ -11,6 +10,9 @@
           </div>
         </div>
         <div class="col-md-6">
+          <h2 style="margin-top: 0.2em;">
+            About the Team
+          </h2>
           <p>
             Founded in 2016, HODP has grown from a small team of data enthusiasts to a group of 40+ dedicated members investigating data on a variety of issues on campus. We've analyzed blocking group clustering, built a Crimson sports tracking webapp, developed an interactive crime map, and more. We’re committed to giving individuals the freedom to explore and providing them the support to do so.
           </p>
@@ -26,7 +28,7 @@
       <h2 class="centered page-header">People</h2>
       {% for group in people.groups %}
       <div class="row">
-        <h3 class="centered group-header">{{group.header }}</h3>
+        <p class="centered group-header lead">{{group.header }}</p>
         <div class="panel-group">
           <!-- empty media element prevents rules for media:first-child from messing up first person -->
           <div class="media"></div>

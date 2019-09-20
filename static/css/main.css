@@ -1,16 +1,91 @@
-/* new styles */
-.text-centered {
-  text-align: center;
+/* Typography / color style guide */
+h1, h2, .h1, .h2 {
+  font-family: "Helvetica Neue","Open Sans","Avenir Next",sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #000000;
 }
 
-.text-white {
-  color: white !important;
+h3, h4, h5, .h3, .h4, .h5 {
+  font-family: "Helvetica Neue","Open Sans","Avenir Next",sans-serif;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #000000;
 }
 
-.text-white {
-  color: white !important;
+h6, .h6 {
+  font-family: "Akkurat-Mono","Inconsolata","Consolas","Monaco",monospace;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #717171;
 }
 
+body {
+  font-family: "Franklin Gothic","Kohinoor Bangla","Open Sans","Avenir Next",sans-serif;
+  font-size: 15px;
+  line-height: 1.42857143;
+  color: #777777;
+  background-color: #ffffff;
+}
+
+a {
+  color: #EE3838;
+  text-decoration: none;
+  background-color: none;
+}
+
+.panel-body > * {
+  padding: 0px;
+  margin: 0.2em;
+}
+
+.label-info {
+  background-color: #4B5973;
+}
+
+/* Navigation */
+.navbar .active a {
+  color: #EE3838;
+  text-decoration: none;
+  background-color: none;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav>li>a {
+      padding-top: 1em;
+      padding-bottom: 1em;
+  }
+  .navbar-nav>li>a {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      line-height: 1em;
+  }
+  .nav>li>a {
+      position: relative;
+      padding: 15px 15px 0px 1px !important;
+      color: black;
+  }
+}
+@media (min-width: 768px) {
+  .navbar-nav>li>a {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      line-height: 1em;
+      background-color: none;
+  }
+  .navbar-nav>li>a:hover {
+    background-color: none;
+}
+
+  .nav>li>a {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      background-color: none;
+  }
+}
+
+/* Social media icon styles */
 .social-icon {
   padding: 0.5em;
   font-size: 1.1em;
@@ -26,33 +101,7 @@
   text-decoration: none;
 }
 
-/* old styles */
-#main-image {
-  max-height: 128px;
-}
-
-.portfolio-image {
-  max-width: 25%;
-  margin: 1em;
-}
-
-@media (min-width: 480px) {
-  #jumbotron h2 {
-    font-size: 4em !important;
-  }
-
-  #jumbotron h3 {
-    font-size: 2em !important;
-  }
-}
-.clickable {
-  cursor: pointer;
-}
-
-.img-padding {
-  padding: 4px;
-}
-
+/* Margins depending on screen size */
 @media (max-width: 780px) {
   #logo {
     max-height: 40px;
@@ -61,16 +110,24 @@
     text-align: center;
     align-content: center;
   }
+  .calendar {
+    width:400px;
+    margin:0 auto;
+  }
 }
 
 @media (min-width: 1200px) {
   .landing {
     width: 1200px;
   }
-
   .nav .navbar {
     margin-top: 2em !important;
-    margin-bottom: 2em !important; }
+    margin-bottom: 2em !important;
+  }
+  .calendar {
+    width: 800px;
+    margin:0 auto;
+  }
 }
 
 /* Sticky footer styles
@@ -121,9 +178,4 @@ body {
 
 .centered {
   text-align: center;
-}
-
-#backdrop {
-  background: url("/static/img/backgrounds/pforzheimer-house.jpg");
-  min-height: 400px;
 }
