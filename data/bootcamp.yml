@@ -1,0 +1,23 @@
+- name: iPython
+  teachers: Terri Ni, Melissa Kwan
+  document: https://docs.google.com/document/d/1PeN5SGwRG2Y3FhlOX63jVZhR5SQf-r1RqE-CwcDDIuY/edit?usp=sharing
+  repository: https://github.com/HarvardOpenData/ipython-tutorial
+  number: 1
+- name: Numpy & Pandas
+  teachers: Sahana Srinivasan
+  number: 2
+- name: Scraping
+  teachers: Ashley Wong
+  number: 3
+- name: Working Social
+  teachers: Kevin Bi, Lucy Li
+  number: 4
+- name: Statistics & Data Journalism
+  teachers: Seth Billiau
+  number: 5
+- name: Privacy and the Ethics of Data
+  teachers: Jim Waldo
+  number: 6
+- name: Project Time!
+  teachers: HODP Returners
+  number: 7
