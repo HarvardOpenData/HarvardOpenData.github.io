@@ -32,12 +32,12 @@
                         </li>
                     {% else %}
                         <li 
-                        class="nav-item dropdown">
+                        class="dropdown">
                             <a
                             href="{{link.url}}"
-                            id="navbarDropdown"
                             role="button"
                             data-toggle="dropdown"
+                            class="dropbtn"
                             aria-haspopup="true"
                             aria-expanded="false"
                             >
@@ -95,3 +95,13 @@
     </div>
     <hr style="border-top: 2px solid black; margin: 0px"/>
 </nav>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".dropdown, .btn-group").hover(function(){
+            var dropdownMenu = $(this).children(".dropdown-menu");
+            if(dropdownMenu.is(":visible")){
+                dropdownMenu.parent().toggleClass("open");
+            }
+        });
+    });     
+</script>

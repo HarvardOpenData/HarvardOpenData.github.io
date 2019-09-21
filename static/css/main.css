@@ -47,13 +47,17 @@ a {
 .navbar .active a, .navbar-nav .active a {
   color: #EE3838;
   text-decoration: none;
-  background-color: none;
+  background-color: #ffffff;
 }
 
 .nav>li>a {
   position: relative;
   padding: 15px 15px 0px 1px !important;
   color: black;
+}
+
+.dropbtn {
+  background-color: #ffffff !important;
 }
 
 .dropdown-item {
@@ -145,6 +149,8 @@ a {
     margin-right: 0.1em;
   }
 }
+
+
 
 @media (min-width: 1200px) {
   .landing {
