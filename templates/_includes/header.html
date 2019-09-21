@@ -14,21 +14,55 @@
     </div>
     <div class="container" style="vertical-align: middle; align-content: center;">
         <div id="navbar" class="navbar-collapse collapse" style="vertical-align: middle; align-content: center;">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-left">
                 {% for link in site.pages.main %}
-                    <li
-                        {% if link.url == request.path %}
-                        class="active"
-                        {% endif %}
-                        >
-                        <a 
-                        {% if link.newtab == 1 %}
-                        target = "_blank"
-                        {% endif %}
-                        href="{{link.url}}">
-                            {{link.name}}
-                        </a>
-                    </li>
+                    {% if link.subpages == null %}
+                        <li
+                            {% if link.url == request.path %}
+                            class="active"
+                            {% endif %}
+                            >
+                            <a 
+                            {% if link.newtab == 1 %}
+                            target = "_blank"
+                            {% endif %}
+                            href="{{link.url}}">
+                                {{link.name}}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li 
+                        class="nav-item dropdown">
+                            <a
+                            href="{{link.url}}"
+                            id="navbarDropdown"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            >
+                                {{link.name}}
+                            </a>
+                            <div class="dropdown-menu">
+                                {% for sublink in link.subpages %}
+                                    <a
+                                    {% if sublink.url == request.path %}
+                                    class="active"
+                                    {% endif %}
+                                    class="dropdown-item" 
+                                    {% if sublink.newtab == 1 %}
+                                    target = "_blank"
+                                    {% endif %}
+                                    href="{{sublink.url}}">
+                                        {{sublink.name}}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider"></div>
+                                {% endfor %}
+                            </div>
+                        </li>
+                    {% endif %}
+                    
                 {% endfor %}
                 <div style="vertical-align: middle; margin: 0.8em; align-content: center;">
                     <form action="/catalog" method="GET">

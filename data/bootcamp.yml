@@ -5,6 +5,8 @@
   number: 1
 - name: Numpy & Pandas
   teachers: Sahana Srinivasan
+  document: https://docs.google.com/document/d/13l7RzF4g7BhA0JCa8QdEyz7lmZHJc3OHm6kixwbfgTI/edit?usp=sharing
+  repository: https://github.com/HarvardOpenData/numpy-pandas-bootcamp
   number: 2
 - name: Scraping
   teachers: Ashley Wong

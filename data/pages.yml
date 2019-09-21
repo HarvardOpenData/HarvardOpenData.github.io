@@ -5,21 +5,28 @@ main:
     -   name: People
         url: /people/
         newtab: 0
-    -   name: Calendar
-        url: /calendar/
-        newtab: 0
     -   name: Data Catalog
         url: /catalog/
-        newtab: 0
-    -   name: Survey Group
-        url: /surveygroup/
-        newtab: 0
-    -   name: Bootcamp
-        url: /bootcamp/
         newtab: 0
     -   name: Blog
         url: https://medium.com/harvard-open-data-project
         newtab: 1
-    -   name: Mailing List
-        url: https://groups.google.com/forum/#!forum/harvard-open-data
-        newtab: 1
+    -   name: Calendar
+        url: /calendar/
+        newtab: 0
+    -   name: Get Involved
+        url: /bootcamp/
+        newtab: 0
+        subpagelinks:
+            -   /surveygroup/
+            -   /bootcamp/
+        subpages:
+            -   name: Survey Group
+                url: /surveygroup/
+                newtab: 0
+            -   name: Bootcamp
+                url: /bootcamp/
+                newtab: 0
+            -   name: Mailing List
+                url: https://groups.google.com/forum/#!forum/harvard-open-data
+                newtab: 1
