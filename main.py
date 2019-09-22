@@ -66,6 +66,10 @@ def catalog():
     return render_template('catalog.html', site=site, categories=getYml("./data/categories.yml"),
                            filetypes=getYml("./data/filetypes.yml"), page=pageData["catalog"][0])
 
+@app.route('/projects/')
+def projects():
+    return redirect("https://docs.google.com/spreadsheets/d/1HGegvm3OcLSV3zyI1fUcoPLHMUbDaM5ZWJSVb3Gx69Y/edit?usp=sharing")
+
 @app.route('/bootcamp/')
 def bootcamp():
     return render_template('bootcamp.html', site=site, bootcamp=getYml("./data/bootcamp.yml"),

@@ -30,3 +30,8 @@ main:
             -   name: Mailing List
                 url: https://groups.google.com/forum/#!forum/harvard-open-data
                 newtab: 1
+
+    -   name: Projects
+        url: /projects/
+        newtab: 1
+        
