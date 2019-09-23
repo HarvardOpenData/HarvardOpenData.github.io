@@ -11,11 +11,11 @@
         </div> 
         <div class = "col-md-6">
             <h3> Interested in becoming a sponsor?</h3>
-            Check out our <a href = "/static/downloadables/sponsorship_prospectus.pdf" download>Sponsorship Prospectus</a> and send us an email at <a href = "mailto:sponsors@hodp.org">sponsors@hodp.org</a>.
+            Check out our <a href = "/static/downloadables/sponsorship_prospectus.pdf" target="_blank">Sponsorship Prospectus</a> and send us an email at <a href = "mailto:sponsors@hodp.org">sponsors@hodp.org</a>.
         </div>
     </div>
     {% for tier in tiers %}
-        <h2 class="centered page-header">{{ tier }} Sponsors</h2>
+        <h3 class="centered page-header">{{ tier }} Sponsors</h2>
         {% set count = [1] %}
         {% for sponsor in sponsors %}
             {% if sponsor.tier == tier %}

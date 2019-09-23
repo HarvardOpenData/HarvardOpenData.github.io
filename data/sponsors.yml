@@ -12,17 +12,4 @@ sponsors:
       careers_url: https://www.analysisgroup.com/careers/
       description: Analysis Group provides economic, financial and strategy consulting to law firms, corporations & government agencies. 
       weight:
-      tier: Gold
-  -   name: Harvard Open Data Project 
-      external_url: http://hodp.org/
-      img_url: /static/img/squarelogo.png
-      description: We are a student group at Harvard College focused on increasing data transparency and creating data-driven analyses of Harvard issues. 
-      weight:
       tier: Silver
-
-  -   name: Harvard College Open Data Project 
-      external_url: http://hodp.org/
-      img_url: /static/img/squarelogo.png
-      description: We are a student group at Harvard College focused on increasing data transparency and creating data-driven analyses of Harvard issues. 
-      weight:
-      tier: Bronze
