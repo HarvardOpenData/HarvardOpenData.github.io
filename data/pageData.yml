@@ -35,6 +35,10 @@ catalog:
 get_involved:
   - title: Get Involved
 
+bootcamp:
+  - title: Bootcamp
+    layout: default
+
 submit:
   - title: Submit
     layout: default

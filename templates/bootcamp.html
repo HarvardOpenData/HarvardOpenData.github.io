@@ -1,0 +1,41 @@
+{% extends 'default.html' %}
+
+{% block content %}
+  <div class="container">
+      <h2 style="margin-top: 0.2em;">
+          Fall 2019 Bootcamp
+      </h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Topic</th>
+            <th scope="col">Instructor(s)</th>
+            <th scope="col">Document</th>
+            <th scope="col">Repository</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for session in bootcamp %}
+            <tr>
+                <th scope="row">{{session.number}}</th>
+                <td>{{session.name}}</td>
+                <td>{{session.teachers}}</td>
+                {% if session.document == null %}
+                  <td>TBD</td>
+                {% endif %}
+                {% if session.document != null %}
+                  <td><a target="_blank" href={{session.document}}>Week {{session.number}}</a></td>
+                {% endif %}
+                {% if session.repository == null %}
+                  <td>TBD</td>
+                {% endif %}
+                {% if session.repository != null %}
+                  <td><a target="_blank" href={{session.repository}}>{{session.name}} bootcamp</a></td>
+                {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+{% endblock %}

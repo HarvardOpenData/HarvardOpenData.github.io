@@ -12,7 +12,7 @@
         {# <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}"> #}
         
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://bootswatch.com/journal/bootstrap.min.css">
+        <link rel="stylesheet" href="https://bootswatch.com/journal/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
         
         <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
@@ -46,5 +46,29 @@
         {% block custom_scripts %}{% endblock %}
         {% include '_includes/scripts.html' %}
 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147955604-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-147955604-1');
+        </script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".dropdown").mouseenter(function(){
+                    const dropdownMenu = $(this).children(".dropdown-menu");
+                    if(! dropdownMenu.is(":visible")){
+                        $(this).toggleClass("open");
+                    }
+                });
+                $(".dropdown-menu").mouseleave(function(){
+                    if($(this).is(":visible")){
+                        $(this).parent().removeClass("open");
+                    }
+                });
+            });     
+        </script>
     </body>
 </html>
