@@ -7,6 +7,7 @@ import json
 import os
 import server.demographics
 import tempfile
+import random, datetime, time
 
 app = Flask(__name__)
 
@@ -41,19 +42,46 @@ peopleYml = getYml("./data/people.yml")
 add_members_to_firestore(auth.get_website_firestore_client(), peopleYml)
 members_cache.populate(auth.get_website_firestore_client(), peopleYml)
 
+tier_entries = {
+    "Platinum" : 20,
+    "Gold" : 10,
+    "Silver" : 4,
+    "Bronze" : 2,
+    "Startup" : 1
+}
 
+tiersYml = getYml("./data/sponsors.yml")["tiers"]
+sponsorsYml = getYml("./data/sponsors.yml")["sponsors"]
+sponsor_weights = [tier_entries[sponsor["tier"]] for sponsor in sponsorsYml]
 
 @app.route('/')
 def index():
     categories = getYml('./data/categories.yml')
     featured = enumerate(getYml('./data/featured.yml'))
-    return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured)
+    date_string = datetime.datetime.now().strftime('%H %d %m %Y')
+    random.seed(date_string, 2)
+    featured_sponsors : list = random.choices(sponsorsYml, weights = sponsor_weights, k = 1)
+    selected_index = sponsorsYml.index(featured_sponsors[0])
+    filtered_sponsors : list= sponsorsYml.copy()
+    filtered_sponsors.pop(selected_index)
+    if filtered_sponsors:
+        filtered_sponsor_weights = sponsor_weights.copy()
+        filtered_sponsor_weights.pop(selected_index)
+        featured_sponsors.extend(random.choices(filtered_sponsors, filtered_sponsor_weights, k = 1))
+    featured_sponsors.sort(key = lambda x: tiersYml.index(x["tier"]))
+    random.seed(time.time())
+    return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured,
+                            featured_sponsors = featured_sponsors)
 
 
 @app.route('/people/')
 def about():
     members = members_cache.get()
     return render_template('people.html', site=site, people=peopleYml, members = members, page=pageData["about"][0])
+
+@app.route('/sponsors/')
+def sponsors():
+    return render_template('sponsors.html', site=site, sponsors = sponsorsYml, tiers = tiersYml, page=pageData["sponsors"][0])
 
 
 @app.route('/calendar/')

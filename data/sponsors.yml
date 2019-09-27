@@ -1,0 +1,15 @@
+tiers:
+  -   Platinum
+  -   Gold
+  -   Silver
+  -   Bronze
+
+sponsors: 
+  -   name: Analysis Group
+      external_url: https://www.analysisgroup.com/
+      img_url: https://odsc.com/wp-content/uploads/2015/12/analysis-group-logo.jpg
+      industry: Economic Consulting
+      careers_url: https://www.analysisgroup.com/careers/
+      description: Analysis Group provides economic, financial and strategy consulting to law firms, corporations & government agencies. 
+      weight:
+      tier: Silver

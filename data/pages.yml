@@ -34,4 +34,7 @@ main:
     -   name: Projects
         url: /projects/
         newtab: 1
+    -   name: Sponsors
+        url: /sponsors/
+        newtab: 0
         

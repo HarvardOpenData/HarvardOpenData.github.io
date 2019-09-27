@@ -8,7 +8,7 @@
                 {% for i, article in featured %}
                     {% if i == 0 %} <div class="col-md-12 article-container"> {% endif %}
                     {% if i > 0 %} <div class="col-md-6 article-container"> {% endif %}
-                        <a id = "articlelink{{ i }}" href="{{ article.url }}" target="_blank">
+                        <a id = "articlelink{{ i }}" href="{{ article.url }}" target="_blank" >
                             <div class="article">
                                 <img id = "articleimg{{ i }}" src="{{ article.imgsrc }}" class="img-responsive" alt="Image" style="margin-bottom: 0;"/>
                                 <div class="container-fluid article-info">
@@ -44,6 +44,16 @@
             <a href="https://twitter.com/HarvardODP" target="_blank" class="social-icon fa fa-twitter"></a>
             <a href="https://github.com/HarvardOpenData" target="_blank" class="social-icon fa fa-github"></a>
             <a href="mailto:harvardopendataproject@gmail.com" class="social-icon fa fa-envelope"></a>
+
+            {% if featured_sponsors %}'
+            <h3>Featured Sponsors:</h3> '
+            {% for sponsor in featured_sponsors%}
+              <div id = "featured_sponsor">
+                  {% set is_index = True %}
+                  {% include './_includes/sponsor-card.html' %}
+              </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
     <div class="container-fluid landing" style="float: none; margin: 0 auto;">
