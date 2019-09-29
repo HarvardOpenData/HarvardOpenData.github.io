@@ -71,6 +71,11 @@ def bootcamp():
     return render_template('bootcamp.html', site=site, bootcamp=getYml("./data/bootcamp.yml"),
                            filetypes=getYml("./data/filetypes.yml"), page=pageData["bootcamp"][0])
 
+@app.route('/datathon/')
+def datathon():
+    return render_template('datathon.html', site=site, schedule=getYml("./data/datathon.yml"),
+                           filetypes=getYml("./data/filetypes.yml"), page=pageData["bootcamp"][0])
+
 @app.route('/get_involved/')
 def get_involved():
     return render_template('get_involved.html', site=site, page=pageData["get_involved"][0])
