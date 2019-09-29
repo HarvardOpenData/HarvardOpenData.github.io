@@ -9,13 +9,13 @@
   location: Performance Hall
 - time: 11:00 a.m.
   event: Breakout Sessions - Selenium with Kevin , R with Seth
-  location: Conference Rooms
+  location: Conference Rooms P-09, P-10
 - time: 12:00 p.m.
   event: Catered Lunch
   location: Performance Hall
 - time: 1:00 p.m.
   event: Breakout Sessions - GGplot with Neil, Web Development with Melissa and Alex, Plotly with Leo
-  location: Conference Rooms
+  location: Conference Rooms P-09, P-10, P-11
 - time: 2:00 p.m.
   event: General Project Time
   location: Performance Hall
@@ -24,4 +24,4 @@
   location: Performance Hall
 - time: 4 p.m.
   event: End of Datathon
-  location: SOCH
+  location: N/A
