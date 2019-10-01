@@ -10,6 +10,8 @@
   number: 2
 - name: Scraping
   teachers: Ashley Wong
+  document: https://docs.google.com/document/d/1Rp95PDhdAfmxfbiv8xOxPiErVAhUgd3tQh_VWVCmfGs/edit?usp=sharing
+  repository: https://github.com/HarvardOpenData/Bootcamp-Scraping
   number: 3
 - name: Working Social
   teachers: Kevin Bi, Lucy Li
