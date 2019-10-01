@@ -39,6 +39,10 @@ bootcamp:
   - title: Bootcamp
     layout: default
 
+datathon:
+  - title: Datathon
+    layout: default
+
 submit:
   - title: Submit
     layout: default
