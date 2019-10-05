@@ -105,7 +105,7 @@ def bootcamp():
 
 @app.route('/datathon/')
 def datathon():
-    return render_template('datathon.html', site=site, schedule=getYml("./data/datathon.yml"),
+    return render_template('datathon.html', site=site, datathon=getYml("./data/datathon.yml"),
                            filetypes=getYml("./data/filetypes.yml"), page=pageData["datathon"][0])
 
 @app.route('/get_involved/')

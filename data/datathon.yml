@@ -1,27 +1,28 @@
-- time: 10:00 a.m.
-  event: Catered Breakfast
-  location: Performance Hall
-- time: 10:30 a.m.
-  event: Opening Remarks
-  location: Performance Hall
-- time: 10:45 a.m.
-  event: Project Breakdown
-  location: Performance Hall
-- time: 11:00 a.m.
-  event: Breakout Sessions - Selenium with Kevin , R with Seth
-  location: Conference Rooms P-09, P-10
-- time: 12:00 p.m.
-  event: Catered Lunch
-  location: Performance Hall
-- time: 1:00 p.m.
-  event: Breakout Sessions - GGplot with Neil, Web Development with Melissa and Alex, Plotly with Leo
-  location: Conference Rooms P-09, P-10, P-11
-- time: 2:00 p.m.
-  event: General Project Time
-  location: Performance Hall
-- time: 2:30 p.m.
-  event: Talk with David Kane
-  location: Performance Hall
-- time: 4 p.m.
-  event: End of Datathon
-  location: N/A
+schedule:
+  - time: 10:00 a.m.
+    event: Catered Breakfast
+    location: Performance Hall
+  - time: 10:30 a.m.
+    event: Opening Remarks
+    location: Performance Hall
+  - time: 10:45 a.m.
+    event: Project Breakdown
+    location: Performance Hall
+  - time: 11:00 a.m.
+    event: Breakout Sessions - Selenium with Kevin , R with Seth
+    location: Conference Rooms P-09, P-10
+  - time: 12:00 p.m.
+    event: Catered Lunch
+    location: Performance Hall
+  - time: 1:00 p.m.
+    event: Breakout Sessions - GGplot with Neil, Web Development with Melissa and Alex, GIS with Leo
+    location: Conference Rooms P-09, P-10, P-11
+  - time: 2:00 p.m.
+    event: General Project Time
+    location: Performance Hall
+  - time: 2:30 p.m.
+    event: Talk with David Kane
+    location: Performance Hall
+  - time: 4 p.m.
+    event: End of Datathon
+    location: N/A
