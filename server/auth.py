@@ -20,6 +20,9 @@ def email_hash(email):
 def is_mock():
     return os.getenv("MOCK_FIRESTORE") == "TRUE"
 
+def is_local():
+    return os.getenv("LOCAL") == "TRUE"
+
 # checks if the current user exists in DB and has the correct userId
 def is_authenticated(userEmail : str, userId : str, collection_ref : firestore.firestore.CollectionReference):
     # typically triggered if there are no cookies

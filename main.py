@@ -284,3 +284,10 @@ def get_email_cookie_key(request_url):
 
 def get_id_cookie_key(request_url):
     return "{}_id".format(request_url)
+
+if __name__ == "__main__":
+    if auth.is_mock() or auth.is_local():
+        app.run(host="localhost", port="8080")
+    else:
+        app.run()
+    
