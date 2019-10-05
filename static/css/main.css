@@ -1,27 +1,37 @@
 /* Typography / color style guide */
-h1, h2, .h1, .h2 {
-  font-family: "Helvetica Neue","Open Sans","Avenir Next",sans-serif;
+h1,
+h2,
+.h1,
+.h2 {
+  font-family: "Helvetica Neue", "Open Sans", "Avenir Next", sans-serif;
   font-weight: 700;
   line-height: 1.1;
   color: #000000;
 }
 
-h3, h4, h5, .h3, .h4, .h5 {
-  font-family: "Helvetica Neue","Open Sans","Avenir Next",sans-serif;
+h3,
+h4,
+h5,
+.h3,
+.h4,
+.h5 {
+  font-family: "Helvetica Neue", "Open Sans", "Avenir Next", sans-serif;
   font-weight: 600;
   line-height: 1.1;
   color: #000000;
 }
 
-h6, .h6 {
-  font-family: "Akkurat-Mono","Inconsolata","Consolas","Monaco",monospace;
+h6,
+.h6 {
+  font-family: "Akkurat-Mono", "Inconsolata", "Consolas", "Monaco", monospace;
   font-weight: 400;
   line-height: 1.1;
   color: #717171;
 }
 
 body {
-  font-family: "Franklin Gothic","Kohinoor Bangla","Open Sans","Avenir Next",sans-serif;
+  font-family: "Franklin Gothic", "Kohinoor Bangla", "Open Sans", "Avenir Next",
+    sans-serif;
   font-size: 15px;
   line-height: 1.42857143;
   color: #777777;
@@ -29,7 +39,7 @@ body {
 }
 
 a {
-  color: #EE3838;
+  color: #ee3838;
   text-decoration: none;
   background-color: none;
 }
@@ -40,17 +50,18 @@ a {
 }
 
 .label-info {
-  background-color: #4B5973;
+  background-color: #4b5973;
 }
 
 /* Navigation */
-.navbar .active a, .navbar-nav .active a {
-  color: #EE3838;
+.navbar .active a,
+.navbar-nav .active a {
+  color: #ee3838;
   text-decoration: none;
   background-color: #ffffff;
 }
 
-.nav>li>a {
+.nav > li > a {
   position: relative;
   padding: 15px 15px 0px 1px !important;
   color: black;
@@ -65,8 +76,9 @@ a {
   text-decoration: none !important;
 }
 
-.dropdown-item:hover, .active {
-  color: #EE3838;
+.dropdown-item:hover,
+.active {
+  color: #ee3838;
   text-decoration: none !important;
 }
 
@@ -75,39 +87,41 @@ a {
   padding: 0.7em;
 }
 
-.navbar-nav>li>a:hover, .open>a:focus, .dropdown>li>a:hover {
+.navbar-nav > li > a:hover,
+.open > a:focus,
+.dropdown > li > a:hover {
   background-color: #ffffff !important;
 }
 
 @media (min-width: 768px) {
-  .navbar-nav>li>a {
-      padding-top: 1em;
-      padding-bottom: 1em;
+  .navbar-nav > li > a {
+    padding-top: 1em;
+    padding-bottom: 1em;
   }
-  .navbar-nav>li>a {
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      line-height: 1em;
+  .navbar-nav > li > a {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    line-height: 1em;
   }
-  .nav>li>a {
-      position: relative;
-      padding: 15px 15px 0px 1px !important;
-      color: black;
+  .nav > li > a {
+    position: relative;
+    padding: 15px 15px 0px 1px !important;
+    color: black;
   }
 }
 @media (min-width: 768px) {
-  .navbar-nav>li>a {
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      line-height: 1em;
-      background-color: #ffffff;
+  .navbar-nav > li > a {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    line-height: 1em;
+    background-color: #ffffff;
   }
 
-  .nav>li>a {
-      position: relative;
-      display: block;
-      padding: 10px 15px;
-      background-color: none;
+  .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    background-color: none;
   }
 }
 
@@ -137,8 +151,8 @@ a {
     align-content: center;
   }
   .calendar {
-    width:400px;
-    margin:0 auto;
+    width: 400px;
+    margin: 0 auto;
   }
   .dropdown-menu {
     text-align: center;
@@ -150,8 +164,6 @@ a {
   }
 }
 
-
-
 @media (min-width: 1200px) {
   .landing {
     width: 1200px;
@@ -162,7 +174,7 @@ a {
   }
   .calendar {
     width: 800px;
-    margin:0 auto;
+    margin: 0 auto;
   }
 }
 
@@ -180,12 +192,15 @@ body {
 
 .footer {
   position: absolute;
-  bottom: 0;
+  bottom: calc(0);
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
   background-color: #f5f5f5;
   text-align: center;
+}
+
+#main-container {
+  min-height: calc(100vh - 300px);
 }
 
 .container p {

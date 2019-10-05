@@ -11,7 +11,7 @@ import random, datetime, time
 
 app = Flask(__name__)
 
-app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024 
+app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 
 
 def getYml(filepath):
@@ -77,7 +77,7 @@ def index():
 @app.route('/people/')
 def about():
     members = members_cache.get()
-    return render_template('people.html', site=site, people=peopleYml, members = members, page=pageData["about"][0])
+    return render_template('people.html', site=site, people=peopleYml, members=members, page=pageData["about"][0])
 
 @app.route('/sponsors/')
 def sponsors():
@@ -143,6 +143,7 @@ def studyabroad():
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
 
+
 @app.route('/visual/hudsmenu')
 def hudsmenu():
     return render_template('webapps/hudsmenu.html', site=site, page=pageData['hudsmenu'][0])
@@ -188,7 +189,7 @@ def profile():
     userId = None
     email_cookie_key = get_email_cookie_key("profile")
     id_cookie_key = get_id_cookie_key("profile")
-    
+
     members_ref = db.collection("members")
     if email_cookie_key in request.cookies:
         userEmail = request.cookies[email_cookie_key]
@@ -200,26 +201,28 @@ def profile():
     member = auth.get_member(userEmail, userId, db)
     peopleYml = getYml('./data/people.yml')
     if request.method == "GET":
-        people : list = peopleYml["people"]
-        
-        person_dict = next((person for person in people if "email" in person and person["email"] == member.email), None)
+        people: list = peopleYml["people"]
+
+        person_dict = next(
+            (person for person in people if "email" in person and person["email"] == member.email), None)
         if person_dict is not None:
-            member.merge_people_dict(person_dict) 
-            
+            member.merge_people_dict(person_dict)
+
         contributionsJson = "[\n\n]"
-        if member.contributions is not None: 
+        if member.contributions is not None:
             contributionsJson = json.dumps(member.contributions, indent=4)
 
-        return render_template("profile.html", page=pageData["profile"][0], site=site, member=member, contributionsJson = contributionsJson, CLIENT_ID=constants.get_google_client_id(), responded=True)
+        return render_template("profile.html", page=pageData["profile"][0], site=site, member=member, contributionsJson=contributionsJson, CLIENT_ID=constants.get_google_client_id(), responded=True)
     elif request.method == "POST":
-        try: 
+        try:
             if "photo_upload" in request.files:
                 photo = request.files["photo_upload"]
                 if photo.filename:
                     filetype = photo.filename.split(".")[-1]
                     storage_client = auth.get_website_storage_client()
                     bucket = storage_client.bucket("hodp-member-images")
-                    uploaded_filename = "{}.{}".format(member.member_id, filetype)
+                    uploaded_filename = "{}.{}".format(
+                        member.member_id, filetype)
                     blob = bucket.blob(uploaded_filename)
                     temp = tempfile.NamedTemporaryFile(delete=False)
                     photo.save(temp.name)
@@ -233,12 +236,14 @@ def profile():
             return redirect("/profile/")
         except Exception as e:
             return make_response("Failed to update profile: {}".format(e), 400)
+
+
 @app.route("/auth/<request_url>/", methods=["GET", "POST"])
 def signin(request_url):
     title_dict = {
         "surveygroup": "Survey Group",
         "demographics": "Demographics",
-        "profile" : "My Profile"
+        "profile": "My Profile"
     }
     if request.method == "GET":
         return render_template('auth.html', title=title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
