@@ -1,0 +1,14 @@
+tiers:
+  -   Platinum
+  -   Gold
+  -   Silver
+  -   Bronze
+
+sponsors: 
+  -   name: Analysis Group
+      external_url: https://www.analysisgroup.com/
+      img_url: /static/img/sponsors/analysis_group.jpg
+      industry: Economic Consulting
+      careers_url: https://www.analysisgroup.com/careers/
+      description: Analysis Group is one of the largest economics consulting firms, with more than 1,000 professionals across 14 offices in North America, Europe, and Asia. Since 1981, we have provided expertise in economics, finance, health care analytics, and strategy to top law firms, Fortune Global 500 companies, and government agencies worldwide.
+      tier: Silver

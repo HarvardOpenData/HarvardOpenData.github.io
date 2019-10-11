@@ -1,0 +1,22 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<h3 id = "title" class = "header" ></h3>
+<h4 id = "desc" class = "header" ></h4>
+
+<canvas id = "chartViz" class = "chart"></canvas>
+
+<br/>
+<h4 id = "desc" class = "header" >Raw Data:</h4><br/>
+
+<div id="window">
+<h3 id = "loading">Loading...</h3>
+<table class ="table responsive">
+    <thead id = "CSVHeader"></thead>
+    <tbody id = "CSVTable"> </tbody>
+</table>
+</div>
+
+<h5 id = "source"></h5>
+{% endblock %}
+

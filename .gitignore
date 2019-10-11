@@ -1,4 +1,8 @@
-
+hodp/
+_hodp/
+lib
+lib/
+.lib/
 # Created by https://www.gitignore.io/api/node,macos,jekyll,windows
 
 ### Jekyll ###
@@ -116,3 +120,11 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,macos,jekyll,windows
+__pycache__/app.cpython-36.pyc
+.vscode/settings.json
+__pycache__/main.cpython-36.pyc
+/lib
+*.pyc
+/hodp
+node_modules/
+*_creds.json

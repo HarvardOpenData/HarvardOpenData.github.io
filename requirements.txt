@@ -1,0 +1,11 @@
+Flask>=1.0.2
+firebase-admin
+pyyaml
+grpcio
+google-cloud-firestore
+google-api-core
+google-api-python-client
+google-auth
+google-auth-httplib2
+Werkzeug>=0.12.0
+mock-firestore
