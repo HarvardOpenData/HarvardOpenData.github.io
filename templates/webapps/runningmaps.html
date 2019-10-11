@@ -1,21 +1,68 @@
----
-title: Running Maps
-layout: default
-permalink: /visual/running
+{% extends 'default.html' %} 
 
-scripts:
-    - https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js
-    - https://maps.googleapis.com/maps/api/js?key=AIzaSyCT2dC3J-0KpV6kMcm96JDf7JAHwKxgEQc
-    - https://apis.google.com/js/api.js
-    - /js/all.js
-    - /js/runningmaps.js
-styles:
-    - /css/running.css
----
+{% block content %}
 
-<div id="main">
-    <div>
-        <h1>Running Routes Around Harvard</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Running Maps</h1>
+            <p>A compilation of runs from the <a href="https://marathon.harvard.edu/">Harvard College Marathon Club</a> website. 
+            You can view the raw dataset <a target="#" href="https://docs.google.com/spreadsheets/d/1iv8yoSoFcgJ0nzhF17KMkopQ7cGrnVO_WAvarVL1Zuc/edit?usp=sharing">here</a>
+            </p>
+            <p>Want to add your own route? Submit a route <a href="https://forms.gle/1b4Qk9VponqsuARAA" target="#">here</a></p>
+            <div>
+                <div class="filter_container">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="typeSelect">Run Type</label>
+                                <select id="typeSelect" class="form-control form-control-sm" onChange="updateFilter('type', this.value)">
+                                    <option value="All">All</option>
+                                    <option value="loop">Loop</option>
+                                    <option value="1-way">1-Way</option>
+                                </select>   
+                            </div>
+                            <div class="col-md-6">
+                                <label for="startSelect">Start Location</label>
+                                <select id="startSelect" class="form-control form-control-sm" onChange="updateFilter('start', this.value)">
+                                    
+                                </select>    
+                            </div>
+                        </div>
+                    </form>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <table class="table table-hover" id="itemsTable">
+                <thead>
+                    <th>Name</th>
+                    <th>Distance</th>
+                    <th>Type</th>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
     </div>
-    <table class="table" id="itemsTable"></table>
 </div>
+
+<div class="modal fade" id="runModal" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <iframe id="mapmyfitness_route" src="//snippets.mapmycdn.com/routes/view/embedded/2195791417?width=600&height=400&elevation=true&info=true&line_color=E60f0bdb&rgbhex=DB0B0E&distance_markers=0&unit_type=imperial&map_mode=ROADMAP&last_updated=2018-08-12T08:28:31-04:00" height="570px" width="100%" frameborder="0"></iframe><div style="text-align: right; padding-right: 20px;">
+                        <a target="_blank" rel="noopener noreferrer" href="http://www.mapmyrun.com/routes/create/">Create Routes</a>
+                        or <a href="http://www.mapmyrun.com/routes/">Search for a route</a>
+                        from millions at <a href="http://www.mapmyrun.com">MapMyRun</a>
+                    </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+{% endblock %}

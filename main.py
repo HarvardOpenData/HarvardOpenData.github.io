@@ -148,6 +148,10 @@ def scoreboard():
 def hudsmenu():
     return render_template('webapps/hudsmenu.html', site=site, page=pageData['hudsmenu'][0])
 
+@app.route('/visual/runningmaps')
+def runningmaps():
+    return render_template('webapps/runningmaps.html', site=site, page=pageData["runningmaps"][0])
+
 
 @app.route("/surveygroup/", methods=['GET', 'POST'])
 @app.route('/demographics/', methods=['GET', 'POST'])

@@ -1,0 +1,19 @@
+a:hover{
+    cursor: pointer!important;
+}
+
+.wide_column{
+    width: 33%
+}
+
+.clearfix{
+    clear: both;
+}
+
+.filter_container{
+    background-color: #eeeeee;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px
+}
