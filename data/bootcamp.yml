@@ -19,9 +19,11 @@
   number: 4
 - name: Statistics & Data Journalism
   teachers: Seth Billiau
+  repository: https://github.com/HarvardOpenData/Bootcamp-Statistics
+  document: https://docs.google.com/document/d/1bnEt9IytjKAAhLbNL6UY2A5oevGsabKWn9xpq2TvxC0/edit?usp=sharing
   number: 5
-- name: Privacy and the Ethics of Data
-  teachers: Jim Waldo
+- name: Speaker on Open Data!
+  teachers: Speaker
   number: 6
 - name: Project Time!
   teachers: HODP Returners
