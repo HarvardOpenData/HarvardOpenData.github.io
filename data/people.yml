@@ -354,4 +354,6 @@ people:
         year: 2022
         bio: I'm a sophomore in Eliot concentrating in computer science. I'm originally from San Jose, CA, and I love music, dancing, and hiking!
         image: amy-jin.jpg
-    
+    -   name: Vinay Kanumari
+        email: vkanumuri@college.harvard.edu
+        role: contributor
