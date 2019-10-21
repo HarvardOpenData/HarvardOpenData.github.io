@@ -1,6 +1,6 @@
 Flask>=1.0.2
 firebase-admin>=2.16.0
-PyYAML>=5.1.2
+pyyaml>=5.1.2
 grpcio>=1.20.1
 google-cloud-firestore>=0.32.1
 google-api-core>=1.9.0
