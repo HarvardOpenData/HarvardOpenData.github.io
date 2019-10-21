@@ -41,12 +41,12 @@ $ git clone https://github.com/HarvardOpenData/HarvardOpenData.github.io.git
 If you’ve never worked with App Engine before, follow the steps [here](https://cloud.google.com/sdk/docs/) to install the Cloud SDK. (You can skip step #6).
 
 ### Set Up Your Virtual Environment
-We’ll use a virtual environment to install the necessary packages without overriding or conflicting with existing packages on your computer. 
+We’ll use a virtual environment to install the necessary packages without overriding or conflicting with existing packages on your computer. For the below installation commands, we assume that you run 
 
 If you don’t already have virtualenv installed, install it using
 
 ```
-$ pip install virtualenv
+$ python3 -m pip install virtualenv
 ```
 
 Create and activate your virtual environment. If your default version of Python is 2.7, run the below lines. If your default is not 2.7, read the answer [here](https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv) for how to modify the second line below.
@@ -59,20 +59,31 @@ $ source hodp/bin/activate
 
 Install the required packages
 ```
-$ pip install -t lib -r requirements.txt
+$ python3 -m pip install -r requirements.txt 
 ```
 
 ### Local Testing
-To test your app locally run the following in your root directory
+To test your app locally, there are two ways that you can run.
+
+#### Using Google's Local Dev Server
+If you do not have credentialed access to the HODP Firestore, use the following to use an in-memory mock firestore:
+
+```
+dev_appserver.py --env_var MOCK_FIRESTORE=TRUE app.yaml
+```
 
 ```
 $ dev_appserver.py app.yaml
 ```
 
-If you do not have credentialed access to the HODP Firestore, use the following to use an in-memory mock firestore:
-
+#### Vanilla Flask
+If you are using python 3 and have installed all of the relevant packages, you can run with
 ```
-dev_appserver.py --env_var MOCK_FIRESTORE=TRUE app.yaml
+MOCK_FIRESTORE=TRUE python3 main.py
+```
+or 
+```
+LOCAL=TRUE python3 main.py
 ```
 
 ### Workflow
