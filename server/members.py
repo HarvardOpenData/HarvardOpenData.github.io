@@ -1,3 +1,5 @@
+import sys
+sys.path.append("../")
 from typing import List, Dict
 import json
 from firebase_admin import firestore, storage
