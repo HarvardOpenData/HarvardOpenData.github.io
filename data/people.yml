@@ -5,6 +5,8 @@ groups:
         header: Mentors
     -   id: contributor
         header: Contributors
+    -   id: bootcamper
+        header: Bootcampers
     -   id: alumni
         header: Alumni
 roles:
