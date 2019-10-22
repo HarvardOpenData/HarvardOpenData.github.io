@@ -22,8 +22,10 @@
   repository: https://github.com/HarvardOpenData/Bootcamp-Statistics
   document: https://docs.google.com/document/d/1bnEt9IytjKAAhLbNL6UY2A5oevGsabKWn9xpq2TvxC0/edit?usp=sharing
   number: 5
-- name: Speaker on Open Data!
-  teachers: Speaker
+- name: HODP Tech Talk
+  teachers: Melissa and Kevin
+  document: https://docs.google.com/document/d/1KBE5gMMAQlZaZX6SA1ga0fWjzYMKjYdZC2n_BszkIUg/edit?usp=sharing
+  repository: https://github.com/HarvardOpenData/HarvardOpenData.github.io
   number: 6
 - name: Project Time!
   teachers: HODP Returners
