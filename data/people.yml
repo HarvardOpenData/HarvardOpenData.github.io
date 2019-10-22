@@ -5,6 +5,8 @@ groups:
         header: Mentors
     -   id: contributor
         header: Contributors
+    -   id: bootcamper
+        header: Bootcampers
     -   id: alumni
         header: Alumni
 roles:
@@ -361,3 +363,6 @@ people:
         year: 2023
         bio: I'm a Freshman planning to study Computer Science. I like to play sports and talk philosophy.
         image: charles-onesti.jpg
+    -   name: Vinay Kanumari
+        email: vkanumuri@college.harvard.edu
+        role: contributor
