@@ -389,3 +389,10 @@ people:
         year: 2023
         bio: I'm a first-year from Needham, MA planning to study computer science who loves soccer, coding, and writing!
         image: ethan-lee.jpg
+    -   name: Jenny Lu
+        email: jmlu@college.harvard.edu
+        role: bootcamper
+        house: Grays
+        year: 2023
+        bio: I'm a first year from Austin, Texas thinking of concentrating in statistics. I love music, puppies, and being outdoors.
+        image: jenny-lu.JPG
