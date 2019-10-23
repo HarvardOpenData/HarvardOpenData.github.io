@@ -373,3 +373,9 @@ people:
         year: 2023
         bio: I'm a freshman in Thayer concentrating in computer science. I'm originally from Salt Lake City, UT and I love the outdoors, soccer, and music.
         image: alex-cheng.jpg
+    -   name: Moritz Pail
+        email: mpail@college.harvard.edu
+        role: bootcamper
+        year: 2023
+        bio: I'am a First-Year in Matthews potentially concentrating in Applied Math with a focus in Computer Science and Economics. I am originally from Vienna, Austria. Outside of HODP, I like to travel, do sports, and meet friends for coffee.
+    
