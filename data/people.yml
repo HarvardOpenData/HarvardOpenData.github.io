@@ -382,3 +382,10 @@ people:
         email: nicolechen@college.harvard.edu
         role: bootcamper
         year: 2023
+    -   name: Ethan Lee 
+        email: ethan_lee@college.harvard.edu
+        role: bootcamper
+        house: Pennypacker
+        year: 2023
+        bio: I'm a first-year from Needham, MA planning to study computer science who loves soccer, coding, and writing!
+        image: ethan-lee.jpg
