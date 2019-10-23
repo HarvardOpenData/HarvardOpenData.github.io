@@ -1,10 +1,12 @@
-groups: 
+groups:
     -   id: board
         header: Board
     -   id: mentor
         header: Mentors
     -   id: contributor
         header: Contributors
+    -   id: bootcamper
+        header: Bootcampers
     -   id: alumni
         header: Alumni
 roles:
@@ -92,7 +94,7 @@ people:
         house: Currier
         year: 2021
         image: kevin-bi.jpg
-        bio: I'm a junior in Currier studying Applied Math with a focus in Economics. In my free time, I like to read, play card games, and watch sports. 
+        bio: I'm a junior in Currier studying Applied Math with a focus in Economics. In my free time, I like to read, play card games, and watch sports.
     -   name: Lucy Li
         email: lucyli@college.harvard.edu
         role: vp
@@ -174,7 +176,7 @@ people:
         role: contributor
         house: Cabot
         year: 2022
-        bio: I am a sophomore living in Cabot studying either economics or computer science. I enjoy dominating basketball games in my free time, and I am a big Knicks fan. 
+        bio: I am a sophomore living in Cabot studying either economics or computer science. I enjoy dominating basketball games in my free time, and I am a big Knicks fan.
         image: george-guarnieri.png
     -   name: Leo Saenger
         email: saenger@college.harvard.edu
@@ -188,20 +190,20 @@ people:
         role: vp
         house: Currier
         year: 2021
-        bio: I’m a junior from Grand Rapids, Michigan, living Currier House and studying statistics and government. If I'm not at a HODP meeting, you can probably find me singing Bass II in the Harvard-Radcliffe Collegium Musicum, CA'ing Math 23, or attending the next Red Sox/Celtics/Bruins game.  
+        bio: I’m a junior from Grand Rapids, Michigan, living Currier House and studying statistics and government. If I'm not at a HODP meeting, you can probably find me singing Bass II in the Harvard-Radcliffe Collegium Musicum, CA'ing Math 23, or attending the next Red Sox/Celtics/Bruins game.
         image: seth-billiau.jpg
     -   name: Andrea Zhang
         email: andreazhang@college.harvard.edu
         role: contributor
         house: Kirkland
         year: 2022
-        bio: I'm a sophomore from New Jersey studying math and computer science. Outside of HODP, I love singing, reading, and playing card games. 
+        bio: I'm a sophomore from New Jersey studying math and computer science. Outside of HODP, I love singing, reading, and playing card games.
         image: andrea-zhang.jpg
     -   name: Terry Ni
         role: contentdir
         house: Eliot
         year: 2021
-        bio: I'm in Eliot House, and I study Applied Math. I love playing with data, art, walking around, cats and turtles, mysteries, and random, one-off campus activities. 
+        bio: I'm in Eliot House, and I study Applied Math. I love playing with data, art, walking around, cats and turtles, mysteries, and random, one-off campus activities.
         image: terry-ni.jpg
     -   name: Bridger Gordon
         email: bridgergordon@college.harvard.edu
@@ -215,14 +217,14 @@ people:
         role: contributor
         house: Currier
         year: 2021
-        bio: Hi! I live in Currier House and am studying computer science and economics. Outside of HODP, I'm involved with WHRB and Harvard Computer Society, and love exploring Boston with friends. 
+        bio: Hi! I live in Currier House and am studying computer science and economics. Outside of HODP, I'm involved with WHRB and Harvard Computer Society, and love exploring Boston with friends.
         image: manasi-maheshwari.jpg
     -   name: Lucy Liu
         email: lliu@college.harvard.edu
         role: contributor
         house: Leverett
         year: 2022
-        bio: I'm a sophomore in Leverett concentrating in Applied Math. Besides data, I like long naps and modular origami. 
+        bio: I'm a sophomore in Leverett concentrating in Applied Math. Besides data, I like long naps and modular origami.
         image: lucy-liu.jpeg
     -   name: William Zhang
         email: william_zhang@college.harvard.edu
@@ -241,7 +243,7 @@ people:
         email: brettpearson@college.harvard.edu
         role: contributor
         year: 2022
-        bio: I'm a sophomore planning on studying Economics, but I'm also really interested in statistics, computer science, and women's studies. Outside of the classroom, I sing in the Harvard-Radcliffe Veritones and I love playing volleyball and tennis. 
+        bio: I'm a sophomore planning on studying Economics, but I'm also really interested in statistics, computer science, and women's studies. Outside of the classroom, I sing in the Harvard-Radcliffe Veritones and I love playing volleyball and tennis.
         image: brett-pearson.png
     -   name: Festus Ojo
         email: fojo@college.harvard.edu
@@ -262,7 +264,7 @@ people:
         role: contributor
         house: Dunster
         year: 2021
-        bio: I'm a junior in Dunster studying psychology and economics. Outside of HODP, I'm an associate editor for Satire V, a CA for GOV1005, and the IM Crew captain (row Moose). Ask me about my favorite celebrities!   
+        bio: I'm a junior in Dunster studying psychology and economics. Outside of HODP, I'm an associate editor for Satire V, a CA for GOV1005, and the IM Crew captain (row Moose). Ask me about my favorite celebrities!
         image: claire-fridkin.png
     -   name: Daniel Friedman
         email: dfriedman@college.harvard.edu
@@ -283,7 +285,7 @@ people:
         role: contributor
         house: Pfoho
         year: 2021
-        bio: I'm a statistics concentrator in Pfoho. Outside of HODP I enjoy playing soccer and reading. I'm also a huge New England sports fan. 
+        bio: I'm a statistics concentrator in Pfoho. Outside of HODP I enjoy playing soccer and reading. I'm also a huge New England sports fan.
         image: ethan-kim.jpg
     -   name: Ashley Wong
         email: ashleywong@college.harvard.edu
@@ -318,27 +320,27 @@ people:
         role: assoccontentdir
         house: Adams
         year: 2022
-        bio: I'm a sophomore in Adams studying computer science. I'm from California and am interested in data, journalism, and and their intersection. Outside of HODP, I like watching Netflix comedy specials and baking! 
+        bio: I'm a sophomore in Adams studying computer science. I'm from California and am interested in data, journalism, and and their intersection. Outside of HODP, I like watching Netflix comedy specials and baking!
         image: sahana-srinivasan.jpg
     -   name: Melissa Kwan
         email: mkwan@college.harvard.edu
         role: publisher
         year: 2022
-        house: 
-        bio: 
+        house:
+        bio:
         image: melissa-kwan.jpg
     -   name: Alex Rankine
         email: alexrankine@college.harvard.edu
         role: assoctechdir
         year: 2022
         house: Dunster
-        bio: 
+        bio:
     -   name: Neil Khurana
         email: neilkhurana@college.harvard.edu
         role: contributor
         house: Adams House
         year: 2022
-        bio: I'm a sophomore from Manlius, NY most likely studying Statistics with a Data Science focus. Outside of HODP, I enjoy spending time with friends, watching NFL football and discussing politics.   
+        bio: I'm a sophomore from Manlius, NY most likely studying Statistics with a Data Science focus. Outside of HODP, I enjoy spending time with friends, watching NFL football and discussing politics.
         image: neil-khurana.jpg
     -   name: Yijiang Zhao
         email: yijiang_zhao@college.harvard.edu
@@ -354,6 +356,32 @@ people:
         year: 2022
         bio: I'm a sophomore in Eliot concentrating in computer science. I'm originally from San Jose, CA, and I love music, dancing, and hiking!
         image: amy-jin.jpg
+    -   name: Vinay Kanumari
+        email: vkanumuri@college.harvard.edu
+        role: contributor
+    -   name: Charles Onesti
+        email: charlesonesti@college.harvard.edu
+        role: bootcamper
+        house: Weld
+        year: 2023
+        bio: I'm a Freshman planning to study Computer Science. I like to play sports and talk philosophy.
+        image: charles-onesti.jpg
+    -   name: Alex Cheng
+        email: alexcheng@college.harvard.edu
+        role: bootcamper
+        house: Thayer
+        year: 2023
+        bio: I'm a freshman in Thayer concentrating in computer science. I'm originally from Salt Lake City, UT and I love the outdoors, soccer, and music.
+        image: alex-cheng.jpg
+    -   name: Moritz Pail
+        email: mpail@college.harvard.edu
+        role: bootcamper
+        year: 2023
+        bio: I'am a First-Year in Matthews potentially concentrating in Applied Math with a focus in Computer Science and Economics. I am originally from Vienna, Austria. Outside of HODP, I like to travel, do sports, and meet friends for coffee.
+    -   name: Nicole Chen
+        email: nicolechen@college.harvard.edu
+        role: bootcamper
+        year: 2023
     -   name: Ethan Lee 
         email: ethan_lee@college.harvard.edu
         role: bootcamper
@@ -361,4 +389,3 @@ people:
         year: 2023
         bio: I'm a first-year from Needham, MA planning to study computer science who loves soccer, coding, and writing!
         image: ethan-lee.jpg
-    
