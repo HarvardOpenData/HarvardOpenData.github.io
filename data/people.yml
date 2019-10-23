@@ -359,3 +359,10 @@ people:
     -   name: Vinay Kanumari
         email: vkanumuri@college.harvard.edu
         role: contributor
+    -   name: Charles Onesti
+        email: charlesonesti@college.harvard.edu
+        role: bootcamper
+        house: Weld
+        year: 2023
+        bio: I'm a Freshman planning to study Computer Science. I like to play sports and talk philosophy.
+        image: charles-onesti.jpg
