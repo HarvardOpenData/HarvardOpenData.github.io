@@ -365,7 +365,7 @@ people:
         house: Weld
         year: 2023
         bio: I'm a Freshman planning to study Computer Science. I like to play sports and talk philosophy.
-        image: charles-onesti.jpg
+        image: charles-onesti.png
     -   name: Alex Cheng
         email: alexcheng@college.harvard.edu
         role: bootcamper
@@ -396,7 +396,7 @@ people:
         year: 2023
         bio: I'm a first year from Austin, Texas thinking of concentrating in statistics. I love music, puppies, and being outdoors.
         image: jenny-lu.JPG
-   -    name: Hana Wakamatsu
+    -   name: Hana Wakamatsu
         email: hwakamatsu@college.harvard.edu
         role: bootcamper
         house: Hurlbut
