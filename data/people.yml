@@ -5,6 +5,8 @@ groups:
         header: Mentors
     -   id: contributor
         header: Contributors
+    -   id: bootcamper
+        header: Bootcampers
     -   id: alumni
         header: Alumni
 roles:
@@ -354,6 +356,39 @@ people:
         year: 2022
         bio: I'm a sophomore in Eliot concentrating in computer science. I'm originally from San Jose, CA, and I love music, dancing, and hiking!
         image: amy-jin.jpg
+    -   name: Vinay Kanumari
+        email: vkanumuri@college.harvard.edu
+        role: contributor
+    -   name: Charles Onesti
+        email: charlesonesti@college.harvard.edu
+        role: bootcamper
+        house: Weld
+        year: 2023
+        bio: I'm a Freshman planning to study Computer Science. I like to play sports and talk philosophy.
+        image: charles-onesti.jpg
+    -   name: Alex Cheng
+        email: alexcheng@college.harvard.edu
+        role: bootcamper
+        house: Thayer
+        year: 2023
+        bio: I'm a freshman in Thayer concentrating in computer science. I'm originally from Salt Lake City, UT and I love the outdoors, soccer, and music.
+        image: alex-cheng.jpg
+    -   name: Moritz Pail
+        email: mpail@college.harvard.edu
+        role: bootcamper
+        year: 2023
+        bio: I'am a First-Year in Matthews potentially concentrating in Applied Math with a focus in Computer Science and Economics. I am originally from Vienna, Austria. Outside of HODP, I like to travel, do sports, and meet friends for coffee.
+    -   name: Nicole Chen
+        email: nicolechen@college.harvard.edu
+        role: bootcamper
+        year: 2023
+    -   name: Ethan Lee 
+        email: ethan_lee@college.harvard.edu
+        role: bootcamper
+        house: Pennypacker
+        year: 2023
+        bio: I'm a first-year from Needham, MA planning to study computer science who loves soccer, coding, and writing!
+        image: ethan-lee.jpg
     -   name: Jenny Lu
         email: jmlu@college.harvard.edu
         role: bootcamper
