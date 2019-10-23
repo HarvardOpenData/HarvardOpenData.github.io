@@ -354,4 +354,8 @@ people:
         year: 2022
         bio: I'm a sophomore in Eliot concentrating in computer science. I'm originally from San Jose, CA, and I love music, dancing, and hiking!
         image: amy-jin.jpg
+    -   name: Kevin Huang
+        image: kevin-huang.jpg
+        role: bootcamper
+        bio: I'm a freshman in Grays thinking of concentrating in computer science or mathematics. I'm from Minnesota so you know I'm pretty chill.
     
