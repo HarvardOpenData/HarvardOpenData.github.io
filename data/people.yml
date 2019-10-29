@@ -408,3 +408,8 @@ people:
         house: Grays
         year: 2023
         bio: I'm a first-year from Eagan, Minnesota thinking of studying Math or Computer Science. In my free time, I like playing the piano and saxophone, haning with friends and watching anime.
+    -   name: Jordan Lee
+        email: jordanlee@college.harvard.edu
+        role: bootcamper
+        house: Leverett
+        year: 2022
