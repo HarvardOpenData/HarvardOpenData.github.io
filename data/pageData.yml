@@ -5,7 +5,7 @@ about:
 
 sponsors:
   - title: Sponsors
-  
+
 index:
   - title: Harvard Open Data Project
     layout: default
@@ -74,6 +74,11 @@ crimemap:
     styles:
       - /static/css/crime.css
 
+finalexams:
+  - title: Final Exams
+    layout: default
+    permalink: /finalexams/
+
 crimsonwords:
   - title: Crimson Words
     layout: default
@@ -120,7 +125,7 @@ auth:
     styles:
       - /static/css/auth.css
 
-demographics: 
+demographics:
   - title: Survey Demographics
     scripts:
       - /static/js/demographics.js
