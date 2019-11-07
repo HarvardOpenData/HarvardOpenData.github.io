@@ -238,6 +238,25 @@ def profile():
             return make_response("Failed to update profile: {}".format(e), 400)
 
 
+@app.route("/app/finals", methods = ["GET", "POST"])
+def finals_app():
+    # KEVIN: find way to get the data for the finals courses times
+    courses = []
+
+    if request.method == "GET":
+        # what happens when someone comes to the website for the first time
+        return render_template("webapp/finals_app/index.html", page=pageData["finals_app"][0], site=site, courses = courses)
+    elif request.method == "POST":
+        # this is how to get the data that the user submitted
+        form_data = request.form
+        year = form_data.get("year", -1)
+
+        # do your calculations here to get the google flights
+
+        # will need to pass the variables into here
+        return render_template("webapp/finals_app/result.html", page=pageData["finals_app"][0], site=site)
+
+
 @app.route("/auth/<request_url>/", methods=["GET", "POST"])
 def signin(request_url):
     title_dict = {
