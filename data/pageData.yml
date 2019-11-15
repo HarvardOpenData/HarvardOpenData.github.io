@@ -74,10 +74,9 @@ crimemap:
     styles:
       - /static/css/crime.css
 
-finalexams:
-  - title: Final Exams
+finals_app:
+  - title: Finals App
     layout: default
-    permalink: /finalexams/
 
 crimsonwords:
   - title: Crimson Words

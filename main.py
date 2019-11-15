@@ -8,6 +8,7 @@ import os
 import server.demographics
 import tempfile
 import random, datetime, time
+import csv
 
 app = Flask(__name__)
 
@@ -73,7 +74,6 @@ def index():
     return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured,
                             featured_sponsors = featured_sponsors)
 
-
 @app.route('/people/')
 def about():
     members = members_cache.get()
@@ -128,7 +128,6 @@ def visual():
 def crime():
     return render_template('webapps/crimemap.html', site=site, page=pageData["crimemap"][0])
 
-
 @app.route('/visual/crimson')
 def crimson():
     return render_template('webapps/crimson.html', site=site, page=pageData["crimsonwords"][0])
@@ -143,13 +142,12 @@ def studyabroad():
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
 
-
 @app.route('/visual/hudsmenu')
 def hudsmenu():
-    return render_template('webapps/hudsmenu.html', site=site, page=pageData['hudsmenu'][0])
-
+    return render_template('webapps/hudsmenu.html', site=site, page=pageData["hudsmenu"][0])
 
 @app.route("/surveygroup/", methods=['GET', 'POST'])
+
 @app.route('/demographics/', methods=['GET', 'POST'])
 def demographics():
     userEmail = None
@@ -237,25 +235,28 @@ def profile():
         except Exception as e:
             return make_response("Failed to update profile: {}".format(e), 400)
 
-
-@app.route("/app/finals", methods = ["GET", "POST"])
+@app.route("/app/finals/", methods = ["GET", "POST"])
 def finals_app():
+
     # KEVIN: find way to get the data for the finals courses times
     courses = []
+    #data = csv.reader(open('finalsf19.csv', 'rb'), delimiter=",", quotechar='|')
+    #for row in data:
+    # courses.append(row[4])
+     #other data stuff
 
     if request.method == "GET":
         # what happens when someone comes to the website for the first time
-        return render_template("webapp/finals_app/index.html", page=pageData["finals_app"][0], site=site, courses = courses)
+        return render_template("webapps/finals.html", page=pageData["finals_app"][0], site=site, courses = courses)
     elif request.method == "POST":
         # this is how to get the data that the user submitted
-        form_data = request.form
-        year = form_data.get("year", -1)
+        #form_data = request.form
+        #year = form_data.get("year", -1)
 
         # do your calculations here to get the google flights
 
         # will need to pass the variables into here
-        return render_template("webapp/finals_app/result.html", page=pageData["finals_app"][0], site=site)
-
+        return render_template("webapps/finalsresult.html", page=pageData["finals_app"][0], site=site)
 
 @app.route("/auth/<request_url>/", methods=["GET", "POST"])
 def signin(request_url):
@@ -309,4 +310,3 @@ if __name__ == "__main__":
         app.run(host="localhost", port="8080")
     else:
         app.run()
-    
