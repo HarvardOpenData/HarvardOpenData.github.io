@@ -255,26 +255,40 @@ def finals_app():
         # this is how to get the data that the user submitted
         form_data = request.form
         form_classes = request.form.getlist('classes')
-        date = []
-        i = 0; j = 0;
+        examInfo = []; gLinks = []; lday = 0;
 
+        i = 0
         for i in range (0,len(form_classes)):
+            j = 0
             while j < len(courses):
                 if form_classes[i]==courses[j]:
-                    #calculations
-                    print(dataa[j][3])
-                    #date.append(data[j][4])
 
 
+                    date = dataa[j][3]
 
+                    #find last exam day
+                    if int(date[3:5]) > lday:
+                        lday = int(date[3:5])
 
-                j += 1;
-            i+=1;
+                    #calc gcal links, adjust codes depending on fall/spring
+                    if dataa[j][4] == "9:00 AM":
+                        sCode = "201912"+date[3:5]+"T130000Z"
+                        eCode = "201912"+date[3:5]+"T160000Z"
+                    elif dataa[j][4] == "2:00 PM":
+                        sCode = "201912"+date[3:5]+"T180000Z"
+                        eCode = "201912"+date[3:5]+"T210000Z"
+                    calLink = "http://www.google.com/calendar/event?action=TEMPLATE&dates="+sCode+"%2F"+eCode+"&text="+courses[j]+"%20Final";
+                    gLinks.append(calLink.replace(" ","%20"))
+                    examInfo.append("Your "+courses[j]+" Final is "+date+" at "+dataa[j][4]+" in _")
+                    j = len(courses)
+                else:
+                    j += 1
+            i+=1
+        fLink = "https://www.google.com/flights?lite=0#flt=BOS.2019-12-"+str(lday)+";c:USD;e:1;sd:1;t:f;tt:o"
+
         #year = form_data.get("year", -1)
-        #google flights
-
-        # will need to pass the variables into here
-        return render_template("webapps/finalsresult.html", page=pageData["finals_app"][0], formdata = form_data, site=site)
+        #add location stuff, fix dataa
+        return render_template("webapps/finalsresult.html", page=pageData["finals_app"][0], site=site, examInfo = examInfo, gLinks = gLinks, fLink = fLink)
 
 @app.route("/auth/<request_url>/", methods=["GET", "POST"])
 def signin(request_url):

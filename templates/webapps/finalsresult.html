@@ -4,8 +4,16 @@
 <div class = "container">
 
 <div class = "row">
-    <h1>Final Exam Schedule {{testv}}</h1>
-    <p>{{ formdata }}</p>
+    <h1>Final Exam Schedule</h1>
+    {% for info in examInfo %}
+      <p>{{ info }}</p>
+    {% endfor %}
+
+    {% for link in gLinks %}
+      <a href="{{ link }}">Add to GCal</a>
+    {% endfor %}
+
+    <a href="{{ fLink }}">Book your flight for winter break!</a>
 </div>
 
 </div>
