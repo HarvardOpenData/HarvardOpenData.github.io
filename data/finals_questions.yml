@@ -2,10 +2,6 @@ valid_form_names:
   - year
   - house
   - concentration
-  - classes
-
-multiselects:
-  - classes
 
 years:
   - "2020"
@@ -13,11 +9,6 @@ years:
   - "2022"
   - "2023"
   - Other
-
-classes:
-  - "Math"
-  - "History"
-  - "Physics"
 
 houses:
   - Adams

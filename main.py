@@ -242,10 +242,9 @@ def finals_app():
 
     # KEVIN: find way to get the data for the finals courses times
     courses = []
-    #data = csv.reader(open('finalsf19.csv', 'rb'), delimiter=",", quotechar='|')
-    #for row in data:
-    # courses.append(row[4])
-     #other data stuff
+    data = csv.reader(open('static/assets/webapp-data/finalsf19.csv', 'r'), delimiter=",", quotechar='|')
+    for row in data:
+     courses.append(row[0])
 
     if request.method == "GET":
         # what happens when someone comes to the website for the first time
