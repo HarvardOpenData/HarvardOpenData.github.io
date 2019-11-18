@@ -243,21 +243,38 @@ def finals_app():
     # KEVIN: find way to get the data for the finals courses times
     courses = []
     data = csv.reader(open('static/assets/webapp-data/finalsf19.csv', 'r'), delimiter=",", quotechar='|')
+    dataa = [row for row in csv.reader(open('static/assets/webapp-data/finalsf19.csv', 'r'), delimiter=",", quotechar='|')]
+    #fix data dataa thing
     for row in data:
-     courses.append(row[0])
+        courses.append(row[0])
 
     if request.method == "GET":
         # what happens when someone comes to the website for the first time
         return render_template("webapps/finals.html", page=pageData["finals_app"][0], site=site, courses = courses, questions=finalsQuestions())
     elif request.method == "POST":
         # this is how to get the data that the user submitted
-        #form_data = request.form
-        #year = form_data.get("year", -1)
+        form_data = request.form
+        form_classes = request.form.getlist('classes')
+        date = []
+        i = 0; j = 0;
 
-        # do your calculations here to get the google flights
+        for i in range (0,len(form_classes)):
+            while j < len(courses):
+                if form_classes[i]==courses[j]:
+                    #calculations
+                    print(dataa[j][3])
+                    #date.append(data[j][4])
+
+
+
+
+                j += 1;
+            i+=1;
+        #year = form_data.get("year", -1)
+        #google flights
 
         # will need to pass the variables into here
-        return render_template("webapps/finalsresult.html", page=pageData["finals_app"][0], site=site)
+        return render_template("webapps/finalsresult.html", page=pageData["finals_app"][0], formdata = form_data, site=site)
 
 @app.route("/auth/<request_url>/", methods=["GET", "POST"])
 def signin(request_url):

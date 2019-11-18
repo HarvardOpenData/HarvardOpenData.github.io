@@ -2,7 +2,11 @@
 {% block content %}
 
 <div class = "container">
-<h1>Final Exam Tool</h1>
+
+<div class = "row">
+    <h1>Final Exam Tool</h1>
+</div>
+
 <form method="POST">
   <div class="row">
     <h3>What is your class year?</h3>
@@ -10,20 +14,6 @@
       <option disabled selected value></option>
       {% for year in questions.years %}
       <option>{{ year }}</option>
-      {% endfor %}
-    </select>
-  </div>
-
-  <div class="select-wrapper">
-    <h3>Select your classes:</h3>
-    <span class="autocomplete-select"></span>
-  </div>
-
-  <div class="row">
-    <h3>Select your classes:</h3>
-    <select id="slctClasses" name="classes" size="10" required multiple>
-      {% for classes in courses %}
-      <option>{{ classes }}</option>
       {% endfor %}
     </select>
   </div>
@@ -47,8 +37,22 @@
     </select>
   </div>
 
-  <br />
-  <br />
+  <div class="row">
+    <h3>Select your classes:</h3>
+    <span class="autocomplete-select"></span>
+  </div>
+
+  <div class="row">
+    <h3>Select your classes:</h3>
+    <select id="slctClasses" name="classes" size="10" required multiple>
+      {% for classes in courses %}
+      <option>{{ classes }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <br/>
+  <br/>
   <div class="row">
     <input type="submit" value="Submit" />
   </div>
