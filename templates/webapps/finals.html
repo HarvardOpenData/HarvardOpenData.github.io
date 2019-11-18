@@ -2,69 +2,62 @@
 
 {% block content %}
 
-<div class = "container">
+<form method = "POST">
+    <div class = "row">
+        <h3>What is your class year?</h3>
+        <select id = "slctYear" name = "year" required>
+            <option disabled selected value></option>
+            {% for year in questions.years %}
+                <option>{{ year }}</option>
+            {% endfor %}
+        </select>
+    </div>
 
     <div class = "row">
-        <h1>Final Exams</h1>
+        <h3>Select your classes:</h3>
+        <select id = "slctClasses" name = "classes" size = "10" required multiple>
+            {% for classes in questions.classes %}
+            <option>{{ ethnicity }}</option>
+            {% endfor %}
+        </select>
     </div>
-    <form method = "POST">
-        <div class = "row">
-            <h3>What is your class year?</h3>
-            <select id = "slctYear" name = "year" onchange = "toggleHouseVisibility()" required>
-                <option disabled selected value></option>
-                {% for year in questions.years %}
-                    <option
-                        {% if demographics is defined and demographics["year"] == year %}
-                            selected = "selected"
-                        {% endif %}
-                    >{{ year }}</option>
+
+    <div class = "row">
+        <h3>Which house are you in?</h3>
+        <select id = "slctHouse" name = "house">
+            <option disabled selected value></option>
+            {% for house in questions.houses %}
+            <option>{{ house }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class = "row">
+        <h3>What is your concentration?</h3>
+        <select id = "slctConcentration" name = "concentration" size = "10" required>
+                {% for concentration in questions.concentrations %}
+                <option>{{ concentration }}</option>
                 {% endfor %}
-            </select>
-        </div>
+        </select>
+    </div>
 
-        <div class = "row" id = "divHouse"
-        {% if demographics.year == questions.years[-2] %}
-        hidden
-        {% endif %}
-            >
-            <h3>Which house are you in?</h3>
-            <select id = "slctHouse" name = "house"
-            {% if demographics.year != questions.years[-2] %}
-            required
-            {% endif %}
-            >
-                <option disabled selected value></option>
-                {% for house in questions.houses %}
-                <option
-                    {% if demographics is defined and demographics["house"] == house %}
-                        selected = "selected"
-                    {% endif %}
-                >{{ house }}</option>
-
-                {% endfor %}
-            </select>
-        </div>
-
-        <div class = "row">
-            <h3>What is your concentration (select all that apply)?</h3>
-            <select id = "slctConcentration" name = "concentration" size = "10" multiple required>
-                    {% for concentration in questions.concentrations %}
-                    <option
-                        {% if demographics is defined and concentration in demographics["concentration"] %}
-                            selected = "selected"
-                        {% endif %}
-                    >{{ concentration }}</option>
-
-                    {% endfor %}
-            </select>
-        </div>
-
-        <br/>
-        <br/>
-        <div class = "row">
-            <input type = "submit" value = "Save" />
-        </div>
-    </form>
-
+    <br/>
+    <br/>
+    <div class = "row">
+        <input type = "submit" value = "Submit" />
+    </div>
+</form>
 
 {% endblock %}
+
+{% block custom_scripts %}
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>
+    window.onload = function() {
+      gapi.load('auth2', function() {
+        console.log("loading!");
+        gapi.auth2.init();
+      });
+    }
+</script>
+{% endblock custom_scripts %}

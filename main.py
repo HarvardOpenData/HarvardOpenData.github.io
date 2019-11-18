@@ -28,9 +28,11 @@ def siteConstants():
     site["pages"] = getYml('./data/pages.yml')
     return site
 
-
 def demographicQuestions():
     return getYml("./data/demographic_questions.yml")
+
+def finalsQuestions():
+    return getYml("./data/finals_questions.yml")
 
 
 site = siteConstants()
@@ -247,7 +249,7 @@ def finals_app():
 
     if request.method == "GET":
         # what happens when someone comes to the website for the first time
-        return render_template("webapps/finals.html", page=pageData["finals_app"][0], site=site, courses = courses)
+        return render_template("webapps/finals.html", page=pageData["finals_app"][0], site=site, courses = courses, questions=finalsQuestions())
     elif request.method == "POST":
         # this is how to get the data that the user submitted
         #form_data = request.form

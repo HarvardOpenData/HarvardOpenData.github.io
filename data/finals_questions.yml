@@ -1,0 +1,92 @@
+valid_form_names:
+  - year
+  - house
+  - concentration
+  - classes
+
+multiselects:
+  - classes
+
+years:
+  - "2020"
+  - "2021"
+  - "2022"
+  - "2023"
+  - Other
+
+classes:
+  - "Math"
+  - "History"
+  - "Physics"
+
+houses:
+  - Adams
+  - Cabot
+  - Currier
+  - Dudley
+  - Dunster
+  - Eliot
+  - Kirkland
+  - Leverett
+  - Lowell
+  - Mather
+  - Pfoho
+  - Quincy
+  - Winthrop
+  - First-year dorm
+  - Off Campus
+  - N/A
+
+concentrations:
+  - Undeclared
+  - African and American Studies
+  - Anthropology
+  - Applied Mathematics
+  - Astrophysics
+  - Biomedical Engineering
+  - Chemical and Physical Biology
+  - Chemistry
+  - Chemistry and Physics
+  - Classics
+  - Comparative Literature
+  - Computer Science
+  - Earth and Planetary Sciences
+  - East Asian Studies
+  - Economics
+  - Electrical Engineering
+  - Engineering Sciences
+  - English
+  - Environmental Science and Engineering
+  - Environmental Science and Public Policy
+  - Folklore and Mythology
+  - Germanic Langauges and Literatures
+  - Government
+  - History
+  - History and Literature
+  - History of Art and Architecture
+  - History and Science
+  - Human Developmental and Regenerative Biology
+  - Human Evolutionary Biology
+  - Integrative Biology
+  - Linguistics
+  - Mathematics
+  - Mechanical Engineering
+  - Molecular and Cellular Biology
+  - Music
+  - Near Eastern Languages and Civilizations
+  - Neurobiology
+  - Philosophy
+  - Physics
+  - Psychology
+  - Religion, Comparative Study of
+  - Romance Languages and Literatures
+  - Slavic Languages and Literatures
+  - Social Studies
+  - Sociology
+  - South Asian Studies
+  - Special Concentrations
+  - Statistics
+  - Theater, Dance, and Media
+  - Visual and Environmental Studies
+  - Women, Gender, and Sexuality, Studies of
+  - Special Concentration
