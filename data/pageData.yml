@@ -19,6 +19,10 @@ calendar:
     layout: default
     permalink: /calendar/
 
+"404":
+  - title: "404"
+    layout: default
+
 catalog:
   - title: Catalog
     layout: default
