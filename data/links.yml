@@ -1,1 +1,10 @@
-treasurer-app:  https://forms.gle/ZbQYHCSQJqakmwic8
+treasurer-app:  
+  url: https://forms.gle/ZbQYHCSQJqakmwic8
+  expiration: "2020-1-1"
+
+slack: 
+  url: https://join.slack.com/t/harvardopendata/shared_invite/enQtODQwOTc4NzU0MTMzLTYwNWZiMzY0ZmVkNTRkN2I3NGNhMTRhNWYwMGQ5NjM4MDJiZWUyNTA1NTAwZjg0M2UxNGY4NTliYzE2OTJkNjU
+  expiration: "2019-12-10"
+
+asana:
+  url: https://app.asana.com/0/home/971051766375013
