@@ -8,3 +8,8 @@ slack:
 
 asana:
   url: https://app.asana.com/0/home/971051766375013
+
+
+meeting: 
+  url: https://docs.google.com/presentation/d/1kHOZu_TJet8h3y6cZRq324sDiTEOGiI97EAA2-nO0z4/edit?usp=sharing
+  expiration: "2019-11-20"
