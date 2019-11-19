@@ -13,3 +13,10 @@ asana:
 meeting: 
   url: https://docs.google.com/presentation/d/1kHOZu_TJet8h3y6cZRq324sDiTEOGiI97EAA2-nO0z4/edit?usp=sharing
   expiration: "2019-11-20"
+
+bootcamp-feedback:
+  url: "https://forms.gle/F46LXTRyskdkASaf8"
+
+resume-book:
+  url: https://docs.google.com/forms/d/e/1FAIpQLSea41ybEcqpQEWNoI4E6FsURGIwSZy1XeTkpVXT0ESITnOMCg/viewform
+  expiration: "2019-12-01"
