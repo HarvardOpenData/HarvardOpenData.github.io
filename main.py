@@ -329,6 +329,23 @@ def signin(request_url):
             response.set_cookie(id_cookie_key, expires=0)
             return response
 
+@app.route("/<request_url>/")
+def link(request_url):
+    links = getYml("./data/links.yml")
+    if request_url not in links:
+        abort(404)
+    
+    expiration_date = None
+    if "expiration" in links[request_url]:
+        expiration_date = datetime.datetime.strptime(links[request_url]["expiration"], "%Y-%m-%d")
+
+    if expiration_date is not None and expiration_date < datetime.datetime.now():
+        abort(404)
+    return redirect(links[request_url]["url"])
+@app.errorhandler(404)
+def page_not_found(error):
+   return render_template('404.html', page = pageData["404"][0], site=site), 404
+
 
 def get_email_cookie_key(request_url):
     return "{}_email".format(request_url)
