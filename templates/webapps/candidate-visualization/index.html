@@ -1,0 +1,32 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<div id="candidateviz" style=" text-align: center; ">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6 col-md-4">
+                <canvas id="canvas1"></canvas>
+            </div>
+            <div class="col-12 col-md-8">
+                <canvas id="canvas"></canvas>
+                <div>
+                    Select the Candidate to Compare:
+                    <select id="mySelect">
+                        <option value="Elizabeth Warren">Elizabeth Warren</option>
+                        <option value="Joe Biden">Joe Biden</option>
+                        <option value="Bernie Sanders">Bernie Sanders</option>
+                        <option value="Kamala Harris">Kamala Harris</option>
+                        <option value="Andrew Yang">Andrew Yang</option>
+                        <option value="John Delaney">John Delaney</option>
+                        <option value="Tulsi Gabbard">Tulsi Gabbard</option>
+                        <option value="Julián Castro">Julián Castro</option>
+                        <option value="Corey Booker">Corey Booker</option>
+                    </select>
+                    <button id="comparecandidates" type="button" class="btn btn-primary" onclick="updateChart()">Compare</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
