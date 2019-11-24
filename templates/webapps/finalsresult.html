@@ -4,16 +4,17 @@
 <div class = "container">
 
 <div class = "row">
-    <h1>Final Exam Schedule</h1>
-    {% for info in examInfo %}
+    <h1>Your Final Exam Schedule:</h1>
+    {% for info in examInfo%}
       <p>{{ info }}</p>
     {% endfor %}
 
-    {% for link in gLinks %}
-      <a href="{{ link }}">Add to GCal</a>
-    {% endfor %}
 
-    <a href="{{ fLink }}">Book your flight for winter break!</a>
+    {% for link in gLinks %}
+      <a href="{{ link }}" target="_blank">Add to GCal</a>
+    {% endfor %}
+    <a href="{{ fLink }}" target="_blank">Book your flight for winter break!</a>
+    
 </div>
 
 </div>
