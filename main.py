@@ -261,14 +261,14 @@ def finals_app():
                         print(lday)
                     #calc gcal links, adjust codes depending on fall/spring
                     if final_data[j][4] == "09:00 AM":
-                        sCode = "201912"+date[3:5]+"T090000Z"
-                        eCode = "201912"+date[3:5]+"T120000Z"
-                    elif final_data[j][4] == "02:00 PM":
                         sCode = "201912"+date[3:5]+"T140000Z"
                         eCode = "201912"+date[3:5]+"T170000Z"
+                    elif final_data[j][4] == "02:00 PM":
+                        sCode = "201912"+date[3:5]+"T190000Z"
+                        eCode = "201912"+date[3:5]+"T220000Z"
                     calLink = "http://www.google.com/calendar/event?action=TEMPLATE&dates="+sCode+"%2F"+eCode+"&text="+courses[j]+"%20Final&location="+final_data[j][6];
-                    gLinks.append(calLink.replace(" ","%20"))
-                    examInfo.append("Your "+courses[j]+" Final is "+date+" at "+final_data[j][4]+" in "+final_data[j][6])
+                    #gLinks.append(calLink.replace(" ","%20"))
+                    examInfo.append("Your "+courses[j]+" Final is "+date+" at "+final_data[j][4]+" in "+final_data[j][6]+" <a href=\""+calLink.replace(" ","%20")+"\" target=\"_blank\">Add to GCal</a>")
                     j = len(courses)
                 else:
                     j += 1

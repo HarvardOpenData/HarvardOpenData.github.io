@@ -6,15 +6,11 @@
 <div class = "row">
     <h1>Your Final Exam Schedule:</h1>
     {% for info in examInfo%}
-      <p>{{ info }}</p>
-    {% endfor %}
-
-
-    {% for link in gLinks %}
-      <a href="{{ link }}" target="_blank">Add to GCal</a>
+      <p>{{ info | safe }}</p>
     {% endfor %}
     <a href="{{ fLink }}" target="_blank">Book your flight for winter break!</a>
-    
+    <h4>Good luck with your exams!</h4>
+
 </div>
 
 </div>
