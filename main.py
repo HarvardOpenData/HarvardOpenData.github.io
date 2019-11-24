@@ -242,8 +242,8 @@ def finals_app():
 
     # KEVIN: find way to get the data for the finals courses times
     courses = []
-    data = csv.reader(open('static/assets/webapp-data/finalsf19.csv', 'r'), delimiter=",", quotechar='|')
-    dataa = [row for row in csv.reader(open('static/assets/webapp-data/finalsf19.csv', 'r'), delimiter=",", quotechar='|')]
+    data = csv.reader(open('static/assets/webapp-data/finalsf19_nov14.csv', 'r'), delimiter=",", quotechar='|')
+    dataa = [row for row in csv.reader(open('static/assets/webapp-data/finalsf19_nov14.csv', 'r'), delimiter=",", quotechar='|')]
     #fix data dataa thing
     for row in data:
         courses.append(row[0])
@@ -271,15 +271,15 @@ def finals_app():
                         lday = int(date[3:5])
 
                     #calc gcal links, adjust codes depending on fall/spring
-                    if dataa[j][4] == "9:00 AM":
+                    if dataa[j][4] == "09:00 AM":
                         sCode = "201912"+date[3:5]+"T130000Z"
                         eCode = "201912"+date[3:5]+"T160000Z"
-                    elif dataa[j][4] == "2:00 PM":
+                    elif dataa[j][4] == "02:00 PM":
                         sCode = "201912"+date[3:5]+"T180000Z"
                         eCode = "201912"+date[3:5]+"T210000Z"
-                    calLink = "http://www.google.com/calendar/event?action=TEMPLATE&dates="+sCode+"%2F"+eCode+"&text="+courses[j]+"%20Final";
+                    calLink = "http://www.google.com/calendar/event?action=TEMPLATE&dates="+sCode+"%2F"+eCode+"&text="+courses[j]+"%20Final&location="+dataa[j][6];
                     gLinks.append(calLink.replace(" ","%20"))
-                    examInfo.append("Your "+courses[j]+" Final is "+date+" at "+dataa[j][4]+" in _")
+                    examInfo.append("Your "+courses[j]+" Final is "+date+" at "+dataa[j][4]+" in "+dataa[j][6])
                     j = len(courses)
                 else:
                     j += 1
