@@ -1,0 +1,213 @@
+{% extends 'default.html' %}
+{% block content %}
+
+<div class = "container">
+
+<div class = "row">
+    <h1>Final Exam Tool</h1>
+</div>
+
+<form method="POST">
+  <div class="row">
+    <h3>What is your class year?</h3>
+    <select id="slctYear" name="year" required>
+      <option disabled selected value></option>
+      {% for year in questions.years %}
+      <option>{{ year }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="row">
+    <h3>Which house are you in?</h3>
+    <select id="slctHouse" name="house">
+      <option disabled selected value></option>
+      {% for house in questions.houses %}
+      <option>{{ house }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="row">
+    <h3>What is your concentration?</h3>
+    <select id="slctConcentration" name="concentration" size="10" required>
+      {% for concentration in questions.concentrations %}
+      <option>{{ concentration }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!--
+  <div class="row">
+    <h3>Select your classes:</h3>
+    <span class="autocomplete-select"></span>
+  </div>
+  -->
+
+  <div class="row">
+    <h3>Select your classes:</h3>
+    <select id="slctClasses" name="classes" size="10" required multiple>
+      {% for classes in courses %}
+      <option>{{ classes }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <br/>
+  <br/>
+  <div class="row">
+    <input type="submit" value="Submit" />
+  </div>
+</form>
+</div>
+
+{% endblock %}
+
+{% block custom_scripts %}
+
+
+<script src="/static/js/finals.js"></script>
+<script>
+  var autocomplete = new SelectPure(".autocomplete-select", {
+    options: [{
+        label: "Barbina",
+        value: "ba",
+      },
+      {
+        label: "Fedelini",
+        value: "fe",
+      },
+      {
+        label: "Maccheroni",
+        value: "ma",
+      },
+    ],
+    value: ["sp"],
+    multiple: true,
+    autocomplete: true,
+    icon: "fa fa-times",
+    onChange: value => {
+      console.log(value);
+    },
+  });
+</script>
+
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>
+  window.onload = function() {
+    gapi.load('auth2', function() {
+      console.log("loading!");
+      gapi.auth2.init();
+    });
+  }
+</script>
+{% endblock custom_scripts %}
+
+<style>
+  body {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .select-wrapper {
+    margin: auto;
+    max-width: 600px;
+    width: calc(100% - 40px);
+  }
+
+  .select-pure__select {
+    align-items: center;
+    background: #f9f9f8;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+    color: #363b3e;
+    cursor: pointer;
+    display: flex;
+    font-size: 16px;
+    font-weight: 500;
+    justify-content: left;
+    min-height: 44px;
+    padding: 5px 10px;
+    position: relative;
+    transition: 0.2s;
+    width: 100%;
+  }
+
+  .select-pure__options {
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+    color: #363b3e;
+    display: none;
+    left: 0;
+    max-height: 221px;
+    overflow-y: scroll;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    z-index: 5;
+  }
+
+  .select-pure__select--opened .select-pure__options {
+    display: block;
+  }
+
+  .select-pure__option {
+    background: #fff;
+    border-bottom: 1px solid #e4e4e4;
+    box-sizing: border-box;
+    height: 44px;
+    line-height: 25px;
+    padding: 10px;
+  }
+
+  .select-pure__option--selected {
+    color: #e4e4e4;
+    cursor: initial;
+    pointer-events: none;
+  }
+
+  .select-pure__option--hidden {
+    display: none;
+  }
+
+  .select-pure__selected-label {
+    background: #5e6264;
+    border-radius: 4px;
+    color: #fff;
+    cursor: initial;
+    display: inline-block;
+    margin: 5px 10px 5px 0;
+    padding: 3px 7px;
+  }
+
+  .select-pure__selected-label:last-of-type {
+    margin-right: 0;
+  }
+
+  .select-pure__selected-label i {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 7px;
+  }
+
+  .select-pure__selected-label i:hover {
+    color: #e4e4e4;
+  }
+
+  .select-pure__autocomplete {
+    background: #f9f9f8;
+    border-bottom: 1px solid #e4e4e4;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    box-sizing: border-box;
+    font-size: 16px;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+  }
+</style>

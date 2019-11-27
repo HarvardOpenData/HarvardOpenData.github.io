@@ -8,6 +8,7 @@ import os
 import server.demographics
 import tempfile
 import random, datetime, time
+import csv
 
 app = Flask(__name__)
 
@@ -27,9 +28,11 @@ def siteConstants():
     site["pages"] = getYml('./data/pages.yml')
     return site
 
-
 def demographicQuestions():
     return getYml("./data/demographic_questions.yml")
+
+def finalsQuestions():
+    return getYml("./data/finals_questions.yml")
 
 
 site = siteConstants()
@@ -72,7 +75,6 @@ def index():
     random.seed(time.time())
     return render_template('index.html', site=site, page=pageData["index"][0], categories=categories, featured=featured,
                             featured_sponsors = featured_sponsors)
-
 
 @app.route('/people/')
 def about():
@@ -128,7 +130,6 @@ def visual():
 def crime():
     return render_template('webapps/crimemap.html', site=site, page=pageData["crimemap"][0])
 
-
 @app.route('/visual/crimson')
 def crimson():
     return render_template('webapps/crimson.html', site=site, page=pageData["crimsonwords"][0])
@@ -143,13 +144,12 @@ def studyabroad():
 def scoreboard():
     return render_template('webapps/scoreboard.html', site=site, page=pageData["scoreboard"][0])
 
-
 @app.route('/visual/hudsmenu')
 def hudsmenu():
-    return render_template('webapps/hudsmenu.html', site=site, page=pageData['hudsmenu'][0])
-
+    return render_template('webapps/hudsmenu.html', site=site, page=pageData["hudsmenu"][0])
 
 @app.route("/surveygroup/", methods=['GET', 'POST'])
+
 @app.route('/demographics/', methods=['GET', 'POST'])
 def demographics():
     userEmail = None
@@ -237,6 +237,44 @@ def profile():
         except Exception as e:
             return make_response("Failed to update profile: {}".format(e), 400)
 
+@app.route("/webapp/finals/", methods = ["GET", "POST"])
+def finals_app():
+    final_data = [row for row in csv.reader(open('static/assets/webapp-data/finalsf19_nov14.csv', 'r'), delimiter=",", quotechar='|')]
+    courses = []
+    for row in final_data:
+        courses.append(row[0])
+    if request.method == "GET":
+        return render_template("webapps/finals.html", page=pageData["finals_app"][0], site=site, courses = courses, questions=finalsQuestions())
+    elif request.method == "POST":
+        form_data = request.form
+        form_classes = request.form.getlist('classes')
+        examInfo = []; gLinks = []; lday = 0;
+        i = 0
+        for i in range (0,len(form_classes)):
+            j = 0
+            while j < len(courses):
+                if form_classes[i]==courses[j]:
+                    date = final_data[j][3]
+                    #find last exam day
+                    if int(date[3:5]) > lday:
+                        lday = int(date[3:5])
+                        print(lday)
+                    #calc gcal links, adjust codes depending on fall/spring
+                    if final_data[j][4] == "09:00 AM":
+                        sCode = "201912"+date[3:5]+"T140000Z"
+                        eCode = "201912"+date[3:5]+"T170000Z"
+                    elif final_data[j][4] == "02:00 PM":
+                        sCode = "201912"+date[3:5]+"T190000Z"
+                        eCode = "201912"+date[3:5]+"T220000Z"
+                    calLink = "http://www.google.com/calendar/event?action=TEMPLATE&dates="+sCode+"%2F"+eCode+"&text="+courses[j]+"%20Final&location="+final_data[j][6];
+                    #gLinks.append(calLink.replace(" ","%20"))
+                    examInfo.append("Your "+courses[j]+" Final is "+date+" at "+final_data[j][4]+" in "+final_data[j][6]+" <a href=\""+calLink.replace(" ","%20")+"\" target=\"_blank\">Add to GCal</a>")
+                    j = len(courses)
+                else:
+                    j += 1
+            i+=1
+        fLink = "https://www.google.com/flights?lite=0#flt=BOS.2019-12-"+str(lday)+";c:USD;e:1;sd:1;t:f;tt:o"
+        return render_template("webapps/finalsresult.html", page=pageData["finals_app"][0], site=site, examInfo = examInfo, gLinks = gLinks, fLink = fLink)
 
 @app.route("/auth/<request_url>/", methods=["GET", "POST"])
 def signin(request_url):
@@ -282,7 +320,7 @@ def link(request_url):
     links = getYml("./data/links.yml")
     if request_url not in links:
         abort(404)
-    
+
     expiration_date = None
     if "expiration" in links[request_url]:
         expiration_date = datetime.datetime.strptime(links[request_url]["expiration"], "%Y-%m-%d")
@@ -307,4 +345,3 @@ if __name__ == "__main__":
         app.run(host="localhost", port="8080")
     else:
         app.run()
-    
