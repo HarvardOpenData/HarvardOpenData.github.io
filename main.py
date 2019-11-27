@@ -237,7 +237,7 @@ def profile():
         except Exception as e:
             return make_response("Failed to update profile: {}".format(e), 400)
 
-@app.route("/app/finals/", methods = ["GET", "POST"])
+@app.route("/webapp/finals/", methods = ["GET", "POST"])
 def finals_app():
     final_data = [row for row in csv.reader(open('static/assets/webapp-data/finalsf19_nov14.csv', 'r'), delimiter=",", quotechar='|')]
     courses = []

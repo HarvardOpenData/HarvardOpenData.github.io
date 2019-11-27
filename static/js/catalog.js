@@ -248,7 +248,7 @@ Searcher.prototype.updateCatalog = function(displayData) {
                 return d.url;
             })
             .attr("target", function(d){
-                if(d.url.indexOf("/visual") < 0){
+                if(d.url.indexOf("/visual") < 0 && d.url.indexOf("/app")){
                     return "_blank";
                 }
                 else {
@@ -257,8 +257,8 @@ Searcher.prototype.updateCatalog = function(displayData) {
             })
             .attr("class", "btn btn-primary pull-right")
             .text(function(d){
-                if (d.type == "Visualization"){
-                    return "View";
+                if (d.type == "Web-App"){
+                    return "Open";
                 }
                 else{ 
                     var downloadString = "View";
