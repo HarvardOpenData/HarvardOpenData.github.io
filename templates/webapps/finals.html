@@ -4,7 +4,9 @@
 <div class = "container">
 
 <div class = "row">
-    <h1>Final Exam Tool</h1>
+    <h1>Get your final exam schedule and available flights!</h1>
+    
+    We collect fully anonymized datasets to analyze course enrollment. All responses are optional.
 </div>
 
 <form method="POST">
@@ -46,7 +48,7 @@
 
   <div class="row">
     <h3>Select your classes:</h3>
-    <select id="slctClasses" name="classes" size="10" required multiple>
+    <select id="slctClasses" name="classes" size="12" style="width:400px" required multiple>
       {% for classes in courses %}
       <option>{{ classes }}</option>
       {% endfor %}

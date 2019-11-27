@@ -239,6 +239,7 @@ def profile():
 
 @app.route("/webapp/finals/", methods = ["GET", "POST"])
 def finals_app():
+    finals_semester = "2019_FALL"
     final_data = [row for row in csv.reader(open('static/assets/webapp-data/finalsf19_nov14.csv', 'r'), delimiter=",", quotechar='|')]
     courses = []
     for row in final_data:
@@ -248,6 +249,25 @@ def finals_app():
     elif request.method == "POST":
         form_data = request.form
         form_classes = request.form.getlist('classes')
+        ga_id : str = request.cookies.get("_ga", None)
+        if ga_id is not None: 
+            ga_id = ga_id.replace("GA1.1.", "")
+            db = auth.get_survey_firestore_client() 
+            doc = db.collection("finals_classes").document(ga_id).get()
+            if not doc.exists:
+                db.collection("finals_classes").document(ga_id).set({
+                    "year" : form_data.get("year", None),
+                    "house" : form_data.get("house", None),
+                    "concentration" : form_data.get("concentration", None),
+                    finals_semester : form_classes
+                })
+            else:
+                db.collection("finals_classes").document(ga_id).update({
+                    "year" : form_data.get("year", None),
+                    "house" : form_data.get("house", None),
+                    "concentration" : form_data.get("concentration", None),
+                    finals_semester : form_classes
+                })
         examInfo = []; gLinks = []; lday = 0;
         i = 0
         for i in range (0,len(form_classes)):
@@ -258,7 +278,6 @@ def finals_app():
                     #find last exam day
                     if int(date[3:5]) > lday:
                         lday = int(date[3:5])
-                        print(lday)
                     #calc gcal links, adjust codes depending on fall/spring
                     if final_data[j][4] == "09:00 AM":
                         sCode = "201912"+date[3:5]+"T140000Z"
