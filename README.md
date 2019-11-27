@@ -25,7 +25,7 @@ Want to follow what we're up to or join our growing team of 40+ students?
 
 - [Join our mailing list](https://groups.google.com/forum/#!forum/harvard-open-data)
 - Follow us on [Medium](https://medium.com/harvard-open-data-project)
-- Email Jeffrey at jdhe [at] college [dot] harvard [dot] edu
+- Email us at harvardopendataproject [at] gmail [dot] com
 
 ## Running the website
 
