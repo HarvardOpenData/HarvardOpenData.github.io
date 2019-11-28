@@ -251,7 +251,6 @@ def finals_app():
         form_classes = request.form.getlist('classes')
         ga_id : str = request.cookies.get("_ga", None)
         if ga_id is not None: 
-            ga_id = ga_id.replace("GA1.1.", "")
             db = auth.get_survey_firestore_client() 
             doc = db.collection("finals_classes").document(ga_id).get()
             if not doc.exists:
