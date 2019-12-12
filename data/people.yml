@@ -44,6 +44,9 @@ roles:
   - g_id: board
     id: internalrelationsdir
     title: Director of Internal Relations
+  - g_id: board
+    id: treasurer
+    title: Treasurer
   - g_id: contributor
     id: presemeritus
     title: President Emeritus
@@ -417,7 +420,7 @@ people:
     house: Quincy
     image: yijiang-zhao.jpg
     name: Yijiang Zhao
-    role: contributor
+    role: treasurer
     year: 2022
   - bio: I'm a sophomore in Eliot concentrating in computer science. I'm originally
       from San Jose, CA, and I love music, dancing, and hiking!
