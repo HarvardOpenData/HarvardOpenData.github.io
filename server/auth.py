@@ -8,7 +8,6 @@ from firebase_admin import firestore
 from google.oauth2 import id_token
 from google.auth.transport import requests
 import server.constants as constants
-from server.members import Member
 from mockfirestore import *
 
 import hashlib
@@ -57,31 +56,6 @@ def authenticate_google_signin(token : str):
     if hd is None or hd not in ["college.harvard.edu"]:
         raise Exception("Not a @college.harvard.edu email!")
     return (userEmail, userId)
-
-def get_member(userEmail : str, userId : str, db : firestore.firestore.Client, readonly = False) -> Member:
-    members_ref : firestore.firestore.DocumentReference = db.collection("members").document(userEmail)
-    member_snapshot : firestore.firestore.DocumentSnapshot = members_ref.get()
-    if not member_snapshot.exists:
-        if not readonly:
-            raise Exception("Email does not belong to HODP member")
-        else:
-            return None
-
-    member_email = members_ref.id
-    member_dict = member_snapshot.to_dict()
-
-    member = Member(member_email, member_dict)
-    
-    if not readonly:
-        if member.id is None:
-            member.id = userId
-            members_ref.update({
-                "id" : member.id
-            })
-        elif member.id != userId:
-            raise Exception("id in databasae does not match current id")
-
-    return member
 
 # gets a user by their email and corresponding ID
 # if user does not exist, create in DB and return new doc ref

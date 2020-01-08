@@ -198,7 +198,7 @@ def profile():
     if not auth.is_authenticated(userEmail, userId, members_ref):
         return redirect("/auth/profile/")
 
-    member = auth.get_member(userEmail, userId, db)
+    member = Member.get_member(userEmail, userId, db)
     peopleYml = getYml('./data/people.yml')
     if request.method == "GET":
         people: list = peopleYml["people"]
@@ -319,7 +319,7 @@ def signin(request_url):
                 email_cookie_key = get_email_cookie_key("profile")
                 id_cookie_key = get_id_cookie_key("profile")
                 db = auth.get_website_firestore_client()
-                auth.get_member(userEmail, userId, db)
+                Member.get_member(userEmail, userId, db)
             # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
             response.set_cookie(email_cookie_key, userEmail)
