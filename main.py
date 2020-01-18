@@ -3,12 +3,14 @@ import yaml
 import server.constants as constants
 import server.auth as auth
 from server.members import Member, MembersCache, add_members_to_firestore
+from server.api import get_tasks
 import json
 import os
 import server.demographics
 import tempfile
 import random, datetime, time
 import csv
+import itertools
 
 app = Flask(__name__)
 
@@ -333,6 +335,13 @@ def signin(request_url):
             response.set_cookie(id_cookie_key, expires=0)
             return response
 
+@app.route('/tasks')
+def tasks():
+    tasks = get_tasks()
+    sections = { key: list(subset) for key, subset in itertools.groupby(tasks, lambda task: task.section) }
+ 
+    return render_template('tasks.html', page=pageData['tasks'], site=site, sections=sections.items())
+
 @app.route("/<request_url>/")
 def link(request_url):
     links = getYml("./data/links.yml")
@@ -346,6 +355,8 @@ def link(request_url):
     if expiration_date is not None and expiration_date < datetime.datetime.now():
         abort(404)
     return redirect(links[request_url]["url"])
+
+
 @app.errorhandler(404)
 def page_not_found(error):
    return render_template('404.html', page = pageData["404"][0], site=site), 404

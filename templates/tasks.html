@@ -1,0 +1,43 @@
+{% extends 'default.html' %} 
+
+{% block content %} 
+
+<div class='task-list' style='padding: 5%;'>
+  <ul class="list-group">
+  {% for key, tasks in sections %}
+    <li class="list-group-item">
+      <h2 data-toggle="collapse" data-target={{ "#" + key }} aria-expanded="false" aria-controls={{ key }}>
+        {{ key }}
+        <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+      </h2>
+      <div class='collapse' id={{ key }}>
+        <ul class="list-group">
+          {% for task in tasks %} 
+            <li class="list-group-item">
+              <div class='card'>
+                <span class="border">
+                  <div class="card-body">
+                    <h3 class="card-title"><a href={{ tasks.url }}>{{ task.name }}</a></h3>
+                    <h4 class="card-subtitle">{{ task.assignee }}</h4>
+                    <a data-toggle="collapse" data-target={{ "#" + task.gid }} aria-expanded="false" aria-controls={{ task.gid }}>
+                      See more
+                    </a>
+                    <div class='collapse' id={{ task.gid }}>
+                      <p class="card-text">{{ task.notes }}</p>
+                      <button type="button" class="btn btn-info">{{ task.difficulty }}</button>
+                      {% for tag in task.tags %}
+                        <button type="button" class="btn btn-info">{{ tag }}</button>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </li>
+          {% endfor %} 
+        </ul> 
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endblock %}
