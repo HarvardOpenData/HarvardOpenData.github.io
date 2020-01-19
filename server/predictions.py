@@ -12,8 +12,8 @@ realized_outcomes = {
     2: None,
 }
 
-def update_predictions(email, db):
-    pass
+def update_predictions(email, form, db):
+    print("updating predictions")
 
 def update_outcome(question_id, outcome):
     realized_outcomes[question_id] = outcome

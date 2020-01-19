@@ -6,6 +6,7 @@ from server.members import Member, MembersCache, add_members_to_firestore
 import json
 import os
 import server.demographics
+import server.predictions
 import tempfile
 import random, datetime, time
 import csv
@@ -168,12 +169,11 @@ def predictions():
         responsesDict = auth.get_responses_dict(userEmail, db)
         return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], CLIENT_ID=constants.get_google_client_id(), responded=False)
     else:
-        console.log("post request")
         userEmail = request.cookies[email_cookie_key]
         userId = request.cookies[id_cookie_key]
         if auth.is_authenticated(userEmail, userId, emails_ref):
             server.predictions.update_predictions(
-                userEmail, db)
+                userEmail, request.form, db)
             responsesDict = auth.get_responses_dict(userEmail, db)
             return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], CLIENT_ID=constants.get_google_client_id(), responded=True)
         else:

@@ -127,10 +127,8 @@ predictions:
   - title: Predictions
     layout: default
     scripts:
-      - /static/js/nouislider/nouislider.min.js
       - /static/js/predictions.js
     styles:
-      - /static/css/nouislider/nouislider.min.css
       - /static/css/predictions.css
 
 auth:
