@@ -148,6 +148,38 @@ def scoreboard():
 def hudsmenu():
     return render_template('webapps/hudsmenu.html', site=site, page=pageData["hudsmenu"][0])
 
+@app.route('/predictions/', methods=['GET', 'POST'])
+def predictions():
+    userEmail = None
+    userId = None
+    db = auth.get_survey_firestore_client()
+    emails_ref = db.collection("emails")
+
+    email_cookie_key = get_email_cookie_key("predictions")
+    id_cookie_key = get_id_cookie_key("predictions")
+
+    if request.method == 'GET':
+        if email_cookie_key in request.cookies:
+            userEmail = request.cookies[email_cookie_key]
+        if id_cookie_key in request.cookies:
+            userId = request.cookies[id_cookie_key]
+        if not auth.is_authenticated(userEmail, userId, emails_ref):
+            return redirect("/auth/predictions/")
+        responsesDict = auth.get_responses_dict(userEmail, db)
+        return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], CLIENT_ID=constants.get_google_client_id(), responded=False)
+    else:
+        console.log("post request")
+        userEmail = request.cookies[email_cookie_key]
+        userId = request.cookies[id_cookie_key]
+        if auth.is_authenticated(userEmail, userId, emails_ref):
+            server.predictions.update_predictions(
+                userEmail, db)
+            responsesDict = auth.get_responses_dict(userEmail, db)
+            return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], CLIENT_ID=constants.get_google_client_id(), responded=True)
+        else:
+            # this happens if for some reason they've tried to fuck with their email or something gets corrupted
+            abort("User credentials improper. Please sign out and sign back in")
+
 @app.route("/surveygroup/", methods=['GET', 'POST'])
 
 @app.route('/demographics/', methods=['GET', 'POST'])
@@ -250,8 +282,8 @@ def finals_app():
         form_data = request.form
         form_classes = request.form.getlist('classes')
         ga_id : str = request.cookies.get("_ga", None)
-        if ga_id is not None: 
-            db = auth.get_survey_firestore_client() 
+        if ga_id is not None:
+            db = auth.get_survey_firestore_client()
             doc = db.collection("finals_classes").document(ga_id).get()
             if not doc.exists:
                 db.collection("finals_classes").document(ga_id).set({
@@ -299,7 +331,8 @@ def signin(request_url):
     title_dict = {
         "surveygroup": "Survey Group",
         "demographics": "Demographics",
-        "profile": "My Profile"
+        "profile": "My Profile",
+        "predictions": "Predictions"
     }
     if request.method == "GET":
         return render_template('auth.html', title=title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
@@ -320,6 +353,11 @@ def signin(request_url):
                 id_cookie_key = get_id_cookie_key("profile")
                 db = auth.get_website_firestore_client()
                 Member.get_member(userEmail, userId, db)
+            elif request_url in ["predictions"]:
+                email_cookie_key = get_email_cookie_key("predictions")
+                id_cookie_key = get_id_cookie_key("predictions")
+                db = auth.get_survey_firestore_client()
+                auth.create_respondent(userEmail, userId, db)
             # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
             response.set_cookie(email_cookie_key, userEmail)
