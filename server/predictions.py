@@ -8,8 +8,10 @@ import datetime
 
 # Fill in as outcomes come in?
 realized_outcomes = {
-    "harvard-yale": None,
+    "largest-course": None,
     "divestment": None,
+    "hgsu-agreement": None,
+    "ncaa-tournament": None,
 }
 
 def update_predictions(email, form, db):
@@ -28,10 +30,11 @@ def calculate_points(prediction, outcome):
     """
     diff = (prediction - outcome) / 100
     brier_score = diff ** 2
-    adjusted_score = -(brier_score - 0.25) * 200  # or 100, depending on whether you're using the 2018 or 2019 version
+    adjusted_score = -(brier_score - 0.25) * 200
     return round(adjusted_score, 2)
 
 def update_user_score(email, db):
+    """ Update a single user's score """
     user_info_ref = db.collection("prediction_users").document(email)
     predictions_dict = auth.get_predictions_dict(email, db)
     score = 0
@@ -40,5 +43,12 @@ def update_user_score(email, db):
             prediction = predictions_dict[question]
             score += calculate_points(prediction, outcome)
     user_info_ref.update({
-        u"current_score" : score,
+        u"current_score" : score
     })
+
+def update_all_scores(db):
+    """ Update all users' scores. TODO """
+    prediction_users_ref = db.collection("prediction_users")
+    user_docs = prediction_users_ref.stream()
+    for user_doc in user_docs:
+        continue

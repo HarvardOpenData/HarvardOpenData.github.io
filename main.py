@@ -165,9 +165,9 @@ def predictions():
         if id_cookie_key in request.cookies:
             userId = request.cookies[id_cookie_key]
         if not auth.is_authenticated(userEmail, userId, prediction_users_ref):
-            return redirect("/auth/predictions/")
+            return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], predictions={}, CLIENT_ID=constants.get_google_client_id(), responded=False, signed_in=False)
         predictionsDict = auth.get_predictions_dict(userEmail, db)
-        return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], predictions=predictionsDict, CLIENT_ID=constants.get_google_client_id(), responded=False)
+        return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], predictions=predictionsDict, CLIENT_ID=constants.get_google_client_id(), responded=False, signed_in=True)
     else:
         userEmail = request.cookies[email_cookie_key]
         userId = request.cookies[id_cookie_key]
@@ -175,7 +175,7 @@ def predictions():
             server.predictions.update_predictions(
                 userEmail, request.form, db)
             predictionsDict = auth.get_predictions_dict(userEmail, db)
-            return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], predictions=predictionsDict, CLIENT_ID=constants.get_google_client_id(), responded=True)
+            return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], predictions=predictionsDict, CLIENT_ID=constants.get_google_client_id(), responded=True, signed_in=True)
         else:
             # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")
