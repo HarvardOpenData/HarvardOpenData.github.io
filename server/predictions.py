@@ -7,12 +7,7 @@ import server.auth as auth
 import datetime
 
 # Fill in as outcomes come in?
-realized_outcomes = {
-    "largest-course": None,
-    "divestment": None,
-    "hgsu-agreement": None,
-    "ncaa-tournament": None,
-}
+realized_outcomes = {}
 
 def update_predictions(email, form, db):
     user_info_ref = db.collection("prediction_users").document(email)
@@ -47,8 +42,9 @@ def update_user_score(email, db):
     })
 
 def update_all_scores(db):
-    """ Update all users' scores. TODO """
+    """ Update all users' scores. """
     prediction_users_ref = db.collection("prediction_users")
     user_docs = prediction_users_ref.stream()
     for user_doc in user_docs:
-        continue
+        update_user_score(user_doc.id, db)
+    print("all scores updated")

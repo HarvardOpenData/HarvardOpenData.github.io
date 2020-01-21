@@ -26,18 +26,18 @@
 
     {% for question in questions %}
       <div class="question">
-        <h4 class="question-text">{{question.text}}</h4>
-        <p>Your prediction: <span class="prediction" id="q{{question.number}}-slider-value">50%</span> chance that {{question.outcome_1}}</p>
-        <div class="row row1">
+        <h4 class="question-text">{{ question.text }}</h4>
+        <p>Your prediction: <span class="prediction" id="q{{ question.number }}-slider-value">50%</span> chance that {{ question.outcome_1 }}</p>
+        <div class="row row{{ question.number }}">
           <div class="col-md-6 col1">
-            <input type="range" name="{{question.name}}" min="0" max="100" class="slider" id="q{{question.number}}-slider"
+            <input type="range" name="{{ question.name }}" min="0" max="100" class="slider" id="q{{ question.number }}-slider"
             {% if predictions is defined and question.name in predictions %}
-              value = {{predictions[question.name]}}
+              value = {{ predictions[question.name] }}
             {% endif %}>
           </div>
           <div class="col-md-6 col2">
-            <p>You'll <span class="points" id="q{{question.number}}-1-point-change">gain 0</span> points if {{question.outcome_1}}.</p>
-            <p>You'll <span class="points" id="q{{question.number}}-0-point-change">gain 0</span> points if {{question.outcome_0}}.</p>
+            <p>You'll <span class="points" id="q{{ question.number }}-1-point-change">gain 0</span> points if {{ question.outcome_1 }}.</p>
+            <p>You'll <span class="points" id="q{{ question.number }}-0-point-change">gain 0</span> points if {{ question.outcome_0 }}.</p>
           </div>
         </div>
       </div>

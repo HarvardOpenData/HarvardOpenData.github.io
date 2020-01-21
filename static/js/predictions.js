@@ -8,7 +8,6 @@ function createLabels(slider, forecastElement, outcomeZeroElement, outcomeOneEle
         // Display the current prediction
         var prediction = parseInt(slider.value);
         document.getElementById(forecastElement).innerHTML = prediction.toString() + "%";
-
         // Calculate points for each outcome
         var pointsIfOne = calculatePoints(prediction, 100);
         var pointsIfZero = calculatePoints(prediction, 0);
@@ -40,8 +39,9 @@ function getVerb(points) {
     }
 }
 
-// Set up sliders
+// Set up labels for each question
 for (i = 1; i < numQuestions + 1; i++) {
+    // Sorry this is super hacky
     sliderID = "q" + i.toString() + "-slider"
     forecastElement = "q" + i.toString() + "-slider-value";
     outcomeZeroElement = "q" + i.toString() + "-0-point-change";
