@@ -16,8 +16,8 @@ def update_predictions(email, form, questions, db):
         if field in valid_form_names:
             # update documents under the user's predictions subcollection
             question_ref = user_info_ref.collection("predictions").document(field)
-            question_ref.update({
-                "guess": form[field]
+            question_ref.set({
+                "guess": int(form[field])
             })
 
 def calculate_points(prediction, outcome):
