@@ -187,7 +187,7 @@ def predictions():
         userId = request.cookies[id_cookie_key]
         if auth.is_authenticated(userEmail, userId, prediction_users_ref):
             server.predictions.update_predictions(
-                userEmail, request.form, db)
+                userEmail, request.form, getYml("./data/predictions.yml"), db)
             predictionsDict = auth.get_predictions_dict(userEmail, db)
             return render_template("webapps/predictions.html",
                                     site=site,

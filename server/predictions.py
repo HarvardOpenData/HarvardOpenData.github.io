@@ -6,17 +6,19 @@ from firebase_admin import firestore
 import server.auth as auth
 import datetime
 
-# Fill in as outcomes come in?
+# Fill in as outcomes come in? Keys should be form fields, values should all be either 0 or 100
 realized_outcomes = {}
 
-def update_predictions(email, form, db):
+def update_predictions(email, form, questions, db):
+    valid_form_names = [item["name"] for item in questions]
     user_info_ref = db.collection("prediction_users").document(email)
     for field in form:
-        # update documents under the user's predictions subcollection
-        question_ref = user_info_ref.collection("predictions").document(field)
-        question_ref.update({
-            "guess": form[field]
-        })
+        if field in valid_form_names:
+            # update documents under the user's predictions subcollection
+            question_ref = user_info_ref.collection("predictions").document(field)
+            question_ref.update({
+                "guess": form[field]
+            })
 
 def calculate_points(prediction, outcome):
     """
@@ -34,7 +36,7 @@ def update_user_score(email, db):
     predictions_dict = auth.get_predictions_dict(email, db)
     score = 0
     for question, outcome in realized_outcomes:
-        if outcome is not None and question in predictions_dict:
+        if question in predictions_dict:
             prediction = predictions_dict[question]
             score += calculate_points(prediction, outcome)
     user_info_ref.update({
