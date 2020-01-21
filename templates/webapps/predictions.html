@@ -13,7 +13,7 @@
 
   <div class="intro">
     <h1>What will happen this semester?</h1>
-    <p>Tell us how likely you think the following events are to occur. HODP will <a href="https://fivethirtyeight.com/features/how-to-play-our-nfl-predictions-game/">score your predictions</a> as the semester goes on, and participants with the highest scores will receive prizes! A big thank you to FiveThirtyEight, whose annual <a href="https://projects.fivethirtyeight.com/2019-nfl-forecasting-game/">NFL forecasting game</a> was the inspiration for this project.</p>
+    <p>Tell us how likely you think the following events are to occur. HODP will score your predictions according to <a href="https://fivethirtyeight.com/features/how-to-play-our-nfl-predictions-game/">these rules</a>, and participants with the highest scores will receive prizes at the end of the semester! A big thank you to FiveThirtyEight, whose annual <a href="https://projects.fivethirtyeight.com/2019-nfl-forecasting-game/">NFL forecasting game</a> was the inspiration for this project.</p>
     {% if not signed_in %}
       <p><a href="/auth/predictions">Sign in</a> to play!</p>
     {% endif %}
@@ -24,73 +24,24 @@
 
   <form method = "POST">
 
-    <div class="question">
-      <h4 class="question-text">Will Ec 10b be the largest course at Harvard this semester?</h4>
-      <p>Your prediction: <span class="prediction" id="q1-slider-value">50%</span> chance that Ec 10b is the largest course</p>
-      <div class="row row1">
-        <div class="col-md-6 col1">
-          <input type="range" name="largest-course" min="0" max="100" class="slider" id="q1-slider"
-          {% if predictions is defined and "largest-course" in predictions %}
-            value = {{predictions["largest-course"]}}
-          {% endif %}>
-        </div>
-        <div class="col-md-6 col2">
-          <p>You'll <span class="points" id="q1-1-point-change">gain 0</span> points if Ec 10b is the largest course.</p>
-          <p>You'll <span class="points" id="q1-0-point-change">gain 0</span> points if Ec 10b is not the largest course.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="question">
-      <h4 class="question-text">Will Harvard divest from fossil fuels by the end of the semester?</h4>
-      <p>Your prediction: <span class="prediction" id="q2-slider-value">50%</span> chance that Harvard divests</p>
-      <div class="row row2">
-        <div class="col-md-6 col1">
-          <input type="range" name="divestment" min="0" max="100" class="slider" id="q2-slider"
-          {% if predictions is defined and "divestment" in predictions %}
-            value = {{predictions["divestment"]}}
-          {% endif %}>
-        </div>
-        <div class="col-md-6 col2">
-          <p>You'll <span class="points" id="q2-1-point-change">gain 0</span> points if Harvard divests.</p>
-          <p>You'll <span class="points" id="q2-0-point-change">gain 0</span> points if Harvard doesn't divest.</p>
+    {% for question in questions %}
+      <div class="question">
+        <h4 class="question-text">{{question.text}}</h4>
+        <p>Your prediction: <span class="prediction" id="q{{question.number}}-slider-value">50%</span> chance that {{question.outcome_1}}</p>
+        <div class="row row1">
+          <div class="col-md-6 col1">
+            <input type="range" name="{{question.name}}" min="0" max="100" class="slider" id="q{{question.number}}-slider"
+            {% if predictions is defined and question.name in predictions %}
+              value = {{predictions[question.name]}}
+            {% endif %}>
+          </div>
+          <div class="col-md-6 col2">
+            <p>You'll <span class="points" id="q{{question.number}}-1-point-change">gain 0</span> points if {{question.outcome_1}}.</p>
+            <p>You'll <span class="points" id="q{{question.number}}-0-point-change">gain 0</span> points if {{question.outcome_0}}.</p>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="question">
-      <h4 class="question-text">Will the Harvard Graduate Students Union reach a contract agreement by the end of the semester?</h4>
-      <p>Your prediction: <span class="prediction" id="q3-slider-value">50%</span> chance that an agreement is reached</p>
-      <div class="row row3">
-        <div class="col-md-6 col1">
-          <input type="range" name="hgsu-agreement" min="0" max="100" class="slider" id="q3-slider"
-          {% if predictions is defined and "divestment" in predictions %}
-            value = {{predictions["hgsu-agreement"]}}
-          {% endif %}>
-        </div>
-        <div class="col-md-6 col2">
-          <p>You'll <span class="points" id="q3-1-point-change">gain 0</span> points if an agreement is reached.</p>
-          <p>You'll <span class="points" id="q3-0-point-change">gain 0</span> points if an agreement is not reached.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="question">
-      <h4 class="question-text">Will the mens' basketball team make the NCAA tournament?</h4>
-      <p>Your prediction: <span class="prediction" id="q4-slider-value">50%</span> chance that they make the tournament</p>
-      <div class="row row4">
-        <div class="col-md-6 col1">
-          <input type="range" name="ncaa-tournament" min="0" max="100" class="slider" id="q4-slider"
-          {% if predictions is defined and "ncaa-tournament" in predictions %}
-            value = {{predictions["ncaa-tournament"]}}
-          {% endif %}>
-        </div>
-        <div class="col-md-6 col2">
-          <p>You'll <span class="points" id="q4-1-point-change">gain 0</span> points if the team makes the NCAA tournament.</p>
-          <p>You'll <span class="points" id="q4-0-point-change">gain 0</span> points if the team doesn't make the NCAA tournament.</p>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
 
     {% if signed_in %}
       <div id="end-buttons">
