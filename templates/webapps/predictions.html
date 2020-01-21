@@ -1,6 +1,14 @@
 {% extends 'default.html' %}
 
+{% block custom_meta %}
+  <meta name="google-signin-client_id" content="{{ CLIENT_ID }}">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-hosted_domain" content="college.harvard.edu">
+{% endblock %}
+
+
 {% block content %}
+
 <div class="container">
 
   <div class="intro">
@@ -11,16 +19,19 @@
   <form method = "POST">
 
     <div class="question">
-      <h4>Will Harvard win the 2020 Harvard-Yale football game?</h4>
+      <h4 class="question-text">Will Harvard win the 2020 Harvard-Yale football game?</h4>
       <p>Your prediction: <span class="prediction" id="q1-slider-value">50%</span> chance that Harvard wins</p>
 
       <div class="row row1">
 
         <div class="col-md-6 col1">
-          <input type="range" min="0" max="100" value="50" class="slider" id="q1-slider">
+          <input type="range" name="harvard-yale" min="0" max="100" class="slider" id="q1-slider"
+          {% if predictions is defined and "harvard-yale" in predictions %}
+            value = {{predictions["harvard-yale"]}}
+          {% endif %}>
         </div>
 
-        <div class="col-md-5 col2">
+        <div class="col-md-6 col2">
           <p>You'll <span class="points" id="q1-1-point-change">gain 0</span> points if Harvard wins.</p>
           <p>You'll <span class="points" id="q1-0-point-change">gain 0</span> points if Harvard loses.</p>
         </div>
@@ -30,16 +41,19 @@
     </div>
 
     <div class="question">
-      <h4>Will Harvard divest from fossil fuels by the end of 2020?</h4>
+      <h4 class="question-text">Will Harvard divest from fossil fuels by the end of 2020?</h4>
       <p>Your prediction: <span class="prediction" id="q2-slider-value">50%</span> chance that Harvard divests</p>
 
       <div class="row row2">
 
         <div class="col-md-6 col1">
-          <input type="range" min="0" max="100" value="50" class="slider" id="q2-slider">
+          <input type="range" name="divestment" min="0" max="100" class="slider" id="q2-slider"
+          {% if predictions is defined and "divestment" in predictions %}
+            value = {{predictions["divestment"]}}
+          {% endif %}>
         </div>
 
-        <div class="col-md-5 col2">
+        <div class="col-md-6 col2">
           <p>You'll <span class="points" id="q2-1-point-change">gain 0</span> points if Harvard divests.</p>
           <p>You'll <span class="points" id="q2-0-point-change">gain 0</span> points if Harvard doesn't divest.</p>
         </div>
@@ -48,9 +62,40 @@
 
     </div>
 
-    <input type="submit" class="button" id="submit" value="Submit your predictions!"></button>
+    <div id="end-buttons">
+      <input type="submit" class="button" id="submit" value="Save your predictions"></button>
+      <button type ="button" class="button" id="sign-out" onclick ="signOut()">Sign out</button>
+      {% if responded %}
+        <p>Your predictions have been saved!</p>
+      {% endif %}
+    </div>
 
   </form>
 
 </div>
+
 {% endblock %}
+
+{% block custom_scripts %}
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+            console.log("signed out!")
+            document.cookie = "predictions_email=; predictions_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.replace(window.location.href);
+        });
+    }
+
+    window.onload = function() {
+      gapi.load('auth2', function() {
+        console.log("loading!");
+        gapi.auth2.init();
+      });
+    }
+</script>
+
+{% endblock custom_scripts %}

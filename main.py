@@ -154,7 +154,7 @@ def predictions():
     userEmail = None
     userId = None
     db = auth.get_survey_firestore_client()
-    emails_ref = db.collection("emails")
+    prediction_users_ref = db.collection("prediction_users")
 
     email_cookie_key = get_email_cookie_key("predictions")
     id_cookie_key = get_id_cookie_key("predictions")
@@ -164,18 +164,18 @@ def predictions():
             userEmail = request.cookies[email_cookie_key]
         if id_cookie_key in request.cookies:
             userId = request.cookies[id_cookie_key]
-        if not auth.is_authenticated(userEmail, userId, emails_ref):
+        if not auth.is_authenticated(userEmail, userId, prediction_users_ref):
             return redirect("/auth/predictions/")
-        responsesDict = auth.get_responses_dict(userEmail, db)
-        return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], CLIENT_ID=constants.get_google_client_id(), responded=False)
+        predictionsDict = auth.get_predictions_dict(userEmail, db)
+        return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], predictions=predictionsDict, CLIENT_ID=constants.get_google_client_id(), responded=False)
     else:
         userEmail = request.cookies[email_cookie_key]
         userId = request.cookies[id_cookie_key]
-        if auth.is_authenticated(userEmail, userId, emails_ref):
+        if auth.is_authenticated(userEmail, userId, prediction_users_ref):
             server.predictions.update_predictions(
                 userEmail, request.form, db)
-            responsesDict = auth.get_responses_dict(userEmail, db)
-            return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], CLIENT_ID=constants.get_google_client_id(), responded=True)
+            predictionsDict = auth.get_predictions_dict(userEmail, db)
+            return render_template("webapps/predictions.html", site=site, page=pageData["predictions"][0], predictions=predictionsDict, CLIENT_ID=constants.get_google_client_id(), responded=True)
         else:
             # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")
@@ -357,7 +357,7 @@ def signin(request_url):
                 email_cookie_key = get_email_cookie_key("predictions")
                 id_cookie_key = get_id_cookie_key("predictions")
                 db = auth.get_survey_firestore_client()
-                auth.create_respondent(userEmail, userId, db)
+                auth.create_prediction_user(userEmail, userId, db)
             # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
             response.set_cookie(email_cookie_key, userEmail)

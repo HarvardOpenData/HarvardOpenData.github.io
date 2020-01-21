@@ -32,8 +32,8 @@ def is_authenticated(userEmail : str, userId : str, collection_ref : firestore.f
     userDoc = collection_ref.document(userEmail).get()
     if userDoc is None or not userDoc.exists:
         return False
-    userDict = userDoc.to_dict() 
-    
+    userDict = userDoc.to_dict()
+
     # this case would happen if we put people into the database through something other than the website
     # e.g. if they signed up at a freshmen fair or something
     if "id" not in userDict:
@@ -79,7 +79,7 @@ def create_respondent(userEmail : str, userId : str, db : firestore.firestore.Cl
         })
         return emails_ref.document(userEmail).get()
     # user doesn't exist, have to create everything
-    else: 
+    else:
         user_email_ref = emails_ref.document(userEmail)
         user_email_doc = user_email_ref.get()
         if user_email_doc.exists:
@@ -88,10 +88,10 @@ def create_respondent(userEmail : str, userId : str, db : firestore.firestore.Cl
             })
         else:
             user_email_ref.set({
-                u"id" : userId, 
+                u"id" : userId,
                 u"has_demographics" : False,
                 u"monthly_responses" : {},
-                u"total_responses" : 0, 
+                u"total_responses" : 0,
                 u"date_created" : datetime.datetime.now()
             })
         if not user_response_doc.exists:
@@ -101,6 +101,31 @@ def create_respondent(userEmail : str, userId : str, db : firestore.firestore.Cl
 
         return emails_ref.document(userEmail).get()
 
+def create_prediction_user(userEmail : str, userId : str, db : firestore.firestore.Client) -> firestore.firestore.DocumentSnapshot:
+    prediction_users_ref = db.collection("prediction_users")
+    user_info_ref = prediction_users_ref.document(userEmail)
+    user_info_doc = user_info_ref.get()
+    if userEmail is None:
+        raise Exception("User email not defined")
+    if userId is None:
+        raise Exception("User ID not defined")
+    # user already exists
+    if is_authenticated(userEmail, userId, prediction_users_ref):
+        return user_info_doc
+    # user doesn't exist, have to create new
+    else:
+        if user_info_doc.exists:
+            user_info_ref.update({
+                u"id" : userId,
+            })
+        else:
+            user_info_ref.set({
+                u"id" : userId,
+                u"current_score" : 0,
+                u"date_created" : datetime.datetime.now()
+            })
+        return user_info_ref.get()
+
 def get_emails_dict(userEmail : str, db : firestore.firestore.Client):
     emails_ref = db.collection("emails")
     return emails_ref.document(userEmail).get().to_dict()
@@ -108,6 +133,12 @@ def get_emails_dict(userEmail : str, db : firestore.firestore.Client):
 def get_responses_dict(userEmail : str, db : firestore.firestore.Client):
     responses_ref = db.collection("responses")
     return responses_ref.document(email_hash(userEmail)).get().to_dict()
+
+def get_predictions_dict(userEmail : str, db : firestore.firestore.Client):
+    predictions_ref = db.collection("prediction_users").document(userEmail).collection("predictions")
+    docs = predictions_ref.stream()
+    docs_dict = {doc.id:int(doc.to_dict()["guess"]) for doc in docs}
+    return docs_dict
 
 mock_survey_client = None
 mock_website_client = None

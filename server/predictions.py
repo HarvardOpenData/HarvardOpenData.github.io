@@ -8,21 +8,37 @@ import datetime
 
 # Fill in as outcomes come in?
 realized_outcomes = {
-    1: None,
-    2: None,
+    "harvard-yale": None,
+    "divestment": None,
 }
 
 def update_predictions(email, form, db):
-    print("updating predictions")
+    user_info_ref = db.collection("prediction_users").document(email)
+    for field in form:
+        # update documents under the user's predictions subcollection
+        question_ref = user_info_ref.collection("predictions").document(field)
+        question_ref.update({
+            "guess": form[field]
+        })
 
-def update_outcome(question_id, outcome):
-    realized_outcomes[question_id] = outcome
-
-def calculate_score(prediction, outcome):
+def calculate_points(prediction, outcome):
     """
     Adjusted version of the Brier scoring function, as described at
     https://fivethirtyeight.com/features/how-to-play-our-nfl-predictions-game/
     """
-    brier_score = (prediction - outcome) ** 2
+    diff = (prediction - outcome) / 100
+    brier_score = diff ** 2
     adjusted_score = -(brier_score - 0.25) * 200  # or 100, depending on whether you're using the 2018 or 2019 version
-    return adjusted_score
+    return round(adjusted_score, 2)
+
+def update_user_score(email, db):
+    user_info_ref = db.collection("prediction_users").document(email)
+    predictions_dict = auth.get_predictions_dict(email, db)
+    score = 0
+    for question, outcome in realized_outcomes:
+        if outcome is not None and question in predictions_dict:
+            prediction = predictions_dict[question]
+            score += calculate_points(prediction, outcome)
+    user_info_ref.update({
+        u"current_score" : score,
+    })

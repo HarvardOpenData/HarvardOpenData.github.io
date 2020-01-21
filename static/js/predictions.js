@@ -4,9 +4,9 @@ var slider2 = document.getElementById('q2-slider');
 
 function createLabels(slider, forecastElement, outcomeZeroElement, outcomeOneElement) {
 
-    slider.oninput = function() {
-      // Display the current prediction
-        var prediction = parseInt(this.value);
+    function updateLabels() {
+        // Display the current prediction
+        var prediction = parseInt(slider.value);
         document.getElementById(forecastElement).innerHTML = prediction.toString() + "%"
 
         // Calculate points for each outcome
@@ -15,6 +15,13 @@ function createLabels(slider, forecastElement, outcomeZeroElement, outcomeOneEle
         document.getElementById(outcomeOneElement).innerHTML = getVerb(pointsIfOne) + Math.abs(pointsIfOne).toString()
         document.getElementById(outcomeZeroElement).innerHTML = getVerb(pointsIfZero) + Math.abs(pointsIfZero).toString()
     }
+
+    updateLabels()
+
+    slider.oninput = function() {
+        updateLabels()
+    }
+
 }
 
 // Run FiveThirtyEight's version of the Brier scoring function
