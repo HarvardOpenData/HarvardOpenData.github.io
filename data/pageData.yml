@@ -132,6 +132,8 @@ demographics:
   - title: Survey Demographics
     scripts:
       - /static/js/demographics.js
+    styles:
+      - /static/css/demographics.css
 
 profile:
   - title: My Profile
