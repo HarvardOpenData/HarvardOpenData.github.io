@@ -99,10 +99,6 @@ def catalog():
     return render_template('catalog.html', site=site, categories=getYml("./data/categories.yml"),
                            filetypes=getYml("./data/filetypes.yml"), page=pageData["catalog"][0])
 
-@app.route('/projects/')
-def projects():
-    return redirect("https://docs.google.com/spreadsheets/d/1HGegvm3OcLSV3zyI1fUcoPLHMUbDaM5ZWJSVb3Gx69Y/edit?usp=sharing")
-
 @app.route('/bootcamp/')
 def bootcamp():
     return render_template('bootcamp.html', site=site, bootcamp=getYml("./data/bootcamp.yml"),
@@ -336,14 +332,14 @@ def signin(request_url):
             response.set_cookie(id_cookie_key, expires=0)
             return response
 
-@app.route('/tasks')
+@app.route('/projects/', methods=['GET', 'POST'])
 def tasks():
     if request.method == 'GET':
         sections = tasks_cache.get()
         return render_template('tasks.html', page=pageData['tasks'], site=site, sections=sections.items())
     elif request.method == 'POST':
         sections = tasks_cache.populate()
-        redirect('/tasks')
+        return redirect('/projects/')
 
 @app.route("/<request_url>/")
 def link(request_url):

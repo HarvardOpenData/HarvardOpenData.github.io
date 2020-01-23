@@ -1,4 +1,5 @@
 import os
+import json
 from itertools import groupby
 from functools import reduce, partial
 from collections import namedtuple
@@ -7,8 +8,19 @@ from typing import Dict, List
 
 import asana
 
-SECRET = os.environ['ASANA_SECRET']
+
+def auth(filename='asana_creds.json'):
+    if os.path.exists(filename):
+        with open(filename, 'r') as fp:
+            data = json.load(fp)
+            return data['secret']
+    else:
+        raise FileNotFoundError(f"{filename} could not be found!")
+
+
 PROJECT_ID = '1140949342574617'
+SECRET = auth()
+
 
 Task = namedtuple('Task', ['gid', 'name', 'assignee', 'notes', 'section', 'completed',
                            'category', 'difficulty', 'due', 'tags', 'url'])
@@ -23,12 +35,10 @@ class TasksCache():
         """Refreshes the cache"""
         tasks = get_tasks()
         grouped_by_section = groupby(tasks, lambda task: task.section)
-        print("all sections created")
 
         with self._lock:
             self._sections = {key: list(section)
                               for key, section in grouped_by_section}
-        print("cache fully populated")
 
     def get(self) -> Dict[str, List[Task]]:
         """Returns current contents from the cache"""

@@ -2,32 +2,51 @@
 
 {% block content %} 
 
-<div class='task-list' style='padding: 5%;'>
+<div style='padding: 2%;'>
+  <h3>Current Projects</h3>
+  <p>Below you can find some of the projects that our members are working on!</p>
+  <form action='/projects/' method='POST'>
+    <button class="btn">Refresh list</button>
+  </form>
+</div>
+
+<div class='task-list' style='padding: 2%;'>
   <ul class="list-group">
   {% for key, tasks in sections %}
     <li class="list-group-item">
       <h2 data-toggle="collapse" data-target={{ "#" + key }} aria-expanded="false" aria-controls={{ key }}>
         {{ key }}
-        <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
       </h2>
       <div class='collapse' id={{ key }}>
         <ul class="list-group">
           {% for task in tasks %} 
-            <li class="list-group-item">
+            <li class="list-group-item" style='padding: 2%;'>
               <div class='card'>
                 <span class="border">
                   <div class="card-body">
-                    <h3 class="card-title"><a href={{ tasks.url }}>{{ task.name }}</a></h3>
+                    <h3 class="card-title"><a href={{ task.url }}>{{ task.name }}</a></h3>
                     <h4 class="card-subtitle">{{ task.assignee }}</h4>
                     <a data-toggle="collapse" data-target={{ "#" + task.gid }} aria-expanded="false" aria-controls={{ task.gid }}>
                       See more
                     </a>
-                    <div class='collapse' id={{ task.gid }}>
+                    <div class='collapse' id={{ task.gid }} style='padding: 1%;'>
+                      {% if task.completed %}
+                        <div class="alert alert-success" role="alert">
+                          This project has been completed!
+                        </div>
+                      {% else %}
+                        <div class="alert alert-warning" role="alert">
+                          This project is still ongoing!
+                        </div>
+                      {% endif %}
+                      <h6 class="card-subtitle mb-2 text-muted">due by: {% if not task.due %} N/A {% else %} {{ task.due}} {% endif %}</h6>
                       <p class="card-text">{{ task.notes }}</p>
-                      <button type="button" class="btn btn-info">{{ task.difficulty }}</button>
+                      <button type="button" class="btn btn-light">{{ task.difficulty }}</button>
                       {% for tag in task.tags %}
                         <button type="button" class="btn btn-info">{{ tag }}</button>
                       {% endfor %}
+                      <button type="button" class="btn btn-danger">{{ task.category }}</button>
                     </div>
                   </div>
                 </span>
