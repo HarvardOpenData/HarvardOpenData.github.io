@@ -4,8 +4,16 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 import server.auth as auth
-from main import getYml, easternTime
 import datetime
+
+def getYml(filepath):
+    with open(filepath, encoding='utf-8') as infile:
+        fileMap = yaml.safe_load(infile)
+        return fileMap
+
+def easternTime():
+    """ Returns a timezone object representing EST """
+    return datetime.timezone(-datetime.timedelta(hours=5))
 
 def update_predictions(email, form, questions, db):
     current_time = datetime.datetime.now(tz=easternTime())
