@@ -35,6 +35,10 @@ def demographicQuestions():
 def finalsQuestions():
     return getYml("./data/finals_questions.yml")
 
+def easternTime():
+    """ Returns a timezone object representing EST """
+    return datetime.timezone(-datetime.timedelta(hours=5))
+
 
 site = siteConstants()
 pageData = getYml('./data/pageData.yml')
@@ -159,6 +163,8 @@ def predictions():
     email_cookie_key = get_email_cookie_key("predictions")
     id_cookie_key = get_id_cookie_key("predictions")
 
+    current_time = datetime.datetime.now(tz=easternTime())
+
     if request.method == 'GET':
         if email_cookie_key in request.cookies:
             userEmail = request.cookies[email_cookie_key]
@@ -172,7 +178,8 @@ def predictions():
                                     predictions={},
                                     CLIENT_ID=constants.get_google_client_id(),
                                     responded=False,
-                                    signed_in=False)
+                                    signed_in=False,
+                                    current_time=current_time)
         predictionsDict = auth.get_predictions_dict(userEmail, db)
         return render_template("webapps/predictions.html",
                                 site=site,
@@ -181,7 +188,8 @@ def predictions():
                                 predictions=predictionsDict,
                                 CLIENT_ID=constants.get_google_client_id(),
                                 responded=False,
-                                signed_in=True)
+                                signed_in=True,
+                                current_time=current_time)
     else:
         userEmail = request.cookies[email_cookie_key]
         userId = request.cookies[id_cookie_key]
@@ -196,7 +204,8 @@ def predictions():
                                     predictions=predictionsDict,
                                     CLIENT_ID=constants.get_google_client_id(),
                                     responded=True,
-                                    signed_in=True)
+                                    signed_in=True,
+                                    current_time=current_time)
         else:
             # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")

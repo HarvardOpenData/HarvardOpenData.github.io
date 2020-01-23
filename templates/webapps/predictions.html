@@ -13,7 +13,7 @@
 
   <div class="intro">
     <h1>What will happen this semester?</h1>
-    <p>Tell us how likely you think the following events are to occur. HODP will score your predictions according to <a href="https://fivethirtyeight.com/features/how-to-play-our-nfl-predictions-game/">these rules</a>, and participants with the highest scores will receive prizes at the end of the semester! You'll be able to change your predictions until Jan. 31st at midnight. (A big thank you to FiveThirtyEight, whose annual <a href="https://projects.fivethirtyeight.com/2019-nfl-forecasting-game/">NFL forecasting game</a> was the inspiration for this project.)</p>
+    <p>Tell us how likely you think the following events are to occur. HODP will score your predictions according to <a href="https://fivethirtyeight.com/features/how-to-play-our-nfl-predictions-game/">these rules</a>, and participants with the highest scores will receive prizes at the end of the semester! A big thank you to FiveThirtyEight, whose annual <a href="https://projects.fivethirtyeight.com/2019-nfl-forecasting-game/">NFL forecasting game</a> was the inspiration for this project.</p>
     {% if not signed_in %}
       <p><a href="/auth/predictions">Sign in</a> to play!</p>
     {% endif %}
@@ -25,28 +25,30 @@
   <form method = "POST">
 
     {% for question in questions %}
-      <div class="question">
-        <h4 class="question-text">{{ question.text }}</h4>
-        <p>Your prediction: <span class="prediction" id="q{{ question.number }}-slider-value">50%</span> chance that {{ question.outcome_1 }}</p>
-        <div class="row row{{ question.number }}">
-          <div class="col-md-6 col1">
-            <input type="range" name="{{ question.name }}" min="0" max="100" class="slider" id="q{{ question.number }}-slider"
-            {% if predictions is defined and question.name in predictions %}
-              value = {{ predictions[question.name] }}
-            {% endif %}>
-          </div>
-          <div class="col-md-6 col2">
-            <p>You'll <span class="points" id="q{{ question.number }}-1-point-change">gain 0</span> points if {{ question.outcome_1 }}.</p>
-            <p>You'll <span class="points" id="q{{ question.number }}-0-point-change">gain 0</span> points if {{ question.outcome_0 }}.</p>
+      {% if question.deadline > current_time %}
+        <div class="question">
+          <h4 class="question-text">{{ question.text }}</h4>
+          <p>Your prediction: <span class="prediction" id="q{{ loop.index }}-value">50%</span> chance that {{ question.outcome_1 }}</p>
+          <div class="row row{{ loop.index }}">
+            <div class="col-md-6 col1">
+              <input type="range" name="{{ question.name }}" min="0" max="100" class="slider" id="q{{ loop.index }}" oninput="updateLabels(this.value, 'q{{ loop.index }}-value', 'q{{ loop.index }}-0-points', 'q{{ loop.index }}-1-points')"
+              {% if predictions is defined and question.name in predictions %}
+                value = {{ predictions[question.name] }}
+              {% endif %}>
+            </div>
+            <div class="col-md-6 col2">
+              <p>You'll <span class="points" id="q{{ loop.index }}-1-points">gain 0</span> points if {{ question.outcome_1 }}.</p>
+              <p>You'll <span class="points" id="q{{ loop.index }}-0-points">gain 0</span> points if {{ question.outcome_0 }}.</p>
+            </div>
           </div>
         </div>
-      </div>
+      {% endif %}
     {% endfor %}
 
     {% if signed_in %}
       <div id="end-buttons">
-        <input type="submit" class="button" id="submit" value="Save your predictions"></button>
-        <button type ="button" class="button" id="sign-out" onclick ="signOut()">Sign out</button>
+        <input type="submit" class="end-button" id="submit" value="Save your predictions"></button>
+        <button type ="button" class="end-button" id="sign-out" onclick ="signOut()">Sign out</button>
       </div>
     {% endif %}
 

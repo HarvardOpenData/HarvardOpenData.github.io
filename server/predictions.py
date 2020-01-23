@@ -4,13 +4,13 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 import server.auth as auth
+from main import getYml, easternTime
 import datetime
 
-# Fill in as outcomes come in? Keys should be form fields, values should all be either 0 or 100
-realized_outcomes = {}
-
 def update_predictions(email, form, questions, db):
-    valid_form_names = [item["name"] for item in questions]
+    current_time = datetime.datetime.now(tz=easternTime())
+    # get a list of form fields we're still taking predictions for
+    valid_form_names = [item["name"] for item in questions if item["deadline"] > current_time]
     user_info_ref = db.collection("prediction_users").document(email)
     for field in form:
         if field in valid_form_names:
@@ -25,12 +25,12 @@ def calculate_points(prediction, outcome):
     Adjusted version of the Brier scoring function, as described at
     https://fivethirtyeight.com/features/how-to-play-our-nfl-predictions-game/
     """
-    diff = (prediction - outcome) / 100
+    diff = (prediction / 100) - outcome
     brier_score = diff ** 2
     adjusted_score = -(brier_score - 0.25) * 200
     return round(adjusted_score, 2)
 
-def update_user_score(email, db):
+def update_user_score(email, realized_outcomes, db):
     """ Update a single user's score """
     user_info_ref = db.collection("prediction_users").document(email)
     predictions_dict = auth.get_predictions_dict(email, db)
@@ -44,9 +44,11 @@ def update_user_score(email, db):
     })
 
 def update_all_scores(db):
-    """ Update all users' scores. """
+    """ Update all users' scores """
+    predictionYml = getYml("./data/predictions.yml")
+    realized_outcomes = {question["name"] : question["realized_outcome"] for question in predictionYml if question["realized_outcome"] is not None}
     prediction_users_ref = db.collection("prediction_users")
     user_docs = prediction_users_ref.stream()
     for user_doc in user_docs:
-        update_user_score(user_doc.id, db)
+        update_user_score(user_doc.id, realized_outcomes, db)
     print("all scores updated")

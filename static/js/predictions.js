@@ -1,31 +1,18 @@
-// Number of questions
-var numQuestions = 5;
-
-// Create and update labels for each question
-function createLabels(slider, forecastElement, outcomeZeroElement, outcomeOneElement) {
-
-    function updateLabels() {
-        // Display the current prediction
-        var prediction = parseInt(slider.value);
-        document.getElementById(forecastElement).innerHTML = prediction.toString() + "%";
-        // Calculate points for each outcome
-        var pointsIfOne = calculatePoints(prediction, 100);
-        var pointsIfZero = calculatePoints(prediction, 0);
-        document.getElementById(outcomeOneElement).innerHTML = getVerb(pointsIfOne) + Math.abs(pointsIfOne).toString();
-        document.getElementById(outcomeZeroElement).innerHTML = getVerb(pointsIfZero) + Math.abs(pointsIfZero).toString();
-    }
-
-    updateLabels();
-
-    slider.oninput = function() {
-        updateLabels();
-    }
-
+// Update labels for each question based on slider value
+function updateLabels(sliderValue, forecastElement, outcomeZeroElement, outcomeOneElement) {
+    // Display the current prediction
+    var prediction = parseInt(sliderValue);
+    document.getElementById(forecastElement).innerHTML = prediction.toString() + "%";
+    // Calculate points for each outcome
+    var pointsIfOne = calculatePoints(prediction, 1);
+    var pointsIfZero = calculatePoints(prediction, 0);
+    document.getElementById(outcomeOneElement).innerHTML = getVerb(pointsIfOne) + Math.abs(pointsIfOne).toString();
+    document.getElementById(outcomeZeroElement).innerHTML = getVerb(pointsIfZero) + Math.abs(pointsIfZero).toString();
 }
 
 // Run FiveThirtyEight's version of the Brier scoring function
 function calculatePoints(prediction, outcome) {
-    var diff = (prediction - outcome) / 100;
+    var diff = (prediction / 100) - outcome;
     var brierScore = Math.pow(diff, 2);
     var adjustedScore = -(brierScore - 0.25) * 200;
     return adjustedScore.toFixed(1);
@@ -39,13 +26,12 @@ function getVerb(points) {
     }
 }
 
-// Set up labels for each question
-for (i = 1; i < numQuestions + 1; i++) {
-    // Sorry this is super hacky
-    sliderID = "q" + i.toString() + "-slider"
-    forecastElement = "q" + i.toString() + "-slider-value";
-    outcomeZeroElement = "q" + i.toString() + "-0-point-change";
-    outcomeOneElement = "q" + i.toString() + "-1-point-change";
-    var slider = document.getElementById(sliderID)
-    createLabels(slider, forecastElement, outcomeZeroElement, outcomeOneElement)
+// Update labels showing slider value and points earned when the page is loaded
+var sliders = document.getElementsByClassName("slider")
+for (i = 0; i < sliders.length; i++) {
+    slider = sliders[i];
+    forecastElement = slider.id + "-value";
+    outcomeZeroElement = slider.id + "-0-points";
+    outcomeOneElement = slider.id + "-1-points";
+    updateLabels(slider.value, forecastElement, outcomeZeroElement, outcomeOneElement);
 }

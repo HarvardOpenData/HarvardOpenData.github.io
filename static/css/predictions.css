@@ -58,7 +58,7 @@ h1 {
     cursor: pointer;
 }
 
-.button {
+.end-button {
     background-color: white;
     color: black;
     border: 2px solid #555555;
@@ -69,7 +69,7 @@ h1 {
     display: inline-block;
 }
 
-.button:hover {
+.end-button:hover {
     background-color: #d3d3d3;
 }
 

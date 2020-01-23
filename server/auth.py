@@ -137,7 +137,7 @@ def get_responses_dict(userEmail : str, db : firestore.firestore.Client):
 def get_predictions_dict(userEmail : str, db : firestore.firestore.Client):
     predictions_ref = db.collection("prediction_users").document(userEmail).collection("predictions")
     docs = predictions_ref.stream()
-    docs_dict = {doc.id:int(doc.to_dict()["guess"]) for doc in docs}
+    docs_dict = {doc.id : int(doc.to_dict()["guess"]) for doc in docs}
     return docs_dict
 
 mock_survey_client = None
