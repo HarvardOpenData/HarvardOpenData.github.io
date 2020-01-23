@@ -3,7 +3,7 @@ import yaml
 import server.constants as constants
 import server.auth as auth
 from server.members import Member, MembersCache, add_members_to_firestore
-from server.api import get_tasks
+from server.asana_ import get_tasks, TasksCache
 import json
 import os
 import server.demographics
@@ -43,6 +43,7 @@ auth.init_survey_firebase()
 auth.init_website_firebase()
 
 members_cache = MembersCache()
+tasks_cache = TasksCache()
 peopleYml = getYml("./data/people.yml")
 add_members_to_firestore(auth.get_website_firestore_client(), peopleYml)
 members_cache.populate(auth.get_website_firestore_client(), peopleYml)
@@ -337,10 +338,12 @@ def signin(request_url):
 
 @app.route('/tasks')
 def tasks():
-    tasks = get_tasks()
-    sections = { key: list(subset) for key, subset in itertools.groupby(tasks, lambda task: task.section) }
- 
-    return render_template('tasks.html', page=pageData['tasks'], site=site, sections=sections.items())
+    if request.method == 'GET':
+        sections = tasks_cache.get()
+        return render_template('tasks.html', page=pageData['tasks'], site=site, sections=sections.items())
+    elif request.method == 'POST':
+        sections = tasks_cache.populate()
+        redirect('/tasks')
 
 @app.route("/<request_url>/")
 def link(request_url):

@@ -1,6 +1,9 @@
 import os
+from itertools import groupby
 from functools import reduce, partial
 from collections import namedtuple
+from threading import Lock
+from typing import Dict, List
 
 import asana
 
@@ -9,6 +12,37 @@ PROJECT_ID = '1140949342574617'
 
 Task = namedtuple('Task', ['gid', 'name', 'assignee', 'notes', 'section', 'completed',
                            'category', 'difficulty', 'due', 'tags', 'url'])
+
+
+class TasksCache():
+    def __init__(self):
+        self._lock = Lock()
+        self._sections = []
+
+    def populate(self):
+        """Refreshes the cache"""
+        tasks = get_tasks()
+        grouped_by_section = groupby(tasks, lambda task: task.section)
+        print("all sections created")
+
+        with self._lock:
+            self._sections = {key: list(section)
+                              for key, section in grouped_by_section}
+        print("cache fully populated")
+
+    def get(self) -> Dict[str, List[Task]]:
+        """Returns current contents from the cache"""
+        # Force refresh if cache is empty
+        self._lock.acquire()
+        if not self._sections:
+            self._lock.release()
+            self.populate()
+        else:
+            self._lock.release()
+
+        with self._lock:
+            sections = self._sections
+        return sections
 
 
 def create_task(record) -> Task:
@@ -32,6 +66,7 @@ def create_task(record) -> Task:
         return reduce(lambda record, field: parse_resource(field, record), resource_list, initial)
 
     gid = record['gid']
+    url = f'https://app.asana.com/0/{PROJECT_ID}/{gid}'
 
     assignee_option = record['assignee']
     assignee = '' if not assignee_option else assignee_option['name']
@@ -43,9 +78,6 @@ def create_task(record) -> Task:
     category = custom_fields['category']
 
     tags = [field['name'] for field in record['tags']]
-
-    url = 'https://app.asana.com/0/{project_id}/{task_id}'.format(
-        project_id=PROJECT_ID, task_id=gid)
 
     return Task(gid=gid,
                 name=record['name'],
@@ -61,11 +93,12 @@ def create_task(record) -> Task:
 
 
 client = asana.Client.access_token(SECRET)
+client.options['fields'] = ['name', 'assignee.name', 'notes', 'completed',
+                            'memberships.section.(name|value)', 'custom_fields.(type|enum_value|name)',
+                            'tags.name', 'due_on']
 
 
 def get_tasks():
-    tasks = list(client.tasks.find_by_project(PROJECT_ID))
-    tasks = [client.tasks.find_by_id(task['gid']) for task in tasks]
-    tasks = [create_task(client.tasks.find_by_id(task['gid']))
-             for task in tasks]
+    tasks = list(client.tasks.find_by_project(PROJECT_ID),)
+    tasks = [create_task(task) for task in tasks]
     return tasks
