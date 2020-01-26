@@ -41,6 +41,7 @@
               <p>You'll <span class="points" id="q{{ loop.index }}-0-points">gain 0</span> points if {{ question.outcome_0 }}.</p>
             </div>
           </div>
+          <p class="question-deadline">You can change your prediction until {{ to_display_str(to_datetime(question.deadline)) }}.</p>
         </div>
       {% endif %}
     {% endfor %}

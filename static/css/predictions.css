@@ -58,6 +58,10 @@ h1 {
     cursor: pointer;
 }
 
+.question-deadline {
+    margin-top: 2rem;
+}
+
 .end-button {
     background-color: white;
     color: black;
