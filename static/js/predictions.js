@@ -53,7 +53,7 @@ for (i = 0; i < collapsibleButtons.length; i++) {
 
 var committedPredictions = document.getElementsByClassName("past-deadline")
 if (committedPredictions.length == 0) {
-    document.getElementById("prediction-reports").innerHTML = "<p>Nothing yet. Past predictions will show up here when their deadlines pass.</p>"
+    document.getElementById("prediction-reports").innerHTML = "<p>Nothing yet. Past predictions will show up here when their deadlines pass, but the outcomes haven't been observed.</p>"
 }
 
 var crystallizedPredictions = document.getElementsByClassName("realized")

@@ -47,7 +47,7 @@
     {% endfor %}
 
     {% if predictions != {} %}
-    ` <button type="button" class="collapsible" id="committed">Committed predictions</button>
+    ` <button type="button" class="collapsible" id="committed">Past predictions</button>
       <div class="content" id="prediction-reports">
         {% for question in questions %}
           {% if to_datetime(question.deadline) <= current_time and question.name in predictions and question.realized_outcome is none %}
@@ -65,7 +65,7 @@
         {% endfor %}
       </div>
 
-      <button type="button" class="collapsible" id="crystallized">Crystallized predictions</button>
+      <button type="button" class="collapsible" id="crystallized">Your results</button>
       <div class="content" id="prediction-results">
         {% for question in questions %}
           {% if question.name in predictions and question.realized_outcome is not none %}
