@@ -4,21 +4,25 @@
   outcome_1: "the team makes the NCAA tournament"
   deadline: "02/10/2020 23:59:59 -0500"
   realized_outcome:
+  realized_outcome_text:
 - text: "Will Ec 10b be the largest course at Harvard this semester?"
   name: "largest-course"
   outcome_0: "Ec 10b is not the largest course"
   outcome_1: "Ec 10b is the largest course"
   deadline: "01/31/2020 23:59:59 -0500"
   realized_outcome:
+  realized_outcome_text:
 - text: "Will Harvard divest from fossil fuels by the end of the semester?"
   name: "divestment"
   outcome_0: "Harvard doesn't divest"
   outcome_1: "Harvard divests"
-  deadline: "02/10/2020 23:59:59 -0500"
-  realized_outcome:
+  deadline: "01/10/2020 23:59:59 -0500"
+  realized_outcome: 1
+  realized_outcome_text: "Harvard did divest from fossil fuels"
 - text: "Will the Harvard Graduate Students Union reach a contract agreement by the end of the semester?"
   name: "hgsu-agreement"
   outcome_0: "an agreement is not reached"
   outcome_1: "an agreement is reached"
   deadline: "01/10/2020 23:59:59 -0500"
-  realized_outcome:
+  realized_outcome: 1
+  realized_outcome_text: "the HGSU did reach an agreement"

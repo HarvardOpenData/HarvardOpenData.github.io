@@ -58,10 +58,6 @@ h1 {
     cursor: pointer;
 }
 
-.question-deadline {
-    margin-top: 2rem;
-}
-
 .end-button {
     background-color: white;
     color: black;
@@ -79,6 +75,7 @@ h1 {
 
 #end-buttons {
     text-align: center;
+    margin-top: 2rem;
 }
 
 .question .col2 p {
@@ -95,4 +92,42 @@ h1 {
 
 #submission {
     text-align: center
+}
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  margin-top: 2rem;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
 }

@@ -35,3 +35,21 @@ for (i = 0; i < sliders.length; i++) {
     outcomeOneElement = slider.id + "-1-points";
     updateLabels(slider.value, forecastElement, outcomeZeroElement, outcomeOneElement);
 }
+
+// Set up collapsible section for crystallized predictions
+var collapsibleButton = document.getElementById("crystallized");
+
+collapsibleButton.addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+});
+
+var crystallizedPredictions = document.getElementsByClassName("past-deadline")
+if (crystallizedPredictions.length == 0) {
+    document.getElementById("prediction-results").innerHTML = "<p>Nothing yet. Results will show up here when you make a prediction and the outcome is observed!</p>"
+}

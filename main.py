@@ -187,7 +187,8 @@ def predictions():
                                     signed_in=False,
                                     current_time=current_time,
                                     to_datetime=yml_str_to_datetime,
-                                    to_display_str=datetime_to_display_str)
+                                    to_display_str=datetime_to_display_str,
+                                    get_points=server.predictions.calculate_points)
         predictionsDict = auth.get_predictions_dict(userEmail, db)
         return render_template("webapps/predictions.html",
                                 site=site,
@@ -199,7 +200,8 @@ def predictions():
                                 signed_in=True,
                                 current_time=current_time,
                                 to_datetime=yml_str_to_datetime,
-                                to_display_str=datetime_to_display_str)
+                                to_display_str=datetime_to_display_str,
+                                get_points=server.predictions.calculate_points)
     else:
         userEmail = request.cookies[email_cookie_key]
         userId = request.cookies[id_cookie_key]
@@ -217,7 +219,8 @@ def predictions():
                                     signed_in=True,
                                     current_time=current_time,
                                     to_datetime=yml_str_to_datetime,
-                                    to_display_str=datetime_to_display_str)
+                                    to_display_str=datetime_to_display_str,
+                                    get_points=server.predictions.calculate_points)
         else:
             # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")
