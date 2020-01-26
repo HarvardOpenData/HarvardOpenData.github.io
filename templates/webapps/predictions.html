@@ -25,7 +25,7 @@
   <form method = "POST">
 
     {% for question in questions %}
-      {% if question.deadline > current_time %}
+      {% if to_datetime(question.deadline) > current_time %}
         <div class="question">
           <h4 class="question-text">{{ question.text }}</h4>
           <p>Your prediction: <span class="prediction" id="q{{ loop.index }}-value">50%</span> chance that {{ question.outcome_1 }}</p>

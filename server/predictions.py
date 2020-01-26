@@ -15,10 +15,14 @@ def easternTime():
     """ Returns a timezone object representing EST """
     return datetime.timezone(-datetime.timedelta(hours=5))
 
+def yml_str_to_datetime(str):
+    """ Converts the deadlines in the predictions.yml file to tz-aware datetime objects """
+    return datetime.datetime.strptime(str, "%m/%d/%Y %H:%M:%S %z")
+
 def update_predictions(email, form, questions, db):
     current_time = datetime.datetime.now(tz=easternTime())
     # get a list of form fields we're still taking predictions for
-    valid_form_names = [item["name"] for item in questions if item["deadline"] > current_time]
+    valid_form_names = [item["name"] for item in questions if yml_str_to_datetime(item["deadline"]) > current_time]
     user_info_ref = db.collection("prediction_users").document(email)
     for field in form:
         if field in valid_form_names:

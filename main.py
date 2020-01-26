@@ -39,6 +39,10 @@ def easternTime():
     """ Returns a timezone object representing EST """
     return datetime.timezone(-datetime.timedelta(hours=5))
 
+def yml_str_to_datetime(str):
+    """ Converts the deadlines in the predictions.yml file to tz-aware datetime objects """
+    return datetime.datetime.strptime(str, "%m/%d/%Y %H:%M:%S %z")
+
 
 site = siteConstants()
 pageData = getYml('./data/pageData.yml')
@@ -179,7 +183,8 @@ def predictions():
                                     CLIENT_ID=constants.get_google_client_id(),
                                     responded=False,
                                     signed_in=False,
-                                    current_time=current_time)
+                                    current_time=current_time,
+                                    to_datetime=yml_str_to_datetime)
         predictionsDict = auth.get_predictions_dict(userEmail, db)
         return render_template("webapps/predictions.html",
                                 site=site,
@@ -189,7 +194,8 @@ def predictions():
                                 CLIENT_ID=constants.get_google_client_id(),
                                 responded=False,
                                 signed_in=True,
-                                current_time=current_time)
+                                current_time=current_time,
+                                to_datetime=yml_str_to_datetime)
     else:
         userEmail = request.cookies[email_cookie_key]
         userId = request.cookies[id_cookie_key]
@@ -205,7 +211,8 @@ def predictions():
                                     CLIENT_ID=constants.get_google_client_id(),
                                     responded=True,
                                     signed_in=True,
-                                    current_time=current_time)
+                                    current_time=current_time,
+                                    to_datetime=yml_str_to_datetime)
         else:
             # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")
