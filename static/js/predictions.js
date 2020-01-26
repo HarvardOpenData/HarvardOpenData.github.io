@@ -36,20 +36,27 @@ for (i = 0; i < sliders.length; i++) {
     updateLabels(slider.value, forecastElement, outcomeZeroElement, outcomeOneElement);
 }
 
-// Set up collapsible section for crystallized predictions
-var collapsibleButton = document.getElementById("crystallized");
+// Set up collapsible sections
+var collapsibleButtons = document.getElementsByClassName("collapsible");
 
-collapsibleButton.addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-});
+for (i = 0; i < collapsibleButtons.length; i++) {
+    collapsibleButtons[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+    });
+}
 
-var crystallizedPredictions = document.getElementsByClassName("past-deadline")
+var committedPredictions = document.getElementsByClassName("past-deadline")
+if (committedPredictions.length == 0) {
+    document.getElementById("prediction-reports").innerHTML = "<p>Nothing yet. Past predictions will show up here when their deadlines pass.</p>"
+}
+
+var crystallizedPredictions = document.getElementsByClassName("realized")
 if (crystallizedPredictions.length == 0) {
     document.getElementById("prediction-results").innerHTML = "<p>Nothing yet. Results will show up here when you make a prediction and the outcome is observed!</p>"
 }

@@ -47,17 +47,41 @@
     {% endfor %}
 
     {% if predictions != {} %}
-    <button type="button" class="collapsible" id="crystallized">Crystallized predictions</button>
-    <div class="content" id="prediction-results">
-      {% for question in questions %}
-        {% if to_datetime(question.deadline) <= current_time and question.name in predictions and question.realized_outcome is not none %}
-          <div class="past-deadline">
-            <h4 class="question-text">{{ question.text }}</h4>
-            <p class="prediction-result">Result: {{ question.realized_outcome_text }}. You predicted a {{ predictions[question.name] }}% probability that {{ question.outcome_1 }}, which earned you {{ get_points(predictions[question.name], question.realized_outcome) }} points.</p>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
+    ` <button type="button" class="collapsible" id="committed">Committed predictions</button>
+      <div class="content" id="prediction-reports">
+        {% for question in questions %}
+          {% if to_datetime(question.deadline) <= current_time and question.name in predictions and question.realized_outcome is none %}
+            <div class="past-deadline">
+              <h4 class="question-text">{{ question.text }}</h4>
+              <p class="prediction-result">You predicted
+              {% if predictions[question.name] == 8 or (predictions[question.name] >= 80 and predictions[question.name] <= 89) %}
+                an
+              {% else %}
+                a
+              {% endif %}
+              {{ predictions[question.name] }}% probability that {{ question.outcome_1 }}. Check back later to see the outcome!</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <button type="button" class="collapsible" id="crystallized">Crystallized predictions</button>
+      <div class="content" id="prediction-results">
+        {% for question in questions %}
+          {% if question.name in predictions and question.realized_outcome is not none %}
+            <div class="realized">
+              <h4 class="question-text">{{ question.text }}</h4>
+              <p class="prediction-result">Result: {{ question.realized_outcome_text }}. You predicted
+              {% if predictions[question.name] == 8 or (predictions[question.name] >= 80 and predictions[question.name] <= 89) %}
+                an
+              {% else %}
+                a
+              {% endif %}
+              {{ predictions[question.name] }}% probability that {{ question.outcome_1 }}, which earned you {{ get_points(predictions[question.name], question.realized_outcome) }} points.</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
     {% endif %}
 
     {% if signed_in %}
