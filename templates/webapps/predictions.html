@@ -17,6 +17,9 @@
     {% if not signed_in %}
       <p><a href="/auth/predictions">Sign in</a> to play!</p>
     {% endif %}
+    {% if user_score is not none %}
+      <p>Your current score: <b>{{ user_score }}</b></p>
+    {% endif %}
     {% if responded %}
       <h5>Your predictions have been saved!</h5>
     {% endif %}
@@ -47,7 +50,7 @@
     {% endfor %}
 
     {% if predictions != {} %}
-    ` <button type="button" class="collapsible" id="committed">Past predictions</button>
+      <button type="button" class="collapsible" id="committed">Past predictions</button>
       <div class="content" id="prediction-reports">
         {% for question in questions %}
           {% if to_datetime(question.deadline) <= current_time and question.name in predictions and question.realized_outcome is none %}

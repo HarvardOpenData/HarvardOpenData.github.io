@@ -5,6 +5,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import server.auth as auth
 import datetime
+import yaml
 
 def getYml(filepath):
     with open(filepath, encoding='utf-8') as infile:
@@ -47,7 +48,7 @@ def update_user_score(email, realized_outcomes, db):
     user_info_ref = db.collection("prediction_users").document(email)
     predictions_dict = auth.get_predictions_dict(email, db)
     score = 0
-    for question, outcome in realized_outcomes:
+    for question, outcome in realized_outcomes.items():
         if question in predictions_dict:
             prediction = predictions_dict[question]
             score += calculate_points(prediction, outcome)
@@ -64,3 +65,11 @@ def update_all_scores(db):
     for user_doc in user_docs:
         update_user_score(user_doc.id, realized_outcomes, db)
     print("all scores updated")
+
+def get_user_score(email, db):
+    """ Retrieve a user's score """
+    user_info = db.collection("prediction_users").document(email).get().to_dict()
+    if "current_score" in user_info:
+        return user_info["current_score"]
+    else:
+        return None

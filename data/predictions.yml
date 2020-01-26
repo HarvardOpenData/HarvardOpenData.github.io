@@ -17,8 +17,8 @@
   outcome_0: "Harvard doesn't divest"
   outcome_1: "Harvard divests"
   deadline: "01/10/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
+  realized_outcome: 1
+  realized_outcome_text: "Harvard did divest"
 - text: "Will the Harvard Graduate Students Union reach a contract agreement by the end of the semester?"
   name: "hgsu-agreement"
   outcome_0: "an agreement is not reached"
