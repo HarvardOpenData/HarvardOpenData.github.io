@@ -11,6 +11,9 @@ main:
     -   name: Blog
         url: https://medium.com/harvard-open-data-project
         newtab: 1
+    -   name: Wiki
+        url: http://wiki.hodp.org
+        newtab: 0
     -   name: Calendar
         url: /calendar/
         newtab: 0
@@ -21,6 +24,9 @@ main:
             -   /surveygroup/
             -   /bootcamp/
         subpages:
+            -   name: Projects
+                url: /projects/
+                newtab: 1
             -   name: Survey Group
                 url: /surveygroup/
                 newtab: 0
@@ -33,11 +39,6 @@ main:
             -   name: Mailing List
                 url: https://groups.google.com/forum/#!forum/harvard-open-data
                 newtab: 1
-
-    -   name: Projects
-        url: /projects/
-        newtab: 1
     -   name: Sponsors
         url: /sponsors/
         newtab: 0
-        
