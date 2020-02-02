@@ -5,6 +5,7 @@ from functools import reduce, partial
 from collections import namedtuple
 from threading import Lock
 from typing import Dict, List
+from server.auth import is_mock
 
 import asana
 
@@ -14,6 +15,8 @@ def auth(filename='asana_creds.json'):
         with open(filename, 'r') as fp:
             data = json.load(fp)
             return data['secret']
+    elif is_mock():
+        return None
     else:
         raise FileNotFoundError(f"{filename} could not be found!")
 
@@ -109,6 +112,8 @@ client.options['fields'] = ['name', 'assignee.name', 'notes', 'completed',
 
 
 def get_tasks():
+    if SECRET is None:
+        return []
     tasks = list(client.tasks.find_by_project(PROJECT_ID),)
     tasks = [create_task(task) for task in tasks]
     return tasks
