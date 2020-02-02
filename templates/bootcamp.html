@@ -3,7 +3,7 @@
 {% block content %}
   <div class="container">
       <h2 style="margin-top: 0.2em;">
-          Fall 2019 Bootcamp
+          Spring 2019 Bootcamp
       </h2>
 
       <h4>
@@ -12,7 +12,7 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">Date</th>
             <th scope="col">Topic</th>
             <th scope="col">Instructor(s)</th>
             <th scope="col">Document</th>
@@ -29,7 +29,7 @@
                   <td>TBD</td>
                 {% endif %}
                 {% if session.document != null %}
-                  <td><a target="_blank" href={{session.document}}>Week {{session.number}}</a></td>
+                  <td><a target="_blank" href={{session.document}}>Bootcamp {{session.number}}</a></td>
                 {% endif %}
                 {% if session.repository == null %}
                   <td>TBD</td>
