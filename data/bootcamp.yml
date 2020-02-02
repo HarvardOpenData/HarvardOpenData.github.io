@@ -1,33 +1,26 @@
 - name: Intro + Installation
   teachers: Kevin Bi
-  document: TBD
+  document: https://docs.google.com/presentation/d/1msGwqdzmufFwE7_3fwf807AbDv6ZDZ5Ao0Apqhl38U0
   number: 2/12
 - name: Numpy & Pandas
   teachers: Sahana Srinivasan
-  document: https://docs.google.com/document/d/13l7RzF4g7BhA0JCa8QdEyz7lmZHJc3OHm6kixwbfgTI/edit?usp=sharing
   repository: https://github.com/HarvardOpenData/numpy-pandas-bootcamp
   number: 2/19
 - name: Scraping
   teachers: Ashley Wong
-  document: https://docs.google.com/document/d/1Rp95PDhdAfmxfbiv8xOxPiErVAhUgd3tQh_VWVCmfGs/edit?usp=sharing
   repository: https://github.com/HarvardOpenData/Bootcamp-Scraping
   number: 2/26
-- name: Datathon
-  teachers: Ashley Wong
-  document: https://docs.google.com/document/d/1Rp95PDhdAfmxfbiv8xOxPiErVAhUgd3tQh_VWVCmfGs/edit?usp=sharing
-  repository: https://github.com/HarvardOpenData/Bootcamp-Scraping
-  number: 2/29
 - name: Statistics & Data Journalism
   teachers: Leo Saenger
   repository: https://github.com/HarvardOpenData/Bootcamp-Statistics
-  document: https://docs.google.com/document/d/1bnEt9IytjKAAhLbNL6UY2A5oevGsabKWn9xpq2TvxC0/edit?usp=sharing
   number: 3/4
+- name: Datathon
+  teachers: HODP Board
+  number: 3/8
 - name: Speaker
   teachers: TBD
-  document: TBD
   repository: N/A
   number: 3/24
 - name: Project Showcase!
   teachers: HODP Returners
-  document: TBD
   number: 4/14
