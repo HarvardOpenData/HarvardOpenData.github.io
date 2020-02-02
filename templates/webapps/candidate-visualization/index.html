@@ -2,7 +2,7 @@
 
 {% block content %}
 <div id="candidateviz" style=" text-align: center; ">
-    <h2 class="container" style="text-align: left !important;">Candidate Visualization</h2>
+    <h2 class="container" style="text-align: left !important;">Democratic Primary Candidate Visualization</h2>
     <h6 class="container" style="text-align: left !important;">BUILT BY JOHN TUCKER</h6>
     <div class="container" style="text-align: left !important; margin-bottom: 2em;">
         This web app depicts the relationship between between which presidential candidates Harvard College students support, the political issues students care most about, and which issues candidates spend the most time talking about. The stacked bar chart on the left displays the proportion of students that would rank a given candidate as their first choice. The comparative bar chart on the right compares the amount of time candidates spend talking about certain political issues on their social media with which political issues Harvard College students care about most.
@@ -16,7 +16,7 @@
                 <canvas id="canvas"></canvas>
                 <div>
                     Select the Candidate to Compare:
-                    <select id="mySelect">
+                    <select id="mySelect" onchange="updateChart()">
                         <option value="Elizabeth Warren">Elizabeth Warren</option>
                         <option value="Joe Biden">Joe Biden</option>
                         <option value="Bernie Sanders">Bernie Sanders</option>
@@ -27,7 +27,6 @@
                         <option value="Julián Castro">Julián Castro</option>
                         <option value="Corey Booker">Corey Booker</option>
                     </select>
-                    <button id="comparecandidates" type="button" class="btn btn-primary" onclick="updateChart()">Compare</button>
                 </div>
             </div>
         </div>
