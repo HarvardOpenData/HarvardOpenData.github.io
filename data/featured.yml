@@ -1,15 +1,15 @@
-- name: Harvard students sharply divided on Crimson-ICE controversy
-  tags: Campus Controversy
-  authors: Kevin Bi, Lucy Li, and Leo Saenger
-  imgsrc: https://miro.medium.com/max/8544/1*JS0vxhal5H6uvlMscBgCPw.jpeg
-  url: https://medium.com/harvard-open-data-project/poll-harvard-students-sharply-divided-on-crimson-ice-controversy-a67161e84bb9
-- name: How do Harvard students feel about the 2020 election?
-  tags: Politics
-  authors: Lucy Li, Jenny Gu, and Kevin Bi
-  imgsrc: https://miro.medium.com/max/2048/0*5x7XqoZNSSWT8PnU.jpg
-  url: https://medium.com/harvard-open-data-project/how-do-harvard-students-feel-about-the-2020-election-adaf0129212b
-- name: How Do Students Form Groups?
-  tags: Residential Life
-  authors: Adiya Abdilkhay, Alistair Gluck, April Chen, Christopher Milne, Dasha Metropolitansky, Ilkin Bayramli, Niel Schrage, and Stephanie Yao
-  imgsrc: /static/img/featured/housing-prefs-2019.jpeg
-  url: https://medium.com/harvard-open-data-project/harvard-housing-part-2-how-do-students-form-groups-a4c95cdf97a6
+- name: How safe are you at Harvard?
+  tags: Safety
+  authors: Alex Cheng, Kevin Huang, and Ethan Lee
+  imgsrc: https://miro.medium.com/max/10000/1*KC_X67E2C6Xzb4NP6UiWoQ.jpeg
+  url: https://medium.com/harvard-open-data-project/how-safe-are-you-at-harvard-f9a225538689
+- name: Measuring Gratitude in Harvard’s Dining Halls
+  tags: HUDS
+  authors: Gabe Cederberg
+  imgsrc: https://miro.medium.com/max/10000/1*97gGM9i-OrC66qemXUrrqg.jpeg
+  url: https://medium.com/harvard-open-data-project/measuring-gratitude-in-harvards-dining-halls-f05698c18bc7
+- name: What affects UC voter turnout at Harvard?
+  tags: Undergraduate Council
+  authors: Henry Austin, Charles Onesti, Kelsey Wu, and Amy Zhou
+  imgsrc: https://miro.medium.com/max/10000/1*i9QYSVs-g-wFKROMBerQig.jpeg
+  url: https://medium.com/harvard-open-data-project/what-affects-uc-voter-turnout-at-harvard-6469eedebee1

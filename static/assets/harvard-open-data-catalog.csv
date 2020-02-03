@@ -43,3 +43,4 @@ HUDS Menu,Web app for viewing historical and upcoming HUDS menu info,"HUDS, camp
 Study Abroad,Visualization of the Harvard Study abroad program,"Study Abroad, campus",,Open Data Project,,,/visual/studyabroad,,,,Web-App,,student-life,
 Scoreboard,Summary of the performance of different Harvard sports teams over the past few seasons,"Scoreboard, campus, athletics, sports",,Open Data Project,,,/visual/scoreboard,,,,Web-App,,student-life,
 Finals Scheduler,A webapp to help you schedule your finals and plan for the flight home,Academics,,Open Data Project,,,/webapp/finals,,,,Web-App,,academics,
+Candidate Issues Visualization,Comparing Harvard student priorities with those of Democratic candidates,"2020, election, campus, issues, candidates",,Open Data Project,,,/visual/candidate-visualization,,,,Visualization,,student-life
