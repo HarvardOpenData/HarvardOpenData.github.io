@@ -30,6 +30,9 @@ main:
             -   name: Datathon
                 url: /datathon/
                 newtab: 0
+            -   name: Predictions
+                url: /predictions/
+                newtab: 0
             -   name: Mailing List
                 url: https://groups.google.com/forum/#!forum/harvard-open-data
                 newtab: 1
@@ -40,4 +43,4 @@ main:
     -   name: Sponsors
         url: /sponsors/
         newtab: 0
-        
+
