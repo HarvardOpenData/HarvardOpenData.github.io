@@ -1,4 +1,4 @@
-main:
+
     -   name: Home
         url: /
         newtab: 0

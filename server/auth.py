@@ -13,10 +13,14 @@ from mockfirestore import *
 import hashlib
 import datetime
 
-# returns the MD5 hash of the user's email.
-# used for the ID of the responses doc
+def md5_hash(s):
+    return hashlib.md5(s).hexdigest()
+
+# This is stupid and done for legacy reasons.
+# Someone should fix this shit at some point.
 def email_hash(email):
-    return hashlib.md5(email.encode()).hexdigest()
+    return md5_hash(s)
+
 
 def is_mock():
     return os.getenv("MOCK_FIRESTORE") == "TRUE"
