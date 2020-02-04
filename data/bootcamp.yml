@@ -1,8 +1,7 @@
-- name: Intro + Installation
+- name: Installation + Project Brainstorming
   teachers: Kevin Bi
-  document: https://docs.google.com/presentation/d/1msGwqdzmufFwE7_3fwf807AbDv6ZDZ5Ao0Apqhl38U0
   number: 2/12
-- name: Numpy & Pandas
+- name: NumPy & Pandas
   teachers: Sahana Srinivasan
   repository: https://github.com/HarvardOpenData/numpy-pandas-bootcamp
   number: 2/19
