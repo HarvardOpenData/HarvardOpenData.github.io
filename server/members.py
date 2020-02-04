@@ -1,11 +1,11 @@
 import sys
 sys.path.append("../")
-from typing import List, Dict
+from typing import List, Dict, Type, TypeVar
 import json
 from firebase_admin import firestore, storage
-import server.auth as auth
-from server.auth import *
 from threading import Lock
+
+MemberType = TypeVar('MemberType', bound='Member')
 
 class Member:
     def __init__(self, email : str, init_dict : dict = {}):
@@ -66,6 +66,32 @@ class Member:
             "img_url" : self.img_url
         }
         member_ref.update(update_dict)
+    
+    @classmethod
+    def get_member(cls : Type[MemberType], userEmail : str, userId : str, db : firestore.firestore.Client, readonly = False) -> MemberType:
+        members_ref : firestore.firestore.DocumentReference = db.collection("members").document(userEmail)
+        member_snapshot : firestore.firestore.DocumentSnapshot = members_ref.get()
+        if not member_snapshot.exists:
+            if not readonly:
+                raise Exception("Email does not belong to HODP member")
+            else:
+                return None
+
+        member_email = members_ref.id
+        member_dict = member_snapshot.to_dict()
+
+        member = cls(member_email, member_dict)
+        
+        if not readonly:
+            if member.id is None:
+                member.id = userId
+                members_ref.update({
+                    "id" : member.id
+                })
+            elif member.id != userId:
+                raise Exception("id in databasae does not match current id")
+
+        return member
 
 # used to cache members from firebase so we can make fewer calls and speed things up
 class MembersCache():
@@ -81,7 +107,7 @@ class MembersCache():
         members = []
         for person in peopleYml["people"]:
             if "email" in person:
-                member = auth.get_member(person["email"], None, db, True)
+                member = Member.get_member(person["email"], None, db, True)
                 if member is not None:
                     member.merge_people_dict(person)
                     members.append(member)
@@ -106,7 +132,8 @@ class MembersCache():
         self.lock.release()
         return members
 
-    
+
+
 def add_members_to_firestore(db : firestore.firestore.Client, peopleYml : List[dict]):
     members_ref = db.collection("members")
     people = peopleYml["people"]

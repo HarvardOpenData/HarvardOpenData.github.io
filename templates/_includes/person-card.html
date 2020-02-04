@@ -22,7 +22,9 @@
         <h6 style="margin: 0em 0em 0em 0em;">{{ role.title.upper() }}</h6>
       {% endif %}
       <h4 class="media-heading" style="margin-top: 0em;">{{ member.full_name }}</h4>
-      {{ member.description }}
+      {% if member.description %}
+        {{ member.description }}
+      {% endif %}
     </div>
   </div>
 </div>

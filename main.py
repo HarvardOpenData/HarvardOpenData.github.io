@@ -146,10 +146,14 @@ def scoreboard():
 
 @app.route('/visual/hudsmenu')
 def hudsmenu():
-    return render_template('webapps/hudsmenu.html', site=site, page=pageData["hudsmenu"][0])
+    return render_template('webapps/hudsmenu.html', site=site, page=pageData['hudsmenu'][0])
+
+@app.route('/visual/candidate-visualization')
+def candidateviz():
+    return render_template('webapps/candidate-visualization/index.html', site=site, page=pageData['candidateviz'][0])
+
 
 @app.route("/surveygroup/", methods=['GET', 'POST'])
-
 @app.route('/demographics/', methods=['GET', 'POST'])
 def demographics():
     userEmail = None
@@ -198,7 +202,7 @@ def profile():
     if not auth.is_authenticated(userEmail, userId, members_ref):
         return redirect("/auth/profile/")
 
-    member = auth.get_member(userEmail, userId, db)
+    member = Member.get_member(userEmail, userId, db)
     peopleYml = getYml('./data/people.yml')
     if request.method == "GET":
         people: list = peopleYml["people"]
@@ -319,7 +323,7 @@ def signin(request_url):
                 email_cookie_key = get_email_cookie_key("profile")
                 id_cookie_key = get_id_cookie_key("profile")
                 db = auth.get_website_firestore_client()
-                auth.get_member(userEmail, userId, db)
+                Member.get_member(userEmail, userId, db)
             # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
             response.set_cookie(email_cookie_key, userEmail)

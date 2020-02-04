@@ -199,6 +199,15 @@
   tags:
     - health-services
     - fee
+- name: Harvard Students Opinions on 2020 Election Issues
+  description: |
+    A visualization of 2020 presidential candidates and how their priorities align with those of Harvard students.
+  category: politics
+  type: graph
+  updated: 1/31/2020
+  tags:
+    - politics
+    - 2020
 
 ### STILL LEFT TO CATALOG
 # https://oir.harvard.edu/fact-book/degrees-awarded-summary
