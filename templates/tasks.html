@@ -6,19 +6,18 @@
   <div style='padding: 2%;'>
     <h3>Current Projects</h3>
     <p>Read about our members' current projects!</p>
-    <form action='/projects/' method='POST'>
-      <button class="btn-primary" style='border-radius: 3px;'>Refresh list</button>
-    </form>
   </div>
 
   <div class='task-list' style='padding: 2%;'>
     <ul class="list-group">
     {% for key, tasks in sections %}
       <li class="list-group-item">
-        <h4 data-toggle="collapse" data-target={{ "#" + key }} aria-expanded="false" aria-controls={{ key }}>
-          {{ key }}
-          <i class="fa fa-caret-down" aria-hidden="true"></i>
-        </h4>
+        <a href = "#" class = "collapse-toggle">
+          <h4 data-toggle="collapse" data-target={{ "#" + key }} aria-expanded="false" aria-controls={{ key }}>
+            {{ key }}
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </h4>
+        </a>
         <div class='collapse' id={{ key }}>
           <ul class="list-group">
             {% for task in tasks %} 

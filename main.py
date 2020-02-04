@@ -44,6 +44,7 @@ auth.init_website_firebase()
 
 members_cache = MembersCache()
 tasks_cache = TasksCache()
+tasks_cache.populate()
 peopleYml = getYml("./data/people.yml")
 add_members_to_firestore(auth.get_website_firestore_client(), peopleYml)
 members_cache.populate(auth.get_website_firestore_client(), peopleYml)
@@ -336,10 +337,13 @@ def signin(request_url):
 def tasks():
     if request.method == 'GET':
         sections = tasks_cache.get()
-        return render_template('tasks.html', page=pageData['tasks'], site=site, sections=sections.items())
+        return render_template('tasks.html', page=pageData['tasks'][0], site=site, sections=sections.items())
     elif request.method == 'POST':
-        sections = tasks_cache.populate()
-        return redirect('/projects/')
+        if(auth.md5_hash(request.data) == "4c1c386f9a7b868b951335a67a632cb3"):
+            tasks_cache.populate()
+            return make_response("SUCCESS", 200)
+        else:
+            return make_response("INVALID CODE", 401)
 
 @app.route("/<request_url>/")
 def link(request_url):

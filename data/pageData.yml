@@ -1,4 +1,4 @@
-about:
+sabout:
   - title: About
     layout: default
     permalink: /about/
@@ -139,3 +139,5 @@ profile:
 tasks:
   - title: Tasks
     layout: default
+    styles:
+      - /static/css/tasks.css
