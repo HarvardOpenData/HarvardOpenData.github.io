@@ -3,16 +3,16 @@
 {% block content %} 
 
 <div class="container">
-  <div style='padding: 2%;'>
+  <div>
     <h3>Current Projects</h3>
     <p>Read about our members' current projects!</p>
   </div>
 
-  <div class='task-list' style='padding: 2%;'>
+  <div class='task-list'>
     <ul class="list-group">
     {% for key, tasks in sections %}
       <li class="list-group-item">
-        <a href = "#" class = "collapse-toggle">
+        <a href = "javascript:void(0)" class = "collapse-toggle">
           <h4 data-toggle="collapse" data-target={{ "#" + key }} aria-expanded="false" aria-controls={{ key }}>
             {{ key }}
             <i class="fa fa-caret-down" aria-hidden="true"></i>

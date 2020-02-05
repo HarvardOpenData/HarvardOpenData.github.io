@@ -1,44 +1,44 @@
-
-    -   name: Home
-        url: /
-        newtab: 0
-    -   name: People
-        url: /people/
-        newtab: 0
-    -   name: Data Catalog
-        url: /catalog/
-        newtab: 0
-    -   name: Blog
-        url: https://medium.com/harvard-open-data-project
-        newtab: 1
-    -   name: Wiki
-        url: http://wiki.hodp.org
-        newtab: 0
-    -   name: Calendar
-        url: /calendar/
-        newtab: 0
-    -   name: Get Involved
-        url: /bootcamp/
-        newtab: 0
-        subpagelinks:
-            -   /surveygroup/
-            -   /bootcamp/
-        subpages:
-            -   name: Projects
-                url: /projects/
-                newtab: 1
-            -   name: Survey Group
-                url: /surveygroup/
-                newtab: 0
-            -   name: Bootcamp
-                url: /bootcamp/
-                newtab: 0
-            -   name: Datathon
-                url: /datathon/
-                newtab: 0
-            -   name: Mailing List
-                url: https://groups.google.com/forum/#!forum/harvard-open-data
-                newtab: 1
-    -   name: Sponsors
-        url: /sponsors/
-        newtab: 0
+main:
+    - name: Home
+      url: /
+      newtab: 0
+    - name: People
+      url: /people/
+      newtab: 0
+    - name: Data Catalog
+      url: /catalog/
+      newtab: 0
+    - name: Blog
+      url: https://medium.com/harvard-open-data-project
+      newtab: 1
+    - name: Wiki
+      url: http://wiki.hodp.org/
+      newtab: 1
+    - name: Calendar
+      url: /calendar/
+      newtab: 0
+    - name: Get Involved
+      url: /bootcamp/
+      newtab: 0
+      subpagelinks:
+          - /surveygroup/
+          - /bootcamp/
+      subpages:
+          - name: Projects
+            url: /projects/
+            newtab: 0
+          - name: Survey Group
+            url: /surveygroup/
+            newtab: 0
+          - name: Bootcamp
+            url: /bootcamp/
+            newtab: 0
+          - name: Datathon
+            url: /datathon/
+            newtab: 0
+          - name: Mailing List
+            url: https://groups.google.com/forum/#!forum/harvard-open-data
+            newtab: 1
+    - name: Sponsors
+      url: /sponsors/
+      newtab: 0

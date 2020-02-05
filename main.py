@@ -343,11 +343,13 @@ def tasks():
         sections = tasks_cache.get()
         return render_template('tasks.html', page=pageData['tasks'][0], site=site, sections=sections.items())
     elif request.method == 'POST':
-        if(auth.md5_hash(request.data) == "4c1c386f9a7b868b951335a67a632cb3"):
+        # We are just going to do this for now and figure out how to change this in the future.
+        # We need to actually authenticate shit though. Not sure how to do so in a reasonable way.
+        if(True):
             tasks_cache.populate()
-            return make_response("SUCCESS", 200)
+            return make_response("SUCCESS", 202)
         else:
-            return make_response("INVALID CODE", 401)
+            return make_response("NOT GOOGLE CLOUD SCHEDULER", 401)
 
 @app.route("/<request_url>/")
 def link(request_url):
