@@ -14,12 +14,12 @@ import hashlib
 import datetime
 
 def md5_hash(s):
-    return hashlib.md5(s).hexdigest()
+    return hashlib.md5(s.encode()).hexdigest()
 
 # This is stupid and done for legacy reasons.
 # Someone should fix this shit at some point.
 def email_hash(email):
-    return md5_hash(s)
+    return md5_hash(email)
 
 
 def is_mock():
