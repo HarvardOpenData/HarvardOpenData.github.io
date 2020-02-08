@@ -1,6 +1,7 @@
 - name: Installation + Project Brainstorming
   teachers: Kevin Bi
   number: 2/12
+  doc: https://docs.google.com/document/d/1O_26S1Dt-CTKO4XboxQV6UOOpF6qlI5A9yr_xRAS64Y/edit?usp=sharing
 - name: NumPy & Pandas
   teachers: Sahana Srinivasan
   repository: https://github.com/HarvardOpenData/numpy-pandas-bootcamp
