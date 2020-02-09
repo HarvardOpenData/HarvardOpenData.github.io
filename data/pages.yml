@@ -37,7 +37,7 @@ main:
             url: /datathon/
             newtab: 0
           - name: Mailing List
-            url: https://groups.google.com/forum/#!forum/harvard-open-data
+            url: http://eepurl.com/gh2AAv
             newtab: 1
     - name: Sponsors
       url: /sponsors/
