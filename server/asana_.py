@@ -5,7 +5,7 @@ from functools import reduce, partial
 from collections import namedtuple
 from threading import Lock
 from typing import Dict, List
-from server.auth import is_mock
+from server.auth import is_mock, is_local
 
 import asana
 
@@ -15,7 +15,7 @@ def auth(filename='asana_creds.json'):
         with open(filename, 'r') as fp:
             data = json.load(fp)
             return data['secret']
-    elif is_mock():
+    elif is_mock() or is_local() :
         return None
     else:
         raise FileNotFoundError(f"{filename} could not be found!")
