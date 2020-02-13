@@ -157,3 +157,9 @@ demographics:
 
 profile:
   - title: My Profile
+
+tasks:
+  - title: Tasks
+    layout: default
+    styles:
+      - /static/css/tasks.css

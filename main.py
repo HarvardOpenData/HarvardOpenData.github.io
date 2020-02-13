@@ -3,6 +3,7 @@ import yaml
 import server.constants as constants
 import server.auth as auth
 from server.members import Member, MembersCache, add_members_to_firestore
+from server.asana_ import get_tasks, TasksCache
 import json
 import os
 import server.demographics
@@ -10,6 +11,7 @@ import server.predictions
 import tempfile
 import random, datetime, time
 import csv
+import itertools
 
 app = Flask(__name__)
 
@@ -56,6 +58,8 @@ auth.init_survey_firebase()
 auth.init_website_firebase()
 
 members_cache = MembersCache()
+tasks_cache = TasksCache()
+tasks_cache.populate()
 peopleYml = getYml("./data/people.yml")
 add_members_to_firestore(auth.get_website_firestore_client(), peopleYml)
 members_cache.populate(auth.get_website_firestore_client(), peopleYml)
@@ -112,10 +116,6 @@ def calendar():
 def catalog():
     return render_template('catalog.html', site=site, categories=getYml("./data/categories.yml"),
                            filetypes=getYml("./data/filetypes.yml"), page=pageData["catalog"][0])
-
-@app.route('/projects/')
-def projects():
-    return redirect("https://docs.google.com/spreadsheets/d/1HGegvm3OcLSV3zyI1fUcoPLHMUbDaM5ZWJSVb3Gx69Y/edit?usp=sharing")
 
 @app.route('/bootcamp/')
 def bootcamp():
@@ -440,6 +440,20 @@ def signin(request_url):
             response.set_cookie(id_cookie_key, expires=0)
             return response
 
+@app.route('/projects/', methods=['GET', 'POST'])
+def tasks():
+    if request.method == 'GET':
+        sections = tasks_cache.get()
+        return render_template('tasks.html', page=pageData['tasks'][0], site=site, sections=sections.items())
+    elif request.method == 'POST':
+        # We are just going to do this for now and figure out how to change this in the future.
+        # We need to actually authenticate shit though. Not sure how to do so in a reasonable way.
+        if(True):
+            tasks_cache.populate()
+            return make_response("SUCCESS", 202)
+        else:
+            return make_response("NOT GOOGLE CLOUD SCHEDULER", 401)
+
 @app.route("/<request_url>/")
 def link(request_url):
     links = getYml("./data/links.yml")
@@ -453,6 +467,8 @@ def link(request_url):
     if expiration_date is not None and expiration_date < datetime.datetime.now():
         abort(404)
     return redirect(links[request_url]["url"])
+
+
 @app.errorhandler(404)
 def page_not_found(error):
    return render_template('404.html', page = pageData["404"][0], site=site), 404
