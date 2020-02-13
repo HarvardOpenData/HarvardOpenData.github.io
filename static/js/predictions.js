@@ -51,6 +51,7 @@ for (i = 0; i < collapsibleButtons.length; i++) {
     });
 }
 
+// Set default text for collapsible sections if they have no content
 var committedPredictions = document.getElementsByClassName("past-deadline")
 if (committedPredictions.length == 0) {
     document.getElementById("prediction-reports").innerHTML = "<p>Nothing yet. Past predictions will show up here when their deadlines pass, but the outcomes haven't been observed.</p>"
@@ -60,3 +61,9 @@ var crystallizedPredictions = document.getElementsByClassName("realized")
 if (crystallizedPredictions.length == 0) {
     document.getElementById("prediction-results").innerHTML = "<p>Nothing yet. Results will show up here when you make a prediction and the outcome is observed!</p>"
 }
+
+var leaderboard = document.getElementsByClassName("leaderboard-users")
+if (leaderboard.length == 0) {
+    document.getElementById("leaderboard-results").innerHTML = "<p>Coming soon!</p>"
+}
+

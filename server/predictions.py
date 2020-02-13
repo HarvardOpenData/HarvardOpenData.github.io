@@ -25,6 +25,7 @@ def update_predictions(email, form, questions, db):
     # get a list of form fields we're still taking predictions for
     valid_form_names = [item["name"] for item in questions if yml_str_to_datetime(item["deadline"]) > current_time]
     user_info_ref = db.collection("prediction_users").document(email)
+    seen_checkbox = False
     for field in form:
         if field in valid_form_names:
             # update documents under the user's predictions subcollection
@@ -32,6 +33,17 @@ def update_predictions(email, form, questions, db):
             question_ref.set({
                 "guess": int(form[field])
             })
+        elif field == "leaderboard-consent":
+            # if the checkbox gets sent with the POST request, that means it's checked
+            seen_checkbox = True
+            user_info_ref.update({
+                u"can_display": True
+            })
+    if not seen_checkbox:
+        # this means the user unchecked the checkbox
+        user_info_ref.update({
+            u"can_display": False
+        })
 
 def calculate_points(prediction, outcome):
     """
@@ -73,3 +85,25 @@ def get_user_score(email, db):
         return user_info["current_score"]
     else:
         return None
+
+def can_be_displayed(email, db):
+    """ Retrieve a user's score """
+    user_info = db.collection("prediction_users").document(email).get().to_dict()
+    if user_info["can_display"] is False:
+        return False
+    else:
+        return True
+
+def get_leaderboard(db):
+    """ Return a list of the top 10 users and their scores """
+    user_scores = []
+    prediction_users_ref = db.collection("prediction_users")
+    user_docs = prediction_users_ref.stream()
+    for user_doc in user_docs:
+        user_info = user_doc.to_dict()
+        if user_info["can_display"]:
+            email = user_doc.id
+            username = email.split("@")[0]
+            user_scores.append((user_info["current_score"], username))
+    user_scores.sort()
+    return user_scores[:10]

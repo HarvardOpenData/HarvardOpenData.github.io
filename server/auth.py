@@ -122,7 +122,8 @@ def create_prediction_user(userEmail : str, userId : str, db : firestore.firesto
             user_info_ref.set({
                 u"id" : userId,
                 u"current_score" : 0,
-                u"date_created" : datetime.datetime.now()
+                u"date_created" : datetime.datetime.now(),
+                u"can_display" : None
             })
         return user_info_ref.get()
 

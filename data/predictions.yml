@@ -1,28 +1,50 @@
-- text: "Will Ec 10b be the largest course at Harvard this semester?"
-  name: "largest-course"
-  outcome_0: "Ec 10b is not the largest course"
-  outcome_1: "Ec 10b is the largest course"
-  deadline: "01/31/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
 - text: "Will the men's basketball team make the NCAA tournament?"
   name: "ncaa-tournament"
   outcome_0: "the team doesn't make the NCAA tournament"
   outcome_1: "the team makes the NCAA tournament"
-  deadline: "02/10/2020 23:59:59 -0500"
+  deadline: "02/25/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
 - text: "Will Harvard divest from fossil fuels by the end of the semester?"
   name: "divestment"
   outcome_0: "Harvard doesn't divest"
   outcome_1: "Harvard divests"
-  deadline: "02/10/2020 23:59:59 -0500"
+  deadline: "02/25/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
-- text: "Will the Harvard Graduate Students Union reach a contract agreement by the end of the semester?"
-  name: "hgsu-agreement"
-  outcome_0: "an agreement is not reached"
-  outcome_1: "an agreement is reached"
-  deadline: "02/10/2020 23:59:59 -0500"
+- text: "Will another Harvard professor get arrested this semester?"
+  name: "professor-arrest"
+  outcome_0: "no professors are arrested"
+  outcome_1: "a professor is arrested"
+  deadline: "02/25/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
+- text: "Will there be a coronavirus case at Harvard?"
+  name: "coronavirus"
+  outcome_0: "there is not a coronavirus case at Harvard"
+  outcome_1: "there is a coronavirus case at Harvard"
+  deadline: "02/25/2020 23:59:59 -0500"
+  realized_outcome:
+  realized_outcome_text:
+- text: "Will another Harvard Square business shut down this semester?"
+  name: "business-close"
+  outcome_0: "no Harvard Square businesses shut down"
+  outcome_1: "a Harvard Square business shuts down"
+  deadline: "02/25/2020 23:59:59 -0500"
+  realized_outcome:
+  realized_outcome_text:
+- text: "Will another boba place open in Harvard Square?"
+  name: "boba"
+  outcome_0: "no boba places open"
+  outcome_1: "a boba place opens"
+  deadline: "02/25/2020 23:59:59 -0500"
+  realized_outcome:
+  realized_outcome_text:
+- text: "Will Harvard's acceptance rate be lower than last year?"
+  name: "acceptance-rate"
+  outcome_0: "Harvard's acceptance rate is higher than last year"
+  outcome_1: "Harvard's acceptance rate is lower than last year"
+  deadline: "02/25/2020 23:59:59 -0500"
+  realized_outcome:
+  realized_outcome_text:
+

@@ -49,7 +49,7 @@
       {% endif %}
     {% endfor %}
 
-    {% if predictions != {} %}
+    {% if signed_in %}
       <div class="results-section">
         <button type="button" class="collapsible" id="committed">Past predictions</button>
         <div class="content" id="prediction-reports">
@@ -86,11 +86,37 @@
             {% endif %}
           {% endfor %}
         </div>
+
+        <button type="button" class="collapsible" id="leaderboard">Leaderboard</button>
+        <div class="content" id="leaderboard-results">
+          <table class="leader-table" style="width:100%">
+            <tr>
+              <th>Rank</th>
+              <th>Username</th>
+              <th>Points</th>
+            </tr>
+            {% for leader in leaders %}
+              <div class="leaderboard-users">
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>{{ leader[1] }}</td>
+                  <td>{{ leader[0] }}</td>
+                </tr>
+              </div>
+            {% endfor %}
+          </table>
+        </div>
+
       </div>
     {% endif %}
 
     {% if signed_in %}
       <div id="end-buttons">
+        <input type="checkbox" name="leaderboard-consent"
+        {% if consent_checked %}
+          checked
+        {% endif %}>
+        <label for="leaderboard-consent" class="consent-label"> I would like my score and email username (without the @college) to be displayed on the leaderboard </label><br>
         <input type="submit" class="end-button" id="submit" value="Save your predictions"></button>
         <button type ="button" class="end-button" id="sign-out" onclick ="signOut()">Sign out</button>
       </div>

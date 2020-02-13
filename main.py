@@ -199,9 +199,13 @@ def predictions():
                                     to_datetime=yml_str_to_datetime,
                                     to_display_str=datetime_to_display_str,
                                     get_points=server.predictions.calculate_points,
-                                    user_score=None)
+                                    user_score=None,
+                                    leaders=[],
+                                    consent_checked=False)
         predictionsDict = auth.get_predictions_dict(userEmail, db)
         user_score = server.predictions.get_user_score(userEmail, db)
+        consent_checked = server.predictions.can_be_displayed(userEmail, db)
+        leaders = server.predictions.get_leaderboard(db)
         return render_template("webapps/predictions.html",
                                 site=site,
                                 page=pageData["predictions"][0],
@@ -214,7 +218,9 @@ def predictions():
                                 to_datetime=yml_str_to_datetime,
                                 to_display_str=datetime_to_display_str,
                                 get_points=server.predictions.calculate_points,
-                                user_score=user_score)
+                                user_score=user_score,
+                                leaders=leaders,
+                                consent_checked=consent_checked)
     else:
         userEmail = request.cookies[email_cookie_key]
         userId = request.cookies[id_cookie_key]
@@ -223,6 +229,8 @@ def predictions():
                 userEmail, request.form, getYml("./data/predictions.yml"), db)
             predictionsDict = auth.get_predictions_dict(userEmail, db)
             user_score = server.predictions.get_user_score(userEmail, db)
+            consent_checked = server.predictions.can_be_displayed(userEmail, db)
+            leaders = server.predictions.get_leaderboard(db)
             return render_template("webapps/predictions.html",
                                     site=site,
                                     page=pageData["predictions"][0],
@@ -235,7 +243,9 @@ def predictions():
                                     to_datetime=yml_str_to_datetime,
                                     to_display_str=datetime_to_display_str,
                                     get_points=server.predictions.calculate_points,
-                                    user_score=user_score)
+                                    user_score=user_score,
+                                    leaders=leaders,
+                                    consent_checked=consent_checked)
         else:
             # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")
