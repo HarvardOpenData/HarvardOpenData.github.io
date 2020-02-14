@@ -7,5 +7,6 @@ if __name__ == "__main__":
         python_command = "python"
     else: 
         raise Exception("No valid python version found")
+    subprocess.call([python_command, "-m", "pip", "install", "-r",  "requirements.txt"])
     os.environ["MOCK_FIRESTORE"] = "TRUE"
     subprocess.call([python_command, "main.py"])
