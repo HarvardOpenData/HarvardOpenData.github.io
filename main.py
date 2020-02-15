@@ -46,7 +46,7 @@ def yml_str_to_datetime(str):
     return datetime.datetime.strptime(str, "%m/%d/%Y %H:%M:%S %z")
 
 def datetime_to_display_str(dt_obj):
-    return dt_obj.strftime("%b. %d")
+    return dt_obj.strftime("%b %-d")
 
 def update_prediction_user_scores():
     db = auth.get_survey_firestore_client()

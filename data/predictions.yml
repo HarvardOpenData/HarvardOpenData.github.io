@@ -2,7 +2,7 @@
   name: "ncaa-tournament"
   outcome_0: "the team doesn't make the NCAA tournament"
   outcome_1: "the team makes the NCAA tournament"
-  deadline: "02/25/2020 23:59:59 -0500"
+  deadline: "03/05/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
 - text: "Will Harvard divest from fossil fuels by the end of the semester?"
@@ -44,7 +44,7 @@
   name: "acceptance-rate"
   outcome_0: "Harvard's acceptance rate is higher than last year"
   outcome_1: "Harvard's acceptance rate is lower than last year"
-  deadline: "02/25/2020 23:59:59 -0500"
+  deadline: "03/25/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
 
