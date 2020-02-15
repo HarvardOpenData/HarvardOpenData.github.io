@@ -201,11 +201,13 @@ def predictions():
                                     get_points=server.predictions.calculate_points,
                                     user_score=None,
                                     leaders=[],
-                                    consent_checked=False)
+                                    consent_checked=False,
+                                    username=None)
         predictionsDict = auth.get_predictions_dict(userEmail, db)
         user_score = server.predictions.get_user_score(userEmail, db)
         consent_checked = server.predictions.can_be_displayed(userEmail, db)
         leaders = server.predictions.get_leaderboard(db)
+        username = userEmail.split("@")[0]
         return render_template("webapps/predictions.html",
                                 site=site,
                                 page=pageData["predictions"][0],
@@ -220,7 +222,8 @@ def predictions():
                                 get_points=server.predictions.calculate_points,
                                 user_score=user_score,
                                 leaders=leaders,
-                                consent_checked=consent_checked)
+                                consent_checked=consent_checked,
+                                username=username)
     else:
         userEmail = request.cookies[email_cookie_key]
         userId = request.cookies[id_cookie_key]
@@ -231,6 +234,7 @@ def predictions():
             user_score = server.predictions.get_user_score(userEmail, db)
             consent_checked = server.predictions.can_be_displayed(userEmail, db)
             leaders = server.predictions.get_leaderboard(db)
+            username = userEmail.split("@")[0]
             return render_template("webapps/predictions.html",
                                     site=site,
                                     page=pageData["predictions"][0],
@@ -245,7 +249,8 @@ def predictions():
                                     get_points=server.predictions.calculate_points,
                                     user_score=user_score,
                                     leaders=leaders,
-                                    consent_checked=consent_checked)
+                                    consent_checked=consent_checked,
+                                    username=username)
         else:
             # this happens if for some reason they've tried to fuck with their email or something gets corrupted
             abort("User credentials improper. Please sign out and sign back in")
