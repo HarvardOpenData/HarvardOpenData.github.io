@@ -5,7 +5,7 @@
   deadline: "03/12/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
-- text: "Will Harvard divest from fossil fuels by the end of the semester?"
+- text: "Will Harvard divest from fossil fuels by Earth Day (April 22nd)?"
   name: "divestment"
   outcome_0: "Harvard doesn't divest"
   outcome_1: "Harvard divests"
@@ -40,7 +40,7 @@
   deadline: "02/29/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
-- text: "Will Harvard's acceptance rate be lower than last year?"
+- text: "Will Harvard's acceptance rate be lower than it was last year (4.5%)?"
   name: "acceptance-rate"
   outcome_0: "Harvard's acceptance rate is higher than last year"
   outcome_1: "Harvard's acceptance rate is lower than last year"
