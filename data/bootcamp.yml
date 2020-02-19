@@ -5,6 +5,7 @@
   repository: https://github.com/HarvardOpenData/Bootcamp-Setup
 - name: NumPy & Pandas
   teachers: Sahana Srinivasan
+  document: https://docs.google.com/document/d/1ol7ewLF7npWY8jPZWk5l2ADDX8R-55knizuM_Pq0k8U/edit?usp=sharing
   repository: https://github.com/HarvardOpenData/numpy-pandas-bootcamp
   number: 2/18
 - name: Scraping
