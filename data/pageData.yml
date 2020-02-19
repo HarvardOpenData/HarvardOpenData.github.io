@@ -135,6 +135,14 @@ scoreboard:
     scripts:
       - /static/js/scoreboard.js
 
+predictions:
+  - title: Predictions
+    layout: default
+    scripts:
+      - /static/js/predictions.js
+    styles:
+      - /static/css/predictions.css
+
 auth:
   - title: Authentication
     styles:

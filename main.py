@@ -7,6 +7,7 @@ from server.asana_ import get_tasks, TasksCache
 import json
 import os
 import server.demographics
+import server.predictions
 import tempfile
 import random, datetime, time
 import csv
@@ -36,6 +37,20 @@ def demographicQuestions():
 def finalsQuestions():
     return getYml("./data/finals_questions.yml")
 
+def easternTime():
+    """ Returns a timezone object representing EST """
+    return datetime.timezone(-datetime.timedelta(hours=5))
+
+def yml_str_to_datetime(str):
+    """ Converts the deadlines in the predictions.yml file to tz-aware datetime objects """
+    return datetime.datetime.strptime(str, "%m/%d/%Y %H:%M:%S %z")
+
+def datetime_to_display_str(dt_obj):
+    return dt_obj.strftime("%b %-d")
+
+def update_prediction_user_scores():
+    db = auth.get_survey_firestore_client()
+    server.predictions.update_all_scores(db)
 
 site = siteConstants()
 pageData = getYml('./data/pageData.yml')
@@ -60,6 +75,8 @@ tier_entries = {
 tiersYml = getYml("./data/sponsors.yml")["tiers"]
 sponsorsYml = getYml("./data/sponsors.yml")["sponsors"]
 sponsor_weights = [tier_entries[sponsor["tier"]] for sponsor in sponsorsYml]
+
+update_prediction_user_scores()
 
 @app.route('/')
 def index():
@@ -152,6 +169,91 @@ def hudsmenu():
 def candidateviz():
     return render_template('webapps/candidate-visualization/index.html', site=site, page=pageData['candidateviz'][0])
 
+@app.route('/predictions/', methods=['GET', 'POST'])
+def predictions():
+    userEmail = None
+    userId = None
+    db = auth.get_survey_firestore_client()
+    prediction_users_ref = db.collection("prediction_users")
+
+    email_cookie_key = get_email_cookie_key("predictions")
+    id_cookie_key = get_id_cookie_key("predictions")
+
+    current_time = datetime.datetime.now(tz=easternTime())
+
+    if request.method == 'GET':
+        if email_cookie_key in request.cookies:
+            userEmail = request.cookies[email_cookie_key]
+        if id_cookie_key in request.cookies:
+            userId = request.cookies[id_cookie_key]
+        if not auth.is_authenticated(userEmail, userId, prediction_users_ref):
+            return render_template("webapps/predictions.html",
+                                    site=site,
+                                    page=pageData["predictions"][0],
+                                    questions=getYml("./data/predictions.yml"),
+                                    predictions={},
+                                    CLIENT_ID=constants.get_google_client_id(),
+                                    responded=False,
+                                    signed_in=False,
+                                    current_time=current_time,
+                                    to_datetime=yml_str_to_datetime,
+                                    to_display_str=datetime_to_display_str,
+                                    get_points=server.predictions.calculate_points,
+                                    user_score=None,
+                                    leaders=[],
+                                    consent_checked=False,
+                                    username=None)
+        predictionsDict = auth.get_predictions_dict(userEmail, db)
+        user_score = server.predictions.get_user_score(userEmail, db)
+        consent_checked = server.predictions.can_be_displayed(userEmail, db)
+        leaders = server.predictions.get_leaderboard(db)
+        username = userEmail.split("@")[0]
+        return render_template("webapps/predictions.html",
+                                site=site,
+                                page=pageData["predictions"][0],
+                                questions=getYml("./data/predictions.yml"),
+                                predictions=predictionsDict,
+                                CLIENT_ID=constants.get_google_client_id(),
+                                responded=False,
+                                signed_in=True,
+                                current_time=current_time,
+                                to_datetime=yml_str_to_datetime,
+                                to_display_str=datetime_to_display_str,
+                                get_points=server.predictions.calculate_points,
+                                user_score=user_score,
+                                leaders=leaders,
+                                consent_checked=consent_checked,
+                                username=username)
+    else:
+        userEmail = request.cookies[email_cookie_key]
+        userId = request.cookies[id_cookie_key]
+        if auth.is_authenticated(userEmail, userId, prediction_users_ref):
+            server.predictions.update_predictions(
+                userEmail, request.form, getYml("./data/predictions.yml"), db)
+            predictionsDict = auth.get_predictions_dict(userEmail, db)
+            user_score = server.predictions.get_user_score(userEmail, db)
+            consent_checked = server.predictions.can_be_displayed(userEmail, db)
+            leaders = server.predictions.get_leaderboard(db)
+            username = userEmail.split("@")[0]
+            return render_template("webapps/predictions.html",
+                                    site=site,
+                                    page=pageData["predictions"][0],
+                                    questions=getYml("./data/predictions.yml"),
+                                    predictions=predictionsDict,
+                                    CLIENT_ID=constants.get_google_client_id(),
+                                    responded=True,
+                                    signed_in=True,
+                                    current_time=current_time,
+                                    to_datetime=yml_str_to_datetime,
+                                    to_display_str=datetime_to_display_str,
+                                    get_points=server.predictions.calculate_points,
+                                    user_score=user_score,
+                                    leaders=leaders,
+                                    consent_checked=consent_checked,
+                                    username=username)
+        else:
+            # this happens if for some reason they've tried to fuck with their email or something gets corrupted
+            abort("User credentials improper. Please sign out and sign back in")
 
 @app.route("/surveygroup/", methods=['GET', 'POST'])
 @app.route('/demographics/', methods=['GET', 'POST'])
@@ -254,8 +356,8 @@ def finals_app():
         form_data = request.form
         form_classes = request.form.getlist('classes')
         ga_id : str = request.cookies.get("_ga", None)
-        if ga_id is not None: 
-            db = auth.get_survey_firestore_client() 
+        if ga_id is not None:
+            db = auth.get_survey_firestore_client()
             doc = db.collection("finals_classes").document(ga_id).get()
             if not doc.exists:
                 db.collection("finals_classes").document(ga_id).set({
@@ -303,7 +405,8 @@ def signin(request_url):
     title_dict = {
         "surveygroup": "Survey Group",
         "demographics": "Demographics",
-        "profile": "My Profile"
+        "profile": "My Profile",
+        "predictions": "Predictions"
     }
     if request.method == "GET":
         return render_template('auth.html', title=title_dict[request_url], page=pageData["auth"][0], site=site, CLIENT_ID=constants.get_google_client_id(), request_url=request_url)
@@ -324,6 +427,11 @@ def signin(request_url):
                 id_cookie_key = get_id_cookie_key("profile")
                 db = auth.get_website_firestore_client()
                 Member.get_member(userEmail, userId, db)
+            elif request_url in ["predictions"]:
+                email_cookie_key = get_email_cookie_key("predictions")
+                id_cookie_key = get_id_cookie_key("predictions")
+                db = auth.get_survey_firestore_client()
+                auth.create_prediction_user(userEmail, userId, db)
             # set the values of cookies to persist sign in
             response = make_response("SUCCESS", 201)
             response.set_cookie(email_cookie_key, userEmail)
