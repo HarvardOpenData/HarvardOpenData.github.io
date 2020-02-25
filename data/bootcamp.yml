@@ -10,6 +10,7 @@
   number: 2/18
 - name: Scraping
   teachers: Ashley Wong
+  document: https://docs.google.com/document/d/1XKgUHMCkeD7iN7fj5ujPQrzRZumMI668rzuktzycDfk/edit?usp=sharing
   repository: https://github.com/HarvardOpenData/Bootcamp-Scraping
   number: 2/25
 - name: Statistics & Data Journalism
