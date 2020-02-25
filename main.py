@@ -186,11 +186,12 @@ def predictions():
             userEmail = request.cookies[email_cookie_key]
         if id_cookie_key in request.cookies:
             userId = request.cookies[id_cookie_key]
+        questions = sorted(getYml("./data/predictions.yml"), key = lambda x: x["deadline"], reverse = False)
         if not auth.is_authenticated(userEmail, userId, prediction_users_ref):
             return render_template("webapps/predictions.html",
                                     site=site,
                                     page=pageData["predictions"][0],
-                                    questions=getYml("./data/predictions.yml"),
+                                    questions=questions,
                                     predictions={},
                                     CLIENT_ID=constants.get_google_client_id(),
                                     responded=False,
@@ -211,7 +212,7 @@ def predictions():
         return render_template("webapps/predictions.html",
                                 site=site,
                                 page=pageData["predictions"][0],
-                                questions=getYml("./data/predictions.yml"),
+                                questions=questions,
                                 predictions=predictionsDict,
                                 CLIENT_ID=constants.get_google_client_id(),
                                 responded=False,
