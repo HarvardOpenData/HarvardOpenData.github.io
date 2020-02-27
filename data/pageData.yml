@@ -159,7 +159,7 @@ profile:
   - title: My Profile
 
 tasks:
-  - title: Tasks
+  - title: Projects
     layout: default
     styles:
       - /static/css/tasks.css
