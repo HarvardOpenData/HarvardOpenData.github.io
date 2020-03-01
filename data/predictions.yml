@@ -19,13 +19,6 @@
   deadline: "03/05/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
-- text: "Will there be a coronavirus case at Harvard?"
-  name: "coronavirus"
-  outcome_0: "there is not a coronavirus case at Harvard"
-  outcome_1: "there is a coronavirus case at Harvard"
-  deadline: "03/05/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
 - text: "Will a Harvard Square business shut down this semester?"
   name: "business-close"
   outcome_0: "no Harvard Square businesses shut down"
