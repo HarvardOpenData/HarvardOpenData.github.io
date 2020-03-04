@@ -15,7 +15,8 @@
   number: 2/25
 - name: Statistics & Data Journalism
   teachers: Leo Saenger
-  repository: https://github.com/HarvardOpenData/Bootcamp-Statistics
+  document: https://docs.google.com/document/d/1dtfda-ARM7ZsiGp1EEq82CzaUp5SSl52yI6p-sweoew/edit?usp=sharing
+  repository: https://github.com/HarvardOpenData/Bootcamp-Statistics-2020
   number: 3/3
 - name: Datathon
   teachers: HODP Board
