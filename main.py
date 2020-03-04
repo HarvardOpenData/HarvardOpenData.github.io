@@ -99,7 +99,7 @@ def index():
 
 @app.route('/people/')
 def about():
-    members = members_cache.get()
+    members = [member for member in members_cache.get() if member.img_url is not None or member.description is not None]
     return render_template('people.html', site=site, people=peopleYml, members=members, page=pageData["about"][0])
 
 @app.route('/sponsors/')
