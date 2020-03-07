@@ -129,7 +129,6 @@ people:
     house: Adams
     image: flora-dicara.jpg
     name: Flora DiCara
-    role: contributor
     year: 2020
   - bio: "I\u2019m a statistics concentrator from Kirkland House, originally hailing\
       \ from Canterbury, UK. Outside of HODP you will find me behind a sewing machine,\
@@ -145,14 +144,12 @@ people:
     house: Eliot
     image: alex-giglio.jpg
     name: Alex Giglio
-    role: contributor
     year: 2020
   - bio: I'm a junior in Cabot from Ohio interested in big data, statistics, and Joe
       Blitzstein
     email: dgilkerson@college.harvard.edu
     house: Cabot
     name: Darrin Gilkerson
-    role: contributor
     year: 2020
   - bio: I'm a junior in Kirkland studying computer science and obsessed with bio-inspired
       design. Dance is my absolute favorite hobby, but I also enjoy teaching CS to non-programmers,
@@ -160,7 +157,6 @@ people:
     house: Kirkland
     image: alaisha-sharma.jpeg
     name: Alaisha Sharma
-    role: contributor
     year: 2020
   - bio: "I am a junior from Los Angeles concentrating in Government with a secondary\
       \ in Computer Science. I\u2019m a huge fan of open data, having worked last summer\
@@ -169,7 +165,6 @@ people:
     house: Currier
     image: ariana-soto.jpg
     name: Ariana Soto
-    role: contributor
     year: 2020
   - bio: I'm a junior from Kingston, Jamaica, currently living in Winthrop. I am pursuing
       a joint concentration in Computer Science and Statistics with a Secondary in African
@@ -179,7 +174,6 @@ people:
     house: Winthrop
     image: hakeem-angulu.jpg
     name: Hakeem Angulu
-    role: contributor
     year: 2020
   - bio: At Harvard, I was in Pfoho studying computer science. Outside HODP, I served
       as the Finance Committee Chair on the Undergraduate Council, wrote about civic
@@ -204,7 +198,6 @@ people:
     house: Mather
     image: grace-zhang.png
     name: Grace Zhang
-    role: contributor
     year: 2020
   - bio: I am a sophomore living in Cabot studying either economics or computer science.
       I enjoy dominating basketball games in my free time, and I am a big Knicks fan.
@@ -212,7 +205,6 @@ people:
     house: Cabot
     image: george-guarnieri.png
     name: George Guarnieri
-    role: contributor
     year: 2022
   - bio: I'm a sophomore interested in statistics, economics, politics, and using design
       to explore the intersections between the three. Outside of HODP, I volunteer with
@@ -239,7 +231,6 @@ people:
     house: Kirkland
     image: andrea-zhang.jpg
     name: Andrea Zhang
-    role: contributor
     year: 2022
   - bio: I'm in Eliot House, and I study Applied Math. I love playing with data, art,
       walking around, cats and turtles, mysteries, and random, one-off campus activities.
@@ -255,7 +246,6 @@ people:
     house: Lowell
     image: bridger-gordon.png
     name: Bridger Gordon
-    role: contributor
     year: 2022
   - bio: Hi! I live in Currier House and am studying computer science and economics.
       Outside of HODP, I'm involved with WHRB and Harvard Computer Society, and love
@@ -264,7 +254,6 @@ people:
     house: Currier
     image: manasi-maheshwari.jpg
     name: Manasi Maheshwari
-    role: contributor
     year: 2021
   - bio: I'm a sophomore in Leverett concentrating in Applied Math. Besides data, I
       like long naps and modular origami.
@@ -295,7 +284,6 @@ people:
       I sing in the Harvard-Radcliffe Veritones and I love playing volleyball and tennis.
     email: brettpearson@college.harvard.edu
     image: brett-pearson.png
-    name: Brett Pearson
     role: contributor
     year: 2022
   - bio: I'm a junior in Currier interested in data, machine learning, and blockchain.
@@ -347,7 +335,6 @@ people:
     house: Pfoho
     image: ethan-kim.jpg
     name: Ethan Kim
-    role: contributor
     year: 2021
   - bio: I'm a sophomore from Sydney living in Dunster! Outside of HODP I enjoy tennis,
       dance, as well as learning (and forgetting) languages.
@@ -364,7 +351,6 @@ people:
     house: Winthrop
     image: richard-kim.jpg
     name: Richard Kim
-    role: contributor
     year: 2022
   - bio: Hi! I'm a sophomore from Austin, Texas planning on concentrating in either
       Statistics or Computer Science! Outside of HODP, I love napping and exploring
@@ -428,7 +414,6 @@ people:
     house: Eliot
     image: amy-jin.jpg
     name: Amy Jin
-    role: contributor
     year: 2022
   - email: vkanumuri@college.harvard.edu
     name: Vinay Kanumari
