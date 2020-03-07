@@ -2,12 +2,41 @@
 
 {% block content %}
   <div class="container">
-      <h6 style="margin-top: 0.2em;">
-          SATURDAY, OCTOBER 5, 10-4 P.M. IN THE SOCH
-        </h6>
-      <h2 style="margin-top: 0em;">
-          The HODP Datathon
-      </h2>
+    <h6 style="margin-top: 0.2em;">
+      SUNDAY, MARCH 8, 10-4 P.M. IN TICKNOR LOUNGE
+    </h6>
+    <h2 style="margin-top: 0em;">
+        The HODP Datathon
+    </h2>
+    <h3 style="margin-top: 1em;">
+        Spring 2020 Datathon Schedule
+    </h3>
+    <p>
+        The datathon is a dedicated day for you to hack on projects and improve your data science skills. 
+        Non-HODP members of all skill levels are welcome, as we'll have a range of projects that you should be able to complete within the day.
+        Attendance is mandatory for bootcampers — email <a href="mailto:harvardopendataproject@gmail.com">harvardopendataproject@gmail.com</a> if you have scheduling conflicts.
+        To register, mark "Going" at our event <a href="https://www.facebook.com/events/662396681179733/">here</a>.
+      </p>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Time</th>
+          <th scope="col">Event</th>
+          <th scope="col">Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in datathon.schedule %}
+          <tr>
+              <th scope="row">{{item.time}}</th>
+              <td>{{item.event}}</td>
+              <td>{{item.location}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
       <p style="margin-top: 0.2em;">
           Thank you to everyone who came to our Fall 2019 Datathon! This year, we analyzed the HUDS menu, faculty property values, UC elections, and more. We also hosted workshops on Plotly, Selenium, and GIS.
       </p>
@@ -23,33 +52,5 @@
           <img src="/static/img/datathon/datathon-4.JPG" class="img-responsive" width="100%" alt="Datathon 4">
         </div>
       </div>
-  </div>
-  <div class="container">
-      <h3 style="margin-top: 1em;">
-          Fall 2019 Datathon Schedule
-      </h3>
-      <p>
-          The datathon is a dedicated day for you to hack on projects and improve your data science skills. 
-          Non-HODP members of all skill levels are welcome, as we'll have a range of projects that you should be able to complete within the day.
-          Attendance is mandatory for bootcampers — email <a href="mailto:harvardopendataproject@gmail.com">harvardopendataproject@gmail.com</a> if you have scheduling conflicts.
-        </p>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Time</th>
-            <th scope="col">Event</th>
-            <th scope="col">Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in datathon.schedule %}
-            <tr>
-                <th scope="row">{{item.time}}</th>
-                <td>{{item.event}}</td>
-                <td>{{item.location}}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
   </div>
 {% endblock %}
