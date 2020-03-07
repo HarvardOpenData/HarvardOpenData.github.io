@@ -52,8 +52,8 @@
   outcome_0: "it does not snow in March"
   outcome_1: "it snows in March"
   deadline: "02/29/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
+  realized_outcome: 1
+  realized_outcome_text: "it snowed on March 6th"
 - text: "Will the Dig Inn in Harvard Square actually open this semester?"
   name: "dig-inn"
   outcome_0: "the Dig Inn does not open"

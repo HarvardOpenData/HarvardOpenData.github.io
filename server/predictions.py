@@ -105,5 +105,5 @@ def get_leaderboard(db):
             email = user_doc.id
             username = email.split("@")[0]
             user_scores.append((user_info["current_score"], username))
-    user_scores.sort()
+    user_scores.sort(key=lambda x: (-x[0], x[1]))
     return user_scores[:10]
