@@ -17,6 +17,9 @@ schedule:
   - time: 1:00 p.m.
     event: Riddler Time
     location: Ticknor Lounge
+  - time: 1:30 p.m.
+    event: HODP Wiki Overview
+    location: Ticknor Lounge
   - time: 2:00 p.m.
     event: General Project Time
     location: Ticknor Lounge
