@@ -2,11 +2,8 @@ schedule:
   - time: 10:00 a.m.
     event: Catered Breakfast
     location: Ticknor Lounge
-  - time: 10:30 a.m.
+  - time: 10:15 a.m.
     event: Opening Remarks
-    location: Ticknor Lounge
-  - time: 10:45 a.m.
-    event: Project Breakdown
     location: Ticknor Lounge
   - time: 11:00 a.m.
     event: Breakout Sessions - R with Seth, GIS with Leo, Web Development with Melissa and Kevin 

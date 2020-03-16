@@ -114,6 +114,9 @@ client.options['fields'] = ['name', 'assignee.name', 'notes', 'completed',
 def get_tasks():
     if SECRET is None:
         return []
-    tasks = list(client.tasks.find_by_project(PROJECT_ID),)
-    tasks = [create_task(task) for task in tasks]
-    return tasks
+    try: 
+        tasks = list(client.tasks.find_by_project(PROJECT_ID),)
+        tasks = [create_task(task) for task in tasks]
+        return tasks
+    except:
+        return []
