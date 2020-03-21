@@ -104,6 +104,6 @@ def get_leaderboard(db):
         if user_info["can_display"]:
             email = user_doc.id
             username = email.split("@")[0]
-            user_scores.append((user_info["current_score"], username))
+            user_scores.append((round(user_info["current_score"], 2), username))
     user_scores.sort(key=lambda x: (-x[0], x[1]))
     return user_scores[:10]
