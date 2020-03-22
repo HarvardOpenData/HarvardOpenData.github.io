@@ -61,13 +61,6 @@
   deadline: "03/05/2020 23:59:59 -0500"
   realized_outcome: 1
   realized_outcome_text: "Dig Inn opened in Harvard Square"
-- text: "Will Harvard adopt a universal pass/fail grading system this semester?"
-  name: "grading-system"
-  outcome_0: "Harvard does not adopt universal pass/fail"
-  outcome_1: "Harvard adopts universal pass/fail"
-  deadline: "03/27/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
 - text: "Will we have in-person classes in the fall?"
   name: "fall-classes"
   outcome_0: "we don't have in-person classes"
