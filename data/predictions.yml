@@ -38,8 +38,8 @@
   outcome_0: "Harvard's acceptance rate is higher than last year"
   outcome_1: "Harvard's acceptance rate is lower than last year"
   deadline: "03/25/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
+  realized_outcome: 0
+  realized_outcome_text: "Harvard admitted 4.92% of applicants this year"
 - text: "Will a varsity team at Harvard win the Ivy League Championship?"
   name: "ivy-champs"
   outcome_0: "no varsity teams win the Ivy League"
@@ -64,7 +64,7 @@
 - text: "Will we have in-person classes in the fall?"
   name: "fall-classes"
   outcome_0: "we don't have in-person classes"
-  outcome_1: "we do have in-person classes"
+  outcome_1: "we have in-person classes"
   deadline: "04/10/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
