@@ -380,7 +380,7 @@ people:
     year: 2022
   - bio: null
     email: mkwan@college.harvard.edu
-    house: null
+    house: Dunster
     image: melissa-kwan.jpg
     name: Melissa Kwan
     role: publisher
@@ -395,7 +395,7 @@ people:
       Science focus. Outside of HODP, I enjoy spending time with friends, watching NFL
       football and discussing politics.
     email: neilkhurana@college.harvard.edu
-    house: Adams House
+    house: Adams
     image: neil-khurana.jpg
     name: Neil Khurana
     role: contributor
@@ -558,4 +558,34 @@ people:
     role: contributor
   - email: meilingthompson@college.harvard.edu
     name: Meiling Thompson
+    role: contributor
+  - email: avatan@college.harvard.edu
+    name: Aurash Avatan
+    role: contributor
+  - email: crystalxue@college.harvard.edu
+    name: Crystal Xue
+    role: contributor
+  - email: mosesmayer@college.harvard.edu
+    name: Moses Mayer
+    role: contributor
+  - email: fian_tjandra@college.harvard.edu
+    name: Alfian Tjandra
+    role: contributor
+  - email: fdagostino@college.harvard.edu
+    name: Frank D'Agostino 
+    role: contributor
+  - email: matthewqu@college.harvard.edu
+    name: Matthew QU
+    role: contributor
+  - email: samuelthau@college.harvard.edu
+    name: Sam Thau
+    role: contributor
+  - email: khalevy@college.harvard.edu
+    name: Karina Halevy
+    role: contributor
+  - email: nsgupta@college.harvard.edu
+    name: Neha Gupta
+    role: contributor
+  - email: robertmckenzie@college.harvard.edu
+    name: Robert McKenzie
     role: contributor
