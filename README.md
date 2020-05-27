@@ -1,121 +1,131 @@
-# [Harvard College Open Data Project](http://harvard-open-data-project.github.io/)
+# A sample company website built with [Gatsby](https://www.gatsbyjs.org/) & [Sanity.io](https://www.sanity.io)
 
-## About us
+This examples combines [Gatsby](https://www.gatsbyjs.org/) site generation with [Sanity](https://www.sanity.io) content management in a neat little company website. Read [the blog post](https://www.sanity.io/blog/get-started-with-gatsby-and-structured-content) and [see the getting started video](https://www.youtube.com/watch?v=qU4lFYp3KiQ).
 
-> We're a student-faculty team dedicated to opening and analyzing [Harvard](https://harvard.edu) data to empower our community members to improve campus life.
+- [Features](#features)
+- [Installation](#installation)
+- [Enable Gatsby watch mode for drafts](#enable-gatsby-watch-mode-for-drafts)
+- [Usage example](#usage-example)
+- [Development setup](#development-setup)
+  - [Run it](#run-it)
+  - [Development workflow](#development-workflow)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
-We've teamed up with the former deputy CTO of the US, Harvard's CTO, and Harvard's Chief Digital Officer to build Harvard's first open data catalog​. We're empowering Harvard students to hack with Harvard data including admissions data, course catalogs, dhall menus, and university finances.​
+[![Watch a video about the company website built with Gatsby using Sanity.io as a headless CMS](https://cdn.sanity.io/images/3do82whm/production/4f652e6d114e7010aa633b81cbcb97c335980fc8-1920x1080.png?w=500)](https://www.youtube.com/watch?v=STtpXBvJmDA)
 
-Our main work includes:
+[See the example up and running](https://www.youtube.com/watch?v=STtpXBvJmDA)
 
-- Gathering open data from around the Harvard community
-- Analyzing and visualizing the data, or building applications around it
-- Using these results to drive policy changes around Harvard
-- Empowering Harvard students to also hack with this data to improve student life or the University
+## Features
 
-As we expand, we're looking for people with a passion for anything from data science to public policy. Join our team to ​build our web frontend and data analysis tools, create visualizations and apps with Harvard data, work closely with our mentors in the civic tech space, and craft university-wide open data policies.
+**A company website built with Gatsby**
+  * 📡 Real-time content preview in development
+  * ⏱ Fast & frugal builds
+  * 🗃 No accidental missing fields/types
+  * 🧰 Full Render Control with Portable Text
+  * 📸 gatsby-image support
+  * 🔧 Minimal configuration
 
-### Learn more
+**Sanity Studio with a schema for**
+  * 🏢 Company info
+  * 📃 Pages
+  * 👨🏼‍🎨 Projects
+  * 👩🏾‍💻 People
+  * 📰 Blog posts
 
-Check out [our website](http://hodp.org/) to explore Harvard datasets. Or read our [Medium publication](https://medium.com/harvard-open-data-project) to learn about our mission, past projects, and ideas for the Harvard community.
+## Installation
 
-### Get involved
+Read the [step-by-step blog post](https://www.sanity.io/blog/how-to-quickly-set-up-a-gatsby-js-jamstack-website-with-a-headless-cms).
 
-Want to follow what we're up to or join our growing team of 40+ students?
+```sh
+git clone git@github.com:sanity-io/example-company-website-gatsby-sanity-combo.git
+cd example-company-website-gatsby-sanity-combo
+npm install
 
-- [Join our mailing list](https://groups.google.com/forum/#!forum/harvard-open-data)
-- Follow us on [Medium](https://medium.com/harvard-open-data-project)
-- Email us at harvardopendataproject [at] gmail [dot] com
-
-## Running the website
-
-### Getting the Repo
-
-To copy the repo to your computer run
-```
-$ git clone https://github.com/HarvardOpenData/HarvardOpenData.github.io.git
-```
-
-
-### Installing App Engine
-If you’ve never worked with App Engine before, follow the steps [here](https://cloud.google.com/sdk/docs/) to install the Cloud SDK. (You can skip step #6).
-
-### Set Up Your Virtual Environment
-We’ll use a virtual environment to install the necessary packages without overriding or conflicting with existing packages on your computer. For the below installation commands, we assume that you run 
-
-If you don’t already have virtualenv installed, install it using
-
-```
-$ python3 -m pip install virtualenv
-```
-
-Create and activate your virtual environment. If your default version of Python is 2.7, run the below lines. If your default is not 2.7, read the answer [here](https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv) for how to modify the second line below.
+# Install or upgrade the Sanity CLI to
+# make sure you are on v0.140.0 or higher
+npm install -g @sanity/cli
+# Set up Sanity.io account and project (≈ 45s)
+npm run init
 
 ```
-$ cd HarvardOpenData.github.io/
-$ python -m virtualenv hodp
-$ source hodp/bin/activate
+
+See the [getting started video](https://www.youtube.com/watch?v=qU4lFYp3KiQ) for a walkthrough of the installation.
+
+## Enable Gatsby watch mode for drafts
+
+We have enabled the watch mode in the `gatsby-source-sanity` plugin, which means that your frontend will automatically update with content changes whenever you publish them. If you want the frontend to show content changes in real time, you must do the following:
+
+* Go to [manage.sanity.io](https://manage.sanity.io) and find your project (or run the command `sanity manage` in the studio folder)
+* Navigate to Settings->API and scroll down to the **Tokens** section
+* Add a new token and give it **read** privileges.
+* Copy the `.env-example` file to a file called `.env` in the `/web` folder
+* Add your new token to the key: `SANITY_TOKEN="<token here>"`
+
+If you restart the local development server, it will now show unpublished changes from the Studio. Note that the `.env` file is ignored by Git, because the token gives access to unpublished content in the API.
+
+## Usage example
+
+This project demos Sanity.io with Gatsby using our [source plugin](https://www.gatsbyjs.org/packages/gatsby-source-sanity). It's a good starter for a simple company site, a portfolio site for an agency or a personal blog with an attached portfolio.
+
+We tried to strike a balance between a useful example and a minimal footprint to make it easier to iterate on design and content model. [Let us know](https://slack.sanity.io) should you have questions!
+
+## Development setup
+
+### Run it
+
+```sh
+npm start
+# Studio at http://localhost:3333
+# Web frontend at http://localhost:8000
+# GraphiQL explorer at http://localhost:8000/___graphql
 ```
 
-Install the required packages
-```
-$ python3 -m pip install -r requirements.txt 
-```
 
-### Local Testing
-To test your app locally, there are two ways that you can run.
 
-#### Using Google's Local Dev Server
-If you do not have credentialed access to the HODP Firestore, use the following to use an in-memory mock firestore:
 
-```
-dev_appserver.py --env_var MOCK_FIRESTORE=TRUE app.yaml
-```
+### Development workflow
 
-```
-$ dev_appserver.py app.yaml
-```
+We wrote a [blog post](https://www.sanity.io/blog/get-started-with-gatsby-and-structured-content) about how to use this example, but if you would like to just start tinkering:
 
-#### Vanilla Flask
-If you are using python 3 and have installed all of the relevant packages, you can run with
-```
-MOCK_FIRESTORE=TRUE python3 main.py
-```
-or 
-```
-LOCAL=TRUE python3 main.py
+- The Sanity Studio keeps its schemas in `./studio/schemas`. We will hot reload the editor when you edit them so just start experimenting. [Read more about our schemas here](https://www.sanity.io/docs/content-studio/the-schema).
+- We followed Gatsby conventions and [you can read all about them here](https://www.gatsbyjs.org/tutorial/).
+- If you want Gatsby to not throw errors on missing fields for unpopulated data you need to redeploy the GraphQL API so we can generate schemas – `npm run graphql-deploy`
+
+
+## Deployment
+
+```sh
+# Deploy a GraphQL API and schema to Sanity
+npm run graphql-deploy
+
+# Deploy the Sanity Studio to *.sanity.studio
+npm run sanity-deploy
+
+# Build & deploy to Zeit's Now. Remember to set `basePath` to "/studio" in sanity.json
+npm run now-deploy
 ```
 
-### Workflow
-Ready to work? Make sure you’re on the master branch of the github repo and create your own branch. We recommend naming your branch [first-initial][last-initial]-branchname. The name of the branch can be anything you’d like, but try to be descriptive and concise!
+> **Deploy on Netlify:** If you want to deploy the Gatsby site to Netlify we added a netlify.toml config for you.
+>
+> Fork or clone the example to your GitHub account. After adding your repo to Netlify you’ll get automatic builds & deploys when pushing to master. You can also add a [webhook](https://www.sanity.io/docs/webhooks) to get deploys on content changes.
 
-```
-$ git checkout -b mn-newbranch
-```
 
-Some helpful tips!
-* Commit often! This way, if you make a change you don’t like you can easily roll-back to your last commit and not risk losing all of your work!
-* Be descriptive with your commit messages. This will help both yourself and others
-* Try to keep your branch up to date with the master branch. This will help prevent merge conflicts when we eventually merge.
+**Deploy on Cloudflare:** If you want to deploy the Gatsby site to Cloudflare we added a wrangler.toml and `workers-site/` to both studio and web.
 
-To pull from master, **first commit your changes to your branch.** Then run the following.
+* Follow quickstart for wrangler: https://developers.cloudflare.com/workers/quickstart
+* Edit wrangler.toml's according to where you'd like studio and web to get deployed to
+* Run `npm run worker-deploy`
 
-```
-$ git checkout master
-$ git pull
-$ git checkout [your-branch-name]
-$ git pull origin master
-```
+## Contributing
 
-If you have some merge conflicts, resolve them (ideally fixing your code rather than the code on master) and then commit!
+1. [Fork it](https://https://github.com/sanity-io/example-company-website-gatsby-sanity-combo/fork)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
 
-### Ready to Merge?
-**Don’t merge your own branch to master!**
+## License
 
-When you’re ready to merge, make sure all of your code has been committed and pushed to your branch.  Then go to [https://github.com/HarvardOpenData/HarvardOpenData.github.io](https://github.com/HarvardOpenData/HarvardOpenData.github.io) where you should see an option to compare and pull request.
-
-![Github Screenshot](./readme_img_1.png)
-
-1. **Click the Compare & pull request button.** This should bring you to a new screen where you can add comments about the changes you made.
-2. **Add Maddy, Kevin, and at least 2 other members of the dev team as reviewers on your pull request.** You should see this option to the right of the comments box.
-3. **Once you have approval from all your reviewers**, go ahead and merge!
+MIT

@@ -1,0 +1,52 @@
+{
+  "private": false,
+  "name": "example-company-website-gatsby-sanity-combo-frontend",
+  "version": "1.0.0",
+  "author": "Sanity <hello@sanity.io>",
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "deploy": "npm run now-deploy",
+    "develop": "gatsby develop",
+    "empty-cache": "gatsby clean",
+    "lint": "eslint .",
+    "now-build": "npm run build",
+    "workers-build": "npm run build",
+    "workers-start": "npm run build && wrangler preview --watch",
+    "workers-deploy": "npm run build && wrangler publish",
+    "now-dev": "npm run build",
+    "start": "npm run develop",
+    "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+  },
+  "dependencies": {
+    "@sanity/block-content-to-react": "^2.0.7",
+    "@sanity/image-url": "^0.140.15",
+    "date-fns": "^1.30.1",
+    "dotenv": "^8.1.0",
+    "gatsby": "^2.18.7",
+    "gatsby-plugin-postcss": "^2.1.16",
+    "gatsby-plugin-react-helmet": "^3.1.16",
+    "gatsby-source-sanity": "^5.0.4",
+    "postcss-import": "^12.0.1",
+    "postcss-preset-env": "^6.7.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "@cloudflare/wrangler": "^1.8.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier-eslint-cli": "^5.0.0",
+    "prop-types": "^15.7.2"
+  }
+}
