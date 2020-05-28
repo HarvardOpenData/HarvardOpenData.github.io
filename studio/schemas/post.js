@@ -19,6 +19,11 @@ export default {
       }
     },
     {
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'mainImage'
+    },
+    {
       name: 'publishedAt',
       title: 'Published at',
       description: 'You can use this field to schedule post where you show them',
@@ -30,15 +35,15 @@ export default {
       type: 'blockText'
     },
     {
+      name: 'socialBlurb',
+      title: 'Social Blurb',
+      type: 'blockText'
+    },
+    {
       name: 'authors',
       title: 'Authors',
       type: 'array',
       of: [{ type: 'postAuthor' }]
-    },
-    {
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'mainImage'
     },
     {
       name: 'categories',

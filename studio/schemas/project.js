@@ -47,6 +47,11 @@ export default {
       type: 'blockText'
     },
     {
+      name: 'socialBlurb',
+      title: 'Social Blurb',
+      type: 'blockText'
+    },
+    {
       name: 'members',
       title: 'Members',
       type: 'array',

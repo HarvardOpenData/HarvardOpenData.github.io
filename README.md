@@ -19,7 +19,7 @@ This examples combines [Gatsby](https://www.gatsbyjs.org/) site generation with 
 
 ## Features
 
-**A company website built with Gatsby**
+**HODP website built with Gatsby**
   * 📡 Real-time content preview in development
   * ⏱ Fast & frugal builds
   * 🗃 No accidental missing fields/types
@@ -28,7 +28,7 @@ This examples combines [Gatsby](https://www.gatsbyjs.org/) site generation with 
   * 🔧 Minimal configuration
 
 **Sanity Studio with a schema for**
-  * 🏢 Company info
+  * 🏢 Organization info
   * 📃 Pages
   * 👨🏼‍🎨 Projects
   * 👩🏾‍💻 People
