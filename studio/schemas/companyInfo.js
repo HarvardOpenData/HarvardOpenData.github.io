@@ -16,7 +16,11 @@ export default {
     {
       name: 'logo',
       title: 'Logo',
+<<<<<<< HEAD
       type: 'image',
+=======
+      type: 'image'
+>>>>>>> 1cc466fd1bf67e479574ecc0eea2744967ba4112
     },
     {
       name: 'email',
@@ -42,21 +46,6 @@ export default {
       name: 'instagram',
       title: 'Instagram',
       type: 'url',
-    },
-    {
-      name: 'address1',
-      title: 'Address 1',
-      type: 'string'
-    },
-    {
-      name: 'address2',
-      title: 'Address 2',
-      type: 'string'
-    },
-    {
-      name: 'zipCode',
-      title: 'ZIP Code',
-      type: 'string'
     },
     {
       name: 'city',
