@@ -19,6 +19,11 @@ export default {
       }
     },
     {
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'mainImage'
+    },
+    {
       name: 'publishedAt',
       title: 'Published at',
       description: 'You can use this field to schedule projects where you show them',
@@ -36,25 +41,16 @@ export default {
       of: [{ type: 'projectMember' }]
     },
     {
-      name: 'startedAt',
-      title: 'Started at',
-      type: 'datetime'
-    },
-    {
-      name: 'endedAt',
-      title: 'Ended at',
-      type: 'datetime'
-    },
-    {
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'mainImage'
-    },
-    {
       name: 'categories',
       title: 'Categories',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'category' } }]
+    },
+    {
+      name: 'subjects',
+      title: 'Subjects',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'subject' } }]
     },
     {
       name: 'body',

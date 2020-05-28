@@ -19,6 +19,7 @@ import project from './project'
 import projectMember from './projectMember'
 import siteSettings from './siteSettings'
 import slideshow from './slideshow'
+import subject from './subject'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -42,7 +43,8 @@ export default createSchema({
     project,
     projectMember,
     siteSettings,
-    slideshow
+    slideshow,
+    subject
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
