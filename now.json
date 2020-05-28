@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "example-company-website-gatsby-sanity-combo",
+  "name": "hodp-website",
   "builds": [
     {
       "src": "web/package.json",
@@ -20,5 +20,5 @@
       "src": "/(.*)", "dest": "/web/$1"
     }
   ],
-  "alias": ["example-company-website-gatsby-sanity-combo.now.sh"]
+  "alias": ["hodp-website.now.sh"]
 }

@@ -39,8 +39,8 @@ This examples combines [Gatsby](https://www.gatsbyjs.org/) site generation with 
 Read the [step-by-step blog post](https://www.sanity.io/blog/how-to-quickly-set-up-a-gatsby-js-jamstack-website-with-a-headless-cms).
 
 ```sh
-git clone git@github.com:sanity-io/example-company-website-gatsby-sanity-combo.git
-cd example-company-website-gatsby-sanity-combo
+git clone git@github.com:sanity-io/hodp-website.git
+cd hodp-website
 npm install
 
 # Install or upgrade the Sanity CLI to
@@ -120,7 +120,7 @@ npm run now-deploy
 
 ## Contributing
 
-1. [Fork it](https://https://github.com/sanity-io/example-company-website-gatsby-sanity-combo/fork)
+1. [Fork it](https://https://github.com/sanity-io/hodp-website/fork)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)

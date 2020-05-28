@@ -1,6 +1,6 @@
 {
   "private": false,
-  "name": "example-company-website-gatsby-sanity-combo-frontend",
+  "name": "hodp-website-frontend",
   "version": "1.0.0",
   "author": "Sanity <hello@sanity.io>",
   "engines": {
