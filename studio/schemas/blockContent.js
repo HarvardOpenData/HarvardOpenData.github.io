@@ -74,6 +74,9 @@ export default {
       type: 'figure'
     },
     {
+      type: 'reactComponent'
+    },
+    {
       type: 'slideshow'
     }
   ]

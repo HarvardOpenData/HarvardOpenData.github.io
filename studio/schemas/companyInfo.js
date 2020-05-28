@@ -16,11 +16,7 @@ export default {
     {
       name: 'logo',
       title: 'Logo',
-<<<<<<< HEAD
-      type: 'image',
-=======
       type: 'image'
->>>>>>> 1cc466fd1bf67e479574ecc0eea2744967ba4112
     },
     {
       name: 'email',

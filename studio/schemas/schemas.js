@@ -17,6 +17,7 @@ import post from './post'
 import postAuthor from './postAuthor'
 import project from './project'
 import projectMember from './projectMember'
+import reactComponent from './reactComponent'
 import siteSettings from './siteSettings'
 import slideshow from './slideshow'
 import subject from './subject'
@@ -42,6 +43,7 @@ export default createSchema({
     postAuthor,
     project,
     projectMember,
+    reactComponent,
     siteSettings,
     slideshow,
     subject
