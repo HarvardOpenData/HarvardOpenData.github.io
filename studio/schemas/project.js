@@ -30,6 +30,18 @@ export default {
       type: 'datetime'
     },
     {
+      name: 'layout',
+      title: 'Layout',
+      type: 'string',
+      description: 'Choose Default for stories with the typical header styles and Custom for fully interactive pieces.',
+      options: {
+        list: [
+          { title: 'Default', value: 'default' },
+          { title: 'Custom', value: 'custom' },
+        ]
+      },
+    },
+    {
       name: 'excerpt',
       title: 'Excerpt',
       type: 'blockText'
@@ -79,5 +91,8 @@ export default {
         media: image
       }
     }
+  },
+  initialValue: {
+    layout: 'default'
   }
 }
