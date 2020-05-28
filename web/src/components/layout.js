@@ -14,17 +14,6 @@ const Layout = ({ children, companyInfo, onHideNav, onShowNav, showNav, siteTitl
           {companyInfo && (
             <div>
               {companyInfo.name}
-              <br />
-              {companyInfo.address1}
-              <br />
-              {companyInfo.address2 && (
-                <span>
-                  {companyInfo.address2}
-                  <br />
-                </span>
-              )}
-              {companyInfo.zipCode} {companyInfo.city}
-              {companyInfo.country && <span>, {companyInfo.country}</span>}
             </div>
           )}
         </div>

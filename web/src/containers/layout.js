@@ -9,11 +9,13 @@ const query = graphql`
     }
     companyInfo: sanityCompanyInfo(_id: { regex: "/(drafts.|)companyInfo/" }) {
       name
-      address1
-      address2
-      zipCode
+      _rawLogo
+      email
+      github
+      facebook
+      twitter
+      instagram
       city
-      country
     }
   }
 `
@@ -30,16 +32,6 @@ function LayoutContainer (props) {
     <StaticQuery
       query={query}
       render={data => {
-        if (!data.site) {
-          throw new Error(
-            'Missing "Site settings". Open the studio at http://localhost:3333 and add "Site settings" data'
-          )
-        }
-        if (!data.companyInfo) {
-          throw new Error(
-            'Missing "Company info". Open the studio at http://localhost:3333 and add "Company info" data'
-          )
-        }
         return (
           <Layout
             {...props}

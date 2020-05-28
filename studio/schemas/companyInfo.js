@@ -14,6 +14,11 @@ export default {
       type: 'string'
     },
     {
+      name: 'logo',
+      title: 'Logo',
+      type: 'image'
+    },
+    {
       name: 'email',
       title: 'Email',
       type: 'email'
@@ -37,21 +42,6 @@ export default {
       name: 'instagram',
       title: 'Instagram',
       type: 'url',
-    },
-    {
-      name: 'address1',
-      title: 'Address 1',
-      type: 'string'
-    },
-    {
-      name: 'address2',
-      title: 'Address 2',
-      type: 'string'
-    },
-    {
-      name: 'zipCode',
-      title: 'ZIP Code',
-      type: 'string'
     },
     {
       name: 'city',
