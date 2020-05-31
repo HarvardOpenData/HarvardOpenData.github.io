@@ -9,6 +9,8 @@ import blockContent from './blockContent'
 import blockText from './blockText'
 import category from './category'
 import companyInfo from './companyInfo'
+import dataset from './dataset'
+import embeddedComponent from './embeddedComponent'
 import figure from './figure'
 import mainImage from './mainImage'
 import page from './page'
@@ -17,7 +19,6 @@ import post from './post'
 import postAuthor from './postAuthor'
 import project from './project'
 import projectMember from './projectMember'
-import reactComponent from './reactComponent'
 import siteSettings from './siteSettings'
 import slideshow from './slideshow'
 import subject from './subject'
@@ -35,6 +36,8 @@ export default createSchema({
     blockText,
     category,
     companyInfo,
+    dataset,
+    embeddedComponent,
     figure,
     mainImage,
     page,
@@ -43,7 +46,6 @@ export default createSchema({
     postAuthor,
     project,
     projectMember,
-    reactComponent,
     siteSettings,
     slideshow,
     subject

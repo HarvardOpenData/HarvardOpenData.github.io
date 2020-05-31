@@ -115,7 +115,7 @@ class WheelOfFortune extends React.Component {
       .attr('text-anchor', 'middle')
       .style('font-size', '14px')
       .attr('class', 'click description')
-      .text('users have signed');
+      .text(this.props.line1);
 
     // add line 2 - sorry this is gross :/
     svg
@@ -125,7 +125,7 @@ class WheelOfFortune extends React.Component {
       .attr('text-anchor', 'middle')
       .style('font-size', '14px')
       .attr('class', 'click description')
-      .text('up for Datamatch');
+      .text(this.props.line2);
 
     this.setState({ initialized: true, width: width, height: height });
   }

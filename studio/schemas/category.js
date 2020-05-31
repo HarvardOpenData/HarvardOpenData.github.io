@@ -16,6 +16,5 @@ export default {
       title: 'Description',
       type: 'text'
     }
-  ],
-  liveEdit: true
+  ]
 }

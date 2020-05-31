@@ -24,6 +24,5 @@ export default {
         hotspot: true
       }
     }
-  ],
-  liveEdit: true
+  ]
 }

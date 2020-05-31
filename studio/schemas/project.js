@@ -70,6 +70,12 @@ export default {
       of: [{ type: 'reference', to: { type: 'subject' } }]
     },
     {
+      name: 'dataset',
+      title: 'Dataset',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'dataset' } }]
+    },
+    {
       name: 'body',
       title: 'Body',
       type: 'blockContent'

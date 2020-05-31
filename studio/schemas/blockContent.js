@@ -74,7 +74,7 @@ export default {
       type: 'figure'
     },
     {
-      type: 'reactComponent'
+      type: 'embeddedComponent'
     },
     {
       type: 'slideshow'

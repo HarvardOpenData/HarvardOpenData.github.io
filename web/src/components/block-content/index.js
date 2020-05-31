@@ -1,7 +1,7 @@
 import BaseBlockContent from '@sanity/block-content-to-react'
 import React from 'react'
 import Figure from './figure'
-import ReactComponent from './react-component'
+import EmbeddedComponent from './embedded-component'
 import Slideshow from './slideshow'
 
 import typography from '../typography.module.css'
@@ -35,8 +35,8 @@ const serializers = {
     slideshow (props) {
       return <Slideshow {...props.node} />
     },
-    reactComponent (props) {
-      return <ReactComponent {...props.node} />
+    embeddedComponent (props) {
+      return <EmbeddedComponent {...props.node} />
     }
   }
 }
