@@ -17,22 +17,22 @@
   outcome_0: "no professors are arrested"
   outcome_1: "a professor is arrested"
   deadline: "03/05/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
+  realized_outcome: 0
+  realized_outcome_text: "no other professors were arrested"
 - text: "Will a Harvard Square business shut down this semester?"
   name: "business-close"
   outcome_0: "no Harvard Square businesses shut down"
   outcome_1: "a Harvard Square business shuts down"
   deadline: "03/05/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
+  realized_outcome: 0
+  realized_outcome_text: "no Harvard Square businesses shut down"
 - text: "Will another boba place open in Harvard Square?"
   name: "boba"
   outcome_0: "no boba places open"
   outcome_1: "a boba place opens"
   deadline: "03/05/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
+  realized_outcome: 0
+  realized_outcome_text: "no other boba places opened"
 - text: "Will Harvard's acceptance rate be lower than it was last year (4.5%)?"
   name: "acceptance-rate"
   outcome_0: "Harvard's acceptance rate is higher than last year"
@@ -65,7 +65,7 @@
   name: "fall-classes"
   outcome_0: "we don't have in-person classes"
   outcome_1: "we have in-person classes"
-  deadline: "04/10/2020 23:59:59 -0500"
+  deadline: "06/30/2020 23:59:59 -0500"
   realized_outcome:
   realized_outcome_text:
 - text: "Will Harvard schedule a date for class of 2020 commencement by the end of the semester?"
@@ -73,6 +73,6 @@
   outcome_0: "Harvard does not schedule a date"
   outcome_1: "Harvard schedules a date"
   deadline: "04/10/2020 23:59:59 -0500"
-  realized_outcome:
-  realized_outcome_text:
+  realized_outcome: 1
+  realized_outcome_text: "commencement was held virtually on May 28"
 

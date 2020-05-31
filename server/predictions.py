@@ -53,7 +53,7 @@ def calculate_points(prediction, outcome):
     diff = (prediction / 100) - outcome
     brier_score = diff ** 2
     adjusted_score = -(brier_score - 0.25) * 200
-    return round(adjusted_score, 2)
+    return round(adjusted_score, 2) + 0  # to make 0 display as positive instead of negative
 
 def update_user_score(email, realized_outcomes, db):
     """ Update a single user's score """
