@@ -1,5 +1,7 @@
 import { graphql, StaticQuery } from 'gatsby'
 import React, { useState } from 'react'
+import { ThemeProvider } from 'theme-ui'
+import theme from '../styles/theme.js'
 import Layout from '../components/layout'
 
 const query = graphql`
@@ -33,14 +35,16 @@ function LayoutContainer (props) {
       query={query}
       render={data => {
         return (
-          <Layout
-            {...props}
-            showNav={showNav}
-            companyInfo={data.companyInfo}
-            siteTitle={data.site.title}
-            onHideNav={handleHideNav}
-            onShowNav={handleShowNav}
-          />
+          <ThemeProvider theme={theme}>
+            <Layout
+              {...props}
+              showNav={showNav}
+              companyInfo={data.companyInfo}
+              siteTitle={data.site.title}
+              onHideNav={handleHideNav}
+              onShowNav={handleShowNav}
+            />
+          </ThemeProvider>
         )
       }}
     />

@@ -1,14 +1,13 @@
 import BaseBlockContent from '@sanity/block-content-to-react'
 import React from 'react'
-
-import typography from './typography.module.css'
+import { Styled } from 'theme-ui'
 
 const serializers = {
   types: {
     block (props) {
       switch (props.node.style) {
         default:
-          return <p className={typography.paragraph}>{props.children}</p>
+          return <Styled.p>{props.children}</Styled.p>
       }
     }
   }
