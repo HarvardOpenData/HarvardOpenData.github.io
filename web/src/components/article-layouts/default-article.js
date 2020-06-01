@@ -20,7 +20,7 @@ function DefaultHeader (props) {
           marginTop: ['2%', '5%'],
         }}
       >
-        <info sx={{ padding: [4, 0]}}>
+        <div sx={{ padding: [4, 0]}}>
           {publishedAt && (
             <Text variant='caps'>
               {differenceInDays(new Date(publishedAt), new Date()) > 3
@@ -40,7 +40,7 @@ function DefaultHeader (props) {
             </Styled.h2>
           }
           {_rawExcerpt && <BlockContent blocks={_rawExcerpt || []} />}
-        </info>
+        </div>
         {props.mainImage && mainImage.asset && (
           <img
             src={imageUrlFor(buildImageObj(mainImage))

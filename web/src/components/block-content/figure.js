@@ -5,7 +5,7 @@ import { imageUrlFor } from '../../lib/image-url'
 
 function Figure (props) {
   return (
-    <fig>
+    <div>
       {props.asset && (
         <Image
           src={imageUrlFor(buildImageObj(props))
@@ -15,7 +15,7 @@ function Figure (props) {
         />
       )}
       <Text variant='caption'>{props.caption}</Text>
-    </fig>
+    </div>
   )
 }
 

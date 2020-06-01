@@ -63,7 +63,7 @@ function RoleList ({ items, title }) {
       }}
     >
       <Styled.h4>{title}</Styled.h4>
-      {items.map(item => <Role {...item}/>)}
+      {items.map((item, key) => <Role key={key} {...item}/>)}
     </div>
   )
 }

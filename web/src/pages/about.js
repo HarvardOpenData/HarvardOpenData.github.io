@@ -28,6 +28,9 @@ export const query = graphql`
           }
           name
           _rawBio
+          slug {
+            current
+          }
         }
       }
     }
