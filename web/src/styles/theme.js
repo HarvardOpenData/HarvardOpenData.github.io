@@ -33,10 +33,33 @@ export default {
     heading: 1.125,
   },
   text: {
+    default: {
+      color: 'text',
+      fontSize: 3,
+    },
+    caps: {
+      textTransform: 'uppercase',
+      letterSpacing: '0.2em',
+    },
     heading: {
       fontFamily: 'heading',
       fontWeight: 'heading',
       lineHeight: 'heading',
+    },
+    caption: {
+      fontFamily: 'body',
+      fontWeight: 'body',
+      lineHeight: 'body',
+      marginTop: [1.5, 2.5],
+      fontSize: [1, 2],
+    },
+  },
+  image: {
+    padding: 0,
+    avatar: {
+      width: 48,
+      height: 48,
+      borderRadius: 99999,
     },
   },
   styles: {
