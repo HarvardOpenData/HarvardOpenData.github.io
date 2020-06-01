@@ -14,15 +14,7 @@ export default {
       name: 'props',
       type: 'array',
       description: 'Currently only allows string props',
-      of: [
-        { 
-          type: 'object',
-          fields: [
-            {name: 'name', type: 'string', title: 'Prop name'},
-            {name: 'value', type: 'string', title: 'Value'},
-          ]
-        },
-      ],
+      of: [{ type: 'stringProp' }],
     }
   ]
 }

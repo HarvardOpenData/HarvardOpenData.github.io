@@ -37,6 +37,7 @@ export default {
       options: {
         list: [
           { title: 'Default', value: 'default' },
+          { title: 'Full Image', value: 'fullImage' },
           { title: 'Custom', value: 'custom' },
         ]
       },

@@ -35,9 +35,9 @@ export default {
       type: 'blockText'
     },
     {
-      name: 'socialBlurb',
-      title: 'Social Blurb',
-      type: 'blockText'
+      name: 'body',
+      title: 'Body',
+      type: 'blockContent'
     },
     {
       name: 'authors',
@@ -58,10 +58,10 @@ export default {
       of: [{ type: 'reference', to: { type: 'subject' } }]
     },
     {
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent'
-    }
+      name: 'socialBlurb',
+      title: 'Social Blurb',
+      type: 'blockText'
+    },
   ],
   orderings: [
     {
