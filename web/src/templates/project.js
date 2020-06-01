@@ -15,6 +15,10 @@ export const query = graphql`
         _id
         title
       }
+      subjects {
+        _id
+        title
+      }
       relatedProjects {
         title
         _id
@@ -50,6 +54,7 @@ export const query = graphql`
       }
       _rawExcerpt
       _rawBody
+      layout
       members {
         _key
         person {

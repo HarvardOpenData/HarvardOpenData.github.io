@@ -1,4 +1,7 @@
 export default {
+  breakpoints: [
+    '720px', '960px', '1300px', '1400px',
+  ],
   colors: {
     text: '#333',
     background: '#aaaaaa',
@@ -28,15 +31,12 @@ export default {
     heading: 900,
     bold: 700,
   },
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 960],
-  sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512, 960],
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 640, 896, 1024],
+  sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512, 640, 896, 1024],
   lineHeights: {
     body: 1.5,
     heading: 1.125,
   },
-  breakpoints: [
-    '40em', '56em', '64em',
-  ],
   text: {
     default: {
       color: 'text',
@@ -77,7 +77,7 @@ export default {
       lineHeight: 'body',
     },
     p: {
-      fontSize: [1, 2, 3],
+      fontSize: [2, 3, 3, 3],
     },
     h1: {
       variant: 'text.heading',
@@ -85,7 +85,7 @@ export default {
     },
     h2: {
       variant: 'text.heading',
-      fontSize: [4, 5],
+      fontSize: [4, 5, 6],
     },
     h3: {
       variant: 'text.heading',
