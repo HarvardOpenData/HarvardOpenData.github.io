@@ -9,7 +9,7 @@ import Container from '../container'
 import RoleList from '../role-list'
 
 function DefaultHeader (props) {
-  const { _rawExcerpt, title, mainImage, members, publishedAt } = props
+  const { _rawExcerpt, title, mainImage, members, authors, publishedAt } = props
   return (
     <Grid
         gap={4}
@@ -40,7 +40,6 @@ function DefaultHeader (props) {
             </Styled.h2>
           }
           {_rawExcerpt && <BlockContent blocks={_rawExcerpt || []} />}
-          {members && <RoleList items={members} />}
         </info>
         {props.mainImage && mainImage.asset && (
           <img
@@ -61,8 +60,8 @@ function DefaultHeader (props) {
 }
 
 function DefaultArticle (props) {
-  const { _rawBody, categories, subjects, relatedProjects } = props
-  const defaultSidebarProps = { categories, subjects, relatedProjects }
+  const { _rawBody, authors, members, categories, subjects, relatedProjects } = props
+  const defaultSidebarProps = { authors, members, categories, subjects, relatedProjects }
   return (
     <article>
       <DefaultHeader {...props} />

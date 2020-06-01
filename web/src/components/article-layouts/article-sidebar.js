@@ -6,8 +6,9 @@ import RoleList from '../role-list'
 
 import styles from '../project.module.css'
 
+// Creates a sidebar with all available props
 function ArticleSidebar (props) {
-  const { categories, subjects, members, publishedAt, relatedProjects } = props
+  const { categories, subjects, authors, members, publishedAt, relatedProjects } = props
   return (
     <aside className={styles.metaContent}>
       {publishedAt && (
@@ -17,7 +18,8 @@ function ArticleSidebar (props) {
             : format(new Date(publishedAt), 'MMMM Do YYYY')}
         </div>
       )}
-      {members && <RoleList items={members} title='Authors' />}
+      {members && <RoleList items={members} title='Members' />}
+      {authors && <RoleList items={authors} title='Authors' />}
       {categories && (
         <div className={styles.categories}>
           <h3 className={styles.categoriesHeadline}>Category</h3>

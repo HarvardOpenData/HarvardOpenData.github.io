@@ -58,13 +58,18 @@ export default {
       marginTop: [1.5, 2.5],
       fontSize: [1, 2],
     },
+    small: {
+      fontFamily: 'body',
+      fontWeight: 'body',
+      lineHeight: [1],
+      fontSize: [1],
+    },
   },
   image: {
-    padding: 0,
     avatar: {
       width: 48,
       height: 48,
-      borderRadius: 99999,
+      borderRadius: '50%',
     },
   },
   styles: {
