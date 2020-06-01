@@ -1,9 +1,19 @@
-import React from 'react'
-
-import styles from './container.module.css'
+/** @jsx jsx */
+import { jsx  } from 'theme-ui'
 
 const Container = ({ children }) => {
-  return <div className={styles.root}>{children}</div>
+  return (
+    <div
+      sx={{
+        maxWidth: '960px',
+        paddingLeft: ['1.5em', '2em'],
+        paddingRight: ['1.5em', '2em'],
+        margin: '0 auto',
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
 export default Container

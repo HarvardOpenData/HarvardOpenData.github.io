@@ -1,9 +1,10 @@
 export default {
   colors: {
-    text: "#333",
-    background: "#ffffff",
-    primary: "#639",
-    secondary: "#ff6347",
+    text: '#333',
+    background: '#aaaaaa',
+    primary: '#639',
+    secondary: '#ff6347',
+    muted: 'eeeeee',
   },
   fonts: {
     body: "Akkurat, system-ui, sans-serif",
@@ -27,7 +28,7 @@ export default {
     heading: 900,
     bold: 700,
   },
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 960],
   lineHeights: {
     body: 1.5,
     heading: 1.125,
