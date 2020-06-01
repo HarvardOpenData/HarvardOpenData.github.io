@@ -1,4 +1,5 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import WheelOfFortune from '../../interactives/wheel-of-fortune'
 
 function EmbeddedComponent (component) {
