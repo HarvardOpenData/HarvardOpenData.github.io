@@ -1,6 +1,6 @@
 import { graphql, StaticQuery } from 'gatsby'
 import React, { useState } from 'react'
-import { ThemeProvider } from 'theme-ui'
+import { ThemeProvider, Styled } from 'theme-ui'
 import theme from '../styles/theme.js'
 import Layout from '../components/layout'
 

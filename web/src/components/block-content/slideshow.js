@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
+import { useState } from 'react'
 import { buildImageObj } from '../../lib/helpers'
 import { imageUrlFor } from '../../lib/image-url'
 
@@ -15,7 +17,15 @@ function Slideshow (props) {
     setIndex(Math.min(index + 1, len - 1))
   }
   return (
-    <div className={styles.root}>
+    <div className='root'
+      sx={{
+        background: 'black',
+        color: 'white',
+        margin: ['margin: 2rem -2rem', 'margin: 2rem 0', '2rem -1.5rem'],
+        overflow: 'hidden',
+        padding: '1rem',
+      }}
+    >
       <div className={styles.nav}>
         <button onClick={handlePrev} disabled={index === 0}>
           Prev

@@ -4,7 +4,7 @@ export default {
   ],
   colors: {
     text: '#333',
-    background: '#aaaaaa',
+    background: '#fefefe',
     primary: '#639',
     secondary: '#ff6347',
     muted: 'eeeeee',
@@ -67,14 +67,12 @@ export default {
       borderRadius: 99999,
     },
   },
-  link: {
-    textDecoration: 'none',
-  },
   styles: {
     root: {
       fontFamily: 'body',
       fontWeight: 'body',
       lineHeight: 'body',
+      backgroundColor: 'background',
     },
     p: {
       fontSize: [2, 3, 3, 3],

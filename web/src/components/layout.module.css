@@ -35,6 +35,6 @@
   line-height: var(--font-small-line-height);
 
   @nest & a {
-    color: inherit;
+    color: white;
   }
 }
