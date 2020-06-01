@@ -5,7 +5,7 @@ const Container = ({ children }) => {
   return (
     <div
       sx={{
-        maxWidth: '960px',
+        maxWidth: [9],
         paddingLeft: ['1.5em', '2em'],
         paddingRight: ['1.5em', '2em'],
         margin: '0 auto',

@@ -41,6 +41,7 @@ export const query = graphql`
       slug {
         current
       }
+      _rawExcerpt
       _rawBody
       authors {
         _key

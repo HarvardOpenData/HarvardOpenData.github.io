@@ -29,6 +29,7 @@ export default {
     bold: 700,
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 960],
+  sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512, 960],
   lineHeights: {
     body: 1.5,
     heading: 1.125,
