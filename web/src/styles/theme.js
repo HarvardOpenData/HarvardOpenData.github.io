@@ -62,6 +62,9 @@ export default {
       borderRadius: 99999,
     },
   },
+  link: {
+    textDecoration: 'none',
+  },
   styles: {
     root: {
       fontFamily: 'body',

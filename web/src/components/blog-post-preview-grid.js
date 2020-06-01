@@ -1,35 +1,33 @@
 import { Link } from 'gatsby'
 import React from 'react'
+import { Styled, Grid, Text } from 'theme-ui'
 import BlogPostPreview from './blog-post-preview'
-
-import styles from './blog-post-preview-grid.module.css'
 
 function BlogPostPreviewGrid (props) {
   return (
-    <div className={styles.root}>
+    <Styled.root>
       {props.title && (
-        <h2 className={styles.headline}>
+        <h4>
           {props.browseMoreHref ? (
             <Link to={props.browseMoreHref}>{props.title}</Link>
           ) : (
             props.title
           )}
-        </h2>
+        </h4>
       )}
-      <ul className={styles.grid}>
+      <Grid
+        gap={4}
+        columns={[1, 2, 3 ]}
+      >
         {props.nodes &&
           props.nodes.map(node => (
-            <li key={node.id}>
-              <BlogPostPreview {...node} />
-            </li>
+            <BlogPostPreview {...node} />
           ))}
-      </ul>
+      </Grid>
       {props.browseMoreHref && (
-        <div className={styles.browseMoreNav}>
-          <Link to={props.browseMoreHref}>Browse more</Link>
-        </div>
+        <Link to={props.browseMoreHref}>Browse more</Link>
       )}
-    </div>
+    </Styled.root>
   )
 }
 
