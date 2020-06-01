@@ -1,35 +1,33 @@
 import { Link } from 'gatsby'
 import React from 'react'
+import { Styled, Grid, Text } from 'theme-ui'
 import ProjectPreview from './project-preview'
-
-import styles from './project-preview-grid.module.css'
 
 function ProjectPreviewGrid (props) {
   return (
-    <div className={styles.root}>
+    <Styled.root>
       {props.title && (
-        <h2 className={styles.headline}>
+        <h4>
           {props.browseMoreHref ? (
             <Link to={props.browseMoreHref}>{props.title}</Link>
           ) : (
             props.title
           )}
-        </h2>
+        </h4>
       )}
-      <ul className={styles.grid}>
+      <Grid
+        gap={4}
+        columns={[1, 2, 3 ]}
+      >
         {props.nodes &&
           props.nodes.map(node => (
-            <li key={node.id}>
-              <ProjectPreview {...node} />
-            </li>
+            <ProjectPreview {...node} />
           ))}
-      </ul>
+      </Grid>
       {props.browseMoreHref && (
-        <div className={styles.browseMoreNav}>
-          <Link to={props.browseMoreHref}>Browse more</Link>
-        </div>
+        <Link to={props.browseMoreHref}>Browse more</Link>
       )}
-    </div>
+    </Styled.root>
   )
 }
 

@@ -1,13 +1,21 @@
+/** @jsx jsx */
 import BaseBlockContent from '@sanity/block-content-to-react'
-import React from 'react'
-import { Styled } from 'theme-ui'
+import { jsx, Styled } from 'theme-ui'
 
 const serializers = {
   types: {
     block (props) {
       switch (props.node.style) {
         default:
-          return <Styled.p>{props.children}</Styled.p>
+          return (
+            <Styled.p
+              sx={{
+                fontSize: [1,2]
+              }}
+            >
+              {props.children}
+            </Styled.p>
+          )
       }
     }
   }

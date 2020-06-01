@@ -20,7 +20,7 @@ export default {
     heading: 1.125,
   },
   fontSizes: [
-    12, 14, 16, 18, 24, 32, 48, 64, 72,
+    12, 14, 16, 19, 24, 32, 48, 64, 72,
   ],
   fontWeights: {
     body: 400,
@@ -32,6 +32,9 @@ export default {
     body: 1.5,
     heading: 1.125,
   },
+  breakpoints: [
+    '40em', '56em', '64em',
+  ],
   text: {
     default: {
       color: 'text',
@@ -72,7 +75,7 @@ export default {
       lineHeight: 'body',
     },
     p: {
-      fontSize: [2, 3],
+      fontSize: [1, 2, 3],
     },
     h1: {
       variant: 'text.heading',
@@ -81,6 +84,11 @@ export default {
     h2: {
       variant: 'text.heading',
       fontSize: [4, 5],
+    },
+    h3: {
+      variant: 'text.heading',
+      fontSize: [3, 4],
+      marginTop: '0.5em',
     },
   },
 }
