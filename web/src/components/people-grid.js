@@ -1,17 +1,15 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx, Grid, Image, Styled, Text } from 'theme-ui'
 import BlockText from './block-text'
 import { buildImageObj } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 
-import styles from './people-grid.module.css'
-import { responsiveTitle2 } from '../components/typography.module.css'
-
 function ProfileCard ({ image, name, _rawBio }) {
   return (
-    <div className={styles.profileCard}>
-      <div className={styles.profileMediaThumb}>
+    <div>
+      <div>
         {image && image.asset && (
-          <img
+          <Image
             src={imageUrlFor(buildImageObj(image))
               .width(600)
               .height(600)
@@ -20,11 +18,11 @@ function ProfileCard ({ image, name, _rawBio }) {
           />
         )}
       </div>
-      <h2 className={styles.headline}>{name}</h2>
+      <Styled.h4>{name}</Styled.h4>
       {_rawBio && (
-        <div className={styles.bio}>
+        <Text variant='small'>
           <BlockText blocks={_rawBio} />
-        </div>
+        </Text>
       )}
     </div>
   )
@@ -32,15 +30,16 @@ function ProfileCard ({ image, name, _rawBio }) {
 
 function PeopleGrid ({ items, title }) {
   return (
-    <div className={styles.root}>
-      {<h2 className={responsiveTitle2}>{title}</h2>}
-      <ul className={styles.grid}>
-        {items.map(item => (
-          <li key={item.id}>
-            <ProfileCard {...item} />
-          </li>
+    <div>
+      <Styled.h2>{title}</Styled.h2>
+      <Grid
+        gap={3}
+        columns={[1, 2, 3, 3]}
+      >
+        {items.map((item, key) => (
+          <ProfileCard key={key} {...item} />
         ))}
-      </ul>
+      </Grid>
     </div>
   )
 }
