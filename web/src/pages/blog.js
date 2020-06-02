@@ -47,7 +47,7 @@ const BlogPage = props => {
 
   return (
     <Layout>
-      <SEO title='Blog' />
+      <SEO title="Blog" />
       <Container>
         <Styled.h1>Blog</Styled.h1>
         {postNodes && postNodes.length > 0 && <BlogPostPreviewGrid nodes={postNodes} />}

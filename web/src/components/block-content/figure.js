@@ -3,7 +3,7 @@ import { Image, Text } from 'theme-ui'
 import { buildImageObj } from '../../lib/helpers'
 import { imageUrlFor } from '../../lib/image-url'
 
-function Figure (props) {
+function Figure(props) {
   return (
     <div>
       {props.asset && (
@@ -14,7 +14,7 @@ function Figure (props) {
           alt={props.alt}
         />
       )}
-      <Text variant='caption'>{props.caption}</Text>
+      <Text variant="caption">{props.caption}</Text>
     </div>
   )
 }

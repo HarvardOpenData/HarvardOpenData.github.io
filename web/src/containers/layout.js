@@ -22,12 +22,12 @@ const query = graphql`
   }
 `
 
-function LayoutContainer (props) {
+function LayoutContainer(props) {
   const [showNav, setShowNav] = useState(false)
-  function handleShowNav () {
+  function handleShowNav() {
     setShowNav(true)
   }
-  function handleHideNav () {
+  function handleHideNav() {
     setShowNav(false)
   }
   return (
@@ -37,16 +37,14 @@ function LayoutContainer (props) {
           query={query}
           render={data => {
             return (
-              
-                  <Layout
-                    {...props}
-                    showNav={showNav}
-                    companyInfo={data.companyInfo}
-                    siteTitle={data.site.title}
-                    onHideNav={handleHideNav}
-                    onShowNav={handleShowNav}
-                  />
-                
+              <Layout
+                {...props}
+                showNav={showNav}
+                companyInfo={data.companyInfo}
+                siteTitle={data.site.title}
+                onHideNav={handleHideNav}
+                onShowNav={handleShowNav}
+              />
             )
           }}
         />

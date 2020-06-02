@@ -8,12 +8,12 @@ const Container = ({ children }) => {
         maxWidth: '960px',
         paddingLeft: ['1.5em', '2em'],
         paddingRight: ['1.5em', '2em'],
-        margin: '0 auto',
+        margin: '0 auto'
       }}
     >
       {children}
     </Styled.root>
-  );
+  )
 }
 
 export default Container

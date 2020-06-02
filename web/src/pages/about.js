@@ -65,7 +65,7 @@ const AboutPage = props => {
       <Container>
         <Styled.h1>{page.title}</Styled.h1>
         <BlockContent blocks={page._rawBody || []} />
-        {personNodes && personNodes.length > 0 && <PeopleGrid items={personNodes} title='People' />}
+        {personNodes && personNodes.length > 0 && <PeopleGrid items={personNodes} title="People" />}
       </Container>
     </Layout>
   )

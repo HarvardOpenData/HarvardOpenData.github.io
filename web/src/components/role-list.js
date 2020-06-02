@@ -3,11 +3,11 @@ import { jsx, Styled, Text } from 'theme-ui'
 import { buildImageObj } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 
-function ucfirst (str) {
+function ucfirst(str) {
   return `${str.substr(0, 1).toUpperCase()}${str.substr(1)}`
 }
 
-function stringifyRoles (item) {
+function stringifyRoles(item) {
   let str = ''
   item.roles.forEach((role, idx) => {
     if (idx === 0) {
@@ -18,10 +18,10 @@ function stringifyRoles (item) {
       str += `, ${role} `
     }
   })
-  return str;
+  return str
 }
 
-function Role (item) {
+function Role(item) {
   return (
     <div
       sx={{
@@ -38,32 +38,36 @@ function Role (item) {
             .height(100)
             .fit('crop')
             .url()}
-          alt=''
+          alt=""
           sx={{
             width: '48px',
             height: '48px',
-            borderRadius: '50%',
+            borderRadius: '50%'
           }}
         />
       )}
       <div sx={{ p: [2], flex: '1 1 auto' }}>
-        <Text fontSize={0}><strong>{(item.person && item.person.name) || <em>Missing</em>}</strong></Text>
-        {item.roles && <Text variant='small'>{stringifyRoles(item)}</Text>}
+        <Text fontSize={0}>
+          <strong>{(item.person && item.person.name) || <em>Missing</em>}</strong>
+        </Text>
+        {item.roles && <Text variant="small">{stringifyRoles(item)}</Text>}
       </div>
     </div>
   )
 }
 
-function RoleList ({ items, title }) {
+function RoleList({ items, title }) {
   return (
     <div
       sx={{
         margin: '2rem 0 3rem',
-        borderTop: '1px solid black',
+        borderTop: '1px solid black'
       }}
     >
       <Styled.h4>{title}</Styled.h4>
-      {items.map((item, key) => <Role key={key} {...item}/>)}
+      {items.map((item, key) => (
+        <Role key={key} {...item} />
+      ))}
     </div>
   )
 }

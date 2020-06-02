@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import BaseBlockContent from '@sanity/block-content-to-react'
-import { jsx, Styled } from "theme-ui"
+import { jsx, Styled } from 'theme-ui'
 import Figure from './figure'
 import EmbeddedComponent from './embedded-component'
 import Slideshow from './slideshow'
 
 const serializers = {
   types: {
-    block (props) {
+    block(props) {
       switch (props.node.style) {
         case 'h1':
           return <Styled.h1>{props.children}</Styled.h1>
@@ -28,14 +28,18 @@ const serializers = {
           return <Styled.p>{props.children}</Styled.p>
       }
     },
-    figure (props) {
+    figure(props) {
       return <Figure {...props.node} />
     },
-    slideshow (props) {
+    slideshow(props) {
       return <Slideshow {...props.node} />
     },
-    embeddedComponent (props) {
-      return <Styled.root><EmbeddedComponent {...props.node} /></Styled.root>
+    embeddedComponent(props) {
+      return (
+        <Styled.root>
+          <EmbeddedComponent {...props.node} />
+        </Styled.root>
+      )
     }
   }
 }

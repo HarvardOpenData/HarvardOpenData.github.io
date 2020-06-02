@@ -4,14 +4,14 @@ import { imageUrlFor } from '../../lib/image-url'
 
 import styles from './slideshow.module.css'
 
-function Slideshow (props) {
+function Slideshow(props) {
   const [index, setIndex] = useState(0)
   if (!props.slides) return null
   const len = props.slides.length
-  function handlePrev () {
+  function handlePrev() {
     setIndex(Math.max(index - 1, 0))
   }
-  function handleNext () {
+  function handleNext() {
     setIndex(Math.min(index + 1, len - 1))
   }
   return (

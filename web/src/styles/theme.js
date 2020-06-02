@@ -1,99 +1,95 @@
 export default {
-  breakpoints: [
-    '720px', '960px', '1300px', '1400px',
-  ],
+  breakpoints: ['720px', '960px', '1300px', '1400px'],
   colors: {
     text: '#333',
     background: 'white',
     primary: '#639',
     secondary: '#ff6347',
-    muted: 'eeeeee',
+    muted: 'eeeeee'
   },
   fonts: {
-    body: "Akkurat, system-ui, sans-serif",
-    heading: "Akkurat, system-ui, sans-serif",
-    monospace: "Akkurat-Mono, Menlo, monospace",
+    body: 'Akkurat, system-ui, sans-serif',
+    heading: 'Akkurat, system-ui, sans-serif',
+    monospace: 'Akkurat-Mono, Menlo, monospace'
   },
   fontWeights: {
     body: 400,
     heading: 900,
-    bold: 700,
+    bold: 700
   },
   lineHeights: {
     body: 1.5,
-    heading: 1.125,
+    heading: 1.125
   },
-  fontSizes: [
-    12, 14, 16, 19, 24, 32, 48, 64, 72,
-  ],
+  fontSizes: [12, 14, 16, 19, 24, 32, 48, 64, 72],
   fontWeights: {
     body: 400,
     heading: 900,
-    bold: 700,
+    bold: 700
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 640, 896, 1024],
   sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512, 640, 896, 1024],
   lineHeights: {
     body: 1.5,
-    heading: 1.125,
+    heading: 1.125
   },
   text: {
     default: {
       color: 'text',
-      fontSize: 3,
+      fontSize: 3
     },
     caps: {
       textTransform: 'uppercase',
-      letterSpacing: '0.2em',
+      letterSpacing: '0.2em'
     },
     heading: {
       fontFamily: 'heading',
       fontWeight: 'heading',
-      lineHeight: 'heading',
+      lineHeight: 'heading'
     },
     caption: {
       fontFamily: 'body',
       fontWeight: 'body',
       lineHeight: 'body',
       marginTop: [1.5, 2.5],
-      fontSize: [1, 2],
+      fontSize: [1, 2]
     },
     small: {
       fontFamily: 'body',
       fontWeight: 'body',
       lineHeight: [1],
-      fontSize: [1],
-    },
+      fontSize: [1]
+    }
   },
   image: {
     avatar: {
       width: 48,
       height: 48,
-      borderRadius: '50%',
-    },
+      borderRadius: '50%'
+    }
   },
   styles: {
     root: {
       fontFamily: 'body',
       fontWeight: 'body',
       lineHeight: 'body',
-      backgroundColor: 'background',
+      backgroundColor: 'background'
     },
     p: {
-      fontSize: [2, 3, 3, 3],
+      fontSize: [2, 3, 3, 3]
     },
     h1: {
       variant: 'text.heading',
-      fontSize: [5, 6, 7],
+      fontSize: [5, 6, 7]
     },
     h2: {
       variant: 'text.heading',
-      fontSize: [4, 5, 6],
+      fontSize: [4, 5, 6]
     },
     h3: {
       variant: 'text.heading',
       fontSize: [3, 4],
-      marginTop: '0.5em',
-    },
-  },
+      marginTop: '0.5em'
+    }
+  }
 }

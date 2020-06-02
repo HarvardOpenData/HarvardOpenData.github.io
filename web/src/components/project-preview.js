@@ -5,14 +5,14 @@ import { buildImageObj } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import BlockText from './block-text'
 
-function ProjectPreview (props) {
+function ProjectPreview(props) {
   return (
     <Link to={`/project/${props.slug.current}`}>
       <div
         sx={{
           position: 'relative',
           paddingBottom: '66.666%',
-          background: '#eee',
+          background: '#eee'
         }}
       >
         {props.mainImage && props.mainImage.asset && (
@@ -34,9 +34,7 @@ function ProjectPreview (props) {
         )}
       </div>
       <Styled.h3 sx={{ marginBottom: [1] }}>{props.title}</Styled.h3>
-      {props._rawExcerpt && (
-        <BlockText blocks={props._rawExcerpt} />
-      )}
+      {props._rawExcerpt && <BlockText blocks={props._rawExcerpt} />}
     </Link>
   )
 }

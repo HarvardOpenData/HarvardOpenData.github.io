@@ -5,14 +5,14 @@ import { buildImageObj, getBlogUrl } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import BlockText from './block-text'
 
-function BlogPostPreview (props) {
+function BlogPostPreview(props) {
   return (
     <Link to={getBlogUrl(props.publishedAt, props.slug.current)}>
       <div
         sx={{
           position: 'relative',
           paddingBottom: '66.666%',
-          background: '#eee',
+          background: '#eee'
         }}
       >
         {props.mainImage && props.mainImage.asset && (
@@ -34,12 +34,7 @@ function BlogPostPreview (props) {
         )}
       </div>
       <Styled.h3 sx={{ marginBottom: [1] }}>{props.title}</Styled.h3>
-      {props._rawExcerpt && (
-        <BlockText
-          type='preview'
-          blocks={props._rawExcerpt}
-        />
-      )}
+      {props._rawExcerpt && <BlockText type="preview" blocks={props._rawExcerpt} />}
     </Link>
   )
 }

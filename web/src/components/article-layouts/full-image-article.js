@@ -6,7 +6,7 @@ import ArticleSidebar from './article-sidebar'
 import BlockContent from '../block-content'
 import Container from '../container'
 
-function FullImageArticle (props) {
+function FullImageArticle(props) {
   const { _rawBody, authors, categories, subjects, title, mainImage, publishedAt } = props
   return (
     <article>
@@ -22,16 +22,13 @@ function FullImageArticle (props) {
             sx={{
               width: '100%',
               verticalAlign: 'top',
-              objectFit: 'cover',
+              objectFit: 'cover'
             }}
           />
         </div>
       )}
       <Container>
-        <Grid
-          gap={4}
-          columns={[ 1, '3fr 1fr' ]}
-        >
+        <Grid gap={4} columns={[1, '3fr 1fr']}>
           <div>
             {title && <Styled.h1>{title}</Styled.h1>}
             {_rawBody && <BlockContent blocks={_rawBody || []} />}

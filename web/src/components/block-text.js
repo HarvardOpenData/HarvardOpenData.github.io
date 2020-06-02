@@ -4,13 +4,13 @@ import { jsx, Styled } from 'theme-ui'
 
 const serializers = {
   types: {
-    block (props) {
+    block(props) {
       switch (props.node.style) {
         default:
           return (
             <Styled.p
               sx={{
-                fontSize: [1,2]
+                fontSize: [1, 2]
               }}
             >
               {props.children}

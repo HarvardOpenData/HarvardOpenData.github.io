@@ -9,18 +9,12 @@ const Layout = ({ children, companyInfo, onHideNav, onShowNav, showNav, siteTitl
     <div>{children}</div>
     <footer sx={{ justifyContent: 'center' }}>
       <div>
-        <div>
-          {companyInfo && (
-            <div>
-              {companyInfo.name}
-            </div>
-          )}
-        </div>
+        <div>{companyInfo && <div>{companyInfo.name}</div>}</div>
 
         <div>
-          © {new Date().getFullYear()}, Built with <a href='https://www.sanity.io'>Sanity</a> &amp;
+          © {new Date().getFullYear()}, Built with <a href="https://www.sanity.io">Sanity</a> &amp;
           {` `}
-          <a href='https://www.gatsbyjs.org'>Gatsby</a>
+          <a href="https://www.gatsbyjs.org">Gatsby</a>
         </div>
       </div>
     </footer>

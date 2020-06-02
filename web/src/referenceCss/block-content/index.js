@@ -8,7 +8,7 @@ import typography from '../typography.module.css'
 
 const serializers = {
   types: {
-    block (props) {
+    block(props) {
       switch (props.node.style) {
         case 'h1':
           return <h1 className={typography.responsiveTitle1}>{props.children}</h1>
@@ -29,13 +29,13 @@ const serializers = {
           return <p className={typography.paragraph}>{props.children}</p>
       }
     },
-    figure (props) {
+    figure(props) {
       return <Figure {...props.node} />
     },
-    slideshow (props) {
+    slideshow(props) {
       return <Slideshow {...props.node} />
     },
-    embeddedComponent (props) {
+    embeddedComponent(props) {
       return <EmbeddedComponent {...props.node} />
     }
   }

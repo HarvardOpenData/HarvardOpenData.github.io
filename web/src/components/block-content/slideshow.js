@@ -6,24 +6,25 @@ import { imageUrlFor } from '../../lib/image-url'
 
 import styles from './slideshow.module.css'
 
-function Slideshow (props) {
+function Slideshow(props) {
   const [index, setIndex] = useState(0)
   if (!props.slides) return null
   const len = props.slides.length
-  function handlePrev () {
+  function handlePrev() {
     setIndex(Math.max(index - 1, 0))
   }
-  function handleNext () {
+  function handleNext() {
     setIndex(Math.min(index + 1, len - 1))
   }
   return (
-    <div className='root'
+    <div
+      className="root"
       sx={{
         background: 'black',
         color: 'white',
         margin: ['margin: 2rem -2rem', 'margin: 2rem 0', '2rem -1.5rem'],
         overflow: 'hidden',
-        padding: '1rem',
+        padding: '1rem'
       }}
     >
       <div className={styles.nav}>

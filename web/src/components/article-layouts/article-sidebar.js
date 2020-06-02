@@ -7,19 +7,19 @@ import RoleList from '../role-list'
 import styles from './sidebar.module.css'
 
 // Creates a sidebar with all available props
-function ArticleSidebar (props) {
+function ArticleSidebar(props) {
   const { categories, subjects, authors, members, publishedAt, relatedProjects } = props
   return (
     <aside>
       {publishedAt && (
-        <Text variant='small'>
+        <Text variant="small">
           {differenceInDays(new Date(publishedAt), new Date()) > 3
             ? distanceInWords(new Date(publishedAt), new Date())
             : format(new Date(publishedAt), 'MMMM Do YYYY')}
         </Text>
       )}
-      {members && <RoleList items={members} title='Members' />}
-      {authors && <RoleList items={authors} title='Authors' />}
+      {members && <RoleList items={members} title="Members" />}
+      {authors && <RoleList items={authors} title="Authors" />}
       {categories && (
         <div className={styles.categories}>
           <Styled.h4>Category</Styled.h4>
