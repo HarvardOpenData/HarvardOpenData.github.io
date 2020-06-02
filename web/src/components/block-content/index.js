@@ -22,7 +22,7 @@ const serializers = {
           return <Styled.h4>{props.children}</Styled.h4>
 
         case 'blockquote':
-          return <blockquote>{props.children}</blockquote>
+          return <Styled.blockquote>{props.children}</Styled.blockquote>
 
         default:
           return <Styled.p>{props.children}</Styled.p>

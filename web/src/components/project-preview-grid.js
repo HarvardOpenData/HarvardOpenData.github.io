@@ -20,8 +20,8 @@ function ProjectPreviewGrid (props) {
         columns={[1, 2, 3 ]}
       >
         {props.nodes &&
-          props.nodes.map(node => (
-            <ProjectPreview {...node} />
+          props.nodes.map((node, key) => (
+            <ProjectPreview key={key} {...node} />
           ))}
       </Grid>
       {props.browseMoreHref && (

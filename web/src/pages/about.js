@@ -1,4 +1,5 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx, Styled } from 'theme-ui'
 import { graphql } from 'gatsby'
 import BlockContent from '../components/block-content'
 import Container from '../components/container'
@@ -62,7 +63,7 @@ const AboutPage = props => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <h1 className={responsiveTitle1}>{page.title}</h1>
+        <Styled.h1>{page.title}</Styled.h1>
         <BlockContent blocks={page._rawBody || []} />
         {personNodes && personNodes.length > 0 && <PeopleGrid items={personNodes} title='People' />}
       </Container>

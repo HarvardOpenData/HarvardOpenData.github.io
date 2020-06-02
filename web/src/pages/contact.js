@@ -1,12 +1,11 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx, Styled } from 'theme-ui'
 import { graphql } from 'gatsby'
 import BlockContent from '../components/block-content'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
-
-import { responsiveTitle1 } from '../components/typography.module.css'
 
 export const query = graphql`
   query ContactPageQuery {
@@ -40,7 +39,7 @@ const ContactPage = props => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <h1 className={responsiveTitle1}>{page.title}</h1>
+        <Styled.h1>{page.title}</Styled.h1>
         <BlockContent blocks={page._rawBody || []} />
       </Container>
     </Layout>

@@ -1,5 +1,6 @@
+/** @jsx jsx */
+import { jsx, Styled } from 'theme-ui'
 import { Link } from 'gatsby'
-import React from 'react'
 import Icon from './icons'
 import { cn } from '../lib/helpers'
 

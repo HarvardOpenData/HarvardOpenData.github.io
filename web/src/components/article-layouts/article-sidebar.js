@@ -4,25 +4,25 @@ import { format, distanceInWords, differenceInDays } from 'date-fns'
 import { Link } from 'gatsby'
 import RoleList from '../role-list'
 
-import styles from '../project.module.css'
+import styles from './sidebar.module.css'
 
 // Creates a sidebar with all available props
 function ArticleSidebar (props) {
   const { categories, subjects, authors, members, publishedAt, relatedProjects } = props
   return (
-    <aside className={styles.metaContent}>
+    <aside>
       {publishedAt && (
-        <div className={styles.publishedAt}>
+        <Text variant='small'>
           {differenceInDays(new Date(publishedAt), new Date()) > 3
             ? distanceInWords(new Date(publishedAt), new Date())
             : format(new Date(publishedAt), 'MMMM Do YYYY')}
-        </div>
+        </Text>
       )}
       {members && <RoleList items={members} title='Members' />}
       {authors && <RoleList items={authors} title='Authors' />}
       {categories && (
         <div className={styles.categories}>
-          <h3 className={styles.categoriesHeadline}>Category</h3>
+          <Styled.h4>Category</Styled.h4>
           <ul>
             {categories.map(category => (
               <li key={category._id}>{category.title}</li>
@@ -32,7 +32,7 @@ function ArticleSidebar (props) {
       )}
       {subjects && (
         <div className={styles.categories}>
-          <h3 className={styles.categoriesHeadline}>Subjects</h3>
+          <Styled.h4>Subjects</Styled.h4>
           <ul>
             {subjects.map(subject => (
               <li key={subject._id}>{subject.title}</li>
@@ -42,7 +42,7 @@ function ArticleSidebar (props) {
       )}
       {relatedProjects && (
         <div className={styles.relatedProjects}>
-          <h3 className={styles.relatedProjectsHeadline}>Related projects</h3>
+          <Styled.h4>Related projects</Styled.h4>
           <ul>
             {relatedProjects.map(project => (
               <li key={`related_${project._id}`}>

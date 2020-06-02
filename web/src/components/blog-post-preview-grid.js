@@ -20,8 +20,8 @@ function BlogPostPreviewGrid (props) {
         columns={[1, 2, 3 ]}
       >
         {props.nodes &&
-          props.nodes.map(node => (
-            <BlogPostPreview {...node} />
+          props.nodes.map((node, key) => (
+            <BlogPostPreview key={key} {...node} />
           ))}
       </Grid>
       {props.browseMoreHref && (
