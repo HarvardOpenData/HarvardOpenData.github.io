@@ -31,23 +31,27 @@ function LayoutContainer (props) {
     setShowNav(false)
   }
   return (
-    <StaticQuery
-      query={query}
-      render={data => {
-        return (
-          <ThemeProvider theme={theme}>
-            <Layout
-              {...props}
-              showNav={showNav}
-              companyInfo={data.companyInfo}
-              siteTitle={data.site.title}
-              onHideNav={handleHideNav}
-              onShowNav={handleShowNav}
-            />
-          </ThemeProvider>
-        )
-      }}
-    />
+    <ThemeProvider theme={theme}>
+      <Styled.root>
+        <StaticQuery
+          query={query}
+          render={data => {
+            return (
+              
+                  <Layout
+                    {...props}
+                    showNav={showNav}
+                    companyInfo={data.companyInfo}
+                    siteTitle={data.site.title}
+                    onHideNav={handleHideNav}
+                    onShowNav={handleShowNav}
+                  />
+                
+            )
+          }}
+        />
+      </Styled.root>
+    </ThemeProvider>
   )
 }
 

@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx  } from 'theme-ui'
+import { jsx, Styled } from 'theme-ui'
 
 const Container = ({ children }) => {
   return (
-    <div
+    <Styled.root
       sx={{
         maxWidth: '960px',
         paddingLeft: ['1.5em', '2em'],
@@ -12,7 +12,7 @@ const Container = ({ children }) => {
       }}
     >
       {children}
-    </div>
+    </Styled.root>
   );
 }
 
