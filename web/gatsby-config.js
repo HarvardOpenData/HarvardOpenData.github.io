@@ -4,6 +4,59 @@ const {
 } = requireConfig('../studio/sanity.json')
 
 module.exports = {
+  siteMetadata: {
+    title: `Harvard Open Data Project`,
+    description: `The Harvard College Open Data Project (HODP) is a student-faculty group that aims to increase transparency and solve problems on campus using public Harvard data.`,
+    author: `HODP Team`,
+    menuLinks: [
+      {
+        name: `Projects`,
+        link: `/projects`,
+      },
+      {
+        name: `Data`,
+        link: `/data`,
+      },
+      {
+        name: `Participate`,
+        link: `/participate`,
+        subMenu: [
+          {
+            name: `Predictions Game`,
+            link: `/predictions`,
+          },
+          {
+            name: `Surveys`,
+            link: `/surveys`,
+          },
+          {
+            name: `Join HODP`,
+            link: `/join`,
+          },
+          {
+            name: `Learn`,
+            link: `https://google.com`,
+          },
+        ],
+      },
+      {
+        name: `Sponsors`,
+        link: `/sponsors`,
+      },
+      {
+        name: `About`,
+        link: `/about`,
+      },
+      {
+        name: `Blog`,
+        link: `/blog`,
+      },
+      {
+        name: `Wiki`,
+        link: `https://wiki.hodp.org`,
+      },
+    ],
+  },
   plugins: [
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
@@ -20,7 +73,7 @@ module.exports = {
         overlayDrafts: true
       }
     }
-  ]
+  ],
 }
 
 /**
