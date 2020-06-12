@@ -25,7 +25,29 @@ export default {
       name: "downloadURL",
       title: "Download URL",
       type: "url"
-    }
+    },
+    {
+      name: "fileType",
+      title: "File Type",
+      type: "string",
+      options: {
+        list: [
+          { title: "API", value: "api" },
+          { title: "Database", value: "database" },
+          { title: "CSV", value: "csv" },
+          { title: "Excel", value: "excel" },
+          { title: "Graph", value: "graph" },
+          { title: "HTML", value: "html" },
+          { title: "Web App", value: "webApp" },
+        ]
+      }
+    },
+    {
+      name: "subjects",
+      title: "Subjects",
+      type: "array",
+      of: [{ type: "reference", to: { type: "subject" } }]
+    },
   ],
   liveEdit: true
 };

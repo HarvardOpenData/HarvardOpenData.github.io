@@ -10,6 +10,7 @@ const NotFoundPage = () => (
     <Container>
       <Styled.h1>Not found</Styled.h1>
       <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+      <div>Insert something cute here!</div>
     </Container>
   </Layout>
 )

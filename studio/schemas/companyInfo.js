@@ -44,6 +44,11 @@ export default {
       type: "url"
     },
     {
+      name: "interestForm",
+      title: "Interest Form URL",
+      type: "url"
+    },
+    {
       name: "city",
       title: "City",
       type: "string"

@@ -33,6 +33,51 @@ export default () =>
             .title("Pages")
             .items([
               S.listItem()
+                .title("Participate")
+                .child(
+                  S.editor()
+                    .id("participatePage")
+                    .schemaType("page")
+                    .documentId("participate")
+                )
+                .icon(FaFile),
+              S.listItem()
+                .title("Predictions")
+                .child(
+                  S.editor()
+                    .id("predictionsPage")
+                    .schemaType("page")
+                    .documentId("predictions")
+                )
+                .icon(FaFile),
+              S.listItem()
+                .title("Surveys")
+                .child(
+                  S.editor()
+                    .id("surveysPage")
+                    .schemaType("page")
+                    .documentId("surveys")
+                )
+                .icon(FaFile),
+              S.listItem()
+                .title("Join")
+                .child(
+                  S.editor()
+                    .id("joinPage")
+                    .schemaType("page")
+                    .documentId("join")
+                )
+                .icon(FaFile),
+              S.listItem()
+                .title("Sponsors")
+                .child(
+                  S.editor()
+                    .id("sponsorsPage")
+                    .schemaType("page")
+                    .documentId("sponsors")
+                )
+                .icon(FaFile),
+              S.listItem()
                 .title("About")
                 .child(
                   S.editor()

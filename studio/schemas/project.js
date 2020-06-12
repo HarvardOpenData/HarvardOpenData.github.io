@@ -60,6 +60,17 @@ export default {
       of: [{ type: "projectMember" }]
     },
     {
+      name: "dataset",
+      title: "Dataset",
+      type: "array",
+      of: [{ type: "reference", to: { type: "dataset" } }]
+    },
+    {
+      name: "body",
+      title: "Body",
+      type: "blockContent"
+    },
+    {
       name: "categories",
       title: "Categories",
       type: "array",
@@ -70,17 +81,6 @@ export default {
       title: "Subjects",
       type: "array",
       of: [{ type: "reference", to: { type: "subject" } }]
-    },
-    {
-      name: "dataset",
-      title: "Dataset",
-      type: "array",
-      of: [{ type: "reference", to: { type: "dataset" } }]
-    },
-    {
-      name: "body",
-      title: "Body",
-      type: "blockContent"
     },
     {
       name: "relatedProjects",

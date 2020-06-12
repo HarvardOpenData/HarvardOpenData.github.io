@@ -9,22 +9,16 @@ import Layout from '../containers/layout'
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
 
 export const query = graphql`
-  query DataPageQuery {
-    datasets: allSanityDataset {
-      edges {
-        node {
-          title
-          description
-          downloadURL
-          fileType
-          sourceURL
-        }
-      }
+  query SponsorsPageQuery {
+    page: sanityPage(_id: { regex: "/(drafts.|)sponsors/" }) {
+      id
+      title
+      _rawBody
     }
   }
 `
 
-const DataPage = props => {
+const SponsorsPage = props => {
   const { data, errors } = props
 
   if (errors) {
@@ -35,15 +29,23 @@ const DataPage = props => {
     )
   }
 
+  const page = data && data.page
+
+  if (!page) {
+    throw new Error(
+      'Missing "Sponsors" page data. Open the studio at http://localhost:3333 and add "Sponsors" page data and restart the development server.'
+    )
+  }
+
   return (
     <Layout>
-      <SEO title="Data" />
+      <SEO title={page.title} />
       <Container>
-        <Styled.h1>Data</Styled.h1>
-        <div>[Insert data catalog components here]</div>
+        <Styled.h1>{page.title}</Styled.h1>
+        <BlockContent blocks={page._rawBody || []} />
       </Container>
     </Layout>
   )
 }
 
-export default DataPage
+export default SponsorsPage
