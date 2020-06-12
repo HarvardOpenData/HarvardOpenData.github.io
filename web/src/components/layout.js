@@ -7,12 +7,12 @@ const Layout = ({ children, companyInfo, onHideNav, onShowNav, showNav, siteTitl
   <>
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
     <div>{children}</div>
-    <footer sx={{ justifyContent: 'center' }}>
+    <footer sx={{ textAlign: 'center' }}>
       <div>
         <div>{companyInfo && <div>{companyInfo.name}</div>}</div>
 
         <div>
-          © {new Date().getFullYear()}, Built with <a href="https://www.sanity.io">Sanity</a> &amp;
+          © 2015-{new Date().getFullYear()}, Built with <a href="https://www.sanity.io">Sanity</a> &amp;
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </div>

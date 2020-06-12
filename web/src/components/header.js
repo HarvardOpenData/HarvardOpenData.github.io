@@ -40,7 +40,10 @@
 
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import Container from './container'
 import { jsx, Grid, Styled } from 'theme-ui'
+
+
 export default function Header() {
   const data = useStaticQuery(graphql`
     query HeaderQuery {
@@ -62,7 +65,7 @@ export default function Header() {
   const menuLinks = data.site.siteMetadata.menuLinks
 
   return (
-    <div
+    <Container
       sx={{position: 'relative', zIndex: '99 !important'}}
     >
       <Styled.h1>
@@ -85,7 +88,7 @@ export default function Header() {
               float: "left",
               padding: "1rem",
               position: "relative",
-              transitionDuration: "0.5s",
+              transitionDuration: "0.2s",
               ":hover": {
                 backgroundColor: "red",
                 cursor: "pointer",
@@ -159,6 +162,6 @@ export default function Header() {
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   )
 }
