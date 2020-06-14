@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Akkurat-Bold"; src: url("//db.onlinewebfonts.com/t/cc4c7e3aa2ab2258b5e0bc946be1093a.eot");
+  src: url("//db.onlinewebfonts.com/t/cc4c7e3aa2ab2258b5e0bc946be1093a.eot?#iefix") format("embedded-opentype"),
+  url("//db.onlinewebfonts.com/t/cc4c7e3aa2ab2258b5e0bc946be1093a.woff2") format("woff2"),
+  url("//db.onlinewebfonts.com/t/cc4c7e3aa2ab2258b5e0bc946be1093a.woff") format("woff"),
+  url("//db.onlinewebfonts.com/t/cc4c7e3aa2ab2258b5e0bc946be1093a.ttf") format("truetype"),
+  url("//db.onlinewebfonts.com/t/cc4c7e3aa2ab2258b5e0bc946be1093a.svg#Akkurat-Bold") format("svg"); 
+}
+
+@font-face {
+  font-family: "Akkurat"; src: url("//db.onlinewebfonts.com/t/cf3327022417d4ff7f54f0963c4f41ea.eot");
+  src: url("//db.onlinewebfonts.com/t/cf3327022417d4ff7f54f0963c4f41ea.eot?#iefix") format("embedded-opentype"),
+  url("//db.onlinewebfonts.com/t/cf3327022417d4ff7f54f0963c4f41ea.woff2") format("woff2"),
+  url("//db.onlinewebfonts.com/t/cf3327022417d4ff7f54f0963c4f41ea.woff") format("woff"),
+  url("//db.onlinewebfonts.com/t/cf3327022417d4ff7f54f0963c4f41ea.ttf") format("truetype"),
+  url("//db.onlinewebfonts.com/t/cf3327022417d4ff7f54f0963c4f41ea.svg#Akkurat") format("svg"); 
+}

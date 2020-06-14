@@ -9,6 +9,18 @@ const query = graphql`
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
     }
+    menu: site {
+      siteMetadata {
+        menuLinks {
+          link
+          name
+          subMenu {
+            link
+            name
+          }
+        }
+      }
+    }
     companyInfo: sanityCompanyInfo(_id: { regex: "/(drafts.|)companyInfo/" }) {
       name
       _rawLogo
@@ -17,6 +29,7 @@ const query = graphql`
       facebook
       twitter
       instagram
+      interestForm
       city
     }
   }
@@ -39,8 +52,10 @@ function LayoutContainer(props) {
             return (
               <Layout
                 {...props}
+                logo={data.companyInfo._rawLogo}
                 showNav={showNav}
                 companyInfo={data.companyInfo}
+                menuLinks={data.menu.siteMetadata.menuLinks}
                 siteTitle={data.site.title}
                 onHideNav={handleHideNav}
                 onShowNav={handleShowNav}

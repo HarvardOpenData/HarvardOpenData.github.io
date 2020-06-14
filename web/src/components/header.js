@@ -1,167 +1,222 @@
 /** @jsx jsx */
-// import { Link } from 'gatsby'
-// import Icon from './icons'
-// import { cn } from '../lib/helpers'
-
-// import styles from './header.module.css'
-
-// const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
-//   <div className={styles.root}>
-//     <div className={styles.wrapper}>
-//       <h1 className={styles.branding}>
-//         <Link to="/">{siteTitle}</Link>
-//       </h1>
-
-//       <button className={styles.toggleNavButton} onClick={showNav ? onHideNav : onShowNav}>
-//         <Icon symbol="hamburger" />
-//       </button>
-
-//       <nav className={cn(styles.nav, showNav && styles.showNav)}>
-//         <ul>
-//           <li>
-//             <Link to="/about/">About</Link>
-//           </li>
-//           <li>
-//             <Link to="/projects/">Projects</Link>
-//           </li>
-//           <li>
-//             <Link to="/blog/">Blog</Link>
-//           </li>
-//           <li>
-//             <Link to="/contact/">Contact</Link>
-//           </li>
-//         </ul>
-//       </nav>
-//     </div>
-//   </div>
-// )
-
-// export default Header
-
-import React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { buildImageObj } from '../lib/helpers'
+import { imageUrlFor } from '../lib/image-url'
+import React, { useState } from "react"
+import Icon from '../components/icons'
+import { Link } from "gatsby"
 import Container from './container'
-import { jsx, Grid, Styled } from 'theme-ui'
+import { jsx, Box, Flex, Grid, Styled } from 'theme-ui'
 
+function MenuLink(props) {
+  if(props.link[0] === '/') {
+      return (
+        <Link
+          to={props.link}
+          sx={{ color: 'text', textDecoration: 'none' }}
+        >
+          {props.children}
+        </Link>
+      )
+  }
+  return <Styled.a href={props.link} target='_blank'>{props.children}</Styled.a>
+}
 
-export default function Header() {
-  const data = useStaticQuery(graphql`
-    query HeaderQuery {
-      site {
-        siteMetadata {
-          title
-          menuLinks {
-            link
-            name
-            subMenu {
-              link
-              name
-            }
-          }
-        }
-      }
-    }
-  `)
-  const menuLinks = data.site.siteMetadata.menuLinks
-
+function StandardSubmenuLink({ name, link, subMenu }) {
   return (
-    <Container
-      sx={{position: 'relative', zIndex: '99 !important'}}
+    <Box
+      mr={2}
+      sx={{
+        ': hover': {
+          bg: 'light',
+          borderRadius: '5px 5px 0px 0px',
+        ':hover > div, :focus-within > div ': {
+          visibility: 'visible',
+          display: 'inline',
+          opacity: '1',
+        },
+        }
+      }}
+      aria-haspopup={true}
     >
-      <Styled.h1>
-        <Link to="/">{data.site.siteMetadata.title}</Link>
-      </Styled.h1>
-      <ul
+      <MenuLink link={link}>
+        <Box p={2} sx={{ flex: '1 auto', ':hover': {color: 'primary'}}}>
+          <b sx={{textDecoration: 'none', fontSize: [3]}}>
+            {`${name} `}
+          </b>
+        </Box>
+      </MenuLink>
+      <div
         sx={{
-          listStyle: "none",
-          background: "darkorange",
-          margin: 0,
-          padding: 0,
+          visibility: 'hidden',
+          position: 'absolute',
+          display: 'block',
         }}
       >
-        {menuLinks.map((link) => (
-          <li
-            sx={{
-              color: "white",
-              backgroundColor: "darkorange",
-              display: "block",
-              float: "left",
-              padding: "1rem",
-              position: "relative",
-              transitionDuration: "0.2s",
-              ":hover": {
-                backgroundColor: "red",
-                cursor: "pointer",
-              },
-              ":hover > ul, :focus-within > ul ": {
-                visibility: "visible",
-                opacity: "1",
-                display: "block",
-              },
-            }}
-            key={link.name}
-          >
-            <a
-              sx={{
-                color: "white",
-                textDecoration: "none",
-              }}
-              href={link.link}
-              aria-haspopup={link.subMenu && link.subMenu.length > 0 ? true : false}
-            >
-              {link.name}
-            </a>
-            {link.subMenu && link.subMenu.length > 0 ? (
-              <ul
-                sx={{
-                  listStyle: "none",
-                  m: 0,
-                  p: 0,
-                  backgroundColor: "darkorange",
-                  visibility: "hidden",
-                  opacity: "0",
-                  display: "none",
-                  minWidth: "8rem",
-                  position: "absolute",
-                  transition: "all 0.5s ease",
-                  marginTop: "1rem",
-                  left: "0",
-                  ":hover": {
-                    visibility: "visible",
-                    opacity: "1",
-                    display: "block",
-                  },
-                }}
-                aria-label="submenu"
-              >
-                {link.subMenu.map((subLink) => (
-                  <li
-                    sx={{
-                      clear: "both",
-                      width: "100%",
-                      padding: "1rem",
-                      ":hover": {
-                        backgroundColor: "red",
-                      },
-                    }}
-                    key={subLink.name}
-                  >
-                    <a
-                      sx={{
-                        color: "white",
-                        textDecoration: "none",
-                      }}
-                      href={subLink.link}
-                    >
-                      {subLink.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </li>
-        ))}
-      </ul>
-    </Container>
+        <Box
+          sx={{
+            bg: 'light',
+            borderRadius: '0px 5px 5px 5px',
+          }}
+        >
+          {subMenu && subMenu.length > 0 ? (
+            subMenu.map((subLink) => (
+              <MenuLink {...subLink} >
+                <Box
+                  p={2}
+                  pt={1}
+                  sx={{
+                    flex: '1 auto',
+                    ':hover': {color: 'primary'},
+                  }}
+                >
+                  <b sx={{textDecoration: 'none', fontSize: [1]}}>
+                    {subLink.name}
+                  </b>
+                </Box>
+              </MenuLink>
+            ))
+          ) : null}
+        </Box>
+      </div>
+    </Box>
   )
 }
+
+function StandardMenuLink({ name, link, subMenu }) {
+  return (
+    <div>
+      <MenuLink link={link}>
+        <Box 
+          p={2}
+          mr={2}
+          aria-haspopup={false}
+          sx={{
+            ': hover': {
+              bg: 'light',
+              borderRadius: '5px',
+              color: 'primary',
+            }
+          }}
+        >
+          <b sx={{fontSize: [3]}}>
+            {name}
+          </b>
+        </Box>
+      </MenuLink>
+    </div>
+  )
+}
+
+function StandardHeader({ logo, menuLinks }) {
+  const logoSrc = imageUrlFor(buildImageObj(logo)).width(600).url()
+  return (
+    <div
+      sx={{
+        b: {
+          textDecoration: 'none',
+          ':hover': {color: 'primary'}
+        },
+        display: 'block',
+        position: 'relative',
+        zIndex: '100 !important'
+      }}
+    >
+    <Container>
+      <Link to="/">
+        <img
+          src={logoSrc}
+          sx={{ maxWidth: '200px', marginTop: '2em' }}
+          alt={logo.alt}
+        />
+      </Link>
+      <Flex>
+        {menuLinks.map((link) => (
+          link.subMenu && link.subMenu.length > 0
+            ? <StandardSubmenuLink {...link} />
+            : <StandardMenuLink {...link} />
+        ))}
+      </Flex>
+    </Container>
+    </div>
+  )
+}
+
+class MobileHeader extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { open: false }
+  }
+
+  componentDidMount() {
+    this.setState({
+      open: false
+    })
+  }
+
+  onClick() {
+    this.setState({
+      open: false
+    })
+  }
+
+  renderClosed() {
+    const { logo, menuLinks } = this.props
+    const logoSrc = imageUrlFor(buildImageObj(logo)).width(600).url()
+    return (
+      <Flex>
+        <Box p={3} sx={{ flex: '1 5 auto' }}>
+        <Link to="/">
+          <img
+            src={logoSrc}
+            sx={{ maxWidth: '200px', marginTop: '0.5em' }}
+            alt={logo.alt}
+          />
+        </Link>
+        </Box>
+        <Box p={3}
+          sx={{
+            flex: '0 1 auto',
+            justifyContent: 'center',
+            flexDirection: 'column'
+          }}
+        >
+          <Icon symbol='hamburger' />
+        </Box>
+      </Flex>
+    )
+  }
+
+  renderOpen() {
+    const { logo, menuLinks } = this.props
+    return <div>Open now!!!! YAYYYY</div>
+  }
+
+  render() {
+    const { open } = this.state
+    return (
+      <>{ open ? this.renderOpen() : this.renderClosed() }</>
+    )
+  }
+
+}
+
+class Header extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <div>
+        <div sx={{display:['none', 'none', 'initial', 'initial']}}>
+          <StandardHeader {...this.props} />
+        </div>
+        <div sx={{display:['initial', 'initial', 'none', 'none']}}>
+          <MobileHeader {...this.props} />
+        </div>
+      </div>
+    )
+  }
+}
+
+export default Header

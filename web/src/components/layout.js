@@ -3,9 +3,9 @@ import { jsx, Styled } from 'theme-ui'
 import React from 'react'
 import Header from './header'
 
-const Layout = ({ children, companyInfo, onHideNav, onShowNav, showNav, siteTitle }) => (
+const Layout = ({ children, companyInfo, logo, menuLinks, onHideNav, onShowNav, showNav, siteTitle }) => (
   <>
-    <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
+    <Header siteTitle={siteTitle} logo={logo} menuLinks={menuLinks} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
     <div>{children}</div>
     <footer sx={{ textAlign: 'center' }}>
       <div>

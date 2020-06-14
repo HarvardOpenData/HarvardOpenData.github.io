@@ -1,21 +1,20 @@
 export default {
   breakpoints: ['720px', '960px', '1300px', '1400px'],
   colors: {
-    text: '#333',
+    text: '#252121',
+    heading: '#252121',
+    monospace: '#252121',
     background: 'white',
-    primary: '#639',
-    secondary: '#ff6347',
-    muted: 'eeeeee'
+    primary: '#C63F47',
+    secondary: '#A81A1A',
+    muted: '#BBABAB',
+    light: '#F8F5F5',
   },
   fonts: {
     body: 'Akkurat, system-ui, sans-serif',
-    heading: 'Akkurat, system-ui, sans-serif',
+    bold: 'Akkurat-Bold, system-ui, sans-serif',
+    heading: 'Akkurat-Bold, system-ui, sans-serif',
     monospace: 'Akkurat-Mono, Menlo, monospace'
-  },
-  fontWeights: {
-    body: 400,
-    heading: 900,
-    bold: 700
   },
   lineHeights: {
     body: 1.5,
@@ -24,7 +23,7 @@ export default {
   fontSizes: [12, 14, 16, 19, 24, 32, 48, 64, 72],
   fontWeights: {
     body: 400,
-    heading: 900,
+    heading: 750,
     bold: 700
   },
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 640, 896, 1024],
@@ -90,6 +89,11 @@ export default {
       variant: 'text.heading',
       fontSize: [3, 4],
       marginTop: '0.5em'
+    },
+    a: {
+      fontWeight: 'bold',
+      color: 'inherit',
+      textDecoration: 'none',
     }
   }
 }
