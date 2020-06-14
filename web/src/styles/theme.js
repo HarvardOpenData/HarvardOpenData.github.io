@@ -1,4 +1,3 @@
-import 'styles/typography.css'
 export default {
   breakpoints: ['720px', '960px', '1300px', '1400px'],
   colors: {
