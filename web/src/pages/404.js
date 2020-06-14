@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui'
 import SEO from '../components/seo'
-import Container from '../components/layout'
+import Container from '../components/container'
 import Layout from '../containers/layout'
 
 const NotFoundPage = () => (
@@ -10,7 +10,7 @@ const NotFoundPage = () => (
     <Container>
       <Styled.h1>Not found</Styled.h1>
       <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-      <div>Insert something cute here!</div>
+      <p>[Add a fun graphic so people feel less sad]</p>
     </Container>
   </Layout>
 )

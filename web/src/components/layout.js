@@ -10,7 +10,6 @@ const Layout = ({ children, companyInfo, logo, menuLinks, onHideNav, onShowNav, 
     <footer sx={{ textAlign: 'center' }}>
       <div>
         <div>{companyInfo && <div>{companyInfo.name}</div>}</div>
-
         <div>
           © 2015-{new Date().getFullYear()}, Built with <a href="https://www.sanity.io">Sanity</a> &amp;
           {` `}

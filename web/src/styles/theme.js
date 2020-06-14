@@ -8,7 +8,7 @@ export default {
     primary: '#C63F47',
     secondary: '#A81A1A',
     muted: '#BBABAB',
-    light: '#F8F5F5',
+    light: '#F9F9F9',
   },
   fonts: {
     body: 'Akkurat, system-ui, sans-serif',
@@ -44,7 +44,9 @@ export default {
     heading: {
       fontFamily: 'heading',
       fontWeight: 'heading',
-      lineHeight: 'heading'
+      lineHeight: 'heading',
+      color: 'text',
+      textDecoration: 'none',
     },
     caption: {
       fontFamily: 'body',

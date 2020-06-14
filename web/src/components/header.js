@@ -160,7 +160,7 @@ class MobileHeader extends React.Component {
   }
 
   renderClosed() {
-    const { logo, menuLinks } = this.props
+    const { logo } = this.props
     const logoSrc = imageUrlFor(buildImageObj(logo)).width(600).url()
     return (
       <Flex>
@@ -188,7 +188,7 @@ class MobileHeader extends React.Component {
 
   renderOpen() {
     const { logo, menuLinks } = this.props
-    return <div>Open now!!!! YAYYYY</div>
+    return <div>Open now, fill things in</div>
   }
 
   render() {
@@ -200,19 +200,21 @@ class MobileHeader extends React.Component {
 
 }
 
+
 class Header extends React.Component {
   constructor(props) {
     super(props)
   }
 
   render() {
+    const { logo, menuLinks } = this.props
     return (
       <div>
         <div sx={{display:['none', 'none', 'initial', 'initial']}}>
-          <StandardHeader {...this.props} />
+          {logo && <StandardHeader logo={logo} menuLinks={menuLinks} />}
         </div>
         <div sx={{display:['initial', 'initial', 'none', 'none']}}>
-          <MobileHeader {...this.props} />
+          {logo && logo.asset && <MobileHeader logo={logo} menuLinks={menuLinks} />}
         </div>
       </div>
     )
