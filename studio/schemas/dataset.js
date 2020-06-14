@@ -38,7 +38,7 @@ export default {
           { title: "Excel", value: "excel" },
           { title: "Graph", value: "graph" },
           { title: "HTML", value: "html" },
-          { title: "Web App", value: "webApp" },
+          { title: "Web App", value: "webApp" }
         ]
       }
     },
@@ -47,7 +47,7 @@ export default {
       title: "Subjects",
       type: "array",
       of: [{ type: "reference", to: { type: "subject" } }]
-    },
+    }
   ],
   liveEdit: true
 };

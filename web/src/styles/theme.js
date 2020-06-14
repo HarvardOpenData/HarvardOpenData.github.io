@@ -8,7 +8,7 @@ export default {
     primary: '#C63F47',
     secondary: '#A81A1A',
     muted: '#BBABAB',
-    light: '#F9F9F9',
+    light: '#F9F9F9'
   },
   fonts: {
     body: 'Akkurat, system-ui, sans-serif',
@@ -46,7 +46,7 @@ export default {
       fontWeight: 'heading',
       lineHeight: 'heading',
       color: 'text',
-      textDecoration: 'none',
+      textDecoration: 'none'
     },
     caption: {
       fontFamily: 'body',
@@ -95,7 +95,7 @@ export default {
     a: {
       fontWeight: 'bold',
       color: 'inherit',
-      textDecoration: 'none',
+      textDecoration: 'none'
     }
   }
 }

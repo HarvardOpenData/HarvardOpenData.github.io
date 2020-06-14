@@ -95,9 +95,9 @@ exports.createSchemaCustomization = ({ actions }) => {
             return []
           }
           return source[info.fieldName]
-        },
+        }
       }
-    },
+    }
   })
   const typeDefs = `
     type Site implements Node {

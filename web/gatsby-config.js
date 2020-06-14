@@ -11,11 +11,11 @@ module.exports = {
     menuLinks: [
       {
         name: `Projects`,
-        link: `/projects`,
+        link: `/projects`
       },
       {
         name: `Data`,
-        link: `/data`,
+        link: `/data`
       },
       {
         name: `Participate`,
@@ -23,39 +23,39 @@ module.exports = {
         subMenu: [
           {
             name: `Predictions Game`,
-            link: `/predictions`,
+            link: `/predictions`
           },
           {
             name: `Surveys`,
-            link: `/surveys`,
+            link: `/surveys`
           },
           {
             name: `Join HODP`,
-            link: `/join`,
+            link: `/join`
           },
           {
             name: `Learn`,
-            link: `https://google.com`,
-          },
-        ],
+            link: `https://google.com`
+          }
+        ]
       },
       {
         name: `Sponsors`,
-        link: `/sponsors`,
+        link: `/sponsors`
       },
       {
         name: `About`,
-        link: `/about`,
+        link: `/about`
       },
       {
         name: `Blog`,
-        link: `/blog`,
+        link: `/blog`
       },
       {
         name: `Wiki`,
-        link: `https://wiki.hodp.org`,
-      },
-    ],
+        link: `https://wiki.hodp.org`
+      }
+    ]
   },
   plugins: [
     'gatsby-plugin-postcss',
@@ -73,7 +73,7 @@ module.exports = {
         overlayDrafts: true
       }
     }
-  ],
+  ]
 }
 
 /**
