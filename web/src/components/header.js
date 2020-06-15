@@ -8,7 +8,8 @@ import Container from './container'
 import HamburgerMenu from 'react-hamburger-menu'
 import Fade from 'react-reveal/Fade';
 import { Collapse } from 'react-collapse'
-import { jsx, Box, Divider, Flex, Styled } from 'theme-ui'
+import { jsx, Box, Divider, Flex, Grid, Styled } from 'theme-ui'
+import { transition } from 'd3-transition'
 
 function MenuLink(props) {
   if (props.link[0] === '/') {
@@ -142,16 +143,23 @@ function StandardHeader({ logo, menuLinks }) {
 class MobileHeader extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      open: false,
-      openList: new Array(this.props.menuLinks.length).fill(false)
-    }
+    this.state = { open: false }
   }
 
   componentDidMount() {
     this.setState({
       open: false
-    })
+    });
+    this.props.menuLinks.forEach(link => {
+      let slug = link.link;
+      console.log()
+      if (link.submenu && link.submenu.length > 0) {
+        this.setState({
+          [slug]: false
+        })
+        console.log(this.state[slug])
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -209,32 +217,49 @@ class MobileHeader extends React.Component {
     )
   }
 
-  onToggleItem = i => {
-    // console.log(this.state.openList)
-    this.setState(state => {
-      const list = state.openList.map((item, j) => {
-        if (j === i) {
-          return (!item);
-        } else {
-          return item;
-        }
-      });
-      console.log(list)
-      return {
-        list,
-      };
-    });
+  onToggleItem = slug => {
+    if (slug !== null) {
+      this.setState({[slug]: !this.state[slug]})
+    }
   };
 
   renderMenuItem(index) {
     const link = this.props.menuLinks[index]
-    console.log(this.state.openList[2])
+    const slug = link.link
 
     return (
       <>
-        <Flex>
-          <Box p='2' flex='1 1 auto'>
+        <Grid
+          onClick={() => this.onToggleItem(slug)}
+          columns={'5fr 1fr'}
+          sx={{'alignItems': 'center'}}
+        >
+          <h2
+            sx={{
+              color: 'text',
+              width: 'auto',
+              // ': hover': { cursor: 'pointer' }
+            }}
+            onClick={this.handleClick.bind(this)}
+          >
+            <MenuLink {...link}>{link.name}</MenuLink>
+          </h2>
+          { link.subMenu && link.subMenu.length > 0 &&
             <h2
+              onClick={() => this.onToggleItem(slug)}
+              sx={{
+                fontSize: '5',
+                margin: '0px',
+                ': hover': { cursor: 'pointer' }
+              }}
+            >
+                {!this.state[slug] ? '+' : '-'}
+            </h2>
+          }
+        </Grid>
+        <Collapse sx={{ transition: 'height 500ms' }}isOpened={this.state[slug] === true}>
+          {link.subMenu.map(subLink => (
+            <h3
               sx={{
                 color: 'text',
                 width: 'auto',
@@ -242,17 +267,9 @@ class MobileHeader extends React.Component {
               }}
               onClick={this.handleClick.bind(this)}
             >
-              <MenuLink {...link}>{link.name}</MenuLink>
-            </h2>
-          </Box>
-          { link.subMenu && link.subMenu.length > 0 &&
-            <Box onClick={() => this.onToggleItem(index)} sx={{ textAlign: 'right' }}>
-              <h1>+</h1>
-            </Box>
-          }
-        </Flex>
-        <Collapse isOpened={this.state.openList[index]}>
-          <div>Content here!</div>
+              <MenuLink {...subLink}>{subLink.name}</MenuLink>
+            </h3>
+          ))}
         </Collapse>
       </>
     );
@@ -265,7 +282,7 @@ class MobileHeader extends React.Component {
         <div
           sx={{
             width: '100vw',
-            height: '95vh',
+            minHeight: '95vh',
             color: 'primary',
             bg: 'light',
             padding: '1.5em',
