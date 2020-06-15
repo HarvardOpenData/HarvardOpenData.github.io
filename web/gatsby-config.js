@@ -30,30 +30,30 @@ module.exports = {
             link: `/surveys`
           },
           {
-            name: `Join HODP`,
-            link: `/join`
+            name: `HODP Docs`,
+            link: `http://docs.hodp.org/`
           },
           {
-            name: `Learn`,
-            link: `https://google.com`
+            name: `Join HODP`,
+            link: `/join`
           }
         ]
+      },
+      {
+        name: `Wiki`,
+        link: `https://wiki.hodp.org`
       },
       {
         name: `Sponsors`,
         link: `/sponsors`
       },
       {
-        name: `About`,
-        link: `/about`
-      },
-      {
         name: `Blog`,
         link: `/blog`
       },
       {
-        name: `Wiki`,
-        link: `https://wiki.hodp.org`
+        name: `About`,
+        link: `/about`
       }
     ]
   },

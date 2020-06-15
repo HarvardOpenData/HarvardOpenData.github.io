@@ -5,7 +5,10 @@ import React, { useState } from 'react'
 import Icon from '../components/icons'
 import { Link } from 'gatsby'
 import Container from './container'
-import { jsx, Box, Flex, Grid, Styled } from 'theme-ui'
+import HamburgerMenu from 'react-hamburger-menu'
+import Fade from 'react-reveal/Fade';
+import { Collapse } from 'react-collapse'
+import { jsx, Box, Divider, Flex, Styled } from 'theme-ui'
 
 function MenuLink(props) {
   if (props.link[0] === '/') {
@@ -139,7 +142,10 @@ function StandardHeader({ logo, menuLinks }) {
 class MobileHeader extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { open: false }
+    this.state = {
+      open: false,
+      openList: new Array(this.props.menuLinks.length).fill(false)
+    }
   }
 
   componentDidMount() {
@@ -148,46 +154,142 @@ class MobileHeader extends React.Component {
     })
   }
 
-  onClick() {
+  componentWillUnmount() {
     this.setState({
       open: false
     })
   }
 
-  renderClosed() {
+  handleClick() {
+    console.log("switched!")
+    this.setState({
+        open: !this.state.open
+    });
+  }
+
+  renderTopBar() {
     const { logo } = this.props
     const logoSrc = imageUrlFor(buildImageObj(logo))
       .width(600)
       .url()
     return (
-      <Flex>
-        <Box p={3} sx={{ flex: '1 5 auto' }}>
-          <Link to="/">
-            <img src={logoSrc} sx={{ maxWidth: '200px', marginTop: '0.5em' }} alt={logo.alt} />
-          </Link>
-        </Box>
-        <Box
-          p={3}
-          sx={{
-            flex: '0 1 auto',
-            justifyContent: 'center',
-            flexDirection: 'column'
-          }}
+      <div sx={{width: '100vw'}}>
+      <Container>
+        <Flex
+          sx={{ mt: [3], mb: [3] }}
         >
-          <Icon symbol="hamburger" />
-        </Box>
-      </Flex>
+          <Box sx={{ flex: '1 5 auto' }}>
+            <Link to="/">
+              <img src={logoSrc} sx={{ maxWidth: '200px', marginTop: '0.5em' }} alt={logo.alt} />
+            </Link>
+          </Box>
+          <Box
+            pt={3}
+            sx={{
+              flex: '0 1 auto',
+              justifyContent: 'center',
+              flexDirection: 'column'
+            }}
+          >
+            <HamburgerMenu
+              isOpen={this.state.open}
+              menuClicked={this.handleClick.bind(this)}
+              width={30}
+              height={20}
+              strokeWidth={2}
+              rotate={0}
+              color='black'
+              borderRadius={0}
+              animationDuration={0.5}
+            />
+          </Box>
+        </Flex>
+      </Container>
+      </div>
     )
   }
 
-  renderOpen() {
-    const { logo, menuLinks } = this.props
-    return <div>Open now, fill things in</div>
+  onToggleItem = i => {
+    // console.log(this.state.openList)
+    this.setState(state => {
+      const list = state.openList.map((item, j) => {
+        if (j === i) {
+          return (!item);
+        } else {
+          return item;
+        }
+      });
+      console.log(list)
+      return {
+        list,
+      };
+    });
+  };
+
+  renderMenuItem(index) {
+    const link = this.props.menuLinks[index]
+    console.log(this.state.openList[2])
+
+    return (
+      <>
+        <Flex>
+          <Box p='2' flex='1 1 auto'>
+            <h2
+              sx={{
+                color: 'text',
+                width: 'auto',
+                ': hover': { cursor: 'pointer' }
+              }}
+              onClick={this.handleClick.bind(this)}
+            >
+              <MenuLink {...link}>{link.name}</MenuLink>
+            </h2>
+          </Box>
+          { link.subMenu && link.subMenu.length > 0 &&
+            <Box onClick={() => this.onToggleItem(index)} sx={{ textAlign: 'right' }}>
+              <h1>+</h1>
+            </Box>
+          }
+        </Flex>
+        <Collapse isOpened={this.state.openList[index]}>
+          <div>Content here!</div>
+        </Collapse>
+      </>
+    );
+  }
+
+  renderMenuItems() {
+    const { menuLinks } = this.props
+    return (
+      <Fade>
+        <div
+          sx={{
+            width: '100vw',
+            height: '95vh',
+            color: 'primary',
+            bg: 'light',
+            padding: '1.5em',
+          }}
+        >
+            {menuLinks.map((_link, i) =>
+              <>
+                {this.renderMenuItem(i)}
+                <Divider color='muted'/>
+              </>
+            )}
+        </div>
+      </Fade>
+    )
   }
 
   render() {
     const { open } = this.state
-    return <>{open ? this.renderOpen() : this.renderClosed()}</>
+    return (
+      <>
+        {this.renderTopBar()}
+        {open && this.renderMenuItems()}
+      </>
+    )
   }
 }
 
@@ -200,10 +302,10 @@ class Header extends React.Component {
     const { logo, menuLinks } = this.props
     return (
       <div>
-        <div sx={{ display: ['none', 'none', 'initial', 'initial'] }}>
-          {logo && <StandardHeader logo={logo} menuLinks={menuLinks} />}
+        <div sx={{ display: ['none', 'initial', 'initial', 'initial'] }}>
+          {logo && logo.asset && <StandardHeader logo={logo} menuLinks={menuLinks} />}
         </div>
-        <div sx={{ display: ['initial', 'initial', 'none', 'none'] }}>
+        <div sx={{ display: ['initial', 'none', 'none', 'none'] }}>
           {logo && logo.asset && <MobileHeader logo={logo} menuLinks={menuLinks} />}
         </div>
       </div>
