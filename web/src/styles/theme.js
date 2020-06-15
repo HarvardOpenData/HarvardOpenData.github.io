@@ -11,9 +11,9 @@ export default {
     light: '#F9F9F9'
   },
   fonts: {
-    body: 'Akkurat, system-ui, sans-serif',
-    bold: 'Akkurat-Bold, system-ui, sans-serif',
-    heading: 'Akkurat-Bold, system-ui, sans-serif',
+    body: 'Atlas Grotesk Web Regular, Akkurat, system-ui, sans-serif',
+    bold: 'Atlas Grotesk Web Bold, Akkurat-Bold, system-ui, sans-serif',
+    heading: 'Atlas Grotesk Web Bold, Akkurat-Bold, system-ui, sans-serif',
     monospace: 'Akkurat-Mono, Menlo, monospace'
   },
   lineHeights: {
