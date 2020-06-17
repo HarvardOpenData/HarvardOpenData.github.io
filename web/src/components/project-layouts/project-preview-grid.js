@@ -1,4 +1,4 @@
-import { Link } from 'gatsby'
+import Link from '../core/link'
 import React from 'react'
 import { Styled, Grid, Text } from 'theme-ui'
 import ProjectPreview from './project-preview'
@@ -18,7 +18,6 @@ function ProjectPreviewGrid(props) {
       <Grid gap={4} columns={[1, 2, 3]}>
         {props.nodes && props.nodes.map((node, key) => <ProjectPreview key={key} {...node} />)}
       </Grid>
-      {props.browseMoreHref && <Link to={props.browseMoreHref}>Browse more</Link>}
     </Styled.root>
   )
 }

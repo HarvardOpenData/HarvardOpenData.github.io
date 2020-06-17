@@ -139,12 +139,7 @@ function StandardHeader({ logo, menuLinks }) {
             )
           )}
         </Flex>
-        <Divider
-          sx={{
-            color: 'text',
-            strokeWidth: '2px'
-          }}
-        />
+        <Divider/>
       </Container>
     </div>
   )

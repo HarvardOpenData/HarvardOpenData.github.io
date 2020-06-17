@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
+import { jsx, Divider, Styled } from 'theme-ui'
 import React from 'react'
 import Header from './header'
+import Container from './container'
 
 const Layout = ({
   children,
@@ -26,6 +27,9 @@ const Layout = ({
       {children}
     </div>
     <footer sx={{ textAlign: 'center' }}>
+      <Container>
+        <Divider />
+      </Container>
       <div>
         <div>{companyInfo && <div>{companyInfo.name}</div>}</div>
         <div>
@@ -34,6 +38,7 @@ const Layout = ({
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </div>
+        <br></br>
       </div>
     </footer>
   </>

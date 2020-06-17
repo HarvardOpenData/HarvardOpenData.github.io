@@ -7,6 +7,7 @@ export default props =>
     activeClassName='active'
     sx={{
       color: 'inherit',
+      fontWeight: 'bold',
       textDecoration: 'none',
       '&.active': {
         color: 'primary',

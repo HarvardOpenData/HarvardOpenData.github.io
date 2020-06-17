@@ -101,6 +101,10 @@ export default {
       fontWeight: 'bold',
       color: 'inherit',
       textDecoration: 'none'
+    },
+    hr: {
+      color: 'text',
+      strokeWidth: '2px',
     }
   }
 }

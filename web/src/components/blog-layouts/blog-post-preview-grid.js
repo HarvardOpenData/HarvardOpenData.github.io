@@ -1,6 +1,6 @@
-import { Link } from 'gatsby'
+import Link from '../core/link'
 import React from 'react'
-import { Styled, Grid, Text } from 'theme-ui'
+import { Styled, Grid } from 'theme-ui'
 import BlogPostPreview from './blog-post-preview'
 
 function BlogPostPreviewGrid(props) {
@@ -18,7 +18,6 @@ function BlogPostPreviewGrid(props) {
       <Grid gap={4} columns={[1, 2, 3]}>
         {props.nodes && props.nodes.map((node, key) => <BlogPostPreview key={key} {...node} />)}
       </Grid>
-      {props.browseMoreHref && <Link to={props.browseMoreHref}>Browse more</Link>}
     </Styled.root>
   )
 }
