@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
+import { jsx } from 'theme-ui'
 import { graphql } from 'gatsby'
 import Container from '../components/core/container'
+import BannerHeader from '../components/core/banner-header'
 import GraphQLErrorList from '../components/core/graphql-error-list'
 import ProjectPreviewGrid from '../components/project-layouts/project-preview-grid'
 import SEO from '../components/core/seo'
@@ -46,7 +47,7 @@ const ProjectsPage = props => {
     <Layout>
       <SEO title="Projects" />
       <Container>
-        <Styled.h1>Projects</Styled.h1>
+        <BannerHeader title="Projects" />
         {projectNodes && projectNodes.length > 0 && <ProjectPreviewGrid nodes={projectNodes} />}
       </Container>
     </Layout>

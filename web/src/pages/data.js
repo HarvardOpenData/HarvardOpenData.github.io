@@ -3,6 +3,7 @@ import { jsx, Styled } from 'theme-ui'
 import { graphql } from 'gatsby'
 import BlockContent from '../components/block-content'
 import Container from '../components/core/container'
+import BannerHeader from '../components/core/banner-header'
 import GraphQLErrorList from '../components/core/graphql-error-list'
 import SEO from '../components/core/seo'
 import Layout from '../containers/layout'
@@ -37,9 +38,9 @@ const DataPage = props => {
 
   return (
     <Layout>
-      <SEO title="Data" />
+      <SEO title='Data' />
       <Container>
-        <Styled.h1>Data</Styled.h1>
+        <BannerHeader title={'Data'} />
         <div>[Insert data catalog components here]</div>
       </Container>
     </Layout>

@@ -39,7 +39,7 @@ export default {
     },
     caps: {
       textTransform: 'uppercase',
-      letterSpacing: '0.2em'
+      letterSpacing: '0.05em'
     },
     heading: {
       fontFamily: 'heading',
@@ -90,6 +90,11 @@ export default {
     h3: {
       variant: 'text.heading',
       fontSize: [3, 4],
+      marginTop: '0.5em'
+    },
+    h4: {
+      variant: 'text.heading',
+      fontSize: [2, 3],
       marginTop: '0.5em'
     },
     a: {

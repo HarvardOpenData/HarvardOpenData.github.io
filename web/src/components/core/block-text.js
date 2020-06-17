@@ -10,7 +10,7 @@ const serializers = {
           return (
             <Styled.p
               sx={{
-                fontSize: [1, 2]
+                fontSize: [1, 1]
               }}
             >
               {props.children}

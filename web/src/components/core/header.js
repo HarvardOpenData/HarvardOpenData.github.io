@@ -48,8 +48,8 @@ function StandardSubmenuLink({ name, link, subMenu }) {
       aria-haspopup={true}
     >
       <MenuLink link={link}>
-        <Box p={2} sx={{ flex: '1 auto', ':hover': { color: 'primary' } }}>
-          <b sx={{ textDecoration: 'none', fontSize: [3] }}>{`${name} `}</b>
+        <Box p={1} sx={{ flex: '1 auto', ':hover': { color: 'primary' } }}>
+          <b sx={{ textDecoration: 'none', fontSize: [1] }}>{`${name} `}</b>
         </Box>
       </MenuLink>
       <div
@@ -92,7 +92,7 @@ function StandardMenuLink({ name, link, subMenu }) {
     <div>
       <MenuLink link={link}>
         <Box
-          p={2}
+          p={1}
           mr={2}
           aria-haspopup={false}
           sx={{
@@ -103,7 +103,7 @@ function StandardMenuLink({ name, link, subMenu }) {
             }
           }}
         >
-          <b sx={{ fontSize: [3] }}>{name}</b>
+          <b sx={{ fontSize: [1] }}>{name}</b>
         </Box>
       </MenuLink>
     </div>
@@ -139,6 +139,12 @@ function StandardHeader({ logo, menuLinks }) {
             )
           )}
         </Flex>
+        <Divider
+          sx={{
+            color: 'text',
+            strokeWidth: '2px'
+          }}
+        />
       </Container>
     </div>
   )
