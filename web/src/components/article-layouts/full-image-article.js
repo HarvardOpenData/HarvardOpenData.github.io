@@ -4,7 +4,7 @@ import { buildImageObj } from '../../lib/helpers'
 import { imageUrlFor } from '../../lib/image-url'
 import ArticleSidebar from './article-sidebar'
 import BlockContent from '../block-content'
-import Container from '../container'
+import Container from '../core/container'
 
 function FullImageArticle(props) {
   const { _rawBody, authors, categories, subjects, title, mainImage, publishedAt } = props

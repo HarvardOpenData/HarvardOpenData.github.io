@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Grid, Image, Styled, Text } from 'theme-ui'
-import BlockText from './block-text'
+import BlockText from './core/block-text'
 import { buildImageObj } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 

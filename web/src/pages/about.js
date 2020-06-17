@@ -2,10 +2,10 @@
 import { jsx, Styled } from 'theme-ui'
 import { graphql } from 'gatsby'
 import BlockContent from '../components/block-content'
-import Container from '../components/container'
-import GraphQLErrorList from '../components/graphql-error-list'
+import Container from '../components/core/container'
+import GraphQLErrorList from '../components/core/graphql-error-list'
 import PeopleGrid from '../components/people-grid'
-import SEO from '../components/seo'
+import SEO from '../components/core/seo'
 import Layout from '../containers/layout'
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
 

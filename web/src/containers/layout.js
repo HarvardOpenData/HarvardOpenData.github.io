@@ -2,7 +2,7 @@ import { graphql, StaticQuery } from 'gatsby'
 import React, { useState } from 'react'
 import { ThemeProvider, Styled } from 'theme-ui'
 import theme from '../styles/theme.js'
-import Layout from '../components/layout'
+import Layout from '../components/core/layout'
 
 const query = graphql`
   query SiteTitleQuery {

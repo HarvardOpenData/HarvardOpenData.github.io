@@ -2,10 +2,10 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
 import BlogPostPreviewGrid from '../components/blog-layouts/blog-post-preview-grid'
-import Container from '../components/container'
-import GraphQLErrorList from '../components/graphql-error-list'
+import Container from '../components/core/container'
+import GraphQLErrorList from '../components/core/graphql-error-list'
 import ProjectPreviewGrid from '../components/project-layouts/project-preview-grid'
-import SEO from '../components/seo'
+import SEO from '../components/core/seo'
 import Layout from '../containers/layout'
 
 export const query = graphql`

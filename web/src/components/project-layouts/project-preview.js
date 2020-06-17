@@ -3,7 +3,7 @@ import { jsx, Styled } from 'theme-ui'
 import { Link } from 'gatsby'
 import { buildImageObj } from '../../lib/helpers'
 import { imageUrlFor } from '../../lib/image-url'
-import BlockText from '../block-text'
+import BlockText from '../core/block-text'
 
 function ProjectPreview(props) {
   return (

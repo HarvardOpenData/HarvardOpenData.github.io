@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { buildImageObj } from '../lib/helpers'
-import { imageUrlFor } from '../lib/image-url'
+import { buildImageObj } from '../../lib/helpers'
+import { imageUrlFor } from '../../lib/image-url'
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import Container from './container'

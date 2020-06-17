@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Container from '../components/container'
-import GraphQLErrorList from '../components/graphql-error-list'
+import Container from '../components/core/container'
+import GraphQLErrorList from '../components/core/graphql-error-list'
 import Project from '../components/project-layouts/project'
-import SEO from '../components/seo'
+import SEO from '../components/core/seo'
 import Layout from '../containers/layout'
 
 export const query = graphql`
