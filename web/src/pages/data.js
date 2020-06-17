@@ -38,7 +38,7 @@ const DataPage = props => {
 
   return (
     <Layout>
-      <SEO title='Data' />
+      <SEO title="Data" />
       <Container>
         <BannerHeader title={'Data'} />
         <div>[Insert data catalog components here]</div>

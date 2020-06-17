@@ -104,7 +104,7 @@ export default {
     },
     hr: {
       color: 'text',
-      strokeWidth: '2px',
+      strokeWidth: '2px'
     }
   }
 }

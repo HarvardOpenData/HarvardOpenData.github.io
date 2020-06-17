@@ -139,7 +139,7 @@ function StandardHeader({ logo, menuLinks }) {
             )
           )}
         </Flex>
-        <Divider/>
+        <Divider />
       </Container>
     </div>
   )

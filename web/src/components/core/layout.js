@@ -23,7 +23,7 @@ const Layout = ({
       onShowNav={onShowNav}
       showNav={showNav}
     />
-    <div className='pageContent' sx={{minHeight: '70vh'}}>
+    <div className="pageContent" sx={{ minHeight: '70vh' }}>
       {children}
     </div>
     <footer sx={{ textAlign: 'center' }}>
