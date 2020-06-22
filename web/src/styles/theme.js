@@ -5,7 +5,7 @@ export default {
     heading: '#252121',
     monospace: '#252121',
     background: 'white',
-    primary: '#C63F47',
+    primary: '#C63F3F',
     secondary: '#A81A1A',
     muted: '#BBABAB',
     light: '#F9F9F9'
@@ -20,7 +20,7 @@ export default {
     body: 1.5,
     heading: 1.125
   },
-  fontSizes: [12, 14, 16, 19, 24, 32, 48, 64, 72],
+  fontSizes: [12, 14, 16, 18, 24, 32, 48, 64, 72],
   fontWeights: {
     body: 400,
     heading: 750,
@@ -29,7 +29,7 @@ export default {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 640, 896, 1024],
   sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512, 640, 896, 1024],
   lineHeights: {
-    body: 1.5,
+    body: 1.4,
     heading: 1.125
   },
   text: {
@@ -39,25 +39,28 @@ export default {
     },
     caps: {
       textTransform: 'uppercase',
+      color: 'text',
       letterSpacing: '0.05em'
     },
     heading: {
       fontFamily: 'heading',
       fontWeight: 'heading',
       lineHeight: 'heading',
-      color: 'text',
+      color: 'heading',
       textDecoration: 'none'
     },
     caption: {
       fontFamily: 'body',
       fontWeight: 'body',
       lineHeight: 'body',
+      color: 'text',
       marginTop: [1.5, 2.5],
       fontSize: [1, 2]
     },
     small: {
       fontFamily: 'body',
       fontWeight: 'body',
+      color: 'text',
       lineHeight: [1],
       fontSize: [1]
     }
@@ -77,7 +80,9 @@ export default {
       backgroundColor: 'background'
     },
     p: {
-      fontSize: [2, 3, 3, 3]
+      fontSize: [2],
+      lineHeight: 'body',
+      color: 'text',
     },
     h1: {
       variant: 'text.heading',
