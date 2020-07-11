@@ -1,14 +1,14 @@
 export default {
   breakpoints: ["720px", "960px", "1300px", "1400px"],
   colors: {
-    text: '#252121',
-    heading: '#252121',
-    monospace: '#252121',
-    background: 'white',
-    primary: '#C63F3F',
-    secondary: '#A81A1A',
-    muted: '#BBABAB',
-    light: '#F9F9F9'
+    text: "#252121",
+    heading: "#252121",
+    monospace: "#252121",
+    background: "white",
+    primary: "#C63F3F",
+    secondary: "#A81A1A",
+    muted: "#BBABAB",
+    light: "#F9F9F9"
   },
   fonts: {
     body: "Atlas Grotesk Web Regular, Akkurat, system-ui, sans-serif",
@@ -38,51 +38,29 @@ export default {
       fontSize: 3
     },
     caps: {
-<<<<<<< HEAD
       textTransform: "uppercase",
+      color: "text",
       letterSpacing: "0.05em"
     },
     heading: {
       fontFamily: "heading",
       fontWeight: "heading",
       lineHeight: "heading",
-      color: "text",
+      color: "heading",
       textDecoration: "none"
     },
     caption: {
       fontFamily: "body",
       fontWeight: "body",
       lineHeight: "body",
-=======
-      textTransform: 'uppercase',
-      color: 'text',
-      letterSpacing: '0.05em'
-    },
-    heading: {
-      fontFamily: 'heading',
-      fontWeight: 'heading',
-      lineHeight: 'heading',
-      color: 'heading',
-      textDecoration: 'none'
-    },
-    caption: {
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body',
-      color: 'text',
->>>>>>> v2-styling
+      color: "text",
       marginTop: [1.5, 2.5],
       fontSize: [1, 2]
     },
     small: {
-<<<<<<< HEAD
       fontFamily: "body",
       fontWeight: "body",
-=======
-      fontFamily: 'body',
-      fontWeight: 'body',
-      color: 'text',
->>>>>>> v2-styling
+      color: "text",
       lineHeight: [1],
       fontSize: [1]
     }
@@ -127,8 +105,8 @@ export default {
     },
     p: {
       fontSize: [2],
-      lineHeight: 'body',
-      color: 'text',
+      lineHeight: "body",
+      color: "text"
     },
     h1: {
       variant: "text.heading",
