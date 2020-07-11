@@ -8,11 +8,7 @@ const serializers = {
       switch (props.node.style) {
         default:
           return (
-            <Styled.p
-              sx={{
-                fontSize: [1, 1]
-              }}
-            >
+            <Styled.p>
               {props.children}
             </Styled.p>
           )
