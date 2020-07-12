@@ -1,20 +1,20 @@
 export default {
-  breakpoints: ['720px', '960px', '1300px', '1400px'],
+  breakpoints: ["720px", "960px", "1300px", "1400px"],
   colors: {
-    text: '#252121',
-    heading: '#252121',
-    monospace: '#252121',
-    background: 'white',
-    primary: '#C63F3F',
-    secondary: '#A81A1A',
-    muted: '#BBABAB',
-    light: '#F9F9F9'
+    text: "#252121",
+    heading: "#252121",
+    monospace: "#252121",
+    background: "white",
+    primary: "#C63F3F",
+    secondary: "#A81A1A",
+    muted: "#BBABAB",
+    light: "#F9F9F9"
   },
   fonts: {
-    body: 'Atlas Grotesk Web Regular, Akkurat, system-ui, sans-serif',
-    bold: 'Atlas Grotesk Web Bold, Akkurat-Bold, system-ui, sans-serif',
-    heading: 'Atlas Grotesk Web Bold, Akkurat-Bold, system-ui, sans-serif',
-    monospace: 'Akkurat-Mono, Menlo, monospace'
+    body: "Atlas Grotesk Web Regular, Akkurat, system-ui, sans-serif",
+    bold: "Atlas Grotesk Web Bold, Akkurat-Bold, system-ui, sans-serif",
+    heading: "Atlas Grotesk Web Bold, Akkurat-Bold, system-ui, sans-serif",
+    monospace: "Akkurat-Mono, Menlo, monospace"
   },
   lineHeights: {
     body: 1.5,
@@ -34,33 +34,33 @@ export default {
   },
   text: {
     default: {
-      color: 'text',
+      color: "text",
       fontSize: 3
     },
     caps: {
-      textTransform: 'uppercase',
-      color: 'text',
-      letterSpacing: '0.05em'
+      textTransform: "uppercase",
+      color: "text",
+      letterSpacing: "0.05em"
     },
     heading: {
-      fontFamily: 'heading',
-      fontWeight: 'heading',
-      lineHeight: 'heading',
-      color: 'heading',
-      textDecoration: 'none'
+      fontFamily: "heading",
+      fontWeight: "heading",
+      lineHeight: "heading",
+      color: "heading",
+      textDecoration: "none"
     },
     caption: {
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body',
-      color: 'text',
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
+      color: "text",
       marginTop: [1.5, 2.5],
       fontSize: [1, 2]
     },
     small: {
-      fontFamily: 'body',
-      fontWeight: 'body',
-      color: 'text',
+      fontFamily: "body",
+      fontWeight: "body",
+      color: "text",
       lineHeight: [1],
       fontSize: [1]
     }
@@ -69,47 +69,71 @@ export default {
     avatar: {
       width: 48,
       height: 48,
-      borderRadius: '50%'
+      borderRadius: "50%"
+    }
+  },
+  cards: {
+    list: {
+      borderRadius: 2,
+      backgroundColor: "light",
+      padding: 2,
+      "&:hover": {
+        bg: "muted"
+      }
+    }
+  },
+  buttons: {
+    primary: {
+      color: "background",
+      backgroundColor: "primary"
+    },
+    tag: {
+      padding: 2,
+      margin: 2,
+      variant: "text.small",
+      color: "background",
+      backgroundColor: "monospace",
+      font: "body"
     }
   },
   styles: {
     root: {
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body',
-      backgroundColor: 'background'
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
+      backgroundColor: "background"
     },
     p: {
       fontSize: [2],
-      lineHeight: 'body',
-      color: 'text',
+      lineHeight: "body",
+      color: "text"
     },
     h1: {
-      variant: 'text.heading',
+      variant: "text.heading",
       fontSize: [5, 6, 7]
     },
     h2: {
-      variant: 'text.heading',
+      variant: "text.heading",
       fontSize: [4, 5, 6]
     },
     h3: {
-      variant: 'text.heading',
+      variant: "text.heading",
       fontSize: [3, 4],
-      marginTop: '0.5em'
+      marginTop: "0.5em"
     },
     h4: {
-      variant: 'text.heading',
+      variant: "text.heading",
       fontSize: [2, 3],
-      marginTop: '0.5em'
+      marginTop: "0.5em"
     },
     a: {
-      fontWeight: 'bold',
-      color: 'inherit',
-      textDecoration: 'none'
+      fontWeight: "bold",
+      color: "inherit",
+      textDecoration: "none"
     },
     hr: {
-      color: 'text',
-      strokeWidth: '2px'
+      color: "text",
+      strokeWidth: "2px"
     }
   }
-}
+};
