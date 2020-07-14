@@ -1,0 +1,118 @@
+export default {
+  breakpoints: ["640px", "1280px"],
+  colors: {
+    text: "#111111",
+    primary: "#C63F3F",
+    yellow: "#F4B436",
+    blue: "#83BFCC",
+    navy: "#455574",
+    grey: "#E2DDDB",
+    dark: "#251616",
+    deep: "#760000",
+    medium: "#E28073",
+    pink: "#F1D3CF",
+    muted: "#B9B9B9",
+    charcoal: "232323",
+    heading: "#111111",
+    background: "white",
+  },
+  fonts: {
+    body: "Post Grotesk Light, system-ui, sans-serif",
+    bold: "Post Grotesk, system-ui, sans-serif",
+    small: "Post Grotesk Light, system-ui, sans-serif",
+    heading: "Post Grotesk, system-ui, sans-serif",
+    quote: "Post Grotesk Medium, system-ui, sans-serif",
+    monospace: "Akkurat-Mono, Menlo, monospace",
+  },
+  space: [0, 4, 8, 16, 32, 64, 128, 228, 256, 512, 640, 1024, 1280],
+  sizes: [0, 4, 8, 16, 32, 64, 128, 228, 256, 512, 640, 1024, 1280],
+  fontSizes: [12, 15, 19, 22, 32, 45, 60],
+  fontWeights: {
+    body: 400,
+    heading: 700,
+    bold: 700
+  },
+  text: {
+    default: {
+      color: "text",
+      fontSize: 3,
+      letterSpacing: "0.015em",
+      lineHeight: 1.2,
+    },
+    block: {
+      lineHeight: 1.6,
+    },
+    caps: {
+      textTransform: "uppercase",
+      color: "text",
+      letterSpacing: "0.05em"
+    },
+    heading: {
+      fontFamily: "heading",
+      fontWeight: "heading",
+      letterSpacing: "0.015em",
+      lineHeight: 0.95,
+    },
+    small: {
+      fontSize: 1,
+    },
+    quote: {
+      fontStyle: "italic",
+    }
+  },
+  image: {
+    avatar: {
+      width: 48,
+      height: 48,
+      borderRadius: "50%"
+    }
+  },
+  cards: {
+    list: {
+      borderRadius: 2,
+      backgroundColor: "light",
+      padding: 2,
+      "&:hover": {
+        bg: "muted"
+      }
+    }
+  },
+  buttons: {
+    primary: {
+      color: "background",
+      backgroundColor: "primary"
+    },
+    tag: {
+      padding: 2,
+      margin: 2,
+      variant: "text.small",
+      color: "background",
+      backgroundColor: "monospace",
+      font: "body"
+    }
+  },
+  styles: {
+    root: {
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
+      backgroundColor: "background"
+    },
+    h1: {
+      variant: "text.heading",
+      fontSize: 6,
+    },
+    h2: {
+      variant: "text.heading",
+      fontSize: 5,
+    },
+    h3: {
+      variant: "text.heading",
+      fontSize: 4,
+    },
+    h4: {
+      variant: "text.heading",
+      fontSize: 3,
+    },
+  }
+};
