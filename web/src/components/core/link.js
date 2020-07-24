@@ -1,20 +1,28 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { Link } from 'gatsby'
-export default props => (
-  <Link
-    {...props}
-    activeClassName="active"
-    sx={{
-      color: 'inherit',
-      fontWeight: 'bold',
-      textDecoration: 'none',
-      '&.active': {
-        color: 'primary'
-      },
-      ':hover': {
-        textDecoration: 'underline'
-      }
-    }}
-  />
-)
+
+const defaultSx = {
+  color: 'inherit',
+  textDecoration: 'none',
+  ':hover': {
+    textDecoration: 'none'
+  }
+}
+
+const highlightedSx = {
+  color: 'primary',
+  fontWeight: 'bold',
+  textDecoration: 'none',
+  ':hover': {
+    color: 'deep'
+  }
+}
+
+export default props => {
+  const sx = props.variant === 'highlighted' ? highlightedSx : defaultSx
+  if (props.to && props.to[0] === '/'){
+    return (<Link {...props} sx={sx} />)
+  }
+  return (<a {...props} sx={sx} />)
+}
