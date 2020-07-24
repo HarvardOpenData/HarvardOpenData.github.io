@@ -2,7 +2,7 @@
 import { buildImageObj } from '../../lib/helpers'
 import { imageUrlFor } from '../../lib/image-url'
 import React, { useState } from 'react'
-import { Link } from 'gatsby'
+import Link from '../core/link'
 import Container from './container'
 import HamburgerMenu from 'react-hamburger-menu'
 import Fade from 'react-reveal/Fade'
@@ -10,23 +10,14 @@ import { Collapse } from 'react-collapse'
 import { jsx, Box, Divider, Flex, Grid, Styled } from 'theme-ui'
 
 function MenuLink(props) {
-  if (props.link[0] === '/') {
-    return (
-      <Link
-        to={props.link}
-        sx={{
-          color: 'text',
-          textDecoration: 'none'
-        }}
-      >
-        {props.children}
-      </Link>
-    )
-  }
   return (
-    <Styled.a href={props.link} target="_blank">
+    <Link
+      to={props.link}
+      href={props.link}
+      variant='default'
+    >
       {props.children}
-    </Styled.a>
+    </Link>
   )
 }
 
