@@ -11,7 +11,8 @@ export default {
     deep: "#760000",
     medium: "#E28073",
     pink: "#F1D3CF",
-    muted: "#B9B9B9",
+    muted: "#F6F6F6",
+    container: "#F6F6F6",
     charcoal: "232323",
     heading: "#111111",
     background: "white",
@@ -22,7 +23,7 @@ export default {
     small: "Post Grotesk Light, system-ui, sans-serif",
     heading: "Post Grotesk, system-ui, sans-serif",
     quote: "Post Grotesk Medium, system-ui, sans-serif",
-    monospace: "Akkurat-Mono, Menlo, monospace",
+    monospace: "Menlo, monospace",
   },
   space: [0, 4, 8, 16, 32, 64, 128, 228, 256, 512, 640, 1024, 1280],
   sizes: [0, 4, 8, 16, 32, 64, 128, 228, 256, 512, 640, 1024, 1280],
@@ -33,21 +34,14 @@ export default {
   },
   text: {
     default: {
-      color: "text",
+      color: "#111111",
       fontSize: 3,
       letterSpacing: "0.015em",
       lineHeight: 1.2,
     },
-    block: {
-      fontSize: 2,
-      lineHeight: 1.55,
-      letterSpacing: 0.015,
-      bold: {
-        fontFamily: "Post Grotesk",
-      }
-    },
     caps: {
       textTransform: "uppercase",
+      fontFamily: "monospace",
       letterSpacing: "0.05em"
     },
     heading: {
@@ -105,6 +99,8 @@ export default {
       fontFamily: "body",
       fontWeight: "body",
       lineHeight: "body",
+      color: "text",
+      letterSpacing: "0.015em",
       backgroundColor: "background"
     },
     h1: {
@@ -126,7 +122,6 @@ export default {
     p: {
       fontSize: 2,
       lineHeight: 1.55,
-      letterSpacing: 0.015,
       bold: {
         fontFamily: "Post Grotesk",
       }
