@@ -18,7 +18,7 @@ export default {
   },
   fonts: {
     body: "Post Grotesk Light, system-ui, sans-serif",
-    bold: "Post Grotesk, system-ui, sans-serif",
+    strong: "Post Grotesk, system-ui, sans-serif",
     small: "Post Grotesk Light, system-ui, sans-serif",
     heading: "Post Grotesk, system-ui, sans-serif",
     quote: "Post Grotesk Medium, system-ui, sans-serif",
@@ -30,7 +30,6 @@ export default {
   fontWeights: {
     body: 400,
     heading: 700,
-    bold: 700
   },
   text: {
     default: {
@@ -40,11 +39,15 @@ export default {
       lineHeight: 1.2,
     },
     block: {
-      lineHeight: 1.6,
+      fontSize: 2,
+      lineHeight: 1.55,
+      letterSpacing: 0.015,
+      bold: {
+        fontFamily: "Post Grotesk",
+      }
     },
     caps: {
       textTransform: "uppercase",
-      color: "text",
       letterSpacing: "0.05em"
     },
     heading: {
@@ -53,11 +56,17 @@ export default {
       letterSpacing: "0.015em",
       lineHeight: 0.95,
     },
+    strong: {
+      fontFamily: "bold",
+    },
     small: {
       fontSize: 1,
     },
     quote: {
-      fontStyle: "italic",
+      fontFamily: "quote",
+      fontSize: 2,
+      lineHeight: "155%",
+      letterSpacing: "0.015em",
     }
   },
   image: {
@@ -113,6 +122,14 @@ export default {
     h4: {
       variant: "text.heading",
       fontSize: 3,
+    },
+    p: {
+      fontSize: 2,
+      lineHeight: 1.55,
+      letterSpacing: 0.015,
+      bold: {
+        fontFamily: "Post Grotesk",
+      }
     },
   }
 };

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import BaseBlockContent from '@sanity/block-content-to-react'
-import { jsx, Styled } from 'theme-ui'
+import { jsx, Styled, Text } from 'theme-ui'
+import Link from '../core/link'
 import Figure from './figure'
 import EmbeddedComponent from './embedded-component'
 import Slideshow from './slideshow'
@@ -22,7 +23,11 @@ const serializers = {
           return <Styled.h4>{props.children}</Styled.h4>
 
         case 'blockquote':
-          return <Styled.blockquote>{props.children}</Styled.blockquote>
+          return (
+            <div style={{paddingLeft: '1em', borderLeft: '2px solid #C63F3F'}}>
+              <Text variant="quote">{props.children}</Text>
+            </div>
+          )
 
         default:
           return <Styled.p>{props.children}</Styled.p>

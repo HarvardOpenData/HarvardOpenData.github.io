@@ -4,7 +4,7 @@ import WheelOfFortune from '../../interactives/wheel-of-fortune'
 
 function EmbeddedComponent(component) {
   let props = {}
-  component.props.forEach(pair => {
+  component.props && component.props.forEach(pair => {
     props[pair.name] = pair.value
   })
   switch (component.name) {
