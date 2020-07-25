@@ -1,7 +1,6 @@
 import Link from '../core/link'
 import React from 'react'
-import { Styled, Grid, Text } from 'theme-ui'
-import ProjectPreview from './project-preview'
+import { Styled, Grid } from 'theme-ui'
 import ArticlePreview from '../article-layouts/article-preview'
 
 function ProjectPreviewGrid(props) {
@@ -18,8 +17,14 @@ function ProjectPreviewGrid(props) {
       )}
       <Grid gap={4} columns={[1, 2, 3]}>
         {props.nodes && props.nodes.map((node, key) =>
-          <ArticlePreview key={key} container {...node} link={`/project/${node.slug.current}`} />)
-        }
+          <ArticlePreview
+            key={key}
+            container={props.container}
+            size={props.size}
+            {...node}
+            link={`/project/${node.slug.current}`}
+          />
+        )}
       </Grid>
     </Styled.root>
   )

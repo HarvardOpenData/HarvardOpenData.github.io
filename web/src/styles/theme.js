@@ -42,7 +42,8 @@ export default {
     caps: {
       textTransform: "uppercase",
       fontFamily: "monospace",
-      letterSpacing: "0.05em"
+      letterSpacing: "0.05em",
+      fontWeight: "bold",
     },
     heading: {
       fontFamily: "heading",

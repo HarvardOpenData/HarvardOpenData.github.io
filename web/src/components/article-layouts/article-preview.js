@@ -20,7 +20,7 @@ function PreviewText(props) {
         <Text variant="caps">
           {differenceInDays(new Date(props.publishedAt), new Date()) > 3
             ? distanceInWords(new Date(props.publishedAt), new Date())
-            : format(new Date(props.publishedAt), 'MMMM Do YYYY')}
+            : format(new Date(props.publishedAt), 'MM-DD-YYYY')}
         </Text>
       )}
     </div>

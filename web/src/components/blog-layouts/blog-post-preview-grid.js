@@ -1,7 +1,8 @@
 import Link from '../core/link'
 import React from 'react'
+import { getBlogUrl } from '../../lib/helpers'
 import { Styled, Grid } from 'theme-ui'
-import BlogPostPreview from './blog-post-preview'
+import ArticlePreview from '../article-layouts/article-preview'
 
 function BlogPostPreviewGrid(props) {
   return (
@@ -16,7 +17,15 @@ function BlogPostPreviewGrid(props) {
         </h4>
       )}
       <Grid gap={4} columns={[1, 2, 3]}>
-        {props.nodes && props.nodes.map((node, key) => <BlogPostPreview key={key} {...node} />)}
+        {props.nodes && props.nodes.map((node, key) =>
+          <ArticlePreview
+            key={key}
+            container={props.container}
+            size={props.size}
+            {...node}
+            link={getBlogUrl(node.publishedAt, node.slug.current)}
+          />
+        )}
       </Grid>
     </Styled.root>
   )
