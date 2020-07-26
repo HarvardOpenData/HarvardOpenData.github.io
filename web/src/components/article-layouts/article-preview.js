@@ -26,6 +26,7 @@ function PreviewText(props) {
             : format(new Date(props.publishedAt), "MM-DD-YYYY")}
         </Text>
       )}
+      {props.children}
     </div>
   );
 }
@@ -57,7 +58,7 @@ function HorizontalArticlePreview(props) {
           )}
         </Link>
         <div sx={(props.container || props.size == "large") && containerStyles}>
-          <PreviewText {...props} />
+          <PreviewText {...props}>{props.children}</PreviewText>
         </div>
       </Grid>
     </div>
@@ -88,7 +89,7 @@ function VerticalArticlePreview(props) {
         </div>
       </Link>
       <div sx={props.container && { p: [2, 3] }}>
-        <PreviewText {...props} />
+        <PreviewText {...props}>{props.children}</PreviewText>
       </div>
     </div>
   );

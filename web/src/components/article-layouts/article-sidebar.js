@@ -17,8 +17,8 @@ function ArticleSidebar(props) {
     publishedAt,
     relatedProjects,
   } = props;
-  const numLabels = (subjects ? subjects.length : 0) + (categories ? categories.length : 0)
-  console.log(relatedProjects)
+  const labels = [...(subjects ? subjects : []), ...(categories ? categories : [])];
+  const numLabels = labels.length
 
   return (
     <aside>
@@ -34,7 +34,7 @@ function ArticleSidebar(props) {
       {(categories || subjects) && (
         <div>
           <Styled.h4>Filed Under</Styled.h4>
-          {[...categories, ...subjects].map((item, i) => (
+          {labels.map((item, i) => (
             i < numLabels - 1
               ? <span key={item._id}>{item.title}{`, `}</span>
               : <span key={item._id}>{item.title}</span>
@@ -42,17 +42,19 @@ function ArticleSidebar(props) {
         </div>
       )}
       {relatedProjects && (
-        <div className={styles.relatedProjects}>
+        <div>
           <Styled.h4>Related projects</Styled.h4>
-          {relatedProjects.map((project) => (
-            <ArticlePreview
-              key={`related_${project._id}`}
-              title={project.title}
-              mainImage={project._rawMainImage}
-              image={project._rawMainImage}
-              link={`/project/${project.slug.current}`}
-            />
-          ))}
+          <Grid columns={[3, 1, 1]}>
+            {relatedProjects.map((project) => (
+              <ArticlePreview
+                key={`related_${project._id}`}
+                title={project.title}
+                mainImage={project._rawMainImage}
+                image={project._rawMainImage}
+                link={`/project/${project.slug.current}`}
+              />
+            ))}
+          </Grid>
         </div>
       )}
     </aside>
