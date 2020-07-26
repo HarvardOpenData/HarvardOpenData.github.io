@@ -1,17 +1,21 @@
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
 
-const Container = ({ children }) => {
+const Container = ({ maxWidth, margin, children }) => {
   return (
     <div
       sx={{
-        maxWidth: ["100%", "1380px"],
-        paddingLeft: ["1.5em", "2em"],
-        paddingRight: ["1.5em", "2em"],
-        margin: "0 auto",
-      }}
+        ml: [margin ? margin : "1.5em"],
+        mr: [margin ? margin : "1.5em"], 
+        }}
     >
-      {children}
+      <div
+        sx={{
+          maxWidth: ["100%", maxWidth ? maxWidth : "1280px"],
+          margin: "0 auto",
+        }}>
+        {children}
+      </div>
     </div>
   );
 };
