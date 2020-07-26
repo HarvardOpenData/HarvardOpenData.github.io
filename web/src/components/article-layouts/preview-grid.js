@@ -2,6 +2,7 @@
 import { jsx } from "theme-ui";
 import ArticlePreview from "../article-layouts/article-preview"
 import ProjectPreviewGrid from "../project-layouts/project-preview-grid"
+import Spacer from "../core/spacer"
 
 // Currently only works for projects
 const PreviewGrid = ({
@@ -9,6 +10,7 @@ const PreviewGrid = ({
   container,
   columns,
   horizontal,
+  space,
   nodes
 }) => {
   const featuredArticle = nodes.shift()
@@ -22,9 +24,10 @@ const PreviewGrid = ({
         size="large"
         headerAs={"h2"}
       />
-      <br />
+      <Spacer height={space ? space : 4} />
       <ProjectPreviewGrid
         nodes={nodes}
+        space={space}
         container={container}
         columns={columns}
         horizontal={horizontal}
