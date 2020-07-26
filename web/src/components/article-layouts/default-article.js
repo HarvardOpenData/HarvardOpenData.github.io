@@ -7,7 +7,6 @@ import ArticleHeader from './article-header'
 import ArticleSidebar from "./article-sidebar";
 import BlockContent from "../block-content";
 import Container from "../core/container";
-import RoleList from "../role-list";
 
 function DefaultHeader(props) {
   const {

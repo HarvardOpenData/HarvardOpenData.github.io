@@ -1,11 +1,17 @@
 /** @jsx jsx */
 import { jsx, Divider, Grid, Styled, Text } from "theme-ui";
 import { format, distanceInWords, differenceInDays } from "date-fns";
-import { Link } from "gatsby";
-import RoleList from "../role-list";
-
-import styles from "./sidebar.module.css";
+import RoleList from "./role-list";
 import ArticlePreview from "./article-preview";
+
+function StyledSidebarSection({children}){
+  return (
+    <div>
+      <Divider mt={4} color="text"/>
+      {children}
+    </div>
+  )
+}
 
 // Creates a sidebar with all available props
 function ArticleSidebar(props) {
@@ -23,26 +29,28 @@ function ArticleSidebar(props) {
   return (
     <aside>
       {publishedAt && (
-        <Text variant="small">
-          {differenceInDays(new Date(publishedAt), new Date()) > 3
-            ? distanceInWords(new Date(publishedAt), new Date())
-            : format(new Date(publishedAt), "MM-DD-YYYY")}
-        </Text>
+        <StyledSidebarSection>
+          <Text variant="small">
+            {differenceInDays(new Date(publishedAt), new Date()) > 3
+              ? distanceInWords(new Date(publishedAt), new Date())
+              : format(new Date(publishedAt), "MM-DD-YYYY")}
+          </Text>
+        </StyledSidebarSection>
       )}
-      {members && <RoleList items={members} title="Contributors" />}
-      {authors && <RoleList items={authors} title="Authors" />}
-      {(categories || subjects) && (
-        <div>
+      {members && <StyledSidebarSection><RoleList items={members} title="Contributors" /></StyledSidebarSection>}
+      {authors && <StyledSidebarSection><RoleList items={authors} title="Authors" /></StyledSidebarSection>}
+      {labels && (
+        <StyledSidebarSection>
           <Styled.h4>Filed Under</Styled.h4>
           {labels.map((item, i) => (
             i < numLabels - 1
               ? <span key={item._id}>{item.title}{`, `}</span>
               : <span key={item._id}>{item.title}</span>
           ))}
-        </div>
+        </StyledSidebarSection>
       )}
       {relatedProjects && (
-        <div>
+        <StyledSidebarSection>
           <Styled.h4>Related projects</Styled.h4>
           <Grid columns={[3, 1, 1]}>
             {relatedProjects.map((project) => (
@@ -55,7 +63,7 @@ function ArticleSidebar(props) {
               />
             ))}
           </Grid>
-        </div>
+        </StyledSidebarSection>
       )}
     </aside>
   );

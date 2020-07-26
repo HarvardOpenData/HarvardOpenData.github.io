@@ -288,7 +288,7 @@ class MobileHeader extends React.Component {
           {menuLinks.map((_link, i) => (
             <>
               {this.renderMenuItem(i)}
-              <Divider color="muted" />
+              <Divider color="grey"/>
             </>
           ))}
         </div>

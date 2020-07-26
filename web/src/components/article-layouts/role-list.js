@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Styled, Text } from "theme-ui";
-import { buildImageObj } from "../lib/helpers";
-import { imageUrlFor } from "../lib/image-url";
+import { buildImageObj } from "../../lib/helpers";
+import { imageUrlFor } from "../../lib/image-url";
 
 function ucfirst(str) {
   return `${str.substr(0, 1).toUpperCase()}${str.substr(1)}`;
@@ -60,11 +60,7 @@ function Role(item) {
 
 function RoleList({ items, title }) {
   return (
-    <div
-      sx={{
-        margin: "2rem 0 3rem",
-      }}
-    >
+    <div>
       <Styled.h4>{title}</Styled.h4>
       {items.map((item, key) => (
         <Role key={key} {...item} />
