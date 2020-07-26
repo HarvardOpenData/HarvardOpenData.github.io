@@ -37,7 +37,7 @@ export const query = graphql`
   }
 `;
 
-const DataPage = props => {
+const DataPage = (props) => {
   const { data, errors } = props;
 
   // Ok, this really should come after the error check, but React is crying
@@ -72,14 +72,16 @@ const DataPage = props => {
   );
 };
 
-const DataList = props => {
+const DataList = (props) => {
   const { items, activeCategory } = props;
 
   return (
     <div>
-      {items.map(item => {
+      {items.map((item) => {
         if (
-          !item.subjects.map(subject => subject.title).includes(activeCategory)
+          !item.subjects
+            .map((subject) => subject.title)
+            .includes(activeCategory)
         ) {
           return <div></div>;
         }
@@ -89,19 +91,19 @@ const DataList = props => {
   );
 };
 
-const DataCategories = props => {
+const DataCategories = (props) => {
   const { subjects, activeCategory, setActiveCategory } = props;
   return (
     <div>
       <Styled.h4>Categories</Styled.h4>
       <Styled.hr />
-      {subjects.map(subject => {
+      {subjects.map((subject) => {
         const { title } = subject;
         return (
           <Card
             variant="list"
             sx={{
-              backgroundColor: title === activeCategory ? "primary" : "inherit"
+              backgroundColor: title === activeCategory ? "primary" : "inherit",
             }}
             onClick={() => setActiveCategory(title)}
           >
@@ -113,14 +115,14 @@ const DataCategories = props => {
   );
 };
 
-const DataItem = props => {
+const DataItem = (props) => {
   const {
     title,
     description,
     downloadURL,
     fileType,
     sourceURL,
-    subjects
+    subjects,
   } = props;
 
   return (
@@ -131,7 +133,7 @@ const DataItem = props => {
         borderRadius: 5,
         backgroundColor: "light",
         padding: 4,
-        boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)"
+        boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
       }}
     >
       <Grid gap={2} columns={[2, "3fr 1fr"]}>
@@ -141,7 +143,7 @@ const DataItem = props => {
         </Box>
         <Box
           sx={{
-            "text-align": "right"
+            "text-align": "right",
           }}
         >
           <Button variant="catalog" sx={{ maxWidth: "75%", maxHeight: "75%" }}>
@@ -151,11 +153,11 @@ const DataItem = props => {
                 fontWeight: "bold",
                 textDecoration: "none",
                 "&.active": {
-                  color: "primary"
+                  color: "primary",
                 },
                 ":hover": {
-                  textDecoration: "underline"
-                }
+                  textDecoration: "underline",
+                },
               }}
               href={downloadURL}
             >
@@ -169,12 +171,12 @@ const DataItem = props => {
         sx={{
           variant: "buttons.tag",
           backgroundColor: "secondary",
-          fontWeight: "bold"
+          fontWeight: "bold",
         }}
       >
         <Link href={sourceURL}>Source site</Link>
       </Button>
-      {subjects.map(subject => (
+      {subjects.map((subject) => (
         <Button variant="tag">{subject.title}</Button>
       ))}
     </Card>

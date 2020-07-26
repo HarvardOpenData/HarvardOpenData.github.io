@@ -6,28 +6,30 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "string"
+      type: "string",
     },
     {
       name: "slug",
       title: "Slug",
       type: "slug",
-      description: "Some frontend will require a slug to be set to be able to show the project",
+      description:
+        "Some frontend will require a slug to be set to be able to show the project",
       options: {
         source: "title",
-        maxLength: 96
-      }
+        maxLength: 96,
+      },
     },
     {
       name: "mainImage",
       title: "Main image",
-      type: "mainImage"
+      type: "mainImage",
     },
     {
       name: "publishedAt",
       title: "Published at",
-      description: "You can use this field to schedule projects where you show them",
-      type: "datetime"
+      description:
+        "You can use this field to schedule projects where you show them",
+      type: "datetime",
     },
     {
       name: "layout",
@@ -38,62 +40,63 @@ export default {
       options: {
         list: [
           { title: "Default", value: "default" },
+          { title: "Stacked Header", value: "stackHeader" },
           { title: "Full Image", value: "fullImage" },
-          { title: "Custom", value: "custom" }
-        ]
-      }
+          { title: "Custom", value: "custom" },
+        ],
+      },
     },
     {
       name: "excerpt",
       title: "Excerpt",
-      type: "blockText"
+      type: "blockText",
     },
     {
       name: "socialBlurb",
       title: "Social Blurb",
-      type: "blockText"
+      type: "blockText",
     },
     {
       name: "members",
       title: "Members",
       type: "array",
-      of: [{ type: "projectMember" }]
+      of: [{ type: "projectMember" }],
     },
     {
       name: "dataset",
       title: "Dataset",
       type: "array",
-      of: [{ type: "reference", to: { type: "dataset" } }]
+      of: [{ type: "reference", to: { type: "dataset" } }],
     },
     {
       name: "body",
       title: "Body",
-      type: "blockContent"
+      type: "blockContent",
     },
     {
       name: "categories",
       title: "Categories",
       type: "array",
-      of: [{ type: "reference", to: { type: "category" } }]
+      of: [{ type: "reference", to: { type: "category" } }],
     },
     {
       name: "subjects",
       title: "Subjects",
       type: "array",
-      of: [{ type: "reference", to: { type: "subject" } }]
+      of: [{ type: "reference", to: { type: "subject" } }],
     },
     {
       name: "relatedProjects",
       title: "Related projects",
       type: "array",
-      of: [{ type: "reference", to: { type: "project" } }]
-    }
+      of: [{ type: "reference", to: { type: "project" } }],
+    },
   ],
   preview: {
     select: {
       title: "title",
       publishedAt: "publishedAt",
-      image: "mainImage"
+      image: "mainImage",
     },
     prepare({ title = "No title", publishedAt, image }) {
       return {
@@ -101,11 +104,11 @@ export default {
         subtitle: publishedAt
           ? new Date(publishedAt).toLocaleDateString()
           : "Missing publishing date",
-        media: image
+        media: image,
       };
-    }
+    },
   },
   initialValue: {
-    layout: "default"
-  }
+    layout: "default",
+  },
 };

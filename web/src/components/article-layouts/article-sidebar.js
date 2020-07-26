@@ -1,59 +1,88 @@
 /** @jsx jsx */
-import { jsx, Grid, Styled, Text } from 'theme-ui'
-import { format, distanceInWords, differenceInDays } from 'date-fns'
-import { Link } from 'gatsby'
-import RoleList from '../role-list'
+import { jsx, Divider, Grid, Styled, Text } from "theme-ui";
+import { format, distanceInWords, differenceInDays } from "date-fns";
+import RoleList from "./role-list";
+import ArticlePreview from "./article-preview";
 
-import styles from './sidebar.module.css'
+function StyledSidebarSection({ children }) {
+  return (
+    <div>
+      <Divider mt={4} color="text" />
+      {children}
+    </div>
+  );
+}
 
 // Creates a sidebar with all available props
 function ArticleSidebar(props) {
-  const { categories, subjects, authors, members, publishedAt, relatedProjects } = props
+  const {
+    categories,
+    subjects,
+    authors,
+    members,
+    publishedAt,
+    relatedProjects,
+  } = props;
+  const labels = [
+    ...(subjects ? subjects : []),
+    ...(categories ? categories : []),
+  ];
+  const numLabels = labels.length;
+
   return (
     <aside>
       {publishedAt && (
-        <Text variant="small">
-          {differenceInDays(new Date(publishedAt), new Date()) > 3
-            ? distanceInWords(new Date(publishedAt), new Date())
-            : format(new Date(publishedAt), 'MMMM Do YYYY')}
-        </Text>
+        <StyledSidebarSection>
+          <Text variant="small">
+            {differenceInDays(new Date(publishedAt), new Date()) > 3
+              ? distanceInWords(new Date(publishedAt), new Date())
+              : format(new Date(publishedAt), "MM-DD-YYYY")}
+          </Text>
+        </StyledSidebarSection>
       )}
-      {members && <RoleList items={members} title="Members" />}
-      {authors && <RoleList items={authors} title="Authors" />}
-      {categories && (
-        <div className={styles.categories}>
-          <Styled.h4>Category</Styled.h4>
-          <ul>
-            {categories.map(category => (
-              <li key={category._id}>{category.title}</li>
-            ))}
-          </ul>
-        </div>
+      {members && (
+        <StyledSidebarSection>
+          <RoleList items={members} title="Contributors" />
+        </StyledSidebarSection>
       )}
-      {subjects && (
-        <div className={styles.categories}>
-          <Styled.h4>Subjects</Styled.h4>
-          <ul>
-            {subjects.map(subject => (
-              <li key={subject._id}>{subject.title}</li>
-            ))}
-          </ul>
-        </div>
+      {authors && (
+        <StyledSidebarSection>
+          <RoleList items={authors} title="Authors" />
+        </StyledSidebarSection>
       )}
-      {relatedProjects && (
-        <div className={styles.relatedProjects}>
+      {labels && (
+        <StyledSidebarSection>
+          <Styled.h4>Filed Under</Styled.h4>
+          {labels.map((item, i) =>
+            i < numLabels - 1 ? (
+              <span key={item._id}>
+                {item.title}
+                {`, `}
+              </span>
+            ) : (
+              <span key={item._id}>{item.title}</span>
+            )
+          )}
+        </StyledSidebarSection>
+      )}
+      {relatedProjects && relatedProjects.length > 0 && (
+        <StyledSidebarSection>
           <Styled.h4>Related projects</Styled.h4>
-          <ul>
-            {relatedProjects.map(project => (
-              <li key={`related_${project._id}`}>
-                <Link to={`/project/${project.slug.current}`}>{project.title}</Link>
-              </li>
+          <Grid columns={[3, 1, 1]}>
+            {relatedProjects.map((project) => (
+              <ArticlePreview
+                key={`related_${project._id}`}
+                title={project.title}
+                mainImage={project._rawMainImage}
+                image={project._rawMainImage}
+                link={`/project/${project.slug.current}`}
+              />
             ))}
-          </ul>
-        </div>
+          </Grid>
+        </StyledSidebarSection>
       )}
     </aside>
-  )
+  );
 }
 
-export default ArticleSidebar
+export default ArticleSidebar;

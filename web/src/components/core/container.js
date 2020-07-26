@@ -1,19 +1,19 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
+import { jsx, Styled } from "theme-ui";
 
 const Container = ({ children }) => {
   return (
-    <Styled.root
+    <div
       sx={{
-        maxWidth: ['100%', '960px'],
-        paddingLeft: ['1.5em', '2em'],
-        paddingRight: ['1.5em', '2em'],
-        margin: '0 auto'
+        maxWidth: ["100%", "1380px"],
+        paddingLeft: ["1.5em", "2em"],
+        paddingRight: ["1.5em", "2em"],
+        margin: "0 auto",
       }}
     >
       {children}
-    </Styled.root>
-  )
-}
+    </div>
+  );
+};
 
-export default Container
+export default Container;

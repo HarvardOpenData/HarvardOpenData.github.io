@@ -1,8 +1,8 @@
-import { graphql, StaticQuery } from 'gatsby'
-import React, { useState } from 'react'
-import { ThemeProvider, Styled } from 'theme-ui'
-import theme from '../styles/theme.js'
-import Layout from '../components/core/layout'
+import { graphql, StaticQuery } from "gatsby";
+import React, { useState } from "react";
+import { ThemeProvider, Styled } from "theme-ui";
+import theme from "../styles/theme.js";
+import Layout from "../components/core/layout";
 
 const query = graphql`
   query SiteTitleQuery {
@@ -33,22 +33,22 @@ const query = graphql`
       city
     }
   }
-`
+`;
 
 function LayoutContainer(props) {
-  const [showNav, setShowNav] = useState(false)
+  const [showNav, setShowNav] = useState(false);
   function handleShowNav() {
-    setShowNav(true)
+    setShowNav(true);
   }
   function handleHideNav() {
-    setShowNav(false)
+    setShowNav(false);
   }
   return (
     <ThemeProvider theme={theme}>
       <Styled.root>
         <StaticQuery
           query={query}
-          render={data => {
+          render={(data) => {
             return (
               <Layout
                 {...props}
@@ -60,12 +60,12 @@ function LayoutContainer(props) {
                 onHideNav={handleHideNav}
                 onShowNav={handleShowNav}
               />
-            )
+            );
           }}
         />
       </Styled.root>
     </ThemeProvider>
-  )
+  );
 }
 
-export default LayoutContainer
+export default LayoutContainer;

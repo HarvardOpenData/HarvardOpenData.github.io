@@ -1,9 +1,10 @@
-import Link from '../core/link'
-import React from 'react'
-import { Styled, Grid, Text } from 'theme-ui'
-import ProjectPreview from './project-preview'
+import Link from "../core/link";
+import React from "react";
+import { Styled, Grid } from "theme-ui";
+import ArticlePreview from "../article-layouts/article-preview";
 
 function ProjectPreviewGrid(props) {
+  console.log(props.nodes);
   return (
     <Styled.root>
       {props.title && (
@@ -16,16 +17,25 @@ function ProjectPreviewGrid(props) {
         </h4>
       )}
       <Grid gap={4} columns={[1, 2, 3]}>
-        {props.nodes && props.nodes.map((node, key) => <ProjectPreview key={key} {...node} />)}
+        {props.nodes &&
+          props.nodes.map((node, key) => (
+            <ArticlePreview
+              key={key}
+              container={props.container}
+              size={props.size}
+              {...node}
+              link={`/project/${node.slug.current}`}
+            />
+          ))}
       </Grid>
     </Styled.root>
-  )
+  );
 }
 
 ProjectPreviewGrid.defaultProps = {
-  title: '',
+  title: "",
   nodes: [],
-  browseMoreHref: ''
-}
+  browseMoreHref: "",
+};
 
-export default ProjectPreviewGrid
+export default ProjectPreviewGrid;

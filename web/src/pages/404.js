@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
-import SEO from '../components/core/seo'
-import Container from '../components/core/container'
-import Layout from '../containers/layout'
+import { jsx, Styled } from "theme-ui";
+import SEO from "../components/core/seo";
+import Container from "../components/core/container";
+import Layout from "../containers/layout";
 
 const NotFoundPage = () => (
   <Layout>
@@ -13,6 +13,6 @@ const NotFoundPage = () => (
       <p>[Add a fun graphic so people feel less sad]</p>
     </Container>
   </Layout>
-)
+);
 
-export default NotFoundPage
+export default NotFoundPage;

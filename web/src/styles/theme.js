@@ -1,76 +1,76 @@
 export default {
-  breakpoints: ["720px", "960px", "1300px", "1400px"],
+  breakpoints: ["640px", "1280px"],
   colors: {
-    text: "#252121",
-    heading: "#252121",
-    monospace: "#252121",
-    background: "white",
+    text: "#111111",
     primary: "#C63F3F",
-    secondary: "#A81A1A",
-    muted: "#BBABAB",
-    light: "#F9F9F9"
+    yellow: "#F4B436",
+    blue: "#83BFCC",
+    navy: "#455574",
+    grey: "#E2DDDB",
+    dark: "#251616",
+    deep: "#760000",
+    medium: "#E28073",
+    pink: "#F1D3CF",
+    muted: "#F6F6F6",
+    container: "#F6F6F6",
+    charcoal: "#2F2F2F",
+    heading: "#111111",
+    background: "white",
   },
   fonts: {
-    body: "Atlas Grotesk Web Regular, Akkurat, system-ui, sans-serif",
-    bold: "Atlas Grotesk Web Bold, Akkurat-Bold, system-ui, sans-serif",
-    heading: "Atlas Grotesk Web Bold, Akkurat-Bold, system-ui, sans-serif",
-    monospace: "Akkurat-Mono, Menlo, monospace"
+    body: "Post Grotesk Light, system-ui, sans-serif",
+    button: "Post Grotesk, system-ui, sans-serif",
+    strong: "Post Grotesk, system-ui, sans-serif",
+    small: "Post Grotesk Light, system-ui, sans-serif",
+    heading: "Post Grotesk, system-ui, sans-serif",
+    quote: "Post Grotesk Medium, system-ui, sans-serif",
+    monospace: "Menlo, monospace",
   },
-  lineHeights: {
-    body: 1.5,
-    heading: 1.125
-  },
-  fontSizes: [12, 14, 16, 18, 24, 32, 48, 64, 72],
+  space: [0, 4, 8, 16, 32, 64, 128, 228, 256, 512, 640, 1024, 1280],
+  sizes: [0, 4, 8, 16, 32, 64, 128, 228, 256, 512, 640, 1024, 1280],
+  fontSizes: [12, 15, 19, 22, 32, 45, 60],
   fontWeights: {
     body: 400,
-    heading: 750,
-    bold: 700
-  },
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512, 640, 896, 1024],
-  sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512, 640, 896, 1024],
-  lineHeights: {
-    body: 1.4,
-    heading: 1.125
+    heading: 700,
   },
   text: {
     default: {
-      color: "text",
-      fontSize: 3
+      color: "#111111",
+      fontSize: 3,
+      letterSpacing: "0.015em",
+      lineHeight: 1.2,
     },
     caps: {
       textTransform: "uppercase",
-      color: "text",
-      letterSpacing: "0.05em"
+      fontFamily: "monospace",
+      letterSpacing: "0.05em",
+      fontWeight: "bold",
     },
     heading: {
       fontFamily: "heading",
       fontWeight: "heading",
-      lineHeight: "heading",
-      color: "heading",
-      textDecoration: "none"
+      letterSpacing: "0.015em",
+      lineHeight: 0.95,
     },
-    caption: {
-      fontFamily: "body",
-      fontWeight: "body",
-      lineHeight: "body",
-      color: "text",
-      marginTop: [1.5, 2.5],
-      fontSize: [1, 2]
+    strong: {
+      fontFamily: "bold",
     },
     small: {
-      fontFamily: "body",
-      fontWeight: "body",
-      color: "text",
-      lineHeight: [1],
-      fontSize: [1]
-    }
+      fontSize: 1,
+    },
+    quote: {
+      fontFamily: "quote",
+      fontSize: 2,
+      lineHeight: "155%",
+      letterSpacing: "0.015em",
+    },
   },
   image: {
     avatar: {
       width: 48,
       height: 48,
-      borderRadius: "50%"
-    }
+      borderRadius: "50%",
+    },
   },
   cards: {
     list: {
@@ -78,14 +78,14 @@ export default {
       backgroundColor: "light",
       padding: 2,
       "&:hover": {
-        bg: "muted"
-      }
-    }
+        bg: "muted",
+      },
+    },
   },
   buttons: {
     primary: {
       color: "background",
-      backgroundColor: "primary"
+      backgroundColor: "primary",
     },
     tag: {
       padding: 2,
@@ -93,47 +93,99 @@ export default {
       variant: "text.small",
       color: "background",
       backgroundColor: "monospace",
-      font: "body"
-    }
+      font: "body",
+    },
   },
   styles: {
     root: {
       fontFamily: "body",
       fontWeight: "body",
       lineHeight: "body",
-      backgroundColor: "background"
-    },
-    p: {
-      fontSize: [2],
-      lineHeight: "body",
-      color: "text"
+      color: "text",
+      letterSpacing: "0.015em",
+      backgroundColor: "background",
     },
     h1: {
       variant: "text.heading",
-      fontSize: [5, 6, 7]
+      fontSize: 5,
     },
     h2: {
       variant: "text.heading",
-      fontSize: [4, 5, 6]
+      fontSize: 4,
     },
     h3: {
       variant: "text.heading",
-      fontSize: [3, 4],
-      marginTop: "0.5em"
+      fontSize: 3,
     },
     h4: {
       variant: "text.heading",
-      fontSize: [2, 3],
-      marginTop: "0.5em"
+      fontSize: 2,
     },
-    a: {
+    p: {
+      fontSize: 2,
+      lineHeight: 1.55,
+      bold: {
+        fontFamily: "Post Grotesk",
+      },
+    },
+  },
+  buttons: {
+    default: {
+      font: "Post Grotesk, system-ui, sans-serif",
+      color: "#FFFFFF",
+      p: 0,
+      bg: "primary",
+      "&:hover": {
+        bg: "deep",
+      },
+      "&:focus": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
+        outline: "none",
+      },
+      "&:active": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
+        outline: "none",
+      },
+    },
+    deep: {
+      color: "background",
+      bg: "deep",
+    },
+  },
+  forms: {
+    label: {
+      fontSize: 1,
       fontWeight: "bold",
-      color: "inherit",
-      textDecoration: "none"
     },
-    hr: {
-      color: "text",
-      strokeWidth: "2px"
-    }
-  }
+    input: {
+      borderColor: "gray",
+      font: "body",
+      "&:focus": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 1px ${t.colors.primary}`,
+        outline: "none",
+      },
+    },
+    select: {
+      borderColor: "gray",
+      "&:focus": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 1px ${t.colors.primary}`,
+        outline: "none",
+      },
+    },
+    textarea: {
+      borderColor: "gray",
+      "&:focus": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 1px ${t.colors.primary}`,
+        outline: "none",
+      },
+    },
+    slider: {
+      bg: "muted",
+    },
+  },
 };

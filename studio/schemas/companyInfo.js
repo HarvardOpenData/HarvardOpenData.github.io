@@ -11,52 +11,52 @@ export default {
     {
       name: "name",
       title: "Organization name",
-      type: "string"
+      type: "string",
     },
     {
       name: "logo",
       title: "Logo",
-      type: "image"
+      type: "image",
     },
     {
       name: "email",
       title: "Email",
-      type: "email"
+      type: "email",
     },
     {
       name: "github",
       title: "GitHub",
-      type: "url"
+      type: "url",
     },
     {
       name: "facebook",
       title: "Facebook",
-      type: "url"
+      type: "url",
     },
     {
       name: "twitter",
       title: "Twitter",
-      type: "url"
+      type: "url",
     },
     {
       name: "instagram",
       title: "Instagram",
-      type: "url"
+      type: "url",
     },
     {
       name: "interestForm",
       title: "Interest Form URL",
-      type: "url"
+      type: "url",
     },
     {
       name: "city",
       title: "City",
-      type: "string"
+      type: "string",
     },
     {
       name: "country",
       title: "Country",
-      type: "string"
-    }
-  ]
+      type: "string",
+    },
+  ],
 };

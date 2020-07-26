@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { jsx, Grid, Image, Styled, Text } from 'theme-ui'
-import BlockText from './core/block-text'
-import { buildImageObj } from '../lib/helpers'
-import { imageUrlFor } from '../lib/image-url'
+import { jsx, Grid, Image, Styled, Text } from "theme-ui";
+import BlockText from "./core/block-text";
+import { buildImageObj } from "../lib/helpers";
+import { imageUrlFor } from "../lib/image-url";
 
 function ProfileCard({ image, name, _rawBio }) {
   return (
@@ -13,7 +13,7 @@ function ProfileCard({ image, name, _rawBio }) {
             src={imageUrlFor(buildImageObj(image))
               .width(600)
               .height(600)
-              .fit('crop')
+              .fit("crop")
               .url()}
           />
         )}
@@ -25,7 +25,7 @@ function ProfileCard({ image, name, _rawBio }) {
         </Text>
       )}
     </div>
-  )
+  );
 }
 
 function PeopleGrid({ items, title }) {
@@ -38,7 +38,7 @@ function PeopleGrid({ items, title }) {
         ))}
       </Grid>
     </div>
-  )
+  );
 }
 
-export default PeopleGrid
+export default PeopleGrid;

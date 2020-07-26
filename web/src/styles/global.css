@@ -1,9 +1,29 @@
-@import url(//db.onlinewebfonts.com/c/0a5fbb91dc4a457f5945dca11d44517d?family=Atlas+Grotesk+Web+Regular);
-@import url(//db.onlinewebfonts.com/c/8d65e04904a1582f7e49f29c82eeda2d?family=Atlas+Grotesk+Web+Bold);
-@import url(//db.onlinewebfonts.com/c/cec1b6283be7762082b0f03d997c3f6a?family=Atlas+Grotesk+Web+Black);
-@import url(//db.onlinewebfonts.com/c/cf3327022417d4ff7f54f0963c4f41ea?family=Akkurat);
-@import url(//db.onlinewebfonts.com/c/cc4c7e3aa2ab2258b5e0bc946be1093a?family=Akkurat-Bold);
+@import url(//db.onlinewebfonts.com/c/83993a85c0bf74b99d58a96f8e96208c?family=Post+Grotesk+Light);
+@import url(//db.onlinewebfonts.com/c/13a1076b1b32d14d28f72760640fbe08?family=Post+Grotesk);
+@import url(//db.onlinewebfonts.com/c/d578a0d6bd5c4c293d35bbc8ef736139?family=Post+Grotesk+Medium);
 
 html {
   background: white;
+}
+
+h1, h2, h3, h4, strong, b {
+  font-family: "Post Grotesk" !important;
+  font-weight: 700;
+}
+
+p > a {
+  font-family: "Post Grotesk";
+  font-weight: 700;
+  color: #C63F3F;
+  text-decoration: none;
+  cursor: pointer !important;
+}
+
+p > a:hover {
+  color: #760000;
+  cursor: pointer !important;
+}
+
+.preview > * {
+  line-height: 1.15 !important;
 }

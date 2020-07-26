@@ -9,22 +9,22 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "string"
+      type: "string",
     },
     {
       name: "description",
       title: "Description",
-      type: "text"
+      type: "text",
     },
     {
       name: "sourceURL",
       title: "Source URL",
-      type: "url"
+      type: "url",
     },
     {
       name: "downloadURL",
       title: "Download URL",
-      type: "url"
+      type: "url",
     },
     {
       name: "fileType",
@@ -38,16 +38,16 @@ export default {
           { title: "Excel", value: "excel" },
           { title: "Graph", value: "graph" },
           { title: "HTML", value: "html" },
-          { title: "Web App", value: "webApp" }
-        ]
-      }
+          { title: "Web App", value: "webApp" },
+        ],
+      },
     },
     {
       name: "subjects",
       title: "Subjects",
       type: "array",
-      of: [{ type: "reference", to: { type: "subject" } }]
-    }
+      of: [{ type: "reference", to: { type: "subject" } }],
+    },
   ],
-  liveEdit: true
+  liveEdit: true,
 };

@@ -11,12 +11,12 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "string"
+      type: "string",
     },
     {
       name: "description",
       title: "Description",
-      type: "text"
+      type: "text",
     },
     {
       name: "keywords",
@@ -24,13 +24,13 @@ export default {
       type: "array",
       of: [{ type: "string" }],
       options: {
-        layout: "tags"
-      }
+        layout: "tags",
+      },
     },
     {
       name: "author",
       title: "Author",
-      type: "string"
-    }
-  ]
+      type: "string",
+    },
+  ],
 };
