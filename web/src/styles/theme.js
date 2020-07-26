@@ -18,19 +18,22 @@ export default {
     background: "white",
   },
   fonts: {
-    body: "Post Grotesk Light, system-ui, sans-serif",
-    button: "Post Grotesk, system-ui, sans-serif",
-    strong: "Post Grotesk, system-ui, sans-serif",
-    small: "Post Grotesk Light, system-ui, sans-serif",
-    heading: "Post Grotesk, system-ui, sans-serif",
-    quote: "Post Grotesk Medium, system-ui, sans-serif",
+    default: "Post Grotesk, Open Sans, system-ui, sans-serif",
+    body: "Post Grotesk, Open Sans, system-ui, sans-serif",
+    button: "Post Grotesk, Open Sans, system-ui, sans-serif",
+    strong: "Post Grotesk, Open Sans, system-ui, sans-serif",
+    small: "Post Grotesk, Open Sans, system-ui, sans-serif",
+    heading: "Post Grotesk, Open Sans, system-ui, sans-serif",
     monospace: "Menlo, monospace",
   },
   space: [0, 4, 8, 16, 32, 64, 128, 228, 256, 512, 640, 1024, 1280],
   sizes: [0, 4, 8, 16, 32, 64, 128, 228, 256, 512, 640, 1024, 1280],
   fontSizes: [12, 15, 19, 22, 32, 45, 60],
   fontWeights: {
+    default: 400,
     body: 400,
+    strong: 700,
+    bold: 700,
     heading: 700,
   },
   text: {
@@ -59,7 +62,7 @@ export default {
       fontSize: 1,
     },
     quote: {
-      fontFamily: "quote",
+      fontWeight: 500,
       fontSize: 2,
       lineHeight: "155%",
       letterSpacing: "0.015em",
@@ -83,6 +86,9 @@ export default {
     },
   },
   buttons: {
+    default: {
+      fontFamily: "strong",
+    },
     primary: {
       color: "background",
       backgroundColor: "primary",

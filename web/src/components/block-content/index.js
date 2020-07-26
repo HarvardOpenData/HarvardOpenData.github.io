@@ -24,7 +24,9 @@ const serializers = {
 
         case "blockquote":
           return (
-            <div style={{ paddingLeft: "1.5em", borderLeft: "2px solid #C63F3F" }}>
+            <div
+              style={{ paddingLeft: "1.5em", borderLeft: "2px solid #C63F3F" }}
+            >
               <Text variant="quote">{props.children}</Text>
             </div>
           );
