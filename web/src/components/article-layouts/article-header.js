@@ -24,7 +24,7 @@ function ArticleHeader(props) {
         </Text>
       )}
       {title && (
-        <Styled.h2 sx={{ mt: 2, mb: 0, fontSize: [5, 4, 5, 6], }}>{title}</Styled.h2>
+        <Styled.h1 sx={{ mt: 2, mb: 0, fontSize: [4, 4, 5], }}>{title}</Styled.h1>
       )}
       {_rawExcerpt && <BlockContent blocks={_rawExcerpt || []} />}
       {numContributors > 0 &&

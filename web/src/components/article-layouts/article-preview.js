@@ -11,11 +11,11 @@ function PreviewText(props) {
     <div>
       <Link to={props.link}>
         {props.size == "large" ? (
-          <Styled.h2>{props.title}</Styled.h2>
+          <Styled.h1>{props.title}</Styled.h1>
         ) : (
-          <Styled.h4 style={{ margin: "0.5em 0.5em 0.5em 0em" }}>
+          <Styled.h3 style={{ margin: "0.5em 0.5em 0.5em 0em" }}>
             {props.title}
-          </Styled.h4>
+          </Styled.h3>
         )}
       </Link>
       {props._rawExcerpt && <BlockText blocks={props._rawExcerpt} />}

@@ -107,19 +107,19 @@ export default {
     },
     h1: {
       variant: "text.heading",
-      fontSize: 6,
+      fontSize: 5,
     },
     h2: {
       variant: "text.heading",
-      fontSize: 5,
+      fontSize: 4,
     },
     h3: {
       variant: "text.heading",
-      fontSize: 4,
+      fontSize: 3,
     },
     h4: {
       variant: "text.heading",
-      fontSize: 3,
+      fontSize: 2,
     },
     p: {
       fontSize: 2,

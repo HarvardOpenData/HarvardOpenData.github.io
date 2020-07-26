@@ -49,7 +49,7 @@ function ArticleSidebar(props) {
           ))}
         </StyledSidebarSection>
       )}
-      {relatedProjects && (
+      {relatedProjects && relatedProjects.length > 0 && (
         <StyledSidebarSection>
           <Styled.h4>Related projects</Styled.h4>
           <Grid columns={[3, 1, 1]}>

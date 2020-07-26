@@ -32,7 +32,7 @@ function DefaultHeader(props) {
               .fit("crop")
               .url()}
             alt={mainImage.alt}
-            sx={{ maxWidth: "100%", }}
+            sx={{ maxWidth: "100%", mb: [3, 0, 0]}}
           />
         )}
         <div sx={{ display: "flex", alignItems: "center" }}>
