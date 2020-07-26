@@ -1,8 +1,8 @@
-import sanityConfig from '../../../studio/sanity.json'
-import imageUrlBuilder from '@sanity/image-url'
+import sanityConfig from "../../../studio/sanity.json";
+import imageUrlBuilder from "@sanity/image-url";
 
-const builder = imageUrlBuilder(sanityConfig.api)
+const builder = imageUrlBuilder(sanityConfig.api);
 
 export function imageUrlFor(source) {
-  return builder.image(source)
+  return builder.image(source);
 }

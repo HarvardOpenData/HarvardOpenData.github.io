@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx } from "theme-ui";
 
-const strokeStyle = { vectorEffect: 'non-scaling-stroke' }
+const strokeStyle = { vectorEffect: "non-scaling-stroke" };
 
-const DownArrow = size => (
-  <div sx={{ maxWidth: '0.2em', maxWidth: size }}>
+const DownArrow = (size) => (
+  <div sx={{ maxWidth: "0.2em", maxWidth: size }}>
     <svg
       aria-hidden="true"
       focusable="false"
@@ -21,6 +21,6 @@ const DownArrow = size => (
       ></path>
     </svg>
   </div>
-)
+);
 
-export default DownArrow
+export default DownArrow;

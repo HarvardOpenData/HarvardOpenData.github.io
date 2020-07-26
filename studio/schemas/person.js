@@ -10,36 +10,37 @@ export default {
     {
       name: "name",
       title: "Name",
-      type: "string"
+      type: "string",
     },
     {
       name: "slug",
       title: "Slug",
       type: "slug",
-      description: "Some frontend will require a slug to be set to be able to show the person",
+      description:
+        "Some frontend will require a slug to be set to be able to show the person",
       options: {
         source: "name",
-        maxLength: 96
-      }
+        maxLength: 96,
+      },
     },
     {
       name: "image",
       title: "Image",
       type: "image",
       options: {
-        hotspot: true
-      }
+        hotspot: true,
+      },
     },
     {
       name: "email",
       title: "Email",
-      type: "email"
+      type: "email",
     },
     {
       name: "position",
       title: "Position",
       description: "e.g. Co-Partnerships Director, Contributor",
-      type: "string"
+      type: "string",
     },
     {
       name: "house",
@@ -78,28 +79,28 @@ export default {
           { title: "Thayer", value: "thayer" },
           { title: "Weld", value: "weld" },
           { title: "Wigglesworth", value: "wigglesworth" },
-          { title: "Other", value: "other" }
-        ]
-      }
+          { title: "Other", value: "other" },
+        ],
+      },
     },
     {
       name: "year",
       title: "Class Year",
       description: "e.g. 2021",
-      type: "string"
+      type: "string",
     },
     {
       name: "bio",
       title: "Bio",
       description:
         'Write in third-person. Avoid signatories like "junior" because they get outdated.',
-      type: "blockContent"
-    }
+      type: "blockContent",
+    },
   ],
   preview: {
     select: {
       title: "name",
-      media: "image"
-    }
-  }
+      media: "image",
+    },
+  },
 };

@@ -9,20 +9,20 @@ export default {
     {
       name: "title",
       title: "Title",
-      type: "string"
+      type: "string",
     },
     {
       name: "description",
       title: "Description",
-      type: "text"
+      type: "text",
     },
     {
       name: "image",
       title: "Image",
       type: "image",
       options: {
-        hotspot: true
-      }
-    }
-  ]
+        hotspot: true,
+      },
+    },
+  ],
 };

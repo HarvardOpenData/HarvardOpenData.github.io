@@ -1,7 +1,7 @@
-require('dotenv').config()
+require("dotenv").config();
 const {
-  api: { projectId, dataset }
-} = requireConfig('../studio/sanity.json')
+  api: { projectId, dataset },
+} = requireConfig("../studio/sanity.json");
 
 module.exports = {
   siteMetadata: {
@@ -11,11 +11,11 @@ module.exports = {
     menuLinks: [
       {
         name: `Projects`,
-        link: `/projects`
+        link: `/projects`,
       },
       {
         name: `Data`,
-        link: `/data`
+        link: `/data`,
       },
       {
         name: `Participate`,
@@ -23,46 +23,46 @@ module.exports = {
         subMenu: [
           {
             name: `Predictions Game`,
-            link: `/predictions`
+            link: `/predictions`,
           },
           {
             name: `Surveys`,
-            link: `/surveys`
+            link: `/surveys`,
           },
           {
             name: `HODP Docs`,
-            link: `http://docs.hodp.org/`
+            link: `http://docs.hodp.org/`,
           },
           {
             name: `Join HODP`,
-            link: `/join`
-          }
-        ]
+            link: `/join`,
+          },
+        ],
       },
       {
         name: `Wiki`,
-        link: `https://wiki.hodp.org`
+        link: `https://wiki.hodp.org`,
       },
       {
         name: `Sponsors`,
-        link: `/sponsors`
+        link: `/sponsors`,
       },
       {
         name: `Blog`,
-        link: `/blog`
+        link: `/blog`,
       },
       {
         name: `About`,
-        link: `/about`
-      }
-    ]
+        link: `/about`,
+      },
+    ],
   },
   plugins: [
-    'gatsby-plugin-postcss',
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-theme-ui',
+    "gatsby-plugin-postcss",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-theme-ui",
     {
-      resolve: 'gatsby-source-sanity',
+      resolve: "gatsby-source-sanity",
       options: {
         projectId,
         dataset,
@@ -70,11 +70,11 @@ module.exports = {
         // and add a token with read permissions
         token: process.env.SANITY_TOKEN,
         watchMode: true,
-        overlayDrafts: true
-      }
-    }
-  ]
-}
+        overlayDrafts: true,
+      },
+    },
+  ],
+};
 
 /**
  * We're requiring a file in the studio folder to make the monorepo
@@ -85,16 +85,16 @@ module.exports = {
 
 function requireConfig(path) {
   try {
-    return require(path)
+    return require(path);
   } catch (e) {
     console.error(
-      'Failed to require sanity.json. Fill in projectId and dataset name manually in gatsby-config.js'
-    )
+      "Failed to require sanity.json. Fill in projectId and dataset name manually in gatsby-config.js"
+    );
     return {
       api: {
-        projectId: process.env.SANITY_PROJECT_ID || '',
-        dataset: process.env.SANITY_DATASET || ''
-      }
-    }
+        projectId: process.env.SANITY_PROJECT_ID || "",
+        dataset: process.env.SANITY_DATASET || "",
+      },
+    };
   }
 }

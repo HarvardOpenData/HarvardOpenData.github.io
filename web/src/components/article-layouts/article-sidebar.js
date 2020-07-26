@@ -1,21 +1,28 @@
 /** @jsx jsx */
-import { jsx, Grid, Styled, Text } from 'theme-ui'
-import { format, distanceInWords, differenceInDays } from 'date-fns'
-import { Link } from 'gatsby'
-import RoleList from '../role-list'
+import { jsx, Grid, Styled, Text } from "theme-ui";
+import { format, distanceInWords, differenceInDays } from "date-fns";
+import { Link } from "gatsby";
+import RoleList from "../role-list";
 
-import styles from './sidebar.module.css'
+import styles from "./sidebar.module.css";
 
 // Creates a sidebar with all available props
 function ArticleSidebar(props) {
-  const { categories, subjects, authors, members, publishedAt, relatedProjects } = props
+  const {
+    categories,
+    subjects,
+    authors,
+    members,
+    publishedAt,
+    relatedProjects,
+  } = props;
   return (
     <aside>
       {publishedAt && (
         <Text variant="small">
           {differenceInDays(new Date(publishedAt), new Date()) > 3
             ? distanceInWords(new Date(publishedAt), new Date())
-            : format(new Date(publishedAt), 'MMMM Do YYYY')}
+            : format(new Date(publishedAt), "MMMM Do YYYY")}
         </Text>
       )}
       {members && <RoleList items={members} title="Members" />}
@@ -24,7 +31,7 @@ function ArticleSidebar(props) {
         <div className={styles.categories}>
           <Styled.h4>Category</Styled.h4>
           <ul>
-            {categories.map(category => (
+            {categories.map((category) => (
               <li key={category._id}>{category.title}</li>
             ))}
           </ul>
@@ -34,7 +41,7 @@ function ArticleSidebar(props) {
         <div className={styles.categories}>
           <Styled.h4>Subjects</Styled.h4>
           <ul>
-            {subjects.map(subject => (
+            {subjects.map((subject) => (
               <li key={subject._id}>{subject.title}</li>
             ))}
           </ul>
@@ -44,16 +51,18 @@ function ArticleSidebar(props) {
         <div className={styles.relatedProjects}>
           <Styled.h4>Related projects</Styled.h4>
           <ul>
-            {relatedProjects.map(project => (
+            {relatedProjects.map((project) => (
               <li key={`related_${project._id}`}>
-                <Link to={`/project/${project.slug.current}`}>{project.title}</Link>
+                <Link to={`/project/${project.slug.current}`}>
+                  {project.title}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
       )}
     </aside>
-  )
+  );
 }
 
-export default ArticleSidebar
+export default ArticleSidebar;

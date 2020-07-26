@@ -3,7 +3,7 @@ export default {
   title: "Figure",
   type: "image",
   options: {
-    hotspot: true
+    hotspot: true,
   },
   fields: [
     {
@@ -11,16 +11,16 @@ export default {
       title: "Alternative text (for screen readers)",
       type: "string",
       options: {
-        isHighlighted: true
-      }
+        isHighlighted: true,
+      },
     },
     {
       name: "caption",
       title: "Caption",
       type: "string",
       options: {
-        isHighlighted: true
-      }
-    }
-  ]
+        isHighlighted: true,
+      },
+    },
+  ],
 };

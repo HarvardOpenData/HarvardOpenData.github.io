@@ -1,13 +1,21 @@
 /** @jsx jsx */
-import { jsx, Grid, Styled } from 'theme-ui'
-import { buildImageObj } from '../../lib/helpers'
-import { imageUrlFor } from '../../lib/image-url'
-import ArticleSidebar from './article-sidebar'
-import BlockContent from '../block-content'
-import Container from '../core/container'
+import { jsx, Grid, Styled } from "theme-ui";
+import { buildImageObj } from "../../lib/helpers";
+import { imageUrlFor } from "../../lib/image-url";
+import ArticleSidebar from "./article-sidebar";
+import BlockContent from "../block-content";
+import Container from "../core/container";
 
 function FullImageArticle(props) {
-  const { _rawBody, authors, categories, subjects, title, mainImage, publishedAt } = props
+  const {
+    _rawBody,
+    authors,
+    categories,
+    subjects,
+    title,
+    mainImage,
+    publishedAt,
+  } = props;
   return (
     <article>
       {mainImage && mainImage.asset && (
@@ -16,19 +24,19 @@ function FullImageArticle(props) {
             src={imageUrlFor(buildImageObj(mainImage))
               .width(1500)
               .height(Math.floor((9 / 16) * 1500))
-              .fit('crop')
+              .fit("crop")
               .url()}
             alt={mainImage.alt}
             sx={{
-              width: '100%',
-              verticalAlign: 'top',
-              objectFit: 'cover'
+              width: "100%",
+              verticalAlign: "top",
+              objectFit: "cover",
             }}
           />
         </div>
       )}
       <Container>
-        <Grid gap={4} columns={[1, '3fr 1fr']}>
+        <Grid gap={4} columns={[1, "3fr 1fr"]}>
           <div>
             {title && <Styled.h1>{title}</Styled.h1>}
             {_rawBody && <BlockContent blocks={_rawBody || []} />}
@@ -37,7 +45,7 @@ function FullImageArticle(props) {
         </Grid>
       </Container>
     </article>
-  )
+  );
 }
 
-export default FullImageArticle
+export default FullImageArticle;

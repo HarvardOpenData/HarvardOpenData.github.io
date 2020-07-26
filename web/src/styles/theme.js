@@ -62,14 +62,14 @@ export default {
       fontSize: 2,
       lineHeight: "155%",
       letterSpacing: "0.015em",
-    }
+    },
   },
   image: {
     avatar: {
       width: 48,
       height: 48,
-      borderRadius: "50%"
-    }
+      borderRadius: "50%",
+    },
   },
   cards: {
     list: {
@@ -77,14 +77,14 @@ export default {
       backgroundColor: "light",
       padding: 2,
       "&:hover": {
-        bg: "muted"
-      }
-    }
+        bg: "muted",
+      },
+    },
   },
   buttons: {
     primary: {
       color: "background",
-      backgroundColor: "primary"
+      backgroundColor: "primary",
     },
     tag: {
       padding: 2,
@@ -92,8 +92,8 @@ export default {
       variant: "text.small",
       color: "background",
       backgroundColor: "monospace",
-      font: "body"
-    }
+      font: "body",
+    },
   },
   styles: {
     root: {
@@ -102,7 +102,7 @@ export default {
       lineHeight: "body",
       color: "text",
       letterSpacing: "0.015em",
-      backgroundColor: "background"
+      backgroundColor: "background",
     },
     h1: {
       variant: "text.heading",
@@ -125,64 +125,64 @@ export default {
       lineHeight: 1.55,
       bold: {
         fontFamily: "Post Grotesk",
-      }
+      },
     },
   },
   buttons: {
     default: {
-      color: '#FFFFFF',
+      color: "#FFFFFF",
       p: 0,
-      bg: 'primary',
-      '&:hover': {
-        bg: 'deep',
+      bg: "primary",
+      "&:hover": {
+        bg: "deep",
       },
-      '&:focus': {
-        borderColor: 'primary',
-        boxShadow: t => `0 0 0 2px ${t.colors.primary}`,
-        outline: 'none',
+      "&:focus": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
+        outline: "none",
       },
-      '&:active': {
-        borderColor: 'primary',
-        boxShadow: t => `0 0 0 2px ${t.colors.primary}`,
-        outline: 'none',
+      "&:active": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
+        outline: "none",
       },
     },
     deep: {
-      color: 'background',
-      bg: 'deep',
+      color: "background",
+      bg: "deep",
     },
   },
   forms: {
     label: {
       fontSize: 1,
-      fontWeight: 'bold',
+      fontWeight: "bold",
     },
     input: {
-      borderColor: 'gray',
-      '&:focus': {
-        borderColor: 'primary',
-        boxShadow: t => `0 0 0 1px ${t.colors.primary}`,
-        outline: 'none',
+      borderColor: "gray",
+      "&:focus": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 1px ${t.colors.primary}`,
+        outline: "none",
       },
     },
     select: {
-      borderColor: 'gray',
-      '&:focus': {
-        borderColor: 'primary',
-        boxShadow: t => `0 0 0 1px ${t.colors.primary}`,
-        outline: 'none',
+      borderColor: "gray",
+      "&:focus": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 1px ${t.colors.primary}`,
+        outline: "none",
       },
     },
     textarea: {
-      borderColor: 'gray',
-      '&:focus': {
-        borderColor: 'primary',
-        boxShadow: t => `0 0 0 1px ${t.colors.primary}`,
-        outline: 'none',
+      borderColor: "gray",
+      "&:focus": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 1px ${t.colors.primary}`,
+        outline: "none",
       },
     },
     slider: {
-      bg: 'muted',
+      bg: "muted",
     },
   },
 };

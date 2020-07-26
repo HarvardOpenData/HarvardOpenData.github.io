@@ -11,7 +11,7 @@ const hiddenTypes = [
   "post",
   "project",
   "siteSettings",
-  "subject"
+  "subject",
 ];
 
 export default () =>
@@ -94,7 +94,7 @@ export default () =>
                     .schemaType("page")
                     .documentId("contact")
                 )
-                .icon(FaFile)
+                .icon(FaFile),
             ])
         ),
       S.listItem()
@@ -131,5 +131,7 @@ export default () =>
             .documentId("siteSettings")
         )
         .icon(MdSettings),
-      ...S.documentTypeListItems().filter(listItem => !hiddenTypes.includes(listItem.getId()))
+      ...S.documentTypeListItems().filter(
+        (listItem) => !hiddenTypes.includes(listItem.getId())
+      ),
     ]);

@@ -6,7 +6,7 @@ export default {
     {
       type: "string",
       name: "title",
-      title: "Title"
+      title: "Title",
     },
     {
       type: "array",
@@ -14,8 +14,8 @@ export default {
       title: "Slides",
       of: [{ type: "image" }],
       options: {
-        layout: "grid"
-      }
-    }
-  ]
+        layout: "grid",
+      },
+    },
+  ],
 };
