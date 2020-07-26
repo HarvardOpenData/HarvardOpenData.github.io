@@ -19,6 +19,7 @@ export default {
   },
   fonts: {
     body: "Post Grotesk Light, system-ui, sans-serif",
+    button: "Post Grotesk, system-ui, sans-serif",
     strong: "Post Grotesk, system-ui, sans-serif",
     small: "Post Grotesk Light, system-ui, sans-serif",
     heading: "Post Grotesk, system-ui, sans-serif",
@@ -130,6 +131,7 @@ export default {
   },
   buttons: {
     default: {
+      font: "Post Grotesk, system-ui, sans-serif",
       color: "#FFFFFF",
       p: 0,
       bg: "primary",
@@ -159,6 +161,7 @@ export default {
     },
     input: {
       borderColor: "gray",
+      font: "body",
       "&:focus": {
         borderColor: "primary",
         boxShadow: (t) => `0 0 0 1px ${t.colors.primary}`,
