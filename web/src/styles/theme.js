@@ -13,7 +13,7 @@ export default {
     pink: "#F1D3CF",
     muted: "#F6F6F6",
     container: "#F6F6F6",
-    charcoal: "232323",
+    charcoal: "#2F2F2F",
     heading: "#111111",
     background: "white",
   },
@@ -127,5 +127,62 @@ export default {
         fontFamily: "Post Grotesk",
       }
     },
-  }
+  },
+  buttons: {
+    default: {
+      color: '#FFFFFF',
+      p: 0,
+      bg: 'primary',
+      '&:hover': {
+        bg: 'deep',
+      },
+      '&:focus': {
+        borderColor: 'primary',
+        boxShadow: t => `0 0 0 2px ${t.colors.primary}`,
+        outline: 'none',
+      },
+      '&:active': {
+        borderColor: 'primary',
+        boxShadow: t => `0 0 0 2px ${t.colors.primary}`,
+        outline: 'none',
+      },
+    },
+    deep: {
+      color: 'background',
+      bg: 'deep',
+    },
+  },
+  forms: {
+    label: {
+      fontSize: 1,
+      fontWeight: 'bold',
+    },
+    input: {
+      borderColor: 'gray',
+      '&:focus': {
+        borderColor: 'primary',
+        boxShadow: t => `0 0 0 1px ${t.colors.primary}`,
+        outline: 'none',
+      },
+    },
+    select: {
+      borderColor: 'gray',
+      '&:focus': {
+        borderColor: 'primary',
+        boxShadow: t => `0 0 0 1px ${t.colors.primary}`,
+        outline: 'none',
+      },
+    },
+    textarea: {
+      borderColor: 'gray',
+      '&:focus': {
+        borderColor: 'primary',
+        boxShadow: t => `0 0 0 1px ${t.colors.primary}`,
+        outline: 'none',
+      },
+    },
+    slider: {
+      bg: 'muted',
+    },
+  },
 };

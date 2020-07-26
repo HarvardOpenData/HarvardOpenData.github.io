@@ -16,7 +16,7 @@ const highlightedSx = {
   color: 'primary',
   fontWeight: 'bold',
   textDecoration: 'none',
-  ':hover': {
+  '&:hover': {
     color: 'deep'
   }
 }
