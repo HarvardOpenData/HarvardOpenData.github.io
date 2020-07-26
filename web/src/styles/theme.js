@@ -130,9 +130,6 @@ export default {
     p: {
       fontSize: 2,
       lineHeight: 1.55,
-      bold: {
-        fontFamily: "Post Grotesk",
-      },
     },
   },
   buttons: {

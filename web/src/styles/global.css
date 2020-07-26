@@ -54,10 +54,10 @@ p > a:hover {
   cursor: pointer !important;
 }
 
-.preview > * {
-  line-height: 1.15 !important;
+.preview p {
+  line-height: normal !important;
 }
 
-.button {
+button {
   font-family: "Post Grotesk" !important;
 }

@@ -12,7 +12,7 @@ function ArticleHeader(props) {
   const numContributors = contributors.length;
 
   return (
-    <div>
+    <div className="preview">
       {publishedAt && (
         <Text variant="caps">
           {differenceInDays(new Date(publishedAt), new Date()) > 3

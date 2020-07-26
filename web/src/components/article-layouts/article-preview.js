@@ -37,7 +37,7 @@ function HorizontalArticlePreview(props) {
     alignItems: "center",
   };
   return (
-    <div sx={{ bg: props.container ? "container" : "#FFFFFF" }}>
+    <div className="preview" sx={{ bg: props.container ? "container" : "#FFFFFF" }}>
       <Grid
         gap={props.size == "large" ? 4 : 3}
         columns={props.size == "large" ? ["2fr 1fr"] : ["1fr 2fr"]}
@@ -69,7 +69,7 @@ function VerticalArticlePreview(props) {
   console.log(props.mainImage);
   console.log(props.mainImage && props.mainImage.asset);
   return (
-    <div sx={{ width: "100%", bg: props.container ? "container" : "#FFFFFF" }}>
+    <div className="preview" sx={{ width: "100%", bg: props.container ? "container" : "#FFFFFF" }}>
       <Link to={props.link}>
         <div>
           {props.mainImage && props.mainImage.asset && (
@@ -97,9 +97,9 @@ function VerticalArticlePreview(props) {
 
 function ArticlePreview(props) {
   return props.horizontal ? (
-    <HorizontalArticlePreview className="preview" {...props} />
+    <HorizontalArticlePreview {...props} />
   ) : (
-    <VerticalArticlePreview className="preview" {...props} />
+    <VerticalArticlePreview {...props} />
   );
 }
 
