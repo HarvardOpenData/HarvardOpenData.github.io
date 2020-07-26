@@ -131,7 +131,7 @@ export default {
     },
     h1: {
       variant: "text.heading",
-      marginTop: 0,
+      marginTop: 3,
       fontSize: 5,
     },
     h2: {

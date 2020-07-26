@@ -49,14 +49,14 @@ h1, h2, h3, h4, strong, b {
   font-weight: 700;
 }
 
-p a {
+p a, li a, .blockquote a {
   font-weight: 700;
   color: #C63F3F;
   text-decoration: none;
   cursor: pointer !important;
 }
 
-p > a:hover {
+p a:hover, li a:hover, .blockquote a:hover {
   color: #760000;
   cursor: pointer !important;
 }
