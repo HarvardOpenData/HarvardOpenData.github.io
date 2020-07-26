@@ -20,7 +20,7 @@ function DefaultHeader(props) {
           <img
             src={imageUrlFor(buildImageObj(mainImage))
               .width(1200)
-              .height(Math.floor((9 / 16) * 1200))
+              .height(Math.floor((5 / 8) * 1200))
               .fit("crop")
               .url()}
             alt={mainImage.alt}

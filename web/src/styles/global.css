@@ -49,7 +49,7 @@ h1, h2, h3, h4, strong, b {
   font-weight: 700;
 }
 
-p > a {
+p a {
   font-weight: 700;
   color: #C63F3F;
   text-decoration: none;
@@ -59,6 +59,11 @@ p > a {
 p > a:hover {
   color: #760000;
   cursor: pointer !important;
+}
+
+li {
+  font-size: 19px;
+  line-height: 1.55;
 }
 
 .preview p {

@@ -1,5 +1,5 @@
 export default {
-  breakpoints: ["640px", "1280px"],
+  breakpoints: ["640px", "1024px"],
   colors: {
     text: "#111111",
     primary: "#C63F3F",
@@ -45,6 +45,7 @@ export default {
     },
     caps: {
       textTransform: "uppercase",
+      fontSize: "15px",
       fontFamily: "monospace",
       letterSpacing: "0.05em",
       fontWeight: "bold",
@@ -53,7 +54,7 @@ export default {
       fontFamily: "heading",
       fontWeight: "heading",
       letterSpacing: "0.015em",
-      lineHeight: 0.95,
+      lineHeight: 1,
     },
     strong: {
       fontFamily: "bold",
@@ -66,6 +67,23 @@ export default {
       fontSize: 2,
       lineHeight: "155%",
       letterSpacing: "0.015em",
+    },
+    h1: {
+      variant: "text.heading",
+      marginTop: 0,
+      fontSize: 5,
+    },
+    h2: {
+      variant: "text.heading",
+      fontSize: 4,
+    },
+    h3: {
+      variant: "text.heading",
+      fontSize: 3,
+    },
+    h4: {
+      variant: "text.heading",
+      fontSize: 2,
     },
   },
   image: {
@@ -113,6 +131,7 @@ export default {
     },
     h1: {
       variant: "text.heading",
+      marginTop: 0,
       fontSize: 5,
     },
     h2: {
@@ -131,6 +150,10 @@ export default {
       fontSize: 2,
       lineHeight: 1.55,
     },
+    li: {
+      fontSize: 2,
+      lineHeight: 1.55,
+    }
   },
   buttons: {
     default: {

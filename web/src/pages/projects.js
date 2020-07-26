@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import ProjectPreviewGrid from "../components/project-layouts/project-preview-grid";
+import PreviewGrid from "../components/article-layouts/preview-grid";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
@@ -52,10 +52,15 @@ const ProjectsPage = (props) => {
   return (
     <Layout>
       <SEO title="Projects" />
-      <Container>
-        <BannerHeader title="Projects" />
+      <br />
+      <Container maxWidth={"1152px"}>
         {projectNodes && projectNodes.length > 0 && (
-          <ProjectPreviewGrid nodes={projectNodes} />
+          <PreviewGrid
+            nodes={projectNodes}
+            container
+            featuredHorizontal
+            columns={[1, 3, 3]}
+          />
         )}
       </Container>
     </Layout>

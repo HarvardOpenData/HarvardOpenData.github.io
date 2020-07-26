@@ -1,13 +1,16 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Divider } from "theme-ui";
+import { Grid, Divider } from "theme-ui";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import BlogPostPreviewGrid from "../components/blog-layouts/blog-post-preview-grid";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
+import ArticlePreview from "../components/article-layouts/article-preview"
 import ProjectPreviewGrid from "../components/project-layouts/project-preview-grid";
 import SEO from "../components/core/seo";
+import Section from "../components/core/section"
 import Layout from "../containers/layout";
+import PreviewGrid from "../components/article-layouts/preview-grid";
 
 export const query = graphql`
   query IndexPageQuery {
@@ -18,7 +21,7 @@ export const query = graphql`
     }
 
     projects: allSanityProject(
-      limit: 6
+      limit: 10
       sort: { fields: [publishedAt], order: DESC }
     ) {
       edges {
@@ -122,6 +125,28 @@ const IndexPage = (props) => {
     );
   }
 
+  const ProjectPreviews = nodes => {
+    const featuredArticle = nodes.nodes.shift()
+    return (
+      <div>
+        <ArticlePreview
+          {...featuredArticle}
+          link={`/project/${featuredArticle.slug.current}`}
+          container
+          horizontal
+          size="large"
+          headerAs="h2"
+        />
+        <br />
+        <ProjectPreviewGrid
+          nodes={nodes.nodes}
+          container
+          browseMoreHref="/projects/"
+        />
+      </div>
+    )
+  }
+
   return (
     <Layout>
       <SEO
@@ -131,20 +156,32 @@ const IndexPage = (props) => {
       />
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
-        {projectNodes && (
-          <ProjectPreviewGrid
-            title="Latest projects"
-            nodes={projectNodes}
-            browseMoreHref="/projects/"
-          />
-        )}
-        {postNodes && (
+        <br />
+        <Grid gap={5} columns={[1, 1, "3fr 1fr"]}>
+          {projectNodes && (
+            <PreviewGrid
+              nodes={projectNodes}
+              featuredHorizontal
+              container
+              browseMoreHref="/projects/"
+            />
+          )}
+          <div>
+            <Section header={"Predictions updates"}>
+              Section content
+            </Section>
+            <Section header={"Another section"}>
+              Another section
+            </Section>
+          </div>
+        </Grid>
+        {/* {postNodes && (
           <BlogPostPreviewGrid
             title="Latest blog posts"
             nodes={postNodes}
             browseMoreHref="/blog/"
           />
-        )}
+        )} */}
       </Container>
     </Layout>
   );
