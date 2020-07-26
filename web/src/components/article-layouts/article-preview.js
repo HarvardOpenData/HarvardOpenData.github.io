@@ -66,8 +66,8 @@ function HorizontalArticlePreview(props) {
 }
 
 function VerticalArticlePreview(props) {
-  console.log(props.mainImage)
-  console.log(props.mainImage && props.mainImage.asset)
+  console.log(props.mainImage);
+  console.log(props.mainImage && props.mainImage.asset);
   return (
     <div sx={{ width: "100%", bg: props.container ? "container" : "#FFFFFF" }}>
       <Link to={props.link}>
@@ -76,7 +76,7 @@ function VerticalArticlePreview(props) {
             <img
               src={imageUrlFor(buildImageObj(props.mainImage))
                 .width(600)
-                .height(Math.floor(5/8 * 600))
+                .height(Math.floor((5 / 8) * 600))
                 .url()}
               sx={{
                 width: "100%",

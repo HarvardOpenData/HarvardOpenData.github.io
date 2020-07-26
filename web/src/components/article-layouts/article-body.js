@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Grid } from "theme-ui";
-import ArticleHeader from './article-header'
+import ArticleHeader from "./article-header";
 import ArticleSidebar from "./article-sidebar";
 import BlockContent from "../block-content";
 import Container from "../core/container";
@@ -24,7 +24,7 @@ function ArticleBody(props) {
     members,
     authors,
     publishedAt,
-  }
+  };
   const defaultSidebarProps = {
     authors,
     members,
@@ -37,13 +37,13 @@ function ArticleBody(props) {
     <div>
       <Container>
         <Grid sx={{ mt: 4 }} gap={[3, 4, 5]} columns={[1, "2.5fr 1fr"]}>
-          <div sx={{ margin: ['0 auto'], maxWidth: '640px' }}>
+          <div sx={{ margin: ["0 auto"], maxWidth: "640px" }}>
             {showHeader && <ArticleHeader {...headerProps} />}
             <br />
             {_rawBody && <BlockContent blocks={_rawBody || []} />}
           </div>
-          <div sx={{ maxWidth: ['100%', 8] }}>
-            <ArticleSidebar {...defaultSidebarProps} /> 
+          <div sx={{ maxWidth: ["100%", 8] }}>
+            <ArticleSidebar {...defaultSidebarProps} />
           </div>
         </Grid>
       </Container>

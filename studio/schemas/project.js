@@ -40,6 +40,7 @@ export default {
       options: {
         list: [
           { title: "Default", value: "default" },
+          { title: "Stacked Header", value: "stackHeader" },
           { title: "Full Image", value: "fullImage" },
           { title: "Custom", value: "custom" },
         ],

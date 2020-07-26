@@ -42,12 +42,12 @@ const SubscribeWidget = ({ url, interestForm }) => (
       src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FHarvardODP%2F&width=100&layout=button_count&action=like&size=large&height=30&appId"
       width="100"
       height="30"
-      style={{ border:'none', overflow:'hidden' }}
+      style={{ border: "none", overflow: "hidden" }}
       scrolling="no"
       frameBorder="0"
       allowTransparency="true"
-      allow="encrypted-media">
-    </iframe>
+      allow="encrypted-media"
+    ></iframe>
   </div>
 );
 

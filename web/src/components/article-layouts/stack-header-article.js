@@ -2,7 +2,7 @@
 import { jsx, Grid, Styled } from "theme-ui";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
-import ArticleHeader from './article-header'
+import ArticleHeader from "./article-header";
 import ArticleBody from "./article-body";
 
 function StackHeaderArticle(props) {
@@ -10,8 +10,8 @@ function StackHeaderArticle(props) {
 
   return (
     <div>
-      <div sx={{ maxWidth: '1156px', margin: '0 auto', mt: ['1em', '3em'] }}>
-        <div sx={{ margin: [4, 4, 0], maxWidth: '95vw'  }}>
+      <div sx={{ maxWidth: "1156px", margin: "0 auto", mt: ["1em", "3em"] }}>
+        <div sx={{ margin: [4, 4, 0], maxWidth: "95vw" }}>
           <ArticleHeader {...props} />
         </div>
         <br />
@@ -33,7 +33,7 @@ function StackHeaderArticle(props) {
           </div>
         )}
       </div>
-      <ArticleBody {...props}/>
+      <ArticleBody {...props} />
     </div>
   );
 }

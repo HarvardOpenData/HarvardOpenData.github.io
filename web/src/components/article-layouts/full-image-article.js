@@ -19,7 +19,7 @@ function FullImageArticle(props) {
               .url()}
             alt={mainImage.alt}
             sx={{
-              mt: '-0.6em',
+              mt: "-0.6em",
               width: "100%",
               verticalAlign: "top",
               objectFit: "cover",
@@ -27,7 +27,7 @@ function FullImageArticle(props) {
           />
         </div>
       )}
-      <ArticleBody showHeader {...props}/>
+      <ArticleBody showHeader {...props} />
     </div>
   );
 }
