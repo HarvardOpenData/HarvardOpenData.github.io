@@ -35,8 +35,8 @@ function StandardSubmenuLink({ name, link, subMenu }) {
       aria-haspopup={true}
     >
       <MenuLink link={link}>
-        <Box p={1} sx={{ flex: "1 auto", ":hover": { color: "primary" } }}>
-          <b sx={{ textDecoration: "none", fontSize: [1] }}>{`${name} `}</b>
+        <Box p={1} sx={{ fontWeight: 500, flex: "1 auto", ":hover": { color: "primary" } }}>
+          {`${name}`}
         </Box>
       </MenuLink>
       <div
@@ -48,8 +48,10 @@ function StandardSubmenuLink({ name, link, subMenu }) {
       >
         <Box
           sx={{
-            bg: "light",
-            borderRadius: "0px 5px 5px 5px",
+            bg: "#FFFFFF",
+            border: `0.5px solid #2F2F2F`,
+            boxShadow: '0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 22.3px 17.9px rgba(0, 0, 0, 0.072)',
+            borderRadius: "2px 2px 2px 2px",
           }}
         >
           {subMenu && subMenu.length > 0
@@ -59,13 +61,13 @@ function StandardSubmenuLink({ name, link, subMenu }) {
                     p={2}
                     pt={1}
                     sx={{
+                      fontWeight: 400,
+                      fontSize: [1],
                       flex: "1 auto",
                       ":hover": { color: "primary" },
                     }}
                   >
-                    <b sx={{ textDecoration: "none", fontSize: [1] }}>
-                      {subLink.name}
-                    </b>
+                    {subLink.name}
                   </Box>
                 </MenuLink>
               ))
@@ -85,6 +87,7 @@ function StandardMenuLink({ name, link, subMenu }) {
           mr={2}
           aria-haspopup={false}
           sx={{
+            fontWeight: 500,
             ": hover": {
               bg: "light",
               borderRadius: "5px",
@@ -92,7 +95,7 @@ function StandardMenuLink({ name, link, subMenu }) {
             },
           }}
         >
-          <b sx={{ fontSize: [1] }}>{name}</b>
+          {name}
         </Box>
       </MenuLink>
     </div>
