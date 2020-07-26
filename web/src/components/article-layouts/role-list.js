@@ -63,7 +63,6 @@ function RoleList({ items, title }) {
     <div
       sx={{
         margin: "2rem 0 3rem",
-        borderTop: "1px solid black",
       }}
     >
       <Styled.h4>{title}</Styled.h4>

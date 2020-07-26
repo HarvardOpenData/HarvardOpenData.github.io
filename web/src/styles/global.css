@@ -16,8 +16,14 @@ p > a {
   font-weight: 700;
   color: #C63F3F;
   text-decoration: none;
+  cursor: pointer !important;
 }
 
 p > a:hover {
   color: #760000;
+  cursor: pointer !important;
+}
+
+.preview > * {
+  line-height: 1.15 !important;
 }

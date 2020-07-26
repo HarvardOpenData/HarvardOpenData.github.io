@@ -25,6 +25,8 @@ export const query = graphql`
         slug {
           current
         }
+        _rawMainImage
+        _rawExcerpt
       }
       mainImage {
         crop {

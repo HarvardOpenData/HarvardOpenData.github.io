@@ -65,26 +65,19 @@ function HorizontalArticlePreview(props) {
 }
 
 function VerticalArticlePreview(props) {
+  console.log(props.mainImage)
+  console.log(props.mainImage && props.mainImage.asset)
   return (
-    <div sx={{ bg: props.container ? "container" : "#FFFFFF" }}>
+    <div sx={{ width: "100%", bg: props.container ? "container" : "#FFFFFF" }}>
       <Link to={props.link}>
-        <div
-          sx={{
-            position: "relative",
-            paddingBottom: "66.666%",
-            background: "#eee",
-          }}
-        >
+        <div>
           {props.mainImage && props.mainImage.asset && (
             <img
               src={imageUrlFor(buildImageObj(props.mainImage))
                 .width(600)
-                .height(Math.floor((9 / 16) * 600))
+                .height(Math.floor(5/8 * 600))
                 .url()}
               sx={{
-                position: "absolute",
-                top: 0,
-                left: 0,
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
@@ -103,9 +96,9 @@ function VerticalArticlePreview(props) {
 
 function ArticlePreview(props) {
   return props.horizontal ? (
-    <HorizontalArticlePreview {...props} />
+    <HorizontalArticlePreview className="preview" {...props} />
   ) : (
-    <VerticalArticlePreview {...props} />
+    <VerticalArticlePreview className="preview" {...props} />
   );
 }
 
