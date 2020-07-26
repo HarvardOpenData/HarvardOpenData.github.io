@@ -153,7 +153,7 @@ export default {
     li: {
       fontSize: 2,
       lineHeight: 1.55,
-    }
+    },
   },
   buttons: {
     default: {

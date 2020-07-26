@@ -1,10 +1,10 @@
 import { graphql, StaticQuery } from "gatsby";
 import React, { useState } from "react";
 import { ThemeProvider, Styled } from "theme-ui";
-import Helmet from 'react-helmet';
+import Helmet from "react-helmet";
 import theme from "../styles/theme.js";
 import Layout from "../components/core/layout";
-import favicon from '../assets/favicon.ico'
+import favicon from "../assets/favicon.ico";
 
 const query = graphql`
   query SiteTitleQuery {

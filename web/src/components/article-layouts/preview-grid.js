@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import ArticlePreview from "../article-layouts/article-preview"
-import ProjectPreviewGrid from "../project-layouts/project-preview-grid"
-import Spacer from "../core/spacer"
+import ArticlePreview from "../article-layouts/article-preview";
+import ProjectPreviewGrid from "../project-layouts/project-preview-grid";
+import Spacer from "../core/spacer";
 
 // Currently only works for projects
 const PreviewGrid = ({
@@ -11,9 +11,9 @@ const PreviewGrid = ({
   columns,
   horizontal,
   space,
-  nodes
+  nodes,
 }) => {
-  const featuredArticle = nodes.shift()
+  const featuredArticle = nodes.shift();
   return (
     <div>
       <ArticlePreview
@@ -34,7 +34,7 @@ const PreviewGrid = ({
         browseMoreHref="/projects/"
       />
     </div>
-  )
-}
+  );
+};
 
 export default PreviewGrid;

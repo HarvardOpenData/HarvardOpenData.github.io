@@ -11,4 +11,4 @@ function Section({ header, showDivider, children }) {
   );
 }
 
-export default Section
+export default Section;

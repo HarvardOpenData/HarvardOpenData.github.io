@@ -3,7 +3,7 @@ import { jsx, Divider, Grid, Styled, Text } from "theme-ui";
 import { format, distanceInWords, differenceInDays } from "date-fns";
 import RoleList from "./role-list";
 import ArticlePreview from "./article-preview";
-import Section from '../core/section'
+import Section from "../core/section";
 
 // Creates a sidebar with all available props
 function ArticleSidebar(props) {

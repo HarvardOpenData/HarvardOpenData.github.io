@@ -5,10 +5,10 @@ import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import BlogPostPreviewGrid from "../components/blog-layouts/blog-post-preview-grid";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import ArticlePreview from "../components/article-layouts/article-preview"
+import ArticlePreview from "../components/article-layouts/article-preview";
 import ProjectPreviewGrid from "../components/project-layouts/project-preview-grid";
 import SEO from "../components/core/seo";
-import Section from "../components/core/section"
+import Section from "../components/core/section";
 import Layout from "../containers/layout";
 import PreviewGrid from "../components/article-layouts/preview-grid";
 
@@ -125,8 +125,8 @@ const IndexPage = (props) => {
     );
   }
 
-  const ProjectPreviews = nodes => {
-    const featuredArticle = nodes.nodes.shift()
+  const ProjectPreviews = (nodes) => {
+    const featuredArticle = nodes.nodes.shift();
     return (
       <div>
         <ArticlePreview
@@ -144,8 +144,8 @@ const IndexPage = (props) => {
           browseMoreHref="/projects/"
         />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <Layout>
@@ -167,12 +167,8 @@ const IndexPage = (props) => {
             />
           )}
           <div>
-            <Section header={"Predictions updates"}>
-              Section content
-            </Section>
-            <Section header={"Another section"}>
-              Another section
-            </Section>
+            <Section header={"Predictions updates"}>Section content</Section>
+            <Section header={"Another section"}>Another section</Section>
           </div>
         </Grid>
         {/* {postNodes && (

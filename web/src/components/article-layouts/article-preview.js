@@ -10,7 +10,9 @@ function PreviewText(props) {
   return (
     <div>
       <Link to={props.link}>
-        <Text variant={props.headerAs ? props.headerAs : "h3"}>{props.title}</Text>
+        <Text variant={props.headerAs ? props.headerAs : "h3"}>
+          {props.title}
+        </Text>
       </Link>
       {props._rawExcerpt && <BlockText blocks={props._rawExcerpt} />}
       {props.publishedAt && (
@@ -32,7 +34,10 @@ function HorizontalArticlePreview(props) {
     pr: 3,
   };
   return (
-    <div className="preview" sx={{ bg: props.container ? "container" : "#FFFFFF" }}>
+    <div
+      className="preview"
+      sx={{ bg: props.container ? "container" : "#FFFFFF" }}
+    >
       <Grid
         gap={props.size == "large" ? 4 : 3}
         columns={props.size == "large" ? ["2fr 1fr"] : ["1fr 2fr"]}
@@ -62,7 +67,10 @@ function HorizontalArticlePreview(props) {
 
 function VerticalArticlePreview(props) {
   return (
-    <div className="preview" sx={{ width: "100%", bg: props.container ? "container" : "#FFFFFF" }}>
+    <div
+      className="preview"
+      sx={{ width: "100%", bg: props.container ? "container" : "#FFFFFF" }}
+    >
       <Link to={props.link}>
         <div>
           {props.mainImage && props.mainImage.asset && (
@@ -81,7 +89,7 @@ function VerticalArticlePreview(props) {
           )}
         </div>
       </Link>
-      <div className={`${props.size}-block`}sx={props.container && { p: [3] }}>
+      <div className={`${props.size}-block`} sx={props.container && { p: [3] }}>
         {!props.container && <br />}
         <PreviewText {...props}>{props.children}</PreviewText>
       </div>
@@ -101,7 +109,7 @@ function ArticlePreview(props) {
           <VerticalArticlePreview headerAs={null} {...props} />
         </div>
       </div>
-    )
+    );
   }
   return props.horizontal ? (
     <HorizontalArticlePreview {...props} />
