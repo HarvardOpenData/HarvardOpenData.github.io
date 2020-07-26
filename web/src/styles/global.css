@@ -10,6 +10,13 @@
 
 @font-face {
   font-family: "Post Grotesk";
+  font-weight: 400;
+  font-style: italic;
+  src: url("../assets/fonts/Post Grotesk Light Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Post Grotesk";
   font-weight: 500;
   src: url("../assets/fonts/Post Grotesk Medium.otf") format("opentype");
 }

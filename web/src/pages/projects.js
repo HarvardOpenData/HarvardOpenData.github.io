@@ -18,6 +18,7 @@ export const query = graphql`
       edges {
         node {
           id
+          publishedAt
           mainImage {
             asset {
               _id
