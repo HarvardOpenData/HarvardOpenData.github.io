@@ -1,22 +1,18 @@
 /** @jsx jsx */
 import { jsx, Grid, Styled, Text } from "theme-ui";
 import { format, distanceInWords, differenceInDays } from "date-fns";
+import React from 'react'
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
+import ArticleBody from './article-body'
 import ArticleHeader from './article-header'
 import ArticleSidebar from "./article-sidebar";
 import BlockContent from "../block-content";
 import Container from "../core/container";
 
 function DefaultHeader(props) {
-  const {
-    _rawExcerpt,
-    title,
-    mainImage,
-    members,
-    authors,
-    publishedAt,
-  } = props;
+  const { mainImage } = props;
+  
   return (
     <Container>
       <Grid
@@ -44,35 +40,11 @@ function DefaultHeader(props) {
 }
 
 function DefaultArticle(props) {
-  const {
-    _rawBody,
-    authors,
-    members,
-    categories,
-    subjects,
-    relatedProjects,
-  } = props;
-  const defaultSidebarProps = {
-    authors,
-    members,
-    categories,
-    subjects,
-    relatedProjects,
-  };
   return (
-    <article>
+    <div>
       <DefaultHeader {...props} />
-      <Container>
-        <Grid sx={{ mt: 4 }} gap={[3, 4, 5]} columns={[1, "2.5fr 1fr"]}>
-          <div sx={{ margin: ['0 auto'], maxWidth: '640px' }}>
-            {_rawBody && <BlockContent blocks={_rawBody || []} />}
-          </div>
-          <div sx={{ maxWidth: ['100%', 8] }}>
-            <ArticleSidebar {...defaultSidebarProps} /> 
-          </div>
-        </Grid>
-      </Container>
-    </article>
+      <ArticleBody {...props} />
+    </div>
   );
 }
 
