@@ -99,8 +99,8 @@ async function createProjectListPages(graphql, actions, reporter) {
   if (result.errors) throw result.errors;
 
   const projectEdges = (result.data.allSanityProject || {}).edges || [];
-  const projectsPerPage = 12
-  const numPages = Math.ceil(projectEdges.length / projectsPerPage)
+  const projectsPerPage = 12;
+  const numPages = Math.ceil(projectEdges.length / projectsPerPage);
 
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
@@ -112,8 +112,8 @@ async function createProjectListPages(graphql, actions, reporter) {
         numPages,
         currentPage: i + 1,
       },
-    })
-  })
+    });
+  });
 }
 
 async function createBlogListPages(graphql, actions, reporter) {
@@ -137,8 +137,8 @@ async function createBlogListPages(graphql, actions, reporter) {
   if (result.errors) throw result.errors;
 
   const postEdges = (result.data.allSanityPost || {}).edges || [];
-  const postsPerPage = 12
-  const numPages = Math.ceil(postEdges.length / postsPerPage)
+  const postsPerPage = 12;
+  const numPages = Math.ceil(postEdges.length / postsPerPage);
 
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
@@ -150,8 +150,8 @@ async function createBlogListPages(graphql, actions, reporter) {
         numPages,
         currentPage: i + 1,
       },
-    })
-  })
+    });
+  });
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {

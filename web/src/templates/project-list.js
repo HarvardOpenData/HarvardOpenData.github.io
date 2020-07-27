@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, Grid, } from "theme-ui";
+import { jsx, Grid } from "theme-ui";
 import { graphql } from "gatsby";
-import BannerHeader from "../components/core/banner-header"
+import BannerHeader from "../components/core/banner-header";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import PreviewGrid from "../components/article-layouts/preview-grid";
@@ -14,31 +14,31 @@ import Pagination from "../components/core/pagination";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
-query ProjectListPageQuery($skip: Int!, $limit: Int!) {
-  projects: allSanityProject(
-    limit: $limit
-    skip: $skip
-    sort: { fields: [publishedAt], order: DESC }
-  ) {
-    edges {
-      node {
-        id
-        publishedAt
-        mainImage {
-          asset {
-            _id
+  query ProjectListPageQuery($skip: Int!, $limit: Int!) {
+    projects: allSanityProject(
+      limit: $limit
+      skip: $skip
+      sort: { fields: [publishedAt], order: DESC }
+    ) {
+      edges {
+        node {
+          id
+          publishedAt
+          mainImage {
+            asset {
+              _id
+            }
+            alt
           }
-          alt
-        }
-        title
-        _rawExcerpt
-        slug {
-          current
+          title
+          _rawExcerpt
+          slug {
+            current
+          }
         }
       }
     }
   }
-}
 `;
 
 const CoverGrid = ({ nodes }) => {
@@ -50,20 +50,16 @@ const CoverGrid = ({ nodes }) => {
       featuredHorizontal
       columns={[1, 3, 3]}
     />
-  )
-}
+  );
+};
 
 const ProjectList = ({ header, showDivider, nodes }) => {
   return (
     <Section header={header} showDivider={showDivider}>
-      <PreviewGrid
-        nodes={nodes}
-        horizontal
-        columns={[1]}
-      />
+      <PreviewGrid nodes={nodes} horizontal columns={[1]} />
     </Section>
-  )
-}
+  );
+};
 
 const ProjectListTemplate = (props) => {
   const { data, errors } = props;
@@ -78,14 +74,14 @@ const ProjectListTemplate = (props) => {
     data &&
     data.projects &&
     mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
-  
+
   const { currentPage } = props.pageContext;
-  const firstPage = currentPage === 1
+  const firstPage = currentPage === 1;
   const coverGridNodes = firstPage
     ? projectNodes.splice(0, Math.min(4, projectNodes.length))
-    : []
-  console.log(coverGridNodes)
-  console.log(`current page: ${currentPage}`)
+    : [];
+  console.log(coverGridNodes);
+  console.log(`current page: ${currentPage}`);
 
   return (
     <Layout>
@@ -94,23 +90,25 @@ const ProjectListTemplate = (props) => {
       <Container>
         <Container maxWidth={"1024px"} align="left" margin="0px">
           <div>
-            {coverGridNodes && coverGridNodes.length > 0 &&
+            {coverGridNodes && coverGridNodes.length > 0 && (
               <div>
-                  <CoverGrid nodes={coverGridNodes}/>
-                  <Spacer height={6} />
+                <CoverGrid nodes={coverGridNodes} />
+                <Spacer height={6} />
               </div>
-            }
-            {projectNodes && projectNodes.length > 0 &&
+            )}
+            {projectNodes && projectNodes.length > 0 && (
               <Grid gap={[5, 5, 6]} columns={[1, "2.5fr 1fr"]}>
                 <div>
-                  {!firstPage && <BannerHeader title="Past projects"/>}
-                  <ProjectList header={firstPage && "Latest"} showDivider={firstPage} nodes={projectNodes} />
+                  {!firstPage && <BannerHeader title="Past projects" />}
+                  <ProjectList
+                    header={firstPage && "Latest"}
+                    showDivider={firstPage}
+                    nodes={projectNodes}
+                  />
                 </div>
-                <Section header="Featured">
-                  Add featured projects
-                </Section>
+                <Section header="Featured">Add featured projects</Section>
               </Grid>
-            }
+            )}
           </div>
           <Pagination prefix="/projects" pageContext={props.pageContext} />
         </Container>

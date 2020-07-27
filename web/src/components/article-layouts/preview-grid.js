@@ -15,17 +15,19 @@ const PreviewGrid = ({
   nodes,
 }) => {
   const featuredArticle = featured === true ? nodes.shift() : {};
-  console.log(featured)
+  console.log(featured);
   return (
     <div>
-      {featured && <ArticlePreview
-        {...featuredArticle}
-        link={`/project/${featuredArticle.slug.current}`}
-        container={container}
-        horizontal={featuredHorizontal}
-        size="large"
-        headerAs={"h2"}
-      />}
+      {featured && (
+        <ArticlePreview
+          {...featuredArticle}
+          link={`/project/${featuredArticle.slug.current}`}
+          container={container}
+          horizontal={featuredHorizontal}
+          size="large"
+          headerAs={"h2"}
+        />
+      )}
       <Spacer height={space ? space : 4} />
       <ProjectPreviewGrid
         nodes={nodes}
