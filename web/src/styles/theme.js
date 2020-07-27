@@ -155,31 +155,6 @@ export default {
       lineHeight: 1.55,
     },
   },
-  buttons: {
-    default: {
-      font: "Post Grotesk, system-ui, sans-serif",
-      color: "#FFFFFF",
-      p: 0,
-      bg: "primary",
-      "&:hover": {
-        bg: "deep",
-      },
-      "&:focus": {
-        borderColor: "primary",
-        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
-        outline: "none",
-      },
-      "&:active": {
-        borderColor: "primary",
-        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
-        outline: "none",
-      },
-    },
-    deep: {
-      color: "background",
-      bg: "deep",
-    },
-  },
   forms: {
     label: {
       fontSize: 1,

@@ -79,9 +79,86 @@ async function createProjectPages(graphql, actions, reporter) {
   });
 }
 
+async function createProjectListPages(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityProject(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const projectEdges = (result.data.allSanityProject || {}).edges || [];
+  const projectsPerPage = 2
+  const numPages = Math.ceil(projectEdges.length / projectsPerPage)
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/projects` : `/projects/${i + 1}`,
+      component: require.resolve("./src/templates/project-list.js"),
+      context: {
+        limit: projectsPerPage,
+        skip: i * projectsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
+    })
+  })
+}
+
+async function createBlogListPages(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityPost(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            publishedAt
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const postEdges = (result.data.allSanityPost || {}).edges || [];
+  const postsPerPage = 2
+  const numPages = Math.ceil(postEdges.length / postsPerPage)
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+      component: require.resolve("./src/templates/blog-list.js"),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
+    })
+  })
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createBlogPostPages(graphql, actions, reporter);
   await createProjectPages(graphql, actions, reporter);
+  await createProjectListPages(graphql, actions, reporter);
+  await createBlogListPages(graphql, actions, reporter);
 };
 
 exports.createSchemaCustomization = ({ actions }) => {

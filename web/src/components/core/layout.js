@@ -23,10 +23,10 @@ const SubscribeWidget = ({ url, interestForm }) => (
     }}
   >
     <b>Subscribe to our monthly newsletter</b>
-    <Grid as="form" pt={3} height={4} columns={["2fr 1fr"]}>
+    <Grid as="form" pt={3} height="36px" columns={["2.5fr 1fr"]}>
       <Input name="email" id="email" mb={3} sx={{ height: 4 }} />
       <Button
-        sx={{ height: 4 }}
+        sx={{ height: "32px", display: "flex", alignItems: "center", textAlign: "center" }}
         onClick={() => alert("Subscribed! Check your inbox :)")}
       >
         Subscribe
