@@ -93,13 +93,18 @@ export default {
       color: "background",
       backgroundColor: "primary",
     },
-    tag: {
-      padding: 2,
-      margin: 2,
-      variant: "text.small",
-      color: "background",
-      backgroundColor: "monospace",
-      font: "body",
+  },
+  links: {
+    outbound: {
+      color: "inherit",
+      fontWeight: "bold",
+      textDecoration: "none",
+      "&.active": {
+        color: "primary",
+      },
+      ":hover": {
+        textDecoration: "underline",
+      },
     },
   },
   styles: {
@@ -158,6 +163,14 @@ export default {
     deep: {
       color: "background",
       bg: "deep",
+    },
+    tag: {
+      padding: 2,
+      margin: 1,
+      variant: "text.small",
+      color: "background",
+      backgroundColor: "monospace",
+      font: "body",
     },
   },
   forms: {
