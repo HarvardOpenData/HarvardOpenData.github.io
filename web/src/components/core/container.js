@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
 
-const Container = ({ maxWidth, margin, children }) => {
+const Container = ({ maxWidth, margin, align, children }) => {
   return (
     <div
       sx={{
@@ -12,7 +12,7 @@ const Container = ({ maxWidth, margin, children }) => {
       <div
         sx={{
           maxWidth: ["100%", maxWidth ? maxWidth : "1280px"],
-          margin: "0 auto",
+          margin: align !== "left" && "0 auto",
         }}
       >
         {children}

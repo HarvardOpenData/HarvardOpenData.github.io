@@ -6,6 +6,7 @@ import BlogPostPreviewGrid from "../components/blog-layouts/blog-post-preview-gr
 import Container from "../components/core/container";
 import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
+import Pagination from "../components/core/pagination"
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 
@@ -58,6 +59,7 @@ const BlogListTemplate = (props) => {
         {postNodes && postNodes.length > 0 && (
           <BlogPostPreviewGrid nodes={postNodes} />
         )}
+        <Pagination prefix="/blog" pageContext={props.pageContext} />
       </Container>
     </Layout>
   );

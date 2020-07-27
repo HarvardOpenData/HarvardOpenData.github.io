@@ -1,13 +1,16 @@
 /** @jsx jsx */
-import { jsx, Button } from "theme-ui";
+import { jsx, Grid, } from "theme-ui";
 import { graphql } from "gatsby";
+import BannerHeader from "../components/core/banner-header"
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import PreviewGrid from "../components/article-layouts/preview-grid";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import Link from "../components/core/link";
-import Spacer from "../components/core/spacer"
+import Section from "../components/core/section";
+import Spacer from "../components/core/spacer";
+import Pagination from "../components/core/pagination";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
@@ -38,6 +41,30 @@ query ProjectListPageQuery($skip: Int!, $limit: Int!) {
 }
 `;
 
+const CoverGrid = ({ nodes }) => {
+  return (
+    <PreviewGrid
+      nodes={nodes}
+      container
+      featured
+      featuredHorizontal
+      columns={[1, 3, 3]}
+    />
+  )
+}
+
+const ProjectList = ({ header, showDivider, nodes }) => {
+  return (
+    <Section header={header} showDivider={showDivider}>
+      <PreviewGrid
+        nodes={nodes}
+        horizontal
+        columns={[1]}
+      />
+    </Section>
+  )
+}
+
 const ProjectListTemplate = (props) => {
   const { data, errors } = props;
   if (errors) {
@@ -52,41 +79,41 @@ const ProjectListTemplate = (props) => {
     data.projects &&
     mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs);
   
-  const { currentPage, numPages } = props.pageContext
-  const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
-  const prevPage = currentPage - 1 === 1 ? "" : (currentPage - 1).toString()
-  const nextPage = (currentPage + 1).toString()
+  const { currentPage } = props.pageContext;
+  const firstPage = currentPage === 1
+  const coverGridNodes = firstPage
+    ? projectNodes.splice(0, Math.min(4, projectNodes.length))
+    : []
+  console.log(coverGridNodes)
+  console.log(`current page: ${currentPage}`)
+
   return (
     <Layout>
       <SEO title="Projects" />
       <br />
-      <Container maxWidth={"1152px"}>
-        {projectNodes && projectNodes.length > 0 && (
-          <PreviewGrid
-            nodes={projectNodes}
-            container
-            featuredHorizontal
-            columns={[1, 3, 3]}
-          />
-        )}
-        <div style={{ textAlign: "center" }}>
-          {!isFirst && (
-            <Link to={`/projects/${prevPage}`} rel="prev">
-              <b>{`← Previous `}</b>
-            </Link>
-          )}
-          {Array.from({ length: numPages }, (_, i) => (
-            <Link key={`pagination-number${i + 1}`} to={`/projects/${i === 0 ? "" : i + 1}`}>
-              <b>{`   ${i + 1}   `}</b> 
-            </Link>
-          ))}
-          {!isLast && (
-            <Link to={`/projects/${nextPage}`} rel="next">
-              <b>{` Next →`}</b>
-            </Link>
-          )}
-        </div>
+      <Container>
+        <Container maxWidth={"1024px"} align="left" margin="0px">
+          <div>
+            {coverGridNodes && coverGridNodes.length > 0 &&
+              <div>
+                  <CoverGrid nodes={coverGridNodes}/>
+                  <Spacer height={6} />
+              </div>
+            }
+            {projectNodes && projectNodes.length > 0 &&
+              <Grid gap={[5, 5, 6]} columns={[1, "2.5fr 1fr"]}>
+                <div>
+                  {!firstPage && <BannerHeader title="Past projects"/>}
+                  <ProjectList header={firstPage && "Latest"} showDivider={firstPage} nodes={projectNodes} />
+                </div>
+                <Section header="Featured">
+                  Add featured projects
+                </Section>
+              </Grid>
+            }
+          </div>
+          <Pagination prefix="/projects" pageContext={props.pageContext} />
+        </Container>
       </Container>
     </Layout>
   );

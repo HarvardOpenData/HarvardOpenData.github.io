@@ -99,7 +99,7 @@ async function createProjectListPages(graphql, actions, reporter) {
   if (result.errors) throw result.errors;
 
   const projectEdges = (result.data.allSanityProject || {}).edges || [];
-  const projectsPerPage = 2
+  const projectsPerPage = 12
   const numPages = Math.ceil(projectEdges.length / projectsPerPage)
 
   Array.from({ length: numPages }).forEach((_, i) => {
@@ -137,7 +137,7 @@ async function createBlogListPages(graphql, actions, reporter) {
   if (result.errors) throw result.errors;
 
   const postEdges = (result.data.allSanityPost || {}).edges || [];
-  const postsPerPage = 2
+  const postsPerPage = 12
   const numPages = Math.ceil(postEdges.length / postsPerPage)
 
   Array.from({ length: numPages }).forEach((_, i) => {

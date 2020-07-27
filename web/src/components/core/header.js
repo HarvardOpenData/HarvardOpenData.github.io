@@ -122,6 +122,7 @@ function StandardHeader({ logo, menuLinks }) {
         display: "block",
         position: "relative",
         zIndex: "100 !important",
+        // boxShadow: "0 0 8px rgba(0, 0, 0, 0.4)",
       }}
     >
       <Container>
@@ -141,7 +142,7 @@ function StandardHeader({ logo, menuLinks }) {
             )
           )}
         </Flex>
-        <Divider />
+        <br />
       </Container>
     </div>
   );

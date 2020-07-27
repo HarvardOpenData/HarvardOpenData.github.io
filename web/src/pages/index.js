@@ -161,6 +161,7 @@ const IndexPage = (props) => {
           {projectNodes && (
             <PreviewGrid
               nodes={projectNodes}
+              featured
               featuredHorizontal
               container
               browseMoreHref="/projects/"

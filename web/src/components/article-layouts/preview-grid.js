@@ -6,6 +6,7 @@ import Spacer from "../core/spacer";
 
 // Currently only works for projects
 const PreviewGrid = ({
+  featured,
   featuredHorizontal,
   container,
   columns,
@@ -13,17 +14,18 @@ const PreviewGrid = ({
   space,
   nodes,
 }) => {
-  const featuredArticle = nodes.shift();
+  const featuredArticle = featured === true ? nodes.shift() : {};
+  console.log(featured)
   return (
     <div>
-      <ArticlePreview
+      {featured && <ArticlePreview
         {...featuredArticle}
         link={`/project/${featuredArticle.slug.current}`}
         container={container}
         horizontal={featuredHorizontal}
         size="large"
         headerAs={"h2"}
-      />
+      />}
       <Spacer height={space ? space : 4} />
       <ProjectPreviewGrid
         nodes={nodes}
