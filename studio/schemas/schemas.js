@@ -13,6 +13,7 @@ import dataset from "./dataset";
 import embeddedComponent from "./embeddedComponent";
 import figure from "./figure";
 import internalLink from "./internalLink";
+import link from "./link";
 import mainImage from "./mainImage";
 import page from "./page";
 import person from "./person";
@@ -44,6 +45,7 @@ export default createSchema({
     embeddedComponent,
     figure,
     internalLink,
+    link,
     mainImage,
     page,
     person,
