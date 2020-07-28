@@ -10,7 +10,105 @@ import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
   query PeoplePageQuery {
-    people: allSanityPerson
+    contributors: allSanityPerson(
+      filter: { position: {group: {eq: "Contributors"}}}
+    )
+    {
+      edges {
+        node {
+          id
+          image {
+            asset {
+              _id
+            }
+          }
+          name
+          _rawBio(resolveReferences: { maxDepth: 5 })
+          slug {
+            current
+          }
+          house
+          position {
+            title
+            group
+          }
+        }
+      }
+    }
+    board: allSanityBoard
+    {
+      edges {
+        node {
+          title
+          members {
+            _key
+            id
+            image {
+              asset {
+                _id
+              }
+            }
+            name
+            _rawBio(resolveReferences: { maxDepth: 5 })
+            slug {
+              current
+            }
+            house
+            position {
+              title
+              group
+            }
+          }
+        }
+      }
+    }
+    faculty: allSanityPerson(filter: {position: {group: {eq: "Mentors"}}})
+    {
+      edges {
+        node {
+          id
+          image {
+            asset {
+              _id
+            }
+          }
+          name
+          _rawBio(resolveReferences: { maxDepth: 5 })
+          slug {
+            current
+          }
+          house
+          position {
+            title
+            group
+          }
+        }
+      }
+    }
+    alumni: allSanityPerson(filter: {position: {title: {eq: "Alumni"}}})
+    {
+      edges {
+        node {
+          id
+          image {
+            asset {
+              _id
+            }
+          }
+          name
+          _rawBio(resolveReferences: { maxDepth: 5 })
+          slug {
+            current
+          }
+          house
+          position {
+            title
+            group
+          }
+        }
+      }
+    }
+    bootcampers: allSanityPerson(filter: {position: {title: {eq: "Bootcampers"}}})
     {
       edges {
         node {
@@ -55,17 +153,49 @@ const PeoplePage = (props) => {
   //   );
   // }
 
-  const personNodes =
+  const boardNodes = 
     data &&
-    data.people &&
-    mapEdgesToNodes(data.people).filter(filterOutDocsWithoutSlugs);
+    data.board && 
+    data.board.edges[0].node.members
+
+  const contributorNodes =
+    data &&
+    data.contributors &&
+    mapEdgesToNodes(data.contributors).filter(filterOutDocsWithoutSlugs);
+
+  const alumniNodes =
+    data &&
+    data.alumni &&
+    mapEdgesToNodes(data.alumni).filter(filterOutDocsWithoutSlugs);
+
+  const facultyNodes =
+    data &&
+    data.faculty &&
+    mapEdgesToNodes(data.faculty).filter(filterOutDocsWithoutSlugs);
+  
+   const bootcamperNodes =
+    data &&
+    data.bootcampers &&
+    mapEdgesToNodes(data.bootcampers).filter(filterOutDocsWithoutSlugs);
 
   return (
     <Layout>
       <SEO title={"People"} />
       <Container>
-        {personNodes && personNodes.length > 0 && (
-          <PeopleGrid items={personNodes} title="People" />
+        {boardNodes && boardNodes.length > 0 && (
+          <PeopleGrid items={boardNodes} title="Board" />
+        )}
+        {facultyNodes && facultyNodes.length > 0 && (
+          <PeopleGrid items={facultyNodes} title="Faculty Mentors" />
+        )}
+        {contributorNodes && contributorNodes.length > 0 && (
+          <PeopleGrid items={contributorNodes} title="Contributors" />
+        )}
+        {bootcamperNodes && bootcamperNodes.length > 0 && (
+          <PeopleGrid items={bootcamperNodes} title="Bootcampers" />
+        )}
+        {alumniNodes && alumniNodes.length > 0 && (
+          <PeopleGrid items={alumniNodes} title="Alumni" />
         )}
       </Container>
     </Layout>
