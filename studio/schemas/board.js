@@ -14,6 +14,8 @@ export default {
     {
       name: "members",
       title: "Members",
+      description:
+        'Add board members in the order you want them to appear in the People page.',
       type: "array",
       of: [{ type: "reference", to: { type: "person" } }],
     }

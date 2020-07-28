@@ -17,11 +17,11 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Board", value: "board" },
-          { title: "Mentors", value: "mentors" },
-          { title: "Contributors", value: "contributors" },
-          { title: "Bootcampers", value: "bootcampers" },
-          { title: "Alumni", value: "alumni" }
+          { title: "Board", value: "Board" },
+          { title: "Mentors", value: "Mentors" },
+          { title: "Contributors", value: "Contributors" },
+          { title: "Bootcampers", value: "Bootcampers" },
+          { title: "Alumni", value: "Alumni" }
         ],
       },
     },
