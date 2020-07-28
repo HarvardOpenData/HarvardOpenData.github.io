@@ -33,6 +33,24 @@ export default () =>
             .title("Pages")
             .items([
               S.listItem()
+                .title("Projects")
+                .child(
+                  S.editor()
+                    .id("projectsPage")
+                    .schemaType("page")
+                    .documentId("projects")
+                )
+                .icon(FaFile),
+              S.listItem()
+                .title("Data")
+                .child(
+                  S.editor()
+                    .id("dataPage")
+                    .schemaType("page")
+                    .documentId("data")
+                )
+                .icon(FaFile),
+              S.listItem()
                 .title("Participate")
                 .child(
                   S.editor()
@@ -75,6 +93,15 @@ export default () =>
                     .id("sponsorsPage")
                     .schemaType("page")
                     .documentId("sponsors")
+                )
+                .icon(FaFile),
+              S.listItem()
+                .title("Blog")
+                .child(
+                  S.editor()
+                    .id("blogPage")
+                    .schemaType("page")
+                    .documentId("blog")
                 )
                 .icon(FaFile),
               S.listItem()
