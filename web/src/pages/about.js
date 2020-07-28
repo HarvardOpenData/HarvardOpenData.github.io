@@ -17,25 +17,6 @@ export const query = graphql`
       title
       _rawBody(resolveReferences: { maxDepth: 5 })
     }
-    people: allSanityPerson {
-      edges {
-        node {
-          id
-          image {
-            asset {
-              _id
-            }
-          }
-          name
-          _rawBio
-          slug {
-            current
-          }
-          house
-          position
-        }
-      }
-    }
   }
 `;
 
@@ -68,9 +49,9 @@ const AboutPage = (props) => {
       <Container>
         <BannerHeader title={page.title} />
         <BlockContent blocks={page._rawBody || []} />
-        {personNodes && personNodes.length > 0 && (
+        {/* {personNodes && personNodes.length > 0 && (
           <PeopleGrid items={personNodes} title="People" />
-        )}
+        )} */}
       </Container>
     </Layout>
   );

@@ -39,8 +39,8 @@ export default {
     {
       name: "position",
       title: "Position",
-      description: "e.g. Co-Partnerships Director, Contributor",
-      type: "string",
+      type: "reference",
+      to: [{type: 'position'}]
     },
     {
       name: "house",

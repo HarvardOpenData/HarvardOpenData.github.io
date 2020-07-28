@@ -10,7 +10,8 @@ import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
   query PeoplePageQuery {
-    people: allSanityPerson {
+    people: allSanityPerson
+    {
       edges {
         node {
           id
@@ -25,7 +26,10 @@ export const query = graphql`
             current
           }
           house
-          position
+          position {
+            title
+            group
+          }
         }
       }
     }

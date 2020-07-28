@@ -4,7 +4,7 @@ import BlockText from "./core/block-text";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 
-function ProfileCard({ image, name, _rawBio }) {
+function ProfileCard({ image, name, _rawBio, position }) {
   return (
     <div>
       <div>
@@ -19,6 +19,7 @@ function ProfileCard({ image, name, _rawBio }) {
         )}
       </div>
       <Styled.h4>{name}</Styled.h4>
+      <Styled.p>{position.title}</Styled.p>
       {_rawBio && (
         <Text variant="small">
           <BlockText blocks={_rawBio} />
