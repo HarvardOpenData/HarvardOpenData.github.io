@@ -16,6 +16,7 @@ export const query = graphql`
       id
       title
       _rawBody(resolveReferences: { maxDepth: 5 })
+      _rawBodySecondary(resolveReferences: { maxDepth: 5 })
     }
   }
 `;
@@ -32,10 +33,6 @@ const AboutPage = (props) => {
   }
 
   const page = data && data.page;
-  const personNodes =
-    data &&
-    data.people &&
-    mapEdgesToNodes(data.people).filter(filterOutDocsWithoutSlugs);
 
   if (!page) {
     throw new Error(

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
@@ -15,6 +15,7 @@ export const query = graphql`
       id
       title
       _rawBody(resolveReferences: { maxDepth: 5 })
+      _rawBodySecondary(resolveReferences: { maxDepth: 5 })
     }
   }
 `;
@@ -42,8 +43,15 @@ const SponsorsPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <BannerHeader title={page.title} />
-        <BlockContent blocks={page._rawBody || []} />
+        <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
+          <div>
+            INSERT SPONSORS COMPONENT HERE
+            <BlockContent blocks={page._rawBody || []} />
+          </div>
+          <div className="small preview" sx={{ p: 4, bg: "pink", }}>
+            <BlockContent blocks={page._rawBodySecondary || []} />
+          </div>
+        </Grid>
       </Container>
     </Layout>
   );

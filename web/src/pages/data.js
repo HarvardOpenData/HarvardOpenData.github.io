@@ -13,6 +13,12 @@ import { active } from "d3-transition";
 
 export const query = graphql`
   query DataPageQuery {
+    page: sanityPage(_id: { regex: "/(drafts.|)data/" }) {
+      id
+      title
+      _rawBody(resolveReferences: { maxDepth: 5 })
+      _rawBodySecondary(resolveReferences: { maxDepth: 5 })
+    }
     datasets: allSanityDataset {
       edges {
         node {

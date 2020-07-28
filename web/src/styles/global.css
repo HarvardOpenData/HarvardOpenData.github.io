@@ -70,6 +70,10 @@ li {
   line-height: normal !important;
 }
 
+.small p {
+  font-size: 15px !important;
+}
+
 button {
   font-family: "Post Grotesk" !important;
 }

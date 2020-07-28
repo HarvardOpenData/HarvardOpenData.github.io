@@ -19,7 +19,6 @@ export const query = graphql`
       description
       keywords
     }
-
     projects: allSanityProject(
       limit: 10
       sort: { fields: [publishedAt], order: DESC }
