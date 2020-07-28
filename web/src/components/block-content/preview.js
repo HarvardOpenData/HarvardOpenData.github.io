@@ -7,7 +7,7 @@ import BlockContent from "../block-content";
 import Link from "../core/link"
 
 function Preview(props) {
-  const {
+  let {
     date,
     description,
     header,
@@ -21,18 +21,25 @@ function Preview(props) {
     ? { href: externalLink }
     : { to: resolveInternalLink(internalLink) };
 
-  // Image handling: If no image specified, attempts to get the link image
+  // Default: Use back-up image, header, and date if necessary
   const linkPreviewAvailable = link.internalLink && link.internalLink.reference !== null;
-  let coverImage = image
-  if ((!image || !image.asset) && linkPreviewAvailable) {
-    coverImage = link.internalLink.reference.mainImage;
+  if (linkPreviewAvailable) {
+    const {
+      mainImage,
+      title,
+      publishedAt,
+    } = link.internalLink.reference;
+
+    image = (image && image.asset) ? image : mainImage
+    header = header ? header : title
+    date = date ? date : publishedAt
   }
 
   return (
     <div className="preview">
-      {coverImage && coverImage.asset && (
+      {image && image.asset && (
         <Image
-          src={imageUrlFor(buildImageObj(coverImage)).width(1200).url()}
+          src={imageUrlFor(buildImageObj(image)).width(1200).url()}
           alt={header}
         />
       )}

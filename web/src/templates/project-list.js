@@ -2,6 +2,7 @@
 import { jsx, Grid } from "theme-ui";
 import { graphql } from "gatsby";
 import BannerHeader from "../components/core/banner-header";
+import BlockContent from "../components/block-content"
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import PreviewGrid from "../components/article-layouts/preview-grid";
@@ -15,6 +16,12 @@ import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
   query ProjectListPageQuery($skip: Int!, $limit: Int!) {
+    page: sanityPage(_id: { regex: "/(drafts.|)projects/" }) {
+      id
+      title
+      _rawBody(resolveReferences: { maxDepth: 5 })
+      _rawBodySecondary(resolveReferences: { maxDepth: 5 })
+    }
     projects: allSanityProject(
       limit: $limit
       skip: $skip
@@ -83,6 +90,14 @@ const ProjectListTemplate = (props) => {
   //   : [];
   const coverGridNodes = []
 
+  const page = data && data.page;
+
+  if (!page) {
+    throw new Error(
+      'Missing "Projects" page data. Open the studio at http://localhost:3333 and add "Projects" page data and restart the development server.'
+    );
+  }
+
   return (
     <Layout>
       <SEO title="Projects" />
@@ -98,7 +113,9 @@ const ProjectListTemplate = (props) => {
             )}
             {projectNodes && projectNodes.length > 0 && (
               <Grid gap={[5, 5, 6]} columns={[1, "1fr 4fr"]}>
-                <Section header="Featured">Add featured projects</Section>
+                <Section header="Featured">
+                  <BlockContent blocks={page._rawBodySecondary || []} />
+                </Section>
                 <div>
                   {!firstPage && <BannerHeader title="Past projects" />}
                   <ProjectList
