@@ -37,7 +37,7 @@ function ArticleBody(props) {
     <div>
       <Container>
         <Grid sx={{ mt: 4 }} gap={[3, 4, 5]} columns={[1, "2.5fr 1fr"]}>
-          <div sx={{ margin: ["0 auto"], maxWidth: "640px" }}>
+          <div sx={{ margin: ["0 auto"], mr: [0, 0, 2], maxWidth: "640px" }}>
             {showHeader && <ArticleHeader {...headerProps} />}
             <br />
             {_rawBody && <BlockContent blocks={_rawBody || []} />}

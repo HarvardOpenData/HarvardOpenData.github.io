@@ -12,6 +12,17 @@ export default {
       type: "string",
     },
     {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      description:
+        "Specify a slug so you can create internal links to this page.",
+      options: {
+        source: "title",
+        maxLength: 96,
+      },
+    },
+    {
       name: "body",
       title: "Body",
       type: "blockContent",

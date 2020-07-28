@@ -15,7 +15,7 @@ export const query = graphql`
     page: sanityPage(_id: { regex: "/(drafts.|)about/" }) {
       id
       title
-      _rawBody
+      _rawBody(resolveReferences: { maxDepth: 5 })
     }
     people: allSanityPerson {
       edges {

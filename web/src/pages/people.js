@@ -20,7 +20,7 @@ export const query = graphql`
             }
           }
           name
-          _rawBio
+          _rawBio(resolveReferences: { maxDepth: 5 })
           slug {
             current
           }

@@ -40,7 +40,7 @@ export default {
     default: {
       color: "#111111",
       fontSize: 3,
-      letterSpacing: "0.015em",
+      letterSpacing: "0.02em",
       lineHeight: 1.2,
     },
     caps: {

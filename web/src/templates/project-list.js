@@ -31,7 +31,7 @@ export const query = graphql`
             alt
           }
           title
-          _rawExcerpt
+          _rawExcerpt(resolveReferences: { maxDepth: 5 })
           slug {
             current
           }
@@ -77,18 +77,18 @@ const ProjectListTemplate = (props) => {
 
   const { currentPage } = props.pageContext;
   const firstPage = currentPage === 1;
-  const coverGridNodes = firstPage
-    ? projectNodes.splice(0, Math.min(4, projectNodes.length))
-    : [];
-  console.log(coverGridNodes);
-  console.log(`current page: ${currentPage}`);
+  // Temporarily geting rid of unique first page layout
+  // const coverGridNodes = firstPage
+  //   ? projectNodes.splice(0, Math.min(4, projectNodes.length))
+  //   : [];
+  const coverGridNodes = []
 
   return (
     <Layout>
       <SEO title="Projects" />
       <br />
       <Container>
-        <Container maxWidth={"1024px"} align="left" margin="0px">
+        <Container maxWidth={"1152px"} align="left" margin="0px">
           <div>
             {coverGridNodes && coverGridNodes.length > 0 && (
               <div>
@@ -97,7 +97,8 @@ const ProjectListTemplate = (props) => {
               </div>
             )}
             {projectNodes && projectNodes.length > 0 && (
-              <Grid gap={[5, 5, 6]} columns={[1, "2.5fr 1fr"]}>
+              <Grid gap={[5, 5, 6]} columns={[1, "1fr 4fr"]}>
+                <Section header="Featured">Add featured projects</Section>
                 <div>
                   {!firstPage && <BannerHeader title="Past projects" />}
                   <ProjectList
@@ -106,7 +107,6 @@ const ProjectListTemplate = (props) => {
                     nodes={projectNodes}
                   />
                 </div>
-                <Section header="Featured">Add featured projects</Section>
               </Grid>
             )}
           </div>

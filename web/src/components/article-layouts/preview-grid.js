@@ -15,7 +15,7 @@ const PreviewGrid = ({
   nodes,
 }) => {
   const featuredArticle = featured === true ? nodes.shift() : {};
-  console.log(featured);
+  
   return (
     <div>
       {featured && (

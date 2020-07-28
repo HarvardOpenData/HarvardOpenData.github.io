@@ -5,6 +5,7 @@ import Link from "../core/link";
 import Figure from "./figure";
 import EmbeddedComponent from "./embedded-component";
 import Slideshow from "./slideshow";
+import { getBlogUrl } from "../../lib/helpers";
 
 const serializers = {
   types: {
@@ -53,6 +54,30 @@ const serializers = {
       );
     },
   },
+  marks: {
+    //_rawBody(resolveReferences: { maxDepth: 5 })
+    internalLink: ({mark, children}) => {
+      const {slug = {}, internal = {}, publishedAt = {}} = mark.reference
+      const {type = {}} = internal
+      let fullSlug = ""
+      switch (type) {
+        // TODO: Update for dataset
+        case "SanityProject":
+          fullSlug = `/project/${slug.current}`;
+          break;
+
+        case "SanityPost":
+          fullSlug = getBlogUrl(publishedAt, slug.current);
+          break;
+
+        default:
+          fullSlug = `/${slug.current}`;
+          break;
+
+      }
+      return <Link to={fullSlug}>{children}</Link>
+    },
+  }
 };
 
 const BlockContent = ({ blocks }) => (
