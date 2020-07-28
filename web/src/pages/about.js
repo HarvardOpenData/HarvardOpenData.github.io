@@ -18,25 +18,6 @@ export const query = graphql`
       _rawBody(resolveReferences: { maxDepth: 5 })
       _rawBodySecondary(resolveReferences: { maxDepth: 5 })
     }
-    people: allSanityPerson {
-      edges {
-        node {
-          id
-          image {
-            asset {
-              _id
-            }
-          }
-          name
-          _rawBio
-          slug {
-            current
-          }
-          house
-          position
-        }
-      }
-    }
   }
 `;
 
@@ -52,10 +33,6 @@ const AboutPage = (props) => {
   }
 
   const page = data && data.page;
-  const personNodes =
-    data &&
-    data.people &&
-    mapEdgesToNodes(data.people).filter(filterOutDocsWithoutSlugs);
 
   if (!page) {
     throw new Error(
@@ -69,9 +46,6 @@ const AboutPage = (props) => {
       <Container>
         <BannerHeader title={page.title} />
         <BlockContent blocks={page._rawBody || []} />
-        {personNodes && personNodes.length > 0 && (
-          <PeopleGrid items={personNodes} title="People" />
-        )}
       </Container>
     </Layout>
   );

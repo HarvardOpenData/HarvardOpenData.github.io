@@ -56,7 +56,7 @@ const serializers = {
   },
   marks: {
     internalLink: ({mark, children}) => {
-      let fullSlug = resolveInternalLink(mark.reference)
+      let fullSlug = resolveInternalLink(mark)
       return <Link to={fullSlug}>{children}</Link>
     },
   }

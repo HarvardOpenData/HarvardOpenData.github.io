@@ -17,8 +17,12 @@ export function getBlogUrl(publishedAt, slug) {
   return `/blog/${format(publishedAt, "YYYY/MM")}/${slug.current || slug}/`;
 }
 
-export function resolveInternalLink(reference) {
-  const {slug = {}, internal = {}, publishedAt = {}} = reference
+export function resolveInternalLink(link) {
+  if (!link || !link.reference) {
+    return null
+  }
+  
+  const {slug = {}, internal = {}, publishedAt = {}} = link.reference
   const {type = {}} = internal
   switch (type) {
     // TODO: Update for dataset
