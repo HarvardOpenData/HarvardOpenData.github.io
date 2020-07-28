@@ -13,6 +13,7 @@ export const query = graphql`
     page: sanityPage(_id: { regex: "/(drafts.|)contact/" }) {
       title
       _rawBody(resolveReferences: { maxDepth: 5 })
+      _rawBodySecondary(resolveReferences: { maxDepth: 5 })
     }
   }
 `;

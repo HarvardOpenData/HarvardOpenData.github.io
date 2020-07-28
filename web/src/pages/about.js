@@ -16,6 +16,7 @@ export const query = graphql`
       id
       title
       _rawBody(resolveReferences: { maxDepth: 5 })
+      _rawBodySecondary(resolveReferences: { maxDepth: 5 })
     }
     people: allSanityPerson {
       edges {
