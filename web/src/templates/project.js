@@ -26,7 +26,7 @@ export const query = graphql`
           current
         }
         _rawMainImage
-        _rawExcerpt(resolveReferences: { maxDepth: 5 })
+        _rawExcerpt
       }
       mainImage {
         crop {
@@ -54,7 +54,7 @@ export const query = graphql`
       slug {
         current
       }
-      _rawExcerpt(resolveReferences: { maxDepth: 5 })
+      _rawExcerpt
       _rawBody(resolveReferences: { maxDepth: 5 })
       layout
       members {
