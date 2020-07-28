@@ -1,6 +1,9 @@
+import { MdAspectRatio } from "react-icons/md";
+
 export default {
   type: "object",
   name: "embeddedComponent",
+  icon: MdAspectRatio,
   title: "React Component",
   fields: [
     {

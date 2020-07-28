@@ -114,6 +114,10 @@ export default () =>
         .schemaType("dataset")
         .child(S.documentTypeList("dataset").title("Datasets")),
       S.listItem()
+        .title("Sponsors")
+        .schemaType("sponsor")
+        .child(S.documentTypeList("sponsor").title("Sponsors")),
+      S.listItem()
         .title("Organization Info")
         .child(
           S.editor()

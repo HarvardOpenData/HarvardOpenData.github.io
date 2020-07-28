@@ -16,7 +16,7 @@ export default {
       title: "Slug",
       type: "slug",
       description:
-        "Specify a slug so you can create internal links to this page.",
+        "Make sure the slug matches the file name in src/pages.",
       options: {
         source: "title",
         maxLength: 96,
@@ -25,6 +25,13 @@ export default {
     {
       name: "body",
       title: "Body",
+      type: "blockContent",
+      description: "The primary content on the page"
+    },
+    {
+      name: "bodySecondary",
+      title: "Secondary",
+      description: "Secondary content, often displayed in a sidebar",
       type: "blockContent",
     },
   ],

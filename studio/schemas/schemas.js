@@ -12,17 +12,20 @@ import companyInfo from "./companyInfo";
 import dataset from "./dataset";
 import embeddedComponent from "./embeddedComponent";
 import figure from "./figure";
+import internalLink from "./internalLink";
 import mainImage from "./mainImage";
 import page from "./page";
 import person from "./person";
 import post from "./post";
 import postAuthor from "./postAuthor";
+import preview from "./preview";
 import project from "./project";
 import projectMember from "./projectMember";
 import siteSettings from "./siteSettings";
 import slideshow from "./slideshow";
 import stringProp from "./stringProp";
 import subject from "./subject";
+import sponsor from "./sponsor";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -40,9 +43,11 @@ export default createSchema({
     dataset,
     embeddedComponent,
     figure,
+    internalLink,
     mainImage,
     page,
     person,
+    preview,
     post,
     postAuthor,
     project,
@@ -51,6 +56,7 @@ export default createSchema({
     slideshow,
     stringProp,
     subject,
+    sponsor,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

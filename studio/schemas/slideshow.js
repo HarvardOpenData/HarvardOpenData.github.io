@@ -1,7 +1,10 @@
+import { MdSlideshow } from "react-icons/md";
+
 export default {
   type: "object",
   name: "slideshow",
   title: "Slideshow",
+  icon: MdSlideshow,
   fields: [
     {
       type: "string",
