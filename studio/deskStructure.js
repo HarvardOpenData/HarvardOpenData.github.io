@@ -12,6 +12,7 @@ const hiddenTypes = [
   "post",
   "project",
   "siteSettings",
+  "sponsor",
   "subject",
 ];
 

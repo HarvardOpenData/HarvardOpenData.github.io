@@ -21,7 +21,9 @@ function ProfileCard({ image, name, _rawBio, position }) {
       <Styled.h4>{name}</Styled.h4>
       <Styled.p>{position.title}</Styled.p>
       {_rawBio && (
+        <div className="small preview">
           <BlockText blocks={_rawBio} style="profile"/>
+        </div>
       )}
     </div>
   );

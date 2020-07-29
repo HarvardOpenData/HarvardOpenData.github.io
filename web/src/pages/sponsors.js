@@ -7,6 +7,8 @@ import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
+import Section from "../components/core/section"
+import Sponsor from "../components/sponsor"
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
@@ -16,6 +18,16 @@ export const query = graphql`
       title
       _rawBody(resolveReferences: { maxDepth: 5 })
       _rawBodySecondary(resolveReferences: { maxDepth: 5 })
+    }
+    sponsors: allSanitySponsor {
+      edges {
+        node {
+          _rawImage
+          _rawDescription
+          link
+          tier
+        }
+      }
     }
   }
 `;
@@ -39,18 +51,26 @@ const SponsorsPage = (props) => {
     );
   }
 
+  const sponsorNodes =
+    data &&
+    data.sponsors &&
+    mapEdgesToNodes(data.sponsors);
+
   return (
     <Layout>
       <SEO title={page.title} />
       <Container>
         <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
           <div>
-            INSERT SPONSORS COMPONENT HERE
+            <div sx={{ p: 4, bg: "muted" }}>
+              <Styled.h1>Corporate sponsors</Styled.h1>
+              { sponsorNodes && sponsorNodes.map(node => <Sponsor {...node} />) }
+            </div>
             <BlockContent blocks={page._rawBody || []} />
           </div>
-          <div className="small preview" sx={{ p: 4, bg: "pink", }}>
+          <Section className="small preview" header="Sponsored events">
             <BlockContent blocks={page._rawBodySecondary || []} />
-          </div>
+          </Section>
         </Grid>
       </Container>
     </Layout>
