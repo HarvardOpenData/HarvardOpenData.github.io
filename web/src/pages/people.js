@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, Input, Grid } from "theme-ui";
 import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
@@ -153,35 +153,51 @@ const PeoplePage = (props) => {
   //   );
   // }
 
-  const boardNodes = 
+  var boardNodes = 
     data &&
     data.board && 
     data.board.edges[0].node.members
 
-  const contributorNodes =
+  var contributorNodes =
     data &&
     data.contributors &&
     mapEdgesToNodes(data.contributors).filter(filterOutDocsWithoutSlugs);
 
-  const alumniNodes =
+  var alumniNodes =
     data &&
     data.alumni &&
     mapEdgesToNodes(data.alumni).filter(filterOutDocsWithoutSlugs);
 
-  const facultyNodes =
+  var facultyNodes =
     data &&
     data.faculty &&
     mapEdgesToNodes(data.faculty).filter(filterOutDocsWithoutSlugs);
   
-   const bootcamperNodes =
+  var bootcamperNodes =
     data &&
     data.bootcampers &&
     mapEdgesToNodes(data.bootcampers).filter(filterOutDocsWithoutSlugs);
+  
+  var filter = "";
 
   return (
     <Layout>
-      <SEO title={"People"} />
       <Container>
+        <SEO title={"People"} />
+      </Container>
+      <Container>
+        <Grid gap={3} columns={[1, 2, 3]}>
+          <Input 
+            type="text" 
+            id="search" 
+            placeholder="Search for someone"
+            onChange={
+              function() {
+                boardNodes = boardNodes[0];
+                // TODO update nodes to match the value 
+              }
+            }></Input>
+        </Grid>
         {boardNodes && boardNodes.length > 0 && (
           <PeopleGrid items={boardNodes} title="Board" />
         )}
@@ -201,5 +217,10 @@ const PeoplePage = (props) => {
     </Layout>
   );
 };
+
+// TODO create full React component for people list + filter box
+// pass in the five categories of nodes as props
+// that way we can do controlled input on the filter and just conditionally render in that component
+// no need to complicate this graphql-adjacent layer with it
 
 export default PeoplePage;
