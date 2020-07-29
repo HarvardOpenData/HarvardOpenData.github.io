@@ -2,6 +2,7 @@
 import React from "react";
 import { jsx, Button, Input, Grid } from "theme-ui";
 import { SocialIcon } from "react-social-icons";
+import MailchimpSubscribe from "react-mailchimp-subscribe"
 import Header from "./header";
 import Container from "./container";
 import Link from "./link";
@@ -11,6 +12,8 @@ const socialIconStyles = {
   width: 35,
   marginRight: "0.7em",
 };
+
+const url = "https://hodp.us20.list-manage.com/subscribe/post?u=4415ac3e9c1cf1f92c9e5b357&amp;id=8dbd4ffd38";
 
 const SubscribeWidget = ({ url, interestForm }) => (
   <div
