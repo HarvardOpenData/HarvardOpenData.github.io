@@ -62,6 +62,9 @@ export default {
     small: {
       fontSize: 1,
     },
+    verySmall: {
+      fontSize: "12px",
+    },
     quote: {
       fontWeight: 500,
       fontSize: 2,

@@ -46,6 +46,9 @@ const AboutPage = (props) => {
       <Container>
         <BannerHeader title={page.title} />
         <BlockContent blocks={page._rawBody || []} />
+        {/* {personNodes && personNodes.length > 0 && (
+          <PeopleGrid items={personNodes} title="People" />
+        )} */}
       </Container>
     </Layout>
   );

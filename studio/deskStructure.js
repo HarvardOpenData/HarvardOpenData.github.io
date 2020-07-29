@@ -8,6 +8,7 @@ const hiddenTypes = [
   "dataset",
   "page",
   "person",
+  "position",
   "post",
   "project",
   "siteSettings",
@@ -128,6 +129,10 @@ export default () =>
         .title("People")
         .schemaType("person")
         .child(S.documentTypeList("person").title("People")),
+      S.listItem()
+        .title("Positions")
+        .schemaType("position")
+        .child(S.documentTypeList("position").title("Positions")),
       S.listItem()
         .title("Categories")
         .schemaType("category")

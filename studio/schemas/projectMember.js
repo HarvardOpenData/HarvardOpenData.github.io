@@ -18,7 +18,9 @@ export default {
         layout: "radio",
         list: [
           { title: "Designer", value: "designer" },
+          { title: "Author", value: "author" },
           { title: "Developer", value: "developer" },
+          { title: "Contributor", value: "contributor" },
           { title: "Editor", value: "editor" },
           { title: "Manager", value: "manager" },
         ],

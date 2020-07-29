@@ -39,8 +39,8 @@ export default {
     {
       name: "position",
       title: "Position",
-      description: "e.g. Co-Partnerships Director, Contributor",
-      type: "string",
+      type: "reference",
+      to: [{type: 'position'}]
     },
     {
       name: "house",
@@ -93,7 +93,7 @@ export default {
       name: "bio",
       title: "Bio",
       description:
-        'Write in third-person. Avoid signatories like "junior" because they get outdated.',
+        'Write in third-person. Avoid terms like "junior" because they get outdated.',
       type: "blockContent",
     },
   ],

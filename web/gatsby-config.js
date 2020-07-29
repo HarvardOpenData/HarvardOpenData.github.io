@@ -54,6 +54,12 @@ module.exports = {
       {
         name: `About`,
         link: `/about`,
+        subMenu: [
+          {
+            name: `People`,
+            link: `/people`,
+          }
+        ]
       },
     ],
   },
