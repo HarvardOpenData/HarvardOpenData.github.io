@@ -79,6 +79,12 @@ module.exports = {
         overlayDrafts: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ["DISQUS_NAME"]
+      },
+    },
   ],
 };
 
