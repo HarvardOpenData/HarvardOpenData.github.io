@@ -2,7 +2,6 @@
 import {
   jsx,
   Styled,
-  Grid,
   Flex,
   Card,
   Box,
@@ -12,7 +11,6 @@ import {
   Input,
 } from "theme-ui";
 import { graphql } from "gatsby";
-import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
@@ -20,7 +18,6 @@ import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { useState } from "react";
-import { active } from "d3-transition";
 import * as JsSearch from "js-search";
 
 export const query = graphql`
@@ -143,6 +140,9 @@ const DataCategories = (props) => {
               backgroundColor: included ? "primary" : "inherit",
               color: included ? "background" : "inherit",
               wordWrap: "break-word",
+              "&:hover": {
+                bg: included ? "primary" : "muted",
+              },
             }}
             onClick={() => {
               let newActiveCategories = activeCategories;
