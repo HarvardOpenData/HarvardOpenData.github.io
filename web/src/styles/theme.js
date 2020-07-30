@@ -118,13 +118,18 @@ export default {
       color: "background",
       backgroundColor: "primary",
     },
-    tag: {
-      padding: 2,
-      margin: 2,
-      variant: "text.small",
-      color: "background",
-      backgroundColor: "monospace",
-      font: "body",
+  },
+  links: {
+    outbound: {
+      color: "inherit",
+      fontWeight: "bold",
+      textDecoration: "none",
+      "&.active": {
+        color: "primary",
+      },
+      ":hover": {
+        textDecoration: "underline",
+      },
     },
   },
   styles: {
@@ -166,8 +171,24 @@ export default {
       "&:focus": {
         border: "0.2em solid black"
       },
-      mr: 2,
-    }
+      "&:active": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
+        outline: "none",
+      },
+    },
+    deep: {
+      color: "background",
+      bg: "deep",
+    },
+    tag: {
+      padding: 2,
+      margin: 1,
+      variant: "text.small",
+      color: "background",
+      backgroundColor: "monospace",
+      font: "body",
+    },
   },
   forms: {
     label: {
