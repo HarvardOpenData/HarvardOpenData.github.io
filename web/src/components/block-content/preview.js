@@ -11,18 +11,19 @@ function Preview(props) {
     date,
     description,
     header,
+    headerAs,
     image,
     link,
   } = props;
 
   // Either no link, internalLink, or externalLink
-  const { internalLink, externalLink } = link;
+  const { internalLink, externalLink } = link || {};
   const linkProps = externalLink
     ? { href: externalLink }
     : { to: resolveInternalLink(internalLink) };
 
   // Default: Use back-up image, header, and date if necessary
-  const linkPreviewAvailable = link.internalLink && link.internalLink.reference !== null;
+  const linkPreviewAvailable = link && link.internalLink && link.internalLink.reference;
   if (linkPreviewAvailable) {
     const {
       mainImage,
@@ -45,9 +46,9 @@ function Preview(props) {
       )}
       {header && (
         <Link {...linkProps}>
-          <Styled.h3>
+          <Text variant={headerAs ? headerAs : "h3"}>
             {header}
-          </Styled.h3>
+          </Text>
         </Link>
       )}
       {description && <BlockContent blocks={description || []} />}
