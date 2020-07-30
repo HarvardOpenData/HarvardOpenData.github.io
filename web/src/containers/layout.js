@@ -1,8 +1,10 @@
 import { graphql, StaticQuery } from "gatsby";
 import React, { useState } from "react";
 import { ThemeProvider, Styled } from "theme-ui";
+import Helmet from "react-helmet";
 import theme from "../styles/theme.js";
 import Layout from "../components/core/layout";
+import favicon from "../assets/favicon.ico";
 
 const query = graphql`
   query SiteTitleQuery {
@@ -46,6 +48,9 @@ function LayoutContainer(props) {
   return (
     <ThemeProvider theme={theme}>
       <Styled.root>
+        <Helmet>
+          <link rel="icon" href={favicon} />
+        </Helmet>
         <StaticQuery
           query={query}
           render={(data) => {

@@ -35,7 +35,14 @@ function StandardSubmenuLink({ name, link, subMenu }) {
       aria-haspopup={true}
     >
       <MenuLink link={link}>
-        <Box p={1} sx={{ fontWeight: 500, flex: "1 auto", ":hover": { color: "primary" } }}>
+        <Box
+          p={1}
+          sx={{
+            fontWeight: 500,
+            flex: "1 auto",
+            ":hover": { color: "primary" },
+          }}
+        >
           {`${name}`}
         </Box>
       </MenuLink>
@@ -50,7 +57,8 @@ function StandardSubmenuLink({ name, link, subMenu }) {
           sx={{
             bg: "#FFFFFF",
             border: `0.5px solid #2F2F2F`,
-            boxShadow: '0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 22.3px 17.9px rgba(0, 0, 0, 0.072)',
+            boxShadow:
+              "0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 22.3px 17.9px rgba(0, 0, 0, 0.072)",
             borderRadius: "2px 2px 2px 2px",
           }}
         >
@@ -114,6 +122,7 @@ function StandardHeader({ logo, menuLinks }) {
         display: "block",
         position: "relative",
         zIndex: "100 !important",
+        // boxShadow: "0 0 8px rgba(0, 0, 0, 0.4)",
       }}
     >
       <Container>
@@ -133,7 +142,7 @@ function StandardHeader({ logo, menuLinks }) {
             )
           )}
         </Flex>
-        <Divider />
+        <br />
       </Container>
     </div>
   );

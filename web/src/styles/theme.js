@@ -1,5 +1,5 @@
 export default {
-  breakpoints: ["640px", "1280px"],
+  breakpoints: ["640px", "1024px"],
   colors: {
     text: "#111111",
     primary: "#C63F3F",
@@ -40,11 +40,12 @@ export default {
     default: {
       color: "#111111",
       fontSize: 3,
-      letterSpacing: "0.015em",
+      letterSpacing: "0.02em",
       lineHeight: 1.2,
     },
     caps: {
       textTransform: "uppercase",
+      fontSize: "15px",
       fontFamily: "monospace",
       letterSpacing: "0.05em",
       fontWeight: "bold",
@@ -53,7 +54,7 @@ export default {
       fontFamily: "heading",
       fontWeight: "heading",
       letterSpacing: "0.015em",
-      lineHeight: 0.95,
+      lineHeight: 1,
     },
     strong: {
       fontFamily: "bold",
@@ -61,11 +62,31 @@ export default {
     small: {
       fontSize: 1,
     },
+    verySmall: {
+      fontSize: "12px",
+    },
     quote: {
       fontWeight: 500,
       fontSize: 2,
       lineHeight: "155%",
       letterSpacing: "0.015em",
+    },
+    h1: {
+      variant: "text.heading",
+      marginTop: 0,
+      fontSize: 5,
+    },
+    h2: {
+      variant: "text.heading",
+      fontSize: 4,
+    },
+    h3: {
+      variant: "text.heading",
+      fontSize: 3,
+    },
+    h4: {
+      variant: "text.heading",
+      fontSize: 2,
     },
   },
   image: {
@@ -88,6 +109,10 @@ export default {
   buttons: {
     default: {
       fontFamily: "strong",
+      "&:focus": {
+        border: "0.2em solid black"
+      },
+      mr: 2,
     },
     primary: {
       color: "background",
@@ -118,6 +143,7 @@ export default {
     },
     h1: {
       variant: "text.heading",
+      marginTop: 3,
       fontSize: 5,
     },
     h2: {
@@ -135,24 +161,15 @@ export default {
     p: {
       fontSize: 2,
       lineHeight: 1.55,
-      bold: {
-        fontFamily: "Post Grotesk",
-      },
     },
-  },
-  buttons: {
-    default: {
-      font: "Post Grotesk, system-ui, sans-serif",
-      color: "#FFFFFF",
-      p: 0,
-      bg: "primary",
-      "&:hover": {
-        bg: "deep",
-      },
+    li: {
+      fontSize: 2,
+      lineHeight: 1.55,
+    },
+    button: {
+      fontFamily: "strong",
       "&:focus": {
-        borderColor: "primary",
-        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
-        outline: "none",
+        border: "0.2em solid black"
       },
       "&:active": {
         borderColor: "primary",

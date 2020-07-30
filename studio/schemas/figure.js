@@ -1,7 +1,10 @@
+import { MdImage } from "react-icons/md";
+
 export default {
   name: "figure",
   title: "Figure",
   type: "image",
+  icon: MdImage,
   options: {
     hotspot: true,
   },

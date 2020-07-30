@@ -10,6 +10,13 @@
 
 @font-face {
   font-family: "Post Grotesk";
+  font-weight: 400;
+  font-style: italic;
+  src: url("../assets/fonts/Post Grotesk Light Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Post Grotesk";
   font-weight: 500;
   src: url("../assets/fonts/Post Grotesk Medium.otf") format("opentype");
 }
@@ -42,22 +49,32 @@ h1, h2, h3, h4, strong, b {
   font-weight: 700;
 }
 
-p > a {
+p a, li a, .blockquote a {
   font-weight: 700;
   color: #C63F3F;
   text-decoration: none;
   cursor: pointer !important;
 }
 
-p > a:hover {
+p a:hover, li a:hover, .blockquote a:hover {
   color: #760000;
   cursor: pointer !important;
 }
 
-.preview > * {
-  line-height: 1.15 !important;
+li {
+  font-size: 19px;
+  line-height: 1.55;
 }
 
-.button {
+.preview p {
+  line-height: normal !important;
+}
+
+.small p {
+  font-size: 15px !important;
+}
+
+button {
   font-family: "Post Grotesk" !important;
+  margin-right: 0.5em !important;
 }

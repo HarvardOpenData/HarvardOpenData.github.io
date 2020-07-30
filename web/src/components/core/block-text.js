@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import BaseBlockContent from "@sanity/block-content-to-react";
-import { jsx, Styled } from "theme-ui";
+import { jsx, Styled, Text } from "theme-ui";
 
 const serializers = {
   types: {

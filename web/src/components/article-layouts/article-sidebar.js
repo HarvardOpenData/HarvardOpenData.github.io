@@ -3,15 +3,7 @@ import { jsx, Divider, Grid, Styled, Text } from "theme-ui";
 import { format, distanceInWords, differenceInDays } from "date-fns";
 import RoleList from "./role-list";
 import ArticlePreview from "./article-preview";
-
-function StyledSidebarSection({ children }) {
-  return (
-    <div>
-      <Divider mt={4} color="text" />
-      {children}
-    </div>
-  );
-}
+import Section from "../core/section";
 
 // Creates a sidebar with all available props
 function ArticleSidebar(props) {
@@ -32,26 +24,26 @@ function ArticleSidebar(props) {
   return (
     <aside>
       {publishedAt && (
-        <StyledSidebarSection>
+        <Section>
           <Text variant="small">
             {differenceInDays(new Date(publishedAt), new Date()) > 3
               ? distanceInWords(new Date(publishedAt), new Date())
               : format(new Date(publishedAt), "MM-DD-YYYY")}
           </Text>
-        </StyledSidebarSection>
+        </Section>
       )}
-      {members && (
-        <StyledSidebarSection>
+      {members && members.length > 0 && (
+        <Section>
           <RoleList items={members} title="Contributors" />
-        </StyledSidebarSection>
+        </Section>
       )}
-      {authors && (
-        <StyledSidebarSection>
+      {authors && authors.length > 0 && (
+        <Section>
           <RoleList items={authors} title="Authors" />
-        </StyledSidebarSection>
+        </Section>
       )}
       {labels && (
-        <StyledSidebarSection>
+        <Section>
           <Styled.h4>Filed Under</Styled.h4>
           {labels.map((item, i) =>
             i < numLabels - 1 ? (
@@ -63,10 +55,10 @@ function ArticleSidebar(props) {
               <span key={item._id}>{item.title}</span>
             )
           )}
-        </StyledSidebarSection>
+        </Section>
       )}
       {relatedProjects && relatedProjects.length > 0 && (
-        <StyledSidebarSection>
+        <Section>
           <Styled.h4>Related projects</Styled.h4>
           <Grid columns={[3, 1, 1]}>
             {relatedProjects.map((project) => (
@@ -79,7 +71,7 @@ function ArticleSidebar(props) {
               />
             ))}
           </Grid>
-        </StyledSidebarSection>
+        </Section>
       )}
     </aside>
   );

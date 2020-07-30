@@ -6,6 +6,7 @@ import { imageUrlFor } from "../../lib/image-url";
 function Figure(props) {
   return (
     <div>
+      <br />
       {props.asset && (
         <Image
           src={imageUrlFor(buildImageObj(props)).width(1200).url()}

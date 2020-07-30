@@ -17,6 +17,26 @@ export function getBlogUrl(publishedAt, slug) {
   return `/blog/${format(publishedAt, "YYYY/MM")}/${slug.current || slug}/`;
 }
 
+export function resolveInternalLink(link) {
+  if (!link || !link.reference) {
+    return null
+  }
+  
+  const {slug = {}, internal = {}, publishedAt = {}} = link.reference
+  const {type = {}} = internal
+  switch (type) {
+    // TODO: Update for dataset
+    case "SanityProject":
+      return `/project/${slug.current}`;
+
+    case "SanityPost":
+      return getBlogUrl(publishedAt, slug.current);
+
+    default:
+      return `/${slug.current}`;
+  }
+}
+
 export function buildImageObj(source) {
   const imageObj = {
     asset: { _ref: source.asset._ref || source.asset._id },

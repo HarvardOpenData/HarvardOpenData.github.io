@@ -5,6 +5,8 @@ import Link from "../core/link";
 import Figure from "./figure";
 import EmbeddedComponent from "./embedded-component";
 import Slideshow from "./slideshow";
+import Preview from "./preview";
+import { getBlogUrl, resolveInternalLink } from "../../lib/helpers";
 
 const serializers = {
   types: {
@@ -25,7 +27,11 @@ const serializers = {
         case "blockquote":
           return (
             <div
-              style={{ paddingLeft: "1.5em", borderLeft: "2px solid #C63F3F" }}
+              className="blockquote"
+              style={{
+                paddingLeft: "1.5em",
+                borderLeft: "2px solid #C63F3F",
+              }}
             >
               <Text variant="quote">{props.children}</Text>
             </div>
@@ -42,13 +48,18 @@ const serializers = {
       return <Slideshow {...props.node} />;
     },
     embeddedComponent(props) {
-      return (
-        <Styled.root>
-          <EmbeddedComponent {...props.node} />
-        </Styled.root>
-      );
+      return <EmbeddedComponent {...props.node} />;
     },
+    preview(props) {
+      return <Preview {...props.node} />;
+    }
   },
+  marks: {
+    internalLink: ({mark, children}) => {
+      let fullSlug = resolveInternalLink(mark)
+      return <Link to={fullSlug}>{children}</Link>
+    },
+  }
 };
 
 const BlockContent = ({ blocks }) => (

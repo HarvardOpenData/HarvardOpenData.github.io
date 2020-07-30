@@ -55,7 +55,7 @@ export const query = graphql`
         current
       }
       _rawExcerpt
-      _rawBody
+      _rawBody(resolveReferences: { maxDepth: 5 })
       layout
       members {
         _key
