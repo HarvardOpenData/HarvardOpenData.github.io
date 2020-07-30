@@ -109,6 +109,10 @@ export default {
   buttons: {
     default: {
       fontFamily: "strong",
+      "&:focus": {
+        border: "0.2em solid black"
+      },
+      mr: 2,
     },
     primary: {
       color: "background",
@@ -157,6 +161,13 @@ export default {
       fontSize: 2,
       lineHeight: 1.55,
     },
+    button: {
+      fontFamily: "strong",
+      "&:focus": {
+        border: "0.2em solid black"
+      },
+      mr: 2,
+    }
   },
   forms: {
     label: {

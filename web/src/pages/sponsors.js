@@ -8,6 +8,7 @@ import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import Section from "../components/core/section"
+import Spacer from "../components/core/spacer"
 import Sponsor from "../components/sponsor"
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
@@ -66,6 +67,7 @@ const SponsorsPage = (props) => {
               <Styled.h1>Corporate sponsors</Styled.h1>
               { sponsorNodes && sponsorNodes.map(node => <Sponsor {...node} />) }
             </div>
+            <Spacer height={3} />
             <BlockContent blocks={page._rawBody || []} />
           </div>
           <Section className="small preview" header="Sponsored events">
