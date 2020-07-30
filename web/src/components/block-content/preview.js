@@ -5,6 +5,7 @@ import { buildImageObj, resolveInternalLink } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import BlockContent from "../block-content";
 import Link from "../core/link"
+import Spacer from "../core/spacer"
 
 function Preview(props) {
   let {
@@ -37,13 +38,14 @@ function Preview(props) {
   }
 
   return (
-    <div className="preview">
+    <div className="small preview">
       {image && image.asset && (
         <Image
           src={imageUrlFor(buildImageObj(image)).width(1200).url()}
           alt={header}
         />
       )}
+      <Spacer height={3} />
       {header && (
         <Link {...linkProps}>
           <Text variant={headerAs ? headerAs : "h3"}>

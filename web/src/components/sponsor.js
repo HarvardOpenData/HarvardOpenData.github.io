@@ -6,7 +6,6 @@ import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 
 function Sponsor({ link, name, _rawDescription, _rawImage, tier }) {
-  console.log(link)
   return (
     <Grid className="" gap={4} columns={[1, "1fr 5fr", "1fr 5fr"]}>
       <Link href={link} sx={{ display: "flex", alignItems: "center", }}>

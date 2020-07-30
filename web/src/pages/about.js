@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Button, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
@@ -8,6 +8,7 @@ import GraphQLErrorList from "../components/core/graphql-error-list";
 import PeopleGrid from "../components/people-grid";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
+import Link from "../components/core/link"
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
@@ -44,11 +45,19 @@ const AboutPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <BannerHeader title={page.title} />
-        <BlockContent blocks={page._rawBody || []} />
-        {/* {personNodes && personNodes.length > 0 && (
-          <PeopleGrid items={personNodes} title="People" />
-        )} */}
+        <Grid gap={5} columns={[1, 1, 2]}>
+          <BlockContent blocks={(page._rawBody && page._rawBody[0]) || []} />
+          <div>
+            <BlockContent blocks={(page._rawBody && page._rawBody.slice(1)) || []} />
+            {/* Placeholder before we implement CTAs */}
+            <Link to="/people">
+              <Button>Meet the team</Button>
+            </Link>
+            <Link to="/join">
+              <Button>Join HODP</Button>
+            </Link>
+          </div>
+        </Grid>
       </Container>
     </Layout>
   );

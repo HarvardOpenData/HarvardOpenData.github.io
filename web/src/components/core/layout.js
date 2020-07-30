@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React from "react";
-import { jsx, Button, Input, Grid } from "theme-ui";
+import { jsx, Button, Input, Grid, Styled, Text } from "theme-ui";
 import { SocialIcon } from "react-social-icons";
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 import Header from "./header";
@@ -25,22 +25,9 @@ const SubscribeWidget = ({ url, interestForm }) => (
       maxWidth: "500px",
     }}
   >
-    <b>Subscribe to our monthly newsletter</b>
-    <Grid as="form" pt={3} height="36px" columns={["2.5fr 1fr"]}>
-      <Input name="email" id="email" mb={3} sx={{ height: 4 }} />
-      <Button
-        sx={{
-          height: "32px",
-          display: "flex",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-        onClick={() => alert("Subscribed! Check your inbox :)")}
-      >
-        Subscribe
-      </Button>
-    </Grid>
-    {`Interested in open data? `}
+    The Harvard College Open Data Project (HODP) is a student-faculty group that aims to increase transparency
+    and solve problems on campus using public Harvard data.
+    {` Interested in open data? `}
     <Link variant="highlighted" href={interestForm}>
       <b>Join the team.</b>
     </Link>
@@ -105,7 +92,7 @@ const Layout = ({
             style={socialIconStyles}
           />
           <SocialIcon
-            url={`mailto:companyInfo.email`}
+            url={`mailto:${companyInfo.email}`}
             fgColor="#FFFFFF"
             style={socialIconStyles}
           />
@@ -140,17 +127,19 @@ const Layout = ({
                 <Link href="https://wiki.hodp.org">Harvard Wiki</Link>
                 <br />
                 <br />
-                The code for this website is open-source. Check it out{" "}
+                {`The code for this website is open `}
                 <Link
                   href="https://github.com/HarvardOpenData"
                   variant="highlighted"
                 >
-                  <b>here</b>
+                  <b>source.</b>
                 </Link>
                 .
               </div>
             </div>
-            <SubscribeWidget interestForm={companyInfo.interestForm} />
+            <div>
+              <SubscribeWidget interestForm={companyInfo.interestForm} />
+            </div>
           </Grid>
         </Container>
       </div>

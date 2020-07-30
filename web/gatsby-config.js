@@ -48,17 +48,17 @@ module.exports = {
         link: `/sponsors`,
       },
       {
-        name: `Blog`,
-        link: `/blog`,
-      },
-      {
         name: `About`,
         link: `/about`,
         subMenu: [
           {
             name: `People`,
             link: `/people`,
-          }
+          },
+          {
+            name: `Blog`,
+            link: `/blog`,
+          },
         ]
       },
     ],
