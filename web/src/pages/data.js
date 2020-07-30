@@ -6,15 +6,18 @@ import {
   Card,
   Box,
   Text,
+  Grid,
   Button,
   Link,
   Input,
 } from "theme-ui";
 import { graphql } from "gatsby";
 import Container from "../components/core/container";
-import BannerHeader from "../components/core/banner-header";
+import BlockContent from "../components/block-content";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
+import Section from "../components/core/section";
+import Spacer from "../components/core/spacer";
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { useState } from "react";
@@ -75,30 +78,37 @@ const DataPage = (props) => {
     );
   }
 
+  const page = data && data.page;
+
+  if (!page) {
+    throw new Error(
+      'Missing "About" page data. Open the studio at http://localhost:3333 and add "About" page data and restart the development server.'
+    );
+  }
+
   return (
     <Layout>
       <SEO title="Data" />
       <Container>
-        <BannerHeader title={"Data"} />
-        <Styled.p>
-          This is Harvard's first open data catalog, featuring dozens of
-          publicly-available datasets from around Harvard University – with many
-          more to come!
-        </Styled.p>
-        <SearchBox searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <Flex>
+        <Styled.h1>Data catalog</Styled.h1>
+        <BlockContent blocks={page._rawBody || []} />
+        <Spacer height={4} />
+        <Grid gap={4} columns={[1, "1fr 3fr", "1fr 6fr"]}>
           <DataCategories
             subjects={subjects}
             activeCategories={activeCategories}
             setActiveCategory={setActiveCategory}
           />
-          <DataList
-            items={items}
-            activeCategories={activeCategories}
-            searcher={searcher}
-            searchTerm={searchTerm}
-          />
-        </Flex>
+          <div>
+            <SearchBox searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <DataList
+              items={items}
+              activeCategories={activeCategories}
+              searcher={searcher}
+              searchTerm={searchTerm}
+            />
+          </div>
+        </Grid>
       </Container>
     </Layout>
   );
@@ -108,9 +118,9 @@ const DataList = (props) => {
   const { items, activeCategories, searcher, searchTerm } = props;
 
   return (
-    <div sx={{}}>
-      {activeCategories.length == 0
-        ? searchTerm == ""
+    <div>
+      {activeCategories.length === 0
+        ? searchTerm === ""
           ? // Display all items if no categories are selected
             items.map((item) => <DataItem {...item} />)
           : // Display items whose titles match the search term
@@ -130,15 +140,13 @@ const DataList = (props) => {
 const DataCategories = (props) => {
   const { subjects, activeCategories, setActiveCategory } = props;
   return (
-    <div sx={{ width: "20%" }}>
-      <Styled.h4>Categories</Styled.h4>
-      <Styled.hr />
+    <Section header="Categories">
       {subjects.map((subject) => {
         const { title } = subject;
         const included_idx = activeCategories.findIndex(
-          (category) => category == title
+          (category) => category === title
         );
-        const included = included_idx != -1;
+        const included = included_idx !== -1;
         return (
           <Card
             variant="list"
@@ -156,7 +164,7 @@ const DataCategories = (props) => {
                 newActiveCategories = newActiveCategories.concat([title]);
               } else {
                 newActiveCategories = newActiveCategories.filter(
-                  (category) => category != title
+                  (category) => category !== title
                 );
               }
               setActiveCategory(newActiveCategories);
@@ -166,7 +174,7 @@ const DataCategories = (props) => {
           </Card>
         );
       })}
-    </div>
+    </Section>
   );
 };
 
@@ -180,11 +188,12 @@ const DataItem = (props) => {
     subjects,
   } = props;
 
+  const subjectText = subjects.map(subject => subject.title).join(", ");
+
   return (
     <Card
       sx={{
-        maxWidth: "90%",
-        margin: 3,
+        mt: 3,
         borderRadius: 5,
         backgroundColor: "light",
         padding: 4,
@@ -193,11 +202,12 @@ const DataItem = (props) => {
     >
       <Flex>
         <Box>
-          <Styled.h3>{title}</Styled.h3>
+          <Text variant="caps" color="deep">{subjectText}</Text>
+          <Styled.h2>{title}</Styled.h2>
           <Text variant="caption">{description}</Text>
         </Box>
       </Flex>
-      <Styled.hr />
+      <Spacer height={3} />
       <Button
         variant="tag"
         sx={{
@@ -218,9 +228,6 @@ const DataItem = (props) => {
           Download
         </Link>
       </Button>
-      {subjects.map((subject) => (
-        <Button variant="tag">{subject.title}</Button>
-      ))}
     </Card>
   );
 };
