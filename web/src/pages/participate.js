@@ -41,13 +41,12 @@ const ParticipatePage = (props) => {
   }
 
   const blocks = page._rawBody || [];
-  console.log("blocks", blocks);
 
   return (
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <Preview blocks={[blocks[0]]} />
+        <Preview blocks={blocks.length > 0 ? [blocks[0]] : []} />
         <Grid gap={4} columns={[1, 2, 4]}>
           {blocks.map(block => <Preview {...block} headerAs="h2" />)}
         </Grid>
