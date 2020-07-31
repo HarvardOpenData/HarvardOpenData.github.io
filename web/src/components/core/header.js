@@ -7,7 +7,7 @@ import Container from "./container";
 import HamburgerMenu from "react-hamburger-menu";
 import Fade from "react-reveal/Fade";
 import { Collapse } from "react-collapse";
-import { jsx, Box, Divider, Flex, Grid, Styled } from "theme-ui";
+import { jsx, Box, Divider, Flex, Grid, Text } from "theme-ui";
 
 function MenuLink(props) {
   return (
@@ -268,16 +268,18 @@ class MobileHeader extends React.Component {
           isOpened={this.state[slug] === true}
         >
           {link.subMenu.map((subLink) => (
-            <h3
+            <Text
               onClick={() => this.handleClick()}
               sx={{
                 color: "text",
+                fontSize: 2,
+                mb: 2,
                 width: "fit-content !important",
                 ":hover": { cursor: "pointer !important" },
               }}
             >
               <MenuLink {...subLink}>{subLink.name}</MenuLink>
-            </h3>
+            </Text>
           ))}
         </Collapse>
       </>

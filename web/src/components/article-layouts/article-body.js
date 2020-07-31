@@ -18,6 +18,7 @@ function ArticleBody(props) {
     relatedProjects,
     title,
     showHeader,
+    slug,
   } = props;
   const headerProps = {
     _rawExcerpt,
@@ -35,8 +36,13 @@ function ArticleBody(props) {
   };
   const disqusConfig = {
     shortname: `${process.env.DISQUS_NAME}`,
-    config: { identifier: title },
+    config: {
+      identifier: title,
+      title: title,
+    },
   };
+
+  console.log("slug", props);
 
   return (
     <div>
