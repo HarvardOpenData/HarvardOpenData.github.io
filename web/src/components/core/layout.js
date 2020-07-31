@@ -106,9 +106,6 @@ const SubscribeWidget = ({ interestForm }) => {
         </div>
       </Grid>
       <br />
-      The Harvard College Open Data Project (HODP) is a student-faculty group
-      that aims to increase transparency and solve problems on campus using
-      public Harvard data.
       {` Interested in open data? `}
       <Link variant="highlighted" href={interestForm}>
         <b>Join the team.</b>
