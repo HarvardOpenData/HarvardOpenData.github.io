@@ -20,7 +20,6 @@ export default {
           { title: "Board", value: "Board" },
           { title: "Mentors", value: "Mentors" },
           { title: "Contributors", value: "Contributors" },
-          { title: "Bootcampers", value: "Bootcampers" },
           { title: "Alumni", value: "Alumni" }
         ],
       },

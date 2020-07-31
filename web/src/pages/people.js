@@ -3,7 +3,7 @@ import { jsx, Input, Grid } from "theme-ui";
 import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import PeopleGrid from "../components/people-grid";
+import PeopleList from "../components/people-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
@@ -11,7 +11,9 @@ import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 export const query = graphql`
   query PeoplePageQuery {
     contributors: allSanityPerson(
-      filter: { position: {group: {eq: "Contributors"}}}
+      filter: { 
+        position: { title: { eq: "Contributor" } }
+      }
     )
     {
       edges {
@@ -32,6 +34,7 @@ export const query = graphql`
             title
             group
           }
+          year
         }
       }
     }
@@ -58,6 +61,7 @@ export const query = graphql`
               title
               group
             }
+            year
           }
         }
       }
@@ -77,7 +81,6 @@ export const query = graphql`
           slug {
             current
           }
-          house
           position {
             title
             group
@@ -85,7 +88,11 @@ export const query = graphql`
         }
       }
     }
-    alumni: allSanityPerson(filter: {position: {title: {eq: "Alumni"}}})
+    founder: allSanityPerson(
+      filter: {
+        position: { title: { eq: "Founder and President Emeritus"}}
+      }
+    )
     {
       edges {
         node {
@@ -108,7 +115,11 @@ export const query = graphql`
         }
       }
     }
-    bootcampers: allSanityPerson(filter: {position: {title: {eq: "Bootcampers"}}})
+    boardEmeritus: allSanityPerson(
+      filter: { 
+        position: { title: { eq: "Board Emeritus" } }
+      }
+    )
     {
       edges {
         node {
@@ -128,6 +139,7 @@ export const query = graphql`
             title
             group
           }
+          year
         }
       }
     }
@@ -162,58 +174,68 @@ const PeoplePage = (props) => {
     data &&
     data.contributors &&
     mapEdgesToNodes(data.contributors).filter(filterOutDocsWithoutSlugs);
+  
+  // Returns a list of current contributors and a list of alumni
+  // Gatsby unforunately does not allow string interpolation in our graphql queries
+  // unless we're doing page generation
+  function filterAlumni(allContributors) {
+    // Return today's date and time
+    var currentTime = new Date()
 
-  var alumniNodes =
+    // returns the month (from 0 to 11)
+    var month = currentTime.getMonth() + 1
+
+    // returns the year (four digits)
+    var year = currentTime.getFullYear()
+
+    var currentContributors, alumni;
+
+    // check if spring graduation has happened yet. May = month 4
+    if (month > 4) {
+      currentContributors = allContributors.filter(contributor => contributor.year > year);
+      alumni = allContributors.filter(contributor => contributor.year <= year);
+    } else {
+      currentContributors = allContributors.filter(contributor => contributor.year >= year);
+      alumni = allContributors.filter(contributor => contributor.year < year);
+    }
+
+    return [currentContributors, alumni];
+  }
+
+  var allContributors = filterAlumni(contributorNodes);
+  contributorNodes = allContributors[0];
+  var alumniNodes = allContributors[1];
+
+  var founderNode =
+    data && 
+    data.founder &&
+    mapEdgesToNodes(data.founder).filter(filterOutDocsWithoutSlugs);
+  
+  var boardEmeritusNodes =
     data &&
-    data.alumni &&
-    mapEdgesToNodes(data.alumni).filter(filterOutDocsWithoutSlugs);
+    data.boardEmeritus && 
+    mapEdgesToNodes(data.boardEmeritus).filter(filterOutDocsWithoutSlugs);
+
+  boardEmeritusNodes = founderNode.concat(boardEmeritusNodes);
+
 
   var facultyNodes =
     data &&
     data.faculty &&
     mapEdgesToNodes(data.faculty).filter(filterOutDocsWithoutSlugs);
-  
-  var bootcamperNodes =
-    data &&
-    data.bootcampers &&
-    mapEdgesToNodes(data.bootcampers).filter(filterOutDocsWithoutSlugs);
-  
-  var filter = "";
 
   return (
     <Layout>
       <Container>
         <SEO title={"People"} />
       </Container>
-      <Container>
-        <Grid gap={3} columns={[1, 2, 3]}>
-          <Input 
-            type="text" 
-            id="search" 
-            placeholder="Search for someone"
-            onChange={
-              function() {
-                boardNodes = boardNodes[0];
-                // TODO update nodes to match the value 
-              }
-            }></Input>
-        </Grid>
-        {boardNodes && boardNodes.length > 0 && (
-          <PeopleGrid items={boardNodes} title="Board" />
-        )}
-        {facultyNodes && facultyNodes.length > 0 && (
-          <PeopleGrid items={facultyNodes} title="Faculty Mentors" />
-        )}
-        {contributorNodes && contributorNodes.length > 0 && (
-          <PeopleGrid items={contributorNodes} title="Contributors" />
-        )}
-        {bootcamperNodes && bootcamperNodes.length > 0 && (
-          <PeopleGrid items={bootcamperNodes} title="Bootcampers" />
-        )}
-        {alumniNodes && alumniNodes.length > 0 && (
-          <PeopleGrid items={alumniNodes} title="Alumni" />
-        )}
-      </Container>
+        <PeopleList
+          board={boardNodes}
+          faculty={facultyNodes}
+          contributors={contributorNodes}
+          boardEmeritus={boardEmeritusNodes}
+          alumni={alumniNodes}
+          />
     </Layout>
   );
 };

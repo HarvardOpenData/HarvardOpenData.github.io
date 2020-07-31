@@ -87,7 +87,8 @@ export default {
       name: "year",
       title: "Class Year",
       description: "e.g. 2021",
-      type: "string",
+      type: "number",
+      validation: Rule => Rule.integer().positive().error('Your year must be a positive integer')
     },
     {
       name: "bio",
