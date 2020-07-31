@@ -48,17 +48,17 @@ module.exports = {
         link: `/sponsors`,
       },
       {
-        name: `Blog`,
-        link: `/blog`,
-      },
-      {
         name: `About`,
         link: `/about`,
         subMenu: [
           {
             name: `People`,
             link: `/people`,
-          }
+          },
+          {
+            name: `Blog`,
+            link: `/blog`,
+          },
         ]
       },
     ],
@@ -77,6 +77,12 @@ module.exports = {
         token: process.env.SANITY_TOKEN,
         watchMode: true,
         overlayDrafts: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ["DISQUS_NAME"]
       },
     },
   ],

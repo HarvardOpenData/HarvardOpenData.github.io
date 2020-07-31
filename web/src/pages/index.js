@@ -1,19 +1,22 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Grid, Divider } from "theme-ui";
+import { Grid } from "theme-ui";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
-import BlogPostPreviewGrid from "../components/blog-layouts/blog-post-preview-grid";
+import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import ArticlePreview from "../components/article-layouts/article-preview";
-import ProjectPreviewGrid from "../components/project-layouts/project-preview-grid";
 import SEO from "../components/core/seo";
-import Section from "../components/core/section";
 import Layout from "../containers/layout";
 import PreviewGrid from "../components/article-layouts/preview-grid";
 
 export const query = graphql`
   query IndexPageQuery {
+    page: sanityPage(_id: { regex: "/(drafts.|)home/" }) {
+      id
+      title
+      _rawBody(resolveReferences: { maxDepth: 5 })
+      _rawBodySecondary(resolveReferences: { maxDepth: 5 })
+    }
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
       description
@@ -124,27 +127,13 @@ const IndexPage = (props) => {
     );
   }
 
-  const ProjectPreviews = (nodes) => {
-    const featuredArticle = nodes.nodes.shift();
-    return (
-      <div>
-        <ArticlePreview
-          {...featuredArticle}
-          link={`/project/${featuredArticle.slug.current}`}
-          container
-          horizontal
-          size="large"
-          headerAs="h2"
-        />
-        <br />
-        <ProjectPreviewGrid
-          nodes={nodes.nodes}
-          container
-          browseMoreHref="/projects/"
-        />
-      </div>
+  const page = data && data.page;
+
+  if (!page) {
+    throw new Error(
+      'Missing "Home" page data. Open the studio at http://localhost:3333 and add "Home" page data and restart the development server.'
     );
-  };
+  }
 
   return (
     <Layout>
@@ -167,17 +156,9 @@ const IndexPage = (props) => {
             />
           )}
           <div>
-            <Section header={"Predictions updates"}>Section content</Section>
-            <Section header={"Another section"}>Another section</Section>
+            <BlockContent blocks={page._rawBodySecondary || []} />
           </div>
         </Grid>
-        {/* {postNodes && (
-          <BlogPostPreviewGrid
-            title="Latest blog posts"
-            nodes={postNodes}
-            browseMoreHref="/blog/"
-          />
-        )} */}
       </Container>
     </Layout>
   );

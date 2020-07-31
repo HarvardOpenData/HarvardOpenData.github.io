@@ -20,24 +20,12 @@ function Slideshow(props) {
     <div
       className="root"
       sx={{
-        background: "black",
-        color: "white",
+        color: "dark",
         margin: ["margin: 2rem -2rem", "margin: 2rem 0", "2rem -1.5rem"],
         overflow: "hidden",
         padding: "1rem",
       }}
     >
-      <div className={styles.nav}>
-        <button onClick={handlePrev} disabled={index === 0}>
-          Prev
-        </button>
-        <span>
-          {index + 1} of {len}
-        </span>
-        <button onClick={handleNext} disabled={index === len - 1}>
-          Next
-        </button>
-      </div>
       <ul
         className={styles.carousel}
         data-index={index}
@@ -57,6 +45,17 @@ function Slideshow(props) {
           </li>
         ))}
       </ul>
+      <div className={styles.nav}>
+        <button onClick={handlePrev} disabled={index === 0}>
+          Prev
+        </button>
+        <span>
+          {index + 1} of {len}
+        </span>
+        <button onClick={handleNext} disabled={index === len - 1}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }

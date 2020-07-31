@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
@@ -43,8 +43,10 @@ const JoinPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <BannerHeader title={page.title} />
-        <BlockContent blocks={page._rawBody || []} />
+        <Grid gap={5} columns={[1, 1, 2]}>
+          <BlockContent blocks={(page._rawBody && page._rawBody[0]) || []} />
+          <BlockContent blocks={(page._rawBody && page._rawBody.slice(1)) || []} />
+        </Grid>
       </Container>
     </Layout>
   );

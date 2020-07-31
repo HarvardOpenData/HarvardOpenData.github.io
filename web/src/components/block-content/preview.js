@@ -5,24 +5,26 @@ import { buildImageObj, resolveInternalLink } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import BlockContent from "../block-content";
 import Link from "../core/link"
+import Spacer from "../core/spacer"
 
 function Preview(props) {
   let {
     date,
     description,
     header,
+    headerAs,
     image,
     link,
   } = props;
 
   // Either no link, internalLink, or externalLink
-  const { internalLink, externalLink } = link;
+  const { internalLink, externalLink } = link || {};
   const linkProps = externalLink
     ? { href: externalLink }
     : { to: resolveInternalLink(internalLink) };
 
   // Default: Use back-up image, header, and date if necessary
-  const linkPreviewAvailable = link.internalLink && link.internalLink.reference !== null;
+  const linkPreviewAvailable = link && link.internalLink && link.internalLink.reference;
   if (linkPreviewAvailable) {
     const {
       mainImage,
@@ -36,18 +38,19 @@ function Preview(props) {
   }
 
   return (
-    <div className="preview">
+    <div className="small preview">
       {image && image.asset && (
         <Image
           src={imageUrlFor(buildImageObj(image)).width(1200).url()}
           alt={header}
         />
       )}
+      <Spacer height={3} />
       {header && (
         <Link {...linkProps}>
-          <Styled.h3>
+          <Text variant={headerAs ? headerAs : "h3"}>
             {header}
-          </Styled.h3>
+          </Text>
         </Link>
       )}
       {description && <BlockContent blocks={description || []} />}

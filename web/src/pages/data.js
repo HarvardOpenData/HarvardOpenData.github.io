@@ -1,15 +1,27 @@
 /** @jsx jsx */
-import { jsx, Styled, Grid, Card, Box, Text, Button, Link } from "theme-ui";
+import {
+  jsx,
+  Styled,
+  Flex,
+  Card,
+  Box,
+  Text,
+  Grid,
+  Button,
+  Link,
+  Input,
+} from "theme-ui";
 import { graphql } from "gatsby";
-import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
-import BannerHeader from "../components/core/banner-header";
+import BlockContent from "../components/block-content";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
+import Section from "../components/core/section";
+import Spacer from "../components/core/spacer";
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import { useState } from "react";
-import { active } from "d3-transition";
+import * as JsSearch from "js-search";
 
 export const query = graphql`
   query DataPageQuery {
@@ -50,7 +62,13 @@ const DataPage = (props) => {
   // about rules of hooks otherwise, so...
   const items = mapEdgesToNodes(data.datasets);
   const subjects = mapEdgesToNodes(data.subjects);
-  const [activeCategory, setActiveCategory] = useState(subjects[0].title);
+  const [activeCategories, setActiveCategory] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Build searcher
+  const searcher = new JsSearch.Search("title");
+  searcher.addIndex("title");
+  searcher.addDocuments(items);
 
   if (errors) {
     return (
@@ -60,18 +78,36 @@ const DataPage = (props) => {
     );
   }
 
+  const page = data && data.page;
+
+  if (!page) {
+    throw new Error(
+      'Missing "About" page data. Open the studio at http://localhost:3333 and add "About" page data and restart the development server.'
+    );
+  }
+
   return (
     <Layout>
       <SEO title="Data" />
       <Container>
-        <BannerHeader title={"Data"} />
-        <Grid gap={2} columns={[2, "1fr 4fr"]}>
+        <Styled.h1>Data catalog</Styled.h1>
+        <BlockContent blocks={page._rawBody || []} />
+        <Spacer height={4} />
+        <Grid gap={4} columns={[1, "1fr 3fr", "1fr 6fr"]}>
           <DataCategories
             subjects={subjects}
-            activeCategory={activeCategory}
+            activeCategories={activeCategories}
             setActiveCategory={setActiveCategory}
           />
-          <DataList items={items} activeCategory={activeCategory} />
+          <div>
+            <SearchBox searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <DataList
+              items={items}
+              activeCategories={activeCategories}
+              searcher={searcher}
+              searchTerm={searchTerm}
+            />
+          </div>
         </Grid>
       </Container>
     </Layout>
@@ -79,45 +115,66 @@ const DataPage = (props) => {
 };
 
 const DataList = (props) => {
-  const { items, activeCategory } = props;
+  const { items, activeCategories, searcher, searchTerm } = props;
 
   return (
     <div>
-      {items.map((item) => {
-        if (
-          !item.subjects
-            .map((subject) => subject.title)
-            .includes(activeCategory)
-        ) {
-          return <div></div>;
-        }
-        return <DataItem {...item} />;
-      })}
+      {activeCategories.length === 0
+        ? searchTerm === ""
+          ? // Display all items if no categories are selected
+            items.map((item) => <DataItem {...item} />)
+          : // Display items whose titles match the search term
+            searcher.search(searchTerm).map((item) => <DataItem {...item} />)
+        : // Display all items tagged with all selected categories
+          items.map((item) => {
+            const subjects = item.subjects.map((subject) => subject.title);
+            if (!activeCategories.every((v) => subjects.includes(v))) {
+              return <div></div>;
+            }
+            return <DataItem {...item} />;
+          })}
     </div>
   );
 };
 
 const DataCategories = (props) => {
-  const { subjects, activeCategory, setActiveCategory } = props;
+  const { subjects, activeCategories, setActiveCategory } = props;
   return (
-    <div>
-      <Styled.h4>Categories</Styled.h4>
-      <Styled.hr />
+    <Section header="Categories">
       {subjects.map((subject) => {
         const { title } = subject;
+        const included_idx = activeCategories.findIndex(
+          (category) => category === title
+        );
+        const included = included_idx !== -1;
         return (
           <Card
             variant="list"
             sx={{
-              backgroundColor: title === activeCategory ? "primary" : "inherit",
+              backgroundColor: included ? "primary" : "inherit",
+              color: included ? "background" : "inherit",
+              wordWrap: "break-word",
+              "&:hover": {
+                bg: included ? "primary" : "muted",
+              },
             }}
-            onClick={() => setActiveCategory(title)}
+            onClick={() => {
+              let newActiveCategories = activeCategories;
+              if (!included) {
+                newActiveCategories = newActiveCategories.concat([title]);
+              } else {
+                newActiveCategories = newActiveCategories.filter(
+                  (category) => category !== title
+                );
+              }
+              setActiveCategory(newActiveCategories);
+            }}
           >
             {title}
           </Card>
         );
       })}
-    </div>
+    </Section>
   );
 };
 
@@ -131,61 +188,61 @@ const DataItem = (props) => {
     subjects,
   } = props;
 
+  const subjectText = subjects.map(subject => subject.title).join(", ");
+
   return (
     <Card
       sx={{
-        maxWidth: "90%",
-        margin: 3,
+        mt: 3,
         borderRadius: 5,
         backgroundColor: "light",
         padding: 4,
         boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
       }}
     >
-      <Grid gap={2} columns={[2, "3fr 1fr"]}>
+      <Flex>
         <Box>
-          <Styled.h3>{title}</Styled.h3>
+          <Text variant="caps" color="deep">{subjectText}</Text>
+          <Styled.h2>{title}</Styled.h2>
           <Text variant="caption">{description}</Text>
         </Box>
-        <Box
-          sx={{
-            "text-align": "right",
-          }}
-        >
-          <Button variant="catalog" sx={{ maxWidth: "75%", maxHeight: "75%" }}>
-            <Link
-              sx={{
-                color: "inherit",
-                fontWeight: "bold",
-                textDecoration: "none",
-                "&.active": {
-                  color: "primary",
-                },
-                ":hover": {
-                  textDecoration: "underline",
-                },
-              }}
-              href={downloadURL}
-            >
-              Download
-            </Link>
-          </Button>
-        </Box>
-      </Grid>
-      <Styled.hr />
+      </Flex>
+      <Spacer height={3} />
       <Button
+        variant="tag"
         sx={{
-          variant: "buttons.tag",
-          backgroundColor: "secondary",
-          fontWeight: "bold",
+          backgroundColor: "deep",
         }}
       >
-        <Link href={sourceURL}>Source site</Link>
+        <Link variant="outbound" href={sourceURL}>
+          Source site
+        </Link>
       </Button>
-      {subjects.map((subject) => (
-        <Button variant="tag">{subject.title}</Button>
-      ))}
+      <Button
+        variant="tag"
+        sx={{
+          backgroundColor: "deep",
+        }}
+      >
+        <Link variant="outbound" href={downloadURL}>
+          Download
+        </Link>
+      </Button>
     </Card>
+  );
+};
+
+const SearchBox = (props) => {
+  const { searchTerm, setSearchTerm } = props;
+
+  return (
+    <div>
+      <Input
+        value={searchTerm}
+        placeholder={"Search datasets"}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+    </div>
   );
 };
 export default DataPage;

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
@@ -7,6 +7,7 @@ import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
+import Preview from "../components/block-content/preview"
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
@@ -39,12 +40,16 @@ const ParticipatePage = (props) => {
     );
   }
 
+  const blocks = page._rawBody || [];
+
   return (
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <BannerHeader title={page.title} />
-        <BlockContent blocks={page._rawBody || []} />
+        <Preview blocks={blocks.length > 0 ? [blocks[0]] : []} />
+        <Grid gap={4} columns={[1, 2, 4]}>
+          {blocks.map(block => <Preview {...block} headerAs="h2" />)}
+        </Grid>
       </Container>
     </Layout>
   );

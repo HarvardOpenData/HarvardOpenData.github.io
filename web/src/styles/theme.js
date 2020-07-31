@@ -78,6 +78,8 @@ export default {
     },
     h2: {
       variant: "text.heading",
+      mt: 1,
+      mb: 1,
       fontSize: 4,
     },
     h3: {
@@ -109,18 +111,27 @@ export default {
   buttons: {
     default: {
       fontFamily: "strong",
+      "&:focus": {
+        border: "0.2em solid black"
+      },
+      mr: 2,
     },
     primary: {
       color: "background",
       backgroundColor: "primary",
     },
-    tag: {
-      padding: 2,
-      margin: 2,
-      variant: "text.small",
-      color: "background",
-      backgroundColor: "monospace",
-      font: "body",
+  },
+  links: {
+    outbound: {
+      color: "inherit",
+      fontWeight: "bold",
+      textDecoration: "none",
+      "&.active": {
+        color: "primary",
+      },
+      ":hover": {
+        textDecoration: "underline",
+      },
     },
   },
   styles: {
@@ -156,6 +167,29 @@ export default {
     li: {
       fontSize: 2,
       lineHeight: 1.55,
+    },
+    button: {
+      fontFamily: "strong",
+      "&:focus": {
+        border: "0.2em solid black"
+      },
+      "&:active": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
+        outline: "none",
+      },
+    },
+    deep: {
+      color: "background",
+      bg: "deep",
+    },
+    tag: {
+      padding: 2,
+      margin: 1,
+      variant: "text.small",
+      color: "background",
+      backgroundColor: "monospace",
+      font: "body",
     },
   },
   forms: {

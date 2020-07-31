@@ -112,10 +112,7 @@ const ProjectListTemplate = (props) => {
               </div>
             )}
             {projectNodes && projectNodes.length > 0 && (
-              <Grid gap={[5, 5, 6]} columns={[1, "1fr 4fr"]}>
-                <Section header="Featured">
-                  <BlockContent blocks={page._rawBodySecondary || []} />
-                </Section>
+              <Grid gap={[5, 5, 6]} columns={[1, "4fr 1fr"]}>
                 <div>
                   {!firstPage && <BannerHeader title="Past projects" />}
                   <ProjectList
@@ -124,6 +121,10 @@ const ProjectListTemplate = (props) => {
                     nodes={projectNodes}
                   />
                 </div>
+                <Section header="Featured">
+                  <br />
+                  <BlockContent blocks={page._rawBodySecondary || []} />
+                </Section>
               </Grid>
             )}
           </div>

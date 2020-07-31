@@ -76,4 +76,12 @@ li {
 
 button {
   font-family: "Post Grotesk" !important;
+  margin-right: 0.5em !important;
+}
+
+.theme-background {
+  background: url(../assets/network-background.png) no-repeat center center fixed;
+  border: 15px solid #F8F8F8;
+  min-width: 100vw;
+  min-height: 80vh;
 }
