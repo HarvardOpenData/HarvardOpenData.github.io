@@ -42,8 +42,6 @@ function ArticleBody(props) {
     },
   };
 
-  console.log("slug", props);
-
   return (
     <div>
       <Container>
