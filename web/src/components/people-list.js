@@ -3,18 +3,58 @@ import React from 'react';
 import { jsx, Grid, Image, Styled, Text, Input } from "theme-ui";
 import Container from "../components/core/container";
 import PeopleGrid from "../components/people-grid";
+import { isThisHour } from 'date-fns';
 
 class PeopleList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            board: [],
+            faculty: [],
+            contributors: [],
+            boardEmeritus: [],
+            alumni: [],
+            filter: ""
+        }
+    }
+    
+    componentDidMount() {
+        this.setState({
+            board: this.props.board,
+            faculty: this.props.faculty,
+            contributors: this.props.contributors,
+            boardEmeritus: this.props.boardEmeritus,
+            alumni: this.props.alumni
+        })
     }
 
-    handleChange = event => {
-        //this.setState({[event.target.name]: event.target.value})
+    handleChange = (event) => {
+        this.setState({
+            filter: event.target.value
+        })
+        this.filter(event.target.value);
+    }
+
+    // referenced https://medium.com/@AndrewBonner2/filter-results-with-react-f746dc7984c
+    filterGroup = (query, group) => {
+        let filteredGroup = group.filter((person) => {
+            let name = person.name.toLowerCase();
+            return name.indexOf(query.toLowerCase()) !== -1;
+        })
+        return filteredGroup;
+    }
+
+    filter = (query) => {
+        this.setState({
+            board: this.filterGroup(query, this.props.board),
+            faculty: this.filterGroup(query, this.props.faculty),
+            contributors: this.filterGroup(query, this.props.contributors),
+            boardEmeritus: this.filterGroup(query, this.props.boardEmeritus),
+            alumni: this.filterGroup(query, this.props.alumni)
+        });
     }
 
     render() {
-        console.log(this.props.board.length);
         return (
             <Container>
                 <Grid gap={3} columns={[1, 2, 3]}>
@@ -22,22 +62,24 @@ class PeopleList extends React.Component {
                         type="text" 
                         id="search" 
                         placeholder="Search for someone"
+                        value={this.state.filter}
+                        onChange={this.handleChange}
                     ></Input>
                 </Grid>
-                {this.props.board && this.props.board.length > 0 && (
-                <PeopleGrid items={this.props.board} title="Board" />
+                {this.state.board && this.state.board.length > 0 && (
+                <PeopleGrid items={this.state.board} title="Board" />
                 )}
-                {this.props.faculty && this.props.faculty.length > 0 && (
-                <PeopleGrid items={this.props.faculty} title="Faculty Mentors" />
+                {this.state.faculty && this.state.faculty.length > 0 && (
+                <PeopleGrid items={this.state.faculty} title="Faculty Mentors" />
                 )}
-                {this.props.contributors && this.props.contributors.length > 0 && (
-                <PeopleGrid items={this.props.contributors} title="Contributors" />
+                {this.state.contributors && this.state.contributors.length > 0 && (
+                <PeopleGrid items={this.state.contributors} title="Contributors" />
                 )}
-                {this.props.boardEmeritus && this.props.boardEmeritus.length > 0 && (
-                <PeopleGrid items={this.props.boardEmeritus} title="Board Emeritus" />
+                {this.state.boardEmeritus && this.state.boardEmeritus.length > 0 && (
+                <PeopleGrid items={this.state.boardEmeritus} title="Board Emeritus" />
                 )}
-                {this.props.alumni && this.props.alumni.length > 0 && (
-                <PeopleGrid items={this.props.alumni} title="Alumni" />
+                {this.state.alumni && this.state.alumni.length > 0 && (
+                <PeopleGrid items={this.state.alumni} title="Alumni" />
                 )}
             </Container>
         );

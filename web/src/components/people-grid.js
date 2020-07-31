@@ -4,6 +4,8 @@ import BlockText from "./core/block-text";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 
+// TODO only display information if it exists
+
 function ProfileCard({ image, name, _rawBio, position }) {
   return (
     <div>
@@ -33,7 +35,7 @@ function PeopleGrid({ items, title }) {
   return (
     <div>
       <Styled.h2>{title}</Styled.h2>
-      <Grid gap={3} columns={[1, 2, 4]}>
+      <Grid gap={3} columns={[1, 2, 5]}>
         {items.map((item, key) => (
           <ProfileCard key={key} {...item} />
         ))}

@@ -212,7 +212,7 @@ const Layout = ({
                   href="https://github.com/HarvardOpenData"
                   variant="highlighted"
                 >
-                  <b>source.</b>
+                  <b>source</b>
                 </Link>
                 .
               </div>
