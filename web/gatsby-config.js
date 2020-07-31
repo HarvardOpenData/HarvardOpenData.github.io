@@ -82,7 +82,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: ["DISQUS_NAME"]
+        allowList: ["DISQUS_NAME", "MAPBOX_ACCESS_TOKEN"]
       },
     },
   ],
