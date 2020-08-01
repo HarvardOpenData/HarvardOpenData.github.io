@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React, { Component } from "react";
 import DeckGL, { ScatterplotLayer } from "deck.gl";
 import { StaticMap } from "react-map-gl";
@@ -71,11 +73,13 @@ class CovidMap extends Component {
     });
 
     return (
+      <div textAlign={"center"}>
       <DeckGL
         initialViewState={this.state.viewport}
-        style={{ position: "relative", textAlign: "center" }}
-        width={"100%"}
-        height={"100%"}
+        style={{ position: "relative", textAlign: "center", margin: "auto" }}
+        width={"80vw"}
+        height={"100vh"}
+        maxWidth={"1280px"}
         controller={true}
         layers={layers}
         getTooltip={(info) =>
@@ -106,6 +110,7 @@ class CovidMap extends Component {
           mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
         />
       </DeckGL>
+      </div>
     );
   }
 }

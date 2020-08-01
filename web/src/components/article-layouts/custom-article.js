@@ -4,6 +4,7 @@ import ArticleHeader from "./article-header";
 import ArticleSidebar from "./article-sidebar";
 import ArticlePreview from "./article-preview";
 import BlockContent from "../block-content";
+import Container from "../core/container"
 
 function CustomArticle(props) {
   const {
@@ -23,10 +24,12 @@ function CustomArticle(props) {
 
   return (
     <div>
-      <div sx={{ pt: [4], margin: ["0 auto"], maxWidth: "640px" }}>
-        {<ArticleHeader {...props} />}
-        <br />
-      </div>
+      <Container>
+        <div sx={{ pt: [4], margin: ["0 auto"], maxWidth: "640px" }}>
+          {<ArticleHeader {...props} />}
+          <br />
+        </div>
+      </Container>
       {_rawBody && <BlockContent blocks={_rawBody || []} />}
       <div sx={{ margin: ["0 auto"], maxWidth: "640px" }}>
         {<ArticleSidebar {...defaultSidebarProps} />}
