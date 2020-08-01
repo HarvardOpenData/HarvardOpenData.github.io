@@ -119,7 +119,7 @@ const ProjectListTemplate = (props) => {
                     nodes={projectNodes}
                   />
                 </div>
-                <Section header="Featured">
+                <Section header="Featured" showDivider={false}>
                   <br />
                   <BlockContent blocks={page._rawBodySecondary || []} />
                 </Section>

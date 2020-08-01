@@ -5,10 +5,12 @@ import BlockContent from "../block-content";
 
 function ArticleHeader(props) {
   const { _rawExcerpt, title, members, authors, publishedAt } = props;
-  const contributors = [
+  let contributors = [
     ...(members ? members : []),
     ...(authors ? authors : []),
-  ];
+  ].filter(item => item.roles.includes("developer") || item.roles.includes("author"));
+  console.log(contributors);
+  // filter contributors who aren't developers or authors
   const numContributors = contributors.length;
 
   return (
@@ -29,13 +31,13 @@ function ArticleHeader(props) {
       {numContributors > 0 && (
         <div>
           <b>
-            {`By: `}
+            {`By `}
             {contributors.map((item, i) => (
-              <span key={item._id}>
+              <span key={item._key}>
                 {item.person && `${item.person.name}`}
                 {i < numContributors - 2
                   ? `, `
-                  : i == numContributors - 2 && ` & `}
+                  : i === numContributors - 2 && ` & `}
               </span>
             ))}
           </b>
