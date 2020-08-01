@@ -4,8 +4,8 @@ import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import Project from "../components/project-layouts/project";
 import SEO from "../components/core/seo";
-import { buildImageObj, toPlainText } from "../lib/helpers"
-import { imageUrlFor } from "../lib/image-url";
+import { toPlainText } from "../lib/helpers"
+import { previewImageUrlFor } from "../lib/image-url";
 import Layout from "../containers/layout";
 
 export const query = graphql`
@@ -94,11 +94,7 @@ export const query = graphql`
 const ProjectTemplate = (props) => {
   const { data, errors } = props;
   const project = data && data.project;
-  const mainImageUrl = (project && project.mainImage && project.mainImage.asset) &&
-    imageUrlFor(buildImageObj(project.mainImage))
-      .width(600)
-      .height(Math.floor((5 / 8) * 600))
-      .url();
+  const mainImageUrl = project && previewImageUrlFor(project.mainImage);
   
   return (
     <Layout>
