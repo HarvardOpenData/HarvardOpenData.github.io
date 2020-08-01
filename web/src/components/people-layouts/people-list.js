@@ -3,6 +3,7 @@ import React from 'react';
 import { jsx, Grid, Input } from "theme-ui";
 import Container from "../core/container";
 import PeopleGrid from "./people-grid";
+import Modal from "../core/modal.js"
 
 class PeopleList extends React.Component {
     constructor(props) {
@@ -13,7 +14,9 @@ class PeopleList extends React.Component {
             contributors: [],
             boardEmeritus: [],
             alumni: [],
-            filter: ""
+            filter: "",
+            show: false,
+            modalData: {}
         }
     }
     
@@ -53,7 +56,19 @@ class PeopleList extends React.Component {
         });
     }
 
+    showModal = (profileData) => {
+        console.log("should show");
+        this.setState({show: true, modalData: profileData});
+    }
+
+    closeModal = () => {
+        console.log("closed");
+        this.setState({show: false});
+        this.setState({modalData: {}});
+    }
+
     render() {
+        console.log(this.state.modalData);
         return (
             <Container>
                 <Grid gap={3} columns={[1, 2, 3]}>
@@ -65,24 +80,30 @@ class PeopleList extends React.Component {
                         onChange={this.handleChange}
                     ></Input>
                 </Grid>
+                <Modal show={this.state.show} closeModal={this.closeModal} data={this.state.modalData}>
+                </Modal>
                 {this.state.board && this.state.board.length > 0 && (
-                <PeopleGrid items={this.state.board} title="Board" />
+                <PeopleGrid items={this.state.board} showModal={this.showModal} title="Board" />
                 )}
                 {this.state.faculty && this.state.faculty.length > 0 && (
-                <PeopleGrid items={this.state.faculty} title="Faculty Mentors" />
+                <PeopleGrid items={this.state.faculty} showModal={this.showModal} title="Faculty Mentors" />
                 )}
                 {this.state.contributors && this.state.contributors.length > 0 && (
-                <PeopleGrid items={this.state.contributors} title="Contributors" />
+                <PeopleGrid items={this.state.contributors} showModal={this.showModal} title="Contributors" />
                 )}
                 {this.state.boardEmeritus && this.state.boardEmeritus.length > 0 && (
-                <PeopleGrid items={this.state.boardEmeritus} title="Board Emeritus" />
+                <PeopleGrid items={this.state.boardEmeritus} showModal={this.showModal} title="Board Emeritus" />
                 )}
                 {this.state.alumni && this.state.alumni.length > 0 && (
-                <PeopleGrid items={this.state.alumni} title="Alumni" />
+                <PeopleGrid items={this.state.alumni} showModal={this.showModal} title="Alumni" />
                 )}
             </Container>
         );
     }
 }
+
+// TODO fix the rendering of the default profile images so they're the same size as others
+// use media queries in the css to make the modal wider on mobile
+// if i do scrollable modal, how do i make it go over even the nav??
 
 export default PeopleList

@@ -24,22 +24,18 @@ class ProfileCard extends React.Component {
                       .height(400)
                       .fit("crop")
                       .url()}
-                    onClick={this.props.showModal}
+                    onClick={() => this.props.showModal(this.props.data)}
                   />
                 )}
                 {!image && (
                   <Image 
                     src={defaultProfile}
+                    onClick={() => this.props.showModal(this.props.data)}
                   />
                 )}
               </div>
               {name && (<Styled.h4>{name}</Styled.h4>)}
               {position.title && (<Styled.p>{position.title}</Styled.p>)}
-              {_rawBio && (
-                <div className="small preview" id="bio">
-                  <BlockText blocks={_rawBio}/>
-                </div>
-              )}
             </div>
           );
     }
