@@ -214,7 +214,6 @@ const Layout = ({
                 >
                   <b>source</b>
                 </Link>
-                .
               </div>
             </div>
             <div>

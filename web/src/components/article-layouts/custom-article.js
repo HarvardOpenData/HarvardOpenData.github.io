@@ -4,6 +4,7 @@ import ArticleHeader from "./article-header";
 import ArticleSidebar from "./article-sidebar";
 import ArticlePreview from "./article-preview";
 import BlockContent from "../block-content";
+import Container from "../core/container"
 
 function CustomArticle(props) {
   const {
@@ -23,31 +24,36 @@ function CustomArticle(props) {
 
   return (
     <div>
-      <div sx={{ pt: [4], margin: ["0 auto"], maxWidth: "640px" }}>
-        {<ArticleHeader {...props} />}
-        <br />
-      </div>
+      <Container>
+        <div sx={{ pt: [4], margin: ["0 auto"], maxWidth: "640px" }}>
+          {<ArticleHeader {...props} />}
+          <br />
+        </div>
+      </Container>
       {_rawBody && <BlockContent blocks={_rawBody || []} />}
-      <div sx={{ margin: ["0 auto"], maxWidth: "640px" }}>
-        {<ArticleSidebar {...defaultSidebarProps} />}
-        {relatedProjects && relatedProjects.length > 0 && (
-          <div>
-            <Divider mt={4} color="text" />
-            <Styled.h4>Related projects</Styled.h4>
-            <Grid columns={3}>
-              {relatedProjects.map((project) => (
-                <ArticlePreview
-                  key={`related_${project._id}`}
-                  title={project.title}
-                  mainImage={project._rawMainImage}
-                  image={project._rawMainImage}
-                  link={`/project/${project.slug.current}`}
-                />
-              ))}
-            </Grid>
-          </div>
-        )}
-      </div>
+      <Container>
+        <br />
+        <div sx={{ margin: ["0 auto"], maxWidth: "640px" }}>
+          {<ArticleSidebar {...defaultSidebarProps} />}
+          {relatedProjects && relatedProjects.length > 0 && (
+            <div>
+              <Divider mt={4} color="text" />
+              <Styled.h4>Related projects</Styled.h4>
+              <Grid columns={3}>
+                {relatedProjects.map((project) => (
+                  <ArticlePreview
+                    key={`related_${project._id}`}
+                    title={project.title}
+                    mainImage={project._rawMainImage}
+                    image={project._rawMainImage}
+                    link={`/project/${project.slug.current}`}
+                  />
+                ))}
+              </Grid>
+            </div>
+          )}
+        </div>
+      </Container>
     </div>
   );
 }
