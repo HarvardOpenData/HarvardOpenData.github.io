@@ -31,26 +31,28 @@ function CustomArticle(props) {
         </div>
       </Container>
       {_rawBody && <BlockContent blocks={_rawBody || []} />}
-      <div sx={{ margin: ["0 auto"], maxWidth: "640px" }}>
-        {<ArticleSidebar {...defaultSidebarProps} />}
-        {relatedProjects && relatedProjects.length > 0 && (
-          <div>
-            <Divider mt={4} color="text" />
-            <Styled.h4>Related projects</Styled.h4>
-            <Grid columns={3}>
-              {relatedProjects.map((project) => (
-                <ArticlePreview
-                  key={`related_${project._id}`}
-                  title={project.title}
-                  mainImage={project._rawMainImage}
-                  image={project._rawMainImage}
-                  link={`/project/${project.slug.current}`}
-                />
-              ))}
-            </Grid>
-          </div>
-        )}
-      </div>
+      <Container>
+        <div sx={{ margin: ["0 auto"], maxWidth: "640px" }}>
+          {<ArticleSidebar {...defaultSidebarProps} />}
+          {relatedProjects && relatedProjects.length > 0 && (
+            <div>
+              <Divider mt={4} color="text" />
+              <Styled.h4>Related projects</Styled.h4>
+              <Grid columns={3}>
+                {relatedProjects.map((project) => (
+                  <ArticlePreview
+                    key={`related_${project._id}`}
+                    title={project.title}
+                    mainImage={project._rawMainImage}
+                    image={project._rawMainImage}
+                    link={`/project/${project.slug.current}`}
+                  />
+                ))}
+              </Grid>
+            </div>
+          )}
+        </div>
+      </Container>
     </div>
   );
 }

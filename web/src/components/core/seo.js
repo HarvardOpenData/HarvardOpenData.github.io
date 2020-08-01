@@ -14,7 +14,7 @@ const detailsQuery = graphql`
   }
 `;
 
-function SEO({ description, lang, meta, keywords = [], title }) {
+function SEO({ description, image, lang, meta, keywords = [], title }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -40,6 +40,10 @@ function SEO({ description, lang, meta, keywords = [], title }) {
               {
                 property: "og:title",
                 content: title,
+              },
+              {
+                property: "og:image",
+                content: image,
               },
               {
                 property: "og:description",
