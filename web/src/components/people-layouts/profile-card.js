@@ -13,29 +13,34 @@ class ProfileCard extends React.Component {
     }
 
     render() {
-        const {image, name, _rawBio, position } = this.props.data;
+        const {image, name, _rawBio, position, year, concentration } = this.props.data;
         return (
             <div>
-              <div className="profile-card">
                 {image && image.asset && (
-                  <Image 
-                    src={imageUrlFor(buildImageObj(image))
-                      .width(400)
-                      .height(400)
-                      .fit("crop")
-                      .url()}
-                    onClick={() => this.props.showModal(this.props.data)}
-                  />
+                  <div className="profile-card">
+                    <Image 
+                        src={imageUrlFor(buildImageObj(image))
+                        .width(500)
+                        .height(500)
+                        .fit("crop")
+                        .url()}
+                        onClick={() => this.props.showModal(this.props.data)}
+                    />
+                  </div>
                 )}
                 {!image && (
-                  <Image 
-                    src={defaultProfile}
-                    onClick={() => this.props.showModal(this.props.data)}
-                  />
+                  <div className="default-profile">
+                    <Image className="default-profile"
+                        src={defaultProfile}
+                        onClick={() => this.props.showModal(this.props.data)}
+                    />
+                  </div>
                 )}
-              </div>
-              {name && (<Styled.h4>{name}</Styled.h4>)}
-              {position.title && (<Styled.p>{position.title}</Styled.p>)}
+              {name && (<Styled.h4 className="profile-name">{name}</Styled.h4>)}
+              {position.title && (<Styled.p className="profile-title">{position.title}</Styled.p>)}
+              {concentration && (
+                <div className="very-small">{concentration}</div>
+              )}
             </div>
           );
     }

@@ -93,6 +93,12 @@ export default {
       validation: Rule => Rule.integer().positive().error('Your year must be a positive integer')
     },
     {
+      name: "concentration",
+      title: "Concentration",
+      description: "e.g. Computer Science and Statistics",
+      type: "string",
+    },
+    {
       name: "bio",
       title: "Bio",
       description:

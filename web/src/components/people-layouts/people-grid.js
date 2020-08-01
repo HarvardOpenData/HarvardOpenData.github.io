@@ -14,7 +14,7 @@ class PeopleGrid extends React.Component {
     return (
       <div>
         <Styled.h2>{title}</Styled.h2>
-        <Grid gap={2} columns={[1, 3, 6]}>
+        <Grid gap={2} columns={[2, 4, 6]}>
           {items.map((item, key) => (
             <ProfileCard key={key} data={item} showModal={this.props.showModal}/>
           ))}

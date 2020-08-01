@@ -36,6 +36,7 @@ export const query = graphql`
             group
           }
           year
+          concentration
         }
       }
     }
@@ -63,6 +64,7 @@ export const query = graphql`
               group
             }
             year
+            concentration
           }
         }
       }
@@ -113,6 +115,8 @@ export const query = graphql`
             title
             group
           }
+          year
+          concentration
         }
       }
     }
@@ -141,6 +145,7 @@ export const query = graphql`
             group
           }
           year
+          concentration
         }
       }
     }
