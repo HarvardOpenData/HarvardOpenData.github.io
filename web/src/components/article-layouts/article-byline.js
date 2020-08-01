@@ -17,17 +17,15 @@ function ArticleByline({ members, authors, publishedAt, showDate }) {
 
   return (
     <div sx={{ fontWeight: "medium" }}>
-      {/* <b> */}
-        {`By `}
-        {contributors.map((item, i) => (
-          <span key={item._key}>
-            {item.person && `${item.person.name}`}
-            {i < numContributors - 2
-              ? `, `
-              : i === numContributors - 2 && ` & `}
-          </span>
-        ))}
-      {/* </b> */}
+      {contributors.length > 0 && `By `}
+      {contributors.map((item, i) => (
+        <span key={item._key}>
+          {item.person && `${item.person.name}`}
+          {i < numContributors - 2
+            ? `, `
+            : i === numContributors - 2 && ` & `}
+        </span>
+      ))}
       {contributors.length > 0 && showDate && publishedAt &&
         <span>{` • `}</span>
       }
