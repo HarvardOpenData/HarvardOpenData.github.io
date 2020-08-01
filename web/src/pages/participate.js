@@ -46,7 +46,6 @@ const ParticipatePage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <Preview blocks={blocks.length > 0 ? [blocks[0]] : []} />
         <Grid gap={4} columns={[1, 2, 4]}>
           {blocks.map(block => <Preview {...block} headerAs="h2" />)}
         </Grid>

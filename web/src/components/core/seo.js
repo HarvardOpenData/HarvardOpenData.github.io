@@ -42,7 +42,7 @@ function SEO({ description, image, lang, meta, keywords = [], title }) {
                 content: title,
               },
               {
-                property: "og:image",
+                name: "og:image",
                 content: image,
               },
               {

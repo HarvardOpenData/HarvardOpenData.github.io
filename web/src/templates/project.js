@@ -4,7 +4,7 @@ import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import Project from "../components/project-layouts/project";
 import SEO from "../components/core/seo";
-import { buildImageObj } from "../lib/helpers"
+import { buildImageObj, toPlainText } from "../lib/helpers"
 import { imageUrlFor } from "../lib/image-url";
 import Layout from "../containers/layout";
 
@@ -94,19 +94,19 @@ export const query = graphql`
 const ProjectTemplate = (props) => {
   const { data, errors } = props;
   const project = data && data.project;
-  const mainImageUrl = data.mainImage && data.mainImage.asset &&
-    imageUrlFor(buildImageObj(props.mainImage))
+  const mainImageUrl = (project && project.mainImage && project.mainImage.asset) &&
+    imageUrlFor(buildImageObj(project.mainImage))
       .width(600)
       .height(Math.floor((5 / 8) * 600))
       .url();
-
+  
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
       {project &&
         <SEO
           title={project.title || "Untitled Project"}
-          description={project._rawExcerpt || null}
+          description={toPlainText(project._rawExcerpt) || null}
           image={mainImageUrl}
         />
       }

@@ -42,7 +42,7 @@ function ArticleSidebar(props) {
           <RoleList items={authors} title="Authors" />
         </Section>
       )}
-      {labels && (
+      {labels && labels.length > 0 && (
         <Section>
           <Styled.h4>Filed Under</Styled.h4>
           {labels.map((item, i) =>

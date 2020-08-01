@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
@@ -7,6 +7,7 @@ import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
+import Section from "../components/core/section";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
@@ -43,8 +44,15 @@ const SurveysPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <BannerHeader title={page.title} />
-        <BlockContent blocks={page._rawBody || []} />
+        <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
+          <div>
+            <Styled.h1>Survey Group</Styled.h1>
+            <BlockContent blocks={page._rawBody || []} />
+          </div>
+          <Section header="Featured Survey Projects" className="small preview">
+            <BlockContent blocks={page._rawBodySecondary || []} />
+          </Section>
+        </Grid>
       </Container>
     </Layout>
   );

@@ -173,12 +173,12 @@ const PeoplePage = (props) => {
   //   );
   // }
 
-  var boardNodes = 
+  const boardNodes = 
     data &&
     data.board && 
     data.board.edges[0].node.members
 
-  var contributorNodes =
+  let contributorNodes =
     data &&
     data.contributors &&
     mapEdgesToNodes(data.contributors).filter(filterOutDocsWithoutSlugs);
@@ -188,15 +188,15 @@ const PeoplePage = (props) => {
   // unless we're doing page generation
   function filterAlumni(allContributors) {
     // Return today's date and time
-    var currentTime = new Date()
+    const currentTime = new Date()
 
     // returns the month (from 0 to 11)
-    var month = currentTime.getMonth() + 1
+    const month = currentTime.getMonth() + 1
 
     // returns the year (four digits)
-    var year = currentTime.getFullYear()
+    const year = currentTime.getFullYear()
 
-    var currentContributors, alumni;
+    let currentContributors, alumni;
 
     // check if spring graduation has happened yet. May = month 4
     if (month > 4) {
@@ -210,16 +210,16 @@ const PeoplePage = (props) => {
     return [currentContributors, alumni];
   }
 
-  var allContributors = filterAlumni(contributorNodes);
+  const allContributors = filterAlumni(contributorNodes);
   contributorNodes = allContributors[0];
-  var alumniNodes = allContributors[1];
+  const alumniNodes = allContributors[1];
 
-  var founderNode =
+  const founderNode =
     data && 
     data.founder &&
     mapEdgesToNodes(data.founder).filter(filterOutDocsWithoutSlugs);
   
-  var boardEmeritusNodes =
+  let boardEmeritusNodes =
     data &&
     data.boardEmeritus && 
     mapEdgesToNodes(data.boardEmeritus).filter(filterOutDocsWithoutSlugs);
@@ -227,7 +227,7 @@ const PeoplePage = (props) => {
   boardEmeritusNodes = founderNode.concat(boardEmeritusNodes);
 
 
-  var facultyNodes =
+  const facultyNodes =
     data &&
     data.faculty &&
     mapEdgesToNodes(data.faculty).filter(filterOutDocsWithoutSlugs);
