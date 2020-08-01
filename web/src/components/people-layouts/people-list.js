@@ -1,8 +1,8 @@
 import React from 'react';
 /** @jsx jsx */
 import { jsx, Grid, Input } from "theme-ui";
-import Container from "../components/core/container";
-import PeopleGrid from "../components/people-grid";
+import Container from "../core/container";
+import PeopleGrid from "./people-grid";
 
 class PeopleList extends React.Component {
     constructor(props) {
