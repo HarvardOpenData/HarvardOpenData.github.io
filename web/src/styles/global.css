@@ -84,9 +84,14 @@ button {
 
 .profile-card {
   font-size: 0;
+  display: inline-flex;
 }
 
 .profile-card:hover{
   outline: #C63F3F solid 3px;
   font-size: 0;
+}
+
+#bio {
+  max-width: 400px;
 }
