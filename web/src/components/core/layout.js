@@ -46,7 +46,7 @@ const SubscribeWidget = ({ interestForm }) => {
           sx={{ height: 4 }}
         />
         <div
-          style={{ position: "absolute", left: "-5000px" }}
+          style={{ display: "none" }}
           aria-hidden="true"
         >
           <input
@@ -66,13 +66,14 @@ const SubscribeWidget = ({ interestForm }) => {
             display: "flex",
             alignItems: "center",
             textAlign: "center",
+            width: "100%",
           }}
         >
           Subscribe
         </Button>
 
         <div
-          style={{ position: "absolute", left: "-5000px" }}
+          style={{ display: "none" }}
           aria-hidden="true"
           aria-label="Please leave the following three fields empty"
         >

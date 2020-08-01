@@ -2,19 +2,20 @@
 import {
   jsx,
   Styled,
+  Badge,
   Flex,
   Card,
   Box,
   Text,
   Grid,
   Button,
-  Link,
   Input,
 } from "theme-ui";
 import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import BlockContent from "../components/block-content";
 import GraphQLErrorList from "../components/core/graphql-error-list";
+import Link from "../components/core/link";
 import SEO from "../components/core/seo";
 import Section from "../components/core/section";
 import Spacer from "../components/core/spacer";
@@ -93,7 +94,7 @@ const DataPage = (props) => {
         <Styled.h1>Data catalog</Styled.h1>
         <BlockContent blocks={page._rawBody || []} />
         <Spacer height={4} />
-        <Grid gap={4} columns={[1, "1fr 3fr", "1fr 6fr"]}>
+        <Grid gap={5} columns={[1, "1fr 3fr", "1fr 5fr"]}>
           <DataCategories
             subjects={subjects}
             activeCategories={activeCategories}
@@ -202,30 +203,25 @@ const DataItem = (props) => {
     >
       <Flex>
         <Box>
-          <Text variant="caps" color="deep">{subjectText}</Text>
-          <Styled.h2>{title}</Styled.h2>
+          {subjects && subjects.map(item =>
+            <Badge bg="grey" mr={2}>
+              {item.title}
+            </Badge>
+          )}
+          <Spacer height={3} />
+          <Text variant="h3">{title}</Text>
           <Text variant="caption">{description}</Text>
         </Box>
       </Flex>
       <Spacer height={3} />
-      <Button
-        variant="tag"
-        sx={{
-          backgroundColor: "deep",
-        }}
-      >
+      <Button bg="deep">
         <Link variant="outbound" href={sourceURL}>
-          Source site
+          <Text variant="small"><b>Source site</b></Text>
         </Link>
       </Button>
-      <Button
-        variant="tag"
-        sx={{
-          backgroundColor: "deep",
-        }}
-      >
+      <Button>
         <Link variant="outbound" href={downloadURL}>
-          Download
+          <Text variant="small"><b>Download</b></Text>
         </Link>
       </Button>
     </Card>
