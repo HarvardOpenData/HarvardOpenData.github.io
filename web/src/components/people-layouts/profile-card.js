@@ -10,8 +10,6 @@ import defaultProfile from "../../assets/default-profile.jpg"
 class ProfileCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-        }
     }
 
     render() {
