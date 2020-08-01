@@ -32,6 +32,7 @@ function CustomArticle(props) {
       </Container>
       {_rawBody && <BlockContent blocks={_rawBody || []} />}
       <Container>
+        <br />
         <div sx={{ margin: ["0 auto"], maxWidth: "640px" }}>
           {<ArticleSidebar {...defaultSidebarProps} />}
           {relatedProjects && relatedProjects.length > 0 && (

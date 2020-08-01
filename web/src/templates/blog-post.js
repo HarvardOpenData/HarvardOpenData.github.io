@@ -3,8 +3,8 @@ import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import BlogPost from "../components/blog-layouts/blog-post";
-import { buildImageObj } from "../../lib/helpers";
-import { imageUrlFor } from "../../lib/image-url";
+import { buildImageObj } from "../lib/helpers"
+import { imageUrlFor } from "../lib/image-url";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 

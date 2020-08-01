@@ -4,8 +4,8 @@ import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import Project from "../components/project-layouts/project";
 import SEO from "../components/core/seo";
-import { buildImageObj } from "../../lib/helpers";
-import { imageUrlFor } from "../../lib/image-url";
+import { buildImageObj } from "../lib/helpers"
+import { imageUrlFor } from "../lib/image-url";
 import Layout from "../containers/layout";
 
 export const query = graphql`
