@@ -1,7 +1,6 @@
 /** @jsx jsx */
-import { jsx, Grid } from "theme-ui";
+import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
-import BannerHeader from "../components/core/banner-header";
 import BlockContent from "../components/block-content"
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
@@ -114,10 +113,9 @@ const ProjectListTemplate = (props) => {
             {projectNodes && projectNodes.length > 0 && (
               <Grid gap={[5, 5, 6]} columns={[1, "4fr 1fr"]}>
                 <div>
-                  {!firstPage && <BannerHeader title="Past projects" />}
+                  {<Styled.h1>{firstPage ? "Recent projects" : "Past projects"}</Styled.h1>}
                   <ProjectList
-                    header={firstPage && "Latest"}
-                    showDivider={firstPage}
+                    showDivider
                     nodes={projectNodes}
                   />
                 </div>

@@ -13,6 +13,7 @@ const PreviewGrid = ({
   horizontal,
   space,
   nodes,
+  browseMoreHref,
 }) => {
   const featuredArticle = featured === true ? nodes.shift() : {};
   
@@ -35,7 +36,7 @@ const PreviewGrid = ({
         container={container}
         columns={columns}
         horizontal={horizontal}
-        browseMoreHref="/projects/"
+        browseMoreHref={browseMoreHref}
       />
     </div>
   );

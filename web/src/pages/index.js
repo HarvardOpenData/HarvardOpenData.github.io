@@ -152,7 +152,7 @@ const IndexPage = (props) => {
               featured
               featuredHorizontal
               container
-              browseMoreHref="/projects/"
+              browseMoreHref="/projects/2"
             />
           )}
           <div>

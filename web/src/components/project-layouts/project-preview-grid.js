@@ -5,7 +5,7 @@ import ArticlePreview from "../article-layouts/article-preview";
 
 function ProjectPreviewGrid(props) {
   return (
-    <Styled.root>
+    <div>
       {props.title && (
         <h4>
           {props.browseMoreHref ? (
@@ -31,7 +31,12 @@ function ProjectPreviewGrid(props) {
             />
           ))}
       </Grid>
-    </Styled.root>
+      {props.browseMoreHref &&
+        <Link to={props.browseMoreHref} style={{ textAlign: "right" }}>
+          <h3>See more →</h3>
+        </Link>
+      }
+    </div>
   );
 }
 
