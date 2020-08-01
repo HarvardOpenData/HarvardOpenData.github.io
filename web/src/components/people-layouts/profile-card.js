@@ -26,6 +26,7 @@ class ProfileCard extends React.Component {
                       .height(400)
                       .fit("crop")
                       .url()}
+                    onClick={this.props.showModal}
                   />
                 )}
                 {!image && (
