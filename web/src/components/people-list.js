@@ -1,6 +1,6 @@
 import React from 'react';
 /** @jsx jsx */
-import { jsx, Grid, Image, Styled, Text, Input } from "theme-ui";
+import { jsx, Grid, Input } from "theme-ui";
 import Container from "../components/core/container";
 import PeopleGrid from "../components/people-grid";
 
