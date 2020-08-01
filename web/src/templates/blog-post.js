@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import BlogPost from "../components/blog-layouts/blog-post";
-import { buildImageObj } from "../lib/helpers"
+import { buildImageObj, toPlainText } from "../lib/helpers"
 import { imageUrlFor } from "../lib/image-url";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
@@ -84,11 +84,13 @@ export const query = graphql`
 const BlogPostTemplate = (props) => {
   const { data, errors } = props;
   const post = data && data.post;
-  const mainImageUrl = data.mainImage && data.mainImage.asset &&
-    imageUrlFor(buildImageObj(props.mainImage))
+  const mainImageUrl = (post && post.mainImage && post.mainImage.asset) &&
+    imageUrlFor(buildImageObj(post.mainImage))
       .width(600)
       .height(Math.floor((5 / 8) * 600))
       .url();
+  
+  console.log(mainImageUrl)
 
   return (
     <Layout>
@@ -96,7 +98,7 @@ const BlogPostTemplate = (props) => {
       {post &&
         <SEO
           title={post.title || "Untitled Post"}
-          description={post._rawExcerpt || null}
+          description={toPlainText(post._rawExcerpt) || null}
           image={mainImageUrl}
         />
       }
