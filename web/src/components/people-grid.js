@@ -8,7 +8,7 @@ import { imageUrlFor } from "../lib/image-url";
 function ProfileCard({ image, name, _rawBio, position }) {
   return (
     <div>
-      <div class="profile-card">
+      <div className="profile-card">
         {image && image.asset && (
           <Image 
             src={imageUrlFor(buildImageObj(image))
@@ -22,8 +22,8 @@ function ProfileCard({ image, name, _rawBio, position }) {
       {name && (<Styled.h4>{name}</Styled.h4>)}
       {position.title && (<Styled.p>{position.title}</Styled.p>)}
       {_rawBio && (
-        <div className="small preview">
-          <BlockText blocks={_rawBio} style="profile"/>
+        <div className="small preview" id="bio">
+          <BlockText blocks={_rawBio}/>
         </div>
       )}
     </div>
@@ -34,7 +34,7 @@ function PeopleGrid({ items, title }) {
   return (
     <div>
       <Styled.h2>{title}</Styled.h2>
-      <Grid gap={3} columns={[1, 2, 5]}>
+      <Grid gap={3} columns={[1, 3, 5]}>
         {items.map((item, key) => (
           <ProfileCard key={key} {...item} />
         ))}

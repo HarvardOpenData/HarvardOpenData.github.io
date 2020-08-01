@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Input, Grid } from "theme-ui";
+import { jsx } from "theme-ui";
 import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
