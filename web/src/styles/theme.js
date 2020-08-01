@@ -1,5 +1,3 @@
-import BlockContent from "../components/block-content";
-
 export default {
   breakpoints: ["640px", "1024px"],
   colors: {

@@ -242,9 +242,4 @@ const PeoplePage = (props) => {
   );
 };
 
-// TODO create full React component for people list + filter box
-// pass in the five categories of nodes as props
-// that way we can do controlled input on the filter and just conditionally render in that component
-// no need to complicate this graphql-adjacent layer with it
-
 export default PeoplePage;
