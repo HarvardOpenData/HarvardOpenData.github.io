@@ -44,7 +44,7 @@ function ArticleSidebar(props) {
       )}
       {labels && labels.length > 0 && (
         <Section>
-          <Styled.h4>Filed Under</Styled.h4>
+          <Styled.h4>Filed under</Styled.h4>
           {labels.map((item, i) =>
             i < numLabels - 1 ? (
               <span key={item._id}>

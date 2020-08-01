@@ -6,7 +6,6 @@ import Container from "../components/core/container";
 import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
-import Section from "../components/core/section"
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
@@ -46,8 +45,9 @@ const PredictionsPage = (props) => {
       <Container>
         <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
           <div>
-            <BannerHeader title={page.title} />
+            <Styled.h1>{page.title}</Styled.h1>
             <BlockContent blocks={page._rawBody || []} />
+            <BannerHeader />
           </div>
           <div className="small preview" sx={{ p: 4, bg: "pink", }}>
             <BlockContent blocks={page._rawBodySecondary || []} />

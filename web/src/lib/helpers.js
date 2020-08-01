@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, distanceInWords, differenceInDays } from "date-fns";
 
 export function cn(...args) {
   return args.filter(Boolean).join(" ");
@@ -67,4 +67,12 @@ export function toPlainText(blocks = []) {
     })
     // join the paragraphs leaving split by two linebreaks
     .join('\n\n')
+}
+
+export function formatDate(date) {
+  return (
+    differenceInDays(new Date(date), new Date()) > 3
+      ? distanceInWords(new Date(date), new Date())
+      : format(new Date(date), "MM-DD-YYYY")
+  )
 }

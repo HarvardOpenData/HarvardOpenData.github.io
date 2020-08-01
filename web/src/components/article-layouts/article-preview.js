@@ -2,9 +2,10 @@
 import { jsx, Grid, Styled, Text } from "theme-ui";
 import { format, distanceInWords, differenceInDays } from "date-fns";
 import Link from "../core/link";
-import { buildImageObj } from "../../lib/helpers";
+import { buildImageObj, formatDate } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import BlockText from "../core/block-text";
+import ArticleByline from "./article-byline";
 
 function PreviewText(props) {
   return (
@@ -15,13 +16,12 @@ function PreviewText(props) {
         </Text>
       </Link>
       {props._rawExcerpt && <BlockText blocks={props._rawExcerpt} />}
-      {props.publishedAt && (
-        <Text variant="caps">
-          {differenceInDays(new Date(props.publishedAt), new Date()) > 3
-            ? distanceInWords(new Date(props.publishedAt), new Date())
-            : format(new Date(props.publishedAt), "MM-DD-YYYY")}
-        </Text>
-      )}
+      {(props._rawMembers || props._rawAuthors || props._publishedAt) &&
+        <ArticleByline
+          members={props._rawMembers}
+          authors={props._rawAuthors}
+        />
+      }
       {props.children}
     </div>
   );
@@ -35,7 +35,7 @@ function HorizontalArticlePreview(props) {
   };
   return (
     <div
-      className="preview"
+      className="small preview"
       sx={{ bg: props.container ? "container" : "#FFFFFF" }}
     >
       <Grid
@@ -68,7 +68,7 @@ function HorizontalArticlePreview(props) {
 function VerticalArticlePreview(props) {
   return (
     <div
-      className="preview"
+      className="small preview"
       sx={{ width: "100%", bg: props.container ? "container" : "#FFFFFF" }}
     >
       <Link to={props.link}>

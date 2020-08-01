@@ -32,6 +32,7 @@ export default {
   fontWeights: {
     default: 400,
     body: 400,
+    medium: 500,
     strong: 700,
     bold: 700,
     heading: 700,
@@ -45,10 +46,9 @@ export default {
     },
     caps: {
       textTransform: "uppercase",
-      fontSize: "15px",
-      fontFamily: "monospace",
-      letterSpacing: "0.05em",
-      fontWeight: "bold",
+      fontSize: "16px",
+      letterSpacing: "0.08em",
+      fontWeight: "medium",
     },
     heading: {
       fontFamily: "heading",
@@ -73,7 +73,8 @@ export default {
     },
     h1: {
       variant: "text.heading",
-      marginTop: 0,
+      mt: 2,
+      mb: 2,
       fontSize: 5,
     },
     h2: {
@@ -85,6 +86,7 @@ export default {
     h3: {
       variant: "text.heading",
       fontSize: 3,
+      mb: 2,
     },
     h4: {
       variant: "text.heading",
@@ -145,7 +147,8 @@ export default {
     },
     h1: {
       variant: "text.heading",
-      marginTop: 3,
+      mt: 2,
+      mb: 2,
       fontSize: 5,
     },
     h2: {

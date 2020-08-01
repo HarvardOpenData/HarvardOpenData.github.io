@@ -119,7 +119,7 @@ const SubscribeWidget = ({ interestForm }) => {
         style={{ border: "none", overflow: "hidden" }}
         scrolling="no"
         frameBorder="0"
-        allowTransparency="true"
+        allowTransparency={true}
         allow="encrypted-media"
       />
     </div>
@@ -188,7 +188,7 @@ const Layout = ({
                 </div>
               )}
               <div>
-                © 2015-{new Date().getFullYear()}, Built with{" "}
+                © 2016-{new Date().getFullYear()}, Built with{" "}
                 <Link href="https://www.sanity.io" variant="highlighted">
                   <b>Sanity</b>
                 </Link>{" "}
@@ -207,12 +207,12 @@ const Layout = ({
                 <Link href="https://wiki.hodp.org">Harvard Wiki</Link>
                 <br />
                 <br />
-                {`The code for this website is open `}
+                {`The code for this website is `}
                 <Link
                   href="https://github.com/HarvardOpenData"
                   variant="highlighted"
                 >
-                  <b>source</b>
+                  <b>open source.</b>
                 </Link>
               </div>
             </div>
