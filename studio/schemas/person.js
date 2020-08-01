@@ -11,6 +11,7 @@ export default {
       name: "name",
       title: "Name",
       type: "string",
+      validation: Rule => Rule.required()
     },
     {
       name: "slug",
@@ -21,7 +22,7 @@ export default {
       options: {
         source: "name",
         maxLength: 96,
-      },
+      }, validation: Rule => Rule.required()
     },
     {
       name: "image",
@@ -40,7 +41,8 @@ export default {
       name: "position",
       title: "Position",
       type: "reference",
-      to: [{type: 'position'}]
+      to: [{type: 'position'}],
+      validation: Rule => Rule.required()
     },
     {
       name: "house",
@@ -87,7 +89,8 @@ export default {
       name: "year",
       title: "Class Year",
       description: "e.g. 2021",
-      type: "string",
+      type: "number",
+      validation: Rule => Rule.integer().positive().error('Your year must be a positive integer')
     },
     {
       name: "bio",

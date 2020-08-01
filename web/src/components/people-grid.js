@@ -4,12 +4,13 @@ import BlockText from "./core/block-text";
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 
+
 function ProfileCard({ image, name, _rawBio, position }) {
   return (
     <div>
-      <div>
+      <div class="profile-card">
         {image && image.asset && (
-          <Image
+          <Image 
             src={imageUrlFor(buildImageObj(image))
               .width(400)
               .height(400)
@@ -18,8 +19,8 @@ function ProfileCard({ image, name, _rawBio, position }) {
           />
         )}
       </div>
-      <Styled.h4>{name}</Styled.h4>
-      <Styled.p>{position.title}</Styled.p>
+      {name && (<Styled.h4>{name}</Styled.h4>)}
+      {position.title && (<Styled.p>{position.title}</Styled.p>)}
       {_rawBio && (
         <div className="small preview">
           <BlockText blocks={_rawBio} style="profile"/>
