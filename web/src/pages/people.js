@@ -146,6 +146,8 @@ export const query = graphql`
   }
 `;
 
+// TODO could query for current year's board and allow them to store past years in sanity as well
+
 const PeoplePage = (props) => {
   const { data, errors } = props;
 

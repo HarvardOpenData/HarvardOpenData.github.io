@@ -1,3 +1,5 @@
+import BlockContent from "../components/block-content";
+
 export default {
   breakpoints: ["640px", "1024px"],
   colors: {
@@ -96,7 +98,7 @@ export default {
       width: 48,
       height: 48,
       borderRadius: "50%",
-    },
+    }
   },
   cards: {
     list: {

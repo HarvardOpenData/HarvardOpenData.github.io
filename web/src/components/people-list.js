@@ -3,7 +3,6 @@ import React from 'react';
 import { jsx, Grid, Image, Styled, Text, Input } from "theme-ui";
 import Container from "../components/core/container";
 import PeopleGrid from "../components/people-grid";
-import { isThisHour } from 'date-fns';
 
 class PeopleList extends React.Component {
     constructor(props) {
