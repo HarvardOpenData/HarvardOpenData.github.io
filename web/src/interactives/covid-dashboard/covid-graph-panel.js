@@ -6,9 +6,9 @@ import Container from "../../components/core/container"
 
 export default function CovidGraphPanel() {
   return (
-    <Container maxWidth="1280px">
+    <Container>
       <br />
-      <Grid columns={[1, 3, 3]}>
+      <Grid columns={[1, 1, 3]}>
           <CountryGraph/>
           <StateGraph sort={'cumulative'}/>
           <StateGraph  sort={'daily'}/>
