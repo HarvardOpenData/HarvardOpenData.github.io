@@ -98,7 +98,7 @@ export default {
       width: 48,
       height: 48,
       borderRadius: "50%",
-    }
+    },
   },
   cards: {
     list: {
