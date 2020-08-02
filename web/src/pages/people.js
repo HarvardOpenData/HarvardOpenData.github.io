@@ -124,6 +124,7 @@ export const query = graphql`
       filter: { 
         position: { title: { eq: "Board Emeritus" } }
       }
+      sort: { fields: [name], order: ASC }
     )
     {
       edges {

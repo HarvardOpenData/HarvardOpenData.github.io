@@ -21,6 +21,7 @@ class PeopleList extends React.Component {
     }
     
     componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside, false);
         this.setState({
             board: this.props.board,
             faculty: this.props.faculty,
@@ -67,8 +68,24 @@ class PeopleList extends React.Component {
         this.setState({modalData: {}});
     }
 
+    goToProfile = () => {
+        alert("Eventually, this'll take you to their profile!");
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside, false);
+    }
+
+    handleClickOutside = (e) => {
+        console.log(e);
+        var modalContainer = document.getElementById("modal-container");
+        if (e.target.className === "modal" && this.state.show) {
+            console.log(e);
+            this.closeModal();
+        }
+    }
+
     render() {
-        console.log(this.state.modalData);
         return (
             <Container>
                 <Grid gap={3} columns={[1, 2, 3]}>
@@ -80,8 +97,14 @@ class PeopleList extends React.Component {
                         onChange={this.handleChange}
                     ></Input>
                 </Grid>
-                <Modal show={this.state.show} closeModal={this.closeModal} data={this.state.modalData}>
-                </Modal>
+                <div id="modal-container">
+                    <Modal
+                        show={this.state.show} 
+                        closeModal={this.closeModal} 
+                        data={this.state.modalData}
+                        goToProfile={this.goToProfile}>
+                    </Modal>
+                </div>
                 {this.state.board && this.state.board.length > 0 && (
                 <PeopleGrid items={this.state.board} showModal={this.showModal} title="Board" />
                 )}

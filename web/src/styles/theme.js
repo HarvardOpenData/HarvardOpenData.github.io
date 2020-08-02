@@ -97,10 +97,6 @@ export default {
       height: 48,
       borderRadius: "50%",
     },
-    defaultProfile: {
-      width: 400,
-      height: 400,
-    }
   },
   cards: {
     list: {

@@ -121,6 +121,7 @@ button {
   top: 0;
   width: 100%;
   height: 100%; 
+  overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
 }
@@ -133,7 +134,7 @@ button {
   width: 70%;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1000px) {
   .modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
@@ -150,5 +151,13 @@ button {
 
 .profile-title {
   margin-top: 5px !important;
-  margin-bottom: 0px !important;
+  margin-bottom: 5px !important;
+}
+
+.close-button {
+  float: right !important;
+}
+
+.modal-bio {
+  margin-right: 20px !important;
 }
