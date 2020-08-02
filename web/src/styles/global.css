@@ -63,11 +63,13 @@ li {
 }
 
 .preview p {
-  line-height: normal !important;
+  line-height: 1.2 !important;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .small p {
-  font-size: 15px !important;
+  font-size: 16px !important;
 }
 
 .very-small {
@@ -83,7 +85,7 @@ button {
 
 .theme-background {
   background: url(../assets/network-background.png) no-repeat center center fixed;
-  border: 15px solid #F8F8F8;
+  border: 16px solid #F8F8F8;
   min-width: 100vw;
   min-height: 80vh;
 }

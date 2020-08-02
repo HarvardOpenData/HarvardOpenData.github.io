@@ -9,6 +9,7 @@ const defaultSx = {
   ":hover": {
     textDecoration: "none",
     color: "inherit",
+    cursor: "pointer",
   },
 };
 
@@ -18,6 +19,7 @@ const highlightedSx = {
   textDecoration: "none",
   "&:hover": {
     color: "deep",
+    cursor: "pointer",
   },
 };
 

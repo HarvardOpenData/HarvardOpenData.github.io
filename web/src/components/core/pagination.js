@@ -1,6 +1,7 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, Button } from "theme-ui";
 import Link from "./link";
+import theme from "../../styles/theme";
 
 const Pagination = ({ prefix, pageContext }) => {
   const { currentPage, numPages } = pageContext;
@@ -21,12 +22,24 @@ const Pagination = ({ prefix, pageContext }) => {
         </Link>
       )}
       {Array.from({ length: numPages }, (_, i) => (
-        <Link
-          key={`pagination-number${i + 1}`}
+        <Button
+          color="text"
+          bg="white"
+          sx={{
+            border: theme => i+1 === currentPage && `1px solid ${theme.colors.text}`,
+            ":hover": {
+              bg: "container",
+            }
+          }}
           to={`${prefix}/${i === 0 ? "" : i + 1}`}
         >
-          <b>{`   ${i + 1}   `}</b>
-        </Link>
+          <Link
+            key={`pagination-number${i + 1}`}
+            to={`${prefix}/${i === 0 ? "" : i + 1}`}
+          >
+            <b>{`${i + 1}`}</b>
+          </Link>
+        </Button>
       ))}
       {!isLast && (
         <Link to={`${prefix}/${nextPage}`} rel="next">

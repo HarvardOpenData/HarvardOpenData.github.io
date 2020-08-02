@@ -6,7 +6,7 @@ export default {
     yellow: "#F4B436",
     blue: "#83BFCC",
     navy: "#455574",
-    grey: "#E2DDDB",
+    grey: "#C2BBB9",
     dark: "#251616",
     deep: "#760000",
     medium: "#E28073",
@@ -32,6 +32,7 @@ export default {
   fontWeights: {
     default: 400,
     body: 400,
+    medium: 500,
     strong: 700,
     bold: 700,
     heading: 700,
@@ -45,10 +46,16 @@ export default {
     },
     caps: {
       textTransform: "uppercase",
-      fontSize: "15px",
+      fontSize: "16px",
+      letterSpacing: "0.08em",
+      fontWeight: "medium",
+    },
+    monospace: {
+      textTransform: "uppercase",
       fontFamily: "monospace",
-      letterSpacing: "0.05em",
-      fontWeight: "bold",
+      fontSize: "16px",
+      letterSpacing: "0.08em",
+      fontWeight: "medium",
     },
     heading: {
       fontFamily: "heading",
@@ -73,7 +80,8 @@ export default {
     },
     h1: {
       variant: "text.heading",
-      marginTop: 0,
+      mt: 2,
+      mb: 2,
       fontSize: 5,
     },
     h2: {
@@ -85,6 +93,7 @@ export default {
     h3: {
       variant: "text.heading",
       fontSize: 3,
+      mb: 2,
     },
     h4: {
       variant: "text.heading",
@@ -114,12 +123,15 @@ export default {
       "&:focus": {
         border: "0.2em solid black"
       },
-      mr: 2,
     },
     primary: {
-      color: "background",
+      color: "white",
       backgroundColor: "primary",
     },
+    deep: {
+      color: "white",
+      backgroundColor: "deep",
+    }
   },
   links: {
     outbound: {
@@ -145,7 +157,7 @@ export default {
     },
     h1: {
       variant: "text.heading",
-      marginTop: 3,
+      mb: 3,
       fontSize: 5,
     },
     h2: {
@@ -188,7 +200,6 @@ export default {
       margin: 1,
       variant: "text.small",
       color: "background",
-      backgroundColor: "monospace",
       font: "body",
     },
   },
