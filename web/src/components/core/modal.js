@@ -37,6 +37,9 @@ export default class Modal extends React.Component {
                         )}
                     </div>
                     <div className="modal-bio">
+                        <div className="close-button">
+                            <Button bg="white" color="deep" text="strong" onClick={this.props.closeModal}>X</Button>
+                        </div>
                         {name && (<Styled.h2 className="profile-name">{name}</Styled.h2>)}
                         {position.title && (<Styled.p className="profile-title">{position.title}</Styled.p>)}
                         <div className="very-small">
@@ -51,9 +54,6 @@ export default class Modal extends React.Component {
                         )}
                         <div className="modal-buttons">
                             <Button onClick={this.props.goToProfile}>View HODP Work</Button>
-                            <div className="close-button">
-                                <Button onClick={this.props.closeModal}>X</Button>
-                            </div>
                         </div>
                     </div>
                 </Grid>

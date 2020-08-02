@@ -78,7 +78,6 @@ class PeopleList extends React.Component {
 
     handleClickOutside = (e) => {
         console.log(e);
-        var modalContainer = document.getElementById("modal-container");
         if (e.target.className === "modal" && this.state.show) {
             console.log(e);
             this.closeModal();
@@ -97,14 +96,12 @@ class PeopleList extends React.Component {
                         onChange={this.handleChange}
                     ></Input>
                 </Grid>
-                <div id="modal-container">
-                    <Modal
-                        show={this.state.show} 
-                        closeModal={this.closeModal} 
-                        data={this.state.modalData}
-                        goToProfile={this.goToProfile}>
-                    </Modal>
-                </div>
+                <Modal
+                    show={this.state.show} 
+                    closeModal={this.closeModal} 
+                    data={this.state.modalData}
+                    goToProfile={this.goToProfile}>
+                </Modal>
                 {this.state.board && this.state.board.length > 0 && (
                 <PeopleGrid items={this.state.board} showModal={this.showModal} title="Board" />
                 )}

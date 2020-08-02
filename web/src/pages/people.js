@@ -93,7 +93,7 @@ export const query = graphql`
     }
     founder: allSanityPerson(
       filter: {
-        position: { title: { eq: "Founder and President Emeritus"}}
+        position: { title: { eq: "Founder Emeritus"}}
       }
     )
     {
