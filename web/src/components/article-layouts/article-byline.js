@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import { formatDate } from "../../lib/helpers";
+import Spacer from "../../components/core/spacer"
 
 function ArticleByline({ members, authors, publishedAt, showDate }) {
   const includeInByline = person => person
@@ -14,6 +15,7 @@ function ArticleByline({ members, authors, publishedAt, showDate }) {
 
   // filter contributors who aren't developers or authors
   const numContributors = contributors.length;
+  const showDemarcation = showDate && publishedAt && numContributors > 0;
 
   return (
     <div sx={{ fontWeight: "medium" }}>
@@ -26,8 +28,9 @@ function ArticleByline({ members, authors, publishedAt, showDate }) {
             : i === numContributors - 2 && ` & `}
         </span>
       ))}
-      {contributors.length > 0 && showDate && publishedAt &&
-        <span>{` • `}</span>
+      {showDemarcation && (numContributors < 3
+        ? <span>{` • `}</span>
+        : <Spacer height={3} />)
       }
       {showDate && publishedAt && (
         <span>{`${formatDate(publishedAt)}`}</span>

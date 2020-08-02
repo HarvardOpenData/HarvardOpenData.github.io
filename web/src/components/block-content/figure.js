@@ -14,6 +14,7 @@ function Figure(props) {
         />
       )}
       <Text variant="caption">{props.caption}</Text>
+      <br />
     </div>
   );
 }

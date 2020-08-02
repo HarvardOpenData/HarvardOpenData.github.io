@@ -46,8 +46,8 @@ function HorizontalArticlePreview(props) {
           {props.mainImage && props.mainImage.asset && (
             <img
               src={imageUrlFor(buildImageObj(props.mainImage))
-                .width(600)
-                .height(Math.floor((5 / 8) * 600))
+                .width(1200)
+                .height(Math.floor((5 / 8) * 1200))
                 .url()}
               sx={{
                 width: "100%",
