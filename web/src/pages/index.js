@@ -6,6 +6,7 @@ import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
+import Section from "../components/core/section";
 import Layout from "../containers/layout";
 import PreviewGrid from "../components/article-layouts/preview-grid";
 
@@ -147,7 +148,7 @@ const IndexPage = (props) => {
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
         <br />
-        <Grid gap={5} columns={[1, 1, "3fr 1fr"]}>
+        <Grid gap={6} columns={[1, 1, "3fr 1fr"]}>
           {projectNodes && (
             <PreviewGrid
               nodes={projectNodes}
@@ -157,8 +158,18 @@ const IndexPage = (props) => {
               browseMoreHref="/projects/2"
             />
           )}
-          <div className="small preview">
-            <BlockContent blocks={page._rawBodySecondary || []} />
+          <div
+            className="small preview"
+            style={{
+              position: "-webkit-sticky",
+              position: "sticky",
+              top: 0,
+            }}
+          >
+            <br/>
+            <Section header="Quick Links">
+              <BlockContent blocks={page._rawBodySecondary || []} />
+            </Section>
           </div>
         </Grid>
       </Container>

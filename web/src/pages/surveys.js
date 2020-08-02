@@ -44,12 +44,12 @@ const SurveysPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
+        <Grid gap={[4, 5, 6]} columns={[1, 1, "3fr 1fr"]}>
           <div>
             <Styled.h1>Survey Group</Styled.h1>
             <BlockContent blocks={page._rawBody || []} />
           </div>
-          <Section header="Featured Survey Projects" className="small preview">
+          <Section header="Survey Projects" className="small preview">
             <BlockContent blocks={page._rawBodySecondary || []} />
           </Section>
         </Grid>
