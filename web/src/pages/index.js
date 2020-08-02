@@ -157,7 +157,7 @@ const IndexPage = (props) => {
               browseMoreHref="/projects/2"
             />
           )}
-          <div>
+          <div className="small preview">
             <BlockContent blocks={page._rawBodySecondary || []} />
           </div>
         </Grid>

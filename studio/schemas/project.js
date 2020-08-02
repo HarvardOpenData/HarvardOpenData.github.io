@@ -52,9 +52,9 @@ export default {
       type: "blockText",
     },
     {
-      name: "socialBlurb",
-      title: "Social Blurb",
-      type: "blockText",
+      name: "facebookUrl",
+      title: "Facebook post link",
+      type: "url",
     },
     {
       name: "members",

@@ -60,9 +60,9 @@ export default {
       of: [{ type: "reference", to: { type: "subject" } }],
     },
     {
-      name: "socialBlurb",
-      title: "Social Blurb",
-      type: "blockText",
+      name: "facebookUrl",
+      title: "Facebook post link",
+      type: "url",
     },
   ],
   orderings: [
