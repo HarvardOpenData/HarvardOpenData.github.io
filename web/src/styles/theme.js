@@ -131,7 +131,7 @@ export default {
     deep: {
       color: "white",
       backgroundColor: "deep",
-    }
+    },
   },
   links: {
     outbound: {
@@ -194,6 +194,10 @@ export default {
     deep: {
       color: "background",
       bg: "deep",
+    },
+    light: {
+      color: "background",
+      bg: "navy"
     },
     tag: {
       padding: 2,
