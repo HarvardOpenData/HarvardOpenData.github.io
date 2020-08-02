@@ -88,16 +88,6 @@ button {
   min-height: 80vh;
 }
 
-.profile-card {
-  font-size: 0;
-  display: inline-flex;
-}
-
-.profile-card:hover{
-  outline: #C63F3F solid 3px;
-  font-size: 0;
-}
-
 #bio {
   max-width: 500px;
 }
@@ -145,13 +135,13 @@ button {
 }
 
 .profile-name {
-  margin-top: 10px !important;
+  margin-top: 15px !important;
   margin-bottom: 5px !important;
 }
 
 .profile-title {
-  margin-top: 5px !important;
-  margin-bottom: 5px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 .close-button {

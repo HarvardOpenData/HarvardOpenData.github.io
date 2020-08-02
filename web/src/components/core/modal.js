@@ -18,7 +18,7 @@ export default class Modal extends React.Component {
                 <Grid gap={4} columns={[1, 2, '1fr 2fr']}>
                     <div>
                         {image && image.asset && (
-                        <div className="profile-card">
+                        <div className="default-profile">
                             <Image 
                                 src={imageUrlFor(buildImageObj(image))
                                 .width(500)
@@ -30,14 +30,14 @@ export default class Modal extends React.Component {
                         )}
                         {!image && (
                         <div className="default-profile">
-                            <Image className="default-profile"
+                            <Image
                                 src={defaultProfile}
                             />
                         </div>
                         )}
                     </div>
                     <div className="modal-bio">
-                        {name && (<Styled.h4 className="profile-name">{name}</Styled.h4>)}
+                        {name && (<Styled.h2 className="profile-name">{name}</Styled.h2>)}
                         {position.title && (<Styled.p className="profile-title">{position.title}</Styled.p>)}
                         <div className="very-small">
                             {concentration && (concentration + ", ")}
