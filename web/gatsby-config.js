@@ -22,12 +22,12 @@ module.exports = {
         link: `/participate`,
         subMenu: [
           {
-            name: `Predictions Game`,
-            link: `/predictions`,
-          },
-          {
             name: `Surveys`,
             link: `/surveys`,
+          },
+          {
+            name: `Predictions Game`,
+            link: `/predictions`,
           },
           {
             name: `HODP Docs`,
