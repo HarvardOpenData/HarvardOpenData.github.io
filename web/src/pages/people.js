@@ -3,7 +3,7 @@ import { jsx } from "theme-ui";
 import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import PeopleList from "../components/people-list";
+import PeopleList from "../components/people-layouts/people-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
@@ -14,6 +14,7 @@ export const query = graphql`
       filter: { 
         position: { title: { eq: "Contributor" } }
       }
+      sort: { fields: [name], order: ASC }
     )
     {
       edges {
@@ -35,6 +36,7 @@ export const query = graphql`
             group
           }
           year
+          concentration
         }
       }
     }
@@ -62,6 +64,7 @@ export const query = graphql`
               group
             }
             year
+            concentration
           }
         }
       }
@@ -112,6 +115,8 @@ export const query = graphql`
             title
             group
           }
+          year
+          concentration
         }
       }
     }
@@ -140,6 +145,7 @@ export const query = graphql`
             group
           }
           year
+          concentration
         }
       }
     }
