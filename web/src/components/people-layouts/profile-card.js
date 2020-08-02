@@ -17,7 +17,7 @@ class ProfileCard extends React.Component {
         return (
             <div>
                 {image && image.asset && (
-                  <div className="profile-card">
+                  <div className="default-profile">
                     <Image 
                         src={imageUrlFor(buildImageObj(image))
                         .width(500)
@@ -30,7 +30,7 @@ class ProfileCard extends React.Component {
                 )}
                 {!image && (
                   <div className="default-profile">
-                    <Image className="default-profile"
+                    <Image
                         src={defaultProfile}
                         onClick={() => this.props.showModal(this.props.data)}
                     />
