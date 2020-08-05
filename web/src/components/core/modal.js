@@ -3,6 +3,7 @@ import { Container, Grid, Button, Styled, Image } from "theme-ui";
 import BlockText from "../core/block-text";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
+import Link from "../core/link";
 import defaultProfile from "../../assets/default-profile.jpg"
 
 export default class Modal extends React.Component {
@@ -53,7 +54,9 @@ export default class Modal extends React.Component {
                         </div>
                         )}
                         <div className="modal-buttons">
-                            <Button onClick={this.props.goToProfile}>View HODP Work</Button>
+                            <Link to={`/people/${this.props.data.slug.current}`}>
+                                <Button>View HODP Work</Button>
+                            </Link>
                         </div>
                     </div>
                 </Grid>

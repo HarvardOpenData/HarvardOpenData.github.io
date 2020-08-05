@@ -68,10 +68,6 @@ class PeopleList extends React.Component {
         this.setState({modalData: {}});
     }
 
-    goToProfile = () => {
-        alert("Eventually, this'll take you to their profile!");
-    }
-
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside, false);
     }
@@ -99,8 +95,7 @@ class PeopleList extends React.Component {
                 <Modal
                     show={this.state.show} 
                     closeModal={this.closeModal} 
-                    data={this.state.modalData}
-                    goToProfile={this.goToProfile}>
+                    data={this.state.modalData}>
                 </Modal>
                 {this.state.board && this.state.board.length > 0 && (
                 <PeopleGrid items={this.state.board} showModal={this.showModal} title="Board" />
@@ -121,9 +116,5 @@ class PeopleList extends React.Component {
         );
     }
 }
-
-// TODO fix the rendering of the default profile images so they're the same size as others
-// use media queries in the css to make the modal wider on mobile
-// if i do scrollable modal, how do i make it go over even the nav??
 
 export default PeopleList
