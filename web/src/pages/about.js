@@ -104,7 +104,7 @@ const AboutPage = (props) => {
         <Container>
           <Spacer height={5} />
           <Styled.h1>Our work</Styled.h1>
-          <Grid gap={4} columns={[1, 2, 4]}>
+          <Grid gap={[1, 4, 4]} columns={[1, 2, 4]}>
             {page._rawBodySecondary && page._rawBodySecondary.map((block) =>
               <FeatureCard {...block} />
             )}
