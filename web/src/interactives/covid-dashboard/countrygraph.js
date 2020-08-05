@@ -53,19 +53,19 @@ class CountryGraph extends Component {
             label: "Cases",
             data: Object.values(cases),
             fill: true,
-            borderColor: "red",
+            borderColor: "#C63F3F",
           },
           {
             label: "Deaths",
             data: Object.values(deaths),
             fill: true,
-            borderColor: "blue",
+            borderColor: "#251616",
           },
           {
             label: "Recovered",
             data: Object.values(recovered),
             fill: true,
-            borderColor: "green",
+            borderColor: "#455574",
           },
         ],
       },
@@ -83,7 +83,11 @@ class CountryGraph extends Component {
           options={countryOptions}
           onChange={this.handleChange}
         />
-        <Line data={this.state.chartData} />
+        <Line
+          data={this.state.chartData}
+          height={"250"}
+          options={{ maintainAspectRatio: true }}
+        />
       </div>
     );
   }

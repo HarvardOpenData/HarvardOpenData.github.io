@@ -18,7 +18,7 @@ class StateGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      state: "AL",
+      state: "MA",
       chartData: {
         labels: [],
         datasets: [
@@ -53,28 +53,28 @@ class StateGraph extends Component {
           this.state.sort === "daily"
             ? [
                 {
-                  label: "hospitalized Currently",
+                  label: "Hospitalized Currently",
                   data: Object.values(data.hospitalizedCurrently),
                   fill: true,
-                  borderColor: "purple",
+                  borderColor: "#455574",
                 },
                 {
                   label: "Increase in Cases",
                   data: Object.values(data.positiveIncrease),
                   fill: true,
-                  borderColor: "orange",
+                  borderColor: "#C63F3F",
                 },
                 {
                   label: "Increase in Deaths",
                   data: Object.values(data.deathIncrease),
                   fill: true,
-                  borderColor: "yellow",
+                  borderColor: "#251616",
                 },
                 {
                   label: "Moving Average of Daily Cases",
                   data: Object.values(data.movingAvgCases),
                   fill: true,
-                  borderColor: "black",
+                  borderColor: "#F4B436",
                 },
               ]
             : [
@@ -82,19 +82,19 @@ class StateGraph extends Component {
                   label: "Confirmed",
                   data: data.confirmed,
                   fill: true,
-                  borderColor: "red",
+                  borderColor: "#C63F3F",
                 },
                 {
                   label: "Deaths",
                   data: Object.values(data.deaths),
                   fill: true,
-                  borderColor: "blue",
+                  borderColor: "#251616",
                 },
                 {
                   label: "Recovered",
                   data: Object.values(data.recovered),
                   fill: true,
-                  borderColor: "green",
+                  borderColor: "#455574",
                 },
               ],
       },
@@ -112,7 +112,11 @@ class StateGraph extends Component {
           options={stateOptions}
           onChange={this.handleChange}
         />
-        <Line data={this.state.chartData} />
+        <Line
+          data={this.state.chartData}
+          height={"250"}
+          options={{ maintainAspectRatio: true }}
+        />
       </div>
     );
   }

@@ -120,7 +120,6 @@ const SubscribeWidget = ({ interestForm }) => {
         style={{ border: "none", overflow: "hidden" }}
         scrolling="no"
         frameBorder="0"
-        allowTransparency={true}
         allow="encrypted-media"
       />
     </div>

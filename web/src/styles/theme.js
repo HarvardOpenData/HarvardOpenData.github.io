@@ -63,6 +63,9 @@ export default {
       letterSpacing: "0.015em",
       lineHeight: 1,
     },
+    medium: {
+      fontWeight: "medium",
+    },
     strong: {
       fontFamily: "bold",
     },

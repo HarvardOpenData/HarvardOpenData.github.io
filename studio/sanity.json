@@ -1,5 +1,6 @@
 {
   "root": true,
+  "useCdn": true,
   "api": {
     "projectId": "xx0obpjv",
     "dataset": "production"

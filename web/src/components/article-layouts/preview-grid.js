@@ -26,6 +26,8 @@ const PreviewGrid = ({
           container={container}
           horizontal={featuredHorizontal}
           size="large"
+          columns={"2.12fr 1fr"}
+          gap={4}
           headerAs={"h2"}
         />
       )}

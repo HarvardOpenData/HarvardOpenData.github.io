@@ -9,6 +9,7 @@ import SEO from "../components/core/seo";
 import Section from "../components/core/section";
 import Layout from "../containers/layout";
 import PreviewGrid from "../components/article-layouts/preview-grid";
+import Spacer from "../components/core/spacer";
 
 export const query = graphql`
   query IndexPageQuery {
@@ -166,7 +167,8 @@ const IndexPage = (props) => {
               top: 0,
             }}
           >
-            <br/>
+            <BlockContent blocks={page._rawBody || []} />
+            <Spacer height={5} />
             <Section header="Quick Links">
               <BlockContent blocks={page._rawBodySecondary || []} />
             </Section>

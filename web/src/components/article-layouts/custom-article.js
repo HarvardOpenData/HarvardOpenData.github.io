@@ -39,7 +39,7 @@ function CustomArticle(props) {
             <div>
               <Divider mt={4} color="text" />
               <Styled.h4>Related projects</Styled.h4>
-              <Grid columns={3}>
+              <Grid columns={1}>
                 {relatedProjects.map((project) => (
                   <ArticlePreview
                     key={`related_${project._id}`}
@@ -47,6 +47,8 @@ function CustomArticle(props) {
                     mainImage={project._rawMainImage}
                     image={project._rawMainImage}
                     link={`/project/${project.slug.current}`}
+                    horizontal={[false, true, true]}
+                    headerAs={"medium"}
                   />
                 ))}
               </Grid>

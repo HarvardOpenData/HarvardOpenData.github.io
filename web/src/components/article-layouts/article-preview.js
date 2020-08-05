@@ -39,8 +39,8 @@ function HorizontalArticlePreview(props) {
       sx={{ bg: props.container ? "container" : "#FFFFFF" }}
     >
       <Grid
-        gap={props.size == "large" ? 4 : 3}
-        columns={props.size == "large" ? ["2fr 1fr"] : ["1fr 2fr"]}
+        gap={props.gap || 3}
+        columns={props.columns || ["1fr 2fr"]}
       >
         <Link to={props.link}>
           {props.mainImage && props.mainImage.asset && (

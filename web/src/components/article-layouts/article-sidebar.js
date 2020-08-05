@@ -60,7 +60,7 @@ function ArticleSidebar(props) {
       {relatedProjects && relatedProjects.length > 0 && (
         <Section>
           <Styled.h4>Related projects</Styled.h4>
-          <Grid columns={[3, 1, 1]}>
+          <Grid columns={[1]}>
             {relatedProjects.map((project) => (
               <ArticlePreview
                 key={`related_${project._id}`}
@@ -68,6 +68,8 @@ function ArticleSidebar(props) {
                 mainImage={project._rawMainImage}
                 image={project._rawMainImage}
                 link={`/project/${project.slug.current}`}
+                horizontal
+                headerAs={"medium"}
               />
             ))}
           </Grid>

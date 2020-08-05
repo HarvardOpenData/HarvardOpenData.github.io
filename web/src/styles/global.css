@@ -37,8 +37,8 @@
   src: url("../assets/fonts/Post Grotesk Bold Italic.otf") format("opentype");
 }
 
-html {
-  background: white;
+html, body {
+  background: white !important;
 }
 
 h1, h2, h3, h4, strong, b {
