@@ -4,7 +4,9 @@ import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
-import ProfileCard from "../components/people-layouts/profile-card.js"
+import ProfileBio from "../components/people-layouts/profile-bio.js"
+import ProfileProjects from "../components/people-layouts/profile-projects";
+
 
 export const query = graphql`
   query ProfileTemplateQuery($id: String!) {
@@ -38,6 +40,7 @@ const ProfileTemplate = (props) => {
   
   return (
     <Layout>
+        <br></br>
         <Container>
             {errors && <SEO title="GraphQL Error" />}
             {profile &&
@@ -48,7 +51,8 @@ const ProfileTemplate = (props) => {
                 <GraphQLErrorList errors={errors} />
                 </Container>
             )}
-            {profile && <ProfileCard data={profile}/>}
+            {profile && <ProfileBio data={profile}></ProfileBio>}
+            {profile && <ProfileProjects data={profile}/>}
         </Container>
     </Layout>
   );

@@ -142,6 +142,11 @@ button {
   margin-bottom: 5px !important;
 }
 
+.bio-name {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
 .profile-title {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
@@ -153,4 +158,10 @@ button {
 
 #small-bio {
   margin-bottom: 20px !important;
+}
+
+.profile-page {
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -238,13 +238,13 @@ const PeoplePage = (props) => {
       <Container>
         <SEO title={"People"} />
       </Container>
-        <PeopleList
-          board={boardNodes}
-          faculty={facultyNodes}
-          contributors={contributorNodes}
-          boardEmeritus={boardEmeritusNodes}
-          alumni={alumniNodes}
-          />
+      <PeopleList
+        board={boardNodes}
+        faculty={facultyNodes}
+        contributors={contributorNodes}
+        boardEmeritus={boardEmeritusNodes}
+        alumni={alumniNodes}
+        />
     </Layout>
   );
 };
