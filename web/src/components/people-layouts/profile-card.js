@@ -1,6 +1,7 @@
 import React from 'react';
 /** @jsx jsx */
-import { jsx, Grid, Input, Image, Styled } from "theme-ui";
+import { jsx, Grid, Input, Image, Styled, Text } from "theme-ui";
+import Link from "../core/link";
 import Container from "../core/container";
 import BlockText from "../core/block-text";
 import { buildImageObj } from "../../lib/helpers";
@@ -36,7 +37,14 @@ class ProfileCard extends React.Component {
                     />
                   </div>
                 )}
-              {name && (<Styled.h4 className="profile-name">{name}</Styled.h4>)}
+              {name && 
+              <div className="profile-name">
+                <Link to={`/people/${this.props.data.slug.current}`}>
+                  <Text variant="h4">
+                    {name}
+                  </Text>
+                </Link>
+              </div>}
               {position.title && (<Styled.p className="profile-title">{position.title}</Styled.p>)}
               {concentration && (
                 <div className="very-small">{concentration}</div>

@@ -31,7 +31,7 @@ export default class ProfileBio extends React.Component {
                             <Image src={defaultProfile}/>
                         )}
                     </div>
-                    <div className="profile-page">
+                    <div>
                         {name && (<Styled.h2 className="bio-name">{name}</Styled.h2>)}
                         {position.title && (<Styled.p className="profile-title">{position.title}</Styled.p>)}
                         <div className="very-small">

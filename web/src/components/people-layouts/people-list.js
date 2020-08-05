@@ -58,12 +58,10 @@ class PeopleList extends React.Component {
     }
 
     showModal = (profileData) => {
-        console.log("should show");
         this.setState({show: true, modalData: profileData});
     }
 
     closeModal = () => {
-        console.log("closed");
         this.setState({show: false});
         this.setState({modalData: {}});
     }
@@ -73,9 +71,7 @@ class PeopleList extends React.Component {
     }
 
     handleClickOutside = (e) => {
-        console.log(e);
         if (e.target.className === "modal" && this.state.show) {
-            console.log(e);
             this.closeModal();
         }
     }
