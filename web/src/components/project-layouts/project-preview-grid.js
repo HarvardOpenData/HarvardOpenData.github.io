@@ -4,7 +4,6 @@ import { Styled, Grid } from "theme-ui";
 import ArticlePreview from "../article-layouts/article-preview";
 
 function ProjectPreviewGrid(props) {
-  console.log(props.nodes);
   return (
     <div>
       {props.title && (

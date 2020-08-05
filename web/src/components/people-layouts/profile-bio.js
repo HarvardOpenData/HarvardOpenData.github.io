@@ -28,7 +28,12 @@ export default class ProfileBio extends React.Component {
                             />
                         )}
                         {!image && (
-                            <Image src={defaultProfile}/>
+                            <Image src={defaultProfile}
+                                   sx={{
+                                       width: "180px",
+                                       height: "180px",
+                                       borderRadius: "50%",
+                                   }}/>
                         )}
                     </div>
                     <div>

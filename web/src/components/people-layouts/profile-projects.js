@@ -5,7 +5,7 @@ import PreviewGrid from "../article-layouts/preview-grid"
 
 export default class ProfileProjects extends React.Component {
   render() {
-    const subjects = ["As author", "As editor", "As designer"];
+    const subjects = ["Projects", "Editing Work", "Design Work", "Blog posts"];
     const cards = 
         subjects.map((subject) => {
             return (
