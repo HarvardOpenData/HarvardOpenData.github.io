@@ -4,10 +4,10 @@ import { graphql } from "gatsby";
 import { mapEdgesToNodes } from "../lib/helpers";
 import BlogPostPreviewGrid from "../components/blog-layouts/blog-post-preview-grid";
 import Container from "../components/core/container";
-import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import Pagination from "../components/core/pagination";
 import SEO from "../components/core/seo";
+import Spacer from "../components/core/spacer";
 import Layout from "../containers/layout";
 
 export const query = graphql`
@@ -56,7 +56,9 @@ const BlogListTemplate = (props) => {
     <Layout>
       <SEO title="Blog" />
       <Container>
-        <BannerHeader title={"Blog"} />
+        <Styled.h1>HODP Blog</Styled.h1>
+        <Styled.p>For the fun stuff.</Styled.p>
+        <Spacer height={4}/>
         {postNodes && postNodes.length > 0 && (
           <BlogPostPreviewGrid nodes={postNodes} />
         )}

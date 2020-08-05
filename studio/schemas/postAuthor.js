@@ -17,9 +17,13 @@ export default {
       options: {
         layout: "radio",
         list: [
-          { title: "Illustration", value: "illustration" },
-          { title: "Text", value: "text" },
+          { title: "Designer", value: "designer" },
+          { title: "Author", value: "author" },
+          { title: "Developer", value: "developer" },
+          { title: "Contributor", value: "contributor" },
           { title: "Editor", value: "editor" },
+          { title: "Manager", value: "manager" },
+          { title: "Illustration", value: "illustration" },
         ],
       },
     },

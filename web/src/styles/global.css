@@ -39,6 +39,7 @@
 
 html, body {
   background: white !important;
+  max-width: 100vw;
 }
 
 h1, h2, h3, h4, strong, b {

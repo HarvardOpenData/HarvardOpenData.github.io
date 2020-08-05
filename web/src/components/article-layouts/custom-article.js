@@ -49,6 +49,7 @@ function CustomArticle(props) {
                     link={`/project/${project.slug.current}`}
                     horizontal={[false, true, true]}
                     headerAs={"medium"}
+                    columns={["1fr 3.5fr"]}
                   />
                 ))}
               </Grid>
