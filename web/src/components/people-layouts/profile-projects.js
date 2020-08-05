@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Container, Grid, Button, Styled, Image } from "theme-ui";
 import Section from "../core/section";
+import PreviewGrid from "../article-layouts/preview-grid"
 
 export default class ProfileProjects extends React.Component {
   render() {
@@ -31,7 +32,9 @@ export default class ProfileProjects extends React.Component {
                         {cards}
                     </div>
                     <div>
-                        Will eventually show you their work!
+                        <div>
+                            <PreviewGrid nodes={this.props.projects} horizontal columns={[1]} />
+                        </div>
                     </div>
                 </Grid>
             </Section>

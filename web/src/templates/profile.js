@@ -6,6 +6,7 @@ import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import ProfileBio from "../components/people-layouts/profile-bio.js"
 import ProfileProjects from "../components/people-layouts/profile-projects";
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 
 export const query = graphql`
@@ -30,14 +31,75 @@ export const query = graphql`
       year
       concentration
     }
+    project: allSanityProject(
+        filter: { slug: { current: { ne: null } } }
+        sort: { fields: [publishedAt], order: DESC }
+    ) {
+        edges {
+            node {
+                id
+                publishedAt
+                categories {
+                    _id
+                    title
+                }
+                subjects {
+                    _id
+                    title
+                }
+                mainImage {
+                    crop {
+                        _key
+                        _type
+                        top
+                        bottom
+                        left
+                        right
+                    }
+                    hotspot {
+                        _key
+                        _type
+                        x
+                        y
+                        height
+                        width
+                    }
+                    asset {
+                        _id
+                    }
+                    alt
+                }
+                title
+                slug {
+                    current
+                }
+                _rawExcerpt
+                _rawMembers(resolveReferences: {maxDepth: 5})
+            }
+        }
+    }
   }
 `;
 
 const ProfileTemplate = (props) => {
   const { data, errors } = props;
   const profile = data && data.people;
-  console.log(profile);
-  
+  const id = data && data.people && data.people.id;
+  const projectNodes =
+    data &&
+    data.project &&
+    mapEdgesToNodes(data.project).filter(filterOutDocsWithoutSlugs);
+
+  // Remove this and use a filter in the query when Sanity allows array filtering
+  // Filter for project you contributed to
+  const filteredProjectNodes = projectNodes.filter((node) => {
+    let names = node._rawMembers
+    let yourPresence = names.filter((name) => {
+        return (name.person.id === id);
+    })
+    return yourPresence.length > 0;
+  })
+
   return (
     <Layout>
         <br></br>
@@ -52,7 +114,7 @@ const ProfileTemplate = (props) => {
                 </Container>
             )}
             {profile && <ProfileBio data={profile}></ProfileBio>}
-            {profile && <ProfileProjects data={profile}/>}
+            {profile && <ProfileProjects data={profile} projects={filteredProjectNodes}/>}
         </Container>
     </Layout>
   );
