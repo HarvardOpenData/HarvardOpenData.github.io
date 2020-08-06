@@ -20,13 +20,15 @@ export default class Modal extends React.Component {
                     <div>
                         {image && image.asset && (
                         <div className="default-profile">
-                            <Image 
-                                src={imageUrlFor(buildImageObj(image))
-                                .width(500)
-                                .height(500)
-                                .fit("crop")
-                                .url()}
-                            />
+                            <Link to={`/people/${this.props.data.slug.current}`}>
+                                <Image 
+                                    src={imageUrlFor(buildImageObj(image))
+                                    .width(500)
+                                    .height(500)
+                                    .fit("crop")
+                                    .url()}
+                                />
+                            </Link>
                         </div>
                         )}
                         {!image && (

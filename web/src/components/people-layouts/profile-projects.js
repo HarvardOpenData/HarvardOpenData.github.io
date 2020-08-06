@@ -6,7 +6,9 @@ import { useState } from "react";
 
 // Shout-out to Alex for doing this in the data catalog first so I can mooch now :) 
 function ProfileProjects(props) {
-    const subjects = ["Projects", "Editing", "Design", "Blog posts", "All"];
+    // TODO Better to define a schema in sanity for contribution type and mapping from type to role!
+    // So that future devs can update just the schemas and don't have to track down this component
+    const subjects = ["Projects", "Contributions", "Editing", "Design", "Blog posts", "All"];
     const [activeCategory, setActiveCategory] = useState("Projects");
     const cards = 
         subjects.map((subject) => {
@@ -33,7 +35,8 @@ function ProfileProjects(props) {
     const role_dict = {
         "Projects": ["author", "developer"],
         "Editing": ["editor", "manager"],
-        "Design": ["designer"]
+        "Design": ["designer"],
+        "Contributions": ["contributor"]
     }
     let nodes;
     if (activeCategory === "Blog posts") {
@@ -45,7 +48,6 @@ function ProfileProjects(props) {
             var person = project._rawMembers.filter((p) => {
                 return (p.person.id === props.id)
             }) 
-            console.log(person);
             for (let role in role_dict[activeCategory]) {
                 if (person[0].roles && person[0].roles.indexOf(role_dict[activeCategory][role]) !== -1) {
                     return true;

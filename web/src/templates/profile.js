@@ -121,39 +121,7 @@ export const query = graphql`
                     current
                 }
                 _rawExcerpt
-                _rawBody(resolveReferences: { maxDepth: 5 })
-                authors {
-                    _key
-                    person {
-                        id
-                        image {
-                            crop {
-                                _key
-                                _type
-                                top
-                                bottom
-                                left
-                                right
-                            }
-                            hotspot {
-                                _key
-                                _type
-                                x
-                                y
-                                height
-                                width
-                            }
-                            asset {
-                                _id
-                            }
-                        }
-                        name
-                        slug {
-                            current
-                        }
-                    }
-                    roles
-                }
+                _rawAuthors(resolveReferences: {maxDepth: 5})
             }
         }
     }
@@ -186,7 +154,7 @@ const ProfileTemplate = (props) => {
   })
 
   const filteredBlogNodes = blogNodes.filter((node) => {
-    let names = node.authors
+    let names = node._rawAuthors
     let yourPresence = names.filter((name) => {
         return (name.person.id === id);
     })

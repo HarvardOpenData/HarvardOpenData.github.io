@@ -17,21 +17,19 @@ function ProfileBio(props) {
                         {image && image.asset && (
                             <Image 
                                 src={imageUrlFor(buildImageObj(image))
-                                .width(180)
-                                .height(180)
+                                .width(300)
+                                .height(300)
                                 .fit("crop")
                                 .url()}
                                 sx={{
-                                    borderRadius: "50%",
+                                    //borderRadius: "50%",
                                 }}
                             />
                         )}
                         {!image && (
                             <Image src={defaultProfile}
                                    sx={{
-                                       width: "180px",
-                                       height: "180px",
-                                       borderRadius: "50%",
+                                       width: "300px",
                                    }}/>
                         )}
                     </div>

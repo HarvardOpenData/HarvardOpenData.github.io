@@ -28,7 +28,7 @@ function ProfileCard(props) {
                 <div className="default-profile">
                   <Image
                       src={defaultProfile}
-                      onClick={() => this.props.showModal(props.data)}
+                      onClick={() => props.showModal(props.data)}
                   />
                 </div>
               )}
