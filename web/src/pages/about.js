@@ -85,7 +85,7 @@ const AboutPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <Grid gap={5} columns={[1, 1, 2]}>
+        <Grid gap={[2, 5, 5]} columns={[1, 1, 2]}>
           <BlockContent blocks={(page._rawBody && page._rawBody[0]) || []} />
           <div>
             <BlockContent blocks={(page._rawBody && page._rawBody.slice(1)) || []} />
