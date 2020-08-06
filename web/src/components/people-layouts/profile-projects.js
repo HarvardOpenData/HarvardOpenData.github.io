@@ -44,9 +44,10 @@ function ProfileProjects(props) {
         nodes = props.projects.filter((project) => {
             var person = project._rawMembers.filter((p) => {
                 return (p.person.id === props.id)
-            })    
+            }) 
+            console.log(person);
             for (let role in role_dict[activeCategory]) {
-                if (person[0].roles.indexOf(role_dict[activeCategory][role]) !== -1) {
+                if (person[0].roles && person[0].roles.indexOf(role_dict[activeCategory][role]) !== -1) {
                     return true;
                 }
             }
