@@ -1,14 +1,13 @@
 import React from "react";
-import { Container, Grid, Button, Styled, Image } from "theme-ui";
+import { Container, Grid, Button, Styled, Image, } from "theme-ui";
 import BlockText from "../core/block-text";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import Link from "../core/link";
 import defaultProfile from "../../assets/default-profile.jpg"
 
-export default class ProfileBio extends React.Component {
-  render() {
-    const { image, name, _rawBio, position, concentration, house, year } = this.props.data;
+function ProfileBio(props) {
+    const { image, name, _rawBio, position, concentration, house, year } = props.data;
     return (
       <div>
         <div>
@@ -37,7 +36,13 @@ export default class ProfileBio extends React.Component {
                         )}
                     </div>
                     <div>
-                        {name && (<Styled.h2 className="bio-name">{name}</Styled.h2>)}
+                        {name && (
+                            <Link to={`/people/${props.data.slug.current}`}>
+                                <Styled.h2 className="bio-name">
+                                    {name}
+                                </Styled.h2>
+                            </Link>
+                        )}
                         {position.title && (<Styled.p className="profile-title">{position.title}</Styled.p>)}
                         <div className="very-small">
                             {concentration && (concentration + ", ")}
@@ -55,5 +60,6 @@ export default class ProfileBio extends React.Component {
         </div>
       </div>
     );
-  }
 }
+
+export default ProfileBio;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Button, Styled, Image } from "theme-ui";
+import { Container, Grid, Button, Styled, Image, Text } from "theme-ui";
 import BlockText from "../core/block-text";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
@@ -41,7 +41,15 @@ export default class Modal extends React.Component {
                         <div className="close-button">
                             <Button bg="white" color="deep" text="strong" onClick={this.props.closeModal}>X</Button>
                         </div>
-                        {name && (<Styled.h2 className="profile-name">{name}</Styled.h2>)}
+                        {name && 
+                            <div className="profile-name">
+                                <Link to={`/people/${this.props.data.slug.current}`}>
+                                    <Text variant="h2">
+                                    {name}
+                                    </Text>
+                                </Link>
+                            </div>
+                        }
                         {position.title && (<Styled.p className="profile-title">{position.title}</Styled.p>)}
                         <div className="very-small">
                             {concentration && (concentration + ", ")}

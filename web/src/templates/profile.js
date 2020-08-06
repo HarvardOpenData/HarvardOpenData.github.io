@@ -193,7 +193,14 @@ const ProfileTemplate = (props) => {
     return yourPresence.length > 0;
   })
 
-  const contributionNodes = filteredProjectNodes.concat(filteredBlogNodes);
+  // Blog schema has authors, projec schema has members
+  // We wanted to display blog posts via the ProjectPreview component
+  // for consistency in the profile page, hence this workaround
+  if (filteredBlogNodes.length > 0 ) {
+    for (var i = 0; i < filteredBlogNodes.length; i++) {
+        filteredBlogNodes[0]._rawMembers = filteredBlogNodes[0].authors;
+    }
+  }
 
   return (
     <Layout>
@@ -209,7 +216,14 @@ const ProfileTemplate = (props) => {
                 </Container>
             )}
             {profile && <ProfileBio data={profile}></ProfileBio>}
-            {profile && <ProfileProjects data={profile} projects={contributionNodes}/>}
+            {profile && 
+            <ProfileProjects 
+                data={profile} 
+                projects={filteredProjectNodes}
+                blog={filteredBlogNodes}
+                id={id}
+            />
+            }
         </Container>
     </Layout>
   );
