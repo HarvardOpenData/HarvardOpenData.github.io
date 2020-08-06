@@ -2,6 +2,7 @@
 import { jsx, Styled, Text } from "theme-ui";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
+import Link from "../core/link"
 
 function ucfirst(str) {
   return `${str.substr(0, 1).toUpperCase()}${str.substr(1)}`;
@@ -47,11 +48,13 @@ function Role(item) {
         />
       )}
       <div sx={{ p: [2], flex: "1 1 auto" }}>
-        <Text fontSize={0}>
-          <strong>
-            {(item.person && item.person.name) || <em>Missing</em>}
-          </strong>
-        </Text>
+        <Link to={`/people/${item.person.slug.current}`}>
+          <Text fontSize={0}>
+            <strong>
+              {(item.person && item.person.name) || <em>Missing</em>}
+            </strong>
+          </Text>
+        </Link>
         {item.roles && <Text variant="small">{stringifyRoles(item)}</Text>}
       </div>
     </div>

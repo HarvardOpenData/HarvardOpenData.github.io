@@ -93,7 +93,7 @@ export const query = graphql`
     }
     founder: allSanityPerson(
       filter: {
-        position: { title: { eq: "Founder Emeritus"}}
+        position: { title: { eq: "Founder"}}
       }
     )
     {
@@ -238,13 +238,13 @@ const PeoplePage = (props) => {
       <Container>
         <SEO title={"People"} />
       </Container>
-        <PeopleList
-          board={boardNodes}
-          faculty={facultyNodes}
-          contributors={contributorNodes}
-          boardEmeritus={boardEmeritusNodes}
-          alumni={alumniNodes}
-          />
+      <PeopleList
+        board={boardNodes}
+        faculty={facultyNodes}
+        contributors={contributorNodes}
+        boardEmeritus={boardEmeritusNodes}
+        alumni={alumniNodes}
+        />
     </Layout>
   );
 };

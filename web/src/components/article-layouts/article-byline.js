@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx, Text } from "theme-ui";
 import { formatDate } from "../../lib/helpers";
 import Spacer from "../../components/core/spacer"
+import Link from "../core/link.js";
 
 function ArticleByline({ members, authors, publishedAt, showDate }) {
   const includeInByline = person => person
@@ -22,7 +23,9 @@ function ArticleByline({ members, authors, publishedAt, showDate }) {
       {contributors.length > 0 && `By `}
       {contributors.map((item, i) => (
         <span key={item._key}>
-          {item.person && `${item.person.name}`}
+          <Link to={`/people/${item.person.slug.current}`}>
+                {item.person && `${item.person.name}`}
+          </Link> 
           {i < numContributors - 2
             ? `, `
             : i === numContributors - 2 && ` & `}
