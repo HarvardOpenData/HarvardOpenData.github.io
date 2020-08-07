@@ -68,6 +68,7 @@ function ProfileProjects(props) {
                     </div>
                     <div>
                         <div>
+                            <br></br>
                             {nodes && <ProjectPreviewGrid nodes={nodes} horizontal columns={[1]} />}
                         </div>
                     </div>
