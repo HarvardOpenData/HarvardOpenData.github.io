@@ -20,7 +20,6 @@ import page from "./page";
 import person from "./person";
 import position from "./position";
 import post from "./post";
-import postAuthor from "./postAuthor";
 import preview from "./preview";
 import project from "./project";
 import projectMember from "./projectMember";
@@ -55,7 +54,6 @@ export default createSchema({
     position,
     preview,
     post,
-    postAuthor,
     project,
     projectMember,
     siteSettings,

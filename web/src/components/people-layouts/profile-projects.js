@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Container, Grid, Button, Styled, Image } from "theme-ui";
+import { Card, Grid } from "theme-ui";
 import Section from "../core/section";
 import ProjectPreviewGrid from "../project-layouts/project-preview-grid"
 import { useState } from "react";
@@ -10,7 +10,6 @@ function ProfileProjects(props) {
     // So that future devs can update just the schemas and don't have to track down this component
     const subjects = ["Projects", "Contributions", "Editing", "Design", "Blog posts", "All"];
     const [activeCategory, setActiveCategory] = useState("Projects");
-    const [linkType, setLinkType] = useState("project");
     const cards = 
         subjects.map((subject) => {
             const included = activeCategory === subject;
@@ -27,11 +26,6 @@ function ProfileProjects(props) {
                     }}
                     onClick={() => {
                         setActiveCategory(subject);
-                        if (subject === "Blog posts") {
-                            setLinkType("blog");
-                        } else {
-                            setLinkType("project")
-                        }
                     }}
                     >
                     {subject}

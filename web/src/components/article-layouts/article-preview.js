@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, Grid, Styled, Text } from "theme-ui";
-import { format, distanceInWords, differenceInDays } from "date-fns";
 import Link from "../core/link";
 import { buildImageObj, formatDate } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";

@@ -153,10 +153,8 @@ const ProfileTemplate = (props) => {
         })
         return yourPresence.length > 0;
     })
-
-
-    
-   }
+  }
+  
   const filteredProjectNodes = filterNodes(projectNodes, id);
   const filteredBlogNodes = filterNodes(blogNodes, id);
 

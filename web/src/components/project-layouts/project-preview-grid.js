@@ -1,6 +1,6 @@
 import Link from "../core/link";
 import React from "react";
-import { Styled, Grid } from "theme-ui";
+import { Grid } from "theme-ui";
 import ArticlePreview from "../article-layouts/article-preview";
 
 function ProjectPreviewGrid(props) {
