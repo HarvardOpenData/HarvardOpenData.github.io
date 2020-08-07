@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Container, Grid, Button, Styled, Image } from "theme-ui";
 import Section from "../core/section";
-import PreviewGrid from "../article-layouts/preview-grid"
+import ProjectPreviewGrid from "../project-layouts/project-preview-grid"
 import { useState } from "react";
 
 // Shout-out to Alex for doing this in the data catalog first so I can mooch now :) 
@@ -10,6 +10,7 @@ function ProfileProjects(props) {
     // So that future devs can update just the schemas and don't have to track down this component
     const subjects = ["Projects", "Contributions", "Editing", "Design", "Blog posts", "All"];
     const [activeCategory, setActiveCategory] = useState("Projects");
+    const [linkType, setLinkType] = useState("project");
     const cards = 
         subjects.map((subject) => {
             const included = activeCategory === subject;
@@ -26,6 +27,11 @@ function ProfileProjects(props) {
                     }}
                     onClick={() => {
                         setActiveCategory(subject);
+                        if (subject === "Blog posts") {
+                            setLinkType("blog");
+                        } else {
+                            setLinkType("project")
+                        }
                     }}
                     >
                     {subject}
@@ -35,7 +41,7 @@ function ProfileProjects(props) {
     const role_dict = {
         "Projects": ["author", "developer"],
         "Editing": ["editor", "manager"],
-        "Design": ["designer"],
+        "Illustrations": ["designer", "illustrator"],
         "Contributions": ["contributor"]
     }
     let nodes;
@@ -56,6 +62,7 @@ function ProfileProjects(props) {
             return false;
         })
     } 
+    console.log(nodes);
     return (
         <div>
             <br></br>
@@ -67,7 +74,7 @@ function ProfileProjects(props) {
                     </div>
                     <div>
                         <div>
-                            <PreviewGrid nodes={nodes} horizontal columns={[1]} />
+                            {nodes && <ProjectPreviewGrid nodes={nodes} horizontal columns={[1]} />}
                         </div>
                     </div>
                 </Grid>

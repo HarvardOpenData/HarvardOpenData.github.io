@@ -2,7 +2,6 @@ import Link from "../core/link";
 import React from "react";
 import { Styled, Grid } from "theme-ui";
 import ArticlePreview from "../article-layouts/article-preview";
-import { getBlogUrl } from "../../lib/helpers";
 
 function ProjectPreviewGrid(props) {
   return (
@@ -28,9 +27,7 @@ function ProjectPreviewGrid(props) {
               container={props.container}
               size={props.size}
               {...node}
-              link={node._rawMembers ? 
-                      `/project/${node.slug.current}` :
-                      getBlogUrl(node.publishedAt, node.slug.current)}
+              link={node.slug.current}
             />
           ))}
       </Grid>

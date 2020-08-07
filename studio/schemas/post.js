@@ -42,16 +42,17 @@ export default {
       type: "blockContent",
     },
     {
-      name: "authors",
-      title: "Authors",
+      name: "members",
+      title: "Members",
       type: "array",
-      of: [{ type: "postAuthor" }],
+      of: [{ type: "projectMember" }],
     },
     {
       name: "categories",
       title: "Categories",
       type: "array",
       of: [{ type: "reference", to: { type: "category" } }],
+      validation: Rule => Rule.required()
     },
     {
       name: "subjects",

@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import BlogPost from "../components/blog-layouts/blog-post";
+import Project from "../components/project-layouts/project";
 import { toPlainText } from "../lib/helpers"
 import { previewImageUrlFor } from "../lib/image-url";
 import SEO from "../components/core/seo";
@@ -49,7 +49,7 @@ export const query = graphql`
       }
       _rawExcerpt
       _rawBody(resolveReferences: { maxDepth: 5 })
-      authors {
+      members {
         _key
         person {
           image {
@@ -108,7 +108,7 @@ const BlogPostTemplate = (props) => {
         </Container>
       )}
 
-      {post && <BlogPost {...post} />}
+      {post && <Project {...post} />}
     </Layout>
   );
 };

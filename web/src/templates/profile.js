@@ -121,7 +121,7 @@ export const query = graphql`
                     current
                 }
                 _rawExcerpt
-                _rawAuthors(resolveReferences: {maxDepth: 5})
+                _rawMembers(resolveReferences: {maxDepth: 5})
             }
         }
     }
@@ -145,30 +145,20 @@ const ProfileTemplate = (props) => {
 
   // Remove this and use a filter in the query when Sanity allows array filtering
   // Filter for project you contributed to
-  const filteredProjectNodes = projectNodes.filter((node) => {
-    let names = node._rawMembers
-    let yourPresence = names.filter((name) => {
-        return (name.person.id === id);
+   function filterNodes(nodes, id) {
+        return nodes.filter((node) => {
+            let names = node._rawMembers
+            let yourPresence = names.filter((name) => {
+                return (name.person.id === id);
+        })
+        return yourPresence.length > 0;
     })
-    return yourPresence.length > 0;
-  })
 
-  const filteredBlogNodes = blogNodes.filter((node) => {
-    let names = node._rawAuthors
-    let yourPresence = names.filter((name) => {
-        return (name.person.id === id);
-    })
-    return yourPresence.length > 0;
-  })
 
-  // Blog schema has authors, projec schema has members
-  // We wanted to display blog posts via the ProjectPreview component
-  // for consistency in the profile page, hence this workaround
-  if (filteredBlogNodes.length > 0 ) {
-    for (var i = 0; i < filteredBlogNodes.length; i++) {
-        filteredBlogNodes[0]._rawMembers = filteredBlogNodes[0].authors;
-    }
-  }
+    
+   }
+  const filteredProjectNodes = filterNodes(projectNodes, id);
+  const filteredBlogNodes = filterNodes(blogNodes, id);
 
   return (
     <Layout>
