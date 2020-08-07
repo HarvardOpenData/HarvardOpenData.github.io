@@ -85,6 +85,7 @@ module.exports = {
         allowList: ["DISQUS_NAME", "MAPBOX_ACCESS_TOKEN"]
       },
     },
+    `gatsby-plugin-client-side-redirect` // keep it in last in list
   ],
 };
 

@@ -190,12 +190,50 @@ async function createBlogListPages(graphql, actions, reporter) {
   });
 }
 
+async function createRedirects(graphql, actions, reporter) {
+  const {createRedirect} = actions
+
+  reporter.info(`Creating redirect page`);
+
+  // fetch data from a collection which contains list of urls mapping for redirection
+  const result = await graphql(`
+    {
+      allSanityRedirect(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            name
+            url
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  if (result.errors) throw result.errors;
+
+  const redirectEdges = (result.data.allSanityRedirect || {}).edges || [];
+
+  redirectEdges.forEach((edge) => {
+    const slug = edge.node.slug.current;
+    const url = edge.node.url;
+
+    reporter.info(`Creating redirect page: ${url}`);
+
+    createRedirect({ fromPath: `/${slug}/`, toPath: `${url}/`, isPermanent: true });
+  });
+}
+
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createBlogPostPages(graphql, actions, reporter);
   await createProjectPages(graphql, actions, reporter);
   await createPeoplePages(graphql, actions, reporter);
   await createProjectListPages(graphql, actions, reporter);
   await createBlogListPages(graphql, actions, reporter);
+  await createRedirects(graphql, actions, reporter);
 };
 
 exports.createSchemaCustomization = ({ actions }) => {
