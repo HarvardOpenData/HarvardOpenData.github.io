@@ -56,7 +56,7 @@ function ProfileProjects(props) {
             return false;
         })
     } 
-    console.log(nodes);
+
     return (
         <div>
             <br></br>

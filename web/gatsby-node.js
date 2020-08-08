@@ -191,7 +191,7 @@ async function createBlogListPages(graphql, actions, reporter) {
 }
 
 async function createRedirects(graphql, actions, reporter) {
-  const {createRedirect} = actions
+  const { createRedirect } = actions;
 
   reporter.info(`Creating redirect page`);
 
@@ -217,12 +217,20 @@ async function createRedirects(graphql, actions, reporter) {
   const redirectEdges = (result.data.allSanityRedirect || {}).edges || [];
 
   redirectEdges.forEach((edge) => {
+    if (! edge) {
+      return;
+    }
     const slug = edge.node.slug.current;
     const url = edge.node.url;
 
-    reporter.info(`Creating redirect page: ${url}`);
+    reporter.info(`Creating redirect page: ${slug} to ${url}`);
 
-    createRedirect({ fromPath: `/${slug}/`, toPath: `${url}/`, isPermanent: true });
+    createRedirect({
+      fromPath: `/${slug}`,
+      toPath: `${url}`,
+      isPermanent: true,
+      redirectInBrowser: true,
+    });
   });
 }
 
