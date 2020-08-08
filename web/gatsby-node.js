@@ -210,14 +210,14 @@ async function createRedirects(graphql, actions, reporter) {
         }
       }
     }
-  `)
+  `);
 
   if (result.errors) throw result.errors;
 
   const redirectEdges = (result.data.allSanityRedirect || {}).edges || [];
 
   redirectEdges.forEach((edge) => {
-    if (! edge) {
+    if (!edge) {
       return;
     }
     const slug = edge.node.slug.current;
@@ -233,7 +233,6 @@ async function createRedirects(graphql, actions, reporter) {
     });
   });
 }
-
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createBlogPostPages(graphql, actions, reporter);
@@ -267,8 +266,8 @@ exports.createSchemaCustomization = ({ actions }) => {
       menuLinks: [MenuLinks]!
     }
     type MenuLinks {
-      name: String!
-      link: String!
+      name: String
+      link: String
       subMenu: [SubMenu] @defaultArray
     }
     type SubMenu {

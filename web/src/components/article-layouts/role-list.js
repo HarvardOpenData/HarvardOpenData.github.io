@@ -2,7 +2,7 @@
 import { jsx, Styled, Text } from "theme-ui";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
-import Link from "../core/link"
+import Link from "../core/link";
 
 function ucfirst(str) {
   return `${str.substr(0, 1).toUpperCase()}${str.substr(1)}`;

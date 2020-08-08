@@ -56,7 +56,7 @@ export const query = graphql`
           }
           title
           _rawExcerpt
-          _rawMembers(resolveReferences: {maxDepth: 5})
+          _rawMembers(resolveReferences: { maxDepth: 5 })
           slug {
             current
           }

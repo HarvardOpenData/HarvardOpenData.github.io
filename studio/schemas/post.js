@@ -7,7 +7,7 @@ export default {
       name: "title",
       title: "Title",
       type: "string",
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
@@ -53,7 +53,7 @@ export default {
       title: "Categories",
       type: "array",
       of: [{ type: "reference", to: { type: "category" } }],
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "subjects",

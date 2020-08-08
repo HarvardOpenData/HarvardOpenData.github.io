@@ -45,7 +45,9 @@ const JoinPage = (props) => {
       <Container>
         <Grid gap={5} columns={[1, 1, 2]}>
           <BlockContent blocks={(page._rawBody && page._rawBody[0]) || []} />
-          <BlockContent blocks={(page._rawBody && page._rawBody.slice(1)) || []} />
+          <BlockContent
+            blocks={(page._rawBody && page._rawBody.slice(1)) || []}
+          />
         </Grid>
       </Container>
     </Layout>

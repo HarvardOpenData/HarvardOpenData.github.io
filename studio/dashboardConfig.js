@@ -1,18 +1,18 @@
 export default {
   widgets: [
-      {
-      name: 'netlify',
+    {
+      name: "netlify",
       options: {
-        title: 'My Netlify deploys',
+        title: "My Netlify deploys",
         sites: [
           {
-            title: 'Website',
+            title: "Website",
             apiId: `${process.env.NETLIFY_API_ID}`,
             buildHookId: `${process.env.BUILD_HOOK_ID}`,
             name: `${process.env.NETLIFY_NAME}`,
-          }
-        ]
-      }
-    }
-  ]
-}
+          },
+        ],
+      },
+    },
+  ],
+};

@@ -26,10 +26,11 @@ const Pagination = ({ prefix, pageContext }) => {
           color="text"
           bg="white"
           sx={{
-            border: theme => i+1 === currentPage && `1px solid ${theme.colors.text}`,
+            border: (theme) =>
+              i + 1 === currentPage && `1px solid ${theme.colors.text}`,
             ":hover": {
               bg: "container",
-            }
+            },
           }}
           to={`${prefix}/${i === 0 ? "" : i + 1}`}
         >

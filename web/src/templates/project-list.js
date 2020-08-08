@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
-import BlockContent from "../components/block-content"
+import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import PreviewGrid from "../components/article-layouts/preview-grid";
@@ -38,7 +38,7 @@ export const query = graphql`
           }
           title
           _rawExcerpt
-          _rawMembers(resolveReferences: {maxDepth: 5})
+          _rawMembers(resolveReferences: { maxDepth: 5 })
           slug {
             current
           }
@@ -92,7 +92,7 @@ const ProjectListTemplate = (props) => {
   // const coverGridNodes = firstPage
   //   ? projectNodes.splice(0, Math.min(4, projectNodes.length))
   //   : [];
-  const coverGridNodes = []
+  const coverGridNodes = [];
 
   const page = data && data.page;
 
@@ -118,11 +118,12 @@ const ProjectListTemplate = (props) => {
             {projectNodes && projectNodes.length > 0 && (
               <Grid gap={[5, 5, 6]} columns={[1, "4fr 1fr"]}>
                 <div>
-                  {<Styled.h1>{firstPage ? "Recent projects" : "Past projects"}</Styled.h1>}
-                  <ProjectList
-                    showDivider
-                    nodes={projectNodes}
-                  />
+                  {
+                    <Styled.h1>
+                      {firstPage ? "Recent projects" : "Past projects"}
+                    </Styled.h1>
+                  }
+                  <ProjectList showDivider nodes={projectNodes} />
                 </div>
                 <Section header="Featured" showDivider={false}>
                   <br />

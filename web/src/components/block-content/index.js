@@ -54,14 +54,14 @@ const serializers = {
     },
     preview(props) {
       return <Preview {...props.node} />;
-    }
+    },
   },
   marks: {
-    internalLink: ({mark, children}) => {
-      let fullSlug = resolveInternalLink(mark)
-      return <Link to={fullSlug}>{children}</Link>
+    internalLink: ({ mark, children }) => {
+      let fullSlug = resolveInternalLink(mark);
+      return <Link to={fullSlug}>{children}</Link>;
     },
-  }
+  },
 };
 
 const BlockContent = ({ blocks }) => (

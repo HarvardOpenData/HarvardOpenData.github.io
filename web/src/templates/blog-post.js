@@ -3,13 +3,13 @@ import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import Project from "../components/project-layouts/project";
-import { toPlainText } from "../lib/helpers"
+import { toPlainText } from "../lib/helpers";
 import { previewImageUrlFor } from "../lib/image-url";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 
 export const query = graphql`
-  query BlogPostTemplateQuery($id: String!) {
+  query BlogPostTemplateQuery($id: String) {
     post: sanityPost(id: { eq: $id }) {
       id
       publishedAt
@@ -88,19 +88,17 @@ const BlogPostTemplate = (props) => {
   const { data, errors } = props;
   const post = data && data.post;
   const mainImageUrl = post && previewImageUrlFor(post.mainImage);
-  
-  console.log(mainImageUrl)
 
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
-      {post &&
+      {post && (
         <SEO
           title={post.title || "Untitled Post"}
           description={toPlainText(post._rawExcerpt) || null}
           image={mainImageUrl}
         />
-      }
+      )}
 
       {errors && (
         <Container>

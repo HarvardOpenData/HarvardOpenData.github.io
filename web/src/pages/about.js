@@ -4,10 +4,10 @@ import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import { resolveInternalLink } from "../lib/helpers"
+import { resolveInternalLink } from "../lib/helpers";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
-import Link from "../components/core/link"
+import Link from "../components/core/link";
 import Spacer from "../components/core/spacer";
 
 export const query = graphql`
@@ -28,9 +28,9 @@ const resolveLink = (link) => {
 
   const { internalLink, externalLink } = link;
   return internalLink ? resolveInternalLink(internalLink) : externalLink;
-}
+};
 
-const FeatureCard = ({header, description, link, key}) =>
+const FeatureCard = ({ header, description, link, key }) => (
   <div
     className={`feature-${key}`}
     sx={{
@@ -61,6 +61,7 @@ const FeatureCard = ({header, description, link, key}) =>
       </div>
     </div>
   </div>
+);
 
 const AboutPage = (props) => {
   const { data, errors } = props;
@@ -85,10 +86,12 @@ const AboutPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <Grid gap={[2, 5,5]} columns={[1, 1, 2]}>
+        <Grid gap={[2, 5, 5]} columns={[1, 1, 2]}>
           <BlockContent blocks={(page._rawBody && page._rawBody[0]) || []} />
           <div>
-            <BlockContent blocks={(page._rawBody && page._rawBody.slice(1)) || []} />
+            <BlockContent
+              blocks={(page._rawBody && page._rawBody.slice(1)) || []}
+            />
             {/* Placeholder before we implement CTAs */}
             <Link to="/people">
               <Button>Meet the team</Button>
@@ -100,14 +103,13 @@ const AboutPage = (props) => {
         </Grid>
       </Container>
       <Spacer height={5} />
-      <div className="theme-background" >
+      <div className="theme-background">
         <Container>
           <Spacer height={5} />
           <Styled.h1>Our work</Styled.h1>
           <Grid gap={4} columns={[1, 2, 4]}>
-            {page._rawBodySecondary && page._rawBodySecondary.map((block) =>
-              <FeatureCard {...block} />
-            )}
+            {page._rawBodySecondary &&
+              page._rawBodySecondary.map((block) => <FeatureCard {...block} />)}
           </Grid>
           <Spacer height={5} />
         </Container>

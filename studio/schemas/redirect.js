@@ -20,12 +20,13 @@ export default {
       options: {
         source: "name",
         maxLength: 96,
-      }, validation: Rule => Rule.required()
+      },
+      validation: (Rule) => Rule.required(),
     },
     {
-      name: 'url',
-      type: 'string',
-      title: 'Redirect link',
-    }
+      name: "url",
+      type: "string",
+      title: "Redirect link",
+    },
   ],
 };

@@ -18,9 +18,9 @@ export default {
       type: "image",
     },
     {
-      name: 'link',
-      type: 'url',
-      title: 'Website link',
+      name: "link",
+      type: "url",
+      title: "Website link",
     },
     {
       name: "description",
@@ -31,7 +31,7 @@ export default {
       name: "tier",
       title: "Sponsor Tier",
       type: "string",
-    }
+    },
   ],
   preview: {
     select: {

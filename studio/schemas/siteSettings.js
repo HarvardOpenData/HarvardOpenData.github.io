@@ -19,6 +19,11 @@ export default {
       type: "text",
     },
     {
+      name: "defaultSeoImage",
+      title: "Default SEO Image",
+      type: "mainImage",
+    },
+    {
       name: "keywords",
       title: "Keywords",
       type: "array",

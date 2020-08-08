@@ -105,9 +105,9 @@ class StateGraph extends Component {
 
   render() {
     const options = {
-      maintainAspectRatio: false	// Don't maintain w/h ratio
+      maintainAspectRatio: false, // Don't maintain w/h ratio
     };
-    
+
     return (
       <div className={"chart"}>
         <Select
@@ -117,11 +117,7 @@ class StateGraph extends Component {
           onChange={this.handleChange}
         />
         <div style={{ maxHeight: "300px" }}>
-          <Line
-            data={this.state.chartData}
-            options={options}
-            height={300}
-          />
+          <Line data={this.state.chartData} options={options} height={300} />
         </div>
       </div>
     );
