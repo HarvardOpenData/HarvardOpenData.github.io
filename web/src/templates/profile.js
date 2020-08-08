@@ -159,7 +159,6 @@ const ProfileTemplate = (props) => {
   const filteredProjectNodes = filterNodes(projectNodes, id);
   const filteredBlogNodes = filterNodes(blogNodes, id);
   const mainImageUrl = profile && previewImageUrlFor(profile.image);
-  console.log("HELLO");
 
   return (
     <Layout>
