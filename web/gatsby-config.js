@@ -88,7 +88,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-174899682-1",
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
       },
     },
     "gatsby-plugin-client-side-redirect", // keep it in last in list
