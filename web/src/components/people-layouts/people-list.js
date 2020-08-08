@@ -3,7 +3,7 @@ import React from 'react';
 import { jsx, Grid, Input } from "theme-ui";
 import Container from "../core/container";
 import PeopleGrid from "./people-grid";
-import Modal from "../core/modal.js"
+import Modal from "./modal.js"
 
 class PeopleList extends React.Component {
     constructor(props) {

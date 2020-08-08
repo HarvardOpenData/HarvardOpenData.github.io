@@ -33,19 +33,21 @@ function Role(item) {
       }}
     >
       {item.person && item.person.image && item.person.image.asset && (
-        <img
-          src={imageUrlFor(buildImageObj(item.person.image))
-            .width(100)
-            .height(100)
-            .fit("crop")
-            .url()}
-          alt=""
-          sx={{
-            width: "48px",
-            height: "48px",
-            borderRadius: "50%",
-          }}
-        />
+        <Link to={`/people/${item.person.slug.current}`}>
+          <img
+            src={imageUrlFor(buildImageObj(item.person.image))
+              .width(100)
+              .height(100)
+              .fit("crop")
+              .url()}
+            alt=""
+            sx={{
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+            }}
+          />
+        </Link>
       )}
       <div sx={{ p: [2], flex: "1 1 auto" }}>
         <Link to={`/people/${item.person.slug.current}`}>

@@ -2,7 +2,7 @@
 import { jsx, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import { mapEdgesToNodes } from "../lib/helpers";
-import BlogPostPreviewGrid from "../components/blog-layouts/blog-post-preview-grid";
+import ProjectPreviewGrid from "../components/project-layouts/project-preview-grid";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import Pagination from "../components/core/pagination";
@@ -29,9 +29,13 @@ export const query = graphql`
           }
           title
           _rawExcerpt
-          _rawAuthors(resolveReferences: {maxDepth: 5})
+          _rawMembers(resolveReferences: {maxDepth: 5})
           slug {
             current
+          }
+          categories {
+            _id
+            title
           }
         }
       }
@@ -60,7 +64,7 @@ const BlogListTemplate = (props) => {
         <Styled.p>For the fun stuff.</Styled.p>
         <Spacer height={4}/>
         {postNodes && postNodes.length > 0 && (
-          <BlogPostPreviewGrid nodes={postNodes} />
+          <ProjectPreviewGrid nodes={postNodes} type="blog" />
         )}
         <Pagination prefix="/blog" pageContext={props.pageContext} />
       </Container>

@@ -4,14 +4,13 @@ import { formatDate } from "../../lib/helpers";
 import Spacer from "../../components/core/spacer"
 import Link from "../core/link.js";
 
-function ArticleByline({ members, authors, publishedAt, showDate }) {
+function ArticleByline({ members, publishedAt, showDate }) {
   const includeInByline = person => person
     && person.roles
     && (person.roles.includes("developer") || person.roles.includes("author"))
 
   let contributors = [
-    ...(members ? members : []),
-    ...(authors ? authors : []),
+    ...members
   ].filter(includeInByline);
 
   // filter contributors who aren't developers or authors

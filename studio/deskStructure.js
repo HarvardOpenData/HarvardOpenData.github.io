@@ -11,6 +11,7 @@ const hiddenTypes = [
   "position",
   "post",
   "project",
+  "redirect",
   "siteSettings",
   "sponsor",
   "subject",
@@ -159,6 +160,10 @@ export default () =>
         .title("Sponsors")
         .schemaType("sponsor")
         .child(S.documentTypeList("sponsor").title("Sponsors")),
+      S.listItem()
+        .title("Redirects")
+        .schemaType("redirect")
+        .child(S.documentTypeList("redirect").title("Redirects")),
       S.listItem()
         .title("Organization Info")
         .child(

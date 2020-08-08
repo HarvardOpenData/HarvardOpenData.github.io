@@ -16,15 +16,14 @@ const PreviewGrid = ({
   browseMoreHref,
 }) => {
   const featuredArticle = featured === true ? nodes.shift() : {};
-  
   return (
     <div>
       {featured && (
         <ArticlePreview
           {...featuredArticle}
-          link={`/project/${featuredArticle.slug.current}`}
           container={container}
           horizontal={featuredHorizontal}
+          link={featuredArticle.slug.current}
           size="large"
           columns={"2.12fr 1fr"}
           gap={4}
