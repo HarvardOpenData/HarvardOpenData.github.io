@@ -49,7 +49,7 @@ const PredictionsPage = (props) => {
             <BlockContent blocks={page._rawBody || []} />
             <BannerHeader />
           </div>
-          <div className="small preview" sx={{ p: 4, bg: "pink", }}>
+          <div className="small preview" sx={{ p: 4, bg: "pink" }}>
             <BlockContent blocks={page._rawBodySecondary || []} />
           </div>
         </Grid>

@@ -189,7 +189,7 @@ const DataItem = (props) => {
     subjects,
   } = props;
 
-  const subjectText = subjects.map(subject => subject.title).join(", ");
+  const subjectText = subjects.map((subject) => subject.title).join(", ");
 
   return (
     <Card
@@ -203,11 +203,12 @@ const DataItem = (props) => {
     >
       <Flex>
         <Box>
-          {subjects && subjects.map(item =>
-            <Badge bg="grey" mr={2}>
-              {item.title}
-            </Badge>
-          )}
+          {subjects &&
+            subjects.map((item) => (
+              <Badge bg="grey" mr={2}>
+                {item.title}
+              </Badge>
+            ))}
           <Spacer height={3} />
           <Text variant="h3">{title}</Text>
           <Text variant="caption">{description}</Text>
@@ -216,12 +217,16 @@ const DataItem = (props) => {
       <Spacer height={3} />
       <Button bg="deep">
         <Link variant="outbound" href={sourceURL}>
-          <Text variant="small"><b>Source site</b></Text>
+          <Text variant="small">
+            <b>Source site</b>
+          </Text>
         </Link>
       </Button>
       <Button>
         <Link variant="outbound" href={downloadURL}>
-          <Text variant="small"><b>Download</b></Text>
+          <Text variant="small">
+            <b>Download</b>
+          </Text>
         </Link>
       </Button>
     </Card>

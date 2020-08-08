@@ -15,11 +15,7 @@ function PreviewText(props) {
         </Text>
       </Link>
       {props._rawExcerpt && <BlockText blocks={props._rawExcerpt} />}
-      {props._rawMembers &&
-        <ArticleByline
-          members={props._rawMembers}
-        />
-      }
+      {props._rawMembers && <ArticleByline members={props._rawMembers} />}
       {props.children}
     </div>
   );
@@ -36,10 +32,7 @@ function HorizontalArticlePreview(props) {
       className="small preview"
       sx={{ bg: props.container ? "container" : "#FFFFFF" }}
     >
-      <Grid
-        gap={props.gap || 3}
-        columns={props.columns || ["1fr 2fr"]}
-      >
+      <Grid gap={props.gap || 3} columns={props.columns || ["1fr 2fr"]}>
         <Link to={props.newLink}>
           {props.mainImage && props.mainImage.asset && (
             <img
@@ -56,7 +49,9 @@ function HorizontalArticlePreview(props) {
           )}
         </Link>
         <div sx={(props.container || props.size == "large") && containerStyles}>
-          <PreviewText {...props} link={props.link}>{props.children}</PreviewText>
+          <PreviewText {...props} link={props.link}>
+            {props.children}
+          </PreviewText>
         </div>
       </Grid>
     </div>
@@ -89,34 +84,42 @@ function VerticalArticlePreview(props) {
       </Link>
       <div className={`${props.size}-block`} sx={props.container && { p: [3] }}>
         {!props.container && <br />}
-        <PreviewText {...props} link={props.link}>{props.children}</PreviewText>
+        <PreviewText {...props} link={props.link}>
+          {props.children}
+        </PreviewText>
       </div>
     </div>
   );
 }
 
 function ArticlePreview(props) {
-  let blog = props.categories && props.categories.filter((category) => {
-    return (category.title === "Blog")
-  }).length > 0;
+  let blog =
+    props.categories &&
+    props.categories.filter((category) => {
+      return category.title === "Blog";
+    }).length > 0;
   const newLink = blog ? `/blog/${props.link}` : `/project/${props.link}`;
   // Collapse large horizontal previews to vertical
   if (props.horizontal && props.size === "large") {
     return (
       <div>
         <div sx={{ display: ["none", "initial", "initial"] }}>
-          <HorizontalArticlePreview newLink={newLink} {...props}/>
+          <HorizontalArticlePreview newLink={newLink} {...props} />
         </div>
         <div sx={{ display: ["initial", "none", "none"] }}>
-          <VerticalArticlePreview newLink={newLink} headerAs={null} {...props} />
+          <VerticalArticlePreview
+            newLink={newLink}
+            headerAs={null}
+            {...props}
+          />
         </div>
       </div>
     );
   }
   return props.horizontal ? (
-    <HorizontalArticlePreview {...props}  newLink={newLink} />
+    <HorizontalArticlePreview {...props} newLink={newLink} />
   ) : (
-    <VerticalArticlePreview {...props}  newLink={newLink} />
+    <VerticalArticlePreview {...props} newLink={newLink} />
   );
 }
 

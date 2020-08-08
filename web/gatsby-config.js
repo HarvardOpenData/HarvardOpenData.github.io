@@ -59,7 +59,7 @@ module.exports = {
             name: `Blog`,
             link: `/blog`,
           },
-        ]
+        ],
       },
     ],
   },
@@ -82,7 +82,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: ["DISQUS_NAME", "MAPBOX_ACCESS_TOKEN"]
+        allowList: ["DISQUS_NAME", "MAPBOX_ACCESS_TOKEN"],
       },
     },
     {

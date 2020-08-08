@@ -51,7 +51,7 @@ function ArticleBody(props) {
               margin: ["0 auto"],
               mr: [0, 0, 2],
               minWidth: [null, "640px", "640px"],
-              maxWidth: "640px" 
+              maxWidth: "640px",
             }}
           >
             {showHeader && <ArticleHeader {...headerProps} />}

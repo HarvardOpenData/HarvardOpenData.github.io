@@ -19,11 +19,11 @@ export function getBlogUrl(publishedAt, slug) {
 
 export function resolveInternalLink(link) {
   if (!link || !link.reference) {
-    return null
+    return null;
   }
-  
-  const {slug = {}, internal = {}, publishedAt = {}} = link.reference
-  const {type = {}} = internal
+
+  const { slug = {}, internal = {}, publishedAt = {} } = link.reference;
+  const { type = {} } = internal;
   switch (type) {
     // TODO: Update for dataset
     case "SanityProject":
@@ -53,26 +53,26 @@ export function toPlainText(blocks = []) {
     return null;
   }
 
-  return blocks
-    // loop through each block
-    .map(block => {
-      // if it's not a text block with children, 
-      // return nothing
-      if (block._type !== 'block' || !block.children) {
-        return ''
-      }
-      // loop through the children spans, and join the
-      // text strings
-      return block.children.map(child => child.text).join('')
-    })
-    // join the paragraphs leaving split by two linebreaks
-    .join('\n\n')
+  return (
+    blocks
+      // loop through each block
+      .map((block) => {
+        // if it's not a text block with children,
+        // return nothing
+        if (block._type !== "block" || !block.children) {
+          return "";
+        }
+        // loop through the children spans, and join the
+        // text strings
+        return block.children.map((child) => child.text).join("");
+      })
+      // join the paragraphs leaving split by two linebreaks
+      .join("\n\n")
+  );
 }
 
 export function formatDate(date) {
-  return (
-    differenceInDays(new Date(date), new Date()) > 3
-      ? distanceInWords(new Date(date), new Date())
-      : format(new Date(date), "MM-DD-YYYY")
-  )
+  return differenceInDays(new Date(date), new Date()) > 3
+    ? distanceInWords(new Date(date), new Date())
+    : format(new Date(date), "MM-DD-YYYY");
 }

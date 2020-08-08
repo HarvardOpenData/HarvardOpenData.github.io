@@ -45,10 +45,7 @@ const SubscribeWidget = ({ interestForm }) => {
           mb={3}
           sx={{ height: 4 }}
         />
-        <div
-          style={{ display: "none" }}
-          aria-hidden="true"
-        >
+        <div style={{ display: "none" }} aria-hidden="true">
           <input
             type="text"
             name="b_eb05e4f830c2a04be30171b01_8281a64779"

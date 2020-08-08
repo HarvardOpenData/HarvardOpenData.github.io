@@ -2,12 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
+import { previewImageUrlFor } from "../../lib/image-url";
 
 const detailsQuery = graphql`
   query SEOQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
       description
+      defaultSeoImage {
+        asset {
+          _id
+        }
+        alt
+      }
       keywords
       author
     }
@@ -23,6 +30,8 @@ function SEO({ description, image, lang, meta, keywords = [], title }) {
           return;
         }
         const metaDescription = description || data.site.description;
+        const imageUrl = image || previewImageUrlFor(data.site.defaultSeoImage);
+
         return (
           <Helmet
             htmlAttributes={{
@@ -43,7 +52,7 @@ function SEO({ description, image, lang, meta, keywords = [], title }) {
               },
               {
                 name: "og:image",
-                content: image,
+                content: imageUrl,
               },
               {
                 property: "og:description",

@@ -31,11 +31,11 @@ function ProjectPreviewGrid(props) {
             />
           ))}
       </Grid>
-      {props.browseMoreHref &&
+      {props.browseMoreHref && (
         <Link to={props.browseMoreHref} style={{ textAlign: "right" }}>
           <h3>Browse more →</h3>
         </Link>
-      }
+      )}
     </div>
   );
 }

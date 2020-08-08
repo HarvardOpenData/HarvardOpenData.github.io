@@ -31,9 +31,9 @@ export default {
       type: "datetime",
     },
     {
-      name: 'link',
-      title: 'Internal link',
-      type: 'link',
-    }
-  ]
+      name: "link",
+      title: "Internal link",
+      type: "link",
+    },
+  ],
 };

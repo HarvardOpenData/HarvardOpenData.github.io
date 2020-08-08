@@ -4,7 +4,7 @@ import ArticleHeader from "./article-header";
 import ArticleSidebar from "./article-sidebar";
 import ArticlePreview from "./article-preview";
 import BlockContent from "../block-content";
-import Container from "../core/container"
+import Container from "../core/container";
 
 function CustomArticle(props) {
   const {

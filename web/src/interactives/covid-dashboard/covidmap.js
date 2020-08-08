@@ -74,18 +74,18 @@ class CovidMap extends Component {
 
     return (
       <div textAlign={"center"}>
-      <DeckGL
-        initialViewState={this.state.viewport}
-        style={{ position: "relative", textAlign: "center", margin: "auto" }}
-        width={"80vw"}
-        height={"100vh"}
-        maxWidth={"1280px"}
-        controller={true}
-        layers={layers}
-        getTooltip={(info) =>
-          info.object
-            ? {
-                html: `<p>
+        <DeckGL
+          initialViewState={this.state.viewport}
+          style={{ position: "relative", textAlign: "center", margin: "auto" }}
+          width={"80vw"}
+          height={"100vh"}
+          maxWidth={"1280px"}
+          controller={true}
+          layers={layers}
+          getTooltip={(info) =>
+            info.object
+              ? {
+                  html: `<p>
                           <b>${info.object.name}</b>
                           <br/>
                           Confirmed: ${info.object.confirmed}
@@ -93,23 +93,25 @@ class CovidMap extends Component {
                           Deaths: ${info.object.deaths}
                           <br/>
                        </p>`,
-              }
-            : null
-        }
-      >
-        <div className={"control-panel"}>
-          <Select
-            placeholder={"Confirmed"}
-            value={this.options.find((obj) => obj.value === this.selectedValue)}
-            options={this.options}
-            onChange={this.handleChange}
+                }
+              : null
+          }
+        >
+          <div className={"control-panel"}>
+            <Select
+              placeholder={"Confirmed"}
+              value={this.options.find(
+                (obj) => obj.value === this.selectedValue
+              )}
+              options={this.options}
+              onChange={this.handleChange}
+            />
+          </div>
+          <StaticMap
+            mapStyle={"mapbox://styles/mapbox/dark-v10"}
+            mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
           />
-        </div>
-        <StaticMap
-          mapStyle={"mapbox://styles/mapbox/dark-v10"}
-          mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
-        />
-      </DeckGL>
+        </DeckGL>
       </div>
     );
   }

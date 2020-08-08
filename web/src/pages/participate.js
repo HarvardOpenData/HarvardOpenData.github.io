@@ -7,7 +7,7 @@ import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
-import Preview from "../components/block-content/preview"
+import Preview from "../components/block-content/preview";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
@@ -47,7 +47,9 @@ const ParticipatePage = (props) => {
       <SEO title={page.title} />
       <Container>
         <Grid gap={4} columns={[1, 2, 4]}>
-          {blocks.map(block => <Preview {...block} headerAs="h2" />)}
+          {blocks.map((block) => (
+            <Preview {...block} headerAs="h2" />
+          ))}
         </Grid>
       </Container>
     </Layout>

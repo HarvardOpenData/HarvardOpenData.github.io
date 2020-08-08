@@ -124,7 +124,7 @@ export default {
     default: {
       fontFamily: "strong",
       "&:focus": {
-        border: "0.2em solid black"
+        border: "0.2em solid black",
       },
     },
     primary: {
@@ -186,7 +186,7 @@ export default {
     button: {
       fontFamily: "strong",
       "&:focus": {
-        border: "0.2em solid black"
+        border: "0.2em solid black",
       },
       "&:active": {
         borderColor: "primary",
@@ -200,7 +200,7 @@ export default {
     },
     light: {
       color: "background",
-      bg: "navy"
+      bg: "navy",
     },
     tag: {
       padding: 2,
