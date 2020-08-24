@@ -102,9 +102,6 @@ function movingAvg(arr, avgArr) {
 
 export const fetchStateData = async (state) => {
   try {
-    const { data } = await axios.get(
-      `${covid_url}v1/states/${state.toLowerCase()}/daily.json`
-    );
     let states = {
       dates: [],
       confirmed: [],
@@ -115,10 +112,14 @@ export const fetchStateData = async (state) => {
       deathIncrease: [],
       movingAvgCases: [],
     };
-    data.forEach((data, index) => {
+
+    const info = await fetch(`/.netlify/functions/covid?state=${state}`, { headers: { accept: "Accept: application/json" } });
+    const data = await info.json();
+
+    data.msg.forEach((data, index) => {
       const date = data.date.toString();
       states.dates.unshift(
-        date.substring(4, 6) +
+          date.substring(4, 6) +
           "/" +
           date.substring(6) +
           "/" +
