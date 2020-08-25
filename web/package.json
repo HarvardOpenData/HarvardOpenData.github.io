@@ -9,7 +9,7 @@
   "scripts": {
     "build": "gatsby build",
     "deploy": "npm run now-deploy",
-    "develop": "netlify dev",
+    "develop": "gatsby develop",
     "empty-cache": "gatsby clean",
     "lint": "eslint .",
     "now-build": "npm run build",
