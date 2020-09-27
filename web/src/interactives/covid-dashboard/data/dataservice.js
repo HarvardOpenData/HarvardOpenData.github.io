@@ -4,8 +4,6 @@ import axios from "axios";
 
 const jhu_url = "https://corona.lmao.ninja/v2/";
 
-const covid_url = "https://covidtracking.com/api/";
-
 export const fetchHistData = async (country) => {
   try {
     if (country === "all") {
@@ -116,7 +114,7 @@ export const fetchStateData = async (state) => {
     const info = await fetch(`/.netlify/functions/covid?state=${state}`, { headers: { accept: "Accept: application/json" } });
     const data = await info.json();
 
-    data.msg.forEach((data, index) => {
+    data.msg.forEach(data => {
       const date = data.date.toString();
       states.dates.unshift(
           date.substring(4, 6) +
@@ -125,12 +123,12 @@ export const fetchStateData = async (state) => {
           "/" +
           date.substring(0, 4)
       );
-      states.confirmed.unshift(data.positive);
+      states.confirmed.unshift(data.positive > 0 ? data.positive : 0);
       states.deaths.unshift(data.death);
       states.recovered.unshift(data.recovered ? data.recovered : 0);
       states.hospitalizedCurrently.unshift(data.hospitalizedCurrently);
-      states.positiveIncrease.unshift(data.positiveIncrease);
-      states.deathIncrease.unshift(data.deathIncrease);
+      states.positiveIncrease.unshift(data.positiveIncrease > 0 ? data.positiveIncrease : 0);
+      states.deathIncrease.unshift(data.deathIncrease > 0 ? data.deathIncrease : 0);
     });
     movingAvg(states.positiveIncrease, states.movingAvgCases);
     return states;
