@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { fetchHistData } from "./data/dataservice";
-import { Line } from "react-chartjs-2";
+import React, {Component} from "react";
+import {fetchHistData} from "./data/dataservice";
+import {Line} from "react-chartjs-2";
 import Select from "react-select";
 
-let countryOptions = [{ value: "all", label: "World" }];
+let countryOptions = [{value: "all", label: "World"}];
 
 const countriesData = require("./assets/countries.json");
 
@@ -44,7 +44,7 @@ class CountryGraph extends Component {
   }
 
   async loadData(country) {
-    const { cases, deaths, recovered } = await fetchHistData(country);
+    const {cases, deaths, recovered} = await fetchHistData(country);
     this.setState({
       chartData: {
         labels: Object.keys(cases),
@@ -54,25 +54,28 @@ class CountryGraph extends Component {
             data: Object.values(cases),
             fill: true,
             borderColor: "#C63F3F",
+            pointRadius: 0
           },
           {
             label: "Deaths",
             data: Object.values(deaths),
             fill: true,
             borderColor: "#251616",
+            pointRadius: 0
           },
           {
             label: "Recovered",
             data: Object.values(recovered),
             fill: true,
             borderColor: "#455574",
+            pointRadius: 0
           },
         ],
       },
     });
   }
 
-  handleChange = (event) => this.setState({ country: event.value });
+  handleChange = (event) => this.setState({country: event.value});
 
   render() {
     const options = {
@@ -87,8 +90,8 @@ class CountryGraph extends Component {
           options={countryOptions}
           onChange={this.handleChange}
         />
-        <div style={{ maxHeight: "300px" }}>
-          <Line data={this.state.chartData} options={options} height={300} />
+        <div style={{maxHeight: "300px"}}>
+          <Line data={this.state.chartData} options={options} height={300}/>
         </div>
       </div>
     );
