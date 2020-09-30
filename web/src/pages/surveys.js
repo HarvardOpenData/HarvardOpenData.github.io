@@ -8,6 +8,8 @@ import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import Section from "../components/core/section";
+import Login from "../components/users/login";
+import GatedContent from "../components/users/gated-content";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
@@ -47,6 +49,11 @@ const SurveysPage = (props) => {
         <Grid gap={[4, 5, 6]} columns={[1, 1, "3fr 1fr"]}>
           <div>
             <Styled.h1>Survey Group</Styled.h1>
+            <Login />
+            <GatedContent
+              renderPublic={() => <div>Hello generic person</div>}
+              renderPrivate={(user) => <div>Hello {user.displayName}</div>}
+            />
             <BlockContent blocks={page._rawBody || []} />
           </div>
           <Section header="Survey Projects" className="small preview">
