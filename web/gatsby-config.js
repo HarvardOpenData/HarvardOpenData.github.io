@@ -82,7 +82,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: ["DISQUS_NAME", "MAPBOX_ACCESS_TOKEN"],
+        allowList: [
+          "DISQUS_NAME",
+          "MAPBOX_ACCESS_TOKEN",
+          "GOOGLE_SPREADSHEET_ID_FROM_URL",
+          "GOOGLE_SERVICE_ACCOUNT_EMAIL",
+          "GOOGLE_PRIVATE_KEY"
+        ],
       },
     },
     {
