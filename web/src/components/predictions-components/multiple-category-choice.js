@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Box, Button, Label } from "theme-ui";
+import { Box, Label } from "theme-ui";
 import { Range, getTrackBackground } from 'react-range';
+
+const STEP = 0.1;
 
 class MultipleCategoryChoice extends Component {
   constructor(props) {
@@ -47,11 +49,11 @@ class MultipleCategoryChoice extends Component {
             <Label>
               {choice.name}: {this.state.values[index].current.toFixed(1)}
             </Label>
-            <Box p={3}>
+            <Box mt={1} mx={3}>
               <Range
                 name={choice.name}
                 id={index}
-                step={0.1}
+                step={STEP}
                 max={this.state.values[index].max}
                 min={0}
                 values={[this.state.values[index].current]}
@@ -62,7 +64,7 @@ class MultipleCategoryChoice extends Component {
                     onTouchStart={props.onTouchStart}
                     style={{
                       ...props.style,
-                      height: '2.5rem',
+                      height: '5rem',
                       display: 'flex',
                       width: '100%'
                     }}
@@ -122,10 +124,6 @@ class MultipleCategoryChoice extends Component {
             </Box>
           </Box>
         )}
-        <br />
-        <Button type="submit">
-          Submit
-        </Button>
       </form>
     );
   }

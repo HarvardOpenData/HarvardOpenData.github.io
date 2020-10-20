@@ -15,7 +15,7 @@ function IntervalChoice(props) {
 
   return (
     <form onSubmit={event => afterSubmission(event)}>
-      <Box p={3}>
+      <Box mt={1} mx={3}>
         <Range
           draggableTrack
           values={values}
@@ -29,7 +29,7 @@ function IntervalChoice(props) {
               onTouchStart={props.onTouchStart}
               style={{
                 ...props.style,
-                height: '2.5rem',
+                height: '5rem',
                 display: 'flex',
                 width: '100%'
               }}
