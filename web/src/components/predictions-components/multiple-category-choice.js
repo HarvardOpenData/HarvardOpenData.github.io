@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Label } from "theme-ui";
-import { getTrackBackground, Range } from "react-range";
+import { Range } from "react-range";
 import Thumb from "./thumb";
 import Track from "./track";
 
@@ -14,8 +14,6 @@ function MultipleCategoryChoice(props) {
   };
 
   const handleChange = (value, index) => {
-    const diff = values[index].current - value;
-
     const newValues = values.map((slider, i) => {
       if (index === i) {
         return {
@@ -24,7 +22,7 @@ function MultipleCategoryChoice(props) {
         };
       } else {
         return {
-          max: slider.max + diff,
+          max: slider.max + values[index].current - value,
           current: slider.current,
         };
       }
@@ -50,24 +48,14 @@ function MultipleCategoryChoice(props) {
                 values={[values[index].current]}
                 onChange={(values) => handleChange(values[0], index)}
                 renderTrack={({ props, children }) => (
-                  <Track {...props}>
-                    <div
-                      ref={props.ref}
-                      style={{
-                        height: "0.3rem",
-                        width: "100%",
-                        borderRadius: "0.3rem",
-                        background: getTrackBackground({
-                          values: [values[index].current],
-                          colors: ["#C63F3F", "#ccc"],
-                          min: 0,
-                          max: values[index].max,
-                        }),
-                        alignSelf: "center",
-                      }}
-                    >
-                      {children}
-                    </div>
+                  <Track
+                    {...props}
+                    values={[values[index].current]}
+                    upper={values[index].max}
+                    lower={0}
+                    colors={["#C63F3F", "#ccc"]}
+                  >
+                    {children}
                   </Track>
                 )}
                 renderThumb={({ props }) => (

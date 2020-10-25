@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "theme-ui";
-import { Range, getTrackBackground } from "react-range";
+import { Range } from "react-range";
 import Thumb from "./thumb";
 import Track from "./track";
 
@@ -24,24 +24,14 @@ function IntervalChoice(props) {
           max={upper}
           onChange={(values) => setValues(values)}
           renderTrack={({ props, children }) => (
-            <Track {...props}>
-              <div
-                ref={props.ref}
-                style={{
-                  height: "0.3rem",
-                  width: "100%",
-                  borderRadius: "0.3rem",
-                  background: getTrackBackground({
-                    values: values,
-                    colors: ["#ccc", "#C63F3F", "#ccc"],
-                    min: lower,
-                    max: upper,
-                  }),
-                  alignSelf: "center",
-                }}
-              >
-                {children}
-              </div>
+            <Track
+              {...props}
+              values={values}
+              upper={upper}
+              lower={lower}
+              colors={["#ccc", "#C63F3F", "#ccc"]}
+            >
+              {children}
             </Track>
           )}
           renderThumb={({ index, props }) => (
