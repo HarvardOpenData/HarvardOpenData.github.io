@@ -1,132 +1,87 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Box, Label } from "theme-ui";
-import { Range, getTrackBackground } from 'react-range';
+import { getTrackBackground, Range } from "react-range";
+import Thumb from "./thumb";
+import Track from "./track";
 
-const STEP = 0.1;
+function MultipleCategoryChoice(props) {
+  const [values, setValues] = useState(
+    Array(props.choices.length).fill({ max: 100, current: 0 })
+  );
 
-class MultipleCategoryChoice extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      values: Array(props.choices.length).fill({ max: 100, current: 0 })
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  afterSubmission(event) {
+  const afterSubmission = (event) => {
     event.preventDefault();
-    if (!this.state.values.every(slider => slider.max === slider.current)) {
-      console.log("false");
-    }
   };
 
-  handleChange(value, index) {
-    const diff = this.state.values[index].current - value;
+  const handleChange = (value, index) => {
+    const diff = values[index].current - value;
 
-    const values = [...this.state.values].map((slider, i) => {
+    const newValues = values.map((slider, i) => {
       if (index === i) {
         return {
           max: slider.max,
-          current: value
+          current: value,
         };
       } else {
         return {
           max: slider.max + diff,
-          current: slider.current
+          current: slider.current,
         };
       }
     });
-    this.setState({ values });
-  }
+    setValues(newValues);
+  };
 
-  render() {
-    return (
-      <form onSubmit={event => this.afterSubmission(event)}>
-        {this.props.choices && this.props.choices.map((choice, index) =>
+  return (
+    <form onSubmit={(event) => afterSubmission(event)}>
+      {props.choices &&
+        props.choices.map((choice, index) => (
           <Box>
             <Label>
-              {choice.name}: {this.state.values[index].current.toFixed(1)}
+              {choice.name}: {values[index].current.toFixed(1)}
             </Label>
             <Box mt={1} mx={3}>
               <Range
                 name={choice.name}
                 id={index}
-                step={STEP}
-                max={this.state.values[index].max}
+                step={props.step}
+                max={values[index].max}
                 min={0}
-                values={[this.state.values[index].current]}
-                onChange={values => this.handleChange(values[0], index)}
+                values={[values[index].current]}
+                onChange={(values) => handleChange(values[0], index)}
                 renderTrack={({ props, children }) => (
-                  <div
-                    onMouseDown={props.onMouseDown}
-                    onTouchStart={props.onTouchStart}
-                    style={{
-                      ...props.style,
-                      height: '5rem',
-                      display: 'flex',
-                      width: '100%'
-                    }}
-                  >
+                  <Track {...props}>
                     <div
                       ref={props.ref}
                       style={{
-                        height: '0.3rem',
-                        width: '100%',
-                        borderRadius: '0.3rem',
+                        height: "0.3rem",
+                        width: "100%",
+                        borderRadius: "0.3rem",
                         background: getTrackBackground({
-                          values: [this.state.values[index].current],
-                          colors: ['#C63F3F', '#ccc'],
+                          values: [values[index].current],
+                          colors: ["#C63F3F", "#ccc"],
                           min: 0,
-                          max: this.state.values[index].max
+                          max: values[index].max,
                         }),
-                        alignSelf: 'center'
+                        alignSelf: "center",
                       }}
                     >
                       {children}
                     </div>
-                  </div>
+                  </Track>
                 )}
                 renderThumb={({ props }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '0.8rem',
-                      width: '0.8rem',
-                      borderRadius: '0.3rem',
-                      backgroundColor: '#FFF',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      boxShadow: '0px 0.15rem 0.45rem #AAA'
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '-2rem',
-                        color: '#fff',
-                        fontWeight: 'bold',
-                        fontSize: '1rem',
-                        fontFamily: 'Arial,Helvetica Neue,Helvetica,sans-serif',
-                        padding: '0.3rem',
-                        borderRadius: '0.3rem',
-                        backgroundColor: '#2F2F2F'
-                      }}
-                    >
-                      {this.state.values[index].current.toFixed(1)}
-                    </div>
-                  </div>
+                  <Thumb
+                    val={values[index].current.toFixed(1)}
+                    thumbProps={props}
+                  />
                 )}
               />
             </Box>
           </Box>
-        )}
-      </form>
-    );
-  }
+        ))}
+    </form>
+  );
 }
 
 export default MultipleCategoryChoice;
