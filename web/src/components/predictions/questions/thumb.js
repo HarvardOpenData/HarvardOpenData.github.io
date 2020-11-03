@@ -27,7 +27,7 @@ const Thumb = (props) => {
         ...props.thumbProps.style,
         height: "0.8rem",
         width: "0.8rem",
-        borderRadius: "0.3rem",
+        borderRadius: "0.4rem",
         backgroundColor: "#FFF",
         display: "flex",
         justifyContent: "center",

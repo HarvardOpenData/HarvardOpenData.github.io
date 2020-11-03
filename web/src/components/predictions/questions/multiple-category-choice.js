@@ -81,7 +81,7 @@ function MultipleCategoryChoice(props) {
         />
         {displayValues &&
           displayValues.map((val, i) => (
-            <Text>{`Option${i + 1}: ${val}`}</Text>
+            <Text sx={{fontWeight: 'bold'}}>{`Probability of ${props.choices[i].name}: ${val}%`}</Text>
           ))}
       </Box>
     </form>
