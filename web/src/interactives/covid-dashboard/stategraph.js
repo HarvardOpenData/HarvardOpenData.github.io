@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { fetchStateData } from "./data/dataservice";
-import { Line } from "react-chartjs-2";
+import React, {Component} from "react";
+import {fetchStateData} from "./data/dataservice";
+import {Line} from "react-chartjs-2";
 import Select from "react-select";
 
 let stateOptions = [];
@@ -53,56 +53,63 @@ class StateGraph extends Component {
         datasets:
           this.state.sort === "daily"
             ? [
-                {
-                  label: "Hospitalized Currently",
-                  data: Object.values(data.hospitalizedCurrently),
-                  fill: true,
-                  borderColor: "#455574",
-                },
-                {
-                  label: "Increase in Cases",
-                  data: Object.values(data.positiveIncrease),
-                  fill: true,
-                  borderColor: "#C63F3F",
-                },
-                {
-                  label: "Increase in Deaths",
-                  data: Object.values(data.deathIncrease),
-                  fill: true,
-                  borderColor: "#251616",
-                },
-                {
-                  label: "Moving Average of Daily Cases",
-                  data: Object.values(data.movingAvgCases),
-                  fill: true,
-                  borderColor: "#F4B436",
-                },
-              ]
+              {
+                label: "Hospitalized Currently",
+                data: Object.values(data.hospitalizedCurrently),
+                fill: true,
+                borderColor: "#455574",
+                pointRadius: 0
+              },
+              {
+                label: "Increase in Cases",
+                data: Object.values(data.positiveIncrease),
+                fill: true,
+                borderColor: "#C63F3F",
+                pointRadius: 0
+              },
+              {
+                label: "Increase in Deaths",
+                data: Object.values(data.deathIncrease),
+                fill: true,
+                borderColor: "#251616",
+                pointRadius: 0
+              },
+              {
+                label: "Moving Average of Daily Cases",
+                data: Object.values(data.movingAvgCases),
+                fill: true,
+                borderColor: "#F4B436",
+                pointRadius: 0
+              },
+            ]
             : [
-                {
-                  label: "Confirmed",
-                  data: data.confirmed,
-                  fill: true,
-                  borderColor: "#C63F3F",
-                },
-                {
-                  label: "Deaths",
-                  data: Object.values(data.deaths),
-                  fill: true,
-                  borderColor: "#251616",
-                },
-                {
-                  label: "Recovered",
-                  data: Object.values(data.recovered),
-                  fill: true,
-                  borderColor: "#455574",
-                },
-              ],
+              {
+                label: "Confirmed",
+                data: data.confirmed,
+                fill: true,
+                borderColor: "#C63F3F",
+                pointRadius: 0
+              },
+              {
+                label: "Deaths",
+                data: Object.values(data.deaths),
+                fill: true,
+                borderColor: "#251616",
+                pointRadius: 0
+              },
+              {
+                label: "Recovered",
+                data: Object.values(data.recovered),
+                fill: true,
+                borderColor: "#455574",
+                pointRadius: 0
+              },
+            ],
       },
     });
   }
 
-  handleChange = (event) => this.setState({ state: event.value });
+  handleChange = (event) => this.setState({state: event.value});
 
   render() {
     const options = {
@@ -117,8 +124,8 @@ class StateGraph extends Component {
           options={stateOptions}
           onChange={this.handleChange}
         />
-        <div style={{ maxHeight: "300px" }}>
-          <Line data={this.state.chartData} options={options} height={300} />
+        <div style={{maxHeight: "300px"}}>
+          <Line data={this.state.chartData} options={options} height={300}/>
         </div>
       </div>
     );

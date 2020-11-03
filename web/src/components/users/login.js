@@ -14,7 +14,7 @@ const logout = () => {
 
 const Login = () => {
   const [user, loading, error] = useAuthState(firebase.auth());
-
+  console.log(user);
   if (loading) {
     return (
       <div>
