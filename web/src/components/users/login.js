@@ -1,43 +1,24 @@
 /** @jsx jsx */
+import React, { useState, useEffect } from 'react';
 import { jsx } from "theme-ui";
 import firebase from "gatsby-plugin-firebase"
-import { useAuthState } from 'react-firebase-hooks/auth';
 
-const provider = new firebase.auth.GoogleAuthProvider();
+export default () => {
+  const { auth } = firebase;
+  const [user, setUser] = useState();
+  useEffect(() => auth().onAuthStateChanged(setUser), []);
 
-const login = () => {
-  firebase.auth().signInWithPopup(provider);
-};
-const logout = () => {
-  firebase.auth().signOut();
-};
+  const login = () => auth().signInWithPopup(new auth.GoogleAuthProvider());
+  const logout = () => auth().signOut();
 
-const Login = () => {
-  const [user, loading, error] = useAuthState(firebase.auth());
   console.log(user);
-  if (loading) {
-    return (
-      <div>
-        <p>Initialising User...</p>
-      </div>
-    );
-  }
-  if (error) {
-    return (
-      <div>
-        <p>Error: {error}</p>
-      </div>
-    );
-  }
-  if (user) {
-    return (
-      <div>
-        <p>Current User: {user.email}</p>
-        <button onClick={logout}>Log out</button>
-      </div>
-    );
-  }
-  return <button onClick={login}>Log in</button>;
-};
 
-export default Login
+  return (
+    <div>
+      {user
+        ? <button onClick={logout}>Logout</button>
+        : <button onClick={login}>Login with Google</button>
+      }
+    </div>
+  )
+};

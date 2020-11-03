@@ -10,6 +10,10 @@ node_modules/
 # build files
 public/
 
+# package-lock.json
+web/package-lock.json
+studio/package-lock.json
+
 # Ignore hidden files as default
 .*
 

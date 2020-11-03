@@ -97,8 +97,6 @@ module.exports = {
         trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
       },
     },
-    "gatsby-plugin-client-side-redirect", // keep it in last in list
-    "gatsby-plugin-meta-redirect",
     {
       resolve: "gatsby-plugin-firebase",
       options: {
@@ -113,6 +111,8 @@ module.exports = {
         }
       }
     },
+    "gatsby-plugin-meta-redirect",
+    "gatsby-plugin-client-side-redirect", // keep it in last in list
   ],
 };
 
