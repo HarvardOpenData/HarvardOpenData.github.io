@@ -3,11 +3,11 @@ import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
-import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import Section from "../components/core/section";
+import Login from "../components/users/login";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`

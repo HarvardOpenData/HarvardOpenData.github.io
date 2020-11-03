@@ -1,6 +1,8 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
+import firebase from "gatsby-plugin-firebase"
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import BannerHeader from "../components/core/banner-header";
@@ -8,6 +10,7 @@ import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
+import Login from "../components/users/login";
 
 export const query = graphql`
   query PredictionsPageQuery {
@@ -46,6 +49,7 @@ const PredictionsPage = (props) => {
         <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
           <div>
             <Styled.h1>{page.title}</Styled.h1>
+            <Login />
             <BlockContent blocks={page._rawBody || []} />
             <BannerHeader />
           </div>
