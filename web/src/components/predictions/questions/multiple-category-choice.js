@@ -56,6 +56,11 @@ function MultipleCategoryChoice(props) {
     setDisplayValues(newValues);
   };
 
+  // Updates Firebase with final values
+  const updateFirebase = () => {
+    console.log(displayValues);
+  };
+
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
       <Box mt={1} mx={3}>
@@ -66,6 +71,7 @@ function MultipleCategoryChoice(props) {
           min={0}
           max={100}
           onChange={(values) => handleChange(values)}
+          onFinalChange={updateFirebase}
           renderTrack={({ props, children }) => (
             <Track
               {...props}
@@ -81,7 +87,9 @@ function MultipleCategoryChoice(props) {
         />
         {displayValues &&
           displayValues.map((val, i) => (
-            <Text sx={{fontWeight: 'bold'}}>{`Probability of ${props.choices[i].name}: ${val}%`}</Text>
+            <Text sx={{ fontWeight: "bold" }}>
+              {`Probability of ${props.choices[i].name}: ${val}%`}
+            </Text>
           ))}
       </Box>
     </form>

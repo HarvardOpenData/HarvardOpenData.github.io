@@ -13,6 +13,11 @@ function IntervalChoice(props) {
     event.preventDefault();
   };
 
+  // Updates Firebase with final values
+  const updateFirebase = () => {
+    console.log(values);
+  };
+
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
       <Box mt={1} mx={3}>
@@ -23,6 +28,7 @@ function IntervalChoice(props) {
           min={lower}
           max={upper}
           onChange={(values) => setValues(values)}
+          onFinalChange={updateFirebase}
           renderTrack={({ props, children }) => (
             <Track
               {...props}
