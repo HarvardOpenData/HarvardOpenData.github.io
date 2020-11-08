@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box } from "theme-ui";
+import { Box, Grid, Text } from "theme-ui";
 import { Range } from "react-range";
 import Thumb from "./thumb";
 import Track from "./track";
@@ -7,7 +7,9 @@ import Track from "./track";
 function IntervalChoice(props) {
   const lower = props.lower;
   const upper = props.upper;
-  const [values, setValues] = useState([lower, upper]);
+  const [values, setValues] = useState(
+    props.prediction ? props.prediction : [lower, upper]
+  );
 
   const afterSubmission = (event) => {
     event.preventDefault();
@@ -20,8 +22,25 @@ function IntervalChoice(props) {
 
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
-      <Box mt={1} mx={3}>
+      <Grid mt={1} mx={3} gap={2} columns={[1, "3fr 5fr"]}>
+        <Box>
+          <Text
+            sx={{
+              fontSize: 3,
+              fontWeight: "bold",
+            }}
+          >
+            {props.name}
+          </Text>
+          <Text sx={{ fontSize: 2 }}>
+            Your prediction: {values.join(" - ")}
+          </Text>
+          <Text sx={{ fontSize: 1, color: "gray" }}>
+            Expires on {props.date_expired}
+          </Text>
+        </Box>
         <Range
+          disabled={props.disabled}
           draggableTrack
           values={values}
           step={props.step}
@@ -41,10 +60,10 @@ function IntervalChoice(props) {
             </Track>
           )}
           renderThumb={({ index, props }) => (
-            <Thumb val={values[index].toFixed(1)} thumbProps={props} />
+            <Thumb val={values[index]} thumbProps={props} />
           )}
         />
-      </Box>
+      </Grid>
     </form>
   );
 }

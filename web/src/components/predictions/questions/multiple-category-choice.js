@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Text } from "theme-ui";
+import { Box, Grid, Text } from "theme-ui";
 import { Range } from "react-range";
 import Thumb from "./thumb";
 import Track from "./track";
@@ -19,8 +19,8 @@ function decimalRound(val) {
 
 function MultipleCategoryChoice(props) {
   const length = props.choices.length;
-  const arr = [];
-  const displayArr = [];
+  let arr = [];
+  let displayArr = [];
 
   // Populate with gradient color values between #C63F3F and #ccc
   let colors = Array.from(Array(length).keys()).map((index) => {
@@ -31,13 +31,27 @@ function MultipleCategoryChoice(props) {
     return `rgb(${diffRed},${diffGreen},${diffBlue})`;
   });
 
-  // Populate arr with values of thumbs and displayArr with displayed ranges
-  for (let i = 0; i < length - 1; i++) {
-    const val = 100 / length;
-    arr.push((i + 1) * val);
-    displayArr.push(decimalRound(val));
+  if (props.prediction) {
+    // In case binary choice, set predictions array to [prediction, 100 - prediction]
+    const prediction =
+      length === 2
+        ? [props.prediction[0], 100 - props.prediction[0]]
+        : props.prediction;
+
+    for (let i = 0; i < length - 1; i++) {
+      const newVal = i === 0 ? prediction[i] : prediction[i] + arr[i - 1];
+      arr.push(newVal);
+    }
+    displayArr = prediction;
+  } else {
+    // Populate arr with values of thumbs and displayArr with displayed ranges
+    for (let i = 0; i < length - 1; i++) {
+      const val = 100 / length;
+      arr.push((i + 1) * val);
+      displayArr.push(decimalRound(val));
+    }
+    displayArr.push(decimalRound(100 - arr[length - 2]));
   }
-  displayArr.push(decimalRound(100 - arr[length - 2]));
 
   const [values, setValues] = useState(arr);
   const [displayValues, setDisplayValues] = useState(displayArr);
@@ -63,8 +77,29 @@ function MultipleCategoryChoice(props) {
 
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
-      <Box mt={1} mx={3}>
+      <Grid mt={1} mx={3} gap={2} columns={[1, "3fr 5fr"]}>
+        <Box>
+          <Text
+            sx={{
+              fontSize: 3,
+              fontWeight: "bold",
+            }}
+          >
+            {props.name}
+          </Text>
+          <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
+          {displayValues &&
+            displayValues.map((val, i) => (
+              <Text sx={{ fontSize: 1 }}>
+                {`Probability of ${props.choices[i]}: ${val}%`}
+              </Text>
+            ))}
+          <Text sx={{ fontSize: 1, color: "gray" }}>
+            Expires on {props.date_expired}
+          </Text>
+        </Box>
         <Range
+          disabled={props.disabled}
           draggableTrack
           values={values}
           step={props.step}
@@ -83,15 +118,11 @@ function MultipleCategoryChoice(props) {
               {children}
             </Track>
           )}
-          renderThumb={({ props }) => <Thumb val={""} thumbProps={props} />}
+          renderThumb={({ index, props }) => (
+            <Thumb val={displayValues[index]} thumbProps={props} />
+          )}
         />
-        {displayValues &&
-          displayValues.map((val, i) => (
-            <Text sx={{ fontWeight: "bold" }}>
-              {`Probability of ${props.choices[i].name}: ${val}%`}
-            </Text>
-          ))}
-      </Box>
+      </Grid>
     </form>
   );
 }
