@@ -18,7 +18,8 @@ function decimalRound(val) {
 }
 
 function MultipleCategoryChoice(props) {
-  const length = props.choices.length;
+  const length = props.choices.length === 0 ? 2 : props.choices.length;
+  const choices = props.choices.length === 0 ? ["yes", "no"] : props.choices;
   let arr = [];
   let displayArr = [];
 
@@ -32,17 +33,12 @@ function MultipleCategoryChoice(props) {
   });
 
   if (props.prediction) {
-    // In case binary choice, set predictions array to [prediction, 100 - prediction]
-    const prediction =
-      length === 2
-        ? [props.prediction[0], 100 - props.prediction[0]]
-        : props.prediction;
-
     for (let i = 0; i < length - 1; i++) {
-      const newVal = i === 0 ? prediction[i] : prediction[i] + arr[i - 1];
+      const newVal =
+        i === 0 ? props.prediction[i] : props.prediction[i] + arr[i - 1];
       arr.push(newVal);
     }
-    displayArr = prediction;
+    displayArr = props.prediction;
   } else {
     // Populate arr with values of thumbs and displayArr with displayed ranges
     for (let i = 0; i < length - 1; i++) {
@@ -91,7 +87,7 @@ function MultipleCategoryChoice(props) {
           {displayValues &&
             displayValues.map((val, i) => (
               <Text sx={{ fontSize: 1 }}>
-                {`Probability of ${props.choices[i]}: ${val}%`}
+                {`Probability of ${choices[i]}: ${val}%`}
               </Text>
             ))}
           <Text sx={{ fontSize: 1, color: "gray" }}>
