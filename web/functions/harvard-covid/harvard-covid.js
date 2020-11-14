@@ -12,7 +12,7 @@ if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
 if (!process.env.GOOGLE_PRIVATE_KEY)
   throw new Error("no GOOGLE_PRIVATE_KEY env var set");
 if (!process.env.GOOGLE_SPREADSHEET_ID_FROM_URL)
-// spreadsheet key is the long id in the sheets URL
+  // spreadsheet key is the long id in the sheets URL
   throw new Error("no GOOGLE_SPREADSHEET_ID_FROM_URL env var set");
 /*
  * ok real work
@@ -26,7 +26,7 @@ if (!process.env.GOOGLE_SPREADSHEET_ID_FROM_URL)
  * the library also allows working just with cells,
  * but this example only shows CRUD on rows since thats more common
  */
-const {GoogleSpreadsheet} = require("google-spreadsheet");
+const { GoogleSpreadsheet } = require("google-spreadsheet");
 
 exports.handler = async (event) => {
   const table = event.queryStringParameters.table;
@@ -36,7 +36,7 @@ exports.handler = async (event) => {
   // https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
   await doc.useServiceAccountAuth({
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY
+    private_key: process.env.GOOGLE_PRIVATE_KEY,
   });
   await doc.loadInfo(); // loads document properties and worksheets. required.
   const sheet = doc.sheetsByIndex[table]; // you may want to customize this if you have more than 1 sheet
@@ -54,7 +54,7 @@ exports.handler = async (event) => {
           return {
             statusCode: 200,
             // body: JSON.stringify(rows) // dont do this - has circular references
-            body: JSON.stringify(serializedRows) // better
+            body: JSON.stringify(serializedRows), // better
           };
         }
         /* GET /.netlify/functions/google-spreadsheet-fn/123456 */
@@ -64,7 +64,7 @@ exports.handler = async (event) => {
           const srow = serializeRow(rows[rowId]);
           return {
             statusCode: 200,
-            body: JSON.stringify(srow) // just sends less data over the wire
+            body: JSON.stringify(srow), // just sends less data over the wire
           };
         } else {
           throw new Error(
@@ -83,8 +83,8 @@ exports.handler = async (event) => {
           statusCode: 200,
           body: JSON.stringify({
             message: `POST Success - added row ${addedRow._rowNumber - 1}`,
-            rowNumber: addedRow._rowNumber - 1 // minus the header row
-          })
+            rowNumber: addedRow._rowNumber - 1, // minus the header row
+          }),
         };
       /* PUT /.netlify/functions/google-spreadsheet-fn/123456 */
       case "PUT":
@@ -93,7 +93,7 @@ exports.handler = async (event) => {
           console.error("PUT request must also have an id"); // we could allow mass-updating of the sheet, but nah
           return {
             statusCode: 422, // unprocessable entity https://stackoverflow.com/questions/3050518/what-http-status-response-code-should-i-use-if-the-request-is-missing-a-required
-            body: "PUT request must also have an id."
+            body: "PUT request must also have an id.",
           };
         }
         /* PUT /.netlify/functions/google-spreadsheet-fn/123456 */
@@ -110,14 +110,14 @@ exports.handler = async (event) => {
           await selectedRow.save(); // save updates
           return {
             statusCode: 200,
-            body: JSON.stringify({message: "PUT is a success!"})
+            body: JSON.stringify({ message: "PUT is a success!" }),
             // body: JSON.stringify(rows[rowId]) // just sends less data over the wire
           };
         } else {
           return {
             statusCode: 500,
             body:
-              "too many segments in PUT request - you should only call somehting like /.netlify/functions/google-spreadsheet-fn/123456 not /.netlify/functions/google-spreadsheet-fn/123456/789/101112"
+              "too many segments in PUT request - you should only call somehting like /.netlify/functions/google-spreadsheet-fn/123456 not /.netlify/functions/google-spreadsheet-fn/123456/789/101112",
           };
         }
       /* DELETE /.netlify/functions/google-spreadsheet-fn/123456 */
@@ -139,14 +139,14 @@ exports.handler = async (event) => {
             await lastRow.delete(); // delete a row
             return {
               statusCode: 200,
-              body: JSON.stringify({message: "DELETE is a success!"})
+              body: JSON.stringify({ message: "DELETE is a success!" }),
             };
           } else {
             return {
               statusCode: 200,
               body: JSON.stringify({
-                message: "no rows left to delete! (first row is sacred)"
-              })
+                message: "no rows left to delete! (first row is sacred)",
+              }),
             };
           }
         } else {
@@ -154,15 +154,15 @@ exports.handler = async (event) => {
             statusCode: 500,
             body: JSON.stringify({
               message:
-                "invalid segments in DELETE request, must be /.netlify/functions/google-spreadsheet-fn/123456"
-            })
+                "invalid segments in DELETE request, must be /.netlify/functions/google-spreadsheet-fn/123456",
+            }),
           };
         }
       /* Fallthrough case */
       default:
         return {
           statusCode: 500,
-          body: "unrecognized HTTP Method, must be one of GET/POST/PUT/DELETE"
+          body: "unrecognized HTTP Method, must be one of GET/POST/PUT/DELETE",
         };
     }
   } catch (err) {
@@ -170,7 +170,7 @@ exports.handler = async (event) => {
     console.error(err);
     return {
       statusCode: 500,
-      body: err.toString()
+      body: err.toString(),
     };
   }
 
