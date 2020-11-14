@@ -46,7 +46,6 @@ class StateGraph extends Component {
 
   async loadData(state) {
     const data = await fetchStateData(state);
-    console.log(data)
     this.setState({
       chartData: {
         labels: data.dates,
