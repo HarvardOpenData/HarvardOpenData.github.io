@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, Grid, Text } from "theme-ui";
 import { Range } from "react-range";
+import { format } from "date-fns";
 import Thumb from "./thumb";
 import Track from "./track";
 
@@ -36,7 +37,7 @@ function IntervalChoice(props) {
             Your prediction: {values.join(" - ")}
           </Text>
           <Text sx={{ fontSize: 1, color: "gray" }}>
-            Expires on {props.date_expired}
+            Expires on {format(new Date(props.date_expired), "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range
