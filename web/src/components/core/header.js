@@ -7,7 +7,7 @@ import Container from "./container";
 import HamburgerMenu from "react-hamburger-menu";
 import Fade from "react-reveal/Fade";
 import { Collapse } from "react-collapse";
-import { jsx, Box, Divider, Flex, Grid, Text } from "theme-ui";
+import { jsx, Box, Divider, Flex, Grid, Text, Input } from "theme-ui";
 
 function MenuLink(props) {
   return (
@@ -141,6 +141,13 @@ function StandardHeader({ logo, menuLinks }) {
               <StandardMenuLink {...link} />
             )
           )}
+          <Input
+            sx={{
+              width: "30%",
+              height: "60%",
+              marginLeft: "auto"
+            }}
+          />
         </Flex>
         <br />
       </Container>
