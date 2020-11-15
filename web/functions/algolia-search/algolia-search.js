@@ -1,18 +1,19 @@
-const request = require("request");
 const algoliasearch = require("algoliasearch");
+const request = require("request");
 
 const ndjson = require("ndjson");
-const {bindNodeCallback} = require("rxjs");
-const {streamToRx} = require("rxjs-stream");
-const {bufferCount, map, mergeMap, toArray, tap} = require("rxjs/operators");
+const { bindNodeCallback } = require("rxjs");
+const { streamToRx } = require("rxjs-stream");
+const { bufferCount, map, mergeMap, toArray } = require("rxjs/operators");
 
+// Algolia configuration
 const algoliaApp = "QCACO3FFKP";
 const algoliaIndex = "HODP_Sanity";
 // Sanity configuration
 const projectId = "xx0obpjv";
 const dataset = "production";
 
-exports.handler = async function (event, context, cb) {
+exports.handler = function (event, context, cb) {
   const URL = `https://${projectId}.api.sanity.io/v1/data/export/${dataset}`;
   console.log("Constructed URL is ...", URL);
 
@@ -32,7 +33,6 @@ exports.handler = async function (event, context, cb) {
        * here we reduce structured text to plain text
        */
       map(function sanityToAlgolia(doc) {
-        console.log(doc);
         return {
           objectID: doc._id,
           body: blocksToText(doc.body || []),
@@ -45,7 +45,7 @@ exports.handler = async function (event, context, cb) {
       // buffer batches in chunks of 100
       bufferCount(100),
       // 👇uncomment to console.log objects for debugging
-      tap(console.log),
+      // tap(console.log),
       // submit actions, one batch at a time
       mergeMap((docs) => partialUpdateObjects(docs), 1),
       // collect all batches and emit when the stream is complete
@@ -62,3 +62,20 @@ exports.handler = async function (event, context, cb) {
       );
     }, cb);
 };
+
+const defaults = { nonTextBehavior: "remove" };
+
+function blocksToText(blocks, opts = {}) {
+  const options = Object.assign({}, defaults, opts);
+  return blocks
+    .map((block) => {
+      if (block._type !== "block" || !block.children) {
+        return options.nonTextBehavior === "remove"
+          ? ""
+          : `[${block._type} block]`;
+      }
+
+      return block.children.map((child) => child.text).join("");
+    })
+    .join("\n\n");
+}
