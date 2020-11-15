@@ -80,6 +80,21 @@ function MultipleCategoryChoice(props) {
     console.log(displayValues);
   };
 
+  const predictionDisplay =
+    props.choices.length === 0 ? (
+      <Text sx={{ fontSize: 2 }}>
+        {`Your prediction: ${displayValues[0]}%`}
+      </Text>
+    ) : (
+      <div>
+        <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
+        {displayValues &&
+          displayValues.map((val, i) => (
+            <Text sx={{ fontSize: 1 }}>{`Prediction of ${choices[i]}: ${val}%`}</Text>
+          ))}
+      </div>
+    );
+
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
       <Grid mt={1} mx={3} gap={2} columns={[1, "3fr 5fr"]}>
@@ -92,13 +107,7 @@ function MultipleCategoryChoice(props) {
           >
             {props.name}
           </Text>
-          <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
-          {displayValues &&
-            displayValues.map((val, i) => (
-              <Text sx={{ fontSize: 1 }}>
-                {`Probability of ${choices[i]}: ${val}%`}
-              </Text>
-            ))}
+          {predictionDisplay}
           <Text sx={{ fontSize: 1, color: "gray" }}>
             Expires on {format(new Date(props.date_expired), "MM-DD-YYYY")}
           </Text>
