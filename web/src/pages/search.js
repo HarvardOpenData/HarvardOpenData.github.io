@@ -22,8 +22,8 @@ import qs from "qs";
 
 const DEBOUNCE_TIME = 400;
 const searchClient = algoliasearch(
-  "QCACO3FFKP",
-  "5e093fa7c6aa1fc410cce68c146fda00"
+  process.env.ALGOLIA_APP_ID,
+  process.env.ALGOLIA_TOKEN
 );
 
 export const query = graphql`
