@@ -4,7 +4,7 @@ const request = require("request");
 const ndjson = require("ndjson");
 const { bindNodeCallback } = require("rxjs");
 const { streamToRx } = require("rxjs-stream");
-const { bufferCount, map, mergeMap, toArray } = require("rxjs/operators");
+const { bufferCount, map, mergeMap, toArray, pluck } = require("rxjs/operators");
 
 // Algolia configuration
 const algoliaApp = "QCACO3FFKP";
@@ -14,7 +14,7 @@ const projectId = "xx0obpjv";
 const dataset = "production";
 
 exports.handler = function (event, context, cb) {
-  const URL = `https://${projectId}.api.sanity.io/v1/data/export/${dataset}`;
+  const URL = `https://${projectId}.api.sanity.io/v1/data/query/${dataset}/?query=*[_type == "project"]`;
   console.log("Constructed URL is ...", URL);
 
   // Initiate an Algolia client
@@ -28,6 +28,8 @@ exports.handler = function (event, context, cb) {
   );
   streamToRx(request(URL).pipe(ndjson.parse()))
     .pipe(
+      pluck('result'),
+      mergeMap(val => val),
       /*
        * Pick and prepare fields you want to index,
        * here we reduce structured text to plain text
@@ -35,11 +37,13 @@ exports.handler = function (event, context, cb) {
       map(function sanityToAlgolia(doc) {
         return {
           objectID: doc._id,
+          categories: doc.categories,
           body: blocksToText(doc.body || []),
-          blurb: blocksToText(doc.blurb || []),
-          title: doc.title,
-          name: doc.name,
+          excerpt: doc.excerpt,
+          mainImage: doc.mainImage,
+          members: doc.members,
           slug: doc.slug,
+          title: doc.title
         };
       }),
       // buffer batches in chunks of 100
