@@ -7,13 +7,45 @@ import Container from "./container";
 import HamburgerMenu from "react-hamburger-menu";
 import Fade from "react-reveal/Fade";
 import { Collapse } from "react-collapse";
-import { jsx, Box, Divider, Flex, Grid, Text, Input } from "theme-ui";
+import { Box, Divider, Flex, Grid, Input, jsx, Text } from "theme-ui";
+import { navigate } from "gatsby";
 
 function MenuLink(props) {
   return (
     <Link to={props.link} href={props.link} variant="default">
       {props.children}
     </Link>
+  );
+}
+
+function Searchbar() {
+  const [search, setSearch] = useState("");
+
+  const handleChange = (event) => setSearch(event.target.value);
+
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        // TODO: do something with form values
+        navigate(
+          `/search/?configure%5BhitsPerPage%5D=10&attributeForMyQuery=${search}`
+        );
+      }}
+      sx={{
+        width: "30%",
+        height: "60%",
+        marginLeft: "auto",
+      }}
+    >
+      <Input
+        placeholder={"Search"}
+        value={search}
+        href={"/search"}
+        onChange={handleChange}
+      />
+      <input type="submit" hidden={true} />
+    </form>
   );
 }
 
@@ -141,13 +173,7 @@ function StandardHeader({ logo, menuLinks }) {
               <StandardMenuLink {...link} />
             )
           )}
-          <Input
-            sx={{
-              width: "30%",
-              height: "60%",
-              marginLeft: "auto"
-            }}
-          />
+          <Searchbar />
         </Flex>
         <br />
       </Container>
