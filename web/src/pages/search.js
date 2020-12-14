@@ -82,7 +82,7 @@ const SearchPage = (props) => {
   };
 
   return (
-    <Layout>
+    <Layout isSearch={true}>
       <SEO title={page.title} />
       <Container>
         <InstantSearch

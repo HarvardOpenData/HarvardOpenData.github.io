@@ -18,7 +18,7 @@ function MenuLink(props) {
   );
 }
 
-function Searchbar() {
+function Searchbar(props) {
   const [search, setSearch] = useState("");
 
   const handleChange = (event) => setSearch(event.target.value);
@@ -33,7 +33,7 @@ function Searchbar() {
         );
       }}
       sx={{
-        width: "30%",
+        width: props.isMobile ? "100%" : "30%",
         height: "60%",
         marginLeft: "auto",
       }}
@@ -142,7 +142,7 @@ function StandardMenuLink({ name, link, subMenu }) {
   );
 }
 
-function StandardHeader({ logo, menuLinks }) {
+function StandardHeader({ logo, menuLinks, isSearch }) {
   const logoSrc = imageUrlFor(buildImageObj(logo)).width(600).url();
   return (
     <div
@@ -173,7 +173,7 @@ function StandardHeader({ logo, menuLinks }) {
               <StandardMenuLink {...link} />
             )
           )}
-          <Searchbar />
+          {!isSearch && <Searchbar />}
         </Flex>
         <br />
       </Container>
@@ -251,6 +251,7 @@ class MobileHeader extends React.Component {
               />
             </Box>
           </Flex>
+          {!this.props.isSearch && <Searchbar isMobile />}
         </Container>
       </div>
     );
@@ -365,12 +366,20 @@ class Header extends React.Component {
       <div>
         <div sx={{ display: ["none", "initial", "initial", "initial"] }}>
           {logo && logo.asset && (
-            <StandardHeader logo={logo} menuLinks={menuLinks} />
+            <StandardHeader
+              logo={logo}
+              menuLinks={menuLinks}
+              isSearch={this.props.isSearch}
+            />
           )}
         </div>
         <div sx={{ display: ["initial", "none", "none", "none"] }}>
           {logo && logo.asset && (
-            <MobileHeader logo={logo} menuLinks={menuLinks} />
+            <MobileHeader
+              logo={logo}
+              menuLinks={menuLinks}
+              isSearch={this.props.isSearch}
+            />
           )}
         </div>
       </div>
