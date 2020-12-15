@@ -4,10 +4,16 @@ const request = require("request");
 const ndjson = require("ndjson");
 const { bindNodeCallback } = require("rxjs");
 const { streamToRx } = require("rxjs-stream");
-const { bufferCount, map, mergeMap, toArray, pluck } = require("rxjs/operators");
+const {
+  bufferCount,
+  map,
+  mergeMap,
+  toArray,
+  pluck,
+} = require("rxjs/operators");
 
 // Algolia configuration
-const algoliaApp = "QCACO3FFKP";
+const algoliaApp = process.env.ALGOLIA_APP_ID;
 const algoliaIndex = "HODP_Sanity";
 // Sanity configuration
 const projectId = "xx0obpjv";
@@ -28,8 +34,8 @@ exports.handler = function (event, context, cb) {
   );
   streamToRx(request(URL).pipe(ndjson.parse()))
     .pipe(
-      pluck('result'),
-      mergeMap(val => val),
+      pluck("result"),
+      mergeMap((val) => val),
       /*
        * Pick and prepare fields you want to index,
        * here we reduce structured text to plain text
@@ -37,49 +43,25 @@ exports.handler = function (event, context, cb) {
       map(function sanityToAlgolia(doc) {
         return {
           objectID: doc._id,
-          categories: doc.categories,
-          body: blocksToText(doc.body || []),
           excerpt: doc.excerpt,
           mainImage: doc.mainImage,
-          members: doc.members,
           slug: doc.slug,
-          title: doc.title
+          title: doc.title,
         };
       }),
       // buffer batches in chunks of 100
-      bufferCount(100),
+      bufferCount(10),
       // 👇uncomment to console.log objects for debugging
       // tap(console.log),
       // submit actions, one batch at a time
-      mergeMap((docs) => partialUpdateObjects(docs), 1),
+      map((docs) => partialUpdateObjects(docs), 1),
       // collect all batches and emit when the stream is complete
       toArray()
     )
-    .subscribe((batchResults) => {
-      const totalLength = batchResults.reduce(
-        (count, batchResult) => count + batchResult.objectIDs.length,
-        0
-      );
-      cb(
-        null,
-        `Updated ${totalLength} documents in ${batchResults.length} batches`
-      );
-    }, cb);
+    .subscribe((batchResults) =>
+      cb(null, {
+        statusCode: 200,
+        body: `Updated ${batchResults.length} batches`,
+      })
+    );
 };
-
-const defaults = { nonTextBehavior: "remove" };
-
-function blocksToText(blocks, opts = {}) {
-  const options = Object.assign({}, defaults, opts);
-  return blocks
-    .map((block) => {
-      if (block._type !== "block" || !block.children) {
-        return options.nonTextBehavior === "remove"
-          ? ""
-          : `[${block._type} block]`;
-      }
-
-      return block.children.map((child) => child.text).join("");
-    })
-    .join("\n\n");
-}

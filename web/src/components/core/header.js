@@ -29,7 +29,7 @@ function Searchbar(props) {
         event.preventDefault();
         // TODO: do something with form values
         navigate(
-          `/search/?configure%5BhitsPerPage%5D=10&attributeForMyQuery=${search}`
+          `/search/?query=${search}`
         );
       }}
       sx={{

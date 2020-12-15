@@ -37,12 +37,47 @@ export const query = graphql`
   }
 `;
 
-const createURL = (state) => `?${qs.stringify(state)}`;
+const createURL = (state) => {
+  const isDefaultRoute =
+    !state.query &&
+    state.page === 1 &&
+    state.refinementList &&
+    state.refinementList.brand.length === 0 &&
+    state.menu &&
+    !state.menu.categories;
 
-const searchStateToUrl = (location, searchState) =>
-  searchState ? `${location.pathname}${createURL(searchState)}` : "";
+  if (isDefaultRoute) {
+    return "";
+  }
 
-const urlToSearchState = ({ search }) => qs.parse(search.slice(1));
+  const queryParameters = {};
+
+  if (state.attributeForMyQuery) {
+    queryParameters.query = encodeURIComponent(state.attributeForMyQuery);
+  }
+  if (state.page !== 1) {
+    queryParameters.page = state.page;
+  }
+
+  const queryString = qs.stringify(queryParameters, {
+    addQueryPrefix: true,
+    arrayFormat: "repeat",
+  });
+
+  return `/search/${queryString}`;
+};
+
+const searchStateToUrl = (searchState) =>
+  searchState ? createURL(searchState) : "";
+
+const urlToSearchState = (location) => {
+  const { query = "", page = 1 } = qs.parse(location.search.slice(1));
+
+  return {
+    attributeForMyQuery: decodeURIComponent(query),
+    page,
+  };
+};
 
 const SearchPage = (props) => {
   const { data, errors } = props;
@@ -72,7 +107,7 @@ const SearchPage = (props) => {
 
     setDebouncedSetState(
       setTimeout(() => {
-        navigate(searchStateToUrl(props.location, updatedSearchState), {
+        navigate(searchStateToUrl(updatedSearchState), {
           state: updatedSearchState,
         });
       }, DEBOUNCE_TIME)
