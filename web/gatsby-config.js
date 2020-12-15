@@ -87,7 +87,9 @@ module.exports = {
           "MAPBOX_ACCESS_TOKEN",
           "GOOGLE_SPREADSHEET_ID_FROM_URL",
           "GOOGLE_SERVICE_ACCOUNT_EMAIL",
-          "GOOGLE_PRIVATE_KEY"
+          "GOOGLE_PRIVATE_KEY",
+          "ALGOLIA_TOKEN",
+          "ALGOLIA_APP_ID"
         ],
       },
     },
