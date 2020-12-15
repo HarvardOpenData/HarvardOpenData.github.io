@@ -8,17 +8,17 @@ import {
   createConnector,
   InstantSearch,
 } from "react-instantsearch-dom";
+import algoliasearch from "algoliasearch";
+import qs from "qs";
 import { graphql, navigate } from "gatsby";
 import Layout from "../containers/layout";
+import ArticlePreview from "../components/article-layouts/article-preview";
+import BlockContent from "../components/block-content";
 import SEO from "../components/core/seo";
 import Container from "../components/core/container";
-import GraphQLErrorList from "../components/core/graphql-error-list";
-import algoliasearch from "algoliasearch";
-import ArticlePreview from "../components/article-layouts/article-preview";
 import Section from "../components/core/section";
-import BlockContent from "../components/block-content";
 import Spacer from "../components/core/spacer";
-import qs from "qs";
+import GraphQLErrorList from "../components/core/graphql-error-list";
 
 const DEBOUNCE_TIME = 400;
 const searchClient = algoliasearch(
@@ -120,14 +120,14 @@ const SearchPage = (props) => {
     <Layout isSearch={true}>
       <SEO title={page.title} />
       <Container>
-        <InstantSearch
-          indexName="HODP_Sanity"
-          searchClient={searchClient}
-          searchState={searchState}
-          onSearchStateChange={onSearchStateChange}
-          createURL={createURL}
-        >
-          <Grid gap={[5, 5, 6]} columns={[1, "4fr 1fr"]}>
+        <Grid gap={[5, 5, 6]} columns={[1, "4fr 1fr"]}>
+          <InstantSearch
+            indexName="HODP_Sanity"
+            searchClient={searchClient}
+            searchState={searchState}
+            onSearchStateChange={onSearchStateChange}
+            createURL={createURL}
+          >
             <Box>
               <ConnectedSearchBox />
               <Configure hitsPerPage={10} />
@@ -136,12 +136,12 @@ const SearchPage = (props) => {
               <Spacer height={4} />
               <CustomPagination />
             </Box>
-            <Section header="Featured" showDivider={false}>
-              <br />
-              <BlockContent blocks={page._rawBodySecondary || []} />
-            </Section>
-          </Grid>
-        </InstantSearch>
+          </InstantSearch>
+          <Section header="Featured" showDivider={false}>
+            <br />
+            <BlockContent blocks={page._rawBodySecondary || []} />
+          </Section>
+        </Grid>
       </Container>
     </Layout>
   );
