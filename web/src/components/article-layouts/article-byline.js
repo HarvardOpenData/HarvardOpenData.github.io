@@ -21,9 +21,11 @@ function ArticleByline({ members, publishedAt, showDate }) {
       {contributors.length > 0 && `By `}
       {contributors.map((item, i) => (
         <span key={item._key}>
-          <Link to={`/people/${item.person.slug.current}`}>
+          {item.person.slug ? <Link to={`/people/${item.person.slug.current}`}>
             {item.person && `${item.person.name}`}
-          </Link>
+          </Link> : <div>
+            {item.person && `${item.person.name}`}
+          </div>}
           {i < numContributors - 2 ? `, ` : i === numContributors - 2 && ` & `}
         </span>
       ))}
