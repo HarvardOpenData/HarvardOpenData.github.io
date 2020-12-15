@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, Grid, Text } from "theme-ui";
 import { Range } from "react-range";
+import { format } from "date-fns";
 import Thumb from "./thumb";
 import Track from "./track";
 
@@ -18,39 +19,41 @@ function decimalRound(val) {
 }
 
 function MultipleCategoryChoice(props) {
-  const length = props.choices.length;
+  const choices = props.choices.length === 0 ? ["yes"] : props.choices;
+  let colors = [];
   let arr = [];
   let displayArr = [];
 
-  // Populate with gradient color values between #C63F3F and #ccc
-  let colors = Array.from(Array(length).keys()).map((index) => {
-    const pct = index / (length - 1);
-    const diffRed = (end_red - start_red) * pct + start_red;
-    const diffGreen = (end_green - start_green) * pct + start_green;
-    const diffBlue = (end_blue - start_blue) * pct + start_blue;
-    return `rgb(${diffRed},${diffGreen},${diffBlue})`;
-  });
-
-  if (props.prediction) {
-    // In case binary choice, set predictions array to [prediction, 100 - prediction]
-    const prediction =
-      length === 2
-        ? [props.prediction[0], 100 - props.prediction[0]]
-        : props.prediction;
-
-    for (let i = 0; i < length - 1; i++) {
-      const newVal = i === 0 ? prediction[i] : prediction[i] + arr[i - 1];
-      arr.push(newVal);
-    }
-    displayArr = prediction;
+  if (props.choices.length === 0) {
+    colors = ["#C63F3F", "#ccc"];
+    arr = props.prediction ? [props.prediction[0]] : [50];
+    displayArr = props.prediction ? props.prediction : [50];
   } else {
-    // Populate arr with values of thumbs and displayArr with displayed ranges
-    for (let i = 0; i < length - 1; i++) {
-      const val = 100 / length;
-      arr.push((i + 1) * val);
-      displayArr.push(decimalRound(val));
+    // Populate with gradient color values between #C63F3F and #ccc
+    colors = Array.from(Array(props.choices.length).keys()).map((index) => {
+      const pct = index / (props.choices.length - 1);
+      const diffRed = (end_red - start_red) * pct + start_red;
+      const diffGreen = (end_green - start_green) * pct + start_green;
+      const diffBlue = (end_blue - start_blue) * pct + start_blue;
+      return `rgb(${diffRed},${diffGreen},${diffBlue})`;
+    });
+
+    if (props.prediction) {
+      for (let i = 0; i < props.choices.length - 1; i++) {
+        const newVal =
+          i === 0 ? props.prediction[i] : props.prediction[i] + arr[i - 1];
+        arr.push(newVal);
+      }
+      displayArr = props.prediction;
+    } else {
+      // Populate arr with values of thumbs and displayArr with displayed ranges
+      for (let i = 0; i < props.choices.length - 1; i++) {
+        const val = 100 / props.choices.length;
+        arr.push((i + 1) * val);
+        displayArr.push(decimalRound(val));
+      }
+      displayArr.push(decimalRound(100 - arr[props.choices.length - 2]));
     }
-    displayArr.push(decimalRound(100 - arr[length - 2]));
   }
 
   const [values, setValues] = useState(arr);
@@ -66,7 +69,9 @@ function MultipleCategoryChoice(props) {
     const newValues = values.map((val, i) =>
       i === 0 ? decimalRound(val) : decimalRound(val - values[i - 1])
     );
-    newValues.push(decimalRound(100 - values[length - 2]));
+    if (props.choices.length !== 0) {
+      newValues.push(decimalRound(100 - values[props.choices.length - 2]));
+    }
     setDisplayValues(newValues);
   };
 
@@ -74,6 +79,21 @@ function MultipleCategoryChoice(props) {
   const updateFirebase = () => {
     console.log(displayValues);
   };
+
+  const predictionDisplay =
+    props.choices.length === 0 ? (
+      <Text sx={{ fontSize: 2 }}>
+        {`Your prediction: ${displayValues[0]}%`}
+      </Text>
+    ) : (
+      <div>
+        <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
+        {displayValues &&
+          displayValues.map((val, i) => (
+            <Text sx={{ fontSize: 1 }}>{`Prediction of ${choices[i]}: ${val}%`}</Text>
+          ))}
+      </div>
+    );
 
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
@@ -87,15 +107,9 @@ function MultipleCategoryChoice(props) {
           >
             {props.name}
           </Text>
-          <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
-          {displayValues &&
-            displayValues.map((val, i) => (
-              <Text sx={{ fontSize: 1 }}>
-                {`Probability of ${props.choices[i]}: ${val}%`}
-              </Text>
-            ))}
+          {predictionDisplay}
           <Text sx={{ fontSize: 1, color: "gray" }}>
-            Expires on {props.date_expired}
+            Expires on {format(new Date(props.date_expired), "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range

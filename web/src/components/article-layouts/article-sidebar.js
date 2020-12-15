@@ -67,7 +67,7 @@ function ArticleSidebar(props) {
                 title={project.title}
                 mainImage={project._rawMainImage}
                 image={project._rawMainImage}
-                link={`/project/${project.slug.current}`}
+                link={`${project.slug.current}`}
                 horizontal
                 headerAs={"medium"}
               />
