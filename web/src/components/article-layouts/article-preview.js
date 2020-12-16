@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, Grid, Styled, Text } from "theme-ui";
+import { Card, Grid, jsx, Text } from "theme-ui";
 import Link from "../core/link";
-import { buildImageObj, formatDate } from "../../lib/helpers";
+import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import BlockText from "../core/block-text";
 import ArticleByline from "./article-byline";
@@ -28,9 +28,14 @@ function HorizontalArticlePreview(props) {
     pr: 3,
   };
   return (
-    <div
-      className="small preview"
-      sx={{ bg: props.container ? "container" : "#FFFFFF" }}
+    <Card
+      sx={{
+        mt: 3,
+        borderRadius: 5,
+        backgroundColor: "light",
+        padding: 4,
+        boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
+      }}
     >
       <Grid gap={props.gap || 3} columns={props.columns || ["1fr 2fr"]}>
         <Link to={props.newLink}>
@@ -48,13 +53,13 @@ function HorizontalArticlePreview(props) {
             />
           )}
         </Link>
-        <div sx={(props.container || props.size == "large") && containerStyles}>
+        <div sx={(props.container || props.size === "large") && containerStyles}>
           <PreviewText {...props} link={props.link}>
             {props.children}
           </PreviewText>
         </div>
       </Grid>
-    </div>
+    </Card>
   );
 }
 

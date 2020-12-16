@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { useState } from "react";
-import { Box, Button, Card, Flex, Grid, Input, jsx, Text } from "theme-ui";
+import { Box, Button, Grid, Input, jsx } from "theme-ui";
 import {
   Configure,
   connectHits,
@@ -13,14 +13,14 @@ import qs from "qs";
 import { graphql, navigate } from "gatsby";
 import Layout from "../containers/layout";
 import ArticlePreview from "../components/article-layouts/article-preview";
+import ProfileBio from "../components/people-layouts/profile-bio";
+import DatasetPreview from "../components/search-layouts/dataset-preview";
 import BlockContent from "../components/block-content";
 import SEO from "../components/core/seo";
-import Link from "../components/core/link";
 import Container from "../components/core/container";
 import Section from "../components/core/section";
 import Spacer from "../components/core/spacer";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import ProfileBio from "../components/people-layouts/profile-bio";
 
 const DEBOUNCE_TIME = 400;
 const searchClient = algoliasearch(
@@ -193,41 +193,6 @@ const MySearchBox = ({ currentRefinement, refine }) => (
 
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
 
-const DataItem = ({ title, description, downloadURL, sourceURL }) => (
-  <Card
-    sx={{
-      mt: 3,
-      borderRadius: 5,
-      backgroundColor: "light",
-      padding: 4,
-      boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
-    }}
-  >
-    <Flex>
-      <Box>
-        <Spacer height={3} />
-        <Text variant="h3">{title}</Text>
-        <Text variant="caption">{description}</Text>
-      </Box>
-    </Flex>
-    <Spacer height={3} />
-    <Button bg="deep">
-      <Link variant="outbound" href={sourceURL}>
-        <Text variant="small">
-          <b>Source site</b>
-        </Text>
-      </Link>
-    </Button>
-    <Button>
-      <Link variant="outbound" href={downloadURL}>
-        <Text variant="small">
-          <b>Download</b>
-        </Text>
-      </Link>
-    </Button>
-  </Card>
-);
-
 const Hits = ({ hits }) => (
   <Grid columns={1}>
     {hits.map((hit) => {
@@ -235,7 +200,7 @@ const Hits = ({ hits }) => (
         case "person":
           return <ProfileBio data={hit} />;
         case "dataset":
-          return <DataItem {...hit} />;
+          return <DatasetPreview {...hit} />;
         default:
           return (
             <ArticlePreview

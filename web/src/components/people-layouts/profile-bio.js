@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Image, Styled } from "theme-ui";
+import { Card, Grid, Image, Styled } from "theme-ui";
 import BlockText from "../core/block-text";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
@@ -18,7 +18,15 @@ function ProfileBio(props) {
     slug,
   } = props.data;
   return (
-    <Container>
+    <Card
+      sx={{
+        mt: 3,
+        borderRadius: 5,
+        backgroundColor: "light",
+        padding: 4,
+        boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
+      }}
+    >
       <Grid gap={4} columns={[1, "2fr 4fr", "1fr 4fr 1fr"]}>
         <div className="profile-page">
           {image && image.asset && (
@@ -65,7 +73,7 @@ function ProfileBio(props) {
           )}
         </div>
       </Grid>
-    </Container>
+    </Card>
   );
 }
 

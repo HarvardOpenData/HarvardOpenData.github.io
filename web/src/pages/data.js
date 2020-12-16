@@ -1,28 +1,17 @@
 /** @jsx jsx */
-import {
-  jsx,
-  Styled,
-  Badge,
-  Flex,
-  Card,
-  Box,
-  Text,
-  Grid,
-  Button,
-  Input,
-} from "theme-ui";
+import { Card, Grid, Input, jsx, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import BlockContent from "../components/block-content";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import Link from "../components/core/link";
 import SEO from "../components/core/seo";
 import Section from "../components/core/section";
 import Spacer from "../components/core/spacer";
 import Layout from "../containers/layout";
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
+import { mapEdgesToNodes } from "../lib/helpers";
 import { useState } from "react";
 import * as JsSearch from "js-search";
+import DatasetPreview from "../components/search-layouts/dataset-preview";
 
 export const query = graphql`
   query DataPageQuery {
@@ -123,16 +112,18 @@ const DataList = (props) => {
       {activeCategories.length === 0
         ? searchTerm === ""
           ? // Display all items if no categories are selected
-            items.map((item) => <DataItem {...item} />)
+            items.map((item) => <DatasetPreview {...item} />)
           : // Display items whose titles match the search term
-            searcher.search(searchTerm).map((item) => <DataItem {...item} />)
+            searcher
+              .search(searchTerm)
+              .map((item) => <DatasetPreview {...item} />)
         : // Display all items tagged with all selected categories
           items.map((item) => {
             const subjects = item.subjects.map((subject) => subject.title);
             if (!activeCategories.every((v) => subjects.includes(v))) {
               return <div></div>;
             }
-            return <DataItem {...item} />;
+            return <DatasetPreview {...item} />;
           })}
     </div>
   );
@@ -176,60 +167,6 @@ const DataCategories = (props) => {
         );
       })}
     </Section>
-  );
-};
-
-const DataItem = (props) => {
-  const {
-    title,
-    description,
-    downloadURL,
-    fileType,
-    sourceURL,
-    subjects,
-  } = props;
-
-  const subjectText = subjects.map((subject) => subject.title).join(", ");
-
-  return (
-    <Card
-      sx={{
-        mt: 3,
-        borderRadius: 5,
-        backgroundColor: "light",
-        padding: 4,
-        boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
-      }}
-    >
-      <Flex>
-        <Box>
-          {subjects &&
-            subjects.map((item) => (
-              <Badge bg="grey" mr={2}>
-                {item.title}
-              </Badge>
-            ))}
-          <Spacer height={3} />
-          <Text variant="h3">{title}</Text>
-          <Text variant="caption">{description}</Text>
-        </Box>
-      </Flex>
-      <Spacer height={3} />
-      <Button bg="deep">
-        <Link variant="outbound" href={sourceURL}>
-          <Text variant="small">
-            <b>Source site</b>
-          </Text>
-        </Link>
-      </Button>
-      <Button>
-        <Link variant="outbound" href={downloadURL}>
-          <Text variant="small">
-            <b>Download</b>
-          </Text>
-        </Link>
-      </Button>
-    </Card>
   );
 };
 
