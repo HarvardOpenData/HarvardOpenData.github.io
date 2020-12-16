@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { useState } from "react";
-import { Box, Button, Grid, Input, jsx } from "theme-ui";
+import { Box, Button, Card, Flex, Grid, Input, jsx, Text } from "theme-ui";
 import {
   Configure,
   connectHits,
@@ -15,10 +15,12 @@ import Layout from "../containers/layout";
 import ArticlePreview from "../components/article-layouts/article-preview";
 import BlockContent from "../components/block-content";
 import SEO from "../components/core/seo";
+import Link from "../components/core/link";
 import Container from "../components/core/container";
 import Section from "../components/core/section";
 import Spacer from "../components/core/spacer";
 import GraphQLErrorList from "../components/core/graphql-error-list";
+import ProfileBio from "../components/people-layouts/profile-bio";
 
 const DEBOUNCE_TIME = 400;
 const searchClient = algoliasearch(
@@ -191,16 +193,59 @@ const MySearchBox = ({ currentRefinement, refine }) => (
 
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
 
+const DataItem = ({ title, description, downloadURL, sourceURL }) => (
+  <Card
+    sx={{
+      mt: 3,
+      borderRadius: 5,
+      backgroundColor: "light",
+      padding: 4,
+      boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
+    }}
+  >
+    <Flex>
+      <Box>
+        <Spacer height={3} />
+        <Text variant="h3">{title}</Text>
+        <Text variant="caption">{description}</Text>
+      </Box>
+    </Flex>
+    <Spacer height={3} />
+    <Button bg="deep">
+      <Link variant="outbound" href={sourceURL}>
+        <Text variant="small">
+          <b>Source site</b>
+        </Text>
+      </Link>
+    </Button>
+    <Button>
+      <Link variant="outbound" href={downloadURL}>
+        <Text variant="small">
+          <b>Download</b>
+        </Text>
+      </Link>
+    </Button>
+  </Card>
+);
+
 const Hits = ({ hits }) => (
-  <Grid gap={4} columns={1}>
-    {hits.map((hit) => (
-      <ArticlePreview
-        horizontal={true}
-        link={hit.slug.current}
-        _rawExcerpt={hit.excerpt}
-        {...hit}
-      />
-    ))}
+  <Grid columns={1}>
+    {hits.map((hit) => {
+      switch (hit.type) {
+        case "person":
+          return <ProfileBio data={hit} />;
+        case "dataset":
+          return <DataItem {...hit} />;
+        default:
+          return (
+            <ArticlePreview
+              horizontal={true}
+              link={hit.slug.current}
+              {...hit}
+            />
+          );
+      }
+    })}
   </Grid>
 );
 
@@ -208,6 +253,19 @@ const CustomHits = connectHits(Hits);
 
 const Pagination = ({ currentRefinement, nbPages, refine, createURL }) => (
   <div className="pagination" style={{ textAlign: "center" }}>
+    {currentRefinement > 3 && (
+      <Button
+        color="text"
+        bg="white"
+        href={createURL(currentRefinement - 1)}
+        onClick={(event) => {
+          event.preventDefault();
+          refine(1);
+        }}
+      >
+        <b>{` First `}</b>
+      </Button>
+    )}
     {currentRefinement !== 1 && (
       <Button
         color="text"
@@ -221,13 +279,23 @@ const Pagination = ({ currentRefinement, nbPages, refine, createURL }) => (
         <b>{`← Previous `}</b>
       </Button>
     )}
-    {new Array(nbPages).fill(null).map((_, index) => {
-      const page = index + 1;
+    {new Array(nbPages < 5 ? nbPages : 5).fill(null).map((_, index) => {
+      let shift = currentRefinement - 1;
+      if (currentRefinement < 3) {
+        shift = 2;
+      } else if (currentRefinement > nbPages - 2) {
+        shift = nbPages - 3;
+      }
+      const page = shift + index - 1;
       const style = {
         border: (theme) =>
           currentRefinement === page && `1px solid ${theme.colors.text}`,
         ":hover": {
           bg: "container",
+        },
+        ":focus": {
+          outline: "none",
+          boxShadow: "none",
         },
       };
 
@@ -258,6 +326,19 @@ const Pagination = ({ currentRefinement, nbPages, refine, createURL }) => (
         }}
       >
         <b>{` Next →`}</b>
+      </Button>
+    )}
+    {currentRefinement < nbPages - 2 && (
+      <Button
+        color="text"
+        bg="white"
+        href={createURL(currentRefinement + 1)}
+        onClick={(event) => {
+          event.preventDefault();
+          refine(nbPages);
+        }}
+      >
+        <b>{` Last `}</b>
       </Button>
     )}
   </div>
