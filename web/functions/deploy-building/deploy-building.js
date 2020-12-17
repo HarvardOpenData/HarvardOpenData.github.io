@@ -70,6 +70,7 @@ exports.handler = function (event, context, cb) {
               mainImage: doc.mainImage,
               slug: doc.slug,
               title: doc.title,
+              publishedAt: doc.publishedAt,
             };
         }
       }),

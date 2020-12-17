@@ -58,7 +58,7 @@ function ProfileBio(props) {
               <Styled.h2 className="bio-name">{name}</Styled.h2>
             </Link>
           )}
-          {position.title && (
+          {position && position.title && (
             <Styled.p className="profile-title">{position.title}</Styled.p>
           )}
           <div className="very-small">
