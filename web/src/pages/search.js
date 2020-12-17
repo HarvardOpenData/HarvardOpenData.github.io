@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, Card, Grid, Input, jsx, Styled } from "theme-ui";
 import {
   Configure,
@@ -235,16 +235,38 @@ const Hits = ({ hits }) => (
     {hits.map((hit) => {
       switch (hit.type) {
         case "person":
-          return <ProfileBio data={hit} />;
+          return (
+            <Card
+              sx={{
+                mt: 3,
+                borderRadius: 5,
+                backgroundColor: "light",
+                padding: 4,
+                boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
+              }}
+            >
+              <ProfileBio data={hit} />
+            </Card>
+          );
         case "dataset":
           return <DatasetPreview {...hit} />;
         default:
           return (
-            <ArticlePreview
-              horizontal={true}
-              link={hit.slug.current}
-              {...hit}
-            />
+            <Card
+              sx={{
+                mt: 3,
+                borderRadius: 5,
+                backgroundColor: "light",
+                padding: 4,
+                boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
+              }}
+            >
+              <ArticlePreview
+                horizontal={true}
+                link={hit.slug.current}
+                {...hit}
+              />
+            </Card>
           );
       }
     })}

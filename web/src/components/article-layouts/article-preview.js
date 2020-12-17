@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Card, Grid, jsx, Text } from "theme-ui";
+import { Grid, jsx, Text } from "theme-ui";
 import Link from "../core/link";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
@@ -28,14 +28,9 @@ function HorizontalArticlePreview(props) {
     pr: 3,
   };
   return (
-    <Card
-      sx={{
-        mt: 3,
-        borderRadius: 5,
-        backgroundColor: "light",
-        padding: 4,
-        boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
-      }}
+    <div
+      className="small preview"
+      sx={{ bg: props.container ? "container" : "#FFFFFF" }}
     >
       <Grid gap={props.gap || 3} columns={props.columns || ["1fr 2fr"]}>
         <Link to={props.newLink}>
@@ -53,13 +48,15 @@ function HorizontalArticlePreview(props) {
             />
           )}
         </Link>
-        <div sx={(props.container || props.size === "large") && containerStyles}>
+        <div
+          sx={(props.container || props.size === "large") && containerStyles}
+        >
           <PreviewText {...props} link={props.link}>
             {props.children}
           </PreviewText>
         </div>
       </Grid>
-    </Card>
+    </div>
   );
 }
 
