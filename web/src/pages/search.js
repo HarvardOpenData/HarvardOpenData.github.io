@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { useState } from "react";
-import { Button, Card, Grid, Input, jsx, Styled } from "theme-ui";
+import { Button, Card, Divider, Grid, Input, jsx, Styled } from "theme-ui";
 import {
   Configure,
   connectHits,
@@ -231,44 +231,31 @@ const Menu = ({ items, refine }) => (
 const ConnectedMenu = connectMenu(Menu);
 
 const Hits = ({ hits }) => (
-  <Grid columns={1}>
-    {hits.map((hit) => {
+  <Grid columns={1} gap={4}>
+    {hits.map((hit, index, array) => {
+      let preview;
       switch (hit.type) {
         case "person":
-          return (
-            <Card
-              sx={{
-                mt: 3,
-                borderRadius: 5,
-                backgroundColor: "light",
-                padding: 4,
-                boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
-              }}
-            >
-              <ProfileBio data={hit} />
-            </Card>
-          );
+          preview = <ProfileBio {...hit} />;
+          break;
         case "dataset":
-          return <DatasetPreview {...hit} />;
+          preview = <DatasetPreview {...hit} />;
+          break;
         default:
-          return (
-            <Card
-              sx={{
-                mt: 3,
-                borderRadius: 5,
-                backgroundColor: "light",
-                padding: 4,
-                boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
-              }}
-            >
-              <ArticlePreview
-                horizontal={true}
-                link={hit.slug.current}
-                {...hit}
-              />
-            </Card>
+          preview = (
+            <ArticlePreview
+              horizontal={true}
+              link={hit.slug.current}
+              {...hit}
+            />
           );
       }
+      return (
+        <React.Fragment key={index}>
+          {preview}
+          {index !== array.length - 1 && <Divider mb={3} />}
+        </React.Fragment>
+      );
     })}
   </Grid>
 );

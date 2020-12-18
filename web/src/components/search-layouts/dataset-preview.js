@@ -1,18 +1,10 @@
 /** @jsx jsx */
-import { Badge, Box, Button, Card, Flex, jsx, Text } from "theme-ui";
+import { Badge, Box, Button, Flex, jsx, Text } from "theme-ui";
 import Spacer from "../core/spacer";
 import Link from "../core/link";
 
 const DatasetPreview = ({title, description, downloadURL, sourceURL, subjects}) => (
-  <Card
-    sx={{
-      mt: 3,
-      borderRadius: 5,
-      backgroundColor: "light",
-      padding: 4,
-      boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
-    }}
-  >
+  <div>
     <Flex>
       <Box>
         {subjects &&
@@ -41,7 +33,7 @@ const DatasetPreview = ({title, description, downloadURL, sourceURL, subjects}) 
         </Text>
       </Link>
     </Button>
-  </Card>
+  </div>
 );
 
 export default DatasetPreview;

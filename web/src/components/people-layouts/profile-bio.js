@@ -16,10 +16,10 @@ function ProfileBio(props) {
     house,
     year,
     slug,
-  } = props.data;
+  } = props;
   return (
     <Container>
-      <Grid gap={4} columns={[1, "2fr 4fr", "1fr 4fr 1fr"]}>
+      <Grid gap={4} columns={[1, "2fr 4fr", "1fr 4fr"]}>
         <div className="profile-page">
           {image && image.asset && (
             <Image

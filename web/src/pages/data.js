@@ -107,23 +107,35 @@ const DataPage = (props) => {
 const DataList = (props) => {
   const { items, activeCategories, searcher, searchTerm } = props;
 
+  const DataItem = (props) => (
+    <Card
+      sx={{
+        mt: 3,
+        borderRadius: 5,
+        backgroundColor: "light",
+        padding: 4,
+        boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
+      }}
+    >
+      <DatasetPreview {...props} />
+    </Card>
+  );
+
   return (
     <div>
       {activeCategories.length === 0
         ? searchTerm === ""
           ? // Display all items if no categories are selected
-            items.map((item) => <DatasetPreview {...item} />)
+            items.map((item) => <DataItem {...item} />)
           : // Display items whose titles match the search term
-            searcher
-              .search(searchTerm)
-              .map((item) => <DatasetPreview {...item} />)
+            searcher.search(searchTerm).map((item) => <DataItem {...item} />)
         : // Display all items tagged with all selected categories
           items.map((item) => {
             const subjects = item.subjects.map((subject) => subject.title);
             if (!activeCategories.every((v) => subjects.includes(v))) {
               return <div></div>;
             }
-            return <DatasetPreview {...item} />;
+            return <DataItem {...item} />;
           })}
     </div>
   );
