@@ -3,22 +3,28 @@ import { Badge, Box, Button, Flex, jsx, Text } from "theme-ui";
 import Spacer from "../core/spacer";
 import Link from "../core/link";
 
-const DatasetPreview = ({title, description, downloadURL, sourceURL, subjects}) => (
+const DatasetPreview = ({
+  title,
+  description,
+  downloadURL,
+  sourceURL,
+  subjects,
+}) => (
   <div>
     <Flex>
       <Box>
         {subjects &&
-        subjects.map((item) => (
-          <Badge bg="grey" mr={2}>
-            {item.title}
-          </Badge>
-        ))}
-        <Spacer height={3}/>
+          subjects.map((item) => (
+            <Badge bg="grey" mr={2}>
+              {item.title}
+            </Badge>
+          ))}
+        <Spacer height={3} />
         <Text variant="h3">{title}</Text>
         <Text variant="caption">{description}</Text>
       </Box>
     </Flex>
-    <Spacer height={3}/>
+    <Spacer height={3} />
     <Button bg="deep">
       <Link variant="outbound" href={sourceURL}>
         <Text variant="small">
