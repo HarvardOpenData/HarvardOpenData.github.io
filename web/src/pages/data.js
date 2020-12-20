@@ -11,7 +11,7 @@ import Layout from "../containers/layout";
 import { mapEdgesToNodes } from "../lib/helpers";
 import { useState } from "react";
 import * as JsSearch from "js-search";
-import DatasetPreview from "../components/search-layouts/dataset-preview";
+import DatasetPreview from "../components/dataset/dataset-preview";
 
 export const query = graphql`
   query DataPageQuery {

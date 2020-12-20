@@ -15,7 +15,7 @@ import { graphql, navigate } from "gatsby";
 import Layout from "../containers/layout";
 import ArticlePreview from "../components/article-layouts/article-preview";
 import ProfileBio from "../components/people-layouts/profile-bio";
-import DatasetPreview from "../components/search-layouts/dataset-preview";
+import DatasetPreview from "../components/dataset/dataset-preview";
 import BlockContent from "../components/block-content";
 import SEO from "../components/core/seo";
 import Container from "../components/core/container";
