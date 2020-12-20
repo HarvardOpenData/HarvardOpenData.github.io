@@ -1,6 +1,5 @@
 const algoliasearch = require("algoliasearch");
 const request = require("request");
-
 const ndjson = require("ndjson");
 const { bindNodeCallback } = require("rxjs");
 const { streamToRx } = require("rxjs-stream");
@@ -20,7 +19,7 @@ const projectId = "xx0obpjv";
 const dataset = "production";
 
 exports.handler = function (event, context, cb) {
-  const URL = `https://${projectId}.api.sanity.io/v1/data/query/${dataset}/?query=*[_type == "project"]`;
+  const URL = `https://${projectId}.api.sanity.io/v1/data/query/${dataset}/?query=*[_type == "project" || _type == "person" || _type == "dataset"]`;
   console.log("Constructed URL is ...", URL);
 
   // Initiate an Algolia client
@@ -41,13 +40,39 @@ exports.handler = function (event, context, cb) {
        * here we reduce structured text to plain text
        */
       map(function sanityToAlgolia(doc) {
-        return {
-          objectID: doc._id,
-          excerpt: doc.excerpt,
-          mainImage: doc.mainImage,
-          slug: doc.slug,
-          title: doc.title,
-        };
+        switch (doc._type) {
+          case "person":
+            return {
+              type: doc._type,
+              objectID: doc._id,
+              _rawBio: doc.bio,
+              image: doc.image,
+              slug: doc.slug,
+              concentration: doc.concentration,
+              house: doc.house,
+              year: doc.year,
+              name: doc.name,
+            };
+          case "dataset":
+            return {
+              type: doc._type,
+              objectID: doc._id,
+              title: doc.title,
+              description: doc.description,
+              downloadURL: doc.downloadURL,
+              sourceURL: doc.sourceURL,
+            };
+          default:
+            return {
+              type: doc._type,
+              objectID: doc._id,
+              _rawExcerpt: doc.excerpt,
+              mainImage: doc.mainImage,
+              slug: doc.slug,
+              title: doc.title,
+              publishedAt: doc.publishedAt,
+            };
+        }
       }),
       // buffer batches in chunks of 100
       bufferCount(10),
@@ -58,10 +83,11 @@ exports.handler = function (event, context, cb) {
       // collect all batches and emit when the stream is complete
       toArray()
     )
-    .subscribe((batchResults) =>
+    .subscribe((batchResults) => {
+      batchResults.forEach((batchResult) => batchResult.subscribe());
       cb(null, {
         statusCode: 200,
         body: `Updated ${batchResults.length} batches`,
-      })
-    );
+      });
+    });
 };

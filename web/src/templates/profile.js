@@ -177,7 +177,7 @@ const ProfileTemplate = (props) => {
             <GraphQLErrorList errors={errors} />
           </Container>
         )}
-        {profile && <ProfileBio data={profile}></ProfileBio>}
+        {profile && <ProfileBio {...profile}></ProfileBio>}
         {profile && (
           <ProfileProjects
             data={profile}
