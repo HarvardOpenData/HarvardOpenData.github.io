@@ -13,26 +13,29 @@ const PredictionsGame = ({user}) => {
             nickname: user.email,
             question1: "",
             question2: "",
+            // replace with map when more questions are added
         })
     }
 
-    // const handleQuestionChange = (e) => firebase.database().ref('predictions_users/' + user.uid + '/' + qid).set({
-    //     qid: e.target.value
-    // });
+    function updateQuestions(qid, e) {
+        var updates = {};
+        updates[qid] = e.target.value;
+        firebase.database().ref('predictions_users/' + user.uid).update(updates);
+    }
 
-    const qu = questions.map(question => {
+    const q = questions.map(question => {
         const qid = question.child("id").val();
         return (
             <p>
                 {q_loading ? "Loading..." : question.child("name").val()}:
                 <input
                     value={loading ? "Loading..." : snapshot.child(qid).val()}
-                    onChange={updateQuestions}
+                    onChange={(e) => updateQuestions(qid, e)}
                 />
             </p>
         );
     });
-    console.log(qu);
+    console.log(q);
 
     // bad method of updating firebase (hopefully Kevin's components can help with updating only occasionally)
     const handleChange = (e) => firebase.database().ref('predictions_users/' + user.uid).set({
@@ -55,8 +58,7 @@ const PredictionsGame = ({user}) => {
             }
             <div>
                 {q_error && <strong>Error: {q_error}</strong>}
-
-                {qu}
+                {q}
             </div>
         </div>
     )
