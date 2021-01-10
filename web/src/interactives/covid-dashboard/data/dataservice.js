@@ -111,7 +111,8 @@ export const fetchStateData = async (state) => {
       movingAvgCases: [],
     };
 
-    const info = await fetch(`/.netlify/functions/covid?state=${state}`, {headers: {accept: "Accept: application/json"}});
+    const url = `https://covidtracking.com/api/v1/states/${state}/daily.json`;
+    const info = await fetch(`/.netlify/functions/cors?url=${url}`, {headers: {accept: "Accept: application/json"}});
     const data = await info.json();
 
     data.msg.forEach(data => {
@@ -170,7 +171,7 @@ export const fetchHarvardData = async (table) => {
       tests: []
     };
 
-    const info = await fetch(`/.netlify/functions/harvard-covid?table=${table}`, {headers: {accept: "Accept: application/json"}});
+    const info = await fetch(`/.netlify/functions/google-spreadsheet?table=${table}`, {headers: {accept: "Accept: application/json"}});
     const data = await info.json();
 
     if (table === 0) {

@@ -1,9 +1,9 @@
 const fetch = require("node-fetch");
 exports.handler = async function (event) {
   try {
-    const state = event.queryStringParameters.state;
+    const url = event.queryStringParameters.url;
     const response = await fetch(
-      `https://covidtracking.com/api/v1/states/${state}/daily.json`,
+      url,
       {
         headers: { Accept: "application/json" },
       }
