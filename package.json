@@ -43,6 +43,7 @@
     "gatsby-plugin-client-side-redirect": "^1.1.0",
     "gatsby-plugin-env-variables": "^2.0.0",
     "js-search": "^2.0.0",
+    "md5": "^2.3.0",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-icons": "^3.10.0",
