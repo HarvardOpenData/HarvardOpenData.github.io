@@ -5,7 +5,7 @@ import firebase from "gatsby-plugin-firebase";
 import { useObject, useObjectVal } from 'react-firebase-hooks/database';
 
 const hashId = (id) => {
-  return id
+  return md5(id)
 }
 
 function SurveyForm({ email }) {
