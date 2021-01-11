@@ -17,47 +17,47 @@ function SurveyForm({ email }) {
     // not sure the best way to check user exists/wait for user to populate after logging in
     const [snapshot, loading, error] = useObject(firebase.database().ref('survey_group/' + hashedId));
 
-    const handleChange = (e) => firebase.database().ref('survey_group/' + hashedId).set({
-      nickname: e.target.value,
-      ethnicity: e.target.value,
-    });
+    // returns an update function
+    const handleChange = field => {
+      return (e =>
+        // updates the field under hashedId
+        firebase.database().ref('survey_group/' + hashedId).update({
+          [field]: e.target.value
+        })
+      )
+    }
   
     return (
       <div>
             <div>
               <p> Ethnicity:
-                {/* input ethnicity */}
                 <input
                     value={loading ? "Loading..." : snapshot.child("ethnicity").val()}
-                    onChange={handleChange}
+                    onChange={handleChange("ethnicity")}
                 />
               </p>
               <p> Race:
-                {/* input race */}
                 <input
                     value={loading ? "Loading..." : snapshot.child("race").val()}
-                    onChange={handleChange}
+                    onChange={handleChange("race")}
                 />
               </p>
               <p> Gender:
-                {/* input race */}
                 <input
                     value={loading ? "Loading..." : snapshot.child("gender").val()}
-                    onChange={handleChange}
+                    onChange={handleChange("gender")}
                 />
               </p>
               <p> Concentration:
-                {/* input race */}
                 <input
                     value={loading ? "Loading..." : snapshot.child("concentration").val()}
-                    onChange={handleChange}
+                    onChange={handleChange("concentration")}
                 />
               </p>
               <p> House:
-                {/* input race */}
                 <input
                     value={loading ? "Loading..." : snapshot.child("house").val()}
-                    onChange={handleChange}
+                    onChange={handleChange("house")}
                 />
               </p>
             </div>
