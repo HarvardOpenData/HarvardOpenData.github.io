@@ -14,15 +14,15 @@ const PredictionsGame = ({user}) => {
         if (!questionsLoading) {
             const initial = {};
             initial["nickname"] = user.email;
-            questions.forEach(question => initial[question.child("id").val()] = "");
+            questions.forEach(question => initial[question.key] = "");
             firebase.database().ref('predictions_users/' + user.uid).set(initial);
         }
     }
 
     const renderQuestions = questions.map(question => {
-        const qid = question.child("id").val();
+        const qid = question.key;
         const date_expired = question.child("date_expired").val();
-        const current = snapshot.child(qid).val();
+        const prediction = snapshot.child(qid).val();
 
         if (question.child("type").val() === "mc") {
             const choices = question.child("choices").val();
@@ -34,7 +34,7 @@ const PredictionsGame = ({user}) => {
                         qid={qid}
                         date_expired={date_expired}
                         choices={choices}
-                        prediction={current}
+                        prediction={prediction}
                     />
                 </div>
             );
@@ -50,7 +50,7 @@ const PredictionsGame = ({user}) => {
                         lower={range[0]}
                         upper={range[1]}
                         date_expired={date_expired}
-                        prediction={current}
+                        prediction={prediction}
                     />
                 </div>
             )
