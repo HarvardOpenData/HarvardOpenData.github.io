@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, Grid, Styled, Text } from "theme-ui";
+import { Grid, jsx, Text } from "theme-ui";
 import Link from "../core/link";
-import { buildImageObj, formatDate } from "../../lib/helpers";
+import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import BlockText from "../core/block-text";
 import ArticleByline from "./article-byline";
@@ -48,7 +48,9 @@ function HorizontalArticlePreview(props) {
             />
           )}
         </Link>
-        <div sx={(props.container || props.size == "large") && containerStyles}>
+        <div
+          sx={(props.container || props.size === "large") && containerStyles}
+        >
           <PreviewText {...props} link={props.link}>
             {props.children}
           </PreviewText>

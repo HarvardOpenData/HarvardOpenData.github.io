@@ -132,6 +132,7 @@ const Layout = ({
   onShowNav,
   showNav,
   siteTitle,
+  isSearch,
 }) => (
   <>
     <Header
@@ -141,6 +142,7 @@ const Layout = ({
       onHideNav={onHideNav}
       onShowNav={onShowNav}
       showNav={showNav}
+      isSearch={isSearch}
     />
     <div className="pageContent" sx={{ minHeight: "70vh", mb: 5 }}>
       {children}
@@ -201,7 +203,9 @@ const Layout = ({
                 <br />
                 <Link href="https://docs.hodp.org">Docs</Link>
                 <br />
-                <Link href="http://wiki.hodp.org/wiki/Main_Page">Harvard Wiki</Link>
+                <Link href="http://wiki.hodp.org/wiki/Main_Page">
+                  Harvard Wiki
+                </Link>
                 <br />
                 <br />
                 {`The code for this website is `}

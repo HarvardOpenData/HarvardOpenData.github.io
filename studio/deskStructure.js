@@ -90,6 +90,15 @@ export default () =>
                 )
                 .icon(FaFile),
               S.listItem()
+                .title("Search")
+                .child(
+                  S.editor()
+                    .id("searchPage")
+                    .schemaType("page")
+                    .documentId("search")
+                )
+                .icon(FaFile),
+              S.listItem()
                 .title("Join")
                 .child(
                   S.editor()

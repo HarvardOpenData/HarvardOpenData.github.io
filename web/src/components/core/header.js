@@ -7,13 +7,45 @@ import Container from "./container";
 import HamburgerMenu from "react-hamburger-menu";
 import Fade from "react-reveal/Fade";
 import { Collapse } from "react-collapse";
-import { jsx, Box, Divider, Flex, Grid, Text } from "theme-ui";
+import { Box, Divider, Flex, Grid, Input, jsx, Text } from "theme-ui";
+import { navigate } from "gatsby";
 
 function MenuLink(props) {
   return (
     <Link to={props.link} href={props.link} variant="default">
       {props.children}
     </Link>
+  );
+}
+
+function Searchbar(props) {
+  const [search, setSearch] = useState("");
+
+  const handleChange = (event) => setSearch(event.target.value);
+
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        // TODO: do something with form values
+        navigate(
+          `/search/?query=${search}`
+        );
+      }}
+      sx={{
+        width: props.isMobile ? "100%" : "30%",
+        height: "60%",
+        marginLeft: "auto",
+      }}
+    >
+      <Input
+        placeholder={"Search"}
+        value={search}
+        href={"/search"}
+        onChange={handleChange}
+      />
+      <input type="submit" hidden={true} />
+    </form>
   );
 }
 
@@ -110,7 +142,7 @@ function StandardMenuLink({ name, link, subMenu }) {
   );
 }
 
-function StandardHeader({ logo, menuLinks }) {
+function StandardHeader({ logo, menuLinks, isSearch }) {
   const logoSrc = imageUrlFor(buildImageObj(logo)).width(600).url();
   return (
     <div
@@ -141,6 +173,7 @@ function StandardHeader({ logo, menuLinks }) {
               <StandardMenuLink {...link} />
             )
           )}
+          {!isSearch && <Searchbar />}
         </Flex>
         <br />
       </Container>
@@ -218,6 +251,7 @@ class MobileHeader extends React.Component {
               />
             </Box>
           </Flex>
+          {!this.props.isSearch && <Searchbar isMobile />}
         </Container>
       </div>
     );
@@ -332,12 +366,20 @@ class Header extends React.Component {
       <div>
         <div sx={{ display: ["none", "initial", "initial", "initial"] }}>
           {logo && logo.asset && (
-            <StandardHeader logo={logo} menuLinks={menuLinks} />
+            <StandardHeader
+              logo={logo}
+              menuLinks={menuLinks}
+              isSearch={this.props.isSearch}
+            />
           )}
         </div>
         <div sx={{ display: ["initial", "none", "none", "none"] }}>
           {logo && logo.asset && (
-            <MobileHeader logo={logo} menuLinks={menuLinks} />
+            <MobileHeader
+              logo={logo}
+              menuLinks={menuLinks}
+              isSearch={this.props.isSearch}
+            />
           )}
         </div>
       </div>

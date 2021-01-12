@@ -172,7 +172,6 @@ export const fetchHarvardData = async (table) => {
 
     const info = await fetch(`/.netlify/functions/harvard-covid?table=${table}`, {headers: {accept: "Accept: application/json"}});
     const data = await info.json();
-    console.log(data);
 
     if (table === 0) {
       data.forEach(data => {
