@@ -4,6 +4,7 @@ import { Range } from "react-range";
 import { format } from "date-fns";
 import Thumb from "./thumb";
 import Track from "./track";
+import firebase from "gatsby-plugin-firebase";
 
 // RGB Values for #C63F3F and #ccc
 const start_red = 198;
@@ -19,6 +20,8 @@ function decimalRound(val) {
 }
 
 function MultipleCategoryChoice(props) {
+  const uid = props.uid;
+  const qid = props.qid;
   const choices = props.choices.length === 0 ? ["yes"] : props.choices;
   let colors = [];
   let arr = [];
@@ -77,7 +80,9 @@ function MultipleCategoryChoice(props) {
 
   // Updates Firebase with final values
   const updateFirebase = () => {
-    console.log(displayValues);
+    const updates = {};
+    updates[qid] = displayValues;
+    firebase.database().ref('predictions_users/' + uid).update(updates);
   };
 
   const predictionDisplay =

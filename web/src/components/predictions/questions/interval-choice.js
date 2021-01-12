@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import firebase from "gatsby-plugin-firebase";
 import { Box, Grid, Text } from "theme-ui";
 import { Range } from "react-range";
 import { format } from "date-fns";
@@ -6,6 +7,8 @@ import Thumb from "./thumb";
 import Track from "./track";
 
 function IntervalChoice(props) {
+  const uid = props.uid;
+  const qid = props.qid;
   const lower = props.lower;
   const upper = props.upper;
   const [values, setValues] = useState(
@@ -18,7 +21,9 @@ function IntervalChoice(props) {
 
   // Updates Firebase with final values
   const updateFirebase = () => {
-    console.log(values);
+    const updates = {};
+    updates[qid] = values;
+    firebase.database().ref('predictions_users/' + uid).update(updates);
   };
 
   return (

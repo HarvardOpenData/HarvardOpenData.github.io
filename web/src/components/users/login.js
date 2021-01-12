@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { jsx } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject, useObjectVal } from 'react-firebase-hooks/database';
-import PredictionsGame from "./predictions-game";
+import PredictionsGame from "../predictions/predictions-game";
 
 export default () => {
   const { auth } = firebase;
