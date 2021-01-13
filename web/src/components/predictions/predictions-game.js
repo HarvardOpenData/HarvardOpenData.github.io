@@ -19,9 +19,18 @@ const PredictionsGame = ({user}) => {
         }
     }
 
-    const renderQuestions = questions.map(question => {
+    // TODO create scoring functions
+    function calculateScore(isMC, choices, answer) {
+        if (isMC) {
+            return answer;
+        }
+        else {
+            return answer;
+        }
+    }
+
+    function renderQuestion(question, date_expired, answer, disabled) {
         const qid = question.key;
-        const date_expired = question.child("date_expired").val();
         const prediction = snapshot.child(qid).val();
 
         if (question.child("type").val() === "mc") {
@@ -35,7 +44,11 @@ const PredictionsGame = ({user}) => {
                         date_expired={date_expired}
                         choices={choices}
                         prediction={prediction}
+                        disabled={disabled}
                     />
+                    <p>
+                        You received <strong>{answer ? calculateScore(true, choices, answer) : "--"}</strong> points for this question.
+                    </p>
                 </div>
             );
         }
@@ -51,9 +64,32 @@ const PredictionsGame = ({user}) => {
                         upper={range[1]}
                         date_expired={date_expired}
                         prediction={prediction}
+                        disabled={disabled}
                     />
+                    <p>
+                        You received <strong>{answer ? calculateScore(false, range, answer) : "--"}</strong> points for this question.
+                    </p>
                 </div>
             )
+        }
+    }
+
+    const liveQuestions = [];
+    const pendingQuestions = [];
+    const scoredQuestions = [];
+
+    questions.forEach(question => {
+        const date_expired = question.child("date_expired").val();
+        const answer = question.child("answer").val();
+
+        if (new Date(date_expired).getTime() > new Date().getTime()) {
+            liveQuestions.push(renderQuestion(question, date_expired, answer,false));
+        }
+        else if (new Date(date_expired).getTime() < new Date().getTime() && !answer) {
+            pendingQuestions.push(renderQuestion(question, date_expired, answer,true));
+        }
+        else if (new Date(date_expired).getTime() < new Date().getTime() && answer) {
+            scoredQuestions.push(renderQuestion(question, date_expired, answer,true));
         }
     });
 
@@ -76,7 +112,12 @@ const PredictionsGame = ({user}) => {
                 </div>
             }
             {questionsError && <strong>Error: {questionsError}</strong>}
-            {renderQuestions}
+            <strong>Live Questions</strong>
+            {liveQuestions}
+            <strong>Pending Questions</strong>
+            {pendingQuestions}
+            <strong>Scored Questions</strong>
+            {scoredQuestions}
         </div>
     )
 };
