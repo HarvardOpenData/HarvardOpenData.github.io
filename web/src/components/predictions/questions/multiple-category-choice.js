@@ -80,7 +80,7 @@ function MultipleCategoryChoice(props) {
 
   // Updates Firebase with final values
   const updateFirebase = () => {
-    const updates = {};
+    let updates = {};
     updates[qid] = displayValues;
     firebase.database().ref('predictions_users/' + uid).update(updates);
   };
@@ -95,7 +95,7 @@ function MultipleCategoryChoice(props) {
         <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
         {displayValues &&
           displayValues.map((val, i) => (
-            <Text sx={{ fontSize: 1 }}>{`Prediction of ${choices[i]}: ${val}%`}</Text>
+            <Text sx={{ fontSize: 1 }}>{`Prediction for ${choices[i]}: ${val}%`}</Text>
           ))}
       </div>
     );
@@ -114,7 +114,7 @@ function MultipleCategoryChoice(props) {
           </Text>
           {predictionDisplay}
           <Text sx={{ fontSize: 1, color: "gray" }}>
-            Expires on {format(new Date(props.date_expired), "MM-DD-YYYY")}
+            {props.disabled ? "Expired" : "Expires"} on {format(new Date(props.date_expired), "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range

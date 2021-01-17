@@ -15,18 +15,38 @@ const PredictionsGame = ({user}) => {
             const initial = {};
             initial["nickname"] = user.email;
             questions.forEach(question => initial[question.key] = "");
+            initial["score"] = "";
             firebase.database().ref('predictions_users/' + user.uid).set(initial);
         }
     }
 
-    // TODO create scoring functions
-    function calculateScore(isMC, choices, answer) {
-        if (isMC) {
-            return answer;
+    // answer is the index of the choice for MC questions, or the correct number for range questions
+    function calculateScore(isMC, prediction, answer, qid, range) {
+        let score = 0;
+        const scale = 60;
+        let updates = {};
+
+        if (answer && prediction && prediction.length !== 0) {
+            if (isMC) {
+                for (let i = 0; i < prediction.length; i++) {
+                    if (i === answer) {
+                        score += (1 - prediction[i] / 100) ** 2;
+                    } else {
+                        score += (prediction[i] / 100) ** 2;
+                    }
+                }
+                score = (-score * scale) + (scale * (prediction.length - 1) / prediction.length);
+            }
+            else {
+                if (answer >= prediction[0] && answer <= prediction[1]) {
+                    score = (scale / 2) * (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]))
+                }
+            }
         }
-        else {
-            return answer;
-        }
+
+        updates[qid] = score;
+        firebase.database().ref('predictions_users/' + user.uid + '/score').update(updates);
+        return score;
     }
 
     function renderQuestion(question, date_expired, answer, disabled) {
@@ -35,6 +55,7 @@ const PredictionsGame = ({user}) => {
 
         if (question.child("type").val() === "mc") {
             const choices = question.child("choices").val();
+            const score = calculateScore(true, prediction, answer, qid);
             return (
                 <div>
                     {questionsLoading ? "Loading..." : question.child("name").val()}:
@@ -44,16 +65,19 @@ const PredictionsGame = ({user}) => {
                         date_expired={date_expired}
                         choices={choices}
                         prediction={prediction}
-                        disabled={disabled}
+                        // disabled={disabled}
                     />
-                    <p>
-                        You received <strong>{answer ? calculateScore(true, choices, answer) : "--"}</strong> points for this question.
-                    </p>
+                    {answer &&
+                        <p>
+                            You received <strong>{score ? score.toFixed(2) : score}</strong> points for this prediction.
+                        </p>
+                    }
                 </div>
             );
         }
         else {
             const range = question.child("choices").val();
+            const score = calculateScore(false, prediction, answer, qid, range);
             return (
                 <div>
                     {questionsLoading ? "Loading..." : question.child("name").val()}:
@@ -64,11 +88,13 @@ const PredictionsGame = ({user}) => {
                         upper={range[1]}
                         date_expired={date_expired}
                         prediction={prediction}
-                        disabled={disabled}
+                        // disabled={disabled}
                     />
-                    <p>
-                        You received <strong>{answer ? calculateScore(false, range, answer) : "--"}</strong> points for this question.
-                    </p>
+                    {answer &&
+                        <p>
+                            You received <strong>{score ? score.toFixed(2) : score}</strong> points for this prediction.
+                        </p>
+                    }
                 </div>
             )
         }
@@ -80,7 +106,10 @@ const PredictionsGame = ({user}) => {
 
     questions.forEach(question => {
         const date_expired = question.child("date_expired").val();
-        const answer = question.child("answer").val();
+        let answer = question.child("answer").val();
+        if (answer) {
+            answer = parseInt(answer);
+        }
 
         if (new Date(date_expired).getTime() > new Date().getTime()) {
             liveQuestions.push(renderQuestion(question, date_expired, answer,false));

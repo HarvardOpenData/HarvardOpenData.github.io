@@ -21,7 +21,7 @@ function IntervalChoice(props) {
 
   // Updates Firebase with final values
   const updateFirebase = () => {
-    const updates = {};
+    let updates = {};
     updates[qid] = values;
     firebase.database().ref('predictions_users/' + uid).update(updates);
   };
@@ -42,7 +42,7 @@ function IntervalChoice(props) {
             Your prediction: {values.join(" - ")}
           </Text>
           <Text sx={{ fontSize: 1, color: "gray" }}>
-            Expires on {format(new Date(props.date_expired), "MM-DD-YYYY")}
+            {props.disabled ? "Expired" : "Expires"} on {format(new Date(props.date_expired), "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range
