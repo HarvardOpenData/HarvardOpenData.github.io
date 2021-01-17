@@ -18,7 +18,6 @@ const NotFoundPage = () => (
         frameBorder="0"
         allowFullScreen
       />
-      <Login />
     </Container>
   </Layout>
 );
