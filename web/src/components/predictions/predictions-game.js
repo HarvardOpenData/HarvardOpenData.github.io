@@ -132,7 +132,7 @@ const PredictionsGame = ({user}) => {
             {user &&
                 <div>
                     <p> Email: {user.email} </p>
-                    <p> Nickname:
+                    <p> Display name:
                         <input
                             value={loading ? "Loading..." : snapshot.child("nickname").val()}
                             onChange={handleChange}
