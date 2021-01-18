@@ -2,7 +2,8 @@
 // import React, { useState, useEffect } from 'react';
 import { jsx } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
-import { useList, useObject, useObjectVal } from "react-firebase-hooks/database";
+import { Text } from "theme-ui";
+import { useList, useObject } from "react-firebase-hooks/database";
 import IntervalChoice from "./questions/interval-choice";
 import MultipleCategoryChoice from "./questions/multiple-category-choice";
 
@@ -28,16 +29,27 @@ const PredictionsGame = ({user}) => {
 
         if (answer && prediction) {
             if (isMC) {
-                for (let i = 0; i < prediction.length; i++) {
-                    if (i === answer) {
-                        score += (1 - prediction[i] / 100) ** 2;
+                if (prediction.length === 1) {
+                    // binary scoring
+                    if (answer) {
+                        score = ((1 - prediction[0] / 100) ** 2) * 2
                     } else {
-                        score += (prediction[i] / 100) ** 2;
+                        score = ((prediction[0] / 100) ** 2) * 2
                     }
+                    score = (-score * scale) + (scale / 2);
+                } else {
+                    // multi-category scoring
+                    for (let i = 0; i < prediction.length; i++) {
+                        if (i === answer) {
+                            score += (1 - prediction[i] / 100) ** 2;
+                        } else {
+                            score += (prediction[i] / 100) ** 2;
+                        }
+                    }
+                    score = (-score * scale) + (scale * (prediction.length - 1) / prediction.length);
                 }
-                score = (-score * scale) + (scale * (prediction.length - 1) / prediction.length);
-            }
-            else {
+            } else {
+                // range-based scoring
                 if (answer >= prediction[0] && answer <= prediction[1]) {
                     score = (scale / 2) * (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]))
                 }
@@ -46,6 +58,17 @@ const PredictionsGame = ({user}) => {
             firebase.database().ref('predictions_users/' + user.uid + '/score').update(updates);
         }
         return score;
+    }
+
+    function displayScore(score, explanation) {
+        return (
+            <p>
+                <Text> {explanation} </Text>
+                <Text>
+                    You received <strong>{score ? score.toFixed(2) : 0}</strong> points for this prediction.
+                </Text>
+            </p>
+        )
     }
 
     function renderQuestion(question, date_expired, answer, disabled) {
@@ -66,15 +89,10 @@ const PredictionsGame = ({user}) => {
                         prediction={prediction}
                         // disabled={disabled}
                     />
-                    {answer &&
-                        <p>
-                            You received <strong>{score ? score.toFixed(2) : score}</strong> points for this prediction.
-                        </p>
-                    }
+                    {answer && displayScore(score, question.child("explanation").val())}
                 </div>
             );
-        }
-        else {
+        } else {
             const range = question.child("choices").val();
             const score = calculateScore(false, prediction, answer, qid, range);
             return (
@@ -89,11 +107,7 @@ const PredictionsGame = ({user}) => {
                         prediction={prediction}
                         // disabled={disabled}
                     />
-                    {answer &&
-                        <p>
-                            You received <strong>{score ? score.toFixed(2) : score}</strong> points for this prediction.
-                        </p>
-                    }
+                    {answer && displayScore(score, question.child("explanation").val())}
                 </div>
             )
         }
@@ -112,11 +126,9 @@ const PredictionsGame = ({user}) => {
 
         if (new Date(date_expired).getTime() > new Date().getTime()) {
             liveQuestions.push(renderQuestion(question, date_expired, answer,false));
-        }
-        else if (new Date(date_expired).getTime() < new Date().getTime() && !answer) {
+        } else if (new Date(date_expired).getTime() < new Date().getTime() && !answer) {
             pendingQuestions.push(renderQuestion(question, date_expired, answer,true));
-        }
-        else if (new Date(date_expired).getTime() < new Date().getTime() && answer) {
+        } else if (new Date(date_expired).getTime() < new Date().getTime() && answer) {
             scoredQuestions.push(renderQuestion(question, date_expired, answer,true));
         }
     });

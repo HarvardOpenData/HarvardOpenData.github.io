@@ -22,12 +22,12 @@ function decimalRound(val) {
 function MultipleCategoryChoice(props) {
   const uid = props.uid;
   const qid = props.qid;
-  const choices = props.choices.length === 0 ? ["yes"] : props.choices;
+  const choices = props.choices ? props.choices : [true];
   let colors = [];
   let arr = [];
   let displayArr = [];
 
-  if (props.choices.length === 0) {
+  if (!props.choices) {
     colors = ["#C63F3F", "#ccc"];
     arr = props.prediction ? [props.prediction[0]] : [50];
     displayArr = props.prediction ? props.prediction : [50];
@@ -72,7 +72,7 @@ function MultipleCategoryChoice(props) {
     const newValues = values.map((val, i) =>
       i === 0 ? decimalRound(val) : decimalRound(val - values[i - 1])
     );
-    if (props.choices.length !== 0) {
+    if (props.choices) {
       newValues.push(decimalRound(100 - values[props.choices.length - 2]));
     }
     setDisplayValues(newValues);
@@ -86,18 +86,18 @@ function MultipleCategoryChoice(props) {
   };
 
   const predictionDisplay =
-    props.choices.length === 0 ? (
+    props.choices ? (
+        <div>
+          <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
+          {displayValues &&
+          displayValues.map((val, i) => (
+              <Text sx={{ fontSize: 1 }}>{`Prediction for ${choices[i]}: ${val}%`}</Text>
+          ))}
+        </div>
+    ) : (
       <Text sx={{ fontSize: 2 }}>
         {`Your prediction: ${displayValues[0]}%`}
       </Text>
-    ) : (
-      <div>
-        <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
-        {displayValues &&
-          displayValues.map((val, i) => (
-            <Text sx={{ fontSize: 1 }}>{`Prediction for ${choices[i]}: ${val}%`}</Text>
-          ))}
-      </div>
     );
 
   return (
