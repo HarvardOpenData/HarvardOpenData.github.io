@@ -14,8 +14,8 @@ const PredictionsGame = ({user}) => {
         if (!questionsLoading) {
             const initial = {};
             initial["nickname"] = user.email;
-            questions.forEach(question => initial[question.key] = "");
-            initial["score"] = "";
+            initial["score"] = {};
+            questions.forEach(question => initial["score"][question.key] = 0);
             firebase.database().ref('predictions_users/' + user.uid).set(initial);
         }
     }
@@ -26,7 +26,7 @@ const PredictionsGame = ({user}) => {
         const scale = 60;
         let updates = {};
 
-        if (answer && prediction && prediction.length !== 0) {
+        if (answer && prediction) {
             if (isMC) {
                 for (let i = 0; i < prediction.length; i++) {
                     if (i === answer) {
@@ -42,10 +42,9 @@ const PredictionsGame = ({user}) => {
                     score = (scale / 2) * (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]))
                 }
             }
+            updates[qid] = score;
+            firebase.database().ref('predictions_users/' + user.uid + '/score').update(updates);
         }
-
-        updates[qid] = score;
-        firebase.database().ref('predictions_users/' + user.uid + '/score').update(updates);
         return score;
     }
 
