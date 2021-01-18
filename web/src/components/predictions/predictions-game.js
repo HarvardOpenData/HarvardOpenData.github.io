@@ -1,6 +1,6 @@
 /** @jsx jsx */
 // import React, { useState, useEffect } from 'react';
-import { Card, jsx, Text } from "theme-ui";
+import { Card, jsx, Text, Input } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
 import IntervalChoice from "./questions/interval-choice";
@@ -17,7 +17,7 @@ const PredictionsGame = ({ user }) => {
   if (snapshot && !snapshot.exists()) {
     if (!questionsLoading) {
       const initial = {};
-      initial["nickname"] = user.email;
+      initial["nickname"] = user.displayName;
       initial["score"] = {};
       questions.forEach((question) => (initial["score"][question.key] = 0));
       firebase
@@ -102,16 +102,16 @@ const PredictionsGame = ({ user }) => {
             boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
           }}
         >
-          {questionsLoading ? "Loading..." : question.child("name").val()}:
           <MultipleCategoryChoice
+            name={questionsLoading ? "Loading..." : question.child("name").val()}
             uid={user.uid}
             qid={qid}
             date_expired={date_expired}
             choices={choices}
             prediction={prediction}
+            explanation={answer && displayScore(score, question.child("explanation").val())}
             // disabled={disabled}
           />
-          {answer && displayScore(score, question.child("explanation").val())}
         </Card>
       );
     } else {
@@ -127,17 +127,17 @@ const PredictionsGame = ({ user }) => {
             boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
           }}
         >
-          {questionsLoading ? "Loading..." : question.child("name").val()}:
           <IntervalChoice
+            name={questionsLoading ? "Loading..." : question.child("name").val()}
             uid={user.uid}
             qid={qid}
             lower={range[0]}
             upper={range[1]}
             date_expired={date_expired}
             prediction={prediction}
+            explanation={answer && displayScore(score, question.child("explanation").val())}
             // disabled={disabled}
           />
-          {answer && displayScore(score, question.child("explanation").val())}
         </Card>
       );
     }
@@ -186,10 +186,9 @@ const PredictionsGame = ({ user }) => {
       {error && <strong>Error: {error}</strong>}
       {user && (
         <div>
-          <p> Email: {user.email} </p>
           <p>
             {" "}
-            Display name:
+            Display name: {""}
             <input
               value={loading ? "Loading..." : snapshot.child("nickname").val()}
               onChange={handleChange}

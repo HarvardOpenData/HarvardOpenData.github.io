@@ -11,6 +11,7 @@ import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import Login from "../components/users/login";
+import PredictionsGame from "../components/predictions/predictions-game";
 
 export const query = graphql`
   query PredictionsPageQuery {

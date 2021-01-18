@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import React, { useState, useEffect } from 'react';
-import { jsx } from "theme-ui";
+import { Button, jsx } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject, useObjectVal } from 'react-firebase-hooks/database';
 import PredictionsGame from "../predictions/predictions-game";
+import PredictionsPage from "../../pages/predictions";
 
 export default () => {
   const { auth } = firebase;
@@ -19,10 +20,13 @@ export default () => {
     <div>
       {user ?
           <div>
-            <button onClick={logout}>Logout from {user.displayName}</button>
+            <Button onClick={logout}>Sign out from {user.displayName}</Button>
             <PredictionsGame user={user}/>
           </div>
-        : <button onClick={login}>Login with Google</button>
+        :
+          <div>
+            <Button onClick={login}>Login with Google</Button>
+          </div>
       }
     </div>
   )

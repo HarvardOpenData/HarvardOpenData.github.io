@@ -23,7 +23,12 @@ function IntervalChoice(props) {
   const updateFirebase = () => {
     let updates = {};
     updates[qid] = values;
-    firebase.database().ref('predictions_users/' + uid).update(updates);
+    // if (new Date(props.date_expired).getTime() > new Date().getTime()) {
+      firebase
+          .database()
+          .ref("predictions_users/" + uid)
+          .update(updates);
+    // }
   };
 
   return (
@@ -42,7 +47,8 @@ function IntervalChoice(props) {
             Your prediction: {values.join(" - ")}
           </Text>
           <Text sx={{ fontSize: 1, color: "gray" }}>
-            {props.disabled ? "Expired" : "Expires"} on {format(new Date(props.date_expired), "MM-DD-YYYY")}
+            {props.disabled ? "Expired" : "Expires"} on{" "}
+            {format(new Date(props.date_expired), "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range
@@ -69,6 +75,7 @@ function IntervalChoice(props) {
             <Thumb val={values[index]} thumbProps={props} />
           )}
         />
+        {props.explanation}
       </Grid>
     </form>
   );

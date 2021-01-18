@@ -82,23 +82,27 @@ function MultipleCategoryChoice(props) {
   const updateFirebase = () => {
     let updates = {};
     updates[qid] = displayValues;
-    firebase.database().ref('predictions_users/' + uid).update(updates);
+    // if (new Date(props.date_expired).getTime() > new Date().getTime()) {
+      firebase
+          .database()
+          .ref("predictions_users/" + uid)
+          .update(updates);
+    // }
   };
 
-  const predictionDisplay =
-    props.choices ? (
-        <div>
-          <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
-          {displayValues &&
-          displayValues.map((val, i) => (
-              <Text sx={{ fontSize: 1 }}>{`Prediction for ${choices[i]}: ${val}%`}</Text>
-          ))}
-        </div>
-    ) : (
-      <Text sx={{ fontSize: 2 }}>
-        {`Your prediction: ${displayValues[0]}%`}
-      </Text>
-    );
+  const predictionDisplay = props.choices ? (
+    <div>
+      <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
+      {displayValues &&
+        displayValues.map((val, i) => (
+          <Text
+            sx={{ fontSize: 1 }}
+          >{`Prediction for ${choices[i]}: ${val}%`}</Text>
+        ))}
+    </div>
+  ) : (
+    <Text sx={{ fontSize: 2 }}>{`Your prediction: ${displayValues[0]}%`}</Text>
+  );
 
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
@@ -114,7 +118,8 @@ function MultipleCategoryChoice(props) {
           </Text>
           {predictionDisplay}
           <Text sx={{ fontSize: 1, color: "gray" }}>
-            {props.disabled ? "Expired" : "Expires"} on {format(new Date(props.date_expired), "MM-DD-YYYY")}
+            {props.disabled ? "Expired" : "Expires"} on{" "}
+            {format(new Date(props.date_expired), "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range
@@ -141,6 +146,7 @@ function MultipleCategoryChoice(props) {
             <Thumb val={displayValues[index]} thumbProps={props} />
           )}
         />
+        {props.explanation}
       </Grid>
     </form>
   );
