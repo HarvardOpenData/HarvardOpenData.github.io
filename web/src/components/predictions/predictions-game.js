@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, jsx, Text, Input } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
+import Spacer from "../../components/core/spacer";
 import IntervalChoice from "./questions/interval-choice";
 import MultipleCategoryChoice from "./questions/multiple-category-choice";
 
@@ -194,15 +195,15 @@ const PredictionsGame = ({ user }) => {
               onChange={handleChange}
             />
           </p>
-
+          <Spacer height={2}/>
           <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Live predictions</Text>
           <Text>How likely are each of these events?</Text>
           {liveQuestions}
-
+          <Spacer height={5}/>
           <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Pending predictions</Text>
           <Text>The deadline to edit your responses has passed. Check back soon to see the results!</Text>
           {pendingQuestions}
-
+          <Spacer height={5}/>
           <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Scored predictions</Text>
           <Text>How accurate were your predictions?</Text>
           {scoredQuestions}
