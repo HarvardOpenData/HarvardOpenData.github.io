@@ -14,11 +14,11 @@ if (!process.env.GOOGLE_PRIVATE_KEY)
 /*
  * ok real work
  *
- * GET /.netlify/functions/google-spreadsheet-fn
- * GET /.netlify/functions/google-spreadsheet-fn/1
- * PUT /.netlify/functions/google-spreadsheet-fn/1
- * POST /.netlify/functions/google-spreadsheet-fn
- * DELETE /.netlify/functions/google-spreadsheet-fn/1
+ * GET /.netlify/functions/google-spreadsheet
+ * GET /.netlify/functions/google-spreadsheet/1
+ * PUT /.netlify/functions/google-spreadsheet/1
+ * POST /.netlify/functions/google-spreadsheet
+ * DELETE /.netlify/functions/google-spreadsheet/1
  *
  * the library also allows working just with cells,
  * but this example only shows CRUD on rows since thats more common
@@ -37,7 +37,7 @@ exports.handler = async (event) => {
   });
   await doc.loadInfo(); // loads document properties and worksheets. required.
   const sheet = doc.sheetsByIndex[table]; // you may want to customize this if you have more than 1 sheet
-  // console.log('accessing', sheet.title, 'it has ', sheet.rowCount, ' rows');
+  console.log(`accessing ${sheet.title} with ${sheet.rowCount} rows`);
   const path = event.path.replace(/\.netlify\/functions\/[^/]+/, "");
   const segments = path.split("/").filter((e) => e);
 
