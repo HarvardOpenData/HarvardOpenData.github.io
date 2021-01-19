@@ -1,30 +1,40 @@
 /** @jsx jsx */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Card, jsx, Text, Input } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
 import Spacer from "../../components/core/spacer";
 import IntervalChoice from "./questions/interval-choice";
 import MultipleCategoryChoice from "./questions/multiple-category-choice";
+import Leaderboard from "./leaderboard";
 
-const PredictionsGame = ({ user }) => {
+const PredictionsGame = ({user}) => {
   const [snapshot, loading, error] = useObject(
     firebase.database().ref("predictions_users/" + user.uid)
   );
   const [questions, questionsLoading, questionsError] = useList(
-    firebase.database().ref("predictions")
+    firebase.database().ref("predictions/questions")
+  );
+  const [scores, scoresLoading, scoresError] = useList(
+      firebase.database().ref("predictions_users/" + user.uid + "/score")
   );
 
   if (snapshot && !snapshot.exists()) {
     if (!questionsLoading) {
-      const initial = {};
+      let initial = {};
+      let initialScore = {};
       initial["nickname"] = user.displayName;
       initial["score"] = {};
       questions.forEach((question) => (initial["score"][question.key] = 0));
+      initialScore[user.uid] = 0;
       firebase
         .database()
         .ref("predictions_users/" + user.uid)
         .set(initial);
+      firebase
+          .database()
+          .ref("predictions/leaderboard")
+          .update(initialScore);
     }
   }
 
@@ -32,7 +42,9 @@ const PredictionsGame = ({ user }) => {
   function calculateScore(isMC, prediction, answer, qid, range) {
     let score = 0;
     const scale = 60;
+    let total = 0;
     let updates = {};
+    let leaderboardUpdates = {};
 
     if (answer && prediction) {
       if (isMC) {
@@ -69,7 +81,17 @@ const PredictionsGame = ({ user }) => {
       firebase
         .database()
         .ref("predictions_users/" + user.uid + "/score")
-        .update(updates);
+        .update(updates)
+        .then(() => {
+          if (!scoresError && !scoresLoading) {
+            scores.forEach((score) => total += score.val());
+            leaderboardUpdates[user.uid] = total;
+            firebase
+                .database()
+                .ref("predictions/leaderboard")
+                .update(leaderboardUpdates);
+          }
+        });
     }
     return score;
   }
@@ -196,6 +218,7 @@ const PredictionsGame = ({ user }) => {
             />
           </p>
           <Spacer height={2}/>
+          <Leaderboard user={user}/>
           <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Live predictions</Text>
           <Text>How likely are each of these events?</Text>
           {liveQuestions}

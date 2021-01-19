@@ -26,12 +26,9 @@ export const query = graphql`
 
 const PredictionsPage = (props) => {
   const { data, errors } = props;
-
   const { auth } = firebase;
   const [user, setUser] = useState();
-
   useEffect(() => auth().onAuthStateChanged(setUser), []);
-
 
   if (errors) {
     return (
