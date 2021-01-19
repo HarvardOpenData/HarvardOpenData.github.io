@@ -19,10 +19,7 @@ function Login(props) {
   return (
     <div>
       {user ?
-          <div>
-            <Button onClick={logout}>Sign out from {user.displayName}</Button>
-            <PredictionsGame user={user}/>
-          </div>
+        <Button onClick={logout}>Sign out from {user.displayName}</Button>
       :
         <Button onClick={login}>Login with Google</Button>
       }

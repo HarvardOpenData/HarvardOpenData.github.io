@@ -1,5 +1,5 @@
 /** @jsx jsx */
-// import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Card, jsx, Text, Input } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
@@ -143,9 +143,9 @@ const PredictionsGame = ({ user }) => {
     }
   }
 
-  const liveQuestions = [];
-  const pendingQuestions = [];
-  const scoredQuestions = [];
+  let liveQuestions = [];
+  let pendingQuestions = [];
+  let scoredQuestions = [];
 
   questions.forEach((question) => {
     const date_expired = question.child("date_expired").val();
@@ -184,38 +184,30 @@ const PredictionsGame = ({ user }) => {
   return (
     <div>
       {error && <strong>Error: {error}</strong>}
-      {user && (
+      {questionsError && <strong>Error: {questionsError}</strong>}
+      {user &&
         <div>
           <p>
-            {" "}
             Display name: {""}
             <input
               value={loading ? "Loading..." : snapshot.child("nickname").val()}
               onChange={handleChange}
             />
           </p>
+
+          <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Live predictions</Text>
+          <Text>How likely are each of these events?</Text>
+          {liveQuestions}
+
+          <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Pending predictions</Text>
+          <Text>The deadline to edit your responses has passed. Check back soon to see the results!</Text>
+          {pendingQuestions}
+
+          <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Scored predictions</Text>
+          <Text>How accurate were your predictions?</Text>
+          {scoredQuestions}
         </div>
-      )}
-      {questionsError && <strong>Error: {questionsError}</strong>}
-
-      <div>
-        <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Live predictions</Text>
-        <Text>How likely are each of these events?</Text>
-        {liveQuestions}
-      </div>
-
-      <div>
-        <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Pending predictions</Text>
-        <Text>The deadline to edit your responses has passed. Check back soon to see the results!</Text>
-        {pendingQuestions}
-      </div>
-
-      <div>
-        <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Scored predictions</Text>
-        <Text>How accurate were your predictions?</Text>
-        {scoredQuestions}
-      </div>
-
+      }
     </div>
   );
 };

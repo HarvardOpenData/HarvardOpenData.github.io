@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase"
@@ -27,6 +27,12 @@ export const query = graphql`
 const PredictionsPage = (props) => {
   const { data, errors } = props;
 
+  const { auth } = firebase;
+  const [user, setUser] = useState();
+
+  useEffect(() => auth().onAuthStateChanged(setUser), []);
+
+
   if (errors) {
     return (
       <Layout>
@@ -48,6 +54,13 @@ const PredictionsPage = (props) => {
       <SEO title={page.title} />
       <Container>
         <Styled.h1>{page.title}</Styled.h1>
+        {user ?
+          <div>
+            <p> Can you forsee the future? Weigh in on our Predictions game and compete for glory on the scoreboard!</p>
+            <Login />
+            <PredictionsGame user={user}/>
+          </div>
+        :
           <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
             <div>
               <Login />
@@ -58,6 +71,7 @@ const PredictionsPage = (props) => {
               <BlockContent blocks={page._rawBodySecondary || []}/>
             </div>
           </Grid>
+        }
       </Container>
     </Layout>
   );
