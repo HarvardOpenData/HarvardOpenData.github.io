@@ -1,2 +1,15 @@
 # Google Spreadsheet Function
-Access Google Spreadsheets and return information
+
+Netlify function to access Google Spreadsheets API fetching data stored in google spreadsheets.
+
+## Usage
+
+First, the spreadsheet must be shared with the service account `hodp-netlify@hodp-sheets.iam.gserviceaccount.com`. Then, to use in code:
+```js
+const data = await fetch(`/.netlify/functions/google-spreadsheet?id=${id}&table=${table}`, {headers: {accept: "Accept: application/json"}});
+// id is the id of the spreadsheet that is being accessed
+// table is the table of the spreadsheet that needs to be accessed
+```
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

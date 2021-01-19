@@ -11,9 +11,6 @@ if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
   throw new Error("no GOOGLE_SERVICE_ACCOUNT_EMAIL env var set");
 if (!process.env.GOOGLE_PRIVATE_KEY)
   throw new Error("no GOOGLE_PRIVATE_KEY env var set");
-if (!process.env.GOOGLE_SPREADSHEET_ID_FROM_URL)
-  // spreadsheet key is the long id in the sheets URL
-  throw new Error("no GOOGLE_SPREADSHEET_ID_FROM_URL env var set");
 /*
  * ok real work
  *
@@ -31,7 +28,7 @@ const { GoogleSpreadsheet } = require("google-spreadsheet");
 exports.handler = async (event) => {
   const table = event.queryStringParameters.table;
   const UserIP = event.headers["x-nf-client-connection-ip"] || "6.9.6.9"; // not required, i just feel like using this info
-  const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID_FROM_URL);
+  const doc = new GoogleSpreadsheet(event.queryStringParameters.id);
 
   // https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
   await doc.useServiceAccountAuth({
@@ -68,7 +65,7 @@ exports.handler = async (event) => {
           };
         } else {
           throw new Error(
-            "too many segments in GET request - you should only call somehting like /.netlify/functions/google-spreadsheet-fn/123456 not /.netlify/functions/google-spreadsheet-fn/123456/789/101112"
+            "too many segments in GET request - you should only call something like /.netlify/functions/google-spreadsheet-fn/123456 not /.netlify/functions/google-spreadsheet-fn/123456/789/101112"
           );
         }
       /* POST /.netlify/functions/google-spreadsheet-fn */
