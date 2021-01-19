@@ -197,12 +197,25 @@ const PredictionsGame = ({ user }) => {
         </div>
       )}
       {questionsError && <strong>Error: {questionsError}</strong>}
-      <strong>Live Questions</strong>
-      {liveQuestions}
-      <strong>Pending Questions</strong>
-      {pendingQuestions}
-      <strong>Scored Questions</strong>
-      {scoredQuestions}
+
+      <div>
+        <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Live predictions</Text>
+        <Text>How likely are each of these events?</Text>
+        {liveQuestions}
+      </div>
+
+      <div>
+        <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Pending predictions</Text>
+        <Text>The deadline to edit your responses has passed. Check back soon to see the results!</Text>
+        {pendingQuestions}
+      </div>
+
+      <div>
+        <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Scored predictions</Text>
+        <Text>How accurate were your predictions?</Text>
+        {scoredQuestions}
+      </div>
+
     </div>
   );
 };

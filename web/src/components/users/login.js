@@ -6,7 +6,7 @@ import { useList, useObject, useObjectVal } from 'react-firebase-hooks/database'
 import PredictionsGame from "../predictions/predictions-game";
 import PredictionsPage from "../../pages/predictions";
 
-export default () => {
+function Login(props) {
   const { auth } = firebase;
   const [user, setUser] = useState();
 
@@ -23,11 +23,11 @@ export default () => {
             <Button onClick={logout}>Sign out from {user.displayName}</Button>
             <PredictionsGame user={user}/>
           </div>
-        :
-          <div>
-            <Button onClick={login}>Login with Google</Button>
-          </div>
+      :
+        <Button onClick={login}>Login with Google</Button>
       }
     </div>
-  )
-};
+  );
+}
+
+export default Login;

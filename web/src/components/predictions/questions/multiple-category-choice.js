@@ -110,7 +110,7 @@ function MultipleCategoryChoice(props) {
         <Box>
           <Text
             sx={{
-              fontSize: 3,
+              fontSize: 2,
               fontWeight: "bold",
             }}
           >

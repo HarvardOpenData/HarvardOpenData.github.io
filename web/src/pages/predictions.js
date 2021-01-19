@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
+import React, { useState } from 'react';
 import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase"
@@ -47,17 +47,17 @@ const PredictionsPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
-          <div>
-            <Styled.h1>{page.title}</Styled.h1>
-            <Login />
-            <BlockContent blocks={page._rawBody || []} />
-            <BannerHeader />
-          </div>
-          <div className="small preview" sx={{ p: 4, bg: "pink" }}>
-            <BlockContent blocks={page._rawBodySecondary || []} />
-          </div>
-        </Grid>
+        <Styled.h1>{page.title}</Styled.h1>
+          <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
+            <div>
+              <Login />
+              <BlockContent blocks={page._rawBody || []}/>
+              <BannerHeader/>
+            </div>
+            <div className="small preview" sx={{p: 4, bg: "pink"}}>
+              <BlockContent blocks={page._rawBodySecondary || []}/>
+            </div>
+          </Grid>
       </Container>
     </Layout>
   );
