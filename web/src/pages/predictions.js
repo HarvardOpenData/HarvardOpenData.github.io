@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, {useEffect, useState} from 'react';
-import { jsx, Grid, Styled } from "theme-ui";
+import { jsx, Grid, Styled, Text } from "theme-ui";
 import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase"
 import BlockContent from "../components/block-content";
@@ -50,13 +50,9 @@ const PredictionsPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <Styled.h1>{page.title}</Styled.h1>
+        <Styled.h1 style={{ lineHeight: "50%" }}>{page.title}</Styled.h1>
         {user ?
-          <div>
-            <p> Can you forsee the future? Weigh in on our Predictions game and compete for glory on the scoreboard!</p>
-            <Login />
-            <PredictionsGame user={user}/>
-          </div>
+          <PredictionsGame user={user}/>
         :
           <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
             <div>

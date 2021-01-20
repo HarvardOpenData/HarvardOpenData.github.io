@@ -2,9 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, jsx } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
-import { useList, useObject, useObjectVal } from 'react-firebase-hooks/database';
-import PredictionsGame from "../predictions/predictions-game";
-import PredictionsPage from "../../pages/predictions";
 
 export default () => {
     const { auth } = firebase;
