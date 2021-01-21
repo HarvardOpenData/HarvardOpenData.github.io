@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
-import { jsx } from "theme-ui";
+import { jsx, Button } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList } from "react-firebase-hooks/database";
 
@@ -66,19 +66,26 @@ const UpdateScore = ({user}) => {
         }
     }
 
-    if (!loading && !questionsLoading && user.uid === "Aipy5556cHMtUgBsFVlWk4SCQSb2") {
-        snapshot.forEach((userSnapshot) => {
-            questions.forEach((question) => {
-                const isMC = question.child("type").val() === "mc";
-                const uid = userSnapshot.key;
-                const qid = question.key;
-                const range = !isMC && question.child("choices").val();
-                calculateScore(isMC, userSnapshot.child(qid).val(), question.child("answer").val(), qid, uid, range, userSnapshot);
+    function update() {
+        if (!loading && !questionsLoading) {
+            snapshot.forEach((userSnapshot) => {
+                questions.forEach((question) => {
+                    const isMC = question.child("type").val() === "mc";
+                    const uid = userSnapshot.key;
+                    const qid = question.key;
+                    const range = !isMC && question.child("choices").val();
+                    calculateScore(isMC, userSnapshot.child(qid).val(), question.child("answer").val(), qid, uid, range, userSnapshot);
+                });
             });
-        });
+            console.log("Updated!")
+        }
     }
 
-    return null;
+    return (
+        <div>
+            {user.uid === "Aipy5556cHMtUgBsFVlWk4SCQSb2" ? <Button onClick={update}>Update Scores (click twice)</Button> : null}
+        </div>
+    )
 
 };
 

@@ -204,13 +204,15 @@ const PredictionsGame = ({user}) => {
   });
 
   const validateName = () => {
-    firebase
-      .database()
-      .ref("predictions/leaderboard/" + user.uid)
-      .update({
-        nickname: displayName,
+    if (displayName !== "") {
+      firebase
+        .database()
+        .ref("predictions/leaderboard/" + user.uid)
+        .update({
+          nickname: displayName,
+      });
     }
-  )};
+  };
 
     return (
       <Grid gap={5} columns={["3fr 1fr"]}>
@@ -256,8 +258,6 @@ const PredictionsGame = ({user}) => {
         </div>
         <div>
           <Leaderboard user={user}/>
-          {/*Updates all users' scores when I (Matthew) log in*/}
-          <UpdateScore user={user}/>
         </div>
       </Grid>
     );

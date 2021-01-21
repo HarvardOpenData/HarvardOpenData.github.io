@@ -3,6 +3,7 @@ import React from 'react';
 import { jsx, Text, Box } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import Spacer from "../../components/core/spacer";
+import UpdateScore from "./update-score";
 
 const Leaderboard = ({user}) => {
     const ref = firebase.database().ref("predictions/leaderboard");
@@ -63,6 +64,8 @@ const Leaderboard = ({user}) => {
                 </table>
             </Box>
             }
+            <Spacer height={3}/>
+            <UpdateScore user={user}/>
         </div>
     )
 
