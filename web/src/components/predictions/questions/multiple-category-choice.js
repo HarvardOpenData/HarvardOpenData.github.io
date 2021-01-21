@@ -82,12 +82,12 @@ function MultipleCategoryChoice(props) {
   const updateFirebase = () => {
     let updates = {};
     updates[qid] = displayValues;
-    // if (new Date(props.date_expired).getTime() > new Date().getTime()) {
+    if (new Date(props.date_expired).getTime() > new Date().getTime()) {
       firebase
           .database()
           .ref("predictions_users/" + uid)
           .update(updates);
-    // }
+    }
   };
 
   const predictionDisplay = props.choices ? (

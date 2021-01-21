@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import React from 'react';
-import { Card, jsx, Text, Input, Label, Grid } from "theme-ui";
+import React, {useEffect, useState} from 'react';
+import { Card, jsx, Text, Input, Label, Grid, Button, Box } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
 import Spacer from "../../components/core/spacer";
@@ -8,6 +8,7 @@ import IntervalChoice from "./questions/interval-choice";
 import MultipleCategoryChoice from "./questions/multiple-category-choice";
 import Leaderboard from "./leaderboard";
 import Login from "../users/login";
+import UpdateScore from "./update-score";
 
 const PredictionsGame = ({user}) => {
   const [snapshot, loading, error] = useObject(
@@ -16,12 +17,14 @@ const PredictionsGame = ({user}) => {
   const [questions, questionsLoading, questionsError] = useList(
     firebase.database().ref("predictions/questions")
   );
-  const [scores, scoresLoading, scoresError] = useList(
-      firebase.database().ref("predictions_users/" + user.uid + "/score")
-  );
   const [name, nameLoading, nameError] = useObject(
       firebase.database().ref("predictions/leaderboard/" + user.uid)
   );
+  const [displayName, setDisplayName] = useState(user.displayName);
+
+  useEffect(() => {
+    setDisplayName(nameLoading ? displayName : name.child("nickname").val())
+  }, [nameLoading]);
 
   if (snapshot && !snapshot.exists()) {
     if (!questionsLoading) {
@@ -43,7 +46,7 @@ const PredictionsGame = ({user}) => {
   }
 
   // answer is the index of the choice for MC questions, or the correct number for range questions
-  function calculateScore(isMC, prediction, answer, qid, range) {
+  function calculateScore(isMC, prediction, answer, qid, uid, range) {
     let score = 0;
     const scale = 60;
     let total = 0;
@@ -84,17 +87,15 @@ const PredictionsGame = ({user}) => {
       updates[qid] = score;
       firebase
         .database()
-        .ref("predictions_users/" + user.uid + "/score")
+        .ref("predictions_users/" + uid + "/score")
         .update(updates)
         .then(() => {
-          if (!scoresError && !scoresLoading) {
-            scores.forEach((score) => total += score.val());
-            leaderboardUpdates["score"] = total;
-            firebase
-                .database()
-                .ref("predictions/leaderboard/" + user.uid)
-                .update(leaderboardUpdates);
-          }
+          total = Object.values(snapshot.child("score").val()).reduce((a, b) => a + b, 0);
+          leaderboardUpdates["score"] = total;
+          firebase
+              .database()
+              .ref("predictions/leaderboard/" + uid)
+              .update(leaderboardUpdates);
         });
     }
     return score;
@@ -118,7 +119,7 @@ const PredictionsGame = ({user}) => {
 
     if (question.child("type").val() === "mc") {
       const choices = question.child("choices").val();
-      const score = calculateScore(true, prediction, answer, qid);
+      const score = calculateScore(true, prediction, answer, qid, user.uid);
       return (
         <Card
           key={qid}
@@ -138,13 +139,13 @@ const PredictionsGame = ({user}) => {
             choices={choices}
             prediction={prediction}
             explanation={answer && displayScore(score, question.child("explanation").val())}
-            // disabled={disabled}
+            disabled={disabled}
           />
         </Card>
       );
     } else {
       const range = question.child("choices").val();
-      const score = calculateScore(false, prediction, answer, qid, range);
+      const score = calculateScore(false, prediction, answer, qid, user.uid, range);
       return (
         <Card
           key={qid}
@@ -165,7 +166,7 @@ const PredictionsGame = ({user}) => {
             date_expired={date_expired}
             prediction={prediction}
             explanation={answer && displayScore(score, question.child("explanation").val())}
-            // disabled={disabled}
+            disabled={disabled}
           />
         </Card>
       );
@@ -202,55 +203,64 @@ const PredictionsGame = ({user}) => {
     }
   });
 
-  const handleChange = (e) =>
+  const validateName = () => {
     firebase
       .database()
       .ref("predictions/leaderboard/" + user.uid)
       .update({
-        nickname: e.target.value,
-      });
+        nickname: displayName,
+    }
+  )};
 
-  return (
-    <Grid gap={5} columns={["3fr 1fr"]}>
-      <div>
-        <p style={{ marginTop: 0, padding: 0}}>
-          Can you forsee the future? Weigh in on our Predictions game and compete for glory on the scoreboard!
-        </p>
-        <Login />
-        <Spacer height={1}/>
-        {error && <strong>Error: {error}</strong>}
-        {questionsError && <strong>Error: {questionsError}</strong>}
-        {user &&
-          <div>
-            <p>
-              <Label htmlFor="displayName">Display Name</Label>
-              <Input
-                name="displayName"
-                sx={{ width: "30%"}}
-                value={nameLoading ? "Loading..." : name.child("nickname").val()}
-                onChange={handleChange}
-              />
-            </p>
-            <Spacer height={2}/>
-            <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Live predictions</Text>
-            <Text>How likely are each of these events?</Text>
-            {liveQuestions}
-            <Spacer height={5}/>
-            <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Pending predictions</Text>
-            <Text>The deadline to edit your responses has passed. Check back soon to see the results!</Text>
-            {pendingQuestions}
-            <Spacer height={5}/>
-            <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Scored predictions</Text>
-            <Text>How accurate were your predictions?</Text>
-            {scoredQuestions}
-          </div>
-        }
-      </div>
-      <div>
-        <Leaderboard user={user}/>
-      </div>
-    </Grid>
-  );
+    return (
+      <Grid gap={5} columns={["3fr 1fr"]}>
+        <div>
+          <p style={{ marginTop: 0, padding: 0}}>
+            Can you forsee the future? Weigh in on our Predictions game and compete for glory on the scoreboard!
+          </p>
+          <Login />
+          <Spacer height={1}/>
+          {error && <strong>Error: {error}</strong>}
+          {questionsError && <strong>Error: {questionsError}</strong>}
+          {user &&
+            <div>
+              <Box sx={{ pt: 3, pb: 3 }}>
+                <Label htmlFor="displayName">Display Name</Label>
+                <Input
+                  name="displayName"
+                  sx={{ width: "30%", display: "inline"}}
+                  value={nameError ? user.displayName : displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') validateName(); }}
+                />
+                <Button sx={{ display: 'inline' }} onClick={validateName}>Change</Button>
+              </Box>
+              <Spacer height={2}/>
+              {loading ? "Loading..." :
+                <div>
+                  <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Live predictions</Text>
+                  <Text>How likely are each of these events?</Text>
+                  {liveQuestions}
+                  <Spacer height={5}/>
+                  <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Pending predictions</Text>
+                  <Text>The deadline to edit your responses has passed. Check back soon to see the results!</Text>
+                  {pendingQuestions}
+                  <Spacer height={5}/>
+                  <Text sx={{ fontSize: 3, fontWeight: "bold"}}>Scored predictions</Text>
+                  <Text>How accurate were your predictions?</Text>
+                  {scoredQuestions}
+                </div>
+              }
+            </div>
+          }
+        </div>
+        <div>
+          <Leaderboard user={user}/>
+          {/*Updates all users' scores when I (Matthew) log in*/}
+          <UpdateScore user={user}/>
+        </div>
+      </Grid>
+    );
 };
 
 export default PredictionsGame;

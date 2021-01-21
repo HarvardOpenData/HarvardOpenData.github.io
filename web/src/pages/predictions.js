@@ -9,7 +9,6 @@ import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import Login from "../components/users/login";
 import PredictionsGame from "../components/predictions/predictions-game";
 
@@ -50,20 +49,25 @@ const PredictionsPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <Styled.h1 style={{ lineHeight: "50%" }}>{page.title}</Styled.h1>
         {user ?
-          <PredictionsGame user={user}/>
-        :
-          <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
             <div>
-              <Login />
-              <BlockContent blocks={page._rawBody || []}/>
-              <BannerHeader/>
+              <Styled.h1 style={{ lineHeight: "50%" }}>{page.title}</Styled.h1>
+              <PredictionsGame user={user}/>
             </div>
-            <div className="small preview" sx={{p: 4, bg: "pink"}}>
-              <BlockContent blocks={page._rawBodySecondary || []}/>
-            </div>
-          </Grid>
+        :
+          <div>
+            <Styled.h1>{page.title}</Styled.h1>
+            <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
+              <div>
+                <Login />
+                <BlockContent blocks={page._rawBody || []}/>
+                <BannerHeader/>
+              </div>
+              <div className="small preview" sx={{p: 4, bg: "pink"}}>
+                <BlockContent blocks={page._rawBodySecondary || []}/>
+              </div>
+            </Grid>
+          </div>
         }
       </Container>
     </Layout>

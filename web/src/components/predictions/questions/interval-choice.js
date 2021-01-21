@@ -23,12 +23,12 @@ function IntervalChoice(props) {
   const updateFirebase = () => {
     let updates = {};
     updates[qid] = values;
-    // if (new Date(props.date_expired).getTime() > new Date().getTime()) {
+    if (new Date(props.date_expired).getTime() > new Date().getTime()) {
       firebase
           .database()
           .ref("predictions_users/" + uid)
           .update(updates);
-    // }
+    }
   };
 
   return (
