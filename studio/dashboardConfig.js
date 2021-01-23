@@ -3,7 +3,7 @@ export default {
     {
       name: "netlify",
       options: {
-        title: "Netlify Deploys (not fully configured yet)",
+        title: "Netlify Deploys",
         sites: [
           {
             title: "Website",
