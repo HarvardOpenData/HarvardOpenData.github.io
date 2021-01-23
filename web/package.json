@@ -7,7 +7,7 @@
     "node": "10.x"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "deploy": "npm run now-deploy",
     "develop": "gatsby develop",
     "empty-cache": "gatsby clean",
