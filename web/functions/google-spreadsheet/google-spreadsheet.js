@@ -12,13 +12,11 @@ if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
 if (!process.env.GOOGLE_PRIVATE_KEY)
   throw new Error("no GOOGLE_PRIVATE_KEY env var set");
 /*
- * ok real work
- *
  * GET /.netlify/functions/google-spreadsheet
- * GET /.netlify/functions/google-spreadsheet/1
- * PUT /.netlify/functions/google-spreadsheet/1
+ * GET /.netlify/functions/google-spreadsheet/{row_number}
+ * PUT /.netlify/functions/google-spreadsheet/{row_number}
  * POST /.netlify/functions/google-spreadsheet
- * DELETE /.netlify/functions/google-spreadsheet/1
+ * DELETE /.netlify/functions/google-spreadsheet/{row_number}
  *
  * the library also allows working just with cells,
  * but this example only shows CRUD on rows since thats more common
@@ -26,9 +24,10 @@ if (!process.env.GOOGLE_PRIVATE_KEY)
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 
 exports.handler = async (event) => {
-  const table = event.queryStringParameters.table;
-  const UserIP = event.headers["x-nf-client-connection-ip"] || "6.9.6.9"; // not required, i just feel like using this info
-  const doc = new GoogleSpreadsheet(event.queryStringParameters.id);
+  const { body, headers, httpMethod, path, queryStringParameters } = event;
+  const table = queryStringParameters.table;
+  const UserIP = headers["x-nf-client-connection-ip"] || "6.9.6.9";
+  const doc = new GoogleSpreadsheet(queryStringParameters.id);
 
   // https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
   await doc.useServiceAccountAuth({
@@ -36,13 +35,13 @@ exports.handler = async (event) => {
     private_key: process.env.GOOGLE_PRIVATE_KEY,
   });
   await doc.loadInfo(); // loads document properties and worksheets. required.
-  const sheet = doc.sheetsByIndex[table]; // you may want to customize this if you have more than 1 sheet
+  const sheet = doc.sheetsByIndex[table];
   console.log(`accessing ${sheet.title} with ${sheet.rowCount} rows`);
-  const path = event.path.replace(/\.netlify\/functions\/[^/]+/, "");
-  const segments = path.split("/").filter((e) => e);
+  const formattedPath = path.replace(/\.netlify\/functions\/[^/]+/, "");
+  const segments = formattedPath.split("/").filter((e) => e);
 
   try {
-    switch (event.httpMethod) {
+    switch (httpMethod) {
       case "GET":
         /* GET /.netlify/functions/google-spreadsheet-fn */
         if (segments.length === 0) {
@@ -50,11 +49,10 @@ exports.handler = async (event) => {
           const serializedRows = rows.map(serializeRow);
           return {
             statusCode: 200,
-            // body: JSON.stringify(rows) // dont do this - has circular references
-            body: JSON.stringify(serializedRows), // better
+            body: JSON.stringify(serializedRows)
           };
         }
-        /* GET /.netlify/functions/google-spreadsheet-fn/123456 */
+        /* GET /.netlify/functions/google-spreadsheet-fn/{row_number} */
         if (segments.length === 1) {
           const rowId = segments[0];
           const rows = await sheet.getRows(); // can pass in { limit, offset }
@@ -70,8 +68,7 @@ exports.handler = async (event) => {
         }
       /* POST /.netlify/functions/google-spreadsheet-fn */
       case "POST":
-        /* parse the string body into a useable JS object */
-        const data = JSON.parse(event.body);
+        const data = JSON.parse(body);
         data.UserIP = UserIP;
         // console.log('`POST` invoked', data);
         const addedRow = await sheet.addRow(data);
@@ -83,7 +80,6 @@ exports.handler = async (event) => {
             rowNumber: addedRow._rowNumber - 1, // minus the header row
           }),
         };
-      /* PUT /.netlify/functions/google-spreadsheet-fn/123456 */
       case "PUT":
         /* PUT /.netlify/functions/google-spreadsheet-fn */
         if (segments.length === 0) {
@@ -93,11 +89,11 @@ exports.handler = async (event) => {
             body: "PUT request must also have an id.",
           };
         }
-        /* PUT /.netlify/functions/google-spreadsheet-fn/123456 */
+        /* PUT /.netlify/functions/google-spreadsheet-fn/{row_number} */
         if (segments.length === 1) {
           const rowId = segments[0];
           const rows = await sheet.getRows(); // can pass in { limit, offset }
-          const data = JSON.parse(event.body);
+          const data = JSON.parse(body);
           data.UserIP = UserIP;
           console.log(`PUT invoked on row ${rowId}`, data);
           const selectedRow = rows[rowId];
@@ -108,7 +104,7 @@ exports.handler = async (event) => {
           return {
             statusCode: 200,
             body: JSON.stringify({ message: "PUT is a success!" }),
-            // body: JSON.stringify(rows[rowId]) // just sends less data over the wire
+            // body: JSON.stringify(rows[rowId]) // OPTIONAL just sends less data over the wire
           };
         } else {
           return {
@@ -117,7 +113,7 @@ exports.handler = async (event) => {
               "too many segments in PUT request - you should only call somehting like /.netlify/functions/google-spreadsheet-fn/123456 not /.netlify/functions/google-spreadsheet-fn/123456/789/101112",
           };
         }
-      /* DELETE /.netlify/functions/google-spreadsheet-fn/123456 */
+      /* DELETE /.netlify/functions/google-spreadsheet-fn/{row_number} */
       case "DELETE":
         //
         // warning:

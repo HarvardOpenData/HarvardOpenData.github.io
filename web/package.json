@@ -55,7 +55,7 @@
     "google-spreadsheet": "^3.0.13",
     "js-search": "^2.0.0",
     "ndjson": "^2.0.0",
-    "netlify-cli": "^2.65.7",
+    "netlify-cli": "^2.71.0",
     "node-fetch": "^2.6.1",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",

@@ -19,7 +19,7 @@ const projectId = "xx0obpjv";
 const dataset = "production";
 
 exports.handler = function (event, context, cb) {
-  const URL = `https://${projectId}.api.sanity.io/v1/data/query/${dataset}/?query=*[_type == "project" || _type == "person" || _type == "dataset"]`;
+  const URL = `https://${projectId}.api.sanity.io/v1/data/query/${dataset}/?query=*[_type == "project" || _type == "post" || _type == "person" || _type == "dataset"]`;
   console.log("Constructed URL is ...", URL);
 
   // Initiate an Algolia client
@@ -64,7 +64,7 @@ exports.handler = function (event, context, cb) {
               downloadURL: doc.downloadURL,
               sourceURL: doc.sourceURL,
             };
-          // Transforming article datatypes
+          // Transforming both project and post datatypes
           default:
             return {
               type: doc._type,
