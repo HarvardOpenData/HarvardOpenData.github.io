@@ -1,5 +1,7 @@
 # [Harvard Open Data Project](https://www.hodp.org/)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/181e9e5b-99d9-4e00-a1c4-da13d171b3a5/deploy-status)](https://app.netlify.com/sites/hodp/deploys)
+
 ## Installation
 
 ```sh

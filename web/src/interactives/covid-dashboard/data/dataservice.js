@@ -1,15 +1,12 @@
 import axios from "axios";
-
-// api_url = 'https://documenter.getpostman.com/view/11144369/Szf6Z9B3?version=latest'
-
-const jhu_url = "https://corona.lmao.ninja/v2/";
+import * as Constants from "../../../constants";
 
 export const fetchHistData = async (country) => {
   try {
     if (country === "all") {
       const {
         data: {cases, deaths, recovered},
-      } = await axios.get(`${jhu_url}historical/${country}?lastdays=all`);
+      } = await axios.get(`${Constants.JHU_COVID_URL}historical/${country}?lastdays=all`);
       return {cases, deaths, recovered};
     } else {
       const {
@@ -111,7 +108,8 @@ export const fetchStateData = async (state) => {
       movingAvgCases: [],
     };
 
-    const info = await fetch(`/.netlify/functions/covid?state=${state}`, {headers: {accept: "Accept: application/json"}});
+    const url = `https://covidtracking.com/api/v1/states/${state}/daily.json`;
+    const info = await fetch(`/.netlify/functions/cors?url=${url}`, {headers: {accept: "Accept: application/json"}});
     const data = await info.json();
 
     data.msg.forEach(data => {
@@ -170,7 +168,7 @@ export const fetchHarvardData = async (table) => {
       tests: []
     };
 
-    const info = await fetch(`/.netlify/functions/harvard-covid?table=${table}`, {headers: {accept: "Accept: application/json"}});
+    const info = await fetch(`/.netlify/functions/google-spreadsheet?id=${Constants.HARVARD_COVID_URL}&table=${table}`, {headers: {accept: "Accept: application/json"}});
     const data = await info.json();
 
     if (table === 0) {
