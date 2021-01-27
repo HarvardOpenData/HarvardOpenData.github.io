@@ -4,6 +4,7 @@ import { jsx, Button } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList } from "react-firebase-hooks/database";
 
+// update scores for all users
 const UpdateScore = ({user}) => {
     const [snapshot, loading, error] = useList(
         firebase.database().ref("predictions_users")
@@ -45,9 +46,10 @@ const UpdateScore = ({user}) => {
             } else {
                 // range-based scoring
                 if (answer >= prediction[0] && answer <= prediction[1]) {
-                    score =
-                        (scale / 2) *
-                        (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]));
+                    score = scale * (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]));
+                }
+                else {
+                    score = -scale * (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]));
                 }
             }
             updates[qid] = score;
@@ -67,23 +69,27 @@ const UpdateScore = ({user}) => {
     }
 
     function update() {
-        if (!loading && !questionsLoading) {
-            snapshot.forEach((userSnapshot) => {
-                questions.forEach((question) => {
-                    const isMC = question.child("type").val() === "mc";
-                    const uid = userSnapshot.key;
-                    const qid = question.key;
-                    const range = !isMC && question.child("choices").val();
-                    calculateScore(isMC, userSnapshot.child(qid).val(), question.child("answer").val(), qid, uid, range, userSnapshot);
-                });
+        snapshot.forEach((userSnapshot) => {
+            questions.forEach((question) => {
+                const isMC = question.child("type").val() === "mc";
+                const uid = userSnapshot.key;
+                const qid = question.key;
+                const range = !isMC && question.child("choices").val();
+                calculateScore(isMC, userSnapshot.child(qid).val(), question.child("answer").val(), qid, uid, range, userSnapshot);
             });
-            console.log("Updated!")
-        }
+        })
     }
 
+    // if user.uid matches below, then a button is rendered that allows for updating all scores
     return (
         <div>
-            {user.uid === "Aipy5556cHMtUgBsFVlWk4SCQSb2" ? <Button onClick={update}>Update Scores (click twice)</Button> : null}
+            {error && null}
+            {questionsError && null}
+            {user.uid === "Aipy5556cHMtUgBsFVlWk4SCQSb2" ?
+                <div>
+                    {(loading || questionsLoading) ? "Loading..." : <Button onClick={update}>Update scores (click twice)</Button>}
+                </div>
+            : null}
         </div>
     )
 

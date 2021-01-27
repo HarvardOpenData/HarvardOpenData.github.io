@@ -8,7 +8,6 @@ import IntervalChoice from "./questions/interval-choice";
 import MultipleCategoryChoice from "./questions/multiple-category-choice";
 import Leaderboard from "./leaderboard";
 import Login from "../users/login";
-import UpdateScore from "./update-score";
 
 const PredictionsGame = ({user}) => {
   const [snapshot, loading, error] = useObject(
@@ -20,12 +19,17 @@ const PredictionsGame = ({user}) => {
   const [name, nameLoading, nameError] = useObject(
       firebase.database().ref("predictions/leaderboard/" + user.uid)
   );
-  const [displayName, setDisplayName] = useState(user.displayName);
 
+  // state hook for display name change
+  const [displayName, setDisplayName] = useState(user.displayName);
   useEffect(() => {
     setDisplayName(nameLoading ? displayName : name.child("nickname").val())
   }, [nameLoading]);
 
+  const [borderColor, setBorderColor] = useState();
+  const [borderWidth, setBorderWidth] = useState(1);
+
+  // add user to firebase if doesn't exist
   if (snapshot && !snapshot.exists()) {
     if (!questionsLoading) {
       let initial = {};
@@ -79,11 +83,13 @@ const PredictionsGame = ({user}) => {
       } else {
         // range-based scoring
         if (answer >= prediction[0] && answer <= prediction[1]) {
-          score =
-            (scale / 2) *
-            (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]));
+          score = scale * (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]));
+        }
+        else {
+            score = -scale * (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]));
         }
       }
+      // update firebase with score
       updates[qid] = score;
       firebase
         .database()
@@ -113,6 +119,7 @@ const PredictionsGame = ({user}) => {
     );
   }
 
+  // render appropriate component for each question
   function renderQuestion(question, date_expired, answer, disabled) {
     const qid = question.key;
     const prediction = snapshot.child(qid).val();
@@ -173,6 +180,7 @@ const PredictionsGame = ({user}) => {
     }
   }
 
+  // sort questions by live, pending, and scored
   let liveQuestions = [];
   let pendingQuestions = [];
   let scoredQuestions = [];
@@ -203,15 +211,24 @@ const PredictionsGame = ({user}) => {
     }
   });
 
+  // validate display name on change
   const validateName = () => {
     if (displayName !== "") {
       firebase
-        .database()
-        .ref("predictions/leaderboard/" + user.uid)
-        .update({
-          nickname: displayName,
-      });
+          .database()
+          .ref("predictions/leaderboard/" + user.uid)
+          .update({
+            nickname: displayName,
+          });
+      setBorderColor('green');
+    } else {
+      setBorderColor('red');
     }
+      setBorderWidth(1.6);
+      setTimeout(() => {
+        setBorderColor();
+        setBorderWidth(1);
+      }, 3000);
   };
 
     return (
@@ -230,10 +247,15 @@ const PredictionsGame = ({user}) => {
                 <Label htmlFor="displayName">Display Name</Label>
                 <Input
                   name="displayName"
-                  sx={{ width: "30%", display: "inline"}}
+                  sx={{ borderColor: borderColor, borderWidth: borderWidth, width: "30%", display: "inline" }}
                   value={nameError ? user.displayName : displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === 'Enter') validateName(); }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.target.blur();
+                      validateName();
+                  }
+                  }}
                 />
                 <Button sx={{ display: 'inline' }} onClick={validateName}>Change</Button>
               </Box>
