@@ -71,7 +71,8 @@ const Leaderboard = ({user}) => {
             </Box>
             }
             <Spacer height={3}/>
-            <UpdateScore user={user}/>
+            {/*if user.uid matches below, then a button is rendered that allows for updating all scores*/}
+            {user.uid === "Aipy5556cHMtUgBsFVlWk4SCQSb2" && <UpdateScore />}
         </div>
     )
 

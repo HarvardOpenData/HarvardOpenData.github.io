@@ -5,7 +5,7 @@ import firebase from "gatsby-plugin-firebase";
 import { useList } from "react-firebase-hooks/database";
 
 // update scores for all users
-const UpdateScore = ({user}) => {
+const UpdateScore = () => {
     const [snapshot, loading, error] = useList(
         firebase.database().ref("predictions_users")
     );
@@ -80,16 +80,11 @@ const UpdateScore = ({user}) => {
         })
     }
 
-    // if user.uid matches below, then a button is rendered that allows for updating all scores
     return (
         <div>
             {error && null}
             {questionsError && null}
-            {user.uid === "Aipy5556cHMtUgBsFVlWk4SCQSb2" ?
-                <div>
-                    {(loading || questionsLoading) ? "Loading..." : <Button onClick={update}>Update scores (click twice)</Button>}
-                </div>
-            : null}
+            {(loading || questionsLoading) ? "Loading..." : <Button onClick={update}>Update scores (click twice)</Button>}
         </div>
     )
 
