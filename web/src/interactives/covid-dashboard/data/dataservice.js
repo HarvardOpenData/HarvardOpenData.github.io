@@ -1,19 +1,19 @@
 import axios from "axios";
-import * as Constants from "../../../constants";
+import { JHU_COVID_URL, HARVARD_COVID_URL} from "../../../constants";
 
 export const fetchHistData = async (country) => {
   try {
     if (country === "all") {
       const {
         data: {cases, deaths, recovered},
-      } = await axios.get(`${Constants.JHU_COVID_URL}historical/${country}?lastdays=all`);
+      } = await axios.get(`${JHU_COVID_URL}historical/${country}?lastdays=all`);
       return {cases, deaths, recovered};
     } else {
       const {
         data: {
           timeline: {cases, deaths, recovered},
         },
-      } = await axios.get(`${jhu_url}historical/${country}?lastdays=all`);
+      } = await axios.get(`${JHU_COVID_URL}historical/${country}?lastdays=all`);
       return {cases, deaths, recovered};
     }
   } catch (error) {
@@ -23,7 +23,7 @@ export const fetchHistData = async (country) => {
 
 const fetchCountryData = async (type) => {
   try {
-    const {data} = await axios.get(`${jhu_url}jhucsse`);
+    const {data} = await axios.get(`${JHU_COVID_URL}jhucsse`);
     return data.reduce((points, country) => {
       if (!(country.country === "US" || country.coordinates.latitude === "")) {
         points.push({
@@ -60,7 +60,7 @@ const fetchCountryData = async (type) => {
 
 const fetchUSCountyData = async (type) => {
   try {
-    const {data} = await axios.get(`${jhu_url}jhucsse/counties`);
+    const {data} = await axios.get(`${JHU_COVID_URL}jhucsse/counties`);
     return data.reduce((points, county) => {
       if (county.coordinates.latitude !== "") {
         points.push({
@@ -168,7 +168,7 @@ export const fetchHarvardData = async (table) => {
       tests: []
     };
 
-    const info = await fetch(`/.netlify/functions/google-spreadsheet?id=${Constants.HARVARD_COVID_URL}&table=${table}`, {headers: {accept: "Accept: application/json"}});
+    const info = await fetch(`/.netlify/functions/google-spreadsheet?id=${HARVARD_COVID_URL}&table=${table}`, {headers: {accept: "Accept: application/json"}});
     const data = await info.json();
 
     if (table === 0) {
