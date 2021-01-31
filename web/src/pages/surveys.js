@@ -7,8 +7,6 @@ import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import Section from "../components/core/section";
-import Login from "../components/users/login";
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
   query SurveysPageQuery {

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx } from "theme-ui";
 import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";

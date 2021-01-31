@@ -3,14 +3,13 @@ import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
-import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
 import Section from "../components/core/section";
 import Spacer from "../components/core/spacer";
 import Sponsor from "../components/sponsor";
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
+import { mapEdgesToNodes } from "../lib/helpers";
 
 export const query = graphql`
   query SponsorsPageQuery {
@@ -63,7 +62,9 @@ const SponsorsPage = (props) => {
             <div sx={{ p: 4, bg: "muted" }}>
               <Styled.h1>Corporate sponsors</Styled.h1>
               {sponsorNodes &&
-                sponsorNodes.map((node) => <Sponsor {...node} />)}
+                sponsorNodes.map((node, index) => (
+                  <Sponsor key={`Sponsor-${index}`} {...node} />
+                ))}
             </div>
             <Spacer height={3} />
             <BlockContent blocks={page._rawBody || []} />

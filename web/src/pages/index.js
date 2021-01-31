@@ -121,7 +121,7 @@ const IndexPage = (props) => {
             className="small preview"
             style={{
               position: "-webkit-sticky",
-              position: "sticky",
+              position: "sstticky",
               top: 0,
             }}
           >
