@@ -97,7 +97,7 @@ function MultipleCategoryChoice(props) {
         displayValues.map((val, i) => (
           <Text
             sx={{ fontSize: 1 }}
-          >{`Prediction for ${choices[i]}: ${val}%`}</Text>
+          >{`${choices[i]}: ${val}%`}</Text>
         ))}
     </div>
   ) : (

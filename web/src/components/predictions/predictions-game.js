@@ -185,6 +185,7 @@ const PredictionsGame = ({user}) => {
   let pendingQuestions = [];
   let scoredQuestions = [];
 
+  questions.sort((a, b) => new Date(a.child("date_expired").val()).getTime() - new Date(b.child("date_expired").val()).getTime());
   questions.forEach((question) => {
     const date_expired = question.child("date_expired").val();
     let answer = question.child("answer").val();
