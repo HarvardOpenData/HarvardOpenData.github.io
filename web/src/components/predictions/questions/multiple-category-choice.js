@@ -20,9 +20,9 @@ function decimalRound(val) {
 }
 
 function MultipleCategoryChoice(props) {
-  const uid = props.uid;
-  const qid = props.qid;
+  const {uid, qid} = props;
   const choices = props.choices ? props.choices : [true];
+  const date_expired = new Date(props.date_expired);
   let colors = [];
   let arr = [];
   let displayArr = [];
@@ -80,9 +80,9 @@ function MultipleCategoryChoice(props) {
 
   // Updates Firebase with final values
   const updateFirebase = () => {
-    let updates = {};
+    const updates = {};
     updates[qid] = displayValues;
-    if (new Date(props.date_expired).getTime() > new Date().getTime()) {
+    if (date_expired.getTime() > new Date().getTime()) {
       firebase
           .database()
           .ref("predictions_users/" + uid)
@@ -119,7 +119,7 @@ function MultipleCategoryChoice(props) {
           {predictionDisplay}
           <Text sx={{ fontSize: 1, color: "gray" }}>
             {props.disabled ? "Expired" : "Expires"} on{" "}
-            {format(new Date(props.date_expired), "MM-DD-YYYY")}
+            {format(date_expired, "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range

@@ -89,7 +89,8 @@ module.exports = {
           "GOOGLE_SERVICE_ACCOUNT_EMAIL",
           "GOOGLE_PRIVATE_KEY",
           "ALGOLIA_TOKEN",
-          "ALGOLIA_APP_ID"
+          "ALGOLIA_APP_ID",
+          "ADMIN_USER"
         ],
       },
     },

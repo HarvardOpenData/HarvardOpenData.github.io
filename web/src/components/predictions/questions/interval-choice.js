@@ -7,10 +7,8 @@ import Thumb from "./thumb";
 import Track from "./track";
 
 function IntervalChoice(props) {
-  const uid = props.uid;
-  const qid = props.qid;
-  const lower = props.lower;
-  const upper = props.upper;
+  const {uid, qid, lower, upper} = props;
+  const date_expired = new Date(props.date_expired);
   const [values, setValues] = useState(
     props.prediction ? props.prediction : [lower, upper]
   );
@@ -21,9 +19,9 @@ function IntervalChoice(props) {
 
   // Updates Firebase with final values
   const updateFirebase = () => {
-    let updates = {};
+    const updates = {};
     updates[qid] = values;
-    if (new Date(props.date_expired).getTime() > new Date().getTime()) {
+    if (date_expired.getTime() > new Date().getTime()) {
       firebase
           .database()
           .ref("predictions_users/" + uid)
@@ -48,7 +46,7 @@ function IntervalChoice(props) {
           </Text>
           <Text sx={{ fontSize: 1, color: "gray" }}>
             {props.disabled ? "Expired" : "Expires"} on{" "}
-            {format(new Date(props.date_expired), "MM-DD-YYYY")}
+            {format(date_expired, "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range

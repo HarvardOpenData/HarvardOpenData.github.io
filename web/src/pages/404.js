@@ -3,7 +3,6 @@ import { jsx, Styled } from "theme-ui";
 import SEO from "../components/core/seo";
 import Container from "../components/core/container";
 import Layout from "../containers/layout";
-import Login from "../components/users/login";
 
 const NotFoundPage = () => (
   <Layout>
