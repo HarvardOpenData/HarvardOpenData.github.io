@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { select, selectAll } from "d3-selection";
 import { csv } from "d3-fetch";
 import { path } from "d3-path";
