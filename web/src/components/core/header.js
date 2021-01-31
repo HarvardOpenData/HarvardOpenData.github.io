@@ -28,9 +28,7 @@ function Searchbar(props) {
       onSubmit={(event) => {
         event.preventDefault();
         // TODO: do something with form values
-        navigate(
-          `/search/?query=${search}`
-        );
+        navigate(`/search/?query=${search}`);
       }}
       sx={{
         width: props.isMobile ? "100%" : "30%",
@@ -166,11 +164,11 @@ function StandardHeader({ logo, menuLinks, isSearch }) {
           />
         </Link>
         <Flex>
-          {menuLinks.map((link) =>
+          {menuLinks.map((link, index) =>
             link.subMenu && link.subMenu.length > 0 ? (
-              <StandardSubmenuLink {...link} />
+              <StandardSubmenuLink key={`SubmenuLink-${index}`} {...link} />
             ) : (
-              <StandardMenuLink {...link} />
+              <StandardMenuLink key={`MenuLink-${index}`} {...link} />
             )
           )}
           {!isSearch && <Searchbar />}
