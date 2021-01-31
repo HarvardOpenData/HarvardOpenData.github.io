@@ -18,7 +18,6 @@ function ArticleBody(props) {
     relatedProjects,
     title,
     showHeader,
-    slug,
   } = props;
   const headerProps = {
     _rawExcerpt,
