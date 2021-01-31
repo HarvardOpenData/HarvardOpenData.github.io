@@ -6,7 +6,7 @@ import Figure from "./figure";
 import EmbeddedComponent from "./embedded-component";
 import Slideshow from "./slideshow";
 import Preview from "./preview";
-import { getBlogUrl, resolveInternalLink } from "../../lib/helpers";
+import { resolveInternalLink } from "../../lib/helpers";
 
 const serializers = {
   types: {
