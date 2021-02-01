@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import useStateWithCallback from 'use-state-with-callback';
 import firebase from "gatsby-plugin-firebase";
 import { Box, Grid, Text, Input } from "theme-ui";
 import { Range } from "react-range";
@@ -18,9 +17,6 @@ function IntervalChoice(props) {
       updateFirebase();
   }, [values]);
 
-  // const [values, setValues] = useStateWithCallback(
-  //     props.prediction ? props.prediction : [lower, upper]
-  // );
   const afterSubmission = (event) => {
     event.preventDefault();
   };
