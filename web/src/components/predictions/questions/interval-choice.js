@@ -137,7 +137,7 @@ function IntervalChoice(props) {
         </Box>
         <Range
           disabled={props.disabled}
-          draggableTrack
+          // draggableTrack
           values={validateValues(values)}
           step={props.step}
           min={lower}
