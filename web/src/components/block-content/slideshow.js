@@ -35,6 +35,7 @@ function Slideshow(props) {
           <li key={slide._key} className={styles.slide}>
             {slide.asset && (
               <img
+                alt={""}
                 src={imageUrlFor(buildImageObj(slide))
                   .width(1200)
                   .height(Math.floor((5 / 8) * 1200))

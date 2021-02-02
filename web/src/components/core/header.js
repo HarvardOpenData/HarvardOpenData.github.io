@@ -93,8 +93,8 @@ function StandardSubmenuLink({ name, link, subMenu }) {
           }}
         >
           {subMenu && subMenu.length > 0
-            ? subMenu.map((subLink) => (
-                <MenuLink {...subLink}>
+            ? subMenu.map((subLink, index) => (
+                <MenuLink key={`Menu-${index}`} {...subLink}>
                   <Box
                     p={2}
                     pt={1}
@@ -354,10 +354,6 @@ class MobileHeader extends React.Component {
 }
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { logo, menuLinks } = this.props;
     return (

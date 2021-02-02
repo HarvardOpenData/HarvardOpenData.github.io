@@ -45,14 +45,6 @@ const SubscribeWidget = ({ interestForm }) => {
           mb={3}
           sx={{ height: 4 }}
         />
-        <div style={{ display: "none" }} aria-hidden="true">
-          <input
-            type="text"
-            name="b_eb05e4f830c2a04be30171b01_8281a64779"
-            tabIndex="-1"
-            value=""
-          />
-        </div>
         <Button
           type="submit"
           name="subscribe"
@@ -68,40 +60,6 @@ const SubscribeWidget = ({ interestForm }) => {
         >
           Subscribe
         </Button>
-
-        <div
-          style={{ display: "none" }}
-          aria-hidden="true"
-          aria-label="Please leave the following three fields empty"
-        >
-          <label htmlFor="b_name">Name: </label>
-          <input
-            type="text"
-            name="b_name"
-            tabIndex="-1"
-            value=""
-            placeholder="Freddie"
-            id="b_name"
-          />
-
-          <label htmlFor="b_email">Email: </label>
-          <input
-            type="email"
-            name="b_email"
-            tabIndex="-1"
-            value=""
-            placeholder="youremail@gmail.com"
-            id="b_email"
-          />
-
-          <label htmlFor="b_comment">Comment: </label>
-          <textarea
-            name="b_comment"
-            tabIndex="-1"
-            placeholder="Please comment"
-            id="b_comment"
-          />
-        </div>
       </Grid>
       <br />
       {` Interested in open data? `}
@@ -111,6 +69,7 @@ const SubscribeWidget = ({ interestForm }) => {
       <br />
       <br />
       <iframe
+        title="Facebook Like"
         src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FHarvardODP%2F&width=100&layout=button_count&action=like&size=large&height=30&appId"
         width="100"
         height="30"

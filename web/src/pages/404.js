@@ -12,6 +12,7 @@ const NotFoundPage = () => (
       <Styled.h1>Not found</Styled.h1>
       <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
       <iframe
+        title="David Malan Harvard-Yale Sweater Change"
         src="https://giphy.com/embed/j8p5vtTax8HTO"
         width="480"
         height="240"

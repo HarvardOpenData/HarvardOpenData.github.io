@@ -168,7 +168,13 @@ class WheelOfFortune extends React.Component {
     const { active, firstSpin, rotation } = this.state;
     if (firstSpin) {
       return (
-        <div style={{ cursor: "pointer" }} onClick={() => this.play(7000)}>
+        <div
+          role={"button"}
+          tabIndex={0}
+          style={{ cursor: "pointer" }}
+          onClick={() => this.play(7000)}
+          onKeyDown={() => this.play(7000)}
+        >
           Spin to find out!
         </div>
       );

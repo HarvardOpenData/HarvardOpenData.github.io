@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import { Link } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 
 // styles
 const defaultSx = {
@@ -23,13 +23,17 @@ const highlightedSx = {
   },
 };
 
-export default (props) => {
+function Link(props) {
   const sx = props.variant === "highlighted" ? highlightedSx : defaultSx;
 
   if (props.to && props.to[0] === "/") {
-    return <Link className={`${props.variant}-link`} {...props} sx={sx} />;
+    return (
+      <GatsbyLink className={`${props.variant}-link`} {...props} sx={sx} />
+    );
   }
   return (
     <a className={`${props.variant}-link`} {...props} sx={sx} target="_blank" />
   );
-};
+}
+
+export default Link;
