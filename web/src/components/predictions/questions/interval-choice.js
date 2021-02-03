@@ -14,7 +14,9 @@ function IntervalChoice(props) {
   );
 
   useEffect(() => {
-    updateFirebase();
+    if (props.prediction) {
+      updateFirebase();
+    }
   }, [values]);
 
   const afterSubmission = (event) => {

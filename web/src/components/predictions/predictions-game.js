@@ -34,6 +34,7 @@ const PredictionsGame = ({ user }) => {
     if (!questionsLoading) {
       const initial = {};
       const initialScore = {};
+      const info = { name: user.displayName, email: user.email };
       initial["score"] = {};
       questions.forEach((question) => (initial["score"][question.key] = 0));
       initialScore["nickname"] = user.displayName;
@@ -41,7 +42,11 @@ const PredictionsGame = ({ user }) => {
       firebase
         .database()
         .ref("predictions_users/" + user.uid)
-        .set(initial);
+        .update(initial);
+      firebase
+        .database()
+        .ref("users/" + user.uid)
+        .update(info);
       firebase
         .database()
         .ref("predictions/leaderboard/" + user.uid)
