@@ -141,7 +141,9 @@ class HarvardGraph extends Component {
         <Select
           placeholder={"Select Sort"}
           value={sortOptions.find(
-            (obj) => obj.value === this.state.table.value
+            (obj) =>
+              JSON.stringify(obj.value) ===
+              JSON.stringify(this.state.table.value)
           )}
           options={sortOptions}
           onChange={this.handleChange}
