@@ -1,20 +1,20 @@
 import axios from "axios";
-import { JHU_COVID_URL, HARVARD_COVID_URL} from "../../../constants";
+import { JHU_COVID_URL, HARVARD_COVID_URL } from "../../../constants";
 
 export const fetchHistData = async (country) => {
   try {
     if (country === "all") {
       const {
-        data: {cases, deaths, recovered},
+        data: { cases, deaths, recovered },
       } = await axios.get(`${JHU_COVID_URL}historical/${country}?lastdays=all`);
-      return {cases, deaths, recovered};
+      return { cases, deaths, recovered };
     } else {
       const {
         data: {
-          timeline: {cases, deaths, recovered},
+          timeline: { cases, deaths, recovered },
         },
       } = await axios.get(`${JHU_COVID_URL}historical/${country}?lastdays=all`);
-      return {cases, deaths, recovered};
+      return { cases, deaths, recovered };
     }
   } catch (error) {
     console.log("error");
@@ -23,7 +23,7 @@ export const fetchHistData = async (country) => {
 
 const fetchCountryData = async (type) => {
   try {
-    const {data} = await axios.get(`${JHU_COVID_URL}jhucsse`);
+    const { data } = await axios.get(`${JHU_COVID_URL}jhucsse`);
     return data.reduce((points, country) => {
       if (!(country.country === "US" || country.coordinates.latitude === "")) {
         points.push({
@@ -60,7 +60,7 @@ const fetchCountryData = async (type) => {
 
 const fetchUSCountyData = async (type) => {
   try {
-    const {data} = await axios.get(`${JHU_COVID_URL}jhucsse/counties`);
+    const { data } = await axios.get(`${JHU_COVID_URL}jhucsse/counties`);
     return data.reduce((points, county) => {
       if (county.coordinates.latitude !== "") {
         points.push({
@@ -85,7 +85,7 @@ function movingAvg(arr, avgArr) {
   for (let i = arr.length - 1; i >= 0; i--) {
     let avg = 0;
     let j = 0;
-    for (let k = 0; k < 14; k++, j++) {
+    for (let k = 0; k < 7; k++, j++) {
       if (i - j < 0) {
         break;
       }
@@ -109,24 +109,30 @@ export const fetchStateData = async (state) => {
     };
 
     const url = `https://covidtracking.com/api/v1/states/${state}/daily.json`;
-    const info = await fetch(`/.netlify/functions/cors?url=${url}`, {headers: {accept: "Accept: application/json"}});
+    const info = await fetch(`/.netlify/functions/cors?url=${url}`, {
+      headers: { accept: "Accept: application/json" },
+    });
     const data = await info.json();
 
-    data.msg.forEach(data => {
+    data.msg.forEach((data) => {
       const date = data.date.toString();
       states.dates.unshift(
         date.substring(4, 6) +
-        "/" +
-        date.substring(6) +
-        "/" +
-        date.substring(0, 4)
+          "/" +
+          date.substring(6) +
+          "/" +
+          date.substring(0, 4)
       );
       states.confirmed.unshift(data.positive > 0 ? data.positive : 0);
       states.deaths.unshift(data.death);
       states.recovered.unshift(data.recovered ? data.recovered : 0);
       states.hospitalizedCurrently.unshift(data.hospitalizedCurrently);
-      states.positiveIncrease.unshift(data.positiveIncrease > 0 ? data.positiveIncrease : 0);
-      states.deathIncrease.unshift(data.deathIncrease > 0 ? data.deathIncrease : 0);
+      states.positiveIncrease.unshift(
+        data.positiveIncrease > 0 ? data.positiveIncrease : 0
+      );
+      states.deathIncrease.unshift(
+        data.deathIncrease > 0 ? data.deathIncrease : 0
+      );
     });
     movingAvg(states.positiveIncrease, states.movingAvgCases);
     return states;
@@ -148,53 +154,80 @@ export const fetchData = async (type) => {
   }
 };
 
-export const fetchHarvardData = async (table) => {
+export const fetchTotalHarvardData = async (table) => {
+  const stats = {
+    dates: [],
+    undergrad_pos: [],
+    grad_pos: [],
+    staff_pos: [],
+    total_pos: [],
+    undergrad_tests: [],
+    grad_tests: [],
+    staff_tests: [],
+    total_tests: [],
+  };
+
   try {
-    let stats = (table === 0) ? {
-      dates: [],
-      undergrad_pos: [],
-      grad_pos: [],
-      staff_pos: [],
-      total_pos: [],
-      undergrad_tests: [],
-      grad_tests: [],
-      staff_tests: [],
-      total_tests: []
-    } : {
-      dates: [],
-      undergrad_pos: [],
-      grad_pos: [],
-      staff_pos: [],
-      tests: []
-    };
-
-    const info = await fetch(`/.netlify/functions/google-spreadsheet?id=${HARVARD_COVID_URL}&table=${table}`, {headers: {accept: "Accept: application/json"}});
-    const data = await info.json();
-
-    if (table === 0) {
-      data.forEach(data => {
-        stats.dates.unshift(data["Date"]);
-        stats.undergrad_pos.unshift(parseInt(data["Undergraduates Positive"]));
-        stats.grad_pos.unshift(parseInt(data["Graduate Students Positive"]));
-        stats.staff_pos.unshift(parseInt(data["Total Faculty and Staff Positive"]));
-        stats.total_pos.unshift(parseInt(data["Total Positive"]));
-        stats.undergrad_tests.unshift(parseInt(data["Total Undergraduate Tests"]));
-        stats.grad_tests.unshift(parseInt(data["Total Graduate Tests"]));
-        stats.staff_tests.unshift(parseInt(data["Total Faculty and Staff Tests"]));
-        stats.total_tests.unshift(parseInt(data["Total Tests"]));
-      });
-    } else {
-      data.forEach(data => {
-        stats.dates.unshift(data["Date"]);
-        stats.undergrad_pos.unshift(parseInt(data["Undergrads Positive"]));
-        stats.grad_pos.unshift(parseInt(data["Grads Positive"]));
-        stats.staff_pos.unshift(parseInt(data["Faculty and Staff Positive"]));
-        stats.tests.unshift(parseInt(data["Tests"]));
-      });
-    }
-
-    return stats;
-  } catch (error) {
-    console.log("error");
+    const response = await fetch(
+      `/.netlify/functions/google-spreadsheet?id=${HARVARD_COVID_URL}&table=${table}`,
+      { headers: { accept: "Accept: application/json" } }
+    );
+    const data = await response.json();
+    data.forEach((data) => {
+      stats.dates.unshift(data["Date"]);
+      stats.undergrad_pos.unshift(parseInt(data["Undergraduates Positive"]));
+      stats.grad_pos.unshift(parseInt(data["Graduate Students Positive"]));
+      stats.staff_pos.unshift(
+        parseInt(data["Total Faculty and Staff Positive"])
+      );
+      stats.total_pos.unshift(parseInt(data["Total Positive"]));
+      stats.undergrad_tests.unshift(
+        parseInt(data["Total Undergraduate Tests"])
+      );
+      stats.grad_tests.unshift(parseInt(data["Total Graduate Tests"]));
+      stats.staff_tests.unshift(
+        parseInt(data["Total Faculty and Staff Tests"])
+      );
+      stats.total_tests.unshift(parseInt(data["Total Tests"]));
+    });
+  } catch (e) {
+    console.log(e);
   }
+  return stats;
+};
+
+export const fetchDailyHarvardData = async (table) => {
+  const stats = {
+    dates: [],
+    undergrad_pos: [],
+    undergrad_pos_avg: [],
+    grad_pos: [],
+    grad_pos_avg: [],
+    staff_pos: [],
+    staff_pos_avg: [],
+    tests: [],
+    tests_avg: [],
+  };
+
+  try {
+    const response = await fetch(
+      `/.netlify/functions/google-spreadsheet?id=${HARVARD_COVID_URL}&table=${table}`,
+      { headers: { accept: "Accept: application/json" } }
+    );
+    const data = await response.json();
+    data.forEach((data) => {
+      stats.dates.unshift(data["Date"]);
+      stats.undergrad_pos.unshift(parseInt(data["Undergrads Positive"]));
+      stats.grad_pos.unshift(parseInt(data["Grads Positive"]));
+      stats.staff_pos.unshift(parseInt(data["Faculty and Staff Positive"]));
+      stats.tests.unshift(parseInt(data["Tests"]));
+    });
+    movingAvg(stats.undergrad_pos, stats.undergrad_pos_avg);
+    movingAvg(stats.grad_pos, stats.grad_pos_avg);
+    movingAvg(stats.staff_pos, stats.staff_pos_avg);
+    movingAvg(stats.tests, stats.tests_avg);
+  } catch (e) {
+    console.log(e);
+  }
+  return stats;
 };

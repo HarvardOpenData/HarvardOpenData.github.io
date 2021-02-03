@@ -1,7 +1,8 @@
-import React, {Component} from "react";
-import {fetchStateData} from "./data/dataservice";
-import {Line} from "react-chartjs-2";
+import React, { Component } from "react";
+import { fetchStateData } from "./data/dataservice";
+import { Line } from "react-chartjs-2";
 import Select from "react-select";
+import { Spinner } from "theme-ui";
 
 let stateOptions = [];
 
@@ -19,6 +20,7 @@ class StateGraph extends Component {
     super(props);
     this.state = {
       state: "MA",
+      loading: true,
       chartData: {
         labels: [],
         datasets: [
@@ -34,81 +36,84 @@ class StateGraph extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.loadData(this.state.state);
   }
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.state !== this.state.state) {
       this.loadData(this.state.state);
     }
   }
 
-  async loadData(state) {
-    const data = await fetchStateData(state);
-    this.setState({
-      chartData: {
-        labels: data.dates,
-        datasets:
-          this.state.sort === "daily"
-            ? [
-              {
-                label: "Hospitalized Currently",
-                data: Object.values(data.hospitalizedCurrently),
-                fill: true,
-                borderColor: "#455574",
-                pointRadius: 0
-              },
-              {
-                label: "Increase in Cases",
-                data: Object.values(data.positiveIncrease),
-                fill: true,
-                borderColor: "#C63F3F",
-                pointRadius: 0
-              },
-              {
-                label: "Increase in Deaths",
-                data: Object.values(data.deathIncrease),
-                fill: true,
-                borderColor: "#251616",
-                pointRadius: 0
-              },
-              {
-                label: "Moving Average of Daily Cases",
-                data: Object.values(data.movingAvgCases),
-                fill: true,
-                borderColor: "#F4B436",
-                pointRadius: 0
-              },
-            ]
-            : [
-              {
-                label: "Confirmed",
-                data: data.confirmed,
-                fill: true,
-                borderColor: "#C63F3F",
-                pointRadius: 0
-              },
-              {
-                label: "Deaths",
-                data: Object.values(data.deaths),
-                fill: true,
-                borderColor: "#251616",
-                pointRadius: 0
-              },
-              {
-                label: "Recovered",
-                data: Object.values(data.recovered),
-                fill: true,
-                borderColor: "#455574",
-                pointRadius: 0
-              },
-            ],
-      },
-    });
+  loadData(state) {
+    this.setState({ loading: true });
+    fetchStateData(state).then((data) =>
+      this.setState({
+        loading: false,
+        chartData: {
+          labels: data.dates,
+          datasets:
+            this.state.sort === "daily"
+              ? [
+                  {
+                    label: "Hospitalized Currently",
+                    data: Object.values(data.hospitalizedCurrently),
+                    fill: true,
+                    borderColor: "#455574",
+                    pointRadius: 0,
+                  },
+                  {
+                    label: "Increase in Cases",
+                    data: Object.values(data.positiveIncrease),
+                    fill: true,
+                    borderColor: "#C63F3F",
+                    pointRadius: 0,
+                  },
+                  {
+                    label: "Increase in Deaths",
+                    data: Object.values(data.deathIncrease),
+                    fill: true,
+                    borderColor: "#251616",
+                    pointRadius: 0,
+                  },
+                  {
+                    label: "Moving Average of Daily Cases",
+                    data: Object.values(data.movingAvgCases),
+                    fill: true,
+                    borderColor: "#F4B436",
+                    pointRadius: 0,
+                  },
+                ]
+              : [
+                  {
+                    label: "Confirmed",
+                    data: data.confirmed,
+                    fill: true,
+                    borderColor: "#C63F3F",
+                    pointRadius: 0,
+                  },
+                  {
+                    label: "Deaths",
+                    data: Object.values(data.deaths),
+                    fill: true,
+                    borderColor: "#251616",
+                    pointRadius: 0,
+                  },
+                  {
+                    label: "Recovered",
+                    data: Object.values(data.recovered),
+                    fill: true,
+                    borderColor: "#455574",
+                    pointRadius: 0,
+                  },
+                ],
+        },
+      })
+    );
   }
 
-  handleChange = (event) => this.setState({state: event.value});
+  handleChange = (event) => this.setState({ state: event.value });
 
   render() {
     const options = {
@@ -123,8 +128,19 @@ class StateGraph extends Component {
           options={stateOptions}
           onChange={this.handleChange}
         />
-        <div style={{maxHeight: "300px"}}>
-          <Line data={this.state.chartData} options={options} height={300}/>
+        <div
+          style={{
+            height: "300px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {this.state.loading ? (
+            <Spinner />
+          ) : (
+            <Line data={this.state.chartData} options={options} height={300} />
+          )}
         </div>
       </div>
     );

@@ -1,35 +1,35 @@
 import React, { Component } from "react";
-import { fetchTotalHarvardData } from "./data/dataservice";
+import { fetchDailyHarvardData } from "./data/dataservice";
 import { Line } from "react-chartjs-2";
 import Select from "react-select";
 import { Spinner } from "theme-ui";
 
 const sortOptions = [
   {
-    value: ["spring", "tests"],
-    label: "Spring Testing",
+    value: "tests",
+    label: "Daily Tests",
   },
   {
-    value: ["fall", "tests"],
-    label: "Fall Testing",
+    value: "undergrad_pos",
+    label: "Daily Undergrad Positive Results",
   },
   {
-    value: ["spring", "pos"],
-    label: "Spring Positive Cases",
+    value: "grad_pos",
+    label: "Daily Grad Positive Results",
   },
   {
-    value: ["fall", "pos"],
-    label: "Fall Positive Cases",
+    value: "staff_pos",
+    label: "Daily Staff Positive Results",
   },
 ];
 
-class HarvardGraph extends Component {
+class HarvardDailyGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
       table: {
-        value: ["spring", "tests"],
-        label: "Spring Testing",
+        value: "tests",
+        label: "Daily Tests",
       },
       loading: true,
       fallData: {},
@@ -50,60 +50,52 @@ class HarvardGraph extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    fetchTotalHarvardData(2).then((data) => {
+    fetchDailyHarvardData(3).then((data) => {
       this.setState({ fallData: data });
-      fetchTotalHarvardData(4).then((data) => {
+      fetchDailyHarvardData(5).then((data) => {
         this.setState({ loading: false, springData: data });
-        this.switchData(this.state.table.value);
+        this.switchData(this.state.table);
       });
     });
   }
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.table !== this.state.table) {
-      this.switchData(this.state.table.value);
+      this.switchData(this.state.table);
     }
   }
 
   switchData(option) {
     this.setState({
       chartData: {
-        labels: this.state[`${option[0]}Data`].dates,
+        labels: Array.from(Array(this.state.fallData.dates.length).keys()),
         datasets: [
           {
-            label: "Undergraduates",
-            data: Object.values(
-              this.state[`${option[0]}Data`][`undergrad_${option[1]}`]
-            ),
-            fill: true,
-            borderColor: "#455574",
-            pointRadius: 0,
-          },
-          {
-            label: "Graduate Students",
-            data: Object.values(
-              this.state[`${option[0]}Data`][`grad_${option[1]}`]
-            ),
+            label: `Fall ${option.label}`,
+            data: Object.values(this.state.fallData[option.value]),
             fill: true,
             borderColor: "#C63F3F",
             pointRadius: 0,
           },
           {
-            label: "Faculty and Staff",
-            data: Object.values(
-              this.state[`${option[0]}Data`][`staff_${option[1]}`]
-            ),
+            label: `Spring ${option.label}`,
+            data: Object.values(this.state.springData[option.value]),
             fill: true,
-            borderColor: "#251616",
+            borderColor: "#455574",
             pointRadius: 0,
           },
           {
-            label: "Total",
-            data: Object.values(
-              this.state[`${option[0]}Data`][`total_${option[1]}`]
-            ),
+            label: `Fall ${option.label} Moving Average`,
+            data: Object.values(this.state.fallData[`${option.value}_avg`]),
             fill: true,
-            borderColor: "#F4B436",
+            borderColor: "#E28073",
+            pointRadius: 0,
+          },
+          {
+            label: `Spring ${option.label} Moving Average`,
+            data: Object.values(this.state.springData[`${option.value}_avg`]),
+            fill: true,
+            borderColor: "#83BFCC",
             pointRadius: 0,
           },
         ],
@@ -128,7 +120,7 @@ class HarvardGraph extends Component {
           {
             scaleLabel: {
               display: true,
-              labelString: "Date",
+              labelString: "Days into the Semester",
             },
           },
         ],
@@ -165,4 +157,4 @@ class HarvardGraph extends Component {
   }
 }
 
-export default HarvardGraph;
+export default HarvardDailyGraph;

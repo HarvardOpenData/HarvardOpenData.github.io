@@ -6,6 +6,8 @@ import StateGraph from "../../interactives/covid-dashboard/stategraph";
 import CountryGraph from "../../interactives/covid-dashboard/countrygraph";
 import CovidGraphPanel from "../../interactives/covid-dashboard/covid-graph-panel";
 import HarvardGraph from "../../interactives/covid-dashboard/harvardgraph";
+import HarvardDailyGraph from "../../interactives/covid-dashboard/harvard-daily-graph";
+import HarvardGraphPanel from "../../interactives/covid-dashboard/harvard-graph-panel";
 
 function EmbeddedComponent(component) {
   let props = {};
@@ -28,6 +30,10 @@ function EmbeddedComponent(component) {
       return <CovidGraphPanel />;
     case "HarvardGraph":
       return <HarvardGraph />;
+    case "HarvardDailyGraph":
+      return <HarvardDailyGraph />;
+    case "HarvardGraphPanel":
+      return <HarvardGraphPanel />;
 
     default:
       return (
