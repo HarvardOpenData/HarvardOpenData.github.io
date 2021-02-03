@@ -20,7 +20,7 @@ function decimalRound(val) {
 }
 
 function MultipleCategoryChoice(props) {
-  const {uid, qid} = props;
+  const { uid, qid } = props;
   const choices = props.choices ? props.choices : [true];
   const date_expired = new Date(props.date_expired);
   let colors = [];
@@ -84,9 +84,9 @@ function MultipleCategoryChoice(props) {
     updates[qid] = displayValues;
     if (date_expired.getTime() > new Date().getTime()) {
       firebase
-          .database()
-          .ref("predictions_users/" + uid)
-          .update(updates);
+        .database()
+        .ref("predictions_users/" + uid)
+        .update(updates);
     }
   };
 
@@ -95,9 +95,7 @@ function MultipleCategoryChoice(props) {
       <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
       {displayValues &&
         displayValues.map((val, i) => (
-          <Text
-            sx={{ fontSize: 1 }}
-          >{`${choices[i]}: ${val}%`}</Text>
+          <Text sx={{ fontSize: 1 }}>{`${choices[i]}: ${val}%`}</Text>
         ))}
     </div>
   ) : (

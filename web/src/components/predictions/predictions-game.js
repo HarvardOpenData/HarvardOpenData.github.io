@@ -155,7 +155,8 @@ const PredictionsGame = ({ user }) => {
             choices={choices}
             prediction={prediction}
             explanation={
-              answer !== null && displayScore(score, question.child("explanation").val())
+              answer !== null &&
+              displayScore(score, question.child("explanation").val())
             }
             disabled={disabled}
           />
@@ -193,7 +194,8 @@ const PredictionsGame = ({ user }) => {
             date_expired={date_expired}
             prediction={prediction}
             explanation={
-              answer != null && displayScore(score, question.child("explanation").val())
+              answer != null &&
+              displayScore(score, question.child("explanation").val())
             }
             disabled={disabled}
           />
@@ -231,7 +233,7 @@ const PredictionsGame = ({ user }) => {
       );
     } else if (
       new Date(date_expired).getTime() < new Date().getTime() &&
-        answer !== null
+      answer !== null
     ) {
       scoredQuestions.push(
         renderQuestion(question, date_expired, answer, true)
