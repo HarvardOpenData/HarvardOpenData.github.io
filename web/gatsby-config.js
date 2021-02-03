@@ -67,7 +67,6 @@ module.exports = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-theme-ui",
-    "gatsby-plugin-eslint",
     {
       resolve: "gatsby-source-sanity",
       options: {

@@ -17,8 +17,5 @@ studio/package-lock.json
 # Ignore hidden files as default
 .*
 
-# Keep .eslintrc
-!.eslintrc.js
-
 # Keep .gitignore
 !.gitignore
