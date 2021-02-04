@@ -17,8 +17,12 @@ const PredictionsGame = ({ user }) => {
     firebase.database().ref("predictions/questions")
   );
   const [name, nameLoading, nameError] = useObject(
-    firebase.database().ref("predictions/leaderboard/" + user.uid)
+    firebase.database().ref("public/" + user.uid)
   );
+  const [scores, scoresLoading, scoresError] = useObject(
+      firebase.database().ref("predictions/scores/individual/" + user.uid)
+  );
+
 
   // state hook for display name change
   const [displayName, setDisplayName] = useState(user.displayName);
@@ -26,32 +30,22 @@ const PredictionsGame = ({ user }) => {
   const [borderWidth, setBorderWidth] = useState(1);
 
   useEffect(() => {
-    setDisplayName(nameLoading ? displayName : name.child("nickname").val());
+    setDisplayName(nameLoading ? displayName : name.child("displayName").val());
   }, [nameLoading]);
 
   // add user to firebase if doesn't exist
-  if (snapshot && !snapshot.exists()) {
-    if (!questionsLoading) {
-      const initial = {};
-      const initialScore = {};
-      const info = { name: user.displayName, email: user.email };
-      initial["score"] = {};
-      questions.forEach((question) => (initial["score"][question.key] = 0));
-      initialScore["nickname"] = user.displayName;
-      initialScore["score"] = 0;
-      firebase
-        .database()
-        .ref("predictions_users/" + user.uid)
-        .update(initial);
+  if (name && !name.exists()) {
+      const info = { "name": user.displayName, "email": user.email };
+      const publicInfo = {"displayName": user.displayName};
+
       firebase
         .database()
         .ref("users/" + user.uid)
         .update(info);
       firebase
         .database()
-        .ref("predictions/leaderboard/" + user.uid)
-        .update(initialScore);
-    }
+        .ref("public/" + user.uid)
+        .update(publicInfo);
   }
 
   function displayScore(score, explanation) {
@@ -59,7 +53,7 @@ const PredictionsGame = ({ user }) => {
       <div>
         <Text> {explanation} </Text>
         <Text>
-          You received <strong>{score ? score.toFixed(2) : 0}</strong> points
+          You received <strong>{score}</strong> points
           for this prediction.
         </Text>
       </div>
@@ -70,10 +64,10 @@ const PredictionsGame = ({ user }) => {
   function renderQuestion(question, date_expired, answer, disabled) {
     const qid = question.key;
     const prediction = snapshot.child(qid).val();
+    const choices = question.child("choices").val();
+    const score = scoresLoading ? "Loading..." : (scores.child(qid).val() || 0);
 
     if (question.child("type").val() === "mc") {
-      const choices = question.child("choices").val();
-      const score = snapshot.child("score").val()[qid] ? snapshot.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
@@ -95,16 +89,14 @@ const PredictionsGame = ({ user }) => {
             choices={choices}
             prediction={prediction}
             explanation={
-              answer !== null &&
-              displayScore(score, question.child("explanation").val())
+                scoresLoading ? "Loading..." :
+                    (answer !== null && displayScore(score, question.child("explanation").val()))
             }
             disabled={disabled}
           />
         </Card>
       );
     } else {
-      const range = question.child("choices").val();
-      const score = snapshot.child("score").val()[qid] ? snapshot.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
@@ -122,13 +114,13 @@ const PredictionsGame = ({ user }) => {
             }
             uid={user.uid}
             qid={qid}
-            lower={range[0]}
-            upper={range[1]}
+            lower={choices[0]}
+            upper={choices[1]}
             date_expired={date_expired}
             prediction={prediction}
             explanation={
-              answer != null &&
-              displayScore(score, question.child("explanation").val())
+                scoresLoading ? "Loading..." :
+                    (answer !== null && displayScore(score, question.child("explanation").val()))
             }
             disabled={disabled}
           />
@@ -179,9 +171,9 @@ const PredictionsGame = ({ user }) => {
     if (displayName !== "") {
       firebase
         .database()
-        .ref("predictions/leaderboard/" + user.uid)
+        .ref("public/" + user.uid)
         .update({
-          nickname: displayName,
+          "displayName": displayName,
         });
       setBorderColor("green");
     } else {
@@ -197,7 +189,7 @@ const PredictionsGame = ({ user }) => {
   return (
     <Grid gap={5} columns={["3fr 1fr"]}>
       <div>
-        <Text sx={{ pb: 3 }}>
+        <Text sx={{ fontSize: 1, pb: 3 }}>
           Can you forsee the future? Weigh in on our Predictions game and
           compete for glory on the scoreboard!
         </Text>
@@ -205,6 +197,7 @@ const PredictionsGame = ({ user }) => {
         <Spacer height={1} />
         {error && <strong>Error: {error}</strong>}
         {questionsError && <strong>Error: {questionsError}</strong>}
+        {scoresError && <strong>Error: {scoresError}</strong>}
         {user && (
           <div>
             <Box sx={{ pt: 3, pb: 3 }}>
@@ -238,13 +231,13 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Live predictions
                 </Text>
-                <Text>How likely are each of these events?</Text>
+                <Text sx={{ fontSize: 1 }}>How likely are each of these events?</Text>
                 {liveQuestions}
                 <Spacer height={5} />
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Pending predictions
                 </Text>
-                <Text>
+                <Text sx={{ fontSize: 1 }}>
                   The deadline to edit your responses has passed. Check back
                   soon to see the results!
                 </Text>
@@ -253,7 +246,7 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Scored predictions
                 </Text>
-                <Text>How accurate were your predictions?</Text>
+                <Text sx={{ fontSize: 1 }}>How accurate were your predictions?</Text>
                 {scoredQuestions}
               </div>
             )}

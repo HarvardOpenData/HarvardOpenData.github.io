@@ -59,14 +59,14 @@ const UpdateScore = () => {
       updates[qid] = score;
       firebase
         .database()
-        .ref("predictions_users/" + uid + "/score")
+        .ref("predictions/" + uid + "/score")
         .update(updates)
-        .then(() => {
-          total = Object.values(snapshot.child("score").val()).reduce(
+        .then((result) => {
+          total = Object.values(result.child("score").val()).reduce(
             (a, b) => a + b,
             0
           );
-          leaderboardUpdates["score"] = total;
+          leaderboardUpdates["total"] = total;
           firebase
             .database()
             .ref("predictions/leaderboard/" + uid)
@@ -75,6 +75,7 @@ const UpdateScore = () => {
     }
   }
 
+  // TODO round scores when updating
   function update() {
     snapshot.forEach((userSnapshot) => {
       questions.forEach((question) => {
