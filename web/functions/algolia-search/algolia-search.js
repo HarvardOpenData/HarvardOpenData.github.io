@@ -19,7 +19,7 @@ const projectId = "xx0obpjv";
 const dataset = "production";
 
 exports.handler = function (event, context, cb) {
-  const URL = `https://${projectId}.api.sanity.io/v1/data/query/${dataset}/?query=*[_type == "project" || _type == "person" || _type == "dataset"]`;
+  const URL = `https://${projectId}.api.sanity.io/v1/data/query/${dataset}/?query=*[_type == "project" || _type == "post" || _type == "person" || _type == "dataset"]`;
   console.log("Constructed URL is ...", URL);
 
   // Initiate an Algolia client
@@ -41,6 +41,7 @@ exports.handler = function (event, context, cb) {
        */
       map(function sanityToAlgolia(doc) {
         switch (doc._type) {
+          // Transforming person datatypes
           case "person":
             return {
               type: doc._type,
@@ -53,6 +54,7 @@ exports.handler = function (event, context, cb) {
               year: doc.year,
               name: doc.name,
             };
+          // Transforming dataset datatypes
           case "dataset":
             return {
               type: doc._type,
@@ -62,6 +64,7 @@ exports.handler = function (event, context, cb) {
               downloadURL: doc.downloadURL,
               sourceURL: doc.sourceURL,
             };
+          // Transforming both project and post datatypes
           default:
             return {
               type: doc._type,
@@ -76,14 +79,13 @@ exports.handler = function (event, context, cb) {
       }),
       // buffer batches in chunks of 100
       bufferCount(10),
-      // 👇uncomment to console.log objects for debugging
-      // tap(console.log),
       // submit actions, one batch at a time
       map((docs) => partialUpdateObjects(docs), 1),
       // collect all batches and emit when the stream is complete
       toArray()
     )
     .subscribe((batchResults) => {
+      // Subscribe to results after submitting for update
       batchResults.forEach((batchResult) => batchResult.subscribe());
       cb(null, {
         statusCode: 200,

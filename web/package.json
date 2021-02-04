@@ -7,7 +7,7 @@
     "node": "10.x"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "deploy": "npm run now-deploy",
     "develop": "gatsby develop",
     "empty-cache": "gatsby clean",
@@ -42,7 +42,7 @@
     "dot-prop": "^5.3.0",
     "dotenv": "^8.2.0",
     "firebase": "^8.0.0",
-    "gatsby": "^2.24.65",
+    "gatsby": "^2.26.0",
     "gatsby-plugin-client-side-redirect": "^1.1.0",
     "gatsby-plugin-env-variables": "^2.0.0",
     "gatsby-plugin-firebase": "^0.2.0-beta.4",
@@ -55,7 +55,7 @@
     "google-spreadsheet": "^3.0.13",
     "js-search": "^2.0.0",
     "ndjson": "^2.0.0",
-    "netlify-cli": "^2.65.7",
+    "netlify-cli": "^2.71.0",
     "node-fetch": "^2.6.1",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
@@ -82,6 +82,8 @@
     "use-state-with-callback": "^2.0.3"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
+    "axios": "^0.21.1",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-config-standard-react": "^9.2.0",
@@ -90,6 +92,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.2",
     "eslint-plugin-standard": "^4.0.1",
+    "netlify-plugin-gatsby-cache": "^0.3.2",
     "prettier-eslint-cli": "^5.0.0",
     "prop-types": "^15.7.2"
   }

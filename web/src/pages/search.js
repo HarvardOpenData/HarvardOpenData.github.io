@@ -40,6 +40,7 @@ export const query = graphql`
   }
 `;
 
+// Creates url with search queries
 const createURL = (state) => {
   const isDefaultRoute =
     !state.query &&
@@ -70,9 +71,11 @@ const createURL = (state) => {
   return `/search/${queryString}`;
 };
 
+// Given a search state, creates a url
 const searchStateToUrl = (searchState) =>
   searchState ? createURL(searchState) : "";
 
+// Transforms a given url to search state
 const urlToSearchState = (location) => {
   const { query = "", page = 1 } = qs.parse(location.search.slice(1));
 
@@ -82,6 +85,7 @@ const urlToSearchState = (location) => {
   };
 };
 
+// Search Page Component
 const SearchPage = (props) => {
   const { data, errors } = props;
   const [searchState, setSearchState] = useState(
@@ -156,6 +160,7 @@ const SearchPage = (props) => {
   );
 };
 
+// Create custom search box widget and connector
 const connectWithQuery = createConnector({
   displayName: "WidgetWithQuery",
   getProvidedProps(props, searchState) {
@@ -200,6 +205,7 @@ const MySearchBox = ({ currentRefinement, refine }) => (
 
 const ConnectedSearchBox = connectWithQuery(MySearchBox);
 
+// Create Menu widget
 const Menu = ({ items, refine }) => (
   <Section header="Categories">
     {items.map((item) => (
@@ -230,6 +236,7 @@ const Menu = ({ items, refine }) => (
 
 const ConnectedMenu = connectMenu(Menu);
 
+// Create Hits widget for search hits
 const Hits = ({ hits }) => (
   <Grid columns={1} gap={4}>
     {hits.map((hit, index, array) => {
@@ -262,6 +269,7 @@ const Hits = ({ hits }) => (
 
 const CustomHits = connectHits(Hits);
 
+// Create Pagination widget
 const Pagination = ({ currentRefinement, nbPages, refine, createURL }) =>
   nbPages > 1 && (
     <div>
