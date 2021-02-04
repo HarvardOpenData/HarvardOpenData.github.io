@@ -51,7 +51,7 @@ const PredictionsPage = (props) => {
       <Container>
         {user && user.email.endsWith("harvard.edu") ?
             <div>
-              <Styled.h1 style={{ lineHeight: "50%" }}>{page.title}</Styled.h1>
+              <Styled.h1>{page.title}</Styled.h1>
               <PredictionsGame user={user}/>
             </div>
         :

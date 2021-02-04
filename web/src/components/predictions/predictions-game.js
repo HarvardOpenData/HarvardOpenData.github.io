@@ -187,7 +187,7 @@ const PredictionsGame = ({ user }) => {
   };
 
   return (
-    <Grid gap={5} columns={["3fr 1fr"]}>
+    <Grid gap={5} columns={[1, 1, "3fr 1fr"]}>
       <div>
         <Text sx={{ fontSize: 1, pb: 3 }}>
           Can you forsee the future? Weigh in on our Predictions game and

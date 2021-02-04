@@ -71,6 +71,9 @@ const Leaderboard = ({ user }) => {
             {/*{topScores && topScores.slice(0, Math.min(5, topScores.length))}*/}
             {/*{topScores && userIndex >= 5 && topScores[userIndex]}*/}
           </table>
+            <p>
+                You'll see your score here when the first results come out!
+            </p>
         </Box>
       )}
       <Spacer height={3} />
