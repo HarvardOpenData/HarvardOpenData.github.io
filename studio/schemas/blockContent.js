@@ -107,5 +107,8 @@ export default {
     {
       type: "preview",
     },
+    {
+      type: "htmlFile",
+    },
   ],
 };
