@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from "react";
-import { Card, jsx, Text, Input, Label, Grid, Button, Box } from "theme-ui";
+import { Card, jsx, Text, Input, Label, Grid, Button, Box, Alert, Close } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
 import Spacer from "../../components/core/spacer";
@@ -8,6 +8,7 @@ import IntervalChoice from "./questions/interval-choice";
 import MultipleCategoryChoice from "./questions/multiple-category-choice";
 import Leaderboard from "./leaderboard";
 import Login from "../users/login";
+import theme from "../../styles/theme";
 
 const PredictionsGame = ({ user }) => {
   const [snapshot, loading, error] = useObject(
@@ -28,6 +29,7 @@ const PredictionsGame = ({ user }) => {
   const [displayName, setDisplayName] = useState(user.displayName);
   const [borderColor, setBorderColor] = useState();
   const [borderWidth, setBorderWidth] = useState(1);
+  const [saveFlag, setSaveFlag] = useState(false);
 
   useEffect(() => {
     setDisplayName(nameLoading ? displayName : name.child("displayName").val());
@@ -72,10 +74,10 @@ const PredictionsGame = ({ user }) => {
         <Card
           key={qid}
           sx={{
-            mt: 3,
+            mt: 4,
             borderRadius: 5,
             backgroundColor: "light",
-            padding: 4,
+            padding: "4%",
             boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
           }}
         >
@@ -101,10 +103,10 @@ const PredictionsGame = ({ user }) => {
         <Card
           key={qid}
           sx={{
-            mt: 3,
+            mt: 4,
             borderRadius: 5,
             backgroundColor: "light",
-            padding: 4,
+            padding: "4%",
             boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
           }}
         >
@@ -187,7 +189,7 @@ const PredictionsGame = ({ user }) => {
   };
 
   return (
-    <Grid gap={5} columns={["3fr 1fr"]}>
+    <Grid gap={5} columns={[1, 1, "3fr 1fr"]}>
       <div>
         <Text sx={{ fontSize: 1, pb: 3 }}>
           Can you forsee the future? Weigh in on our Predictions game and
@@ -233,6 +235,16 @@ const PredictionsGame = ({ user }) => {
                 </Text>
                 <Text sx={{ fontSize: 1 }}>How likely are each of these events?</Text>
                 {liveQuestions}
+                <Spacer height={3} />
+                <Button sx={{ color: "white", fontWeight: "bold", bg: "black", display: "inline" }} onClick={() => {
+                    setSaveFlag(true);
+                    setTimeout(() => setSaveFlag(false), 2000);
+                }}>
+                    Save Answers
+                </Button>
+                {saveFlag && <Alert sx={{ bg: theme.colors.green, display: "inline" }}>
+                    Saved!
+                </Alert>}
                 <Spacer height={5} />
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Pending predictions
@@ -241,13 +253,13 @@ const PredictionsGame = ({ user }) => {
                   The deadline to edit your responses has passed. Check back
                   soon to see the results!
                 </Text>
-                {pendingQuestions}
+                {/*{pendingQuestions}*/}
                 <Spacer height={5} />
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Scored predictions
                 </Text>
                 <Text sx={{ fontSize: 1 }}>How accurate were your predictions?</Text>
-                {scoredQuestions}
+                {/*{scoredQuestions}*/}
               </div>
             )}
           </div>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import firebase from "gatsby-plugin-firebase";
-import { Box, Grid, Text, Input } from "theme-ui";
+import { Box, Grid, Text, Input, Alert, Close } from "theme-ui";
 import { Range } from "react-range";
 import { format } from "date-fns";
+import theme from "../../../styles/theme.js";
 import Thumb from "./thumb";
 import Track from "./track";
 
@@ -12,12 +13,15 @@ function IntervalChoice(props) {
   const [values, setValues] = useState(
     props.prediction ? props.prediction : [lower, upper]
   );
+  const [flag, setFlag] = useState(false);
+  const [save, setSave] = useState(0);
 
   useEffect(() => {
     if (props.prediction) {
       updateFirebase();
+      setFlag(false);
     }
-  }, [values]);
+  }, [flag]);
 
   const afterSubmission = (event) => {
     event.preventDefault();
@@ -44,6 +48,7 @@ function IntervalChoice(props) {
       value = bound;
     }
     setValues([value, values[1]]);
+    setFlag(true);
   };
 
   const validateUpper = (e) => {
@@ -55,6 +60,7 @@ function IntervalChoice(props) {
       value = bound;
     }
     setValues([values[0], value]);
+    setFlag(true);
   };
 
   const validateValues = (values) => {
@@ -139,34 +145,36 @@ function IntervalChoice(props) {
             }}
           />
           <Text sx={{ fontSize: 1, color: "gray" }}>
-            {props.disabled ? "Expired" : "Expires"} on{" "}
+            {!props.disabled ? "Answer locks on " : "Answer locked on "}
             {format(date_expired, "MM-DD-YYYY")}
           </Text>
         </Box>
-        <Range
-          disabled={props.disabled}
-          // draggableTrack
-          values={validateValues(values)}
-          step={props.step}
-          min={lower}
-          max={upper}
-          onChange={(values) => setValues(values)}
-          onFinalChange={updateFirebase}
-          renderTrack={({ props, children }) => (
-            <Track
-              {...props}
-              values={values}
-              upper={upper}
-              lower={lower}
-              colors={["#ccc", "#C63F3F", "#ccc"]}
-            >
-              {children}
-            </Track>
-          )}
-          renderThumb={({ index, props }) => (
-            <Thumb val={validateThumb(index)} thumbProps={props} />
-          )}
-        />
+        <Box>
+          <Range
+            disabled={props.disabled}
+            // draggableTrack
+            values={validateValues(values)}
+            step={props.step}
+            min={lower}
+            max={upper}
+            onChange={(values) => setValues(values)}
+            onFinalChange={updateFirebase}
+            renderTrack={({ props, children }) => (
+              <Track
+                {...props}
+                values={values}
+                upper={upper}
+                lower={lower}
+                colors={[theme.colors.grey, theme.colors.primary, theme.colors.grey]}
+              >
+                {children}
+              </Track>
+            )}
+            renderThumb={({ index, props }) => (
+              <Thumb val={validateThumb(index)} thumbProps={props} />
+            )}
+          />
+        </Box>
         {props.explanation}
       </Grid>
     </form>
