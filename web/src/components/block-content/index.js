@@ -7,7 +7,7 @@ import EmbeddedComponent from "./embedded-component";
 import Slideshow from "./slideshow";
 import Preview from "./preview";
 import { getBlogUrl, resolveInternalLink } from "../../lib/helpers";
-import HTMLFile from "./htmlFile";
+import HTMLContent from "./HTMLContent";
 
 const serializers = {
   types: {
@@ -56,8 +56,8 @@ const serializers = {
     preview(props) {
       return <Preview {...props.node} />;
     },
-    htmlFile(props) {
-      return <HTMLFile {...props.node} />;
+    htmlContent(props) {
+      return <HTMLContent {...props.node} />;
     },
   },
   marks: {
