@@ -4,6 +4,7 @@ import { Range } from "react-range";
 import { format } from "date-fns";
 import Thumb from "./thumb";
 import Track from "./track";
+import firebase from "gatsby-plugin-firebase";
 
 // RGB Values for #C63F3F and #ccc
 const start_red = 198;
@@ -19,12 +20,14 @@ function decimalRound(val) {
 }
 
 function MultipleCategoryChoice(props) {
-  const choices = props.choices.length === 0 ? ["yes"] : props.choices;
+  const { uid, qid } = props;
+  const choices = props.choices ? props.choices : [true];
+  const date_expired = new Date(props.date_expired);
   let colors = [];
   let arr = [];
   let displayArr = [];
 
-  if (props.choices.length === 0) {
+  if (!props.choices) {
     colors = ["#C63F3F", "#ccc"];
     arr = props.prediction ? [props.prediction[0]] : [50];
     displayArr = props.prediction ? props.prediction : [50];
@@ -69,7 +72,7 @@ function MultipleCategoryChoice(props) {
     const newValues = values.map((val, i) =>
       i === 0 ? decimalRound(val) : decimalRound(val - values[i - 1])
     );
-    if (props.choices.length !== 0) {
+    if (props.choices) {
       newValues.push(decimalRound(100 - values[props.choices.length - 2]));
     }
     setDisplayValues(newValues);
@@ -77,23 +80,27 @@ function MultipleCategoryChoice(props) {
 
   // Updates Firebase with final values
   const updateFirebase = () => {
-    console.log(displayValues);
+    const updates = {};
+    updates[qid] = displayValues;
+    if (date_expired.getTime() > new Date().getTime()) {
+      firebase
+        .database()
+        .ref("predictions_users/" + uid)
+        .update(updates);
+    }
   };
 
-  const predictionDisplay =
-    props.choices.length === 0 ? (
-      <Text sx={{ fontSize: 2 }}>
-        {`Your prediction: ${displayValues[0]}%`}
-      </Text>
-    ) : (
-      <div>
-        <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
-        {displayValues &&
-          displayValues.map((val, i) => (
-            <Text sx={{ fontSize: 1 }}>{`Prediction of ${choices[i]}: ${val}%`}</Text>
-          ))}
-      </div>
-    );
+  const predictionDisplay = props.choices ? (
+    <div>
+      <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
+      {displayValues &&
+        displayValues.map((val, i) => (
+          <Text sx={{ fontSize: 1 }}>{`${choices[i]}: ${val}%`}</Text>
+        ))}
+    </div>
+  ) : (
+    <Text sx={{ fontSize: 2 }}>{`Your prediction: ${displayValues[0]}%`}</Text>
+  );
 
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
@@ -101,7 +108,7 @@ function MultipleCategoryChoice(props) {
         <Box>
           <Text
             sx={{
-              fontSize: 3,
+              fontSize: 2,
               fontWeight: "bold",
             }}
           >
@@ -109,7 +116,8 @@ function MultipleCategoryChoice(props) {
           </Text>
           {predictionDisplay}
           <Text sx={{ fontSize: 1, color: "gray" }}>
-            Expires on {format(new Date(props.date_expired), "MM-DD-YYYY")}
+            {props.disabled ? "Expired" : "Expires"} on{" "}
+            {format(date_expired, "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range
@@ -136,6 +144,7 @@ function MultipleCategoryChoice(props) {
             <Thumb val={displayValues[index]} thumbProps={props} />
           )}
         />
+        {props.explanation}
       </Grid>
     </form>
   );

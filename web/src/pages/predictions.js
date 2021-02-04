@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import React from 'react';
-import { jsx, Grid, Styled } from "theme-ui";
+import React, {useEffect, useState} from 'react';
+import { jsx, Grid, Styled, Text } from "theme-ui";
 import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase"
 import BlockContent from "../components/block-content";
@@ -9,8 +9,8 @@ import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import SEO from "../components/core/seo";
 import Layout from "../containers/layout";
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import Login from "../components/users/login";
+import PredictionsGame from "../components/predictions/predictions-game";
 
 export const query = graphql`
   query PredictionsPageQuery {
@@ -25,6 +25,9 @@ export const query = graphql`
 
 const PredictionsPage = (props) => {
   const { data, errors } = props;
+  const { auth } = firebase;
+  const [user, setUser] = useState();
+  useEffect(() => auth().onAuthStateChanged(setUser), []);
 
   if (errors) {
     return (
@@ -46,17 +49,26 @@ const PredictionsPage = (props) => {
     <Layout>
       <SEO title={page.title} />
       <Container>
-        <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
+        {user && user.email.endsWith("harvard.edu") ?
+            <div>
+              <Styled.h1 style={{ lineHeight: "50%" }}>{page.title}</Styled.h1>
+              <PredictionsGame user={user}/>
+            </div>
+        :
           <div>
             <Styled.h1>{page.title}</Styled.h1>
-            <Login />
-            <BlockContent blocks={page._rawBody || []} />
-            <BannerHeader />
+            <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
+              <div>
+                <Login />
+                <BlockContent blocks={page._rawBody || []}/>
+                <BannerHeader/>
+              </div>
+              <div className="small preview" sx={{p: 4, bg: "pink"}}>
+                <BlockContent blocks={page._rawBodySecondary || []}/>
+              </div>
+            </Grid>
           </div>
-          <div className="small preview" sx={{ p: 4, bg: "pink" }}>
-            <BlockContent blocks={page._rawBodySecondary || []} />
-          </div>
-        </Grid>
+        }
       </Container>
     </Layout>
   );

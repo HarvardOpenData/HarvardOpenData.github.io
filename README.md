@@ -21,6 +21,14 @@ npm start
 # GraphiQL explorer at http://localhost:8000/___graphql
 ```
 
+## Development
+
+## Styling
+
+```sh
+prettier --write "*.js"
+```
+
 ## License
 
 MIT
