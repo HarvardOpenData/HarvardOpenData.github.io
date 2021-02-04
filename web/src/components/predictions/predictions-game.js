@@ -241,13 +241,13 @@ const PredictionsGame = ({ user }) => {
                   The deadline to edit your responses has passed. Check back
                   soon to see the results!
                 </Text>
-                {pendingQuestions}
+                {/*{pendingQuestions}*/}
                 <Spacer height={5} />
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Scored predictions
                 </Text>
                 <Text sx={{ fontSize: 1 }}>How accurate were your predictions?</Text>
-                {scoredQuestions}
+                {/*{scoredQuestions}*/}
               </div>
             )}
           </div>
