@@ -75,6 +75,7 @@ const UpdateScore = () => {
     }
   }
 
+  // TODO round scores when updating
   function update() {
     snapshot.forEach((userSnapshot) => {
       questions.forEach((question) => {

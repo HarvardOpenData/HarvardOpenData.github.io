@@ -5,6 +5,7 @@ import firebase from "gatsby-plugin-firebase";
 import Spacer from "../../components/core/spacer";
 import UpdateScore from "./update-score";
 
+// TODO fix leaderboard
 // generate leaderboard
 const Leaderboard = ({ user }) => {
   const ref = firebase.database().ref("predictions/scores/leaderboard");
@@ -67,8 +68,8 @@ const Leaderboard = ({ user }) => {
               <col span="1" style={{ width: "85%" }} />
               <col span="1" style={{ width: "10%" }} />
             </colgroup>
-            {topScores && topScores.slice(0, Math.min(5, topScores.length))}
-            {topScores && userIndex >= 5 && topScores[userIndex]}
+            {/*{topScores && topScores.slice(0, Math.min(5, topScores.length))}*/}
+            {/*{topScores && userIndex >= 5 && topScores[userIndex]}*/}
           </table>
         </Box>
       )}

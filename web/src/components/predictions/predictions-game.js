@@ -20,7 +20,7 @@ const PredictionsGame = ({ user }) => {
     firebase.database().ref("public/" + user.uid)
   );
   const [scores, scoresLoading, scoresError] = useObject(
-      firebase.database().ref("leaderboard/" + user.uid)
+      firebase.database().ref("predictions/scores/individual/" + user.uid)
   );
 
 
@@ -30,11 +30,11 @@ const PredictionsGame = ({ user }) => {
   const [borderWidth, setBorderWidth] = useState(1);
 
   useEffect(() => {
-    setDisplayName(nameLoading ? displayName : name.child("nickname").val());
+    setDisplayName(nameLoading ? displayName : name.child("displayName").val());
   }, [nameLoading]);
 
   // add user to firebase if doesn't exist
-  if (snapshot && !snapshot.exists()) {
+  if (name && !name.exists()) {
       const info = { "name": user.displayName, "email": user.email };
       const publicInfo = {"displayName": user.displayName};
 
@@ -53,7 +53,7 @@ const PredictionsGame = ({ user }) => {
       <div>
         <Text> {explanation} </Text>
         <Text>
-          You received <strong>{score ? score.toFixed(2) : 0}</strong> points
+          You received <strong>{score}</strong> points
           for this prediction.
         </Text>
       </div>
@@ -64,10 +64,10 @@ const PredictionsGame = ({ user }) => {
   function renderQuestion(question, date_expired, answer, disabled) {
     const qid = question.key;
     const prediction = snapshot.child(qid).val();
+    const choices = question.child("choices").val();
+    const score = scoresLoading ? "Loading..." : (scores.child(qid).val() || 0);
 
     if (question.child("type").val() === "mc") {
-      const choices = question.child("choices").val();
-      const score = scores.child("score").val() ? scores.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
@@ -97,8 +97,6 @@ const PredictionsGame = ({ user }) => {
         </Card>
       );
     } else {
-      const range = question.child("choices").val();
-      const score = scores.child("score").val() ? scores.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
@@ -116,8 +114,8 @@ const PredictionsGame = ({ user }) => {
             }
             uid={user.uid}
             qid={qid}
-            lower={range[0]}
-            upper={range[1]}
+            lower={choices[0]}
+            upper={choices[1]}
             date_expired={date_expired}
             prediction={prediction}
             explanation={
