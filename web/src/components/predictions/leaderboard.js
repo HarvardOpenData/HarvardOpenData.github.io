@@ -7,7 +7,7 @@ import UpdateScore from "./update-score";
 
 // generate leaderboard
 const Leaderboard = ({ user }) => {
-  const ref = firebase.database().ref("predictions/scores/total");
+  const ref = firebase.database().ref("predictions/scores/leaderboard");
   let userIndex = 0;
   let topScores;
   ref.on("value", (snapshot) => {

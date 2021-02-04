@@ -19,7 +19,7 @@ const PredictionsGame = ({ user }) => {
   const [name, nameLoading, nameError] = useObject(
     firebase.database().ref("public/" + user.uid)
   );
-  const [scores, scoresLoading, scoresError] = userObject(
+  const [scores, scoresLoading, scoresError] = useObject(
       firebase.database().ref("leaderboard/" + user.uid)
   );
 
