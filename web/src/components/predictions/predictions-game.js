@@ -54,71 +54,6 @@ const PredictionsGame = ({ user }) => {
     }
   }
 
-  // answer is the index of the choice for MC questions, or the correct number for range questions
-  function calculateScore(isMC, prediction, answer, qid, uid, range) {
-    const scale = 60;
-    const updates = {};
-    const leaderboardUpdates = {};
-
-    let score = 0;
-    let total = 0;
-
-    if (answer !== null && prediction != null) {
-      if (isMC) {
-        if (prediction.length === 1) {
-          // binary scoring
-          if (answer === 1) {
-            score = (1 - prediction[0] / 100) ** 2 * 2;
-          } else {
-            score = (prediction[0] / 100) ** 2 * 2;
-          }
-          score = -score * scale + scale / 2;
-        } else {
-          // multi-category scoring
-          for (let i = 0; i < prediction.length; i++) {
-            if (i === answer) {
-              score += (1 - prediction[i] / 100) ** 2;
-            } else {
-              score += (prediction[i] / 100) ** 2;
-            }
-          }
-          score =
-            -score * scale +
-            (scale * (prediction.length - 1)) / prediction.length;
-        }
-      } else {
-        // range-based scoring
-        if (answer >= prediction[0] && answer <= prediction[1]) {
-          score =
-            scale *
-            (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]));
-        } else {
-          score =
-            -scale *
-            (1 - (prediction[1] - prediction[0]) / (range[1] - range[0]));
-        }
-      }
-      // update firebase with score
-      updates[qid] = score;
-      firebase
-        .database()
-        .ref("predictions_users/" + uid + "/score")
-        .update(updates)
-        .then(() => {
-          total = Object.values(snapshot.child("score").val()).reduce(
-            (a, b) => a + b,
-            0
-          );
-          leaderboardUpdates["score"] = total;
-          firebase
-            .database()
-            .ref("predictions/leaderboard/" + uid)
-            .update(leaderboardUpdates);
-        });
-    }
-    return score;
-  }
-
   function displayScore(score, explanation) {
     return (
       <div>
@@ -138,7 +73,7 @@ const PredictionsGame = ({ user }) => {
 
     if (question.child("type").val() === "mc") {
       const choices = question.child("choices").val();
-      const score = calculateScore(true, prediction, answer, qid, user.uid);
+      const score = snapshot.child("score").val()[qid] ? snapshot.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
@@ -169,14 +104,7 @@ const PredictionsGame = ({ user }) => {
       );
     } else {
       const range = question.child("choices").val();
-      const score = calculateScore(
-        false,
-        prediction,
-        answer,
-        qid,
-        user.uid,
-        range
-      );
+      const score = snapshot.child("score").val()[qid] ? snapshot.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
