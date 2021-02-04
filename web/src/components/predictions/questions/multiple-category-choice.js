@@ -4,15 +4,8 @@ import { Range } from "react-range";
 import { format } from "date-fns";
 import Thumb from "./thumb";
 import Track from "./track";
+import theme from "../../../styles/theme.js";
 import firebase from "gatsby-plugin-firebase";
-
-// RGB Values for #C63F3F and #ccc
-const start_red = 198;
-const start_green = 63;
-const start_blue = 63;
-const end_red = 204;
-const end_green = 204;
-const end_blue = 204;
 
 // Rounding to first decimal value
 function decimalRound(val) {
@@ -28,21 +21,13 @@ function MultipleCategoryChoice(props) {
   let displayArr = [];
 
   if (!props.choices) {
-    colors = ["#C63F3F", "#ccc"];
+    colors = [theme.colors.primary, theme.colors.grey];
     arr = props.prediction ? [props.prediction[0]] : [50];
     displayArr = props.prediction ? props.prediction : [50];
   } else {
-    // Populate with gradient color values between #C63F3F and #ccc
-    colors = Array.from(Array(props.choices.length).keys()).map((index) => {
-      const pct = index / (props.choices.length - 1);
-      const diffRed = (end_red - start_red) * pct + start_red;
-      const diffGreen = (end_green - start_green) * pct + start_green;
-      const diffBlue = (end_blue - start_blue) * pct + start_blue;
-      return `rgb(${diffRed},${diffGreen},${diffBlue})`;
-    });
-
+    colors = Object.values(theme.colors).splice(0, props.choices.length);
     if (props.prediction) {
-      for (let i = 0; i < props.choices.length - 1; i++) {
+      for (let i = 0; i < props.choices.length; i++) {
         const newVal =
           i === 0 ? props.prediction[i] : props.prediction[i] + arr[i - 1];
         arr.push(newVal);
@@ -50,12 +35,11 @@ function MultipleCategoryChoice(props) {
       displayArr = props.prediction;
     } else {
       // Populate arr with values of thumbs and displayArr with displayed ranges
-      for (let i = 0; i < props.choices.length - 1; i++) {
+      for (let i = 0; i < props.choices.length; i++) {
         const val = 100 / props.choices.length;
         arr.push((i + 1) * val);
         displayArr.push(decimalRound(val));
       }
-      displayArr.push(decimalRound(100 - arr[props.choices.length - 2]));
     }
   }
 
@@ -68,13 +52,13 @@ function MultipleCategoryChoice(props) {
 
   // Populating with new values on change
   const handleChange = (values) => {
+    if (values.length >= 2 && values[values.length - 1] !== 100) {
+      values[values.length - 1] = 100;
+    }
     setValues(values);
     const newValues = values.map((val, i) =>
       i === 0 ? decimalRound(val) : decimalRound(val - values[i - 1])
     );
-    if (props.choices) {
-      newValues.push(decimalRound(100 - values[props.choices.length - 2]));
-    }
     setDisplayValues(newValues);
   };
 
@@ -116,13 +100,13 @@ function MultipleCategoryChoice(props) {
           </Text>
           {predictionDisplay}
           <Text sx={{ fontSize: 1, color: "gray" }}>
-            {props.disabled ? "Expired" : "Expires"} on{" "}
+            {!props.disabled ? "Answer locks on " : "Answer locked on "}
             {format(date_expired, "MM-DD-YYYY")}
           </Text>
         </Box>
         <Range
           disabled={props.disabled}
-          draggableTrack
+          // draggableTrack
           values={values}
           step={props.step}
           min={0}
@@ -132,7 +116,7 @@ function MultipleCategoryChoice(props) {
           renderTrack={({ props, children }) => (
             <Track
               {...props}
-              values={values}
+              values={values.length >= 2 ? values.slice(0, -1) : values}
               upper={100}
               lower={0}
               colors={colors}
@@ -141,7 +125,11 @@ function MultipleCategoryChoice(props) {
             </Track>
           )}
           renderThumb={({ index, props }) => (
-            <Thumb val={displayValues[index]} thumbProps={props} />
+            <Thumb
+                val={String(displayValues[index]) + "%"}
+                thumbProps={props}
+                color={colors[index]}
+            />
           )}
         />
         {props.explanation}
