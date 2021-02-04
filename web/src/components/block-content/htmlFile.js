@@ -1,16 +1,14 @@
 import React from "react";
-import { Image, Text } from "theme-ui";
-import { buildImageObj } from "../../lib/helpers";
-import { imageUrlFor } from "../../lib/image-url";
+import { Text } from "theme-ui";
 
 function HTMLFile(props) {
   return (
     <div>
       <br />
-      {props.asset && (
-        <Image
-          src={imageUrlFor(buildImageObj(props)).width(1200).url()}
-          alt={props.alt}
+      {props.html && (
+        <div
+          dangerouslySetInnerHTML={{__html: props.html}}
+          aria-label={props.alt}
         />
       )}
       <Text variant="caption">{props.caption}</Text>
