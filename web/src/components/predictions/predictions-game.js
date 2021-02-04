@@ -31,14 +31,12 @@ const PredictionsGame = ({ user }) => {
 
   // add user to firebase if doesn't exist
   if (snapshot && !snapshot.exists()) {
-    if (!questionsLoading) {
       const initial = {};
-      const initialScore = {};
-      const info = { name: user.displayName, email: user.email };
+      const info = { "name": user.displayName, "email": user.email };
+      const publicName = {"displayName": user.displayName};
       initial["score"] = {};
       questions.forEach((question) => (initial["score"][question.key] = 0));
-      initialScore["nickname"] = user.displayName;
-      initialScore["score"] = 0;
+
       firebase
         .database()
         .ref("predictions_users/" + user.uid)
@@ -49,9 +47,8 @@ const PredictionsGame = ({ user }) => {
         .update(info);
       firebase
         .database()
-        .ref("predictions/leaderboard/" + user.uid)
-        .update(initialScore);
-    }
+        .ref("public/" + user.uid)
+        .update(publicName);
   }
 
   function displayScore(score, explanation) {
@@ -73,7 +70,7 @@ const PredictionsGame = ({ user }) => {
 
     if (question.child("type").val() === "mc") {
       const choices = question.child("choices").val();
-      const score = snapshot.child("score").val()[qid] ? snapshot.child("score").val()[qid] : 0;
+      const score = snapshot.child("score").val() ? snapshot.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
@@ -104,7 +101,7 @@ const PredictionsGame = ({ user }) => {
       );
     } else {
       const range = question.child("choices").val();
-      const score = snapshot.child("score").val()[qid] ? snapshot.child("score").val()[qid] : 0;
+      const score = snapshot.child("score").val() ? snapshot.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
@@ -261,7 +258,7 @@ const PredictionsGame = ({ user }) => {
         )}
       </div>
       <div>
-        <Leaderboard user={user} />
+        {/*<Leaderboard user={user} />*/}
       </div>
     </Grid>
   );
