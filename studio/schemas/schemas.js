@@ -13,7 +13,7 @@ import companyInfo from "./companyInfo";
 import dataset from "./dataset";
 import embeddedComponent from "./embeddedComponent";
 import figure from "./figure";
-import htmlFile from "./htmlFile";
+import htmlContent from "./htmlContent";
 import internalLink from "./internalLink";
 import link from "./link";
 import mainImage from "./mainImage";
@@ -48,7 +48,7 @@ export default createSchema({
     dataset,
     embeddedComponent,
     figure,
-    htmlFile,
+    htmlContent,
     internalLink,
     link,
     mainImage,

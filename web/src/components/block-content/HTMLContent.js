@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "theme-ui";
 
-function HTMLFile(props) {
+function HTMLContent(props) {
   return (
     <div>
       <br />
@@ -17,4 +17,4 @@ function HTMLFile(props) {
   );
 }
 
-export default HTMLFile;
+export default HTMLContent;

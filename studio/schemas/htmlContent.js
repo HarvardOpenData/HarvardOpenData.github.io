@@ -1,8 +1,8 @@
 export default {
-  title: "HTML File",
-  name: "htmlFile",
+  title: "HTML Content",
+  name: "htmlContent",
   type: "object",
-  description: "HTML File to be embedded on the site",
+  description: "HTML Content to be embedded on the site",
   fields: [
     {
       name: "html",
