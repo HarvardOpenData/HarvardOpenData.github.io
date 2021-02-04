@@ -17,8 +17,12 @@ const PredictionsGame = ({ user }) => {
     firebase.database().ref("predictions/questions")
   );
   const [name, nameLoading, nameError] = useObject(
-    firebase.database().ref("predictions/leaderboard/" + user.uid)
+    firebase.database().ref("public/" + user.uid)
   );
+  const [scores, scoresLoading, scoresError] = userObject(
+      firebase.database().ref("leaderboard/" + user.uid)
+  );
+
 
   // state hook for display name change
   const [displayName, setDisplayName] = useState(user.displayName);
@@ -31,16 +35,9 @@ const PredictionsGame = ({ user }) => {
 
   // add user to firebase if doesn't exist
   if (snapshot && !snapshot.exists()) {
-      const initial = {};
       const info = { "name": user.displayName, "email": user.email };
-      const publicName = {"displayName": user.displayName};
-      initial["score"] = {};
-      questions.forEach((question) => (initial["score"][question.key] = 0));
+      const publicInfo = {"displayName": user.displayName};
 
-      firebase
-        .database()
-        .ref("predictions_users/" + user.uid)
-        .update(initial);
       firebase
         .database()
         .ref("users/" + user.uid)
@@ -48,7 +45,7 @@ const PredictionsGame = ({ user }) => {
       firebase
         .database()
         .ref("public/" + user.uid)
-        .update(publicName);
+        .update(publicInfo);
   }
 
   function displayScore(score, explanation) {
@@ -70,7 +67,7 @@ const PredictionsGame = ({ user }) => {
 
     if (question.child("type").val() === "mc") {
       const choices = question.child("choices").val();
-      const score = snapshot.child("score").val() ? snapshot.child("score").val()[qid] : 0;
+      const score = scores.child("score").val() ? scores.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
@@ -92,8 +89,8 @@ const PredictionsGame = ({ user }) => {
             choices={choices}
             prediction={prediction}
             explanation={
-              answer !== null &&
-              displayScore(score, question.child("explanation").val())
+                scoresLoading ? "Loading..." :
+                    (answer !== null && displayScore(score, question.child("explanation").val()))
             }
             disabled={disabled}
           />
@@ -101,7 +98,7 @@ const PredictionsGame = ({ user }) => {
       );
     } else {
       const range = question.child("choices").val();
-      const score = snapshot.child("score").val() ? snapshot.child("score").val()[qid] : 0;
+      const score = scores.child("score").val() ? scores.child("score").val()[qid] : 0;
       return (
         <Card
           key={qid}
@@ -124,8 +121,8 @@ const PredictionsGame = ({ user }) => {
             date_expired={date_expired}
             prediction={prediction}
             explanation={
-              answer != null &&
-              displayScore(score, question.child("explanation").val())
+                scoresLoading ? "Loading..." :
+                    (answer !== null && displayScore(score, question.child("explanation").val()))
             }
             disabled={disabled}
           />
@@ -176,9 +173,9 @@ const PredictionsGame = ({ user }) => {
     if (displayName !== "") {
       firebase
         .database()
-        .ref("predictions/leaderboard/" + user.uid)
+        .ref("public/" + user.uid)
         .update({
-          nickname: displayName,
+          "displayName": displayName,
         });
       setBorderColor("green");
     } else {
@@ -194,7 +191,7 @@ const PredictionsGame = ({ user }) => {
   return (
     <Grid gap={5} columns={["3fr 1fr"]}>
       <div>
-        <Text sx={{ pb: 3 }}>
+        <Text sx={{ fontSize: 1, pb: 3 }}>
           Can you forsee the future? Weigh in on our Predictions game and
           compete for glory on the scoreboard!
         </Text>
@@ -202,6 +199,7 @@ const PredictionsGame = ({ user }) => {
         <Spacer height={1} />
         {error && <strong>Error: {error}</strong>}
         {questionsError && <strong>Error: {questionsError}</strong>}
+        {scoresError && <strong>Error: {scoresError}</strong>}
         {user && (
           <div>
             <Box sx={{ pt: 3, pb: 3 }}>
@@ -235,13 +233,13 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Live predictions
                 </Text>
-                <Text>How likely are each of these events?</Text>
+                <Text sx={{ fontSize: 1 }}>How likely are each of these events?</Text>
                 {liveQuestions}
                 <Spacer height={5} />
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Pending predictions
                 </Text>
-                <Text>
+                <Text sx={{ fontSize: 1 }}>
                   The deadline to edit your responses has passed. Check back
                   soon to see the results!
                 </Text>
@@ -250,7 +248,7 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Scored predictions
                 </Text>
-                <Text>How accurate were your predictions?</Text>
+                <Text sx={{ fontSize: 1 }}>How accurate were your predictions?</Text>
                 {scoredQuestions}
               </div>
             )}
@@ -258,7 +256,7 @@ const PredictionsGame = ({ user }) => {
         )}
       </div>
       <div>
-        {/*<Leaderboard user={user} />*/}
+        <Leaderboard user={user} />
       </div>
     </Grid>
   );
