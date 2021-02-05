@@ -99,12 +99,12 @@ const displayMessage = (isMC, prediction, range) => {
                 <Text sx={{ fontSize: 15 }}>
                     Potential gain: {prediction.length !== 1 && "Up to"} <strong>
                     {1 * Math.max(...possibleScores).toFixed(2)}
-                    </strong> points.
+                    </strong> points
                 </Text>
                 <Text sx={{ fontSize: 15 }}>
                     Potential loss: {prediction.length !== 1 && "Up to"} <strong>
                     {-1 * Math.min(...possibleScores).toFixed(2)}
-                </strong> points.
+                </strong> points
                 </Text>
             </div>
         );
@@ -114,12 +114,12 @@ const displayMessage = (isMC, prediction, range) => {
                 <Text sx={{ fontSize: 15 }}>
                     Potential gain: <strong>
                     {1 * calculateScore(isMC, prediction, prediction[0], range).toFixed(2)}
-                </strong> points.
+                </strong> points
                 </Text>
                 <Text sx={{ fontSize: 15 }}>
                     Potential loss: <strong>
                     {-1 * calculateScore(isMC, prediction, prediction[0] - 1, range).toFixed(2)}
-                </strong> points.
+                </strong> points
                 </Text>
             </div>
         );
