@@ -50,18 +50,6 @@ const PredictionsGame = ({ user }) => {
         .update(publicInfo);
   }
 
-  function displayScore(score, explanation) {
-    return (
-      <div>
-        <Text> {explanation} </Text>
-        <Text>
-          You received <strong>{score}</strong> points
-          for this prediction.
-        </Text>
-      </div>
-    );
-  }
-
   // render appropriate component for each question
   function renderQuestion(question, date_expired, answer, disabled) {
     const qid = question.key;
@@ -87,13 +75,11 @@ const PredictionsGame = ({ user }) => {
             }
             uid={user.uid}
             qid={qid}
+            answer={answer}
             date_expired={date_expired}
             choices={choices}
             prediction={prediction}
-            explanation={
-                scoresLoading ? "Loading..." :
-                    (answer !== null && displayScore(score, question.child("explanation").val()))
-            }
+            explanation={question.child("explanation").val()}
             disabled={disabled}
           />
         </Card>
@@ -116,14 +102,12 @@ const PredictionsGame = ({ user }) => {
             }
             uid={user.uid}
             qid={qid}
+            answer={answer}
             lower={choices[0]}
             upper={choices[1]}
             date_expired={date_expired}
             prediction={prediction}
-            explanation={
-                scoresLoading ? "Loading..." :
-                    (answer !== null && displayScore(score, question.child("explanation").val()))
-            }
+            explanation={question.child("explanation").val()}
             disabled={disabled}
           />
         </Card>
@@ -253,13 +237,13 @@ const PredictionsGame = ({ user }) => {
                   The deadline to edit your responses has passed. Check back
                   soon to see the results!
                 </Text>
-                {/*{pendingQuestions}*/}
+                {pendingQuestions}
                 <Spacer height={5} />
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Scored predictions
                 </Text>
                 <Text sx={{ fontSize: 1 }}>How accurate were your predictions?</Text>
-                {/*{scoredQuestions}*/}
+                {scoredQuestions}
               </div>
             )}
           </div>
