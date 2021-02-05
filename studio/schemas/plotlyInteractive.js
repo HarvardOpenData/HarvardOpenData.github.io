@@ -27,6 +27,6 @@ export default {
       options: {
         isHighlighted: true,
       },
-    }
+    },
   ],
 };
