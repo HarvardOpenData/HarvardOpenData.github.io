@@ -1,12 +1,12 @@
 export default {
-  title: "HTML Content",
-  name: "htmlContent",
+  title: "Plotly Interactive",
+  name: "plotlyInteractive",
   type: "object",
-  description: "HTML Content to be embedded on the site",
+  description: "Plotly Interactive to be embedded on the site",
   fields: [
     {
-      name: "html",
-      title: "HTML code that needs to be rendered",
+      name: "json",
+      title: "Plotly json that needs to be rendered",
       type: "string",
       options: {
         isHighlighted: true,
