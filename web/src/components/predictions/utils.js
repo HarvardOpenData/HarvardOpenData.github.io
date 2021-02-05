@@ -82,8 +82,11 @@ const displayMessage = (isMC, prediction, range) => {
     if (!prediction) {
         return (
             <div>
-                <Text sx={{ fontSize: 15}}>
-                    With this prediction, you'll either win <strong>0</strong> points or lose <strong>0</strong> points.
+                <Text sx={{ fontSize: 15 }}>
+                    Potential gain: <strong>0</strong> points.
+                </Text>
+                <Text sx={{ fontSize: 15 }}>
+                    Potential loss: <strong>0</strong> points.
                 </Text>
             </div>
         );
@@ -93,22 +96,28 @@ const displayMessage = (isMC, prediction, range) => {
         const possibleScores = indices.map(index => calculateScore(isMC, prediction, index));
         return (
             <div>
-                <Text sx={{ fontSize: 15}}>
-                    With this prediction, you'll either win {prediction.length !== 1 && "up to"} <strong>
+                <Text sx={{ fontSize: 15 }}>
+                    Potential gain: {prediction.length !== 1 && "Up to"} <strong>
                     {1 * Math.max(...possibleScores).toFixed(2)}
-                    </strong> points or lose {prediction.length !== 1 && "up to"} <strong>
-                    {-1 * Math.min(...possibleScores).toFixed(2)}
                     </strong> points.
+                </Text>
+                <Text sx={{ fontSize: 15 }}>
+                    Potential loss: {prediction.length !== 1 && "Up to"} <strong>
+                    {-1 * Math.min(...possibleScores).toFixed(2)}
+                </strong> points.
                 </Text>
             </div>
         );
     } else {
         return (
             <div>
-                <Text sx={{ fontSize: 15}}>
-                    With this prediction, you'll either win <strong>
+                <Text sx={{ fontSize: 15 }}>
+                    Potential gain: <strong>
                     {1 * calculateScore(isMC, prediction, prediction[0], range).toFixed(2)}
-                </strong> points or lose <strong>
+                </strong> points.
+                </Text>
+                <Text sx={{ fontSize: 15 }}>
+                    Potential loss: <strong>
                     {-1 * calculateScore(isMC, prediction, prediction[0] - 1, range).toFixed(2)}
                 </strong> points.
                 </Text>
