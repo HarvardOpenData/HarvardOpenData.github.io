@@ -1,16 +1,6 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  jsx,
-  Text,
-  Input,
-  Label,
-  Grid,
-  Button,
-  Box,
-  Alert,
-} from "theme-ui";
+import { Card, jsx, Text, Input, Label, Grid, Button, Box, Alert } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
 import Spacer from "../../components/core/spacer";

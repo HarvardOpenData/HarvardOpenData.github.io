@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, {useEffect, useState} from 'react';
-import { jsx, Grid, Styled, Text } from "theme-ui";
+import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase"
 import BlockContent from "../components/block-content";
