@@ -6,6 +6,7 @@ import Thumb from "./thumb";
 import Track from "./track";
 import theme from "../../../styles/theme.js";
 import firebase from "gatsby-plugin-firebase";
+import { calculateScore, displayScore, displayMessage } from "../utils";
 
 // Rounding to first decimal value
 function decimalRound(val) {
@@ -13,7 +14,7 @@ function decimalRound(val) {
 }
 
 function MultipleCategoryChoice(props) {
-  const { uid, qid } = props;
+  const { uid, qid, answer } = props;
   const choices = props.choices ? props.choices : [true];
   const date_expired = new Date(props.date_expired);
   let colors = [];
@@ -88,7 +89,7 @@ function MultipleCategoryChoice(props) {
 
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
-      <Grid mt={1} mx={3} gap={2} columns={[1, "3fr 5fr"]}>
+      <Grid mt={1} mx={3} gap={0} columns={[2, "3fr 5fr"]}>
         <Box>
           <Text
             sx={{
@@ -98,41 +99,51 @@ function MultipleCategoryChoice(props) {
           >
             {props.name}
           </Text>
+        </Box>
+        <Box sx={{ pl: 3 }}>
+          <Range
+            disabled={props.disabled}
+            // draggableTrack
+            values={values}
+            step={props.step}
+            min={0}
+            max={100}
+            onChange={(values) => handleChange(values)}
+            onFinalChange={updateFirebase}
+            renderTrack={({ props, children }) => (
+              <Track
+                {...props}
+                values={values.length >= 2 ? values.slice(0, -1) : values}
+                upper={100}
+                lower={0}
+                colors={colors}
+              >
+                {children}
+              </Track>
+            )}
+            renderThumb={({ index, props }) => (
+              <Thumb
+                  val={String(displayValues[index]) + "%"}
+                  thumbProps={props}
+                  color={colors[index]}
+              />
+            )}
+          />
+        </Box>
+        <Box>
           {predictionDisplay}
           <Text sx={{ fontSize: 1, color: "gray" }}>
             {!props.disabled ? "Answer locks on " : "Answer locked on "}
             {format(date_expired, "MM-DD-YYYY")}
           </Text>
         </Box>
-        <Range
-          disabled={props.disabled}
-          // draggableTrack
-          values={values}
-          step={props.step}
-          min={0}
-          max={100}
-          onChange={(values) => handleChange(values)}
-          onFinalChange={updateFirebase}
-          renderTrack={({ props, children }) => (
-            <Track
-              {...props}
-              values={values.length >= 2 ? values.slice(0, -1) : values}
-              upper={100}
-              lower={0}
-              colors={colors}
-            >
-              {children}
-            </Track>
-          )}
-          renderThumb={({ index, props }) => (
-            <Thumb
-                val={String(displayValues[index]) + "%"}
-                thumbProps={props}
-                color={colors[index]}
-            />
-          )}
-        />
-        {props.explanation}
+        <Box sx={{ pl: 3 }}>
+          {answer !== null ?
+              displayScore(calculateScore(true, props.prediction, answer), props.explanation)
+              :
+              displayMessage(true, props.prediction)
+          }
+        </Box>
       </Grid>
     </form>
   );

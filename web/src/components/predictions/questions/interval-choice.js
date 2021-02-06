@@ -6,15 +6,15 @@ import { format } from "date-fns";
 import theme from "../../../styles/theme.js";
 import Thumb from "./thumb";
 import Track from "./track";
+import { calculateScore, displayMessage, displayScore } from "../utils";
 
 function IntervalChoice(props) {
-  const { uid, qid, lower, upper } = props;
+  const { uid, qid, answer, lower, upper } = props;
   const date_expired = new Date(props.date_expired);
   const [values, setValues] = useState(
     props.prediction ? props.prediction : [lower, upper]
   );
   const [flag, setFlag] = useState(false);
-  const [save, setSave] = useState(0);
 
   useEffect(() => {
     if (props.prediction) {
@@ -96,7 +96,7 @@ function IntervalChoice(props) {
 
   return (
     <form onSubmit={(event) => afterSubmission(event)}>
-      <Grid mt={1} mx={3} gap={2} columns={[1, "3fr 5fr"]}>
+      <Grid mt={1} mx={3} gap={0} columns={[2, "3fr 5fr"]}>
         <Box>
           <Text
             sx={{
@@ -106,6 +106,34 @@ function IntervalChoice(props) {
           >
             {props.name}
           </Text>
+        </Box>
+        <Box sx={{ pl: 3 }}>
+          <Range
+              disabled={props.disabled}
+              // draggableTrack
+              values={validateValues(values)}
+              step={props.step}
+              min={lower}
+              max={upper}
+              onChange={(values) => setValues(values)}
+              onFinalChange={updateFirebase}
+              renderTrack={({ props, children }) => (
+                  <Track
+                      {...props}
+                      values={values}
+                      upper={upper}
+                      lower={lower}
+                      colors={[theme.colors.grey, theme.colors.primary, theme.colors.grey]}
+                  >
+                    {children}
+                  </Track>
+              )}
+              renderThumb={({ index, props }) => (
+                  <Thumb val={validateThumb(index)} thumbProps={props} />
+              )}
+          />
+        </Box>
+        <Box>
           <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
           <Input
             sx={{
@@ -149,33 +177,13 @@ function IntervalChoice(props) {
             {format(date_expired, "MM-DD-YYYY")}
           </Text>
         </Box>
-        <Box>
-          <Range
-            disabled={props.disabled}
-            // draggableTrack
-            values={validateValues(values)}
-            step={props.step}
-            min={lower}
-            max={upper}
-            onChange={(values) => setValues(values)}
-            onFinalChange={updateFirebase}
-            renderTrack={({ props, children }) => (
-              <Track
-                {...props}
-                values={values}
-                upper={upper}
-                lower={lower}
-                colors={[theme.colors.grey, theme.colors.primary, theme.colors.grey]}
-              >
-                {children}
-              </Track>
-            )}
-            renderThumb={({ index, props }) => (
-              <Thumb val={validateThumb(index)} thumbProps={props} />
-            )}
-          />
+        <Box sx={{ pl: 3 }}>
+          {answer !== null ?
+              displayScore(calculateScore(false, props.prediction, answer, [lower, upper]), props.explanation)
+              :
+              displayMessage(false, props.prediction, [lower, upper])
+          }
         </Box>
-        {props.explanation}
       </Grid>
     </form>
   );

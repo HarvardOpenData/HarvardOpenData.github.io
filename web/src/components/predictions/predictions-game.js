@@ -50,18 +50,6 @@ const PredictionsGame = ({ user }) => {
         .update(publicInfo);
   }
 
-  function displayScore(score, explanation) {
-    return (
-      <div>
-        <Text> {explanation} </Text>
-        <Text>
-          You received <strong>{score}</strong> points
-          for this prediction.
-        </Text>
-      </div>
-    );
-  }
-
   // render appropriate component for each question
   function renderQuestion(question, date_expired, answer, disabled) {
     const qid = question.key;
@@ -87,13 +75,11 @@ const PredictionsGame = ({ user }) => {
             }
             uid={user.uid}
             qid={qid}
+            answer={answer}
             date_expired={date_expired}
             choices={choices}
             prediction={prediction}
-            explanation={
-                scoresLoading ? "Loading..." :
-                    (answer !== null && displayScore(score, question.child("explanation").val()))
-            }
+            explanation={question.child("explanation").val()}
             disabled={disabled}
           />
         </Card>
@@ -116,14 +102,12 @@ const PredictionsGame = ({ user }) => {
             }
             uid={user.uid}
             qid={qid}
+            answer={answer}
             lower={choices[0]}
             upper={choices[1]}
             date_expired={date_expired}
             prediction={prediction}
-            explanation={
-                scoresLoading ? "Loading..." :
-                    (answer !== null && displayScore(score, question.child("explanation").val()))
-            }
+            explanation={question.child("explanation").val()}
             disabled={disabled}
           />
         </Card>
