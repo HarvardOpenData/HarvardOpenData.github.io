@@ -1,6 +1,16 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from "react";
-import { Card, jsx, Text, Input, Label, Grid, Button, Box, Alert, Close } from "theme-ui";
+import {
+  Card,
+  jsx,
+  Text,
+  Input,
+  Label,
+  Grid,
+  Button,
+  Box,
+  Alert,
+} from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
 import Spacer from "../../components/core/spacer";
@@ -20,10 +30,6 @@ const PredictionsGame = ({ user }) => {
   const [name, nameLoading, nameError] = useObject(
     firebase.database().ref("public/" + user.uid)
   );
-  const [scores, scoresLoading, scoresError] = useObject(
-      firebase.database().ref("predictions/scores/individual/" + user.uid)
-  );
-
 
   // state hook for display name change
   const [displayName, setDisplayName] = useState(user.displayName);
@@ -37,17 +43,17 @@ const PredictionsGame = ({ user }) => {
 
   // add user to firebase if doesn't exist
   if (name && !name.exists()) {
-      const info = { "name": user.displayName, "email": user.email };
-      const publicInfo = {"displayName": user.displayName};
+    const info = { name: user.displayName, email: user.email };
+    const publicInfo = { displayName: user.displayName };
 
-      firebase
-        .database()
-        .ref("users/" + user.uid)
-        .update(info);
-      firebase
-        .database()
-        .ref("public/" + user.uid)
-        .update(publicInfo);
+    firebase
+      .database()
+      .ref("users/" + user.uid)
+      .update(info);
+    firebase
+      .database()
+      .ref("public/" + user.uid)
+      .update(publicInfo);
   }
 
   // render appropriate component for each question
@@ -55,7 +61,6 @@ const PredictionsGame = ({ user }) => {
     const qid = question.key;
     const prediction = snapshot.child(qid).val();
     const choices = question.child("choices").val();
-    const score = scoresLoading ? "Loading..." : (scores.child(qid).val() || 0);
 
     if (question.child("type").val() === "mc") {
       return (
@@ -159,7 +164,7 @@ const PredictionsGame = ({ user }) => {
         .database()
         .ref("public/" + user.uid)
         .update({
-          "displayName": displayName,
+          displayName: displayName,
         });
       setBorderColor("green");
     } else {
@@ -183,7 +188,6 @@ const PredictionsGame = ({ user }) => {
         <Spacer height={1} />
         {error && <strong>Error: {error}</strong>}
         {questionsError && <strong>Error: {questionsError}</strong>}
-        {scoresError && <strong>Error: {scoresError}</strong>}
         {user && (
           <div>
             <Box sx={{ pt: 3, pb: 3 }}>
@@ -205,7 +209,10 @@ const PredictionsGame = ({ user }) => {
                   }
                 }}
               />
-              <Button sx={{ display: "inline" }} onClick={validateName}>
+              <Button
+                sx={{ display: "inline", marginLeft: 1 }}
+                onClick={validateName}
+              >
                 Change
               </Button>
             </Box>
@@ -217,18 +224,37 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Live predictions
                 </Text>
-                <Text sx={{ fontSize: 1 }}>How likely are each of these events?</Text>
-                {liveQuestions}
+                <Text sx={{ fontSize: 1 }}>
+                  How likely are each of these events?
+                </Text>
+                {questionsLoading ? (
+                  <div>
+                    <Spacer height={2} />
+                    Loading...
+                  </div>
+                ) : (
+                  liveQuestions
+                )}
                 <Spacer height={3} />
-                <Button sx={{ color: "white", fontWeight: "bold", bg: "black", display: "inline" }} onClick={() => {
+                <Button
+                  sx={{
+                    color: "white",
+                    fontWeight: "bold",
+                    bg: "black",
+                    display: "inline",
+                  }}
+                  onClick={() => {
                     setSaveFlag(true);
                     setTimeout(() => setSaveFlag(false), 2000);
-                }}>
-                    Save Answers
+                  }}
+                >
+                  Save Answers
                 </Button>
-                {saveFlag && <Alert sx={{ bg: theme.colors.green, display: "inline" }}>
+                {saveFlag && (
+                  <Alert sx={{ bg: theme.colors.green, display: "inline" }}>
                     Saved!
-                </Alert>}
+                  </Alert>
+                )}
                 <Spacer height={5} />
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Pending predictions
@@ -237,13 +263,29 @@ const PredictionsGame = ({ user }) => {
                   The deadline to edit your responses has passed. Check back
                   soon to see the results!
                 </Text>
-                {/*{pendingQuestions}*/}
+                {questionsLoading ? (
+                  <div>
+                    <Spacer height={2} />
+                    Loading...
+                  </div>
+                ) : (
+                  pendingQuestions
+                )}
                 <Spacer height={5} />
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Scored predictions
                 </Text>
-                <Text sx={{ fontSize: 1 }}>How accurate were your predictions?</Text>
-                {/*{scoredQuestions}*/}
+                <Text sx={{ fontSize: 1 }}>
+                  How accurate were your predictions?
+                </Text>
+                {questionsLoading ? (
+                  <div>
+                    <Spacer height={2} />
+                    Loading...
+                  </div>
+                ) : (
+                  scoredQuestions
+                )}
               </div>
             )}
           </div>

@@ -109,28 +109,32 @@ function IntervalChoice(props) {
         </Box>
         <Box sx={{ pl: 3 }}>
           <Range
-              disabled={props.disabled}
-              // draggableTrack
-              values={validateValues(values)}
-              step={props.step}
-              min={lower}
-              max={upper}
-              onChange={(values) => setValues(values)}
-              onFinalChange={updateFirebase}
-              renderTrack={({ props, children }) => (
-                  <Track
-                      {...props}
-                      values={values}
-                      upper={upper}
-                      lower={lower}
-                      colors={[theme.colors.grey, theme.colors.primary, theme.colors.grey]}
-                  >
-                    {children}
-                  </Track>
-              )}
-              renderThumb={({ index, props }) => (
-                  <Thumb val={validateThumb(index)} thumbProps={props} />
-              )}
+            disabled={props.disabled}
+            // draggableTrack
+            values={validateValues(values)}
+            step={props.step}
+            min={lower}
+            max={upper}
+            onChange={(values) => setValues(values)}
+            onFinalChange={updateFirebase}
+            renderTrack={({ props, children }) => (
+              <Track
+                {...props}
+                values={values}
+                upper={upper}
+                lower={lower}
+                colors={[
+                  theme.colors.grey,
+                  theme.colors.primary,
+                  theme.colors.grey,
+                ]}
+              >
+                {children}
+              </Track>
+            )}
+            renderThumb={({ index, props }) => (
+              <Thumb val={validateThumb(index)} thumbProps={props} />
+            )}
           />
         </Box>
         <Box>
@@ -178,11 +182,12 @@ function IntervalChoice(props) {
           </Text>
         </Box>
         <Box sx={{ pl: 3 }}>
-          {answer !== null ?
-              displayScore(calculateScore(false, props.prediction, answer, [lower, upper]), props.explanation)
-              :
-              displayMessage(false, props.prediction, [lower, upper])
-          }
+          {answer !== null
+            ? displayScore(
+                calculateScore(false, props.prediction, answer, [lower, upper]),
+                props.explanation
+              )
+            : displayMessage(false, props.prediction, [lower, upper])}
         </Box>
       </Grid>
     </form>
