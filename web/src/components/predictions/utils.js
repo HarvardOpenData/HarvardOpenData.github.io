@@ -83,10 +83,10 @@ const displayMessage = (isMC, prediction, range) => {
         return (
             <div>
                 <Text sx={{ fontSize: 15 }}>
-                    Potential gain: <strong>0</strong> points.
+                    Potential gain: <strong>0</strong> points
                 </Text>
                 <Text sx={{ fontSize: 15 }}>
-                    Potential loss: <strong>0</strong> points.
+                    Potential loss: <strong>0</strong> points
                 </Text>
             </div>
         );
