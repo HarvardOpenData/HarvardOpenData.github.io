@@ -13,7 +13,16 @@ function PlotlyInteractive(props) {
   return (
     <div style={{ alignItems: "center" }}>
       <br />
-      {props.json && <Plotly {...JSON.parse(props.json)} />}
+      {/* 56.25% is for 16:9 aspect ratio */}
+      <div style={{ paddingBottom: "56.25%", position: "relative" }}>
+        {props.json && (
+          <Plotly
+            {...JSON.parse(props.json)}
+            useResizeHandler={true}
+            style={{ height: "100%", width: "100%", position: "absolute" }}
+          />
+        )}
+      </div>
       <Text variant="caption">{props.caption}</Text>
       <br />
     </div>
