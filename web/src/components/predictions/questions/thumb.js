@@ -9,7 +9,8 @@ const Thumb = (props) => (
       height: "1rem",
       width: "1rem",
       borderRadius: "0.5rem",
-      border: "0.2rem solid " + (props.color ? props.color : theme.colors.primary),
+      border:
+        "0.2rem solid " + (props.color ? props.color : theme.colors.primary),
       backgroundColor: "#FFF",
       display: "flex",
       justifyContent: "center",

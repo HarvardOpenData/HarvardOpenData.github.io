@@ -123,9 +123,9 @@ function MultipleCategoryChoice(props) {
             )}
             renderThumb={({ index, props }) => (
               <Thumb
-                  val={String(displayValues[index]) + "%"}
-                  thumbProps={props}
-                  color={colors[index]}
+                val={String(displayValues[index]) + "%"}
+                thumbProps={props}
+                color={colors[index]}
               />
             )}
           />
@@ -138,11 +138,12 @@ function MultipleCategoryChoice(props) {
           </Text>
         </Box>
         <Box sx={{ pl: 3 }}>
-          {answer !== null ?
-              displayScore(calculateScore(true, props.prediction, answer), props.explanation)
-              :
-              displayMessage(true, props.prediction)
-          }
+          {answer !== null
+            ? displayScore(
+                calculateScore(true, props.prediction, answer),
+                props.explanation
+              )
+            : displayMessage(true, props.prediction)}
         </Box>
       </Grid>
     </form>
