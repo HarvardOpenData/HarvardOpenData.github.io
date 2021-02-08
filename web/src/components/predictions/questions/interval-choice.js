@@ -149,6 +149,7 @@ function IntervalChoice(props) {
             min={lower}
             max={upper}
             value={values[0]}
+            disabled={props.disabled}
             onChange={(e) =>
               setValues([e.target.value && parseInt(e.target.value), values[1]])
             }
@@ -168,6 +169,7 @@ function IntervalChoice(props) {
             min={lower}
             max={upper}
             value={values[1]}
+            disabled={props.disabled}
             onChange={(e) =>
               setValues([values[0], e.target.value && parseInt(e.target.value)])
             }

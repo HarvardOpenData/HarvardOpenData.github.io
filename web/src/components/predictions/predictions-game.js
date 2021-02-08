@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from "react";
-import { Card, jsx, Text, Input, Label, Grid, Button, Box, Alert } from "theme-ui";
+import { Card, jsx, Text, Input, Label, Grid, Button, Box, Alert, Checkbox } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
 import Spacer from "../../components/core/spacer";
@@ -25,6 +25,7 @@ const PredictionsGame = ({ user }) => {
   const [displayName, setDisplayName] = useState(user.displayName);
   const [borderColor, setBorderColor] = useState();
   const [borderWidth, setBorderWidth] = useState(1);
+  const [inputDisabled, changeInput] = useState(false);
   const [saveFlag, setSaveFlag] = useState(false);
 
   useEffect(() => {
@@ -198,13 +199,21 @@ const PredictionsGame = ({ user }) => {
                     validateName();
                   }
                 }}
+                disabled={inputDisabled}
               />
               <Button
                 sx={{ display: "inline", marginLeft: 1 }}
                 onClick={validateName}
+                disabled={inputDisabled}
               >
                 Change
               </Button>
+              {/*<Box sx={{ display: "inline"}}>*/}
+              {/*<Label >*/}
+              {/*  <Checkbox />*/}
+              {/*  Anonymize me!*/}
+              {/*</Label>*/}
+              {/*</Box>*/}
             </Box>
             <Spacer height={2} />
             {loading ? (
