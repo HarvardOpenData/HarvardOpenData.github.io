@@ -63,8 +63,8 @@ const updateLeaderboard = (updates) => {
 const displayScore = (score, explanation) => {
   return (
     <div>
-      <Text> {explanation} </Text>
-      <Text>
+      <Text sx={{ fontSize: 15 }}> {explanation} </Text>
+      <Text sx={{ fontSize: 15 }}>
         You received <strong>{1 * score.toFixed(2)}</strong> points for this
         prediction.
       </Text>
