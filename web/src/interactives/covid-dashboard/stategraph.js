@@ -3,8 +3,11 @@ import { fetchStateData } from "./data/dataservice";
 import { Line } from "react-chartjs-2";
 import Select from "react-select";
 import { Spinner } from "theme-ui";
+import theme from "../../styles/theme";
 
-let stateOptions = [];
+const DAILY = "daily";
+
+const stateOptions = [];
 
 const statesData = require("./assets/states.json");
 
@@ -54,34 +57,34 @@ class StateGraph extends Component {
         chartData: {
           labels: data.dates,
           datasets:
-            this.state.sort === "daily"
+            this.state.sort === DAILY
               ? [
                   {
                     label: "Hospitalized Currently",
                     data: Object.values(data.hospitalizedCurrently),
                     fill: true,
-                    borderColor: "#455574",
+                    borderColor: theme.colors.navy,
                     pointRadius: 0,
                   },
                   {
                     label: "Increase in Cases",
                     data: Object.values(data.positiveIncrease),
                     fill: true,
-                    borderColor: "#C63F3F",
+                    borderColor: theme.colors.primary,
                     pointRadius: 0,
                   },
                   {
                     label: "Increase in Deaths",
                     data: Object.values(data.deathIncrease),
                     fill: true,
-                    borderColor: "#251616",
+                    borderColor: theme.colors.dark,
                     pointRadius: 0,
                   },
                   {
                     label: "Moving Average of Daily Cases",
                     data: Object.values(data.movingAvgCases),
                     fill: true,
-                    borderColor: "#F4B436",
+                    borderColor: theme.colors.yellow,
                     pointRadius: 0,
                   },
                 ]
@@ -90,21 +93,21 @@ class StateGraph extends Component {
                     label: "Confirmed",
                     data: data.confirmed,
                     fill: true,
-                    borderColor: "#C63F3F",
+                    borderColor: theme.colors.primary,
                     pointRadius: 0,
                   },
                   {
                     label: "Deaths",
                     data: Object.values(data.deaths),
                     fill: true,
-                    borderColor: "#251616",
+                    borderColor: theme.colors.dark,
                     pointRadius: 0,
                   },
                   {
                     label: "Recovered",
                     data: Object.values(data.recovered),
                     fill: true,
-                    borderColor: "#455574",
+                    borderColor: theme.colors.navy,
                     pointRadius: 0,
                   },
                 ],

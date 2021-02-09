@@ -3,6 +3,7 @@ import { fetchTotalHarvardData } from "./data/dataservice";
 import { Line } from "react-chartjs-2";
 import Select from "react-select";
 import { Spinner } from "theme-ui";
+import theme from "../../styles/theme";
 
 const sortOptions = [
   {
@@ -23,7 +24,7 @@ const sortOptions = [
   },
 ];
 
-class HarvardGraph extends Component {
+class HarvardCumulativeGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,7 +77,7 @@ class HarvardGraph extends Component {
               this.state[`${option[0]}Data`][`undergrad_${option[1]}`]
             ),
             fill: true,
-            borderColor: "#455574",
+            borderColor: theme.colors.navy,
             pointRadius: 0,
           },
           {
@@ -85,7 +86,7 @@ class HarvardGraph extends Component {
               this.state[`${option[0]}Data`][`grad_${option[1]}`]
             ),
             fill: true,
-            borderColor: "#C63F3F",
+            borderColor: theme.colors.primary,
             pointRadius: 0,
           },
           {
@@ -94,7 +95,7 @@ class HarvardGraph extends Component {
               this.state[`${option[0]}Data`][`staff_${option[1]}`]
             ),
             fill: true,
-            borderColor: "#251616",
+            borderColor: theme.colors.dark,
             pointRadius: 0,
           },
           {
@@ -103,7 +104,7 @@ class HarvardGraph extends Component {
               this.state[`${option[0]}Data`][`total_${option[1]}`]
             ),
             fill: true,
-            borderColor: "#F4B436",
+            borderColor: theme.colors.yellow,
             pointRadius: 0,
           },
         ],
@@ -167,4 +168,4 @@ class HarvardGraph extends Component {
   }
 }
 
-export default HarvardGraph;
+export default HarvardCumulativeGraph;

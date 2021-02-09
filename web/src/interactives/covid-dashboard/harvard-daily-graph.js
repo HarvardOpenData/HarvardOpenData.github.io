@@ -3,6 +3,7 @@ import { fetchDailyHarvardData } from "./data/dataservice";
 import { Line } from "react-chartjs-2";
 import Select from "react-select";
 import { Spinner } from "theme-ui";
+import theme from "../../styles/theme";
 
 const sortOptions = [
   {
@@ -74,28 +75,28 @@ class HarvardDailyGraph extends Component {
             label: `Fall ${option.label}`,
             data: Object.values(this.state.fallData[option.value]),
             fill: true,
-            borderColor: "#C63F3F",
+            borderColor: theme.colors.primary,
             pointRadius: 0,
           },
           {
             label: `Spring ${option.label}`,
             data: Object.values(this.state.springData[option.value]),
             fill: true,
-            borderColor: "#455574",
+            borderColor: theme.colors.navy,
             pointRadius: 0,
           },
           {
             label: `Fall ${option.label} Moving Average`,
             data: Object.values(this.state.fallData[`${option.value}_avg`]),
             fill: true,
-            borderColor: "#E28073",
+            borderColor: theme.colors.medium,
             pointRadius: 0,
           },
           {
             label: `Spring ${option.label} Moving Average`,
             data: Object.values(this.state.springData[`${option.value}_avg`]),
             fill: true,
-            borderColor: "#83BFCC",
+            borderColor: theme.colors.blue,
             pointRadius: 0,
           },
         ],

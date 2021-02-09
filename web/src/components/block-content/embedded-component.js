@@ -5,7 +5,7 @@ import CovidMap from "../../interactives/covid-dashboard/covidmap";
 import StateGraph from "../../interactives/covid-dashboard/stategraph";
 import CountryGraph from "../../interactives/covid-dashboard/countrygraph";
 import CovidGraphPanel from "../../interactives/covid-dashboard/covid-graph-panel";
-import HarvardGraph from "../../interactives/covid-dashboard/harvardgraph";
+import HarvardCumulativeGraph from "../../interactives/covid-dashboard/harvard-cumulative-graph";
 import HarvardDailyGraph from "../../interactives/covid-dashboard/harvard-daily-graph";
 import HarvardGraphPanel from "../../interactives/covid-dashboard/harvard-graph-panel";
 
@@ -28,8 +28,8 @@ function EmbeddedComponent(component) {
       return <StateGraph sort={"daily"} />;
     case "CovidGraphPanel":
       return <CovidGraphPanel />;
-    case "HarvardGraph":
-      return <HarvardGraph />;
+    case "HarvardCumulativeGraph":
+      return <HarvardCumulativeGraph />;
     case "HarvardDailyGraph":
       return <HarvardDailyGraph />;
     case "HarvardGraphPanel":
