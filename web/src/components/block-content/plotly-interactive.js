@@ -10,11 +10,18 @@ const Plotly = Loadable({
 });
 
 function PlotlyInteractive(props) {
+  // Sets padding percentage based off aspect ratio
+  const ratioValues = props.aspectRatio
+    ? props.aspectRatio.split(":")
+    : ["16", "9"];
+  const aspectRatio = `${((ratioValues[1] * 100) / ratioValues[0]).toFixed(
+    2
+  )}%`;
+
   return (
     <div style={{ alignItems: "center" }}>
       <br />
-      {/* 56.25% is for 16:9 aspect ratio */}
-      <div style={{ paddingBottom: "56.25%", position: "relative" }}>
+      <div style={{ paddingBottom: aspectRatio, position: "relative" }}>
         {props.json && (
           <Plotly
             {...JSON.parse(props.json)}

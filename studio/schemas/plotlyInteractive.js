@@ -28,5 +28,13 @@ export default {
         isHighlighted: true,
       },
     },
+    {
+      name: "aspectRatio",
+      title: "Aspect Ratio (format like 16:9)",
+      type: "string",
+      options: {
+        isHighlighted: true,
+      },
+    },
   ],
 };

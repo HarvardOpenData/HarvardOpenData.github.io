@@ -2,11 +2,18 @@ import React from "react";
 import { jsx, Text } from "theme-ui";
 
 function IFrame(props) {
+  // Sets padding percentage based off aspect ratio
+  const ratioValues = props.aspectRatio
+    ? props.aspectRatio.split(":")
+    : ["16", "9"];
+  const aspectRatio = `${((ratioValues[1] * 100) / ratioValues[0]).toFixed(
+    2
+  )}%`;
+
   return (
     <div style={{ alignItems: "center" }}>
       <br />
-      {/* 56.25% is for 16:9 aspect ratio */}
-      <div style={{ paddingBottom: "56.25%", position: "relative" }}>
+      <div style={{ paddingBottom: aspectRatio, position: "relative" }}>
         {props.url && (
           <iframe
             src={props.url}
