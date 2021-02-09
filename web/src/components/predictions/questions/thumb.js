@@ -1,4 +1,5 @@
 import React from "react";
+import theme from "../../../styles/theme.js";
 
 const Thumb = (props) => (
   <div
@@ -8,7 +9,8 @@ const Thumb = (props) => (
       height: "1rem",
       width: "1rem",
       borderRadius: "0.5rem",
-      border: "0.2rem solid #C63F3F",
+      border:
+        "0.2rem solid " + (props.color ? props.color : theme.colors.primary),
       backgroundColor: "#FFF",
       display: "flex",
       justifyContent: "center",
@@ -20,7 +22,7 @@ const Thumb = (props) => (
       style={{
         position: "absolute",
         top: "-2.2rem",
-        color: "#fff",
+        color: "#FFF",
         fontWeight: "bold",
         fontSize: "1rem",
         fontFamily: "Arial,Helvetica Neue,Helvetica,sans-serif",
