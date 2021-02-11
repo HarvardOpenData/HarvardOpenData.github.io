@@ -107,5 +107,11 @@ export default {
     {
       type: "preview",
     },
+    {
+      type: "plotlyInteractive",
+    },
+    {
+      type: "iframe",
+    },
   ],
 };

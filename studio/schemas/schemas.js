@@ -13,11 +13,13 @@ import companyInfo from "./companyInfo";
 import dataset from "./dataset";
 import embeddedComponent from "./embeddedComponent";
 import figure from "./figure";
+import iframe from "./iframe";
 import internalLink from "./internalLink";
 import link from "./link";
 import mainImage from "./mainImage";
 import page from "./page";
 import person from "./person";
+import plotlyInteractive from "./plotlyInteractive";
 import position from "./position";
 import post from "./post";
 import preview from "./preview";
@@ -47,14 +49,16 @@ export default createSchema({
     dataset,
     embeddedComponent,
     figure,
+    iframe,
     internalLink,
     link,
     mainImage,
     page,
     person,
+    plotlyInteractive,
     position,
-    preview,
     post,
+    preview,
     project,
     projectMember,
     redirect,

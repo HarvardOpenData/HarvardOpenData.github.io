@@ -6,6 +6,8 @@ import Figure from "./figure";
 import EmbeddedComponent from "./embedded-component";
 import Slideshow from "./slideshow";
 import Preview from "./preview";
+import PlotlyInteractive from "./plotly-interactive";
+import IFrame from "./iframe";
 import { getBlogUrl, resolveInternalLink } from "../../lib/helpers";
 
 const serializers = {
@@ -54,6 +56,12 @@ const serializers = {
     },
     preview(props) {
       return <Preview {...props.node} />;
+    },
+    plotlyInteractive(props) {
+      return <PlotlyInteractive {...props.node} />;
+    },
+    iframe(props) {
+      return <IFrame {...props.node} />;
     },
   },
   marks: {
