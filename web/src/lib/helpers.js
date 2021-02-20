@@ -37,6 +37,15 @@ export function resolveInternalLink(link) {
   }
 }
 
+export function resolveAttachmentLink(attachment) {
+  if (!attachment || !attachment.file) {
+    return null;
+  }
+
+  const { asset = {} } = attachment.file;
+  return asset.url;
+}
+
 export function buildImageObj(source) {
   const imageObj = {
     asset: { _ref: source.asset._ref || source.asset._id },

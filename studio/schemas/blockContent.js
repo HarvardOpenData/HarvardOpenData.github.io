@@ -1,4 +1,4 @@
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaUpload } from "react-icons/fa";
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -86,6 +86,21 @@ export default {
                   { type: "dataset" },
                   // other types you may want to link to
                 ],
+              },
+            ],
+          },
+          {
+            name: "attachment",
+            type: "object",
+            title: "Attachment",
+            blockEditor: {
+              icon: FaUpload,
+            },
+            fields: [
+              {
+                name: "file",
+                type: "file",
+                title: "File upload",
               },
             ],
           },

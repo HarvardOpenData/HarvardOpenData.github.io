@@ -8,7 +8,7 @@ import Slideshow from "./slideshow";
 import Preview from "./preview";
 import PlotlyInteractive from "./plotly-interactive";
 import IFrame from "./iframe";
-import { getBlogUrl, resolveInternalLink } from "../../lib/helpers";
+import { resolveAttachmentLink, resolveInternalLink } from "../../lib/helpers";
 
 const serializers = {
   types: {
@@ -68,6 +68,10 @@ const serializers = {
     internalLink: ({ mark, children }) => {
       let fullSlug = resolveInternalLink(mark);
       return <Link to={fullSlug}>{children}</Link>;
+    },
+    attachment: ({ mark, children }) => {
+      const fullSlug = resolveAttachmentLink(mark);
+      return <Link href={fullSlug}>{children}</Link>;
     },
   },
 };
