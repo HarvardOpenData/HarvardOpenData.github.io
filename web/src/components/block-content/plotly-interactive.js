@@ -5,7 +5,20 @@ import Loadable from "react-loadable";
 const Plotly = Loadable({
   loader: () => import(`react-plotly.js`),
   loading: ({ timedOut }) =>
-    timedOut ? <Alert>Error: Loading Plotly timed out.</Alert> : <Spinner />,
+    timedOut ? (
+      <Alert>Error: Loading Plotly timed out.</Alert>
+    ) : (
+      <Spinner
+        sx={{
+          margin: "auto",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+        }}
+      />
+    ),
   timeout: 10000,
 });
 
