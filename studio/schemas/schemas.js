@@ -26,6 +26,7 @@ import preview from "./preview";
 import project from "./project";
 import projectMember from "./projectMember";
 import redirect from "./redirect";
+import shortForm from "./shortForm";
 import siteSettings from "./siteSettings";
 import slideshow from "./slideshow";
 import stringProp from "./stringProp";
@@ -62,6 +63,7 @@ export default createSchema({
     project,
     projectMember,
     redirect,
+    shortForm,
     siteSettings,
     slideshow,
     stringProp,

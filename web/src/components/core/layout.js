@@ -34,8 +34,12 @@ const SubscribeWidget = ({ interestForm }) => {
         method="POST"
         noValidate
       >
-        <input type="hidden" name="u" value="4415ac3e9c1cf1f92c9e5b357" />
-        <input type="hidden" name="id" value="8dbd4ffd38" />
+        <input
+          type="hidden"
+          name="u"
+          defaultValue="4415ac3e9c1cf1f92c9e5b357"
+        />
+        <input type="hidden" name="id" defaultValue="8dbd4ffd38" />
         <Input
           type="email"
           name="EMAIL"
@@ -50,7 +54,7 @@ const SubscribeWidget = ({ interestForm }) => {
             type="text"
             name="b_eb05e4f830c2a04be30171b01_8281a64779"
             tabIndex="-1"
-            value=""
+            defaultValue=""
           />
         </div>
         <Button
@@ -79,7 +83,7 @@ const SubscribeWidget = ({ interestForm }) => {
             type="text"
             name="b_name"
             tabIndex="-1"
-            value=""
+            defaultValue=""
             placeholder="Freddie"
             id="b_name"
           />
@@ -89,7 +93,7 @@ const SubscribeWidget = ({ interestForm }) => {
             type="email"
             name="b_email"
             tabIndex="-1"
-            value=""
+            defaultValue=""
             placeholder="youremail@gmail.com"
             id="b_email"
           />
