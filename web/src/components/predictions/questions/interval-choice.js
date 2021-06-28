@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "gatsby-plugin-firebase";
-import { Box, Grid, Text, Input, Alert, Close } from "theme-ui";
+import { Box, Grid, Text, Input } from "theme-ui";
 import { Range } from "react-range";
 import { format } from "date-fns";
 import theme from "../../../styles/theme.js";
@@ -21,7 +21,7 @@ function IntervalChoice(props) {
       updateFirebase();
       setFlag(false);
     }
-  }, [flag]);
+  }, [flag, props.prediction]);
 
   const afterSubmission = (event) => {
     event.preventDefault();

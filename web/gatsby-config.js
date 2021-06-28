@@ -92,7 +92,7 @@ module.exports = {
           "GOOGLE_PRIVATE_KEY",
           "ALGOLIA_TOKEN",
           "ALGOLIA_APP_ID",
-          "ADMIN_USER"
+          "ADMIN_USER",
         ],
       },
     },
@@ -113,8 +113,8 @@ module.exports = {
           storageBucket: process.env.GATSBY_FIREBASE_STORAGE_BUCKET,
           messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
           appId: process.env.GATSBY_FIREBASE_APP_ID,
-        }
-      }
+        },
+      },
     },
     "gatsby-plugin-meta-redirect",
     "gatsby-plugin-client-side-redirect", // keep it in last in list

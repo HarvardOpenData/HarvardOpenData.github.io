@@ -21,7 +21,14 @@ const detailsQuery = graphql`
   }
 `;
 
-function SEO({ description, image, lang, meta, keywords = [], title }) {
+function SEOContainer({
+  description,
+  image,
+  lang,
+  meta,
+  keywords = [],
+  title,
+}) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -95,13 +102,13 @@ function SEO({ description, image, lang, meta, keywords = [], title }) {
   );
 }
 
-SEO.defaultProps = {
+SEOContainer.defaultProps = {
   lang: "en",
   meta: [],
   keywords: [],
 };
 
-SEO.propTypes = {
+SEOContainer.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.array,
@@ -109,4 +116,4 @@ SEO.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default SEO;
+export default SEOContainer;

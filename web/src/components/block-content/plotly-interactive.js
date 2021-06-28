@@ -1,4 +1,4 @@
-import React from "react";
+/** @jsx jsx */
 import { jsx, Alert, Spinner, Text } from "theme-ui";
 import Loadable from "react-loadable";
 

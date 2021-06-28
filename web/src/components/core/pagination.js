@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, Button } from "theme-ui";
 import Link from "./link";
-import theme from "../../styles/theme";
 
 const Pagination = ({ prefix, pageContext }) => {
   const { currentPage, numPages } = pageContext;

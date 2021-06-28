@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Text } from "theme-ui";
+import { jsx } from "theme-ui";
 import { formatDate } from "../../lib/helpers";
 import Spacer from "../../components/core/spacer";
 import Link from "../core/link.js";
@@ -21,11 +21,13 @@ function ArticleByline({ members, publishedAt, showDate }) {
       {contributors.length > 0 && `By `}
       {contributors.map((item, i) => (
         <span key={item._key}>
-          {item.person.slug ? <Link to={`/people/${item.person.slug.current}`}>
-            {item.person && `${item.person.name}`}
-          </Link> : <div>
-            {item.person && `${item.person.name}`}
-          </div>}
+          {item.person.slug ? (
+            <Link to={`/people/${item.person.slug.current}`}>
+              {item.person && `${item.person.name}`}
+            </Link>
+          ) : (
+            <div>{item.person && `${item.person.name}`}</div>
+          )}
           {i < numContributors - 2 ? `, ` : i === numContributors - 2 && ` & `}
         </span>
       ))}

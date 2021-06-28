@@ -11,15 +11,8 @@ export default class Modal extends React.Component {
     if (!this.props.show) {
       return null;
     }
-    const {
-      image,
-      name,
-      _rawBio,
-      position,
-      concentration,
-      house,
-      year,
-    } = this.props.data;
+    const { image, name, _rawBio, position, concentration, house, year } =
+      this.props.data;
     return (
       <div className="modal" id="modal">
         <div className="modal-content">

@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Layout from "../containers/layout";
 import ProfileBio from "../components/people-layouts/profile-bio.js";
 import ProfileProjects from "../components/people-layouts/profile-projects";
@@ -164,9 +164,9 @@ const ProfileTemplate = (props) => {
     <Layout>
       <br></br>
       <Container>
-        {errors && <SEO title="GraphQL Error" />}
+        {errors && <SEOContainer title="GraphQL Error" />}
         {profile && (
-          <SEO
+          <SEOContainer
             title={profile.name || "Unnamed Contributor"}
             description={toPlainText(profile._rawBio) || null}
             image={mainImageUrl}

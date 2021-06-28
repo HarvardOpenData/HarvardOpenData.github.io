@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx } from "theme-ui";
 import { graphql } from "gatsby";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Layout from "../containers/layout";
 
 export const query = graphql`
@@ -39,7 +39,7 @@ const ContactPage = (props) => {
 
   return (
     <Layout>
-      <SEO title={page.title} />
+      <SEOContainer title={page.title} />
       <Container>
         <BannerHeader title={page.title} />
         <BlockContent blocks={page._rawBody || []} />

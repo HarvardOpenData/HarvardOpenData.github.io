@@ -17,7 +17,7 @@ import ArticlePreview from "../components/article-layouts/article-preview";
 import ProfileBio from "../components/people-layouts/profile-bio";
 import DatasetPreview from "../components/dataset/dataset-preview";
 import BlockContent from "../components/block-content";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Container from "../components/core/container";
 import Section from "../components/core/section";
 import Spacer from "../components/core/spacer";
@@ -125,7 +125,7 @@ const SearchPage = (props) => {
 
   return (
     <Layout isSearch={true}>
-      <SEO title={page.title} />
+      <SEOContainer title={page.title} />
       <Container>
         <Styled.h1>Search</Styled.h1>
         <Spacer height={4} />

@@ -6,7 +6,7 @@ import ProjectPreviewGrid from "../components/project-layouts/project-preview-gr
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import Pagination from "../components/core/pagination";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Spacer from "../components/core/spacer";
 import Layout from "../containers/layout";
 
@@ -58,7 +58,7 @@ const BlogListTemplate = (props) => {
 
   return (
     <Layout>
-      <SEO title="Blog" />
+      <SEOContainer title="Blog" />
       <Container>
         <Styled.h1>HODP Blog</Styled.h1>
         <Styled.p>For the fun stuff.</Styled.p>

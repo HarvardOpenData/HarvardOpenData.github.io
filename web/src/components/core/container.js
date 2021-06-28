@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx } from "theme-ui";
 
 const Container = ({ maxWidth, margin, align, children }) => {
   return (

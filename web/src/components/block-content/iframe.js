@@ -1,4 +1,4 @@
-import React from "react";
+/** @jsx jsx */
 import { jsx, Text } from "theme-ui";
 
 function IFrame(props) {

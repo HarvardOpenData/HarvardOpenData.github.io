@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import PeopleList from "../components/people-layouts/people-list";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Layout from "../containers/layout";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
@@ -229,7 +229,7 @@ const PeoplePage = (props) => {
   return (
     <Layout>
       <Container>
-        <SEO title={"People"} />
+        <SEOContainer title={"People"} />
       </Container>
       <PeopleList
         board={boardNodes}

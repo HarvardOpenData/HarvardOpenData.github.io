@@ -1,13 +1,9 @@
 /** @jsx jsx */
-import { jsx, Grid, Styled, Text } from "theme-ui";
-import { format, distanceInWords, differenceInDays } from "date-fns";
-import React from "react";
+import { jsx, Grid } from "theme-ui";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import ArticleBody from "./article-body";
 import ArticleHeader from "./article-header";
-import ArticleSidebar from "./article-sidebar";
-import BlockContent from "../block-content";
 import Container from "../core/container";
 
 function DefaultHeader(props) {

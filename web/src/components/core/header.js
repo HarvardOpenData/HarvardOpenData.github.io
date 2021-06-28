@@ -28,9 +28,7 @@ function Searchbar(props) {
       onSubmit={(event) => {
         event.preventDefault();
         // TODO: do something with form values
-        navigate(
-          `/search/?query=${search}`
-        );
+        navigate(`/search/?query=${search}`);
       }}
       sx={{
         width: props.isMobile ? "100%" : "30%",
@@ -95,8 +93,8 @@ function StandardSubmenuLink({ name, link, subMenu }) {
           }}
         >
           {subMenu && subMenu.length > 0
-            ? subMenu.map((subLink) => (
-                <MenuLink {...subLink}>
+            ? subMenu.map((subLink, index) => (
+                <MenuLink key={`menu-link-${index}`} {...subLink}>
                   <Box
                     p={2}
                     pt={1}
@@ -166,11 +164,14 @@ function StandardHeader({ logo, menuLinks, isSearch }) {
           />
         </Link>
         <Flex>
-          {menuLinks.map((link) =>
+          {menuLinks.map((link, index) =>
             link.subMenu && link.subMenu.length > 0 ? (
-              <StandardSubmenuLink {...link} />
+              <StandardSubmenuLink
+                key={`standard-submenu-link-${index}`}
+                {...link}
+              />
             ) : (
-              <StandardMenuLink {...link} />
+              <StandardMenuLink key={`standard-menu-link-${index}`} {...link} />
             )
           )}
           {!isSearch && <Searchbar />}
@@ -355,36 +356,31 @@ class MobileHeader extends React.Component {
   }
 }
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+function Header(props) {
+  const { logo, menuLinks } = props;
 
-  render() {
-    const { logo, menuLinks } = this.props;
-    return (
-      <div>
-        <div sx={{ display: ["none", "initial", "initial", "initial"] }}>
-          {logo && logo.asset && (
-            <StandardHeader
-              logo={logo}
-              menuLinks={menuLinks}
-              isSearch={this.props.isSearch}
-            />
-          )}
-        </div>
-        <div sx={{ display: ["initial", "none", "none", "none"] }}>
-          {logo && logo.asset && (
-            <MobileHeader
-              logo={logo}
-              menuLinks={menuLinks}
-              isSearch={this.props.isSearch}
-            />
-          )}
-        </div>
+  return (
+    <div>
+      <div sx={{ display: ["none", "initial", "initial", "initial"] }}>
+        {logo && logo.asset && (
+          <StandardHeader
+            logo={logo}
+            menuLinks={menuLinks}
+            isSearch={props.isSearch}
+          />
+        )}
       </div>
-    );
-  }
+      <div sx={{ display: ["initial", "none", "none", "none"] }}>
+        {logo && logo.asset && (
+          <MobileHeader
+            logo={logo}
+            menuLinks={menuLinks}
+            isSearch={props.isSearch}
+          />
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default Header;
