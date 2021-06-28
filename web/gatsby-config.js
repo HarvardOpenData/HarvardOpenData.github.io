@@ -1,6 +1,8 @@
-require("dotenv").config();
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 const {
-  api: { projectId, dataset },
+  api: { projectId },
 } = requireConfig("../studio/sanity.json");
 
 module.exports = {
@@ -71,7 +73,7 @@ module.exports = {
       resolve: "gatsby-source-sanity",
       options: {
         projectId,
-        dataset,
+        dataset: process.env.SANITY_ENVIRONMENT,
         // To enable preview of drafts, copy .env-example into .env,
         // and add a token with read permissions
         token: process.env.SANITY_TOKEN,

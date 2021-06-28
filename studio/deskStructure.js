@@ -12,6 +12,7 @@ const hiddenTypes = [
   "post",
   "project",
   "redirect",
+  "shortForm",
   "siteSettings",
   "sponsor",
   "subject",
@@ -23,8 +24,18 @@ export default () =>
     .items([
       S.listItem()
         .title("Projects")
-        .schemaType("project")
-        .child(S.documentTypeList("project")),
+        .child(
+          S.list()
+          .title("Projects")
+          .items([
+            S.listItem()
+              .title("Long Form")
+              .child(S.documentTypeList("project")),
+            S.listItem()
+              .title("Short Form")
+              .child(S.documentTypeList("shortForm")),
+          ])
+        ),
       S.listItem()
         .title("Blog posts")
         .schemaType("post")

@@ -5,6 +5,13 @@
     "projectId": "xx0obpjv",
     "dataset": "production"
   },
+  "env": {
+    "development": {
+      "api": {
+        "dataset": "dev"
+      }
+    }
+  },
   "project": {
     "name": "HODP Website",
     "basePath": "/"

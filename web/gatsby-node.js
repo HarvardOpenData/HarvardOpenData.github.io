@@ -79,6 +79,42 @@ async function createProjectPages(graphql, actions, reporter) {
   });
 }
 
+async function createShortFormPages(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityShortForm(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const shortFormEdges = (result.data.allSanityShortForm || {}).edges || [];
+
+  shortFormEdges.forEach((edge) => {
+    const id = edge.node.id;
+    const slug = edge.node.slug.current;
+    const path = `/project/${slug}/`;
+
+    reporter.info(`Creating short form page: ${path}`);
+
+    createPage({
+      path,
+      component: require.resolve("./src/templates/short-form.js"),
+      context: { id },
+    });
+  });
+}
+
 async function createPeoplePages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -237,6 +273,7 @@ async function createRedirects(graphql, actions, reporter) {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createBlogPostPages(graphql, actions, reporter);
   await createProjectPages(graphql, actions, reporter);
+  await createShortFormPages(graphql, actions, reporter);
   await createPeoplePages(graphql, actions, reporter);
   await createProjectListPages(graphql, actions, reporter);
   await createBlogListPages(graphql, actions, reporter);

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 
-import styles from "./slideshow.module.css";
+import * as styles from "./slideshow.module.css";
 
 function Slideshow(props) {
   const [index, setIndex] = useState(0);
@@ -21,7 +21,6 @@ function Slideshow(props) {
       className="root"
       sx={{
         color: "dark",
-        margin: ["margin: 2rem -2rem", "margin: 2rem 0", "2rem -1.5rem"],
         overflow: "hidden",
         padding: "1rem",
       }}
