@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import ShortForm from "../components/project-layouts/short-form";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import { toPlainText } from "../lib/helpers";
 import { previewImageUrlFor } from "../lib/image-url";
 import Layout from "../containers/layout";
@@ -102,9 +102,9 @@ const ShortFormTemplate = (props) => {
 
   return (
     <Layout>
-      {errors && <SEO title="GraphQL Error" />}
+      {errors && <SEOContainer title="GraphQL Error" />}
       {shortForm && (
-        <SEO
+        <SEOContainer
           title={shortForm.title || "Untitled Project"}
           description={toPlainText(shortForm._rawExcerpt) || null}
           image={mainImageUrl}
