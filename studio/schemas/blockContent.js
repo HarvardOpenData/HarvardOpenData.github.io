@@ -128,5 +128,8 @@ export default {
     {
       type: "iframe",
     },
+    {
+      type: "scrollytellingComponent",
+    },
   ],
 };

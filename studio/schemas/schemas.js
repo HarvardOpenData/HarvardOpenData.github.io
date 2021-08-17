@@ -26,6 +26,8 @@ import preview from "./preview";
 import project from "./project";
 import projectMember from "./projectMember";
 import redirect from "./redirect";
+import scrollytellingBlock from "./scrollytellingBlock";
+import scrollytellingComponent from "./scrollytellingComponent";
 import shortForm from "./shortForm";
 import siteSettings from "./siteSettings";
 import slideshow from "./slideshow";
@@ -63,6 +65,8 @@ export default createSchema({
     project,
     projectMember,
     redirect,
+    scrollytellingBlock,
+    scrollytellingComponent,
     shortForm,
     siteSettings,
     slideshow,
