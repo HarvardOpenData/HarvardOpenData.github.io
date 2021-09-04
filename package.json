@@ -47,6 +47,7 @@
     "prettier": "^2.3.0",
     "react": "^16.14.0",
     "react-icons": "^3.11.0",
+    "react-scrollama": "^2.2.16",
     "react-social-icons": "^4.1.0",
     "save": "^2.4.0"
   }

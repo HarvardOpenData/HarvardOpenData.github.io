@@ -3,6 +3,11 @@ export default {
     title: "Scrollytelling Block",
     type: "object",
     description: "Scrollytelling Block to be used Scrollytelling Component",
+    preview: {
+      select: {
+        media: 'graphic',
+      },
+    },
     fields: [
       {
         name: "graphic",
