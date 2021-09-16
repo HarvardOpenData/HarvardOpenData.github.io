@@ -35,9 +35,11 @@ function Slideshow(props) {
             {slide.asset && (
               <img
                 src={imageUrlFor(buildImageObj(slide))
+                  .ignoreImageParams()
                   .width(1200)
                   .height(Math.floor((5 / 8) * 1200))
-                  .fit("crop")
+                  .fit("fillmax")
+                  .bg('fff')
                   .url()}
               />
             )}
