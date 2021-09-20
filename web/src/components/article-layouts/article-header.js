@@ -1,6 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled, Text } from "theme-ui";
-import { format, distanceInWords, differenceInDays } from "date-fns";
+import { jsx, Styled } from "theme-ui";
 import BlockContent from "../block-content";
 import ArticleByline from "./article-byline";
 

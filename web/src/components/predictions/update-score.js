@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from "react";
 import { jsx, Button } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList } from "react-firebase-hooks/database";

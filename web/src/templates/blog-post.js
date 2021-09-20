@@ -5,7 +5,7 @@ import GraphQLErrorList from "../components/core/graphql-error-list";
 import Project from "../components/project-layouts/project";
 import { toPlainText } from "../lib/helpers";
 import { previewImageUrlFor } from "../lib/image-url";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Layout from "../containers/layout";
 
 export const query = graphql`
@@ -91,9 +91,9 @@ const BlogPostTemplate = (props) => {
 
   return (
     <Layout>
-      {errors && <SEO title="GraphQL Error" />}
+      {errors && <SEOContainer title="GraphQL Error" />}
       {post && (
-        <SEO
+        <SEOContainer
           title={post.title || "Untitled Post"}
           description={toPlainText(post._rawExcerpt) || null}
           image={mainImageUrl}

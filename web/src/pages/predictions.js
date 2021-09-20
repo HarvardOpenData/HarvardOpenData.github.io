@@ -1,13 +1,13 @@
 /** @jsx jsx */
-import React, {useEffect, useState} from 'react';
+import { useEffect, useState } from "react";
 import { jsx, Grid, Styled } from "theme-ui";
 import { graphql } from "gatsby";
-import firebase from "gatsby-plugin-firebase"
+import firebase from "gatsby-plugin-firebase";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Layout from "../containers/layout";
 import Login from "../components/users/login";
 import PredictionsGame from "../components/predictions/predictions-game";
@@ -27,7 +27,7 @@ const PredictionsPage = (props) => {
   const { data, errors } = props;
   const { auth } = firebase;
   const [user, setUser] = useState();
-  useEffect(() => auth().onAuthStateChanged(setUser), []);
+  useEffect(() => auth().onAuthStateChanged(setUser), [auth]);
 
   if (errors) {
     return (
@@ -47,28 +47,28 @@ const PredictionsPage = (props) => {
 
   return (
     <Layout>
-      <SEO title={page.title} />
+      <SEOContainer title={page.title} />
       <Container>
-        {user && user.email.endsWith("harvard.edu") ?
-            <div>
-              <Styled.h1>{page.title}</Styled.h1>
-              <PredictionsGame user={user}/>
-            </div>
-        :
+        {user && user.email.endsWith("harvard.edu") ? (
+          <div>
+            <Styled.h1>{page.title}</Styled.h1>
+            <PredictionsGame user={user} />
+          </div>
+        ) : (
           <div>
             <Styled.h1>{page.title}</Styled.h1>
             <Grid gap={[4, 5, 6]} columns={[1, 1, "2.5fr 1fr"]}>
               <div>
                 <Login />
-                <BlockContent blocks={page._rawBody || []}/>
-                <BannerHeader/>
+                <BlockContent blocks={page._rawBody || []} />
+                <BannerHeader />
               </div>
-              <div className="small preview" sx={{p: 4, bg: "pink"}}>
-                <BlockContent blocks={page._rawBodySecondary || []}/>
+              <div className="small preview" sx={{ p: 4, bg: "pink" }}>
+                <BlockContent blocks={page._rawBodySecondary || []} />
               </div>
             </Grid>
           </div>
-        }
+        )}
       </Container>
     </Layout>
   );

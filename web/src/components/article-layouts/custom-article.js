@@ -7,14 +7,8 @@ import BlockContent from "../block-content";
 import Container from "../core/container";
 
 function CustomArticle(props) {
-  const {
-    _rawBody,
-    authors,
-    members,
-    categories,
-    subjects,
-    relatedProjects,
-  } = props;
+  const { _rawBody, authors, members, categories, subjects, relatedProjects } =
+    props;
   const defaultSidebarProps = {
     authors,
     members,

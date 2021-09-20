@@ -5,7 +5,7 @@ import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Section from "../components/core/section";
 import Layout from "../containers/layout";
 import PreviewGrid from "../components/article-layouts/preview-grid";
@@ -99,7 +99,7 @@ const IndexPage = (props) => {
 
   return (
     <Layout>
-      <SEO
+      <SEOContainer
         title={site.title}
         description={site.description}
         keywords={site.keywords}

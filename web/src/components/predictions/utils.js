@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, Text } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
+import Spacer from "../core/spacer";
 
 const calculateScore = (isMC, prediction, answer, range) => {
   const scale = 60;
@@ -64,6 +65,7 @@ const displayScore = (score, explanation) => {
   return (
     <div>
       <Text sx={{ fontSize: 15 }}> {explanation} </Text>
+      <Spacer height={0} />
       <Text sx={{ fontSize: 15 }}>
         You received <strong>{1 * score.toFixed(2)}</strong> points for this
         prediction.
@@ -81,6 +83,7 @@ const displayMessage = (isMC, prediction, range) => {
         <Text sx={{ fontSize: 15 }}>
           Potential gain: <strong>0</strong> points
         </Text>
+        <Spacer height={0} />
         <Text sx={{ fontSize: 15 }}>
           Potential loss: <strong>0</strong> points
         </Text>
@@ -99,6 +102,7 @@ const displayMessage = (isMC, prediction, range) => {
           Potential gain: {prediction.length !== 1 && "Up to"}{" "}
           <strong>{1 * Math.max(...possibleScores).toFixed(2)}</strong> points
         </Text>
+        <Spacer height={0} />
         <Text sx={{ fontSize: 15 }}>
           Potential loss: {prediction.length !== 1 && "Up to"}{" "}
           <strong>{-1 * Math.min(...possibleScores).toFixed(2)}</strong> points
@@ -116,6 +120,7 @@ const displayMessage = (isMC, prediction, range) => {
           </strong>{" "}
           points
         </Text>
+        <Spacer height={0} />
         <Text sx={{ fontSize: 15 }}>
           Potential loss:{" "}
           <strong>

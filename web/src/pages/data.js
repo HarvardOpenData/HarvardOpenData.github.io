@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import Container from "../components/core/container";
 import BlockContent from "../components/block-content";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Section from "../components/core/section";
 import Spacer from "../components/core/spacer";
 import Layout from "../containers/layout";
@@ -78,7 +78,7 @@ const DataPage = (props) => {
 
   return (
     <Layout>
-      <SEO title="Data" />
+      <SEOContainer title="Data" />
       <Container>
         <Styled.h1>Data catalog</Styled.h1>
         <BlockContent blocks={page._rawBody || []} />

@@ -2,12 +2,9 @@ const fetch = require("node-fetch");
 exports.handler = async function (event) {
   try {
     const url = event.queryStringParameters.url;
-    const response = await fetch(
-      url,
-      {
-        headers: { Accept: "application/json" },
-      }
-    );
+    const response = await fetch(url, {
+      headers: { Accept: "application/json" },
+    });
     if (!response.ok) {
       // NOT res.status >= 200 && res.status < 300
       return { statusCode: response.status, body: response.statusText };

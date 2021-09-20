@@ -7,16 +7,8 @@ import Link from "../core/link";
 import defaultProfile from "../../assets/default-profile.jpg";
 
 function ProfileBio(props) {
-  const {
-    image,
-    name,
-    _rawBio,
-    position,
-    concentration,
-    house,
-    year,
-    slug,
-  } = props;
+  const { image, name, _rawBio, position, concentration, house, year, slug } =
+    props;
   return (
     <Container>
       <Grid gap={4} columns={[1, "2fr 4fr", "1fr 4fr"]}>

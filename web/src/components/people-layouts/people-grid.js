@@ -1,6 +1,5 @@
-import React from "react";
 /** @jsx jsx */
-import { jsx, Grid, Image, Styled, Text } from "theme-ui";
+import { jsx, Grid, Styled } from "theme-ui";
 import ProfileCard from "./profile-card.js";
 
 function PeopleGrid(props) {

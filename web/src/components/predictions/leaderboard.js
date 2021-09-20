@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from "react";
 import { jsx, Text, Box } from "theme-ui";
 import { useObject } from "react-firebase-hooks/database";
 import firebase from "gatsby-plugin-firebase";
@@ -12,7 +11,6 @@ const Leaderboard = ({ user }) => {
     firebase.database().ref("public")
   );
   const ref = firebase.database().ref("predictions/scores/leaderboard");
-  let userIndex = 0;
   let topScores;
 
   ref.on("value", (snapshot) => {
@@ -31,7 +29,6 @@ const Leaderboard = ({ user }) => {
           getIndex[score] = index + 1;
         }
         if (uid === user.uid) {
-          userIndex = index;
           return (
             <tr>
               <td style={{ textAlign: "right" }}>

@@ -5,7 +5,7 @@ import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import { resolveInternalLink } from "../lib/helpers";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Layout from "../containers/layout";
 import Link from "../components/core/link";
 import Spacer from "../components/core/spacer";
@@ -84,7 +84,7 @@ const AboutPage = (props) => {
 
   return (
     <Layout>
-      <SEO title={page.title} />
+      <SEOContainer title={page.title} />
       <Container>
         <Grid gap={[2, 5, 5]} columns={[1, 1, 2]}>
           <BlockContent blocks={(page._rawBody && page._rawBody[0]) || []} />

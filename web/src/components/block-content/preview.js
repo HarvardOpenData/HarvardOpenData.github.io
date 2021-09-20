@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Text, Styled } from "theme-ui";
+import { Image, Text } from "theme-ui";
 import { format, distanceInWords, differenceInDays } from "date-fns";
 import { buildImageObj, resolveInternalLink } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";

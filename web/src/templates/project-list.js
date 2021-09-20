@@ -5,9 +5,8 @@ import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
 import PreviewGrid from "../components/article-layouts/preview-grid";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Layout from "../containers/layout";
-import Link from "../components/core/link";
 import Section from "../components/core/section";
 import Spacer from "../components/core/spacer";
 import Pagination from "../components/core/pagination";
@@ -104,7 +103,7 @@ const ProjectListTemplate = (props) => {
 
   return (
     <Layout>
-      <SEO title="Projects" />
+      <SEOContainer title="Projects" />
       <br />
       <Container>
         <Container maxWidth={"1152px"} align="left" margin="0px">

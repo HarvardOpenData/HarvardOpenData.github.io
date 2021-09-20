@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { select, selectAll } from "d3-selection";
 import { csv } from "d3-fetch";
 import { path } from "d3-path";
@@ -23,8 +23,7 @@ const d3 = {
 const options = [
   {
     text: "ENTER AN LDR ;)",
-    link:
-      "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
+    link: "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
   },
   {
     text: "BUY ZM STOCK",
@@ -32,8 +31,7 @@ const options = [
   },
   {
     text: "READ A BOOK",
-    link:
-      "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
+    link: "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
   },
   {
     text: "GROW YOUR NETWORK",
@@ -41,23 +39,19 @@ const options = [
   },
   {
     text: "BAKE SOME BREAD",
-    link:
-      "https://t8x8a5p2.stackpathcdn.com/wp-content/uploads/2018/05/Ciabatta-Bread-Recipe.webp",
+    link: "https://t8x8a5p2.stackpathcdn.com/wp-content/uploads/2018/05/Ciabatta-Bread-Recipe.webp",
   },
   {
     text: "GET READY TO RISK IT ALL",
-    link:
-      "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
+    link: "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
   },
   {
     text: "LEAVE YOUR LDR ;o",
-    link:
-      "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
+    link: "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
   },
   {
     text: "TAKE THE DM SURVEY",
-    link:
-      "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
+    link: "https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844",
   },
 ];
 

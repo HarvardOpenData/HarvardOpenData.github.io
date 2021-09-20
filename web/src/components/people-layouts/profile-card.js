@@ -1,15 +1,12 @@
-import React from "react";
 /** @jsx jsx */
-import { jsx, Grid, Input, Image, Styled, Text } from "theme-ui";
+import { jsx, Image, Styled, Text } from "theme-ui";
 import Link from "../core/link";
-import Container from "../core/container";
-import BlockText from "../core/block-text";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import defaultProfile from "../../assets/default-profile.jpg";
 
 function ProfileCard(props) {
-  const { image, name, _rawBio, position, year, concentration } = props.data;
+  const { image, name, position, concentration } = props.data;
   return (
     <div>
       {image && image.asset && (

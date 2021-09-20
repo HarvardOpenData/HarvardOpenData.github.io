@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Grid, Styled } from "theme-ui";
+import { jsx } from "theme-ui";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import ArticleBody from "./article-body";

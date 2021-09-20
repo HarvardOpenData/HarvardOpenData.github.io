@@ -1,14 +1,11 @@
 /** @jsx jsx */
-import { jsx, Grid, Styled } from "theme-ui";
+import { jsx, Grid } from "theme-ui";
 import { graphql } from "gatsby";
-import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
-import BannerHeader from "../components/core/banner-header";
 import GraphQLErrorList from "../components/core/graphql-error-list";
-import SEO from "../components/core/seo";
+import SEOContainer from "../components/core/seo";
 import Layout from "../containers/layout";
 import Preview from "../components/block-content/preview";
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
 
 export const query = graphql`
   query ParticipatePageQuery {
@@ -44,7 +41,7 @@ const ParticipatePage = (props) => {
 
   return (
     <Layout>
-      <SEO title={page.title} />
+      <SEOContainer title={page.title} />
       <Container>
         <Grid gap={4} columns={[1, 2, 4]}>
           {blocks.map((block) => (

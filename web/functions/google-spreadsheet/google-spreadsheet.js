@@ -49,7 +49,7 @@ exports.handler = async (event) => {
           const serializedRows = rows.map(serializeRow);
           return {
             statusCode: 200,
-            body: JSON.stringify(serializedRows)
+            body: JSON.stringify(serializedRows),
           };
         }
         /* GET /.netlify/functions/google-spreadsheet-fn/{row_number} */
@@ -109,8 +109,7 @@ exports.handler = async (event) => {
         } else {
           return {
             statusCode: 500,
-            body:
-              "too many segments in PUT request - you should only call somehting like /.netlify/functions/google-spreadsheet-fn/123456 not /.netlify/functions/google-spreadsheet-fn/123456/789/101112",
+            body: "too many segments in PUT request - you should only call somehting like /.netlify/functions/google-spreadsheet-fn/123456 not /.netlify/functions/google-spreadsheet-fn/123456/789/101112",
           };
         }
       /* DELETE /.netlify/functions/google-spreadsheet-fn/{row_number} */

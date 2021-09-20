@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React, { Component } from "react";
+import { Component } from "react";
 import DeckGL, { ScatterplotLayer } from "deck.gl";
 import { StaticMap } from "react-map-gl";
 import { fetchData } from "./data/dataservice";
@@ -36,7 +36,7 @@ class CovidMap extends Component {
     this.setState({ data });
   }
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
+  async componentDidUpdate(prevState) {
     if (prevState.selectedValue !== this.state.selectedValue) {
       const data = await fetchData(this.state.selectedValue);
       this.setState({ data });

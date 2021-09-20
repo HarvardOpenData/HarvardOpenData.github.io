@@ -1,9 +1,19 @@
 /** @jsx jsx */
-import React, { useEffect, useState } from "react";
-import { Card, jsx, Text, Input, Label, Grid, Button, Box, Alert, Checkbox } from "theme-ui";
+import { useEffect, useState } from "react";
+import {
+  Card,
+  jsx,
+  Text,
+  Input,
+  Label,
+  Grid,
+  Button,
+  Box,
+  Alert,
+} from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
-import Spacer from "../../components/core/spacer";
+import Spacer from "../core/spacer";
 import IntervalChoice from "./questions/interval-choice";
 import MultipleCategoryChoice from "./questions/multiple-category-choice";
 import Leaderboard from "./leaderboard";
@@ -25,12 +35,11 @@ const PredictionsGame = ({ user }) => {
   const [displayName, setDisplayName] = useState(user.displayName);
   const [borderColor, setBorderColor] = useState();
   const [borderWidth, setBorderWidth] = useState(1);
-  const [inputDisabled, changeInput] = useState(false);
   const [saveFlag, setSaveFlag] = useState(false);
 
   useEffect(() => {
     setDisplayName(nameLoading ? displayName : name.child("displayName").val());
-  }, [nameLoading]);
+  }, [nameLoading, name, displayName]);
 
   // add user to firebase if doesn't exist
   if (name && !name.exists()) {
@@ -199,12 +208,12 @@ const PredictionsGame = ({ user }) => {
                     validateName();
                   }
                 }}
-                disabled={inputDisabled}
+                disabled
               />
               <Button
                 sx={{ display: "inline", marginLeft: 1 }}
                 onClick={validateName}
-                disabled={inputDisabled}
+                disabled
               >
                 Change
               </Button>
@@ -223,6 +232,7 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Live predictions
                 </Text>
+                <Spacer height={0} />
                 <Text sx={{ fontSize: 1 }}>
                   How likely are each of these events?
                 </Text>
@@ -258,6 +268,7 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Pending predictions
                 </Text>
+                <Spacer height={0} />
                 <Text sx={{ fontSize: 1 }}>
                   The deadline to edit your responses has passed. Check back
                   soon to see the results!
@@ -274,6 +285,7 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Scored predictions
                 </Text>
+                <Spacer height={0} />
                 <Text sx={{ fontSize: 1 }}>
                   How accurate were your predictions?
                 </Text>

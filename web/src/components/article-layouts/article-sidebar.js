@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Divider, Grid, Styled, Text } from "theme-ui";
+import { jsx, Grid, Styled, Text } from "theme-ui";
 import { format, distanceInWords, differenceInDays } from "date-fns";
 import RoleList from "./role-list";
 import ArticlePreview from "./article-preview";
