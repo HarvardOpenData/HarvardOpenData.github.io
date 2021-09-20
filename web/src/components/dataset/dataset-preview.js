@@ -21,6 +21,7 @@ const DatasetPreview = ({
           ))}
         <Spacer height={3} />
         <Text variant="h3">{title}</Text>
+        <Spacer height={0} />
         <Text variant="caption">{description}</Text>
       </Box>
     </Flex>

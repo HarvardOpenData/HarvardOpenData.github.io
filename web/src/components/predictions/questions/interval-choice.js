@@ -7,6 +7,7 @@ import theme from "../../../styles/theme.js";
 import Thumb from "./thumb";
 import Track from "./track";
 import { calculateScore, displayMessage, displayScore } from "../utils";
+import Spacer from "../../core/spacer.js";
 
 function IntervalChoice(props) {
   const { uid, qid, answer, lower, upper } = props;
@@ -139,6 +140,7 @@ function IntervalChoice(props) {
         </Box>
         <Box>
           <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
+          <Spacer height={0} />
           <Input
             sx={{
               width: "35%",
@@ -178,6 +180,7 @@ function IntervalChoice(props) {
               if (e.key === "Enter") e.target.blur();
             }}
           />
+          <Spacer height={0} />
           <Text sx={{ fontSize: 1, color: "gray" }}>
             {!props.disabled ? "Answer locks on " : "Answer locked on "}
             {format(date_expired, "MM-DD-YYYY")}

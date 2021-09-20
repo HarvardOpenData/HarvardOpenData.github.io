@@ -3,6 +3,7 @@ import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import React, { useState } from "react";
 import Link from "../core/link";
+import Spacer from "./spacer";
 import Container from "./container";
 import HamburgerMenu from "react-hamburger-menu";
 import Fade from "react-reveal/Fade";
@@ -303,18 +304,21 @@ class MobileHeader extends React.Component {
           isOpened={this.state[slug] === true}
         >
           {link.subMenu.map((subLink) => (
-            <Text
-              onClick={() => this.handleClick()}
-              sx={{
-                color: "text",
-                fontSize: 2,
-                mb: 2,
-                width: "fit-content !important",
-                ":hover": { cursor: "pointer !important" },
-              }}
-            >
-              <MenuLink {...subLink}>{subLink.name}</MenuLink>
-            </Text>
+            <>
+              <Text
+                onClick={() => this.handleClick()}
+                sx={{
+                  color: "text",
+                  fontSize: 2,
+                  mb: 2,
+                  width: "fit-content !important",
+                  ":hover": { cursor: "pointer !important" },
+                }}
+              >
+                <MenuLink {...subLink}>{subLink.name}</MenuLink>
+              </Text>
+              <Spacer height={0} />
+            </>
           ))}
         </Collapse>
       </>

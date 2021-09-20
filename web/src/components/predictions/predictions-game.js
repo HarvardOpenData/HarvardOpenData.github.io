@@ -13,7 +13,7 @@ import {
 } from "theme-ui";
 import firebase from "gatsby-plugin-firebase";
 import { useList, useObject } from "react-firebase-hooks/database";
-import Spacer from "../../components/core/spacer";
+import Spacer from "../core/spacer";
 import IntervalChoice from "./questions/interval-choice";
 import MultipleCategoryChoice from "./questions/multiple-category-choice";
 import Leaderboard from "./leaderboard";
@@ -232,6 +232,7 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Live predictions
                 </Text>
+                <Spacer height={0} />
                 <Text sx={{ fontSize: 1 }}>
                   How likely are each of these events?
                 </Text>
@@ -267,6 +268,7 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Pending predictions
                 </Text>
+                <Spacer height={0} />
                 <Text sx={{ fontSize: 1 }}>
                   The deadline to edit your responses has passed. Check back
                   soon to see the results!
@@ -283,6 +285,7 @@ const PredictionsGame = ({ user }) => {
                 <Text sx={{ fontSize: 3, fontWeight: "bold" }}>
                   Scored predictions
                 </Text>
+                <Spacer height={0} />
                 <Text sx={{ fontSize: 1 }}>
                   How accurate were your predictions?
                 </Text>

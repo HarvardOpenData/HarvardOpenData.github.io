@@ -7,6 +7,7 @@ import Track from "./track";
 import theme from "../../../styles/theme.js";
 import firebase from "gatsby-plugin-firebase";
 import { calculateScore, displayScore, displayMessage } from "../utils";
+import Spacer from "../../core/spacer";
 
 // Rounding to first decimal value
 function decimalRound(val) {
@@ -78,6 +79,7 @@ function MultipleCategoryChoice(props) {
   const predictionDisplay = props.choices ? (
     <div>
       <Text sx={{ fontSize: 2 }}>Your prediction:</Text>
+      <Spacer height={0} />
       {displayValues &&
         displayValues.map((val, i) => (
           <Text sx={{ fontSize: 1 }}>{`${choices[i]}: ${val}%`}</Text>
@@ -132,6 +134,7 @@ function MultipleCategoryChoice(props) {
         </Box>
         <Box>
           {predictionDisplay}
+          <Spacer height={0} />
           <Text sx={{ fontSize: 1, color: "gray" }}>
             {!props.disabled ? "Answer locks on " : "Answer locked on "}
             {format(date_expired, "MM-DD-YYYY")}
