@@ -20,6 +20,11 @@ export default {
         },
       },
       {
+        name: "mainImage",
+        title: "Main image",
+        type: "mainImage",
+      },
+      {
         name: "slideshow",
         title: "Slideshow",
         type: "slideshow",
