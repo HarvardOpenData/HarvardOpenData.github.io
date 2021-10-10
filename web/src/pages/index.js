@@ -1,7 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Grid } from "theme-ui";
+import { Divider, Grid, Themed } from "theme-ui";
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers";
+import ArticlePreview from "../components/article-layouts/article-preview";
 import BlockContent from "../components/block-content";
 import Container from "../components/core/container";
 import GraphQLErrorList from "../components/core/graphql-error-list";
@@ -63,6 +64,45 @@ export const query = graphql`
         }
       }
     }
+    shortForms: allSanityShortForm(
+      limit: 1
+      sort: { fields: [publishedAt], order: DESC }
+    ) {
+      edges {
+        node {
+          id
+          publishedAt
+          mainImage {
+            crop {
+              _key
+              _type
+              top
+              bottom
+              left
+              right
+            }
+            hotspot {
+              _key
+              _type
+              x
+              y
+              height
+              width
+            }
+            asset {
+              _id
+            }
+            alt
+          }
+          title
+          _rawExcerpt
+          _rawMembers(resolveReferences: { maxDepth: 5 })
+          slug {
+            current
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -82,6 +122,10 @@ const IndexPage = (props) => {
   const projectNodes = (data || {}).projects
     ? mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs)
     : [];
+
+    const shortFormNodes = (data || {}).shortForms
+      ? mapEdgesToNodes(data.shortForms).filter(filterOutDocsWithoutSlugs)
+      : [];
 
   if (!site) {
     throw new Error(
@@ -128,6 +172,15 @@ const IndexPage = (props) => {
             <BlockContent blocks={page._rawBody || []} />
             <Spacer height={5} />
             <Section header="Quick Links">
+              <Themed.h3>Featured Short Form</Themed.h3>
+              {shortFormNodes && (
+                <ArticlePreview
+                  key={1}
+                  {...shortFormNodes[0]}
+                  link={shortFormNodes[0].slug.current}
+                />
+              )}
+              <Divider mb={3} color="text" />
               <BlockContent blocks={page._rawBodySecondary || []} />
             </Section>
           </div>
