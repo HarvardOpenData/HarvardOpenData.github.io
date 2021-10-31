@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled, Text } from "theme-ui";
+import Spacer from "../../components/core/spacer";
 import { buildImageObj } from "../../lib/helpers";
 import { imageUrlFor } from "../../lib/image-url";
 import Link from "../core/link";
@@ -57,6 +58,7 @@ function Role(item) {
             </strong>
           </Text>
         </Link>
+        <Spacer height={0} />
         {item.roles && <Text variant="small">{stringifyRoles(item)}</Text>}
       </div>
     </div>

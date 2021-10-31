@@ -70,7 +70,9 @@ function VerticalArticlePreview(props) {
         <div>
           {props.mainImage && props.mainImage.asset && (
             <img
-              src={imageUrlFor(buildImageObj(props.mainImage))
+              src={props.full ? imageUrlFor(buildImageObj(props.mainImage))
+                .width(600)
+                .url() : imageUrlFor(buildImageObj(props.mainImage))
                 .width(600)
                 .height(Math.floor((5 / 8) * 600))
                 .url()}

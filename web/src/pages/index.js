@@ -178,6 +178,7 @@ const IndexPage = (props) => {
                   key={1}
                   {...shortFormNodes[0]}
                   link={shortFormNodes[0].slug.current}
+                  full
                 />
               )}
               <Divider mb={3} color="text" />
