@@ -33,11 +33,12 @@ function ScrollytellingComponent(props) {
                 <div
                   style={{
                     margin: '100vh 0',
-                    border: '1px solid gray',
+                    padding: '1vh 5vh',
+                    border: '0px solid gray',
                     position: 'relative',
                     zIndex: 1,
                     background: '#ffffff',
-                    opacity: 0.8,
+                    opacity: 0.9,
                   }}
                 >
                   <BlockContent blocks={block.textContent || []} />
