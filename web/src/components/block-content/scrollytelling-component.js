@@ -25,16 +25,15 @@ function ScrollytellingComponent(props) {
         {currentEnterIndex !== null ? <BlockContent blocks={props.scrollyTellingBlocks[currentEnterIndex].graphic} /> : null}
         {/* I'm sticky. The current triggered step index is: {currentEnterIndex}. The current triggered step exit is: {currentExitIndex}. The current triggered progress is: {currentProgress}. */}
       </div>
-      <Scrollama onStepEnter={onStepEnter} onStepExit={onStepExit} onStepProgress={onStepProgress} threshold={1} offset={0.5} progress>
+      <Scrollama onStepEnter={onStepEnter} onStepExit={onStepExit} onStepProgress={onStepProgress} threshold={1} offset={1} progress>
         {
           props.scrollyTellingBlocks.map((block, i) => {
             return (
               <Step data={i} key={i}>
                 <div
                   style={{
-                    margin: '100vh 0',
+                    margin: "100vh 0",
                     padding: '1vh 5vh',
-                    border: '0px solid gray',
                     position: 'relative',
                     zIndex: 1,
                     background: '#ffffff',
