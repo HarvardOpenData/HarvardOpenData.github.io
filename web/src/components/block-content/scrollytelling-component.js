@@ -2,6 +2,30 @@ import React, { useState } from "react";
 import { Scrollama, Step } from 'react-scrollama';
 import BlockContent from "../block-content";
 
+function ScrollytellingImage(props) {
+  if (props.index === null) {
+    return null;
+  } else if (props.index === 0 || props.progress === 1) {
+    return (
+      <BlockContent blocks={props.images[props.index].graphic} />
+    );
+  } else if (props.progress > 0) {
+    return (
+      <>
+        <div style={{ position: 'absolute', top: 0, left: 0, opacity: 1 - props.progress}}>
+          <BlockContent blocks={props.images[props.index - 1].graphic} />
+        </div>
+        <div style={{ position: 'absolute', top: 0, left: 0, opacity: props.progress}}>
+          <BlockContent blocks={props.images[props.index].graphic} />
+        </div>
+      </>
+    );
+  }
+  return (
+    <BlockContent blocks={props.images[props.index].graphic} />
+  );
+}
+
 function ScrollytellingComponent(props) {
   const [currentEnterIndex, setCurrentEnterIndex] = useState(null);
   const [currentExitIndex, setCurrentExitIndex] = useState(null);
@@ -20,10 +44,9 @@ function ScrollytellingComponent(props) {
   };
 
   return (
-    <div>
-      <div style={{ position: 'sticky', top: '10vh', left: '-50%', margin: 'auto', zIndex: 0 }}>
-        {currentEnterIndex !== null ? <BlockContent blocks={props.scrollyTellingBlocks[currentEnterIndex].graphic} /> : null}
-        {/* I'm sticky. The current triggered step index is: {currentEnterIndex}. The current triggered step exit is: {currentExitIndex}. The current triggered progress is: {currentProgress}. */}
+    <div style={{ border: '2px dashed white' }}>
+      <div style={{ position: 'sticky', top: '10vh', margin: 'auto', zIndex: 0 }}>
+        <ScrollytellingImage index={currentEnterIndex} images={props.scrollyTellingBlocks} progress={currentProgress} />
       </div>
       <Scrollama onStepEnter={onStepEnter} onStepExit={onStepExit} onStepProgress={onStepProgress} threshold={1} offset={1} progress>
         {
@@ -32,15 +55,13 @@ function ScrollytellingComponent(props) {
               <Step data={i} key={i}>
                 <div
                   style={{
-                    margin: "100vh 0",
-                    padding: '1vh 5vh',
-                    position: 'relative',
-                    zIndex: 1,
+                    margin: '100vh 0',
                     background: '#ffffff',
                     opacity: 0.9,
                   }}
                 >
                   <BlockContent blocks={block.textContent || []} />
+                <br style={{clear: 'both'}}/>
                 </div>
               </Step>
             )
