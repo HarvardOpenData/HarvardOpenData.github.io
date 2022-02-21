@@ -57,7 +57,7 @@ const PredictionsGame = ({ user }) => {
   }
 
   // render appropriate component for each question
-  function renderQuestion(question, date_expired, answer, disabled) {
+  function renderQuestion(question, date_expired, answer, disabled, step=1) {
     const qid = question.key;
     const prediction = snapshot.child(qid).val();
     const choices = question.child("choices").val();
@@ -110,6 +110,7 @@ const PredictionsGame = ({ user }) => {
             answer={answer}
             lower={choices[0]}
             upper={choices[1]}
+            step={step}
             date_expired={date_expired}
             prediction={prediction}
             explanation={question.child("explanation").val()}
@@ -134,12 +135,14 @@ const PredictionsGame = ({ user }) => {
   questions.forEach((question) => {
     const date_expired = question.child("date_expired").val();
     let answer = question.child("answer").val();
+    let step = question.child("step").val() === 'continuous' ? 0.1 : 1;
+
     if (answer !== null) {
       answer = parseInt(answer);
     }
 
     if (new Date(date_expired).getTime() > new Date().getTime()) {
-      liveQuestions.push(renderQuestion(question, date_expired, answer, false));
+      liveQuestions.push(renderQuestion(question, date_expired, answer, false, step));
     } else if (
       new Date(date_expired).getTime() < new Date().getTime() &&
       answer == null

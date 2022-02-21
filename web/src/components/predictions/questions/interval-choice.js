@@ -42,7 +42,7 @@ function IntervalChoice(props) {
 
   const validateLower = (e) => {
     const bound = Math.min(values[1], upper);
-    let value = parseInt(e.target.value);
+    let value = parseFloat(e.target.value);
     if (value < lower || e.target.value === "") {
       value = lower;
     } else if (value > bound) {
@@ -54,7 +54,7 @@ function IntervalChoice(props) {
 
   const validateUpper = (e) => {
     const bound = Math.max(values[0], lower);
-    let value = parseInt(e.target.value);
+    let value = parseFloat(e.target.value);
     if (value > upper || e.target.value === "") {
       value = upper;
     } else if (value < bound) {
@@ -93,6 +93,13 @@ function IntervalChoice(props) {
     } else {
       return values[index];
     }
+  }
+
+  function update(value, values, step) {
+    if (step === 1) {
+      setValues([value && parseInt(value), values[1]])
+    }
+    setValues([value && parseFloat(value), values[1]]);
   }
 
   return (
@@ -152,9 +159,7 @@ function IntervalChoice(props) {
             max={upper}
             value={values[0]}
             disabled={props.disabled}
-            onChange={(e) =>
-              setValues([e.target.value && parseInt(e.target.value), values[1]])
-            }
+            onChange={(e) => update(e.target.value, values, props.step)}
             onBlur={validateLower}
             onKeyDown={(e) => {
               if (e.key === "Enter") e.target.blur();
@@ -172,9 +177,7 @@ function IntervalChoice(props) {
             max={upper}
             value={values[1]}
             disabled={props.disabled}
-            onChange={(e) =>
-              setValues([values[0], e.target.value && parseInt(e.target.value)])
-            }
+            onChange={(e) => update(e.target.value, values, props.step)}
             onBlur={validateUpper}
             onKeyDown={(e) => {
               if (e.key === "Enter") e.target.blur();
