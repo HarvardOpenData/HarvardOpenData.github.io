@@ -5,9 +5,9 @@ import DeckGL, { ScatterplotLayer } from "deck.gl";
 import { StaticMap } from "react-map-gl";
 import { fetchData } from "./data/dataservice";
 import Select from "react-select";
-import "./mapbox.css";
+// import "./mapbox.css";
 
-class CovidMap extends Component {
+class HousingMap extends Component {
   options = [
     { value: "confirmed", label: "Confirmed" },
     { value: "deaths", label: "Deaths" },
@@ -19,12 +19,12 @@ class CovidMap extends Component {
     this.state = {
       hoveredFeature: null,
       viewport: {
-        longitude: -98.5795,
-        latitude: 39.8283,
-        zoom: 4,
+        longitude: -71.1195,
+        latitude: 42.3755,
+        zoom: 14.5,
         bear: 0,
         pitch: 0,
-        maxZoom: 8,
+        maxZoom: 20,
       },
       data: [],
       selectedValue: "confirmed",
@@ -108,7 +108,7 @@ class CovidMap extends Component {
             />
           </div>
           <StaticMap
-            mapStyle={"mapbox://styles/mapbox/dark-v10"}
+            // mapStyle={"mapbox://styles/mapbox/dark-v10"}
             mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
           />
         </DeckGL>
@@ -117,4 +117,4 @@ class CovidMap extends Component {
   }
 }
 
-export default CovidMap;
+export default HousingMap;
