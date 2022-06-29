@@ -77,6 +77,7 @@
     "react-plotly.js": "^2.5.1",
     "react-range": "^1.8.9",
     "react-reveal": "^1.2.2",
+    "react-scrollama": "^2.3.0",
     "react-select": "^3.1.0",
     "react-social-icons": "^4.1.0",
     "request": "^2.88.2",
