@@ -7,6 +7,7 @@ import EmbeddedComponent from "./embedded-component";
 import Slideshow from "./slideshow";
 import Preview from "./preview";
 import PlotlyInteractive from "./plotly-interactive";
+import ScrollytellingComponent from "./scrollytelling-component";
 import IFrame from "./iframe";
 import { resolveAttachmentLink, resolveInternalLink } from "../../lib/helpers";
 
@@ -62,6 +63,9 @@ const serializers = {
     },
     iframe(props) {
       return <IFrame {...props.node} />;
+    },
+    scrollytellingComponent(props) {
+      return <ScrollytellingComponent {...props.node} />;
     },
   },
   marks: {
