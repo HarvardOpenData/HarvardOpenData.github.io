@@ -57,6 +57,7 @@ function Role(item) {
             </strong>
           </Text>
         </Link>
+        <br />
         {item.roles && <Text variant="small">{stringifyRoles(item)}</Text>}
       </div>
     </div>
