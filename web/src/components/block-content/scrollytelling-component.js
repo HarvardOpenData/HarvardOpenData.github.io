@@ -28,16 +28,12 @@ function ScrollytellingImage(props) {
 
 function ScrollytellingComponent(props) {
   const [currentEnterIndex, setCurrentEnterIndex] = useState(null);
-  const [currentExitIndex, setCurrentExitIndex] = useState(null);
   const [currentProgress, setCurrentProgress] = useState(null);
 
   // This callback fires when a Step hits the offset threshold. It receives the
   // data prop of the step, which in this demo stores the index of the step.
   const onStepEnter = ({ data }) => {
     setCurrentEnterIndex(data);
-  };
-  const onStepExit = ({ data }) => {
-    setCurrentExitIndex(data);
   };
   const onStepProgress = ({ progress }) => {
     setCurrentProgress(progress);
@@ -48,7 +44,7 @@ function ScrollytellingComponent(props) {
       <div style={{ position: 'sticky', top: '10vh', margin: 'auto', zIndex: 0 }}>
         <ScrollytellingImage index={currentEnterIndex} images={props.scrollyTellingBlocks} progress={currentProgress} />
       </div>
-      <Scrollama onStepEnter={onStepEnter} onStepExit={onStepExit} onStepProgress={onStepProgress} threshold={1} offset={1} progress>
+      <Scrollama onStepEnter={onStepEnter} onStepProgress={onStepProgress} threshold={1} offset={1} progress>
         {
           props.scrollyTellingBlocks.map((block, i) => {
             return (
