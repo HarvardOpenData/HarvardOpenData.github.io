@@ -47,8 +47,8 @@ const FeatureCard = ({ header, description, link, key }) => (
         bg: "container",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%",
+        width: "80%",
+        height: "80%",
         border: "1px solid black",
         borderRadius: "5px",
       }}
