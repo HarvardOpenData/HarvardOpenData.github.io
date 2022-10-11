@@ -1,6 +1,8 @@
 const process = require("process");
 const fetch = require("node-fetch");
 const sanityClient = require("@sanity/client");
+const crypto = require("crypto");
+const qs = require("qs");
 
 // Setting up the Sanity client
 const client = sanityClient({
@@ -28,16 +30,42 @@ function parseParameters(queryString) {
   return params;
 }
 
+// Function for verifying the request
+function verifyRequest(req) {
+  const timestamp = req.headers["x-slack-request-timestamp"];
+
+  // convert current time from milliseconds to seconds
+  const time = Math.floor(new Date().getTime() / 1000);
+  if (Math.abs(time - timestamp) > 300) {
+    return false;
+  }
+
+  // Encode signature
+  const slackSignature = req.headers["x-slack-signature"];
+  const sigBasestring = "v0:" + timestamp + ":" + req.body;
+  const mySignature =
+    "v0=" +
+    crypto
+      .createHmac("sha256", process.env.SLACK_SIGNING_SECRET)
+      .update(sigBasestring, "utf8")
+      .digest("hex");
+
+  return crypto.timingSafeEqual(
+    Buffer.from(mySignature, "utf8"),
+    Buffer.from(slackSignature, "utf8")
+  );
+}
+
 // Netlify function handler
-exports.handler = async function (event) {
-  const { channel_id, command, text } = parseParameters(event.body);
+exports.handler = async function (request) {
+  const { channel_id, command, text } = parseParameters(request.body);
   const params = text.split("+");
   const slug = params[1];
   const url = params[2];
   let blocks = "";
 
   // Restricted only to the board-23 channel
-  if (channel_id == "C03JMGCRM9B") {
+  if (verifyRequest(request) && channel_id == "C03JMGCRM9B") {
     // Different handling for different slash commands
     if (command == "/redirect") {
       // Redirect object for creation
