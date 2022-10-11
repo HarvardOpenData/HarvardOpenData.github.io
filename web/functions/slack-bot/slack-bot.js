@@ -30,6 +30,19 @@ function parseParameters(queryString) {
   return params;
 }
 
+// Function for verifying a string is a valid URL
+function isValidHttpUrl(string) {
+  let url;
+
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+
+  return url.protocol === "http:" || url.protocol === "https:";
+}
+
 // Function for verifying the request
 function verifyRequest(req) {
   const timestamp = req.headers["x-slack-request-timestamp"];
@@ -50,6 +63,7 @@ function verifyRequest(req) {
       .update(sigBasestring, "utf8")
       .digest("hex");
 
+  // Use cryp
   return crypto.timingSafeEqual(
     Buffer.from(mySignature, "utf8"),
     Buffer.from(slackSignature, "utf8")
@@ -59,7 +73,7 @@ function verifyRequest(req) {
 // Netlify function handler
 exports.handler = async function (request) {
   const { channel_id, command, text } = parseParameters(request.body);
-  const params = text.split("+");
+  const params = text.split("\\");
   const slug = params[1];
   const url = params[2];
   let blocks = "";
@@ -72,7 +86,7 @@ exports.handler = async function (request) {
       const redirect = {
         _type: "redirect",
         // Some workflow state
-        name: params[0],
+        name: params[0].replace("+", " "),
         slug: {
           _type: "slug",
           current: slug,
@@ -80,48 +94,67 @@ exports.handler = async function (request) {
         url,
       };
 
-      blocks = await client
-        .create(redirect) // Create redirect using Sanity client
-        .then(() => {
-          // Rebuild the website if redirect creation is successful
-          const netlifyWebhook = `https://api.netlify.com/build_hooks/${process.env.SANITY_STUDIO_BUILD_HOOK_ID}`;
-          return fetch(netlifyWebhook, {
-            method: "POST",
-            body: {},
+      if (isValidHttpUrl(url)) {
+        blocks = await client
+          .create(redirect) // Create redirect using Sanity client
+          .then(() => {
+            // Rebuild the website if redirect creation is successful
+            const netlifyWebhook = `https://api.netlify.com/build_hooks/${process.env.SANITY_STUDIO_BUILD_HOOK_ID}`;
+            return fetch(netlifyWebhook, {
+              method: "POST",
+              body: {},
+            });
+          })
+          .then(() => {
+            // Set response text for the API
+            return [
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: `Redirect created at https://hodp.org/${slug} to ${url}.`,
+                },
+              },
+            ];
+          })
+          .catch((error) => {
+            // Log error and set response text for the API
+            console.log(error);
+            return [
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: `Redirect was unable to be created at https://hodp.org/${slug} with ${url}.`,
+                },
+              },
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: "Please check again that you typed in the right parameters.",
+                },
+              },
+            ];
           });
-        })
-        .then(() => {
-          // Set response text for the API
-          return [
-            {
-              type: "section",
-              text: {
-                type: "mrkdwn",
-                text: `Redirect created at https://hodp.org/${slug} to ${url}.`,
-              },
+      } else {
+        blocks = [
+          {
+            type: "section",
+            text: {
+              type: "mrkdwn",
+              text: `Redirect was unable to be created at https://hodp.org/${slug} with ${url}.`,
             },
-          ];
-        })
-        .catch((error) => {
-          // Log error and set response text for the API
-          console.log(error);
-          return [
-            {
-              type: "section",
-              text: {
-                type: "mrkdwn",
-                text: `Redirect was unable to be created at https://hodp.org/${slug} with ${url}.`,
-              },
+          },
+          {
+            type: "section",
+            text: {
+              type: "mrkdwn",
+              text: "Please check again that you typed in the right parameters.",
             },
-            {
-              type: "section",
-              text: {
-                type: "mrkdwn",
-                text: "Please check again that you typed in the right parameters.",
-              },
-            },
-          ];
-        });
+          },
+        ];
+      }
     } else {
       blocks = [
         {
