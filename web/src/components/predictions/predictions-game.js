@@ -57,7 +57,7 @@ const PredictionsGame = ({ user }) => {
   }
 
   // render appropriate component for each question
-  function renderQuestion(question, date_expired, answer, disabled, step=1) {
+  function renderQuestion(question, date_expired, answer, disabled, step = 1) {
     const qid = question.key;
     const prediction = snapshot.child(qid).val();
     const choices = question.child("choices").val();
@@ -135,14 +135,16 @@ const PredictionsGame = ({ user }) => {
   questions.forEach((question) => {
     const date_expired = question.child("date_expired").val();
     let answer = question.child("answer").val();
-    let step = question.child("step").val() === 'continuous' ? 0.1 : 1;
+    let step = question.child("step").val() === "continuous" ? 0.1 : 1;
 
     if (answer !== null) {
       answer = parseInt(answer);
     }
 
     if (new Date(date_expired).getTime() > new Date().getTime()) {
-      liveQuestions.push(renderQuestion(question, date_expired, answer, false, step));
+      liveQuestions.push(
+        renderQuestion(question, date_expired, answer, false, step)
+      );
     } else if (
       new Date(date_expired).getTime() < new Date().getTime() &&
       answer == null
@@ -184,7 +186,7 @@ const PredictionsGame = ({ user }) => {
     <Grid gap={5} columns={[1, 1, "3fr 1fr"]}>
       <div>
         <Text sx={{ fontSize: 1, pb: 3 }}>
-          Can you forsee the future? Weigh in on our Predictions game and
+          Can you foresee the future? Weigh in on our Predictions game and
           compete for glory on the scoreboard!
         </Text>
         <Login />
