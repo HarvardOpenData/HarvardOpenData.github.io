@@ -1,8 +1,8 @@
 const process = require("process");
 const fetch = require("node-fetch");
-
 const sanityClient = require("@sanity/client");
 
+// Setting up the Sanity client
 const client = sanityClient({
   projectId: "xx0obpjv",
   dataset: "production",
@@ -28,6 +28,7 @@ function parseParameters(queryString) {
   return params;
 }
 
+// Netlify function handler
 exports.handler = async function (event) {
   const { channel_id, command, text } = parseParameters(event.body);
   const params = text.split("+");
@@ -35,9 +36,12 @@ exports.handler = async function (event) {
   const url = params[2];
   let blocks = "";
 
+  // Restricted only to the board-23 channel
   if (channel_id == "C03JMGCRM9B") {
+    // Different handling for different slash commands
     if (command == "/redirect") {
-      const document = {
+      // Redirect object for creation
+      const redirect = {
         _type: "redirect",
         // Some workflow state
         name: params[0],
@@ -49,24 +53,29 @@ exports.handler = async function (event) {
       };
 
       blocks = await client
-        .create(document)
+        .create(redirect) // Create redirect using Sanity client
         .then(() => {
-          const sanityUrl = `https://api.netlify.com/build_hooks/${process.env.SANITY_STUDIO_BUILD_HOOK_ID}`;
-          return fetch(sanityUrl, {
+          // Rebuild the website if redirect creation is successful
+          const netlifyWebhook = `https://api.netlify.com/build_hooks/${process.env.SANITY_STUDIO_BUILD_HOOK_ID}`;
+          return fetch(netlifyWebhook, {
             method: "POST",
             body: {},
           });
         })
-        .then(() => [
-          {
-            type: "section",
-            text: {
-              type: "mrkdwn",
-              text: `Redirect created at https://hodp.org/${slug} to ${url}.`,
+        .then(() => {
+          // Set response text for the API
+          return [
+            {
+              type: "section",
+              text: {
+                type: "mrkdwn",
+                text: `Redirect created at https://hodp.org/${slug} to ${url}.`,
+              },
             },
-          },
-        ])
+          ];
+        })
         .catch((error) => {
+          // Log error and set response text for the API
           console.log(error);
           return [
             {
@@ -109,6 +118,7 @@ exports.handler = async function (event) {
       },
     ];
   }
+  // Respond to the API call
   return {
     statusCode: 200,
     headers: { "Content-Type": "application/json" },
