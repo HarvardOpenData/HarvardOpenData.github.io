@@ -86,7 +86,7 @@ exports.handler = async function (request) {
       const redirect = {
         _type: "redirect",
         // Some workflow state
-        name: params[0].replace("+", " "),
+        name: params[0].replaceAll("+", " "),
         slug: {
           _type: "slug",
           current: slug,
