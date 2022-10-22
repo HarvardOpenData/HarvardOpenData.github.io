@@ -82,7 +82,10 @@ function MultipleCategoryChoice(props) {
       <Spacer height={0} />
       {displayValues &&
         displayValues.map((val, i) => (
-          <Text sx={{ fontSize: 1 }}>{`${choices[i]}: ${val}%`}</Text>
+          <div>
+            <Text sx={{ fontSize: 1 }}>{`${choices[i]}: ${val}%`}</Text>
+            <br></br>
+          </div>
         ))}
     </div>
   ) : (
