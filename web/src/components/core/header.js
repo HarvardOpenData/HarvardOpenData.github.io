@@ -10,6 +10,7 @@ import Fade from "react-reveal/Fade";
 import { Collapse } from "react-collapse";
 import { Box, Divider, Flex, Grid, Input, jsx, Text } from "theme-ui";
 import { navigate } from "gatsby";
+import Login from "../users/login";
 
 function MenuLink(props) {
   return (
@@ -175,7 +176,16 @@ function StandardHeader({ logo, menuLinks, isSearch }) {
               <StandardMenuLink key={`standard-menu-link-${index}`} {...link} />
             )
           )}
-          {!isSearch && <Searchbar />}
+          <div
+            sx={{
+              width: "30%",
+              height: "60%",
+              marginLeft: "auto",
+            }}
+          >
+            <Login />
+            {!isSearch && <Searchbar />}
+          </div>
         </Flex>
         <br />
       </Container>
