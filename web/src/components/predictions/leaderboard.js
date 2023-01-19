@@ -7,6 +7,10 @@ import UpdateScore from "./update-score";
 
 // generate leaderboard
 const Leaderboard = ({ user }) => {
+  const [admin, adminLoading, adminError] = useObject(
+    firebase.database().ref("admins/" + user.uid)
+  );
+  
   const [names, namesLoading, namesError] = useObject(
     firebase.database().ref("public")
   );
@@ -99,7 +103,7 @@ const Leaderboard = ({ user }) => {
       )}
       <Spacer height={3} />
       {/*if user.uid matches below, then a button is rendered that allows for updating all scores*/}
-      {user.uid === process.env.ADMIN_USER && <UpdateScore />}
+      {!adminError && !adminLoading && admin && <UpdateScore />}
     </div>
   );
 };
