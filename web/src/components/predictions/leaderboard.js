@@ -10,7 +10,7 @@ const Leaderboard = ({ user }) => {
   const [admin, adminLoading, adminError] = useObject(
     firebase.database().ref("admins/" + user.uid)
   );
-  
+
   const [names, namesLoading, namesError] = useObject(
     firebase.database().ref("public")
   );
@@ -102,7 +102,7 @@ const Leaderboard = ({ user }) => {
         </Box>
       )}
       <Spacer height={3} />
-      {/*if user.uid matches below, then a button is rendered that allows for updating all scores*/}
+      {/*if user.uid matches any admin uid, then a button is rendered that allows for updating all scores*/}
       {!adminError && !adminLoading && admin && <UpdateScore />}
     </div>
   );
