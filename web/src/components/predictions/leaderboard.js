@@ -50,7 +50,7 @@ const Leaderboard = ({ user }) => {
               </td>
             </tr>
           );
-        } else if (index < 5) {
+        } else if (index < 10) {
           return (
             <tr>
               <td style={{ textAlign: "right" }}>
