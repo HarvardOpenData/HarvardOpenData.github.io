@@ -26,15 +26,15 @@ export default () =>
         .title("Projects")
         .child(
           S.list()
-          .title("Projects")
-          .items([
-            S.listItem()
-              .title("Long Form")
-              .child(S.documentTypeList("project")),
-            S.listItem()
-              .title("Short Form")
-              .child(S.documentTypeList("shortForm")),
-          ])
+            .title("Projects")
+            .items([
+              S.listItem()
+                .title("Long Form")
+                .child(S.documentTypeList("project")),
+              S.listItem()
+                .title("Short Form")
+                .child(S.documentTypeList("shortForm")),
+            ])
         ),
       S.listItem()
         .title("Blog posts")
@@ -152,6 +152,15 @@ export default () =>
                     .id("contactPage")
                     .schemaType("page")
                     .documentId("contact")
+                )
+                .icon(FaFile),
+              S.listItem()
+                .title("Datathon")
+                .child(
+                  S.editor()
+                    .id("datathon-pagePage")
+                    .schemaType("page")
+                    .documentId("datathon-page")
                 )
                 .icon(FaFile),
             ])
