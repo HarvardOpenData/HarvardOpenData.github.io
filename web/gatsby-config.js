@@ -39,6 +39,10 @@ module.exports = {
             name: `Join HODP`,
             link: `/join`,
           },
+          {
+            name: `Datathon`,
+            link: `/datathon-page`,
+          },
         ],
       },
       {
