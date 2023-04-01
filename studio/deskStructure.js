@@ -158,9 +158,9 @@ export default () =>
                 .title("Datathon")
                 .child(
                   S.editor()
-                    .id("datathon-pagePage")
+                    .id("datathonPage")
                     .schemaType("page")
-                    .documentId("datathon-page")
+                    .documentId("datathon")
                 )
                 .icon(FaFile),
             ])
