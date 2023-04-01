@@ -9,7 +9,7 @@ import Layout from "../containers/layout";
 
 export const query = graphql`
   query DatathonPageQuery {
-    page: sanityPage(_id: { regex: "/(drafts.|)datathon-page/" }) {
+    page: sanityPage(_id: { regex: "/(drafts.|)datathon/" }) {
       id
       title
       _rawBody(resolveReferences: { maxDepth: 5 })

@@ -41,7 +41,7 @@ module.exports = {
           },
           {
             name: `Datathon`,
-            link: `/datathon-page`,
+            link: `/datathon`,
           },
         ],
       },
