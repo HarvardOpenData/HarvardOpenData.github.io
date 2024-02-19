@@ -47,7 +47,7 @@ module.exports = {
       },
       {
         name: `Wiki`,
-        link: `http://wiki.hodp.org/wiki/Main_Page`,
+        link: `http://wiki.hodp.org/`,
       },
       {
         name: `Sponsors`,
