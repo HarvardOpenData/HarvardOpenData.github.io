@@ -207,7 +207,7 @@ const Layout = ({
                 <br />
                 <Link href="https://docs.hodp.org">Docs</Link>
                 <br />
-                <Link href="http://wiki.hodp.org/wiki/Main_Page">
+                <Link href="http://wiki.hodp.org/">
                   Harvard Wiki
                 </Link>
                 <br />
