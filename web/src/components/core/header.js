@@ -10,6 +10,7 @@ import Fade from "react-reveal/Fade";
 import { Collapse } from "react-collapse";
 import { Box, Divider, Flex, Grid, Input, jsx, Text } from "theme-ui";
 import { navigate } from "gatsby";
+import Login from "../users/login";
 
 function MenuLink(props) {
   return (
@@ -157,13 +158,21 @@ function StandardHeader({ logo, menuLinks, isSearch }) {
       }}
     >
       <Container>
-        <Link to="/">
-          <img
-            src={logoSrc}
-            sx={{ maxWidth: "200px", marginTop: "2em" }}
-            alt={logo.alt}
-          />
-        </Link>
+        <Grid gap={2} columns={[2]}>
+          <Box>
+            <Link to="/">
+            <img
+              src={logoSrc}
+              sx={{ maxWidth: "200px", marginTop: "2em" }}
+              alt={logo.alt}
+            />
+            </Link>
+          </Box>
+          <Box sx={{ justifySelf: "end", alignSelf: "end", paddingBottom: 1 }}>
+            <Login />
+          </Box>
+        </Grid>
+
         <Flex>
           {menuLinks.map((link, index) =>
             link.subMenu && link.subMenu.length > 0 ? (
@@ -230,6 +239,9 @@ class MobileHeader extends React.Component {
                   alt={logo.alt}
                 />
               </Link>
+            </Box>
+            <Box sx={{paddingRight: 1, paddingTop: 1}}>
+              <Login />
             </Box>
             <Box
               pt={3}
