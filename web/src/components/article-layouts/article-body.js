@@ -90,16 +90,16 @@ const DatawrapperEmbed = ({ chartId }) => {
 };
 
 
-
 const serializers = {
   types: {
     iframe: ({ node }) => {
-      const chartId = node.url.match(/\/([a-zA-Z0-9]+)\/?$/)?.[1];
+      const chartId = node.url.match(/\/([a-zA-Z0-9]+)\/\d+\/?$/)?.[1];
       if (!chartId) return <p style={{ color: "red" }}>Invalid Datawrapper URL</p>;
       return <DatawrapperEmbed chartId={chartId} />;
     },
   },
 };
+
 
 
 
