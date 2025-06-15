@@ -15,36 +15,53 @@ const serializers = {
       const containerRef = useRef(null);
 
       useEffect(() => {
-        if (!url) return;
+        if (!url || !containerRef.current) return;
 
-        // Extract chart ID from URL
         const match = url.match(/dwcdn\.net\/([^/]+)/);
         if (!match) return;
 
         const chartId = match[1];
         const scriptId = `datawrapper-script-${chartId}`;
 
-        // Prevent adding script multiple times
+        // Only inject script once
         if (!document.getElementById(scriptId)) {
           const script = document.createElement("script");
           script.src = `https://datawrapper.dwcdn.net/${chartId}/embed.js`;
           script.defer = true;
           script.id = scriptId;
-          containerRef.current.appendChild(script);
+          document.body.appendChild(script); // ⬅ better to append to body
         }
       }, [url]);
 
+      const chartId = url.match(/dwcdn\.net\/([^/]+)/)?.[1];
+      const iframeId = `datawrapper-chart-${chartId}`;
+
       return (
-        <div ref={containerRef} style={{ width: "100%", margin: "2rem 0" }}>
-          <noscript>
-            <img
-              src={url.replace("/1/", "/full.png")}
-              alt={caption || "Embedded chart"}
-              style={{ width: "100%" }}
-            />
-          </noscript>
+        <div style={{ width: "100%", margin: "2rem 0" }}>
+          <iframe
+            id={iframeId}
+            title={caption || "Embedded chart"}
+            aria-label="Datawrapper chart"
+            src={url}
+            scrolling="no"
+            frameBorder="0"
+            style={{
+              width: "0",
+              minWidth: "100%",
+              border: "none",
+              height: "400px", // fallback
+            }}
+            data-external="1"
+          />
           {caption && (
-            <p style={{ textAlign: "center", fontSize: "0.9rem", color: "#555" }}>
+            <p
+              style={{
+                textAlign: "center",
+                fontSize: "0.9rem",
+                color: "#555",
+                marginTop: "0.5rem",
+              }}
+            >
               {caption}
             </p>
           )}
