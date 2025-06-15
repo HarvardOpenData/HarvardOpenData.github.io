@@ -6,27 +6,41 @@ import BlockContent from "../block-content";
 import Container from "../core/container";
 import { DiscussionEmbed } from "disqus-react";
 
+import React, { useEffect, useRef } from "react";
+
 const serializers = {
   types: {
     iframe: ({ node }) => {
-      const { url, caption, aspectRatio } = node;
-      const [w, h] = (aspectRatio || "16:9").split(":").map(Number);
-      const padding = (h / w) * 100;
+      const { url, caption } = node;
+      const iframeRef = useRef(null);
+
+      // Add dynamic height resizing for Datawrapper and similar
+      useEffect(() => {
+        const handleMessage = (event) => {
+          if (event.data["datawrapper-height"] && iframeRef.current) {
+            const chartId = Object.keys(event.data["datawrapper-height"])[0];
+            const height = event.data["datawrapper-height"][chartId];
+            iframeRef.current.style.height = height + "px";
+          }
+        };
+
+        window.addEventListener("message", handleMessage);
+        return () => window.removeEventListener("message", handleMessage);
+      }, []);
 
       return (
-        <div style={{ position: "relative", paddingBottom: `${padding}%`, height: 0, marginBottom: "1rem" }}>
+        <div style={{ width: "100%", marginBottom: "1rem" }}>
           <iframe
+            ref={iframeRef}
             src={url}
             title={caption || "Embedded content"}
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              border: "none",
-            }}
+            width="100%"
+            height="400" // fallback
+            frameBorder="0"
+            scrolling="no"
             allowFullScreen
+            style={{ border: "none" }}
+            data-external="1"
           />
           {caption && (
             <p style={{ fontSize: "0.9rem", color: "#555", marginTop: "0.5rem" }}>
@@ -38,6 +52,7 @@ const serializers = {
     },
   },
 };
+
 
 
 function ArticleBody(props) {
