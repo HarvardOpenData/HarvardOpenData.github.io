@@ -6,42 +6,43 @@ import BlockContent from "../block-content";
 import Container from "../core/container";
 import { DiscussionEmbed } from "disqus-react";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const serializers = {
   types: {
     iframe: ({ node }) => {
       const { url, caption } = node;
-      const containerRef = useRef(null);
+      const iframeRef = useRef(null);
+      const [height, setHeight] = useState(400); // fallback height
 
       useEffect(() => {
-        if (!url || !containerRef.current) return;
-
-        const match = url.match(/dwcdn\.net\/([^/]+)/);
-        if (!match) return;
-
-        const chartId = match[1];
-        const scriptId = `datawrapper-script-${chartId}`;
-
-        // Only inject script once
-        if (!document.getElementById(scriptId)) {
-          const script = document.createElement("script");
-          script.src = `https://datawrapper.dwcdn.net/${chartId}/embed.js`;
-          script.defer = true;
-          script.id = scriptId;
-          document.body.appendChild(script); // ⬅ better to append to body
+        function receiveMessage(e) {
+          if (
+            e.data &&
+            typeof e.data === "object" &&
+            e.data["datawrapper-height"]
+          ) {
+            const chartId = Object.keys(e.data["datawrapper-height"])[0];
+            const newHeight = e.data["datawrapper-height"][chartId];
+            if (iframeRef.current) {
+              iframeRef.current.style.height = `${newHeight}px`;
+              setHeight(newHeight);
+            }
+          }
         }
-      }, [url]);
+
+        window.addEventListener("message", receiveMessage);
+        return () => window.removeEventListener("message", receiveMessage);
+      }, []);
 
       const chartId = url.match(/dwcdn\.net\/([^/]+)/)?.[1];
-      const iframeId = `datawrapper-chart-${chartId}`;
 
       return (
         <div style={{ width: "100%", margin: "2rem 0" }}>
           <iframe
-            id={iframeId}
+            ref={iframeRef}
+            id={`datawrapper-chart-${chartId}`}
             title={caption || "Embedded chart"}
-            aria-label="Datawrapper chart"
             src={url}
             scrolling="no"
             frameBorder="0"
@@ -49,8 +50,10 @@ const serializers = {
               width: "0",
               minWidth: "100%",
               border: "none",
-              height: "400px", // fallback
+              height: `${height}px`,
+              transition: "height 0.2s ease",
             }}
+            allowFullScreen
             data-external="1"
           />
           {caption && (
@@ -70,6 +73,7 @@ const serializers = {
     },
   },
 };
+
 
 
 function ArticleBody(props) {
