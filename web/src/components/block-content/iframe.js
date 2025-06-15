@@ -8,24 +8,22 @@ function IFrame(props) {
   const ratioValues = props.aspectRatio ? props.aspectRatio.split(":") : ["16", "9"];
   const aspectRatio = `${((ratioValues[1] * 100) / ratioValues[0]).toFixed(2)}%`;
 
-  useEffect(() => {
-    if (!props.url) return;
+  const chartId = props.url?.includes("datawrapper.dwcdn.net")
+    ? props.url.match(/dwcdn\.net\/([a-zA-Z0-9]+)\//)?.[1]
+    : null;
 
-    // Only inject script for Datawrapper charts
-    if (props.url.includes("datawrapper.dwcdn.net")) {
-      const match = props.url.match(/dwcdn\.net\/([^/]+)/);
-      const chartId = match?.[1];
-      const scriptId = `dw-script-${chartId}`;
-      
-      if (!document.getElementById(scriptId)) {
-        const script = document.createElement("script");
-        script.src = `https://datawrapper.dwcdn.net/${chartId}/embed.js`;
-        script.defer = true;
-        script.id = scriptId;
-        document.body.appendChild(script);
-      }
+  useEffect(() => {
+    if (!props.url || !chartId) return;
+
+    const scriptId = `dw-script-${chartId}`;
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.src = `https://datawrapper.dwcdn.net/${chartId}/embed.js`;
+      script.defer = true;
+      script.id = scriptId;
+      document.body.appendChild(script);
     }
-  }, [props.url]);
+  }, [props.url, chartId]);
 
   return (
     <div style={{ alignItems: "center" }}>
@@ -35,6 +33,8 @@ function IFrame(props) {
           <iframe
             ref={iframeRef}
             src={props.url}
+            id={chartId ? `datawrapper-chart-${chartId}` : undefined}
+            title={props.caption || "Embedded content"}
             scrolling="no"
             style={{
               height: "100%",
@@ -42,12 +42,6 @@ function IFrame(props) {
               position: "absolute",
               border: "none",
             }}
-            id={
-              props.url.includes("datawrapper.dwcdn.net")
-                ? `datawrapper-chart-${props.url.match(/dwcdn\.net\/([^/]+)/)?.[1]}`
-                : undefined
-            }
-            title={props.caption || "Embedded content"}
             data-external="1"
           />
         )}
