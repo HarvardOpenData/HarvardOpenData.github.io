@@ -12,64 +12,68 @@ import React, { useEffect, useRef } from "react";
 const serializers = {
   types: {
     iframe: ({ node }) => {
-      const { url, caption } = node;
-      const containerRef = useRef(null);
-
-      useEffect(() => {
-        if (!url || !containerRef.current) return;
-
-        const match = url.match(/dwcdn\.net\/([^/]+)/);
-        if (!match) return;
-
-        const chartId = match[1];
-        const scriptId = `dw-script-${chartId}`;
-
-        if (!document.getElementById(scriptId)) {
-          const script = document.createElement("script");
-          script.src = `https://datawrapper.dwcdn.net/${chartId}/embed.js`;
-          script.defer = true;
-          script.id = scriptId;
-          document.body.appendChild(script);
-        }
-      }, [url]);
-
-      const chartId = url.match(/dwcdn\.net\/([^/]+)/)?.[1];
-
-      return (
-        <div ref={containerRef} style={{ width: "100%", margin: "2rem 0" }}>
-          <iframe
-            id={`datawrapper-chart-${chartId}`}
-            title={caption || "Embedded chart"}
-            src={url}
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen
-            data-external="1"
-            style={{
-              width: "0",
-              minWidth: "100%",
-              border: "none",
-              height: "400px", // fallback height, will get resized
-            }}
-          />
-          {caption && (
-            <p
-              style={{
-                textAlign: "center",
-                fontSize: "0.9rem",
-                color: "#555",
-                marginTop: "0.5rem",
-              }}
-            >
-              {caption}
-            </p>
-          )}
-        </div>
-      );
+      return <DatawrapperEmbed url={node.url} caption={node.caption} />;
     },
   },
 };
 
+
+const DatawrapperEmbed = ({ url, caption }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (!url || !containerRef.current) return;
+
+    const match = url.match(/dwcdn\.net\/([^/]+)/);
+    if (!match) return;
+
+    const chartId = match[1];
+    const scriptId = `dw-script-${chartId}`;
+
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.src = `https://datawrapper.dwcdn.net/${chartId}/embed.js`;
+      script.defer = true;
+      script.id = scriptId;
+      document.body.appendChild(script);
+    }
+  }, [url]);
+
+  const chartId = url.match(/dwcdn\.net\/([^/]+)/)?.[1];
+  if (!chartId) return <p style={{ color: "red" }}>Invalid Datawrapper URL</p>;
+
+  return (
+    <div ref={containerRef} style={{ width: "100%", margin: "2rem 0" }}>
+      <iframe
+        id={`datawrapper-chart-${chartId}`}
+        title={caption || "Embedded Datawrapper chart"}
+        src={`https://datawrapper.dwcdn.net/${chartId}/1/`}
+        scrolling="no"
+        frameBorder="0"
+        allowFullScreen
+        data-external="1"
+        style={{
+          width: "0",
+          minWidth: "100%",
+          border: "none",
+          height: "400px",
+        }}
+      />
+      {caption && (
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "0.9rem",
+            color: "#555",
+            marginTop: "0.5rem",
+          }}
+        >
+          {caption}
+        </p>
+      )}
+    </div>
+  );
+};
 
 
 function ArticleBody(props) {
