@@ -6,6 +6,40 @@ import BlockContent from "../block-content";
 import Container from "../core/container";
 import { DiscussionEmbed } from "disqus-react";
 
+const serializers = {
+  types: {
+    iframe: ({ node }) => {
+      const { url, caption, aspectRatio } = node;
+      const [w, h] = (aspectRatio || "16:9").split(":").map(Number);
+      const padding = (h / w) * 100;
+
+      return (
+        <div style={{ position: "relative", paddingBottom: `${padding}%`, height: 0, marginBottom: "1rem" }}>
+          <iframe
+            src={url}
+            title={caption || "Embedded content"}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+            }}
+            allowFullScreen
+          />
+          {caption && (
+            <p style={{ fontSize: "0.9rem", color: "#555", marginTop: "0.5rem" }}>
+              {caption}
+            </p>
+          )}
+        </div>
+      );
+    },
+  },
+};
+
+
 function ArticleBody(props) {
   const {
     _rawExcerpt,
@@ -55,7 +89,7 @@ function ArticleBody(props) {
           >
             {showHeader && <ArticleHeader {...headerProps} />}
             <br />
-            {_rawBody && <BlockContent blocks={_rawBody || []} />}
+            {_rawBody && <BlockContent blocks={_rawBody} serializers={serializers} />}
             <br />
             <DiscussionEmbed {...disqusConfig} />
           </div>
