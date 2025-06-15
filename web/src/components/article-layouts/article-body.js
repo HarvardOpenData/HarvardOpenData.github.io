@@ -12,56 +12,39 @@ const serializers = {
   types: {
     iframe: ({ node }) => {
       const { url, caption } = node;
-      const iframeRef = useRef(null);
+      const containerRef = useRef(null);
 
       useEffect(() => {
-        const handleMessage = (event) => {
-          if (
-            event.data &&
-            typeof event.data === "object" &&
-            event.data["datawrapper-height"]
-          ) {
-            const chartId = Object.keys(event.data["datawrapper-height"])[0];
-            const height = event.data["datawrapper-height"][chartId];
-            if (iframeRef.current) {
-              iframeRef.current.style.height = `${height}px`;
-            }
-          }
-        };
+        if (!url) return;
 
-        window.addEventListener("message", handleMessage);
-        return () => window.removeEventListener("message", handleMessage);
-      }, []);
+        // Extract chart ID from URL
+        const match = url.match(/dwcdn\.net\/([^/]+)/);
+        if (!match) return;
+
+        const chartId = match[1];
+        const scriptId = `datawrapper-script-${chartId}`;
+
+        // Prevent adding script multiple times
+        if (!document.getElementById(scriptId)) {
+          const script = document.createElement("script");
+          script.src = `https://datawrapper.dwcdn.net/${chartId}/embed.js`;
+          script.defer = true;
+          script.id = scriptId;
+          containerRef.current.appendChild(script);
+        }
+      }, [url]);
 
       return (
-        <div style={{ width: "100%", margin: "1.5rem 0" }}>
-          <iframe
-            ref={iframeRef}
-            src={url}
-            title={caption || "Embedded visualization"}
-            width="100%"
-            height="400" // fallback height
-            frameBorder="0"
-            scrolling="no"
-            allowFullScreen
-            data-external="1"
-            style={{
-              border: "none",
-              backgroundColor: "transparent",
-              width: "100%",
-              display: "block",
-              transition: "height 0.2s ease",
-            }}
-          />
+        <div ref={containerRef} style={{ width: "100%", margin: "2rem 0" }}>
+          <noscript>
+            <img
+              src={url.replace("/1/", "/full.png")}
+              alt={caption || "Embedded chart"}
+              style={{ width: "100%" }}
+            />
+          </noscript>
           {caption && (
-            <p
-              style={{
-                fontSize: "0.9rem",
-                color: "#555",
-                marginTop: "0.5rem",
-                textAlign: "center",
-              }}
-            >
+            <p style={{ textAlign: "center", fontSize: "0.9rem", color: "#555" }}>
               {caption}
             </p>
           )}
@@ -70,7 +53,6 @@ const serializers = {
     },
   },
 };
-
 
 
 function ArticleBody(props) {
