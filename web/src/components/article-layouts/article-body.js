@@ -6,55 +6,51 @@ import BlockContent from "../block-content";
 import Container from "../core/container";
 import { DiscussionEmbed } from "disqus-react";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
+// Define the iframe serializer
 const serializers = {
   types: {
     iframe: ({ node }) => {
       const { url, caption } = node;
-      const iframeRef = useRef(null);
-      const [height, setHeight] = useState(400); // fallback height
+      const containerRef = useRef(null);
 
       useEffect(() => {
-        function receiveMessage(e) {
-          if (
-            e.data &&
-            typeof e.data === "object" &&
-            e.data["datawrapper-height"]
-          ) {
-            const chartId = Object.keys(e.data["datawrapper-height"])[0];
-            const newHeight = e.data["datawrapper-height"][chartId];
-            if (iframeRef.current) {
-              iframeRef.current.style.height = `${newHeight}px`;
-              setHeight(newHeight);
-            }
-          }
-        }
+        if (!url || !containerRef.current) return;
 
-        window.addEventListener("message", receiveMessage);
-        return () => window.removeEventListener("message", receiveMessage);
-      }, []);
+        const match = url.match(/dwcdn\.net\/([^/]+)/);
+        if (!match) return;
+
+        const chartId = match[1];
+        const scriptId = `dw-script-${chartId}`;
+
+        if (!document.getElementById(scriptId)) {
+          const script = document.createElement("script");
+          script.src = `https://datawrapper.dwcdn.net/${chartId}/embed.js`;
+          script.defer = true;
+          script.id = scriptId;
+          document.body.appendChild(script);
+        }
+      }, [url]);
 
       const chartId = url.match(/dwcdn\.net\/([^/]+)/)?.[1];
 
       return (
-        <div style={{ width: "100%", margin: "2rem 0" }}>
+        <div ref={containerRef} style={{ width: "100%", margin: "2rem 0" }}>
           <iframe
-            ref={iframeRef}
             id={`datawrapper-chart-${chartId}`}
             title={caption || "Embedded chart"}
             src={url}
             scrolling="no"
             frameBorder="0"
+            allowFullScreen
+            data-external="1"
             style={{
               width: "0",
               minWidth: "100%",
               border: "none",
-              height: `${height}px`,
-              transition: "height 0.2s ease",
+              height: "400px", // fallback height, will get resized
             }}
-            allowFullScreen
-            data-external="1"
           />
           {caption && (
             <p
