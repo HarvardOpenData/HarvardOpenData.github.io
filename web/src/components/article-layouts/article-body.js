@@ -14,13 +14,18 @@ const serializers = {
       const { url, caption } = node;
       const iframeRef = useRef(null);
 
-      // Add dynamic height resizing for Datawrapper and similar
       useEffect(() => {
         const handleMessage = (event) => {
-          if (event.data["datawrapper-height"] && iframeRef.current) {
+          if (
+            event.data &&
+            typeof event.data === "object" &&
+            event.data["datawrapper-height"]
+          ) {
             const chartId = Object.keys(event.data["datawrapper-height"])[0];
             const height = event.data["datawrapper-height"][chartId];
-            iframeRef.current.style.height = height + "px";
+            if (iframeRef.current) {
+              iframeRef.current.style.height = `${height}px`;
+            }
           }
         };
 
@@ -29,21 +34,34 @@ const serializers = {
       }, []);
 
       return (
-        <div style={{ width: "100%", marginBottom: "1rem" }}>
+        <div style={{ width: "100%", margin: "1.5rem 0" }}>
           <iframe
             ref={iframeRef}
             src={url}
-            title={caption || "Embedded content"}
+            title={caption || "Embedded visualization"}
             width="100%"
-            height="400" // fallback
+            height="400" // fallback height
             frameBorder="0"
             scrolling="no"
             allowFullScreen
-            style={{ border: "none" }}
             data-external="1"
+            style={{
+              border: "none",
+              backgroundColor: "transparent",
+              width: "100%",
+              display: "block",
+              transition: "height 0.2s ease",
+            }}
           />
           {caption && (
-            <p style={{ fontSize: "0.9rem", color: "#555", marginTop: "0.5rem" }}>
+            <p
+              style={{
+                fontSize: "0.9rem",
+                color: "#555",
+                marginTop: "0.5rem",
+                textAlign: "center",
+              }}
+            >
               {caption}
             </p>
           )}
@@ -52,6 +70,7 @@ const serializers = {
     },
   },
 };
+
 
 
 function ArticleBody(props) {
