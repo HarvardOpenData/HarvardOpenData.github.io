@@ -11,6 +11,8 @@ import Section from "../components/core/section";
 import Layout from "../containers/layout";
 import PreviewGrid from "../components/article-layouts/preview-grid";
 import Spacer from "../components/core/spacer";
+import Link from "../components/core/link";
+
 
 export const query = graphql`
   query IndexPageQuery {
@@ -104,6 +106,30 @@ export const query = graphql`
       }
     }
   }
+  blogPosts: allSanityProject(
+    limit: 3
+    sort: { fields: [publishedAt], order: DESC }
+    filter: { categories: { elemMatch: { title: { eq: "Blog" } } } }
+  ) {
+    edges {
+      node {
+        id
+        publishedAt
+        mainImage {
+          crop { _key _type top bottom left right }
+          hotspot { _key _type x y height width }
+          asset { _id }
+          alt
+        }
+        title
+        _rawExcerpt
+        _rawMembers(resolveReferences: { maxDepth: 5 })
+        categories { title }
+        slug { current }
+      }
+    }
+  }
+
 `;
 
 const IndexPage = (props) => {
@@ -126,6 +152,11 @@ const IndexPage = (props) => {
     const shortFormNodes = (data || {}).shortForms
       ? mapEdgesToNodes(data.shortForms).filter(filterOutDocsWithoutSlugs)
       : [];
+
+    const blogPostNodes = (data || {}).blogPosts
+      ? mapEdgesToNodes(data.blogPosts).filter(filterOutDocsWithoutSlugs)
+      : [];
+
 
   if (!site) {
     throw new Error(
@@ -171,18 +202,20 @@ const IndexPage = (props) => {
           >
             <BlockContent blocks={page._rawBody || []} />
             <Spacer height={5} />
-            <Section header="Quick Links">
-              <Themed.h3>Featured Short Form</Themed.h3>
-              {shortFormNodes && (
-                <ArticlePreview
-                  key={1}
-                  {...shortFormNodes[0]}
-                  link={shortFormNodes[0].slug.current}
-                />
-              )}
-              <Divider mb={3} color="text" />
-              <BlockContent blocks={page._rawBodySecondary || []} />
-            </Section>
+            <Section header="Blog">
+ 		 {blogPostNodes &&
+   		    blogPostNodes.map((node) => (
+     		      <div key={node.id}>
+        	       <ArticlePreview
+          		{...node}
+         		link={node.slug.current}
+        	     />
+       		     <Divider mb={3} color="text" />
+      		    </div>
+    		))}
+  		<Link to="/blog">View all blog posts →</Link>
+	    </Section>
+
           </div>
         </Grid>
       </Container>
