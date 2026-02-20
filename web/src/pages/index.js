@@ -105,10 +105,9 @@ export const query = graphql`
         }
       }
     }
-  blogPosts: allSanityProject(
+    blogPosts: allSanityPost(
     limit: 3
     sort: { fields: [publishedAt], order: DESC }
-    filter: { categories: { elemMatch: { title: { eq: "Blog" } } } }
   ) {
     edges {
       node {
@@ -123,12 +122,10 @@ export const query = graphql`
         title
         _rawExcerpt
         _rawMembers(resolveReferences: { maxDepth: 5 })
-        categories { title }
         slug { current }
       }
     }
   }
-}
 `;
 
 const IndexPage = (props) => {
