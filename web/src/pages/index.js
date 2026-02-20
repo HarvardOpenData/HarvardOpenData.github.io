@@ -199,19 +199,23 @@ const IndexPage = (props) => {
           >
             <BlockContent blocks={page._rawBody || []} />
             <Spacer height={5} />
-            <Section header="Blog">
- 		 {blogPostNodes &&
-   		    blogPostNodes.map((node) => (
-     		      <div key={node.id}>
-        	       <ArticlePreview
-          		{...node}
-         		link={node.slug.current}
-        	     />
-       		     <Divider mb={3} color="text" />
-      		    </div>
-    		))}
-  		<Link to="/blog">View all blog posts →</Link>
-	    </Section>
+		<Section header="Blog">
+		  {blogPostNodes &&
+		    blogPostNodes.map((node) => (
+		      <div key={node.id}>
+		        <ArticlePreview
+		          {...node}
+		          link={node.slug.current}
+		        />
+		        <Divider mb={3} color="text" />
+		      </div>
+		    ))}
+		  <Link to="/blog">View all blog posts →</Link>
+		</Section>
+		<Spacer height={4} />
+		<Section header="Quick Links">
+		  <BlockContent blocks={page._rawBodySecondary || []} />
+		</Section>
 
           </div>
         </Grid>
