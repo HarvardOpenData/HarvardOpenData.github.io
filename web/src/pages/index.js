@@ -126,6 +126,7 @@ export const query = graphql`
       }
     }
   }
+}
 `;
 
 const IndexPage = (props) => {
