@@ -105,7 +105,6 @@ export const query = graphql`
         }
       }
     }
-  }
   blogPosts: allSanityProject(
     limit: 3
     sort: { fields: [publishedAt], order: DESC }
@@ -128,8 +127,8 @@ export const query = graphql`
         slug { current }
       }
     }
-   }
   }
+}
 `;
 
 const IndexPage = (props) => {
