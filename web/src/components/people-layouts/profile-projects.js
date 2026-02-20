@@ -9,14 +9,14 @@ function ProfileProjects(props) {
   // TODO Better to define a schema in sanity for contribution type and mapping from type to role!
   // So that future devs can update just the schemas and don't have to track down this component
   const subjects = [
-    "Projects",
-    "Contributions",
-    "Editing",
-    "Design",
-    "Blog posts",
-    "All",
-  ];
-  const [activeCategory, setActiveCategory] = useState("Projects");
+  "All",
+  "Projects",
+  "Blog posts",
+  "Contributions",
+  "Editing",
+  "Design",
+];
+  const [activeCategory, setActiveCategory] = useState("All");
   const cards = subjects.map((subject) => {
     const included = activeCategory === subject;
     return (
