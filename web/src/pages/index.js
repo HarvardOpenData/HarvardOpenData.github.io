@@ -128,6 +128,8 @@ export const query = graphql`
         slug { current }
       }
     }
+   }
+  }
 `;
 
 const IndexPage = (props) => {
