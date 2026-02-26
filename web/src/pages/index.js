@@ -204,9 +204,10 @@ const IndexPage = (props) => {
 		    blogPostNodes.map((node) => (
 		      <div key={node.id}>
 		        <ArticlePreview
-		          {...node}
-		          link={node.slug.current}
-		        />
+			  {...node}
+			  link={node.slug.current}
+			  categories={[{ title: "Blog" }]}
+			/>
 		        <Divider mb={3} color="text" />
 		      </div>
 		    ))}
