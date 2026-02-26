@@ -50,8 +50,8 @@ module.exports = {
         link: `http://wiki.hodp.org/`,
       },
       {
-        name: `Sponsors`,
-        link: `/sponsors`,
+         name: `People`,
+         link: `/people`,
       },
       {
         name: `Blog`,
@@ -60,11 +60,6 @@ module.exports = {
       {
         name: `About`,
         link: `/about`,
-        subMenu: [
-          {
-            name: `People`,
-            link: `/people`,
-          },
         ],
       },
     ],
