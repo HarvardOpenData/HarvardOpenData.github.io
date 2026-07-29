@@ -22,7 +22,6 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
-    "@cloudflare/wrangler": "^1.17.0",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/image-url": "^0.140.22",
     "algoliasearch": "^4.10.2",
